@@ -1,0 +1,105 @@
+RoomModel environment_monitoring_station {
+	import room.basic.types.* from "../../org.eclipse.etrice.modellib.java/model/Types.room"
+	import room.basic.service.timing.* from "../../org.eclipse.etrice.modellib.java/model/TimingService.room"
+	import devices.* from "devices.room"
+	
+	DataClass environment_station_actor_base_idata_t {
+		Attribute period : int32 = '0'
+	}
+	
+	ProtocolClass environmonet_statition_actor_base_iprotocol_t {
+		incoming {
+			Message initialize ( data : environment_station_actor_base_idata_t )
+		}
+	}
+	
+	abstract ActorClass environment_station_actor_base_t {
+		Interface { 
+			Port iport : environmonet_statition_actor_base_iprotocol_t
+		}	
+		Structure {
+			external Port iport
+
+			SAP timer_access_point : PTimer
+
+			Attribute period : int32 = '0'
+
+		}
+		Behavior {
+			Operation query_action ( ) : void '''
+
+			'''
+			StateMachine {
+				State waiting_for_imessage { }
+				State querying { 
+					entry '''
+						this.query_action ( );
+						timer_access_point.startTimeout( this.period );
+					'''
+				}
+				
+				Transition start : initial -> waiting_for_imessage { }
+				
+				Transition imessage_received : waiting_for_imessage -> querying {
+					triggers {
+						< initialize : iport >
+					}	
+					action '''
+						this.period = data.period;
+					'''
+				}
+				
+				Transition timeout_received : querying -> querying {
+					triggers {
+						< timeout : timer_access_point >
+					}
+				}
+			}
+		}
+	}
+
+	DataClass water_level_detector_controller_base_idata_t extends environment_station_actor_base_idata_t {
+		Attribute water_level_detector : water_level_detector_t	ref
+	}
+	
+
+	abstract ActorClass water_level_detector_controller_base_t extends environment_station_actor_base_t {
+		Interface {
+			Port pump_switch_port : switch_protocol_t
+		}
+		Structure {
+			external Port pump_switch_port
+			
+			Attribute water_level_detector : water_level_detector_t ref
+		}
+		Behavior {
+			StateMachine {
+				RefinedTransition imessage_received {
+					action '''
+						this.water_level_detector = ( ( water_level_detector_controller_base_idata_t ) data ).water_level_detector;
+					'''
+				}
+			}
+		}
+	}
+	
+	ActorClass low_water_level_detector_controller_t extends water_level_detector_controller_base_t {
+		Behavior {
+			override Operation query_action ( ) :void '''
+				if ( super.water_level_detector.value == 1 ) {
+					super.pump_switch_port.turn_off ( );
+				}
+			'''
+		}	
+	}
+
+	ActorClass high_water_level_detector_controller_t extends water_level_detector_controller_base_t {
+		Behavior {
+			override Operation query_action ( ) :void '''
+				if ( super.water_level_detector.value == 1 ) {
+					super.pump_switch_port.turn_on ( );
+				}
+			'''
+		}	
+	}
+}

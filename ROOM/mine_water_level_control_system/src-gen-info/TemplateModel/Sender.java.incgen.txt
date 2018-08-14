@@ -1,0 +1,85 @@
+package TemplateModel;
+
+import org.eclipse.etrice.runtime.java.messaging.*;
+import org.eclipse.etrice.runtime.java.modelbase.*;
+import org.eclipse.etrice.runtime.java.debugging.*;
+
+import static org.eclipse.etrice.runtime.java.etunit.EtUnit.*;
+
+import TemplateModel.PingPongProtocol.*;
+
+
+
+public class Sender extends ActorClassBase {
+
+
+	//--------------------- ports
+	protected PingPongProtocolConjPort sendPort = null;
+
+	//--------------------- saps
+
+	//--------------------- services
+
+	//--------------------- optional actors
+
+	//--------------------- interface item IDs
+	public static final int IFITEM_sendPort = 1;
+
+	/*--------------------- attributes ---------------------*/
+
+	/*--------------------- operations ---------------------*/
+	public  void print() {
+		System.out.println ( "AAA" );
+	}
+
+
+	//--------------------- construction
+	public Sender(IRTObject parent, String name) {
+		super(parent, name);
+		setClassName("Sender");
+
+		// initialize attributes
+
+		// own ports
+		sendPort = new PingPongProtocolConjPort(this, "sendPort", IFITEM_sendPort);
+
+		// own saps
+
+		// own service implementations
+
+		// sub actors
+
+		// wiring
+
+
+		/* user defined constructor body */
+
+	}
+
+	/* --------------------- attribute setters and getters */
+
+
+	//--------------------- port getters
+	public PingPongProtocolConjPort getSendPort (){
+		return this.sendPort;
+	}
+
+	//--------------------- lifecycle functions
+	public void stop(){
+		super.stop();
+	}
+
+	public void destroy(){
+		/* user defined destructor body */
+		DebuggingService.getInstance().addMessageActorDestroy(this);
+		super.destroy();
+	}
+
+	//--------------------- no state machine
+	public void receiveEvent(InterfaceItemBase ifitem, int evt, Object data) {
+		handleSystemEvent(ifitem, evt, data);
+	}
+
+	public void executeInitTransition() {}
+
+};

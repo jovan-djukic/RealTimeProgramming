@@ -1,0 +1,90 @@
+package TemplateModel;
+
+import org.eclipse.etrice.runtime.java.messaging.*;
+import org.eclipse.etrice.runtime.java.modelbase.*;
+import org.eclipse.etrice.runtime.java.debugging.*;
+
+import static org.eclipse.etrice.runtime.java.etunit.EtUnit.*;
+
+import room.basic.service.timing.*;
+import room.basic.service.timing.PTimer.*;
+import TemplateModel.PingPongProtocol.*;
+
+
+
+public class Receiver extends ActorClassBase {
+
+
+	//--------------------- ports
+	protected PingPongProtocolPort recvPort = null;
+
+	//--------------------- saps
+	protected PTimerConjPort timingService = null;
+
+	//--------------------- services
+
+	//--------------------- optional actors
+
+	//--------------------- interface item IDs
+	public static final int IFITEM_recvPort = 1;
+	public static final int IFITEM_timingService = 2;
+
+	/*--------------------- attributes ---------------------*/
+
+	/*--------------------- operations ---------------------*/
+
+
+	//--------------------- construction
+	public Receiver(IRTObject parent, String name) {
+		super(parent, name);
+		setClassName("Receiver");
+
+		// initialize attributes
+
+		// own ports
+		recvPort = new PingPongProtocolPort(this, "recvPort", IFITEM_recvPort);
+
+		// own saps
+		timingService = new PTimerConjPort(this, "timingService", IFITEM_timingService, 0);
+
+		// own service implementations
+
+		// sub actors
+
+		// wiring
+
+
+		/* user defined constructor body */
+
+	}
+
+	/* --------------------- attribute setters and getters */
+
+
+	//--------------------- port getters
+	public PingPongProtocolPort getRecvPort (){
+		return this.recvPort;
+	}
+	public PTimerConjPort getTimingService (){
+		return this.timingService;
+	}
+
+	//--------------------- lifecycle functions
+	public void stop(){
+		super.stop();
+	}
+
+	public void destroy(){
+		/* user defined destructor body */
+		DebuggingService.getInstance().addMessageActorDestroy(this);
+		super.destroy();
+	}
+
+	//--------------------- no state machine
+	public void receiveEvent(InterfaceItemBase ifitem, int evt, Object data) {
+		handleSystemEvent(ifitem, evt, data);
+	}
+
+	public void executeInitTransition() {}
+
+};

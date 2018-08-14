@@ -1,0 +1,14 @@
+RoomModel devices {
+	import room.basic.types.* from "../../org.eclipse.etrice.modellib.java/model/Types.room"
+	
+	ProtocolClass switch_protocol_t {
+		outgoing {
+			Message turn_on ( )
+			Message turn_off ( )
+		}
+	}
+	
+	DataClass water_level_detector_t {
+		Attribute value : int32 = '0'		
+	}	
+}
