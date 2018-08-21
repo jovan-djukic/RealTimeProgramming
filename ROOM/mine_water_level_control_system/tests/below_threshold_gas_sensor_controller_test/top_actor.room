@@ -40,9 +40,9 @@ RoomModel top_actor {
 					}
 				} else {
 					if ( value < Constants.GAS_SENSOR_CONTROLLER_THRESHOLD ) {
-						expecting_alarm_turn_on = true;
+						this.expecting_alarm_turn_on = true;
 					} else {
-						expecting_alarm_turn_on = false;
+						this.expecting_alarm_turn_on = false;
 					}
 				}
 			'''

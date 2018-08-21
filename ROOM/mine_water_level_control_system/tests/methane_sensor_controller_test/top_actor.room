@@ -18,17 +18,20 @@ RoomModel top_actor {
 			'''		
 			
 			Attribute expecting_alarm_turn_on : boolean
+			Attribute expecting_threshold_breached : boolean
 			Attribute error_count : int32
 
 			Attribute gas_sensor : gas_sensor_t
-			ActorRef gas_sensor_controller : gas_sensor_controller_t
+			ActorRef gas_sensor_controller : methane_sensor_controller_t 
 			
 			conjugated Port gas_sensor_controller_iport : environmonet_statition_actor_base_iprotocol_t
 			conjugated Port alarm_switch_port : switch_protocol_t
+			conjugated Port methane_port : methane_protocol_t
 
 			SAP timer_port : PTimer 
 			
 			Binding gas_sensor_controller_iport and gas_sensor_controller.iport
+			Binding methane_port and gas_sensor_controller.methane_port
 			Binding alarm_switch_port and gas_sensor_controller.alarm_port
 		}
 		Behavior {
@@ -41,8 +44,10 @@ RoomModel top_actor {
 				} else {
 					if ( value > Constants.GAS_SENSOR_CONTROLLER_THRESHOLD ) {
 						this.expecting_alarm_turn_on = true;
+						this.expecting_threshold_breached = true;
 					} else {
 						this.expecting_alarm_turn_on = false;
+						this.expecting_threshold_breached = false;
 					}
 				}
 			'''
@@ -53,6 +58,7 @@ RoomModel top_actor {
 				Transition start : initial -> testing {
 					action '''
 						this.expecting_alarm_turn_on = false;
+						this.expecting_threshold_breached = false;
 						this.error_count = 0;
 						
 						this.gas_sensor.value = Constants.GAS_SENSOR_IVALUE;
@@ -88,6 +94,19 @@ RoomModel top_actor {
 					'''
 				}
 
+				Transition state_normal_message_received : testing -> testing {
+					triggers { 
+						< state_normal : methane_port >
+					}
+					action '''
+						if ( this.expecting_threshold_breached == true ) {
+							System.err.println ( "STATE NORMAL MESSAGE RECEIVED UNEXPECTEDLY " );
+						} else {
+							System.err.println ( "STATE NORMAL MESSAGE RECEIVED EXPECTEDLY " );
+						}
+					'''
+				}
+
 				Transition turn_on_message_received : testing -> testing {
 					triggers { 
 						< turn_on : alarm_switch_port >
@@ -97,6 +116,19 @@ RoomModel top_actor {
 							System.err.println ( "TURN ON MESSAGE RECEIVED EXPECTEDLY " );
 						} else {
 							System.err.println ( "TURN ON MESSAGE RECEIVED UNEXPECTEDLY " );
+						}
+					'''
+				}
+
+				Transition threshold_breached_message_received : testing -> testing {
+					triggers { 
+						< threshold_breached : methane_port >
+					}
+					action '''
+						if ( this.expecting_threshold_breached == true ) {
+							System.err.println ( "THRESHOLD BREACHED MESSAGE RECEIVED EXPECTEDLY " );
+						} else {
+							System.err.println ( "THRESHOLD BREACHED MESSAGE RECEIVED UNEXPECTEDLY " );
 						}
 					'''
 				}

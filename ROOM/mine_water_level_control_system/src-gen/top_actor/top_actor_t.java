@@ -12,6 +12,7 @@ import logger.*;
 import room.basic.service.timing.*;
 import room.basic.service.timing.PTimer.*;
 import environment_monitoring_station.environmonet_statition_actor_base_iprotocol_t.*;
+import devices.methane_protocol_t.*;
 import devices.switch_protocol_t.*;
 
 /*--------------------- begin user code ---------------------*/
@@ -33,6 +34,7 @@ public class top_actor_t extends ActorClassBase {
 	//--------------------- ports
 	protected environmonet_statition_actor_base_iprotocol_tConjPort gas_sensor_controller_iport = null;
 	protected switch_protocol_tConjPort alarm_switch_port = null;
+	protected methane_protocol_tConjPort methane_port = null;
 
 	//--------------------- saps
 	protected PTimerConjPort timer_port = null;
@@ -44,10 +46,12 @@ public class top_actor_t extends ActorClassBase {
 	//--------------------- interface item IDs
 	public static final int IFITEM_gas_sensor_controller_iport = 1;
 	public static final int IFITEM_alarm_switch_port = 2;
-	public static final int IFITEM_timer_port = 3;
+	public static final int IFITEM_methane_port = 3;
+	public static final int IFITEM_timer_port = 4;
 
 	/*--------------------- attributes ---------------------*/
 	public  boolean expecting_alarm_turn_on;
+	public  boolean expecting_threshold_breached;
 	public  int error_count;
 	public  gas_sensor_t gas_sensor;
 
@@ -59,10 +63,12 @@ public class top_actor_t extends ActorClassBase {
 				this.expecting_alarm_turn_on = true;
 			}
 		} else {
-			if ( value < Constants.GAS_SENSOR_CONTROLLER_THRESHOLD ) {
-				expecting_alarm_turn_on = true;
+			if ( value > Constants.GAS_SENSOR_CONTROLLER_THRESHOLD ) {
+				this.expecting_alarm_turn_on = true;
+				this.expecting_threshold_breached = true;
 			} else {
-				expecting_alarm_turn_on = false;
+				this.expecting_alarm_turn_on = false;
+				this.expecting_threshold_breached = false;
 			}
 		}
 	}
@@ -75,12 +81,14 @@ public class top_actor_t extends ActorClassBase {
 
 		// initialize attributes
 		this.setExpecting_alarm_turn_on(false);
+		this.setExpecting_threshold_breached(false);
 		this.setError_count(0);
 		this.setGas_sensor(new gas_sensor_t());
 
 		// own ports
 		gas_sensor_controller_iport = new environmonet_statition_actor_base_iprotocol_tConjPort(this, "gas_sensor_controller_iport", IFITEM_gas_sensor_controller_iport);
 		alarm_switch_port = new switch_protocol_tConjPort(this, "alarm_switch_port", IFITEM_alarm_switch_port);
+		methane_port = new methane_protocol_tConjPort(this, "methane_port", IFITEM_methane_port);
 
 		// own saps
 		timer_port = new PTimerConjPort(this, "timer_port", IFITEM_timer_port, 0);
@@ -89,10 +97,11 @@ public class top_actor_t extends ActorClassBase {
 
 		// sub actors
 		DebuggingService.getInstance().addMessageActorCreate(this, "gas_sensor_controller");
-		new gas_sensor_controller_t(this, "gas_sensor_controller");
+		new methane_sensor_controller_t(this, "gas_sensor_controller");
 
 		// wiring
 		InterfaceItemBase.connect(this, "gas_sensor_controller/iport", "gas_sensor_controller_iport");
+		InterfaceItemBase.connect(this, "gas_sensor_controller/methane_port", "methane_port");
 		InterfaceItemBase.connect(this, "gas_sensor_controller/alarm_port", "alarm_switch_port");
 
 
@@ -106,6 +115,12 @@ public class top_actor_t extends ActorClassBase {
 	}
 	public boolean getExpecting_alarm_turn_on() {
 		return this.expecting_alarm_turn_on;
+	}
+	public void setExpecting_threshold_breached(boolean expecting_threshold_breached) {
+		 this.expecting_threshold_breached = expecting_threshold_breached;
+	}
+	public boolean getExpecting_threshold_breached() {
+		return this.expecting_threshold_breached;
 	}
 	public void setError_count(int error_count) {
 		 this.error_count = error_count;
@@ -127,6 +142,9 @@ public class top_actor_t extends ActorClassBase {
 	}
 	public switch_protocol_tConjPort getAlarm_switch_port (){
 		return this.alarm_switch_port;
+	}
+	public methane_protocol_tConjPort getMethane_port (){
+		return this.methane_port;
 	}
 	public PTimerConjPort getTimer_port (){
 		return this.timer_port;
@@ -150,13 +168,17 @@ public class top_actor_t extends ActorClassBase {
 	/* transition chains */
 	public static final int CHAIN_TRANS_INITIAL_TO__testing = 1;
 	public static final int CHAIN_TRANS_turn_off_message_received_FROM_testing_TO_testing_BY_turn_offalarm_switch_port_turn_off_message_received = 2;
-	public static final int CHAIN_TRANS_turn_on_message_received_FROM_testing_TO_testing_BY_turn_onalarm_switch_port_turn_on_message_received = 3;
-	public static final int CHAIN_TRANS_timeout_message_received_FROM_testing_TO_testing_BY_timeouttimer_port_timeout_message_received = 4;
+	public static final int CHAIN_TRANS_state_normal_message_received_FROM_testing_TO_testing_BY_state_normalmethane_port_state_normal_message_received = 3;
+	public static final int CHAIN_TRANS_turn_on_message_received_FROM_testing_TO_testing_BY_turn_onalarm_switch_port_turn_on_message_received = 4;
+	public static final int CHAIN_TRANS_threshold_breached_message_received_FROM_testing_TO_testing_BY_threshold_breachedmethane_port_threshold_breached_message_received = 5;
+	public static final int CHAIN_TRANS_timeout_message_received_FROM_testing_TO_testing_BY_timeouttimer_port_timeout_message_received = 6;
 	
 	/* triggers */
 	public static final int POLLING = 0;
 	public static final int TRIG_alarm_switch_port__turn_on = IFITEM_alarm_switch_port + EVT_SHIFT*switch_protocol_t.OUT_turn_on;
 	public static final int TRIG_alarm_switch_port__turn_off = IFITEM_alarm_switch_port + EVT_SHIFT*switch_protocol_t.OUT_turn_off;
+	public static final int TRIG_methane_port__threshold_breached = IFITEM_methane_port + EVT_SHIFT*methane_protocol_t.OUT_threshold_breached;
+	public static final int TRIG_methane_port__state_normal = IFITEM_methane_port + EVT_SHIFT*methane_protocol_t.OUT_state_normal;
 	public static final int TRIG_timer_port__timeout = IFITEM_timer_port + EVT_SHIFT*PTimer.OUT_timeout;
 	public static final int TRIG_timer_port__internalTimer = IFITEM_timer_port + EVT_SHIFT*PTimer.OUT_internalTimer;
 	public static final int TRIG_timer_port__internalTimeout = IFITEM_timer_port + EVT_SHIFT*PTimer.OUT_internalTimeout;
@@ -181,6 +203,7 @@ public class top_actor_t extends ActorClassBase {
 	/* Action Codes */
 	protected void action_TRANS_INITIAL_TO__testing() {
 	    this.expecting_alarm_turn_on = false;
+	    this.expecting_threshold_breached = false;
 	    this.error_count = 0;
 	    
 	    this.gas_sensor.value = Constants.GAS_SENSOR_IVALUE;
@@ -191,7 +214,7 @@ public class top_actor_t extends ActorClassBase {
 	    this.gas_sensor_controller_iport.initialize ( 
 	    	new gas_sensor_controller_idata_t ( 
 	    		Constants.GAS_SENSOR_CONTROLLER_PERIOD_IN_MS,
-	    		false,
+	    		true,
 	    		Constants.GAS_SENSOR_CONTROLLER_THRESHOLD,
 	    		this.gas_sensor,
 	    		Constants.GAS_SENSOR_CONTROLLER_ERROR_COUNT_THRESHOLD
@@ -207,11 +230,25 @@ public class top_actor_t extends ActorClassBase {
 	    	System.err.println ( "TURN OFF MESSAGE RECEIVED EXPECTEDLY " );
 	    }
 	}
+	protected void action_TRANS_state_normal_message_received_FROM_testing_TO_testing_BY_state_normalmethane_port_state_normal_message_received(InterfaceItemBase ifitem) {
+	    if ( this.expecting_threshold_breached == true ) {
+	    	System.err.println ( "STATE NORMAL MESSAGE RECEIVED UNEXPECTEDLY " );
+	    } else {
+	    	System.err.println ( "STATE NORMAL MESSAGE RECEIVED EXPECTEDLY " );
+	    }
+	}
 	protected void action_TRANS_turn_on_message_received_FROM_testing_TO_testing_BY_turn_onalarm_switch_port_turn_on_message_received(InterfaceItemBase ifitem) {
 	    if ( this.expecting_alarm_turn_on == true ) {
 	    	System.err.println ( "TURN ON MESSAGE RECEIVED EXPECTEDLY " );
 	    } else {
 	    	System.err.println ( "TURN ON MESSAGE RECEIVED UNEXPECTEDLY " );
+	    }
+	}
+	protected void action_TRANS_threshold_breached_message_received_FROM_testing_TO_testing_BY_threshold_breachedmethane_port_threshold_breached_message_received(InterfaceItemBase ifitem) {
+	    if ( this.expecting_threshold_breached == true ) {
+	    	System.err.println ( "THRESHOLD BREACHED MESSAGE RECEIVED EXPECTEDLY " );
+	    } else {
+	    	System.err.println ( "THRESHOLD BREACHED MESSAGE RECEIVED UNEXPECTEDLY " );
 	    }
 	}
 	protected void action_TRANS_timeout_message_received_FROM_testing_TO_testing_BY_timeouttimer_port_timeout_message_received(InterfaceItemBase ifitem) {
@@ -273,9 +310,19 @@ public class top_actor_t extends ActorClassBase {
 				action_TRANS_turn_off_message_received_FROM_testing_TO_testing_BY_turn_offalarm_switch_port_turn_off_message_received(ifitem);
 				return STATE_testing;
 			}
+			case top_actor_t.CHAIN_TRANS_state_normal_message_received_FROM_testing_TO_testing_BY_state_normalmethane_port_state_normal_message_received:
+			{
+				action_TRANS_state_normal_message_received_FROM_testing_TO_testing_BY_state_normalmethane_port_state_normal_message_received(ifitem);
+				return STATE_testing;
+			}
 			case top_actor_t.CHAIN_TRANS_turn_on_message_received_FROM_testing_TO_testing_BY_turn_onalarm_switch_port_turn_on_message_received:
 			{
 				action_TRANS_turn_on_message_received_FROM_testing_TO_testing_BY_turn_onalarm_switch_port_turn_on_message_received(ifitem);
+				return STATE_testing;
+			}
+			case top_actor_t.CHAIN_TRANS_threshold_breached_message_received_FROM_testing_TO_testing_BY_threshold_breachedmethane_port_threshold_breached_message_received:
+			{
+				action_TRANS_threshold_breached_message_received_FROM_testing_TO_testing_BY_threshold_breachedmethane_port_threshold_breached_message_received(ifitem);
 				return STATE_testing;
 			}
 			case top_actor_t.CHAIN_TRANS_timeout_message_received_FROM_testing_TO_testing_BY_timeouttimer_port_timeout_message_received:
@@ -338,9 +385,21 @@ public class top_actor_t extends ActorClassBase {
 			                        catching_state__et = STATE_TOP;
 			                    }
 			                break;
+			                case TRIG_methane_port__state_normal:
+			                    {
+			                        chain__et = top_actor_t.CHAIN_TRANS_state_normal_message_received_FROM_testing_TO_testing_BY_state_normalmethane_port_state_normal_message_received;
+			                        catching_state__et = STATE_TOP;
+			                    }
+			                break;
 			                case TRIG_alarm_switch_port__turn_on:
 			                    {
 			                        chain__et = top_actor_t.CHAIN_TRANS_turn_on_message_received_FROM_testing_TO_testing_BY_turn_onalarm_switch_port_turn_on_message_received;
+			                        catching_state__et = STATE_TOP;
+			                    }
+			                break;
+			                case TRIG_methane_port__threshold_breached:
+			                    {
+			                        chain__et = top_actor_t.CHAIN_TRANS_threshold_breached_message_received_FROM_testing_TO_testing_BY_threshold_breachedmethane_port_threshold_breached_message_received;
 			                        catching_state__et = STATE_TOP;
 			                    }
 			                break;

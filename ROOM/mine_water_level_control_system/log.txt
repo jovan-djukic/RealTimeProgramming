@@ -1,108 +1,84 @@
-Aug 22, 2018 12:59:41 AM logger.logger_t info
-INFO: [ gas_sensor_controller ] Threshold breached, turning on alarm
-Aug 22, 2018 12:59:41 AM logger.logger_t info
-INFO: [ gas_sensor_controller ] Threshold breached, turning on alarm
-Aug 22, 2018 12:59:42 AM logger.logger_t info
-INFO: [ gas_sensor_controller ] Threshold breached, turning on alarm
-Aug 22, 2018 12:59:42 AM logger.logger_t info
-INFO: [ gas_sensor_controller ] Threshold breached, turning on alarm
-Aug 22, 2018 12:59:43 AM logger.logger_t info
-INFO: [ gas_sensor_controller ] Threshold breached, turning on alarm
-Aug 22, 2018 12:59:43 AM logger.logger_t info
-INFO: [ gas_sensor_controller ] Threshold breached, turning on alarm
-Aug 22, 2018 12:59:44 AM logger.logger_t info
-INFO: [ gas_sensor_controller ] Threshold breached, turning on alarm
-Aug 22, 2018 12:59:44 AM logger.logger_t info
-INFO: [ gas_sensor_controller ] Threshold breached, turning on alarm
-Aug 22, 2018 12:59:45 AM logger.logger_t info
-INFO: [ gas_sensor_controller ] Threshold breached, turning on alarm
-Aug 22, 2018 12:59:46 AM logger.logger_t info
-INFO: [ gas_sensor_controller ] Threshold breached, turning on alarm
-Aug 22, 2018 12:59:46 AM logger.logger_t info
-INFO: [ gas_sensor_controller ] Threshold breached, turning on alarm
-Aug 22, 2018 12:59:47 AM logger.logger_t info
-INFO: [ gas_sensor_controller ] Threshold breached, turning on alarm
-Aug 22, 2018 12:59:47 AM logger.logger_t info
-INFO: [ gas_sensor_controller ] Threshold breached, turning on alarm
-Aug 22, 2018 12:59:48 AM logger.logger_t info
-INFO: [ gas_sensor_controller ] Threshold breached, turning on alarm
-Aug 22, 2018 12:59:49 AM logger.logger_t info
-INFO: [ gas_sensor_controller ] Error count threshold breached, turning on alarm
-Aug 22, 2018 12:59:50 AM logger.logger_t info
-INFO: [ gas_sensor_controller ] Threshold breached, turning on alarm
-Aug 22, 2018 12:59:50 AM logger.logger_t info
-INFO: [ gas_sensor_controller ] Threshold breached, turning on alarm
-Aug 22, 2018 12:59:52 AM logger.logger_t info
-INFO: [ gas_sensor_controller ] Error count threshold breached, turning on alarm
-Aug 22, 2018 12:59:52 AM logger.logger_t info
-INFO: [ gas_sensor_controller ] Error count threshold breached, turning on alarm
-Aug 22, 2018 12:59:53 AM logger.logger_t info
-INFO: [ gas_sensor_controller ] Error count threshold breached, turning on alarm
-Aug 22, 2018 12:59:53 AM logger.logger_t info
-INFO: [ gas_sensor_controller ] Error count threshold breached, turning on alarm
-Aug 22, 2018 12:59:54 AM logger.logger_t info
-INFO: [ gas_sensor_controller ] Error count threshold breached, turning on alarm
-Aug 22, 2018 12:59:54 AM logger.logger_t info
-INFO: [ gas_sensor_controller ] Error count threshold breached, turning on alarm
-Aug 22, 2018 12:59:55 AM logger.logger_t info
-INFO: [ gas_sensor_controller ] Error count threshold breached, turning on alarm
-Aug 22, 2018 12:59:55 AM logger.logger_t info
-INFO: [ gas_sensor_controller ] Error count threshold breached, turning on alarm
-Aug 22, 2018 12:59:56 AM logger.logger_t info
+Aug 22, 2018 1:25:47 AM logger.logger_t info
 INFO: [ gas_sensor_controller ] Threshold stabilizied, turning off alarm
-Aug 22, 2018 12:59:56 AM logger.logger_t info
+Aug 22, 2018 1:25:47 AM logger.logger_t info
+INFO: [ gas_sensor_controller ] State normal, sending message to pump controller
+Aug 22, 2018 1:25:48 AM logger.logger_t info
 INFO: [ gas_sensor_controller ] Threshold stabilizied, turning off alarm
-Aug 22, 2018 12:59:58 AM logger.logger_t info
-INFO: [ gas_sensor_controller ] Error count threshold breached, turning on alarm
-Aug 22, 2018 12:59:58 AM logger.logger_t info
-INFO: [ gas_sensor_controller ] Error count threshold breached, turning on alarm
-Aug 22, 2018 12:59:59 AM logger.logger_t info
-INFO: [ gas_sensor_controller ] Error count threshold breached, turning on alarm
-Aug 22, 2018 12:59:59 AM logger.logger_t info
-INFO: [ gas_sensor_controller ] Error count threshold breached, turning on alarm
-Aug 22, 2018 1:00:00 AM logger.logger_t info
-INFO: [ gas_sensor_controller ] Error count threshold breached, turning on alarm
-Aug 22, 2018 1:00:00 AM logger.logger_t info
-INFO: [ gas_sensor_controller ] Error count threshold breached, turning on alarm
-Aug 22, 2018 1:00:01 AM logger.logger_t info
-INFO: [ gas_sensor_controller ] Error count threshold breached, turning on alarm
-Aug 22, 2018 1:00:01 AM logger.logger_t info
-INFO: [ gas_sensor_controller ] Threshold breached, turning on alarm
-Aug 22, 2018 1:00:03 AM logger.logger_t info
-INFO: [ gas_sensor_controller ] Error count threshold breached, turning on alarm
-Aug 22, 2018 1:00:03 AM logger.logger_t info
-INFO: [ gas_sensor_controller ] Error count threshold breached, turning on alarm
-Aug 22, 2018 1:00:04 AM logger.logger_t info
-INFO: [ gas_sensor_controller ] Error count threshold breached, turning on alarm
-Aug 22, 2018 1:00:04 AM logger.logger_t info
-INFO: [ gas_sensor_controller ] Threshold breached, turning on alarm
-Aug 22, 2018 1:00:05 AM logger.logger_t info
-INFO: [ gas_sensor_controller ] Threshold breached, turning on alarm
-Aug 22, 2018 1:00:05 AM logger.logger_t info
-INFO: [ gas_sensor_controller ] Threshold breached, turning on alarm
-Aug 22, 2018 1:00:06 AM logger.logger_t info
-INFO: [ gas_sensor_controller ] Threshold breached, turning on alarm
-Aug 22, 2018 1:00:06 AM logger.logger_t info
-INFO: [ gas_sensor_controller ] Threshold breached, turning on alarm
-Aug 22, 2018 1:00:07 AM logger.logger_t info
-INFO: [ gas_sensor_controller ] Threshold breached, turning on alarm
-Aug 22, 2018 1:00:07 AM logger.logger_t info
-INFO: [ gas_sensor_controller ] Threshold breached, turning on alarm
-Aug 22, 2018 1:00:08 AM logger.logger_t info
-INFO: [ gas_sensor_controller ] Threshold breached, turning on alarm
-Aug 22, 2018 1:00:08 AM logger.logger_t info
-INFO: [ gas_sensor_controller ] Threshold breached, turning on alarm
-Aug 22, 2018 1:00:10 AM logger.logger_t info
-INFO: [ gas_sensor_controller ] Error count threshold breached, turning on alarm
-Aug 22, 2018 1:00:10 AM logger.logger_t info
+Aug 22, 2018 1:25:48 AM logger.logger_t info
+INFO: [ gas_sensor_controller ] State normal, sending message to pump controller
+Aug 22, 2018 1:25:48 AM logger.logger_t info
 INFO: [ gas_sensor_controller ] Threshold stabilizied, turning off alarm
-Aug 22, 2018 1:00:11 AM logger.logger_t info
+Aug 22, 2018 1:25:48 AM logger.logger_t info
+INFO: [ gas_sensor_controller ] State normal, sending message to pump controller
+Aug 22, 2018 1:25:49 AM logger.logger_t info
 INFO: [ gas_sensor_controller ] Threshold stabilizied, turning off alarm
-Aug 22, 2018 1:00:11 AM logger.logger_t info
+Aug 22, 2018 1:25:49 AM logger.logger_t info
+INFO: [ gas_sensor_controller ] State normal, sending message to pump controller
+Aug 22, 2018 1:25:49 AM logger.logger_t info
 INFO: [ gas_sensor_controller ] Threshold stabilizied, turning off alarm
-Aug 22, 2018 1:00:12 AM logger.logger_t info
+Aug 22, 2018 1:25:49 AM logger.logger_t info
+INFO: [ gas_sensor_controller ] State normal, sending message to pump controller
+Aug 22, 2018 1:25:50 AM logger.logger_t info
 INFO: [ gas_sensor_controller ] Threshold stabilizied, turning off alarm
-Aug 22, 2018 1:00:12 AM logger.logger_t info
+Aug 22, 2018 1:25:50 AM logger.logger_t info
+INFO: [ gas_sensor_controller ] State normal, sending message to pump controller
+Aug 22, 2018 1:25:50 AM logger.logger_t info
 INFO: [ gas_sensor_controller ] Threshold stabilizied, turning off alarm
-Aug 22, 2018 1:00:13 AM logger.logger_t info
+Aug 22, 2018 1:25:50 AM logger.logger_t info
+INFO: [ gas_sensor_controller ] State normal, sending message to pump controller
+Aug 22, 2018 1:25:51 AM logger.logger_t info
 INFO: [ gas_sensor_controller ] Threshold stabilizied, turning off alarm
+Aug 22, 2018 1:25:51 AM logger.logger_t info
+INFO: [ gas_sensor_controller ] State normal, sending message to pump controller
+Aug 22, 2018 1:25:51 AM logger.logger_t info
+INFO: [ gas_sensor_controller ] Threshold stabilizied, turning off alarm
+Aug 22, 2018 1:25:51 AM logger.logger_t info
+INFO: [ gas_sensor_controller ] State normal, sending message to pump controller
+Aug 22, 2018 1:25:53 AM logger.logger_t info
+INFO: [ gas_sensor_controller ] Error count threshold breached, turning on alarm
+Aug 22, 2018 1:25:53 AM logger.logger_t info
+INFO: [ gas_sensor_controller ] Error count threshold breached, turning on alarm
+Aug 22, 2018 1:25:54 AM logger.logger_t info
+INFO: [ gas_sensor_controller ] Error count threshold breached, turning on alarm
+Aug 22, 2018 1:25:54 AM logger.logger_t info
+INFO: [ gas_sensor_controller ] Error count threshold breached, turning on alarm
+Aug 22, 2018 1:25:55 AM logger.logger_t info
+INFO: [ gas_sensor_controller ] Error count threshold breached, turning on alarm
+Aug 22, 2018 1:25:55 AM logger.logger_t info
+INFO: [ gas_sensor_controller ] Error count threshold breached, turning on alarm
+Aug 22, 2018 1:25:56 AM logger.logger_t info
+INFO: [ gas_sensor_controller ] Error count threshold breached, turning on alarm
+Aug 22, 2018 1:25:56 AM logger.logger_t info
+INFO: [ gas_sensor_controller ] Error count threshold breached, turning on alarm
+Aug 22, 2018 1:25:57 AM logger.logger_t info
+INFO: [ gas_sensor_controller ] Error count threshold breached, turning on alarm
+Aug 22, 2018 1:25:57 AM logger.logger_t info
+INFO: [ gas_sensor_controller ] Error count threshold breached, turning on alarm
+Aug 22, 2018 1:25:58 AM logger.logger_t info
+INFO: [ gas_sensor_controller ] Threshold breached, turning on alarm
+Aug 22, 2018 1:25:58 AM logger.logger_t info
+INFO: [ gas_sensor_controller ] Threshold breached, sending message to pump controller
+Aug 22, 2018 1:25:58 AM logger.logger_t info
+INFO: [ gas_sensor_controller ] Threshold breached, turning on alarm
+Aug 22, 2018 1:25:58 AM logger.logger_t info
+INFO: [ gas_sensor_controller ] Threshold breached, sending message to pump controller
+Aug 22, 2018 1:26:00 AM logger.logger_t info
+INFO: [ gas_sensor_controller ] Error count threshold breached, turning on alarm
+Aug 22, 2018 1:26:00 AM logger.logger_t info
+INFO: [ gas_sensor_controller ] Error count threshold breached, turning on alarm
+Aug 22, 2018 1:26:01 AM logger.logger_t info
+INFO: [ gas_sensor_controller ] Threshold stabilizied, turning off alarm
+Aug 22, 2018 1:26:01 AM logger.logger_t info
+INFO: [ gas_sensor_controller ] State normal, sending message to pump controller
+Aug 22, 2018 1:26:01 AM logger.logger_t info
+INFO: [ gas_sensor_controller ] Threshold stabilizied, turning off alarm
+Aug 22, 2018 1:26:01 AM logger.logger_t info
+INFO: [ gas_sensor_controller ] State normal, sending message to pump controller
+Aug 22, 2018 1:26:02 AM logger.logger_t info
+INFO: [ gas_sensor_controller ] Threshold stabilizied, turning off alarm
+Aug 22, 2018 1:26:02 AM logger.logger_t info
+INFO: [ gas_sensor_controller ] State normal, sending message to pump controller
+Aug 22, 2018 1:26:02 AM logger.logger_t info
+INFO: [ gas_sensor_controller ] Threshold stabilizied, turning off alarm
+Aug 22, 2018 1:26:02 AM logger.logger_t info
+INFO: [ gas_sensor_controller ] State normal, sending message to pump controller

@@ -16,4 +16,11 @@ RoomModel devices {
 		Attribute value : int32
 		Attribute error_occurred : boolean
 	}	
+	
+	ProtocolClass methane_protocol_t {
+		outgoing {
+			Message threshold_breached ( )
+			Message state_normal ( )
+		}
+	}
 }

@@ -161,4 +161,34 @@ RoomModel environment_monitoring_station {
 			}
 		}
 	}
+	
+	ActorClass methane_sensor_controller_t extends gas_sensor_controller_t {
+		Interface {
+			Port methane_port : methane_protocol_t
+		}
+		Structure {
+			external Port methane_port 
+		}
+		Behavior {
+			override Operation query_action ( ) : void '''
+				super.query_action ( );
+				if ( super.gas_sensor.error_occurred == false ) {
+					if ( super.gas_sensor.value > super.threshold ) {
+						this.methane_port.threshold_breached ( );
+						super.info ( super.getName ( ), "Threshold breached, sending message to pump controller" );
+					} else {
+						this.methane_port.state_normal ( );
+						super.info ( super.getName ( ), "State normal, sending message to pump controller" );
+					}
+				}
+			'''
+			StateMachine {
+				RefinedTransition imessage_received {
+					action '''
+						super.detect_above_threshold = true;
+					'''
+				}
+			}
+		}
+	}
 }
