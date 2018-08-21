@@ -8,6 +8,7 @@ import static org.eclipse.etrice.runtime.java.etunit.EtUnit.*;
 
 import devices.*;
 import environment_monitoring_station.*;
+import logger.*;
 import room.basic.service.timing.*;
 import room.basic.service.timing.PTimer.*;
 import environment_monitoring_station.environmonet_statition_actor_base_iprotocol_t.*;

@@ -7,11 +7,17 @@ import org.eclipse.etrice.runtime.java.debugging.*;
 import static org.eclipse.etrice.runtime.java.etunit.EtUnit.*;
 
 import devices.*;
+import logger.*;
 import room.basic.service.timing.*;
 import room.basic.service.timing.PTimer.*;
 import environment_monitoring_station.environmonet_statition_actor_base_iprotocol_t.*;
 import devices.switch_protocol_t.*;
 
+/*--------------------- begin user code ---------------------*/
+import java.util.logging.*;
+import java.io.IOException;
+
+/*--------------------- end user code ---------------------*/
 
 
 public class low_water_level_detector_controller_t extends water_level_detector_controller_base_t {
@@ -33,6 +39,7 @@ public class low_water_level_detector_controller_t extends water_level_detector_
 	public  void query_action() {
 		if ( super.water_level_detector.value == 1 ) {
 			super.pump_switch_port.turn_off ( );
+			super.info ( super.getName(), "Pump switched off" );
 		}
 	}
 

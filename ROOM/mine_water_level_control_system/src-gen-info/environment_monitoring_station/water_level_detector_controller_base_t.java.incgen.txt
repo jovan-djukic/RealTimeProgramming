@@ -7,11 +7,17 @@ import org.eclipse.etrice.runtime.java.debugging.*;
 import static org.eclipse.etrice.runtime.java.etunit.EtUnit.*;
 
 import devices.*;
+import logger.*;
 import room.basic.service.timing.*;
 import room.basic.service.timing.PTimer.*;
 import environment_monitoring_station.environmonet_statition_actor_base_iprotocol_t.*;
 import devices.switch_protocol_t.*;
 
+/*--------------------- begin user code ---------------------*/
+import java.util.logging.*;
+import java.io.IOException;
+
+/*--------------------- end user code ---------------------*/
 
 
 public abstract class water_level_detector_controller_base_t extends environment_station_actor_base_t {

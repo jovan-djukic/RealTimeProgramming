@@ -40,39 +40,6 @@
 	/log_sys/sub_system_ref/top_actor/high_water_level_detector_controller >>> querying
 	/log_sys/sub_system_ref/top_actor/high_water_level_detector_controller --> /log_sys/sub_system_ref/timing_service internalStartTimeout
 	/log_sys/sub_system_ref/timing_service >>> Operational
-	/log_sys/sub_system_ref/timing_service >-- /log_sys/sub_system_ref/top_actor/high_water_level_detector_controller internalTimeout
-	/log_sys/sub_system_ref/timing_service >-- /log_sys/sub_system_ref/top_actor internalTimeout
-	/log_sys/sub_system_ref/timing_service --> /log_sys/sub_system_ref/top_actor/high_water_level_detector_controller internalTimeout
-	/log_sys/sub_system_ref/top_actor/high_water_level_detector_controller >-- /log_sys/sub_system_ref/timing_service internalStartTimeout
-	/log_sys/sub_system_ref/top_actor/high_water_level_detector_controller >>> querying
-	/log_sys/sub_system_ref/timing_service --> /log_sys/sub_system_ref/top_actor internalTimeout
-	/log_sys/sub_system_ref/top_actor >-- /log_sys/sub_system_ref/timing_service internalStartTimeout
-	/log_sys/sub_system_ref/top_actor >>> testing
-	/log_sys/sub_system_ref/top_actor/high_water_level_detector_controller --> /log_sys/sub_system_ref/timing_service internalStartTimeout
-	/log_sys/sub_system_ref/timing_service >>> Operational
-	/log_sys/sub_system_ref/top_actor --> /log_sys/sub_system_ref/timing_service internalStartTimeout
-	/log_sys/sub_system_ref/timing_service >>> Operational
-	/log_sys/sub_system_ref/timing_service >-- /log_sys/sub_system_ref/top_actor/high_water_level_detector_controller internalTimeout
-	/log_sys/sub_system_ref/timing_service --> /log_sys/sub_system_ref/top_actor/high_water_level_detector_controller internalTimeout
-	/log_sys/sub_system_ref/top_actor/high_water_level_detector_controller >-- /log_sys/sub_system_ref/top_actor turn_on
-	/log_sys/sub_system_ref/top_actor/high_water_level_detector_controller >-- /log_sys/sub_system_ref/timing_service internalStartTimeout
-	/log_sys/sub_system_ref/top_actor/high_water_level_detector_controller >>> querying
-	/log_sys/sub_system_ref/top_actor/high_water_level_detector_controller --> /log_sys/sub_system_ref/top_actor turn_on
-	/log_sys/sub_system_ref/top_actor >>> testing
-	/log_sys/sub_system_ref/top_actor/high_water_level_detector_controller --> /log_sys/sub_system_ref/timing_service internalStartTimeout
-	/log_sys/sub_system_ref/timing_service >>> Operational
-	/log_sys/sub_system_ref/timing_service >-- /log_sys/sub_system_ref/top_actor internalTimeout
-	/log_sys/sub_system_ref/timing_service --> /log_sys/sub_system_ref/top_actor internalTimeout
-	/log_sys/sub_system_ref/top_actor >-- /log_sys/sub_system_ref/timing_service internalStartTimeout
-	/log_sys/sub_system_ref/top_actor >>> testing
-	/log_sys/sub_system_ref/top_actor --> /log_sys/sub_system_ref/timing_service internalStartTimeout
-	/log_sys/sub_system_ref/timing_service >>> Operational
-	/log_sys/sub_system_ref/timing_service >-- /log_sys/sub_system_ref/top_actor/high_water_level_detector_controller internalTimeout
-	/log_sys/sub_system_ref/timing_service --> /log_sys/sub_system_ref/top_actor/high_water_level_detector_controller internalTimeout
-	/log_sys/sub_system_ref/top_actor/high_water_level_detector_controller >-- /log_sys/sub_system_ref/timing_service internalStartTimeout
-	/log_sys/sub_system_ref/top_actor/high_water_level_detector_controller >>> querying
-	/log_sys/sub_system_ref/top_actor/high_water_level_detector_controller --> /log_sys/sub_system_ref/timing_service internalStartTimeout
-	/log_sys/sub_system_ref/timing_service >>> Operational
 	/log_sys/sub_system_ref/timing_service >-- /log_sys/sub_system_ref/top_actor internalTimeout
 	/log_sys/sub_system_ref/timing_service --> /log_sys/sub_system_ref/top_actor internalTimeout
 	/log_sys/sub_system_ref/top_actor >-- /log_sys/sub_system_ref/timing_service internalStartTimeout
@@ -104,36 +71,6 @@
 	/log_sys/sub_system_ref/top_actor/high_water_level_detector_controller >>> querying
 	/log_sys/sub_system_ref/top_actor/high_water_level_detector_controller --> /log_sys/sub_system_ref/top_actor turn_on
 	/log_sys/sub_system_ref/top_actor >>> testing
-	/log_sys/sub_system_ref/top_actor/high_water_level_detector_controller --> /log_sys/sub_system_ref/timing_service internalStartTimeout
-	/log_sys/sub_system_ref/timing_service >>> Operational
-	/log_sys/sub_system_ref/timing_service >-- /log_sys/sub_system_ref/top_actor internalTimeout
-	/log_sys/sub_system_ref/timing_service --> /log_sys/sub_system_ref/top_actor internalTimeout
-	/log_sys/sub_system_ref/top_actor >-- /log_sys/sub_system_ref/timing_service internalStartTimeout
-	/log_sys/sub_system_ref/top_actor >>> testing
-	/log_sys/sub_system_ref/top_actor --> /log_sys/sub_system_ref/timing_service internalStartTimeout
-	/log_sys/sub_system_ref/timing_service >>> Operational
-	/log_sys/sub_system_ref/timing_service >-- /log_sys/sub_system_ref/top_actor/high_water_level_detector_controller internalTimeout
-	/log_sys/sub_system_ref/timing_service --> /log_sys/sub_system_ref/top_actor/high_water_level_detector_controller internalTimeout
-	/log_sys/sub_system_ref/top_actor/high_water_level_detector_controller >-- /log_sys/sub_system_ref/timing_service internalStartTimeout
-	/log_sys/sub_system_ref/top_actor/high_water_level_detector_controller >>> querying
-	/log_sys/sub_system_ref/top_actor/high_water_level_detector_controller --> /log_sys/sub_system_ref/timing_service internalStartTimeout
-	/log_sys/sub_system_ref/timing_service >>> Operational
-	/log_sys/sub_system_ref/timing_service >-- /log_sys/sub_system_ref/top_actor/high_water_level_detector_controller internalTimeout
-	/log_sys/sub_system_ref/timing_service --> /log_sys/sub_system_ref/top_actor/high_water_level_detector_controller internalTimeout
-	/log_sys/sub_system_ref/top_actor/high_water_level_detector_controller >-- /log_sys/sub_system_ref/timing_service internalStartTimeout
-	/log_sys/sub_system_ref/top_actor/high_water_level_detector_controller >>> querying
-	/log_sys/sub_system_ref/top_actor/high_water_level_detector_controller --> /log_sys/sub_system_ref/timing_service internalStartTimeout
-	/log_sys/sub_system_ref/timing_service >>> Operational
-	/log_sys/sub_system_ref/timing_service >-- /log_sys/sub_system_ref/top_actor internalTimeout
-	/log_sys/sub_system_ref/timing_service --> /log_sys/sub_system_ref/top_actor internalTimeout
-	/log_sys/sub_system_ref/top_actor >-- /log_sys/sub_system_ref/timing_service internalStartTimeout
-	/log_sys/sub_system_ref/top_actor >>> testing
-	/log_sys/sub_system_ref/top_actor --> /log_sys/sub_system_ref/timing_service internalStartTimeout
-	/log_sys/sub_system_ref/timing_service >>> Operational
-	/log_sys/sub_system_ref/timing_service >-- /log_sys/sub_system_ref/top_actor/high_water_level_detector_controller internalTimeout
-	/log_sys/sub_system_ref/timing_service --> /log_sys/sub_system_ref/top_actor/high_water_level_detector_controller internalTimeout
-	/log_sys/sub_system_ref/top_actor/high_water_level_detector_controller >-- /log_sys/sub_system_ref/timing_service internalStartTimeout
-	/log_sys/sub_system_ref/top_actor/high_water_level_detector_controller >>> querying
 	/log_sys/sub_system_ref/top_actor/high_water_level_detector_controller --> /log_sys/sub_system_ref/timing_service internalStartTimeout
 	/log_sys/sub_system_ref/timing_service >>> Operational
 	/log_sys/sub_system_ref/timing_service >-- /log_sys/sub_system_ref/top_actor internalTimeout
@@ -225,192 +162,6 @@
 	/log_sys/sub_system_ref/timing_service >>> Operational
 	/log_sys/sub_system_ref/timing_service >-- /log_sys/sub_system_ref/top_actor/high_water_level_detector_controller internalTimeout
 	/log_sys/sub_system_ref/timing_service --> /log_sys/sub_system_ref/top_actor/high_water_level_detector_controller internalTimeout
-	/log_sys/sub_system_ref/top_actor/high_water_level_detector_controller >-- /log_sys/sub_system_ref/top_actor turn_on
-	/log_sys/sub_system_ref/top_actor/high_water_level_detector_controller >-- /log_sys/sub_system_ref/timing_service internalStartTimeout
-	/log_sys/sub_system_ref/top_actor/high_water_level_detector_controller >>> querying
-	/log_sys/sub_system_ref/top_actor/high_water_level_detector_controller --> /log_sys/sub_system_ref/top_actor turn_on
-	/log_sys/sub_system_ref/top_actor >>> testing
-	/log_sys/sub_system_ref/top_actor/high_water_level_detector_controller --> /log_sys/sub_system_ref/timing_service internalStartTimeout
-	/log_sys/sub_system_ref/timing_service >>> Operational
-	/log_sys/sub_system_ref/timing_service >-- /log_sys/sub_system_ref/top_actor internalTimeout
-	/log_sys/sub_system_ref/timing_service --> /log_sys/sub_system_ref/top_actor internalTimeout
-	/log_sys/sub_system_ref/top_actor >-- /log_sys/sub_system_ref/timing_service internalStartTimeout
-	/log_sys/sub_system_ref/top_actor >>> testing
-	/log_sys/sub_system_ref/top_actor --> /log_sys/sub_system_ref/timing_service internalStartTimeout
-	/log_sys/sub_system_ref/timing_service >>> Operational
-	/log_sys/sub_system_ref/timing_service >-- /log_sys/sub_system_ref/top_actor/high_water_level_detector_controller internalTimeout
-	/log_sys/sub_system_ref/timing_service --> /log_sys/sub_system_ref/top_actor/high_water_level_detector_controller internalTimeout
-	/log_sys/sub_system_ref/top_actor/high_water_level_detector_controller >-- /log_sys/sub_system_ref/timing_service internalStartTimeout
-	/log_sys/sub_system_ref/top_actor/high_water_level_detector_controller >>> querying
-	/log_sys/sub_system_ref/top_actor/high_water_level_detector_controller --> /log_sys/sub_system_ref/timing_service internalStartTimeout
-	/log_sys/sub_system_ref/timing_service >>> Operational
-	/log_sys/sub_system_ref/timing_service >-- /log_sys/sub_system_ref/top_actor/high_water_level_detector_controller internalTimeout
-	/log_sys/sub_system_ref/timing_service --> /log_sys/sub_system_ref/top_actor/high_water_level_detector_controller internalTimeout
-	/log_sys/sub_system_ref/top_actor/high_water_level_detector_controller >-- /log_sys/sub_system_ref/timing_service internalStartTimeout
-	/log_sys/sub_system_ref/top_actor/high_water_level_detector_controller >>> querying
-	/log_sys/sub_system_ref/top_actor/high_water_level_detector_controller --> /log_sys/sub_system_ref/timing_service internalStartTimeout
-	/log_sys/sub_system_ref/timing_service >>> Operational
-	/log_sys/sub_system_ref/timing_service >-- /log_sys/sub_system_ref/top_actor internalTimeout
-	/log_sys/sub_system_ref/timing_service --> /log_sys/sub_system_ref/top_actor internalTimeout
-	/log_sys/sub_system_ref/top_actor >-- /log_sys/sub_system_ref/timing_service internalStartTimeout
-	/log_sys/sub_system_ref/top_actor >>> testing
-	/log_sys/sub_system_ref/top_actor --> /log_sys/sub_system_ref/timing_service internalStartTimeout
-	/log_sys/sub_system_ref/timing_service >>> Operational
-	/log_sys/sub_system_ref/timing_service >-- /log_sys/sub_system_ref/top_actor/high_water_level_detector_controller internalTimeout
-	/log_sys/sub_system_ref/timing_service --> /log_sys/sub_system_ref/top_actor/high_water_level_detector_controller internalTimeout
-	/log_sys/sub_system_ref/top_actor/high_water_level_detector_controller >-- /log_sys/sub_system_ref/timing_service internalStartTimeout
-	/log_sys/sub_system_ref/top_actor/high_water_level_detector_controller >>> querying
-	/log_sys/sub_system_ref/top_actor/high_water_level_detector_controller --> /log_sys/sub_system_ref/timing_service internalStartTimeout
-	/log_sys/sub_system_ref/timing_service >>> Operational
-	/log_sys/sub_system_ref/timing_service >-- /log_sys/sub_system_ref/top_actor internalTimeout
-	/log_sys/sub_system_ref/timing_service --> /log_sys/sub_system_ref/top_actor internalTimeout
-	/log_sys/sub_system_ref/top_actor >-- /log_sys/sub_system_ref/timing_service internalStartTimeout
-	/log_sys/sub_system_ref/top_actor >>> testing
-	/log_sys/sub_system_ref/top_actor --> /log_sys/sub_system_ref/timing_service internalStartTimeout
-	/log_sys/sub_system_ref/timing_service >>> Operational
-	/log_sys/sub_system_ref/timing_service >-- /log_sys/sub_system_ref/top_actor/high_water_level_detector_controller internalTimeout
-	/log_sys/sub_system_ref/timing_service --> /log_sys/sub_system_ref/top_actor/high_water_level_detector_controller internalTimeout
-	/log_sys/sub_system_ref/top_actor/high_water_level_detector_controller >-- /log_sys/sub_system_ref/top_actor turn_on
-	/log_sys/sub_system_ref/top_actor/high_water_level_detector_controller >-- /log_sys/sub_system_ref/timing_service internalStartTimeout
-	/log_sys/sub_system_ref/top_actor/high_water_level_detector_controller >>> querying
-	/log_sys/sub_system_ref/top_actor/high_water_level_detector_controller --> /log_sys/sub_system_ref/top_actor turn_on
-	/log_sys/sub_system_ref/top_actor >>> testing
-	/log_sys/sub_system_ref/top_actor/high_water_level_detector_controller --> /log_sys/sub_system_ref/timing_service internalStartTimeout
-	/log_sys/sub_system_ref/timing_service >>> Operational
-	/log_sys/sub_system_ref/timing_service >-- /log_sys/sub_system_ref/top_actor/high_water_level_detector_controller internalTimeout
-	/log_sys/sub_system_ref/timing_service --> /log_sys/sub_system_ref/top_actor/high_water_level_detector_controller internalTimeout
-	/log_sys/sub_system_ref/top_actor/high_water_level_detector_controller >-- /log_sys/sub_system_ref/top_actor turn_on
-	/log_sys/sub_system_ref/top_actor/high_water_level_detector_controller >-- /log_sys/sub_system_ref/timing_service internalStartTimeout
-	/log_sys/sub_system_ref/top_actor/high_water_level_detector_controller >>> querying
-	/log_sys/sub_system_ref/top_actor/high_water_level_detector_controller --> /log_sys/sub_system_ref/top_actor turn_on
-	/log_sys/sub_system_ref/top_actor >>> testing
-	/log_sys/sub_system_ref/top_actor/high_water_level_detector_controller --> /log_sys/sub_system_ref/timing_service internalStartTimeout
-	/log_sys/sub_system_ref/timing_service >>> Operational
-	/log_sys/sub_system_ref/timing_service >-- /log_sys/sub_system_ref/top_actor internalTimeout
-	/log_sys/sub_system_ref/timing_service --> /log_sys/sub_system_ref/top_actor internalTimeout
-	/log_sys/sub_system_ref/top_actor >-- /log_sys/sub_system_ref/timing_service internalStartTimeout
-	/log_sys/sub_system_ref/top_actor >>> testing
-	/log_sys/sub_system_ref/top_actor --> /log_sys/sub_system_ref/timing_service internalStartTimeout
-	/log_sys/sub_system_ref/timing_service >>> Operational
-	/log_sys/sub_system_ref/timing_service >-- /log_sys/sub_system_ref/top_actor/high_water_level_detector_controller internalTimeout
-	/log_sys/sub_system_ref/timing_service --> /log_sys/sub_system_ref/top_actor/high_water_level_detector_controller internalTimeout
-	/log_sys/sub_system_ref/top_actor/high_water_level_detector_controller >-- /log_sys/sub_system_ref/top_actor turn_on
-	/log_sys/sub_system_ref/top_actor/high_water_level_detector_controller >-- /log_sys/sub_system_ref/timing_service internalStartTimeout
-	/log_sys/sub_system_ref/top_actor/high_water_level_detector_controller >>> querying
-	/log_sys/sub_system_ref/top_actor/high_water_level_detector_controller --> /log_sys/sub_system_ref/top_actor turn_on
-	/log_sys/sub_system_ref/top_actor >>> testing
-	/log_sys/sub_system_ref/top_actor/high_water_level_detector_controller --> /log_sys/sub_system_ref/timing_service internalStartTimeout
-	/log_sys/sub_system_ref/timing_service >>> Operational
-	/log_sys/sub_system_ref/timing_service >-- /log_sys/sub_system_ref/top_actor internalTimeout
-	/log_sys/sub_system_ref/timing_service --> /log_sys/sub_system_ref/top_actor internalTimeout
-	/log_sys/sub_system_ref/top_actor >-- /log_sys/sub_system_ref/timing_service internalStartTimeout
-	/log_sys/sub_system_ref/top_actor >>> testing
-	/log_sys/sub_system_ref/top_actor --> /log_sys/sub_system_ref/timing_service internalStartTimeout
-	/log_sys/sub_system_ref/timing_service >>> Operational
-	/log_sys/sub_system_ref/timing_service >-- /log_sys/sub_system_ref/top_actor/high_water_level_detector_controller internalTimeout
-	/log_sys/sub_system_ref/timing_service --> /log_sys/sub_system_ref/top_actor/high_water_level_detector_controller internalTimeout
-	/log_sys/sub_system_ref/top_actor/high_water_level_detector_controller >-- /log_sys/sub_system_ref/top_actor turn_on
-	/log_sys/sub_system_ref/top_actor/high_water_level_detector_controller >-- /log_sys/sub_system_ref/timing_service internalStartTimeout
-	/log_sys/sub_system_ref/top_actor/high_water_level_detector_controller >>> querying
-	/log_sys/sub_system_ref/top_actor/high_water_level_detector_controller --> /log_sys/sub_system_ref/top_actor turn_on
-	/log_sys/sub_system_ref/top_actor >>> testing
-	/log_sys/sub_system_ref/top_actor/high_water_level_detector_controller --> /log_sys/sub_system_ref/timing_service internalStartTimeout
-	/log_sys/sub_system_ref/timing_service >>> Operational
-	/log_sys/sub_system_ref/timing_service >-- /log_sys/sub_system_ref/top_actor/high_water_level_detector_controller internalTimeout
-	/log_sys/sub_system_ref/timing_service --> /log_sys/sub_system_ref/top_actor/high_water_level_detector_controller internalTimeout
-	/log_sys/sub_system_ref/top_actor/high_water_level_detector_controller >-- /log_sys/sub_system_ref/top_actor turn_on
-	/log_sys/sub_system_ref/top_actor/high_water_level_detector_controller >-- /log_sys/sub_system_ref/timing_service internalStartTimeout
-	/log_sys/sub_system_ref/top_actor/high_water_level_detector_controller >>> querying
-	/log_sys/sub_system_ref/top_actor/high_water_level_detector_controller --> /log_sys/sub_system_ref/top_actor turn_on
-	/log_sys/sub_system_ref/top_actor >>> testing
-	/log_sys/sub_system_ref/top_actor/high_water_level_detector_controller --> /log_sys/sub_system_ref/timing_service internalStartTimeout
-	/log_sys/sub_system_ref/timing_service >>> Operational
-	/log_sys/sub_system_ref/timing_service >-- /log_sys/sub_system_ref/top_actor internalTimeout
-	/log_sys/sub_system_ref/timing_service --> /log_sys/sub_system_ref/top_actor internalTimeout
-	/log_sys/sub_system_ref/top_actor >-- /log_sys/sub_system_ref/timing_service internalStartTimeout
-	/log_sys/sub_system_ref/top_actor >>> testing
-	/log_sys/sub_system_ref/top_actor --> /log_sys/sub_system_ref/timing_service internalStartTimeout
-	/log_sys/sub_system_ref/timing_service >>> Operational
-	/log_sys/sub_system_ref/timing_service >-- /log_sys/sub_system_ref/top_actor/high_water_level_detector_controller internalTimeout
-	/log_sys/sub_system_ref/timing_service --> /log_sys/sub_system_ref/top_actor/high_water_level_detector_controller internalTimeout
-	/log_sys/sub_system_ref/top_actor/high_water_level_detector_controller >-- /log_sys/sub_system_ref/top_actor turn_on
-	/log_sys/sub_system_ref/top_actor/high_water_level_detector_controller >-- /log_sys/sub_system_ref/timing_service internalStartTimeout
-	/log_sys/sub_system_ref/top_actor/high_water_level_detector_controller >>> querying
-	/log_sys/sub_system_ref/top_actor/high_water_level_detector_controller --> /log_sys/sub_system_ref/top_actor turn_on
-	/log_sys/sub_system_ref/top_actor >>> testing
-	/log_sys/sub_system_ref/top_actor/high_water_level_detector_controller --> /log_sys/sub_system_ref/timing_service internalStartTimeout
-	/log_sys/sub_system_ref/timing_service >>> Operational
-	/log_sys/sub_system_ref/timing_service >-- /log_sys/sub_system_ref/top_actor internalTimeout
-	/log_sys/sub_system_ref/timing_service --> /log_sys/sub_system_ref/top_actor internalTimeout
-	/log_sys/sub_system_ref/top_actor >-- /log_sys/sub_system_ref/timing_service internalStartTimeout
-	/log_sys/sub_system_ref/top_actor >>> testing
-	/log_sys/sub_system_ref/top_actor --> /log_sys/sub_system_ref/timing_service internalStartTimeout
-	/log_sys/sub_system_ref/timing_service >>> Operational
-	/log_sys/sub_system_ref/timing_service >-- /log_sys/sub_system_ref/top_actor/high_water_level_detector_controller internalTimeout
-	/log_sys/sub_system_ref/timing_service --> /log_sys/sub_system_ref/top_actor/high_water_level_detector_controller internalTimeout
-	/log_sys/sub_system_ref/top_actor/high_water_level_detector_controller >-- /log_sys/sub_system_ref/top_actor turn_on
-	/log_sys/sub_system_ref/top_actor/high_water_level_detector_controller >-- /log_sys/sub_system_ref/timing_service internalStartTimeout
-	/log_sys/sub_system_ref/top_actor/high_water_level_detector_controller >>> querying
-	/log_sys/sub_system_ref/top_actor/high_water_level_detector_controller --> /log_sys/sub_system_ref/top_actor turn_on
-	/log_sys/sub_system_ref/top_actor >>> testing
-	/log_sys/sub_system_ref/top_actor/high_water_level_detector_controller --> /log_sys/sub_system_ref/timing_service internalStartTimeout
-	/log_sys/sub_system_ref/timing_service >>> Operational
-	/log_sys/sub_system_ref/timing_service >-- /log_sys/sub_system_ref/top_actor/high_water_level_detector_controller internalTimeout
-	/log_sys/sub_system_ref/timing_service --> /log_sys/sub_system_ref/top_actor/high_water_level_detector_controller internalTimeout
-	/log_sys/sub_system_ref/top_actor/high_water_level_detector_controller >-- /log_sys/sub_system_ref/top_actor turn_on
-	/log_sys/sub_system_ref/top_actor/high_water_level_detector_controller >-- /log_sys/sub_system_ref/timing_service internalStartTimeout
-	/log_sys/sub_system_ref/top_actor/high_water_level_detector_controller >>> querying
-	/log_sys/sub_system_ref/top_actor/high_water_level_detector_controller --> /log_sys/sub_system_ref/top_actor turn_on
-	/log_sys/sub_system_ref/top_actor >>> testing
-	/log_sys/sub_system_ref/top_actor/high_water_level_detector_controller --> /log_sys/sub_system_ref/timing_service internalStartTimeout
-	/log_sys/sub_system_ref/timing_service >>> Operational
-	/log_sys/sub_system_ref/timing_service >-- /log_sys/sub_system_ref/top_actor internalTimeout
-	/log_sys/sub_system_ref/timing_service --> /log_sys/sub_system_ref/top_actor internalTimeout
-	/log_sys/sub_system_ref/top_actor >-- /log_sys/sub_system_ref/timing_service internalStartTimeout
-	/log_sys/sub_system_ref/top_actor >>> testing
-	/log_sys/sub_system_ref/top_actor --> /log_sys/sub_system_ref/timing_service internalStartTimeout
-	/log_sys/sub_system_ref/timing_service >>> Operational
-	/log_sys/sub_system_ref/timing_service >-- /log_sys/sub_system_ref/top_actor/high_water_level_detector_controller internalTimeout
-	/log_sys/sub_system_ref/timing_service --> /log_sys/sub_system_ref/top_actor/high_water_level_detector_controller internalTimeout
-	/log_sys/sub_system_ref/top_actor/high_water_level_detector_controller >-- /log_sys/sub_system_ref/top_actor turn_on
-	/log_sys/sub_system_ref/top_actor/high_water_level_detector_controller >-- /log_sys/sub_system_ref/timing_service internalStartTimeout
-	/log_sys/sub_system_ref/top_actor/high_water_level_detector_controller >>> querying
-	/log_sys/sub_system_ref/top_actor/high_water_level_detector_controller --> /log_sys/sub_system_ref/top_actor turn_on
-	/log_sys/sub_system_ref/top_actor >>> testing
-	/log_sys/sub_system_ref/top_actor/high_water_level_detector_controller --> /log_sys/sub_system_ref/timing_service internalStartTimeout
-	/log_sys/sub_system_ref/timing_service >>> Operational
-	/log_sys/sub_system_ref/timing_service >-- /log_sys/sub_system_ref/top_actor internalTimeout
-	/log_sys/sub_system_ref/timing_service --> /log_sys/sub_system_ref/top_actor internalTimeout
-	/log_sys/sub_system_ref/top_actor >-- /log_sys/sub_system_ref/timing_service internalStartTimeout
-	/log_sys/sub_system_ref/top_actor >>> testing
-	/log_sys/sub_system_ref/top_actor --> /log_sys/sub_system_ref/timing_service internalStartTimeout
-	/log_sys/sub_system_ref/timing_service >>> Operational
-	/log_sys/sub_system_ref/timing_service >-- /log_sys/sub_system_ref/top_actor/high_water_level_detector_controller internalTimeout
-	/log_sys/sub_system_ref/timing_service --> /log_sys/sub_system_ref/top_actor/high_water_level_detector_controller internalTimeout
-	/log_sys/sub_system_ref/top_actor/high_water_level_detector_controller >-- /log_sys/sub_system_ref/top_actor turn_on
-	/log_sys/sub_system_ref/top_actor/high_water_level_detector_controller >-- /log_sys/sub_system_ref/timing_service internalStartTimeout
-	/log_sys/sub_system_ref/top_actor/high_water_level_detector_controller >>> querying
-	/log_sys/sub_system_ref/top_actor/high_water_level_detector_controller --> /log_sys/sub_system_ref/top_actor turn_on
-	/log_sys/sub_system_ref/top_actor >>> testing
-	/log_sys/sub_system_ref/top_actor/high_water_level_detector_controller --> /log_sys/sub_system_ref/timing_service internalStartTimeout
-	/log_sys/sub_system_ref/timing_service >>> Operational
-	/log_sys/sub_system_ref/timing_service >-- /log_sys/sub_system_ref/top_actor/high_water_level_detector_controller internalTimeout
-	/log_sys/sub_system_ref/timing_service --> /log_sys/sub_system_ref/top_actor/high_water_level_detector_controller internalTimeout
-	/log_sys/sub_system_ref/top_actor/high_water_level_detector_controller >-- /log_sys/sub_system_ref/top_actor turn_on
-	/log_sys/sub_system_ref/top_actor/high_water_level_detector_controller >-- /log_sys/sub_system_ref/timing_service internalStartTimeout
-	/log_sys/sub_system_ref/top_actor/high_water_level_detector_controller >>> querying
-	/log_sys/sub_system_ref/top_actor/high_water_level_detector_controller --> /log_sys/sub_system_ref/top_actor turn_on
-	/log_sys/sub_system_ref/top_actor >>> testing
-	/log_sys/sub_system_ref/top_actor/high_water_level_detector_controller --> /log_sys/sub_system_ref/timing_service internalStartTimeout
-	/log_sys/sub_system_ref/timing_service >>> Operational
-	/log_sys/sub_system_ref/timing_service >-- /log_sys/sub_system_ref/top_actor internalTimeout
-	/log_sys/sub_system_ref/timing_service --> /log_sys/sub_system_ref/top_actor internalTimeout
-	/log_sys/sub_system_ref/top_actor >-- /log_sys/sub_system_ref/timing_service internalStartTimeout
-	/log_sys/sub_system_ref/top_actor >>> testing
-	/log_sys/sub_system_ref/top_actor --> /log_sys/sub_system_ref/timing_service internalStartTimeout
-	/log_sys/sub_system_ref/timing_service >>> Operational
-	/log_sys/sub_system_ref/timing_service >-- /log_sys/sub_system_ref/top_actor/high_water_level_detector_controller internalTimeout
-	/log_sys/sub_system_ref/timing_service --> /log_sys/sub_system_ref/top_actor/high_water_level_detector_controller internalTimeout
 	/log_sys/sub_system_ref/top_actor/high_water_level_detector_controller >-- /log_sys/sub_system_ref/timing_service internalStartTimeout
 	/log_sys/sub_system_ref/top_actor/high_water_level_detector_controller >>> querying
 	/log_sys/sub_system_ref/top_actor/high_water_level_detector_controller --> /log_sys/sub_system_ref/timing_service internalStartTimeout
@@ -441,27 +192,6 @@
 	/log_sys/sub_system_ref/timing_service >>> Operational
 	/log_sys/sub_system_ref/timing_service >-- /log_sys/sub_system_ref/top_actor/high_water_level_detector_controller internalTimeout
 	/log_sys/sub_system_ref/timing_service --> /log_sys/sub_system_ref/top_actor/high_water_level_detector_controller internalTimeout
-	/log_sys/sub_system_ref/top_actor/high_water_level_detector_controller >-- /log_sys/sub_system_ref/timing_service internalStartTimeout
-	/log_sys/sub_system_ref/top_actor/high_water_level_detector_controller >>> querying
-	/log_sys/sub_system_ref/top_actor/high_water_level_detector_controller --> /log_sys/sub_system_ref/timing_service internalStartTimeout
-	/log_sys/sub_system_ref/timing_service >>> Operational
-	/log_sys/sub_system_ref/timing_service >-- /log_sys/sub_system_ref/top_actor internalTimeout
-	/log_sys/sub_system_ref/timing_service --> /log_sys/sub_system_ref/top_actor internalTimeout
-	/log_sys/sub_system_ref/top_actor >-- /log_sys/sub_system_ref/timing_service internalStartTimeout
-	/log_sys/sub_system_ref/top_actor >>> testing
-	/log_sys/sub_system_ref/top_actor --> /log_sys/sub_system_ref/timing_service internalStartTimeout
-	/log_sys/sub_system_ref/timing_service >>> Operational
-	/log_sys/sub_system_ref/timing_service >-- /log_sys/sub_system_ref/top_actor/high_water_level_detector_controller internalTimeout
-	/log_sys/sub_system_ref/timing_service --> /log_sys/sub_system_ref/top_actor/high_water_level_detector_controller internalTimeout
-	/log_sys/sub_system_ref/top_actor/high_water_level_detector_controller >-- /log_sys/sub_system_ref/top_actor turn_on
-	/log_sys/sub_system_ref/top_actor/high_water_level_detector_controller >-- /log_sys/sub_system_ref/timing_service internalStartTimeout
-	/log_sys/sub_system_ref/top_actor/high_water_level_detector_controller >>> querying
-	/log_sys/sub_system_ref/top_actor/high_water_level_detector_controller --> /log_sys/sub_system_ref/top_actor turn_on
-	/log_sys/sub_system_ref/top_actor >>> testing
-	/log_sys/sub_system_ref/top_actor/high_water_level_detector_controller --> /log_sys/sub_system_ref/timing_service internalStartTimeout
-	/log_sys/sub_system_ref/timing_service >>> Operational
-	/log_sys/sub_system_ref/timing_service >-- /log_sys/sub_system_ref/top_actor/high_water_level_detector_controller internalTimeout
-	/log_sys/sub_system_ref/timing_service --> /log_sys/sub_system_ref/top_actor/high_water_level_detector_controller internalTimeout
 	/log_sys/sub_system_ref/top_actor/high_water_level_detector_controller >-- /log_sys/sub_system_ref/top_actor turn_on
 	/log_sys/sub_system_ref/top_actor/high_water_level_detector_controller >-- /log_sys/sub_system_ref/timing_service internalStartTimeout
 	/log_sys/sub_system_ref/top_actor/high_water_level_detector_controller >>> querying
@@ -474,6 +204,12 @@
 	/log_sys/sub_system_ref/top_actor >-- /log_sys/sub_system_ref/timing_service internalStartTimeout
 	/log_sys/sub_system_ref/top_actor >>> testing
 	/log_sys/sub_system_ref/top_actor --> /log_sys/sub_system_ref/timing_service internalStartTimeout
+	/log_sys/sub_system_ref/timing_service >>> Operational
+	/log_sys/sub_system_ref/timing_service >-- /log_sys/sub_system_ref/top_actor/high_water_level_detector_controller internalTimeout
+	/log_sys/sub_system_ref/timing_service --> /log_sys/sub_system_ref/top_actor/high_water_level_detector_controller internalTimeout
+	/log_sys/sub_system_ref/top_actor/high_water_level_detector_controller >-- /log_sys/sub_system_ref/timing_service internalStartTimeout
+	/log_sys/sub_system_ref/top_actor/high_water_level_detector_controller >>> querying
+	/log_sys/sub_system_ref/top_actor/high_water_level_detector_controller --> /log_sys/sub_system_ref/timing_service internalStartTimeout
 	/log_sys/sub_system_ref/timing_service >>> Operational
 	/log_sys/sub_system_ref/timing_service >-- /log_sys/sub_system_ref/top_actor/high_water_level_detector_controller internalTimeout
 	/log_sys/sub_system_ref/timing_service --> /log_sys/sub_system_ref/top_actor/high_water_level_detector_controller internalTimeout
@@ -498,6 +234,7 @@
 	/log_sys/sub_system_ref/timing_service >>> Operational
 # begin sub system destruction
 	/log_sys/sub_system_ref (X) /log_sys/sub_system_ref/top_actor 
+	/log_sys/sub_system_ref/top_actor (X) /log_sys/sub_system_ref/top_actor/high_water_level_detector_controller 
 	/log_sys/sub_system_ref/top_actor (X) /log_sys/sub_system_ref/top_actor/high_water_level_detector_controller 
 	/log_sys/sub_system_ref/top_actor (X) /log_sys/sub_system_ref/top_actor/high_water_level_detector_controller 
 	/log_sys/sub_system_ref/top_actor (X) /log_sys/sub_system_ref/top_actor/high_water_level_detector_controller 

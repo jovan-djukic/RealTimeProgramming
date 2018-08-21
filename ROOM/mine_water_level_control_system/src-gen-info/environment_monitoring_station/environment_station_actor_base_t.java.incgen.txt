@@ -6,13 +6,19 @@ import org.eclipse.etrice.runtime.java.debugging.*;
 
 import static org.eclipse.etrice.runtime.java.etunit.EtUnit.*;
 
+import logger.*;
 import room.basic.service.timing.*;
 import room.basic.service.timing.PTimer.*;
 import environment_monitoring_station.environmonet_statition_actor_base_iprotocol_t.*;
 
+/*--------------------- begin user code ---------------------*/
+import java.util.logging.*;
+import java.io.IOException;
+
+/*--------------------- end user code ---------------------*/
 
 
-public abstract class environment_station_actor_base_t extends ActorClassBase {
+public abstract class environment_station_actor_base_t extends logger_t {
 
 
 	//--------------------- ports

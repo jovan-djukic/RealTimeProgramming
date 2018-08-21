@@ -2,6 +2,7 @@ RoomModel environment_monitoring_station {
 	import room.basic.types.* from "../../org.eclipse.etrice.modellib.java/model/Types.room"
 	import room.basic.service.timing.* from "../../org.eclipse.etrice.modellib.java/model/TimingService.room"
 	import devices.* from "devices.room"
+	import logger.logger_t from "logger.room"
 	
 	DataClass environment_station_actor_base_idata_t {
 		Attribute period : int32 = '0'
@@ -13,7 +14,7 @@ RoomModel environment_monitoring_station {
 		}
 	}
 	
-	abstract ActorClass environment_station_actor_base_t {
+	abstract ActorClass environment_station_actor_base_t extends logger_t {
 		Interface { 
 			Port iport : environmonet_statition_actor_base_iprotocol_t
 		}	
@@ -88,6 +89,7 @@ RoomModel environment_monitoring_station {
 			override Operation query_action ( ) :void '''
 				if ( super.water_level_detector.value == 1 ) {
 					super.pump_switch_port.turn_off ( );
+					super.info ( super.getName(), "Pump switched off" );
 				}
 			'''
 		}	
@@ -98,6 +100,7 @@ RoomModel environment_monitoring_station {
 			override Operation query_action ( ) :void '''
 				if ( super.water_level_detector.value == 1 ) {
 					super.pump_switch_port.turn_on ( );
+					super.info ( super.getName(), "Pump switched on" );
 				}
 			'''
 		}	

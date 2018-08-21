@@ -1,0 +1,44 @@
+RoomModel logger {
+	import room.basic.types.* from "../../org.eclipse.etrice.modellib.java/model/Types.room"
+	
+	ExternalType java_logger_t -> "java.util.logging.Logger"
+	
+	ActorClass logger_t {
+		Structure {
+			usercode1 '''
+				import java.util.logging.*;
+				import java.io.IOException;
+			'''
+			Attribute logger : java_logger_t ref = 'null'
+		}
+		Behavior {
+			ctor '''
+				this.logger = Logger.getLogger( logger_t.class.getName ( ) );
+				Logger root_logger = Logger.getLogger( "" );
+				Handler handlers[] = root_logger.getHandlers ( );
+				for ( int i = 0; i < handlers.length; i++ )	{
+					if ( handlers[i] instanceof ConsoleHandler ) {
+						root_logger.removeHandler ( handlers[i] );
+					}
+				}
+
+				try {
+					FileHandler file_handler = new FileHandler( "log.txt" );
+					file_handler.setFormatter ( new SimpleFormatter ( ) );
+					root_logger.addHandler( file_handler );
+				} catch (SecurityException e) {
+					e.printStackTrace();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			'''
+			Operation info ( actor_name : string, message : string ) : void '''
+				this.logger.info ( "[ " + actor_name + " ] " + message );
+			'''
+
+			Operation severe ( actor_name : string, message : string ) : void '''
+				this.logger.severe ( "[ " + actor_name + " ] " + message );
+			'''
+		}
+	}
+}

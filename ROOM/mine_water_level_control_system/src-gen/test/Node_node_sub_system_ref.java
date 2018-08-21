@@ -17,6 +17,7 @@ import org.eclipse.etrice.runtime.java.modelbase.InterfaceItemBroker;
 
 import devices.*;
 import environment_monitoring_station.*;
+import logger.*;
 import room.basic.service.timing.*;
 
 
