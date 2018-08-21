@@ -1,4 +1,4 @@
-package test;
+package top_actor;
 
 import org.eclipse.etrice.runtime.java.messaging.*;
 import org.eclipse.etrice.runtime.java.modelbase.*;
@@ -16,9 +16,12 @@ import devices.switch_protocol_t.*;
 
 /*--------------------- begin user code ---------------------*/
 class Constants {
-	public static final int HIGH_WATER_LEVEL_DETECTOR_CONTROLLER_PERIOD_IN_MS = 500;
+	public static final int GAS_SENSOR_CONTROLLER_PERIOD_IN_MS = 500;
+	public static final int GAS_SENSOR_CONTROLLER_THRESHOLD = 500;
+	public static final int GAS_SENSOR_CONTROLLER_ERROR_COUNT_THRESHOLD = 2;
 	public static final int TEST_PERIOD_IN_MS = 750;
-	public static final int WATER_LEVEL_DETECTOR_IVALUE = 0;
+	public static final int GAS_SENSOR_IVALUE = 0;
+	public static final boolean GAS_SENSOR_IERROR_OCCURRED = false;
 }
 
 /*--------------------- end user code ---------------------*/
@@ -28,8 +31,8 @@ public class top_actor_t extends ActorClassBase {
 
 
 	//--------------------- ports
-	protected environmonet_statition_actor_base_iprotocol_tConjPort high_water_level_detector_iport = null;
-	protected switch_protocol_tConjPort pump_switch_port = null;
+	protected environmonet_statition_actor_base_iprotocol_tConjPort gas_sensor_controller_iport = null;
+	protected switch_protocol_tConjPort alarm_switch_port = null;
 
 	//--------------------- saps
 	protected PTimerConjPort timer_port = null;
@@ -39,14 +42,30 @@ public class top_actor_t extends ActorClassBase {
 	//--------------------- optional actors
 
 	//--------------------- interface item IDs
-	public static final int IFITEM_high_water_level_detector_iport = 1;
-	public static final int IFITEM_pump_switch_port = 2;
+	public static final int IFITEM_gas_sensor_controller_iport = 1;
+	public static final int IFITEM_alarm_switch_port = 2;
 	public static final int IFITEM_timer_port = 3;
 
 	/*--------------------- attributes ---------------------*/
-	public  water_level_detector_t water_level_detector;
+	public  boolean expecting_alarm_turn_on;
+	public  int error_count;
+	public  gas_sensor_t gas_sensor;
 
 	/*--------------------- operations ---------------------*/
+	public  void process(int value, boolean error_occurred) {
+		if ( error_occurred == true ) {
+			this.error_count++;
+			if ( this.error_count > Constants.GAS_SENSOR_CONTROLLER_ERROR_COUNT_THRESHOLD )	 {
+				this.expecting_alarm_turn_on = true;
+			}
+		} else {
+			if ( value < Constants.GAS_SENSOR_CONTROLLER_THRESHOLD ) {
+				expecting_alarm_turn_on = true;
+			} else {
+				expecting_alarm_turn_on = false;
+			}
+		}
+	}
 
 
 	//--------------------- construction
@@ -55,11 +74,13 @@ public class top_actor_t extends ActorClassBase {
 		setClassName("top_actor_t");
 
 		// initialize attributes
-		this.setWater_level_detector(new water_level_detector_t());
+		this.setExpecting_alarm_turn_on(false);
+		this.setError_count(0);
+		this.setGas_sensor(new gas_sensor_t());
 
 		// own ports
-		high_water_level_detector_iport = new environmonet_statition_actor_base_iprotocol_tConjPort(this, "high_water_level_detector_iport", IFITEM_high_water_level_detector_iport);
-		pump_switch_port = new switch_protocol_tConjPort(this, "pump_switch_port", IFITEM_pump_switch_port);
+		gas_sensor_controller_iport = new environmonet_statition_actor_base_iprotocol_tConjPort(this, "gas_sensor_controller_iport", IFITEM_gas_sensor_controller_iport);
+		alarm_switch_port = new switch_protocol_tConjPort(this, "alarm_switch_port", IFITEM_alarm_switch_port);
 
 		// own saps
 		timer_port = new PTimerConjPort(this, "timer_port", IFITEM_timer_port, 0);
@@ -67,12 +88,12 @@ public class top_actor_t extends ActorClassBase {
 		// own service implementations
 
 		// sub actors
-		DebuggingService.getInstance().addMessageActorCreate(this, "high_water_level_detector_controller");
-		new high_water_level_detector_controller_t(this, "high_water_level_detector_controller");
+		DebuggingService.getInstance().addMessageActorCreate(this, "gas_sensor_controller");
+		new gas_sensor_controller_t(this, "gas_sensor_controller");
 
 		// wiring
-		InterfaceItemBase.connect(this, "high_water_level_detector_controller/iport", "high_water_level_detector_iport");
-		InterfaceItemBase.connect(this, "high_water_level_detector_controller/pump_switch_port", "pump_switch_port");
+		InterfaceItemBase.connect(this, "gas_sensor_controller/iport", "gas_sensor_controller_iport");
+		InterfaceItemBase.connect(this, "gas_sensor_controller/alarm_port", "alarm_switch_port");
 
 
 		/* user defined constructor body */
@@ -80,20 +101,32 @@ public class top_actor_t extends ActorClassBase {
 	}
 
 	/* --------------------- attribute setters and getters */
-	public void setWater_level_detector(water_level_detector_t water_level_detector) {
-		 this.water_level_detector = water_level_detector;
+	public void setExpecting_alarm_turn_on(boolean expecting_alarm_turn_on) {
+		 this.expecting_alarm_turn_on = expecting_alarm_turn_on;
 	}
-	public water_level_detector_t getWater_level_detector() {
-		return this.water_level_detector;
+	public boolean getExpecting_alarm_turn_on() {
+		return this.expecting_alarm_turn_on;
+	}
+	public void setError_count(int error_count) {
+		 this.error_count = error_count;
+	}
+	public int getError_count() {
+		return this.error_count;
+	}
+	public void setGas_sensor(gas_sensor_t gas_sensor) {
+		 this.gas_sensor = gas_sensor;
+	}
+	public gas_sensor_t getGas_sensor() {
+		return this.gas_sensor;
 	}
 
 
 	//--------------------- port getters
-	public environmonet_statition_actor_base_iprotocol_tConjPort getHigh_water_level_detector_iport (){
-		return this.high_water_level_detector_iport;
+	public environmonet_statition_actor_base_iprotocol_tConjPort getGas_sensor_controller_iport (){
+		return this.gas_sensor_controller_iport;
 	}
-	public switch_protocol_tConjPort getPump_switch_port (){
-		return this.pump_switch_port;
+	public switch_protocol_tConjPort getAlarm_switch_port (){
+		return this.alarm_switch_port;
 	}
 	public PTimerConjPort getTimer_port (){
 		return this.timer_port;
@@ -116,14 +149,14 @@ public class top_actor_t extends ActorClassBase {
 	
 	/* transition chains */
 	public static final int CHAIN_TRANS_INITIAL_TO__testing = 1;
-	public static final int CHAIN_TRANS_turn_off_message_received_FROM_testing_TO_testing_BY_turn_offpump_switch_port_turn_off_message_received = 2;
-	public static final int CHAIN_TRANS_turn_on_message_received_FROM_testing_TO_testing_BY_turn_onpump_switch_port_turn_on_message_received = 3;
+	public static final int CHAIN_TRANS_turn_off_message_received_FROM_testing_TO_testing_BY_turn_offalarm_switch_port_turn_off_message_received = 2;
+	public static final int CHAIN_TRANS_turn_on_message_received_FROM_testing_TO_testing_BY_turn_onalarm_switch_port_turn_on_message_received = 3;
 	public static final int CHAIN_TRANS_timeout_message_received_FROM_testing_TO_testing_BY_timeouttimer_port_timeout_message_received = 4;
 	
 	/* triggers */
 	public static final int POLLING = 0;
-	public static final int TRIG_pump_switch_port__turn_on = IFITEM_pump_switch_port + EVT_SHIFT*switch_protocol_t.OUT_turn_on;
-	public static final int TRIG_pump_switch_port__turn_off = IFITEM_pump_switch_port + EVT_SHIFT*switch_protocol_t.OUT_turn_off;
+	public static final int TRIG_alarm_switch_port__turn_on = IFITEM_alarm_switch_port + EVT_SHIFT*switch_protocol_t.OUT_turn_on;
+	public static final int TRIG_alarm_switch_port__turn_off = IFITEM_alarm_switch_port + EVT_SHIFT*switch_protocol_t.OUT_turn_off;
 	public static final int TRIG_timer_port__timeout = IFITEM_timer_port + EVT_SHIFT*PTimer.OUT_timeout;
 	public static final int TRIG_timer_port__internalTimer = IFITEM_timer_port + EVT_SHIFT*PTimer.OUT_internalTimer;
 	public static final int TRIG_timer_port__internalTimeout = IFITEM_timer_port + EVT_SHIFT*PTimer.OUT_internalTimeout;
@@ -147,31 +180,56 @@ public class top_actor_t extends ActorClassBase {
 	
 	/* Action Codes */
 	protected void action_TRANS_INITIAL_TO__testing() {
-	    this.water_level_detector.value = Constants.WATER_LEVEL_DETECTOR_IVALUE;
+	    this.expecting_alarm_turn_on = false;
+	    this.error_count = 0;
 	    
-	    this.high_water_level_detector_iport.initialize ( 
-	    	new water_level_detector_controller_base_idata_t ( 
-	    		Constants.HIGH_WATER_LEVEL_DETECTOR_CONTROLLER_PERIOD_IN_MS,
-	    		this.water_level_detector
+	    this.gas_sensor.value = Constants.GAS_SENSOR_IVALUE;
+	    this.gas_sensor.error_occurred = Constants.GAS_SENSOR_IERROR_OCCURRED;
+	    
+	    this.process ( Constants.GAS_SENSOR_IVALUE, Constants.GAS_SENSOR_IERROR_OCCURRED );
+	    
+	    this.gas_sensor_controller_iport.initialize ( 
+	    	new gas_sensor_controller_idata_t ( 
+	    		Constants.GAS_SENSOR_CONTROLLER_PERIOD_IN_MS,
+	    		false,
+	    		Constants.GAS_SENSOR_CONTROLLER_THRESHOLD,
+	    		this.gas_sensor,
+	    		Constants.GAS_SENSOR_CONTROLLER_ERROR_COUNT_THRESHOLD
 	    	)
 	    );
 	    
 	    this.timer_port.startTimeout ( Constants.TEST_PERIOD_IN_MS );
 	}
-	protected void action_TRANS_turn_off_message_received_FROM_testing_TO_testing_BY_turn_offpump_switch_port_turn_off_message_received(InterfaceItemBase ifitem) {
-	    System.err.println ( "TURN OFF MESSAGE RECEIVED UNEXPECTEDLY " );
-	}
-	protected void action_TRANS_turn_on_message_received_FROM_testing_TO_testing_BY_turn_onpump_switch_port_turn_on_message_received(InterfaceItemBase ifitem) {
-	    if ( this.water_level_detector.value != 1 ) {
-	    	System.err.println ( "TURN ON MESSAGE RECEIVED UNEXPECTEDLY " );
+	protected void action_TRANS_turn_off_message_received_FROM_testing_TO_testing_BY_turn_offalarm_switch_port_turn_off_message_received(InterfaceItemBase ifitem) {
+	    if ( this.expecting_alarm_turn_on == true ) {
+	    	System.err.println ( "TURN OFF MESSAGE RECEIVED UNEXPECTEDLY " );
 	    } else {
+	    	System.err.println ( "TURN OFF MESSAGE RECEIVED EXPECTEDLY " );
+	    }
+	}
+	protected void action_TRANS_turn_on_message_received_FROM_testing_TO_testing_BY_turn_onalarm_switch_port_turn_on_message_received(InterfaceItemBase ifitem) {
+	    if ( this.expecting_alarm_turn_on == true ) {
 	    	System.err.println ( "TURN ON MESSAGE RECEIVED EXPECTEDLY " );
+	    } else {
+	    	System.err.println ( "TURN ON MESSAGE RECEIVED UNEXPECTEDLY " );
 	    }
 	}
 	protected void action_TRANS_timeout_message_received_FROM_testing_TO_testing_BY_timeouttimer_port_timeout_message_received(InterfaceItemBase ifitem) {
 	    if ( Math.random ( ) > 0.5 ) {
-	    	this.water_level_detector.value = 1 - this.water_level_detector.value;	
+	    	boolean error_occurred = Math.random ( ) > 0.5 ? true : false;
+	    
+	    	int value = 0;
+	    	
+	    	if ( error_occurred == false ) {
+	    		value = ( int ) ( Math.random ( ) * 2 * Constants.GAS_SENSOR_CONTROLLER_THRESHOLD );
+	    	}
+	    	
+	    	this.process ( value, error_occurred );
+	    
+	    	this.gas_sensor.error_occurred = error_occurred;	
+	    	this.gas_sensor.value = value;	
 	    }
+	    
 	    this.timer_port.startTimeout ( Constants.TEST_PERIOD_IN_MS );
 	}
 	
@@ -210,14 +268,14 @@ public class top_actor_t extends ActorClassBase {
 				action_TRANS_INITIAL_TO__testing();
 				return STATE_testing;
 			}
-			case top_actor_t.CHAIN_TRANS_turn_off_message_received_FROM_testing_TO_testing_BY_turn_offpump_switch_port_turn_off_message_received:
+			case top_actor_t.CHAIN_TRANS_turn_off_message_received_FROM_testing_TO_testing_BY_turn_offalarm_switch_port_turn_off_message_received:
 			{
-				action_TRANS_turn_off_message_received_FROM_testing_TO_testing_BY_turn_offpump_switch_port_turn_off_message_received(ifitem);
+				action_TRANS_turn_off_message_received_FROM_testing_TO_testing_BY_turn_offalarm_switch_port_turn_off_message_received(ifitem);
 				return STATE_testing;
 			}
-			case top_actor_t.CHAIN_TRANS_turn_on_message_received_FROM_testing_TO_testing_BY_turn_onpump_switch_port_turn_on_message_received:
+			case top_actor_t.CHAIN_TRANS_turn_on_message_received_FROM_testing_TO_testing_BY_turn_onalarm_switch_port_turn_on_message_received:
 			{
-				action_TRANS_turn_on_message_received_FROM_testing_TO_testing_BY_turn_onpump_switch_port_turn_on_message_received(ifitem);
+				action_TRANS_turn_on_message_received_FROM_testing_TO_testing_BY_turn_onalarm_switch_port_turn_on_message_received(ifitem);
 				return STATE_testing;
 			}
 			case top_actor_t.CHAIN_TRANS_timeout_message_received_FROM_testing_TO_testing_BY_timeouttimer_port_timeout_message_received:
@@ -274,15 +332,15 @@ public class top_actor_t extends ActorClassBase {
 			switch (getState()) {
 			    case STATE_testing:
 			        switch(trigger__et) {
-			                case TRIG_pump_switch_port__turn_off:
+			                case TRIG_alarm_switch_port__turn_off:
 			                    {
-			                        chain__et = top_actor_t.CHAIN_TRANS_turn_off_message_received_FROM_testing_TO_testing_BY_turn_offpump_switch_port_turn_off_message_received;
+			                        chain__et = top_actor_t.CHAIN_TRANS_turn_off_message_received_FROM_testing_TO_testing_BY_turn_offalarm_switch_port_turn_off_message_received;
 			                        catching_state__et = STATE_TOP;
 			                    }
 			                break;
-			                case TRIG_pump_switch_port__turn_on:
+			                case TRIG_alarm_switch_port__turn_on:
 			                    {
-			                        chain__et = top_actor_t.CHAIN_TRANS_turn_on_message_received_FROM_testing_TO_testing_BY_turn_onpump_switch_port_turn_on_message_received;
+			                        chain__et = top_actor_t.CHAIN_TRANS_turn_on_message_received_FROM_testing_TO_testing_BY_turn_onalarm_switch_port_turn_on_message_received;
 			                        catching_state__et = STATE_TOP;
 			                    }
 			                break;

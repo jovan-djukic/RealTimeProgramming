@@ -1,4 +1,4 @@
-package test;
+package top_actor;
 
 import org.eclipse.etrice.runtime.java.messaging.*;
 import org.eclipse.etrice.runtime.java.modelbase.*;
@@ -59,7 +59,7 @@ public class top_actor_t extends ActorClassBase {
 				this.expecting_alarm_turn_on = true;
 			}
 		} else {
-			if ( value > Constants.GAS_SENSOR_CONTROLLER_THRESHOLD ) {
+			if ( value < Constants.GAS_SENSOR_CONTROLLER_THRESHOLD ) {
 				expecting_alarm_turn_on = true;
 			} else {
 				expecting_alarm_turn_on = false;
@@ -186,10 +186,12 @@ public class top_actor_t extends ActorClassBase {
 	    this.gas_sensor.value = Constants.GAS_SENSOR_IVALUE;
 	    this.gas_sensor.error_occurred = Constants.GAS_SENSOR_IERROR_OCCURRED;
 	    
+	    this.process ( Constants.GAS_SENSOR_IVALUE, Constants.GAS_SENSOR_IERROR_OCCURRED );
+	    
 	    this.gas_sensor_controller_iport.initialize ( 
 	    	new gas_sensor_controller_idata_t ( 
 	    		Constants.GAS_SENSOR_CONTROLLER_PERIOD_IN_MS,
-	    		true,
+	    		false,
 	    		Constants.GAS_SENSOR_CONTROLLER_THRESHOLD,
 	    		this.gas_sensor,
 	    		Constants.GAS_SENSOR_CONTROLLER_ERROR_COUNT_THRESHOLD

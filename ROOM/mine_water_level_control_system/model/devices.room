@@ -11,4 +11,9 @@ RoomModel devices {
 	DataClass water_level_detector_t {
 		Attribute value : int32 = '0'		
 	}	
+
+	DataClass gas_sensor_t {
+		Attribute value : int32
+		Attribute error_occurred : boolean
+	}	
 }

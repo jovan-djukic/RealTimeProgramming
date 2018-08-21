@@ -63,7 +63,6 @@ RoomModel environment_monitoring_station {
 		Attribute water_level_detector : water_level_detector_t	ref
 	}
 	
-
 	abstract ActorClass water_level_detector_controller_base_t extends environment_station_actor_base_t {
 		Interface {
 			Port pump_switch_port : switch_protocol_t
@@ -104,5 +103,62 @@ RoomModel environment_monitoring_station {
 				}
 			'''
 		}	
+	}
+	
+	DataClass gas_sensor_controller_idata_t extends environment_station_actor_base_idata_t {
+		Attribute detect_above_threshold : boolean
+		Attribute threshold : int32	
+		Attribute gas_sensor : gas_sensor_t ref
+		Attribute error_count_threshold : int32
+	}
+
+	ActorClass gas_sensor_controller_t extends environment_station_actor_base_t {
+		Interface {
+			Port alarm_port : switch_protocol_t			
+		}	
+		Structure {
+			external Port alarm_port
+			
+			Attribute detect_above_threshold : boolean
+			Attribute threshold : int32
+			Attribute gas_sensor : gas_sensor_t ref
+			Attribute error_count_threshold : int32
+			Attribute error_count : int32
+		}
+		Behavior {
+			override Operation query_action ( ) : void '''
+				if ( this.gas_sensor.error_occurred == true ) {
+					this.error_count++;
+					if ( this.error_count > this.error_count_threshold ) {
+						this.alarm_port.turn_on ( );
+						super.info ( super.getName ( ), "Error count threshold breached, turning on alarm" );
+					}
+				} else {
+					this.error_count = 0;
+
+					if ( this.detect_above_threshold == true && this.gas_sensor.value > this.threshold ) {
+						this.alarm_port.turn_on ( );
+						super.info ( super.getName ( ), "Threshold breached, turning on alarm" );
+					} else if ( this.detect_above_threshold == false && this.gas_sensor.value < this.threshold ) {
+						this.alarm_port.turn_on ( );
+						super.info ( super.getName ( ), "Threshold breached, turning on alarm" );
+					} else {
+						this.alarm_port.turn_off ( );
+						super.info ( super.getName ( ), "Threshold stabilizied, turning off alarm" );
+					}
+				}
+			'''
+			StateMachine {
+				RefinedTransition imessage_received {
+					action '''
+						this.detect_above_threshold = ( ( gas_sensor_controller_idata_t ) data ).detect_above_threshold;
+						this.threshold = ( ( gas_sensor_controller_idata_t ) data ).threshold;
+						this.gas_sensor = ( ( gas_sensor_controller_idata_t ) data ).gas_sensor;
+						this.error_count_threshold = ( ( gas_sensor_controller_idata_t ) data ).error_count_threshold;
+						this.error_count = 0;
+					'''
+				}
+			}
+		}
 	}
 }
