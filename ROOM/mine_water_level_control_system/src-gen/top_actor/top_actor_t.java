@@ -6,22 +6,22 @@ import org.eclipse.etrice.runtime.java.debugging.*;
 
 import static org.eclipse.etrice.runtime.java.etunit.EtUnit.*;
 
-import alarm_station.*;
 import devices.*;
 import logger.*;
+import pump_station.*;
 import room.basic.service.timing.*;
 import room.basic.service.timing.PTimer.*;
-import alarm_station.alarm_controller_iprotocol_t.*;
+import devices.methane_protocol_t.*;
+import pump_station.pump_controller_iprotocol_t.*;
 import devices.switch_protocol_t.*;
 
 /*--------------------- begin user code ---------------------*/
 class Constants {
-	public static final int TEST_PERIOD_IN_MS = 50;
-	public static final int NUMBER_OF_CONTROLLERS = 4;
-	public static final int CH4_CONTROLLER = 0;
-	public static final int CO_CONTROLLER = 1;
-	public static final int O_CONTROLLER = 2;
-	public static final int WATER_FLOW_CONTROLLER = 3;
+	public static final int TEST_PERIOD_IN_MS = 100;
+	public static final int NUMBER_OF_CONTROLLERS = 3;
+	public static final int WATER_DETECTORS_CONTROLLER_CONTROLLER = 0;
+	public static final int USER = 1;
+	public static final int METHANE_CONTROLLER = 2;
 }
 
 /*--------------------- end user code ---------------------*/
@@ -31,11 +31,10 @@ public class top_actor_t extends ActorClassBase {
 
 
 	//--------------------- ports
-	protected alarm_controller_iprotocol_tConjPort alarm_controler_iport = null;
-	protected switch_protocol_tPort ch4_alarm_switch_port = null;
-	protected switch_protocol_tPort co_alarm_switch_port = null;
-	protected switch_protocol_tPort o_alarm_switch_port = null;
-	protected switch_protocol_tPort water_flow_alarm_switch_port = null;
+	protected pump_controller_iprotocol_tConjPort pump_controler_iport = null;
+	protected switch_protocol_tPort water_detectors_pump_switch_port = null;
+	protected switch_protocol_tPort user_switch_port = null;
+	protected methane_protocol_tPort methane_port = null;
 
 	//--------------------- saps
 	protected PTimerConjPort timer_port = null;
@@ -45,18 +44,18 @@ public class top_actor_t extends ActorClassBase {
 	//--------------------- optional actors
 
 	//--------------------- interface item IDs
-	public static final int IFITEM_alarm_controler_iport = 1;
-	public static final int IFITEM_ch4_alarm_switch_port = 2;
-	public static final int IFITEM_co_alarm_switch_port = 3;
-	public static final int IFITEM_o_alarm_switch_port = 4;
-	public static final int IFITEM_water_flow_alarm_switch_port = 5;
-	public static final int IFITEM_timer_port = 6;
+	public static final int IFITEM_pump_controler_iport = 1;
+	public static final int IFITEM_water_detectors_pump_switch_port = 2;
+	public static final int IFITEM_user_switch_port = 3;
+	public static final int IFITEM_methane_port = 4;
+	public static final int IFITEM_timer_port = 5;
 
 	/*--------------------- attributes ---------------------*/
 	public  int expected_state;
+	public  int pump_state;
 	public  boolean turn_on_message_sent[];
-	public  int alarm_level;
-	public  device_t alarm;
+	public  boolean methane_threshold_breached;
+	public  device_t pump;
 
 	/*--------------------- operations ---------------------*/
 
@@ -68,22 +67,22 @@ public class top_actor_t extends ActorClassBase {
 
 		// initialize attributes
 		this.setExpected_state(0);
+		this.setPump_state(0);
 		{
-			boolean[] array = new boolean[4];
-			for (int i=0;i<4;i++){
+			boolean[] array = new boolean[2];
+			for (int i=0;i<2;i++){
 				array[i] = false;
 			}
 			this.setTurn_on_message_sent(array);
 		}
-		this.setAlarm_level(0);
-		this.setAlarm(new device_t());
+		this.setMethane_threshold_breached(false);
+		this.setPump(new device_t());
 
 		// own ports
-		alarm_controler_iport = new alarm_controller_iprotocol_tConjPort(this, "alarm_controler_iport", IFITEM_alarm_controler_iport);
-		ch4_alarm_switch_port = new switch_protocol_tPort(this, "ch4_alarm_switch_port", IFITEM_ch4_alarm_switch_port);
-		co_alarm_switch_port = new switch_protocol_tPort(this, "co_alarm_switch_port", IFITEM_co_alarm_switch_port);
-		o_alarm_switch_port = new switch_protocol_tPort(this, "o_alarm_switch_port", IFITEM_o_alarm_switch_port);
-		water_flow_alarm_switch_port = new switch_protocol_tPort(this, "water_flow_alarm_switch_port", IFITEM_water_flow_alarm_switch_port);
+		pump_controler_iport = new pump_controller_iprotocol_tConjPort(this, "pump_controler_iport", IFITEM_pump_controler_iport);
+		water_detectors_pump_switch_port = new switch_protocol_tPort(this, "water_detectors_pump_switch_port", IFITEM_water_detectors_pump_switch_port);
+		user_switch_port = new switch_protocol_tPort(this, "user_switch_port", IFITEM_user_switch_port);
+		methane_port = new methane_protocol_tPort(this, "methane_port", IFITEM_methane_port);
 
 		// own saps
 		timer_port = new PTimerConjPort(this, "timer_port", IFITEM_timer_port, 0);
@@ -91,15 +90,14 @@ public class top_actor_t extends ActorClassBase {
 		// own service implementations
 
 		// sub actors
-		DebuggingService.getInstance().addMessageActorCreate(this, "alarm_controller");
-		new alarm_controller_t(this, "alarm_controller");
+		DebuggingService.getInstance().addMessageActorCreate(this, "pump_controller");
+		new pump_controller_t(this, "pump_controller");
 
 		// wiring
-		InterfaceItemBase.connect(this, "alarm_controller/iport", "alarm_controler_iport");
-		InterfaceItemBase.connect(this, "alarm_controller/ch4_controller_port", "ch4_alarm_switch_port");
-		InterfaceItemBase.connect(this, "alarm_controller/co_controller_port", "co_alarm_switch_port");
-		InterfaceItemBase.connect(this, "alarm_controller/o_controller_port", "o_alarm_switch_port");
-		InterfaceItemBase.connect(this, "alarm_controller/water_flow_controller_port", "water_flow_alarm_switch_port");
+		InterfaceItemBase.connect(this, "pump_controller/iport", "pump_controler_iport");
+		InterfaceItemBase.connect(this, "pump_controller/water_level_detectors_controller_port", "water_detectors_pump_switch_port");
+		InterfaceItemBase.connect(this, "pump_controller/user_port", "user_switch_port");
+		InterfaceItemBase.connect(this, "pump_controller/methane_port", "methane_port");
 
 
 		/* user defined constructor body */
@@ -113,41 +111,44 @@ public class top_actor_t extends ActorClassBase {
 	public int getExpected_state() {
 		return this.expected_state;
 	}
+	public void setPump_state(int pump_state) {
+		 this.pump_state = pump_state;
+	}
+	public int getPump_state() {
+		return this.pump_state;
+	}
 	public void setTurn_on_message_sent(boolean[] turn_on_message_sent) {
 		 this.turn_on_message_sent = turn_on_message_sent;
 	}
 	public boolean[] getTurn_on_message_sent() {
 		return this.turn_on_message_sent;
 	}
-	public void setAlarm_level(int alarm_level) {
-		 this.alarm_level = alarm_level;
+	public void setMethane_threshold_breached(boolean methane_threshold_breached) {
+		 this.methane_threshold_breached = methane_threshold_breached;
 	}
-	public int getAlarm_level() {
-		return this.alarm_level;
+	public boolean getMethane_threshold_breached() {
+		return this.methane_threshold_breached;
 	}
-	public void setAlarm(device_t alarm) {
-		 this.alarm = alarm;
+	public void setPump(device_t pump) {
+		 this.pump = pump;
 	}
-	public device_t getAlarm() {
-		return this.alarm;
+	public device_t getPump() {
+		return this.pump;
 	}
 
 
 	//--------------------- port getters
-	public alarm_controller_iprotocol_tConjPort getAlarm_controler_iport (){
-		return this.alarm_controler_iport;
+	public pump_controller_iprotocol_tConjPort getPump_controler_iport (){
+		return this.pump_controler_iport;
 	}
-	public switch_protocol_tPort getCh4_alarm_switch_port (){
-		return this.ch4_alarm_switch_port;
+	public switch_protocol_tPort getWater_detectors_pump_switch_port (){
+		return this.water_detectors_pump_switch_port;
 	}
-	public switch_protocol_tPort getCo_alarm_switch_port (){
-		return this.co_alarm_switch_port;
+	public switch_protocol_tPort getUser_switch_port (){
+		return this.user_switch_port;
 	}
-	public switch_protocol_tPort getO_alarm_switch_port (){
-		return this.o_alarm_switch_port;
-	}
-	public switch_protocol_tPort getWater_flow_alarm_switch_port (){
-		return this.water_flow_alarm_switch_port;
+	public methane_protocol_tPort getMethane_port (){
+		return this.methane_port;
 	}
 	public PTimerConjPort getTimer_port (){
 		return this.timer_port;
@@ -198,76 +199,98 @@ public class top_actor_t extends ActorClassBase {
 	/* Action Codes */
 	protected void action_TRANS_INITIAL_TO__testing() {
 	    this.expected_state = device_state_t.OFF;
-	    for ( int i = 0; i < Constants.NUMBER_OF_CONTROLLERS; i++ ) {
+	    this.pump_state = device_state_t.OFF;
+	    for ( int i = 0; i < ( Constants.NUMBER_OF_CONTROLLERS - 1 ); i++ ) {
 	    	this.turn_on_message_sent[i] = false;
 	    }
-	    this.alarm_level = 0;
+	    this.methane_threshold_breached = false;
+	    this.pump.state = device_state_t.OFF;
 	    
-	    this.alarm_controler_iport.initialize ( 
-	    	new alarm_controller_idata_t ( 
-	    		this.alarm
+	    this.pump_controler_iport.initialize ( 
+	    	new pump_controller_idata_t ( 
+	    		this.pump
 	    	)
 	    );
 	    
 	    this.timer_port.startTimeout ( Constants.TEST_PERIOD_IN_MS );
 	}
 	protected void action_TRANS_timeout_message_received_FROM_testing_TO_testing_BY_timeouttimer_port_timeout_message_received(InterfaceItemBase ifitem) {
-	    String alarm_state_string = this.alarm.state == device_state_t.ON ? "ON" : "OFF";
+	    String pump_state_string = this.pump.state == device_state_t.ON ? "ON" : "OFF";
 	    String expected_state_string = this.expected_state == device_state_t.ON ? "ON" : "OFF";
-	    if ( this.expected_state == this.alarm.state ) {
-	    	System.err.println ( "Expected alarm state " + expected_state_string + "/" + alarm_state_string );
+	    if ( this.expected_state == this.pump.state ) {
+	    	System.err.println ( "Expected pump state " + expected_state_string + "/" + pump_state_string );
 	    } else {
-	    	System.err.println ( "Unexpected alarm state " + expected_state_string + "/" + alarm_state_string );
+	    	System.err.println ( "Unexpected pump state " + expected_state_string + "/" + pump_state_string );
+	    	System.exit(1);
 	    }
 	    
-	    int controller_index = (int) ( Math.random ( ) * Constants.NUMBER_OF_CONTROLLERS );
+	    int action = (int) ( Math.random ( ) * Constants.NUMBER_OF_CONTROLLERS );
 	    
-	    this.turn_on_message_sent[ controller_index ] = !this.turn_on_message_sent[ controller_index ];
+	    if ( action < ( Constants.NUMBER_OF_CONTROLLERS - 1 ) ) {
+	    	this.turn_on_message_sent[ action ] = !this.turn_on_message_sent[ action ];
+	    } else {
+	    	this.methane_threshold_breached = !this.methane_threshold_breached;
+	    }
 	    
-	    switch ( controller_index ) {
-	    	case Constants.CH4_CONTROLLER : {
-	    		if ( this.turn_on_message_sent[ controller_index ] == true ) {
-	    			this.ch4_alarm_switch_port.turn_on ( );
+	    switch ( action ) {
+	    	case Constants.WATER_DETECTORS_CONTROLLER_CONTROLLER : {
+	    		if ( this.turn_on_message_sent[ action ] == true ) {
+	    			this.water_detectors_pump_switch_port.turn_on ( );
+	    			System.err.println(0);
 	    		} else {
-	    			this.ch4_alarm_switch_port.turn_off ( );
+	    			this.water_detectors_pump_switch_port.turn_off ( );
+	    			System.err.println(1);
 	    		}
+	    
+	    		break;
 	    	}
 	    
-	    	case Constants.CO_CONTROLLER : {
-	    		if ( this.turn_on_message_sent[ controller_index ] == true ) {
-	    			this.co_alarm_switch_port.turn_on ( );
+	    	case Constants.USER : {
+	    		if ( this.turn_on_message_sent[ action ] == true ) {
+	    			this.user_switch_port.turn_on ( );
+	    			System.err.println(2);
 	    		} else {
-	    			this.co_alarm_switch_port.turn_off ( );
+	    			this.user_switch_port.turn_off ( );
+	    			System.err.println(3);
 	    		}
+	    
+	    		break;
 	    	}
 	    
-	    	case Constants.O_CONTROLLER : {
-	    		if ( this.turn_on_message_sent[ controller_index ] == true ) {
-	    			this.o_alarm_switch_port.turn_on ( );
+	    	case Constants.METHANE_CONTROLLER : {
+	    		if ( this.methane_threshold_breached == true ) {
+	    			this.methane_port.threshold_breached ( );
+	    			System.err.println(4);
 	    		} else {
-	    			this.o_alarm_switch_port.turn_off ( );
+	    			this.methane_port.state_normal ( );
+	    			System.err.println(5);
 	    		}
-	    	}
 	    
-	    	case Constants.WATER_FLOW_CONTROLLER : {
-	    		if ( this.turn_on_message_sent[ controller_index ] == true ) {
-	    			this.water_flow_alarm_switch_port.turn_on ( );
-	    		} else {
-	    			this.water_flow_alarm_switch_port.turn_off ( );
-	    		}
+	    		break;
 	    	}
 	    }
 	    
-	    if ( this.turn_on_message_sent[ controller_index ] == true ) {
-	    	this.alarm_level++;
-	    	if ( this.alarm_level == 1 ) {
-	    		this.expected_state = device_state_t.ON;
-	    	} 
+	    if ( action < ( Constants.NUMBER_OF_CONTROLLERS - 1 ) ) {
+	    	if ( this.methane_threshold_breached == false ) {
+	    		if ( this.turn_on_message_sent[ action ] == true ) {
+	    			this.expected_state = device_state_t.ON;
+	    		} else {
+	    			this.expected_state = device_state_t.OFF;
+	    		}
+	    	} else {
+	    		if ( this.turn_on_message_sent[ action ] == true ) {
+	    			this.pump_state = device_state_t.ON;
+	    		} else {
+	    			this.pump_state = device_state_t.OFF;
+	    		}
+	    	}
 	    } else {
-	    	this.alarm_level--;
-	    	if ( this.alarm_level == 0 ) {
+	    	if ( this.methane_threshold_breached == true ) {
+	    		this.pump_state = this.pump.state;
 	    		this.expected_state = device_state_t.OFF;
-	    	} 
+	    	} else {
+	    		this.expected_state = this.pump_state;
+	    	}
 	    }
 	    
 	    this.timer_port.startTimeout ( Constants.TEST_PERIOD_IN_MS );

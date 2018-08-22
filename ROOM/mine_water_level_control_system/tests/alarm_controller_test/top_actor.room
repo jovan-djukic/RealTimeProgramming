@@ -50,6 +50,7 @@ RoomModel top_actor {
 							this.turn_on_message_sent[i] = false;
 						}
 						this.alarm_level = 0;
+						this.alarm.state = device_state_t.OFF;
 						
 						this.alarm_controler_iport.initialize ( 
 							new alarm_controller_idata_t ( 
@@ -86,6 +87,8 @@ RoomModel top_actor {
 								} else {
 									this.ch4_alarm_switch_port.turn_off ( );
 								}
+
+								break;
 							}
 
 							case Constants.CO_CONTROLLER : {
@@ -94,6 +97,8 @@ RoomModel top_actor {
 								} else {
 									this.co_alarm_switch_port.turn_off ( );
 								}
+
+								break;
 							}
 
 							case Constants.O_CONTROLLER : {
@@ -102,6 +107,8 @@ RoomModel top_actor {
 								} else {
 									this.o_alarm_switch_port.turn_off ( );
 								}
+
+								break;
 							}
 
 							case Constants.WATER_FLOW_CONTROLLER : {
@@ -110,6 +117,8 @@ RoomModel top_actor {
 								} else {
 									this.water_flow_alarm_switch_port.turn_off ( );
 								}
+
+								break;
 							}
 						}
 
