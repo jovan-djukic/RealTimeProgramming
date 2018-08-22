@@ -1,84 +1,56 @@
-Aug 22, 2018 1:25:47 AM logger.logger_t info
-INFO: [ gas_sensor_controller ] Threshold stabilizied, turning off alarm
-Aug 22, 2018 1:25:47 AM logger.logger_t info
-INFO: [ gas_sensor_controller ] State normal, sending message to pump controller
-Aug 22, 2018 1:25:48 AM logger.logger_t info
-INFO: [ gas_sensor_controller ] Threshold stabilizied, turning off alarm
-Aug 22, 2018 1:25:48 AM logger.logger_t info
-INFO: [ gas_sensor_controller ] State normal, sending message to pump controller
-Aug 22, 2018 1:25:48 AM logger.logger_t info
-INFO: [ gas_sensor_controller ] Threshold stabilizied, turning off alarm
-Aug 22, 2018 1:25:48 AM logger.logger_t info
-INFO: [ gas_sensor_controller ] State normal, sending message to pump controller
-Aug 22, 2018 1:25:49 AM logger.logger_t info
-INFO: [ gas_sensor_controller ] Threshold stabilizied, turning off alarm
-Aug 22, 2018 1:25:49 AM logger.logger_t info
-INFO: [ gas_sensor_controller ] State normal, sending message to pump controller
-Aug 22, 2018 1:25:49 AM logger.logger_t info
-INFO: [ gas_sensor_controller ] Threshold stabilizied, turning off alarm
-Aug 22, 2018 1:25:49 AM logger.logger_t info
-INFO: [ gas_sensor_controller ] State normal, sending message to pump controller
-Aug 22, 2018 1:25:50 AM logger.logger_t info
-INFO: [ gas_sensor_controller ] Threshold stabilizied, turning off alarm
-Aug 22, 2018 1:25:50 AM logger.logger_t info
-INFO: [ gas_sensor_controller ] State normal, sending message to pump controller
-Aug 22, 2018 1:25:50 AM logger.logger_t info
-INFO: [ gas_sensor_controller ] Threshold stabilizied, turning off alarm
-Aug 22, 2018 1:25:50 AM logger.logger_t info
-INFO: [ gas_sensor_controller ] State normal, sending message to pump controller
-Aug 22, 2018 1:25:51 AM logger.logger_t info
-INFO: [ gas_sensor_controller ] Threshold stabilizied, turning off alarm
-Aug 22, 2018 1:25:51 AM logger.logger_t info
-INFO: [ gas_sensor_controller ] State normal, sending message to pump controller
-Aug 22, 2018 1:25:51 AM logger.logger_t info
-INFO: [ gas_sensor_controller ] Threshold stabilizied, turning off alarm
-Aug 22, 2018 1:25:51 AM logger.logger_t info
-INFO: [ gas_sensor_controller ] State normal, sending message to pump controller
-Aug 22, 2018 1:25:53 AM logger.logger_t info
-INFO: [ gas_sensor_controller ] Error count threshold breached, turning on alarm
-Aug 22, 2018 1:25:53 AM logger.logger_t info
-INFO: [ gas_sensor_controller ] Error count threshold breached, turning on alarm
-Aug 22, 2018 1:25:54 AM logger.logger_t info
-INFO: [ gas_sensor_controller ] Error count threshold breached, turning on alarm
-Aug 22, 2018 1:25:54 AM logger.logger_t info
-INFO: [ gas_sensor_controller ] Error count threshold breached, turning on alarm
-Aug 22, 2018 1:25:55 AM logger.logger_t info
-INFO: [ gas_sensor_controller ] Error count threshold breached, turning on alarm
-Aug 22, 2018 1:25:55 AM logger.logger_t info
-INFO: [ gas_sensor_controller ] Error count threshold breached, turning on alarm
-Aug 22, 2018 1:25:56 AM logger.logger_t info
-INFO: [ gas_sensor_controller ] Error count threshold breached, turning on alarm
-Aug 22, 2018 1:25:56 AM logger.logger_t info
-INFO: [ gas_sensor_controller ] Error count threshold breached, turning on alarm
-Aug 22, 2018 1:25:57 AM logger.logger_t info
-INFO: [ gas_sensor_controller ] Error count threshold breached, turning on alarm
-Aug 22, 2018 1:25:57 AM logger.logger_t info
-INFO: [ gas_sensor_controller ] Error count threshold breached, turning on alarm
-Aug 22, 2018 1:25:58 AM logger.logger_t info
-INFO: [ gas_sensor_controller ] Threshold breached, turning on alarm
-Aug 22, 2018 1:25:58 AM logger.logger_t info
-INFO: [ gas_sensor_controller ] Threshold breached, sending message to pump controller
-Aug 22, 2018 1:25:58 AM logger.logger_t info
-INFO: [ gas_sensor_controller ] Threshold breached, turning on alarm
-Aug 22, 2018 1:25:58 AM logger.logger_t info
-INFO: [ gas_sensor_controller ] Threshold breached, sending message to pump controller
-Aug 22, 2018 1:26:00 AM logger.logger_t info
-INFO: [ gas_sensor_controller ] Error count threshold breached, turning on alarm
-Aug 22, 2018 1:26:00 AM logger.logger_t info
-INFO: [ gas_sensor_controller ] Error count threshold breached, turning on alarm
-Aug 22, 2018 1:26:01 AM logger.logger_t info
-INFO: [ gas_sensor_controller ] Threshold stabilizied, turning off alarm
-Aug 22, 2018 1:26:01 AM logger.logger_t info
-INFO: [ gas_sensor_controller ] State normal, sending message to pump controller
-Aug 22, 2018 1:26:01 AM logger.logger_t info
-INFO: [ gas_sensor_controller ] Threshold stabilizied, turning off alarm
-Aug 22, 2018 1:26:01 AM logger.logger_t info
-INFO: [ gas_sensor_controller ] State normal, sending message to pump controller
-Aug 22, 2018 1:26:02 AM logger.logger_t info
-INFO: [ gas_sensor_controller ] Threshold stabilizied, turning off alarm
-Aug 22, 2018 1:26:02 AM logger.logger_t info
-INFO: [ gas_sensor_controller ] State normal, sending message to pump controller
-Aug 22, 2018 1:26:02 AM logger.logger_t info
-INFO: [ gas_sensor_controller ] Threshold stabilizied, turning off alarm
-Aug 22, 2018 1:26:02 AM logger.logger_t info
-INFO: [ gas_sensor_controller ] State normal, sending message to pump controller
+Aug 22, 2018 9:28:22 PM logger.logger_t info
+INFO: [ water_level_detectors_controller ] Water over high threshold, turning on pump
+Aug 22, 2018 9:28:23 PM logger.logger_t info
+INFO: [ water_level_detectors_controller ] Water over high threshold, turning on pump
+Aug 22, 2018 9:28:24 PM logger.logger_t info
+INFO: [ water_level_detectors_controller ] Water over high threshold, turning on pump
+Aug 22, 2018 9:28:24 PM logger.logger_t info
+INFO: [ water_level_detectors_controller ] Water over high threshold, turning on pump
+Aug 22, 2018 9:28:25 PM logger.logger_t info
+INFO: [ water_level_detectors_controller ] Water over high threshold, turning on pump
+Aug 22, 2018 9:28:25 PM logger.logger_t info
+INFO: [ water_level_detectors_controller ] Water over high threshold, turning on pump
+Aug 22, 2018 9:28:26 PM logger.logger_t info
+INFO: [ water_level_detectors_controller ] Water over high threshold, turning on pump
+Aug 22, 2018 9:28:26 PM logger.logger_t info
+INFO: [ water_level_detectors_controller ] Water over high threshold, turning on pump
+Aug 22, 2018 9:28:27 PM logger.logger_t info
+INFO: [ water_level_detectors_controller ] Water over high threshold, turning on pump
+Aug 22, 2018 9:28:27 PM logger.logger_t info
+INFO: [ water_level_detectors_controller ] Water over high threshold, turning on pump
+Aug 22, 2018 9:28:28 PM logger.logger_t info
+INFO: [ water_level_detectors_controller ] Water under low threshold, turning off pump
+Aug 22, 2018 9:28:28 PM logger.logger_t info
+INFO: [ water_level_detectors_controller ] Water under low threshold, turning off pump
+Aug 22, 2018 9:28:29 PM logger.logger_t info
+INFO: [ water_level_detectors_controller ] Water under low threshold, turning off pump
+Aug 22, 2018 9:28:31 PM logger.logger_t info
+INFO: [ water_level_detectors_controller ] Water under low threshold, turning off pump
+Aug 22, 2018 9:28:31 PM logger.logger_t info
+INFO: [ water_level_detectors_controller ] Water under low threshold, turning off pump
+Aug 22, 2018 9:28:32 PM logger.logger_t info
+INFO: [ water_level_detectors_controller ] Water over high threshold, turning on pump
+Aug 22, 2018 9:28:33 PM logger.logger_t info
+INFO: [ water_level_detectors_controller ] Water under low threshold, turning off pump
+Aug 22, 2018 9:28:33 PM logger.logger_t info
+INFO: [ water_level_detectors_controller ] Water under low threshold, turning off pump
+Aug 22, 2018 9:28:34 PM logger.logger_t info
+INFO: [ water_level_detectors_controller ] Water under low threshold, turning off pump
+Aug 22, 2018 9:28:34 PM logger.logger_t info
+INFO: [ water_level_detectors_controller ] Water over high threshold, turning on pump
+Aug 22, 2018 9:28:35 PM logger.logger_t info
+INFO: [ water_level_detectors_controller ] Water over high threshold, turning on pump
+Aug 22, 2018 9:28:37 PM logger.logger_t info
+INFO: [ water_level_detectors_controller ] Water under low threshold, turning off pump
+Aug 22, 2018 9:28:38 PM logger.logger_t info
+INFO: [ water_level_detectors_controller ] Water over high threshold, turning on pump
+Aug 22, 2018 9:28:39 PM logger.logger_t info
+INFO: [ water_level_detectors_controller ] Water over high threshold, turning on pump
+Aug 22, 2018 9:28:39 PM logger.logger_t info
+INFO: [ water_level_detectors_controller ] Water over high threshold, turning on pump
+Aug 22, 2018 9:28:40 PM logger.logger_t info
+INFO: [ water_level_detectors_controller ] Water under low threshold, turning off pump
+Aug 22, 2018 9:28:41 PM logger.logger_t info
+INFO: [ water_level_detectors_controller ] Water under low threshold, turning off pump
+Aug 22, 2018 9:28:41 PM logger.logger_t info
+INFO: [ water_level_detectors_controller ] Water over high threshold, turning on pump

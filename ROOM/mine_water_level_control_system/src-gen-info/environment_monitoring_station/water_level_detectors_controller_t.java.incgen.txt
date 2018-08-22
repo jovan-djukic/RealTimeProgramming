@@ -20,7 +20,7 @@ import java.io.IOException;
 /*--------------------- end user code ---------------------*/
 
 
-public abstract class water_level_detector_controller_base_t extends environment_station_actor_base_t {
+public class water_level_detectors_controller_t extends environment_station_actor_base_t {
 
 
 	//--------------------- ports
@@ -36,18 +36,29 @@ public abstract class water_level_detector_controller_base_t extends environment
 	public static final int IFITEM_pump_switch_port = 3;
 
 	/*--------------------- attributes ---------------------*/
-	public  water_level_detector_t water_level_detector;
+	public  water_level_detector_t low_water_level_detector;
+	public  water_level_detector_t high_water_level_detector;
 
 	/*--------------------- operations ---------------------*/
+	public  void query_action() {
+		if ( this.low_water_level_detector.value != 0 )	{
+			this.pump_switch_port.turn_off ( );
+			super.info ( this.getName ( ), "Water under low threshold, turning off pump" );
+		} else if ( this.high_water_level_detector.value != 0 ) {
+			this.pump_switch_port.turn_on ( );
+			super.info ( this.getName ( ), "Water over high threshold, turning on pump" );
+		}
+	}
 
 
 	//--------------------- construction
-	public water_level_detector_controller_base_t(IRTObject parent, String name) {
+	public water_level_detectors_controller_t(IRTObject parent, String name) {
 		super(parent, name);
-		setClassName("water_level_detector_controller_base_t");
+		setClassName("water_level_detectors_controller_t");
 
 		// initialize attributes
-		this.setWater_level_detector(null);
+		this.setLow_water_level_detector(null);
+		this.setHigh_water_level_detector(null);
 
 		// own ports
 		pump_switch_port = new switch_protocol_tPort(this, "pump_switch_port", IFITEM_pump_switch_port);
@@ -66,11 +77,17 @@ public abstract class water_level_detector_controller_base_t extends environment
 	}
 
 	/* --------------------- attribute setters and getters */
-	public void setWater_level_detector(water_level_detector_t water_level_detector) {
-		 this.water_level_detector = water_level_detector;
+	public void setLow_water_level_detector(water_level_detector_t low_water_level_detector) {
+		 this.low_water_level_detector = low_water_level_detector;
 	}
-	public water_level_detector_t getWater_level_detector() {
-		return this.water_level_detector;
+	public water_level_detector_t getLow_water_level_detector() {
+		return this.low_water_level_detector;
+	}
+	public void setHigh_water_level_detector(water_level_detector_t high_water_level_detector) {
+		 this.high_water_level_detector = high_water_level_detector;
+	}
+	public water_level_detector_t getHigh_water_level_detector() {
+		return this.high_water_level_detector;
 	}
 
 
@@ -123,7 +140,8 @@ public abstract class water_level_detector_controller_base_t extends environment
 	protected void action_TRANS_imessage_received_FROM_waiting_for_imessage_TO_querying_BY_initializeiport(InterfaceItemBase ifitem, environment_station_actor_base_idata_t data) {
 	    this.period = data.period;
 	    
-	    this.water_level_detector = ( ( water_level_detector_controller_base_idata_t ) data ).water_level_detector;
+	    this.low_water_level_detector = ( ( water_level_detectors_controller_idata_t ) data ).low_water_level_detector;
+	    this.high_water_level_detector = ( ( water_level_detectors_controller_idata_t ) data ).high_water_level_detector;
 	}
 	
 	/* State Switch Methods */
@@ -160,17 +178,17 @@ public abstract class water_level_detector_controller_base_t extends environment
 	 */
 	private int executeTransitionChain(int chain__et, InterfaceItemBase ifitem, Object generic_data__et) {
 		switch (chain__et) {
-			case water_level_detector_controller_base_t.CHAIN_TRANS_INITIAL_TO__waiting_for_imessage:
+			case water_level_detectors_controller_t.CHAIN_TRANS_INITIAL_TO__waiting_for_imessage:
 			{
 				return STATE_waiting_for_imessage;
 			}
-			case water_level_detector_controller_base_t.CHAIN_TRANS_imessage_received_FROM_waiting_for_imessage_TO_querying_BY_initializeiport:
+			case water_level_detectors_controller_t.CHAIN_TRANS_imessage_received_FROM_waiting_for_imessage_TO_querying_BY_initializeiport:
 			{
 				environment_station_actor_base_idata_t data = (environment_station_actor_base_idata_t) generic_data__et;
 				action_TRANS_imessage_received_FROM_waiting_for_imessage_TO_querying_BY_initializeiport(ifitem, data);
 				return STATE_querying;
 			}
-			case water_level_detector_controller_base_t.CHAIN_TRANS_timeout_received_FROM_querying_TO_querying_BY_timeouttimer_access_point_timeout_received:
+			case water_level_detectors_controller_t.CHAIN_TRANS_timeout_received_FROM_querying_TO_querying_BY_timeouttimer_access_point_timeout_received:
 			{
 				return STATE_querying;
 			}
@@ -214,7 +232,7 @@ public abstract class water_level_detector_controller_base_t extends environment
 	}
 	
 	public void executeInitTransition() {
-		int chain__et = water_level_detector_controller_base_t.CHAIN_TRANS_INITIAL_TO__waiting_for_imessage;
+		int chain__et = water_level_detectors_controller_t.CHAIN_TRANS_INITIAL_TO__waiting_for_imessage;
 		int next__et = executeTransitionChain(chain__et, null, null);
 		next__et = enterHistory(next__et);
 		setState(next__et);
@@ -232,7 +250,7 @@ public abstract class water_level_detector_controller_base_t extends environment
 			        switch(trigger__et) {
 			                case TRIG_iport__initialize:
 			                    {
-			                        chain__et = water_level_detector_controller_base_t.CHAIN_TRANS_imessage_received_FROM_waiting_for_imessage_TO_querying_BY_initializeiport;
+			                        chain__et = water_level_detectors_controller_t.CHAIN_TRANS_imessage_received_FROM_waiting_for_imessage_TO_querying_BY_initializeiport;
 			                        catching_state__et = STATE_TOP;
 			                    }
 			                break;
@@ -245,7 +263,7 @@ public abstract class water_level_detector_controller_base_t extends environment
 			        switch(trigger__et) {
 			                case TRIG_timer_access_point__timeout:
 			                    {
-			                        chain__et = water_level_detector_controller_base_t.CHAIN_TRANS_timeout_received_FROM_querying_TO_querying_BY_timeouttimer_access_point_timeout_received;
+			                        chain__et = water_level_detectors_controller_t.CHAIN_TRANS_timeout_received_FROM_querying_TO_querying_BY_timeouttimer_access_point_timeout_received;
 			                        catching_state__et = STATE_TOP;
 			                    }
 			                break;

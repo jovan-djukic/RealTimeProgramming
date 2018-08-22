@@ -59,51 +59,42 @@ RoomModel environment_monitoring_station {
 		}
 	}
 
-	DataClass water_level_detector_controller_base_idata_t extends environment_station_actor_base_idata_t {
-		Attribute water_level_detector : water_level_detector_t	ref
+	DataClass water_level_detectors_controller_idata_t extends environment_station_actor_base_idata_t {
+		Attribute low_water_level_detector : water_level_detector_t	ref
+		Attribute high_water_level_detector : water_level_detector_t ref
 	}
 	
-	abstract ActorClass water_level_detector_controller_base_t extends environment_station_actor_base_t {
+	ActorClass water_level_detectors_controller_t extends environment_station_actor_base_t {
 		Interface {
 			Port pump_switch_port : switch_protocol_t
 		}
 		Structure {
 			external Port pump_switch_port
 			
-			Attribute water_level_detector : water_level_detector_t ref
+			Attribute low_water_level_detector : water_level_detector_t ref
+			Attribute high_water_level_detector : water_level_detector_t ref
 		}
 		Behavior {
+			override Operation query_action ( ) : void '''
+				if ( this.low_water_level_detector.value != 0 )	{
+					this.pump_switch_port.turn_off ( );
+					super.info ( this.getName ( ), "Water under low threshold, turning off pump" );
+				} else if ( this.high_water_level_detector.value != 0 ) {
+					this.pump_switch_port.turn_on ( );
+					super.info ( this.getName ( ), "Water over high threshold, turning on pump" );
+				}
+			'''
 			StateMachine {
 				RefinedTransition imessage_received {
 					action '''
-						this.water_level_detector = ( ( water_level_detector_controller_base_idata_t ) data ).water_level_detector;
+						this.low_water_level_detector = ( ( water_level_detectors_controller_idata_t ) data ).low_water_level_detector;
+						this.high_water_level_detector = ( ( water_level_detectors_controller_idata_t ) data ).high_water_level_detector;
 					'''
 				}
 			}
 		}
 	}
 	
-	ActorClass low_water_level_detector_controller_t extends water_level_detector_controller_base_t {
-		Behavior {
-			override Operation query_action ( ) :void '''
-				if ( super.water_level_detector.value == 1 ) {
-					super.pump_switch_port.turn_off ( );
-					super.info ( super.getName(), "Pump switched off" );
-				}
-			'''
-		}	
-	}
-
-	ActorClass high_water_level_detector_controller_t extends water_level_detector_controller_base_t {
-		Behavior {
-			override Operation query_action ( ) :void '''
-				if ( super.water_level_detector.value == 1 ) {
-					super.pump_switch_port.turn_on ( );
-					super.info ( super.getName(), "Pump switched on" );
-				}
-			'''
-		}	
-	}
 	
 	DataClass gas_sensor_controller_idata_t extends environment_station_actor_base_idata_t {
 		Attribute detect_above_threshold : boolean
