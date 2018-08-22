@@ -1,0 +1,91 @@
+RoomModel alarm_station {
+	import room.basic.types.* from "../../org.eclipse.etrice.modellib.java/model/Types.room"
+	import devices.* from "devices.room"
+	import logger.* from "logger.room"
+	
+	DataClass alarm_controller_idata_t {
+		Attribute alarm : device_t ref
+	}
+	
+	ProtocolClass alarm_controller_iprotocol_t {
+		incoming {
+			Message initialize ( data : alarm_controller_idata_t )
+		}
+	}
+	
+	
+	ActorClass alarm_controller_t extends logger_t {
+		Interface {
+			Port iport : alarm_controller_iprotocol_t
+			conjugated Port co_controller_port : switch_protocol_t
+			conjugated Port o_controller_port : switch_protocol_t
+			conjugated Port ch4_controller_port : switch_protocol_t
+			conjugated Port water_flow_controller_port : switch_protocol_t
+		}
+		Structure {
+			external Port iport
+			external Port co_controller_port
+			external Port o_controller_port
+			external Port ch4_controller_port
+			external Port water_flow_controller_port
+			
+			Attribute alarm : device_t ref
+			Attribute alarm_level : int32
+		}
+		Behavior {
+			ctor '''
+				this.alarm_level = 0;
+			'''
+			
+			StateMachine {
+				State waiting_for_imessage { }
+				State waiting_for_alarm_message { }
+				
+				Transition start : initial -> waiting_for_imessage { }
+				
+				Transition imessage_received : waiting_for_imessage -> waiting_for_alarm_message {
+					triggers {
+						< initialize : iport >
+					}
+					action '''
+						this.alarm = data.alarm;
+					'''
+				}
+				
+				Transition turn_on_message_received : waiting_for_alarm_message -> waiting_for_alarm_message {
+					triggers {
+						< turn_on : ch4_controller_port > or
+						< turn_on : co_controller_port > or
+						< turn_on : o_controller_port > or
+						< turn_on : water_flow_controller_port >
+					}
+					action '''
+						this.alarm_level++;
+						
+						if ( this.alarm_level == 1 ) {
+							this.alarm.state = device_state_t.ON;	
+							super.info ( super.getName ( ), "Initial turn on message recevied, turning on alarm" );
+						}
+					'''
+				}
+
+				Transition turn_off_message_received : waiting_for_alarm_message -> waiting_for_alarm_message {
+					triggers {
+						< turn_off : ch4_controller_port > or
+						< turn_off : co_controller_port > or
+						< turn_off : o_controller_port > or
+						< turn_off : water_flow_controller_port >
+					}
+					action '''
+						this.alarm_level--;
+						
+						if ( this.alarm_level == 0 ) {
+							this.alarm.state = device_state_t.OFF;	
+							super.info ( super.getName ( ), "Last turn off message recevied, turning off alarm" );
+						}
+					'''
+				}
+			}
+		}
+	}
+}

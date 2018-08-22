@@ -15,10 +15,11 @@ import org.eclipse.etrice.runtime.java.modelbase.SubSystemClassBase;
 import org.eclipse.etrice.runtime.java.modelbase.InterfaceItemBase;
 import org.eclipse.etrice.runtime.java.modelbase.InterfaceItemBroker;
 
+import alarm_station.*;
 import devices.*;
-import environment_monitoring_station.*;
 import logger.*;
 import room.basic.service.timing.*;
+import top_actor.*;
 
 
 public class Node_node_sub_system_ref extends SubSystemClassBase {
@@ -57,7 +58,6 @@ public class Node_node_sub_system_ref extends SubSystemClassBase {
 
 		// wiring
 		InterfaceItemBase.connect(this, "timing_service/timer", "top_actor/timer_port");
-		InterfaceItemBase.connect(this, "timing_service/timer", "top_actor/water_level_detectors_controller/timer_access_point");
 
 		// apply instance attribute configurations
 	}

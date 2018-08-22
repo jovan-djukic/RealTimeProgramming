@@ -1,56 +1,74 @@
-Aug 22, 2018 9:28:22 PM logger.logger_t info
-INFO: [ water_level_detectors_controller ] Water over high threshold, turning on pump
-Aug 22, 2018 9:28:23 PM logger.logger_t info
-INFO: [ water_level_detectors_controller ] Water over high threshold, turning on pump
-Aug 22, 2018 9:28:24 PM logger.logger_t info
-INFO: [ water_level_detectors_controller ] Water over high threshold, turning on pump
-Aug 22, 2018 9:28:24 PM logger.logger_t info
-INFO: [ water_level_detectors_controller ] Water over high threshold, turning on pump
-Aug 22, 2018 9:28:25 PM logger.logger_t info
-INFO: [ water_level_detectors_controller ] Water over high threshold, turning on pump
-Aug 22, 2018 9:28:25 PM logger.logger_t info
-INFO: [ water_level_detectors_controller ] Water over high threshold, turning on pump
-Aug 22, 2018 9:28:26 PM logger.logger_t info
-INFO: [ water_level_detectors_controller ] Water over high threshold, turning on pump
-Aug 22, 2018 9:28:26 PM logger.logger_t info
-INFO: [ water_level_detectors_controller ] Water over high threshold, turning on pump
-Aug 22, 2018 9:28:27 PM logger.logger_t info
-INFO: [ water_level_detectors_controller ] Water over high threshold, turning on pump
-Aug 22, 2018 9:28:27 PM logger.logger_t info
-INFO: [ water_level_detectors_controller ] Water over high threshold, turning on pump
-Aug 22, 2018 9:28:28 PM logger.logger_t info
-INFO: [ water_level_detectors_controller ] Water under low threshold, turning off pump
-Aug 22, 2018 9:28:28 PM logger.logger_t info
-INFO: [ water_level_detectors_controller ] Water under low threshold, turning off pump
-Aug 22, 2018 9:28:29 PM logger.logger_t info
-INFO: [ water_level_detectors_controller ] Water under low threshold, turning off pump
-Aug 22, 2018 9:28:31 PM logger.logger_t info
-INFO: [ water_level_detectors_controller ] Water under low threshold, turning off pump
-Aug 22, 2018 9:28:31 PM logger.logger_t info
-INFO: [ water_level_detectors_controller ] Water under low threshold, turning off pump
-Aug 22, 2018 9:28:32 PM logger.logger_t info
-INFO: [ water_level_detectors_controller ] Water over high threshold, turning on pump
-Aug 22, 2018 9:28:33 PM logger.logger_t info
-INFO: [ water_level_detectors_controller ] Water under low threshold, turning off pump
-Aug 22, 2018 9:28:33 PM logger.logger_t info
-INFO: [ water_level_detectors_controller ] Water under low threshold, turning off pump
-Aug 22, 2018 9:28:34 PM logger.logger_t info
-INFO: [ water_level_detectors_controller ] Water under low threshold, turning off pump
-Aug 22, 2018 9:28:34 PM logger.logger_t info
-INFO: [ water_level_detectors_controller ] Water over high threshold, turning on pump
-Aug 22, 2018 9:28:35 PM logger.logger_t info
-INFO: [ water_level_detectors_controller ] Water over high threshold, turning on pump
-Aug 22, 2018 9:28:37 PM logger.logger_t info
-INFO: [ water_level_detectors_controller ] Water under low threshold, turning off pump
-Aug 22, 2018 9:28:38 PM logger.logger_t info
-INFO: [ water_level_detectors_controller ] Water over high threshold, turning on pump
-Aug 22, 2018 9:28:39 PM logger.logger_t info
-INFO: [ water_level_detectors_controller ] Water over high threshold, turning on pump
-Aug 22, 2018 9:28:39 PM logger.logger_t info
-INFO: [ water_level_detectors_controller ] Water over high threshold, turning on pump
-Aug 22, 2018 9:28:40 PM logger.logger_t info
-INFO: [ water_level_detectors_controller ] Water under low threshold, turning off pump
-Aug 22, 2018 9:28:41 PM logger.logger_t info
-INFO: [ water_level_detectors_controller ] Water under low threshold, turning off pump
-Aug 22, 2018 9:28:41 PM logger.logger_t info
-INFO: [ water_level_detectors_controller ] Water over high threshold, turning on pump
+Aug 22, 2018 10:46:54 PM logger.logger_t info
+INFO: [ alarm_controller ] Initial turn on message recevied, turning on alarm
+Aug 22, 2018 10:46:54 PM logger.logger_t info
+INFO: [ alarm_controller ] Last turn off message recevied, turning off alarm
+Aug 22, 2018 10:46:54 PM logger.logger_t info
+INFO: [ alarm_controller ] Initial turn on message recevied, turning on alarm
+Aug 22, 2018 10:46:54 PM logger.logger_t info
+INFO: [ alarm_controller ] Last turn off message recevied, turning off alarm
+Aug 22, 2018 10:46:54 PM logger.logger_t info
+INFO: [ alarm_controller ] Initial turn on message recevied, turning on alarm
+Aug 22, 2018 10:46:56 PM logger.logger_t info
+INFO: [ alarm_controller ] Last turn off message recevied, turning off alarm
+Aug 22, 2018 10:46:56 PM logger.logger_t info
+INFO: [ alarm_controller ] Initial turn on message recevied, turning on alarm
+Aug 22, 2018 10:46:58 PM logger.logger_t info
+INFO: [ alarm_controller ] Last turn off message recevied, turning off alarm
+Aug 22, 2018 10:46:58 PM logger.logger_t info
+INFO: [ alarm_controller ] Initial turn on message recevied, turning on alarm
+Aug 22, 2018 10:46:59 PM logger.logger_t info
+INFO: [ alarm_controller ] Last turn off message recevied, turning off alarm
+Aug 22, 2018 10:46:59 PM logger.logger_t info
+INFO: [ alarm_controller ] Initial turn on message recevied, turning on alarm
+Aug 22, 2018 10:46:59 PM logger.logger_t info
+INFO: [ alarm_controller ] Last turn off message recevied, turning off alarm
+Aug 22, 2018 10:46:59 PM logger.logger_t info
+INFO: [ alarm_controller ] Initial turn on message recevied, turning on alarm
+Aug 22, 2018 10:47:00 PM logger.logger_t info
+INFO: [ alarm_controller ] Last turn off message recevied, turning off alarm
+Aug 22, 2018 10:47:00 PM logger.logger_t info
+INFO: [ alarm_controller ] Initial turn on message recevied, turning on alarm
+Aug 22, 2018 10:47:01 PM logger.logger_t info
+INFO: [ alarm_controller ] Last turn off message recevied, turning off alarm
+Aug 22, 2018 10:47:01 PM logger.logger_t info
+INFO: [ alarm_controller ] Initial turn on message recevied, turning on alarm
+Aug 22, 2018 10:47:01 PM logger.logger_t info
+INFO: [ alarm_controller ] Last turn off message recevied, turning off alarm
+Aug 22, 2018 10:47:01 PM logger.logger_t info
+INFO: [ alarm_controller ] Initial turn on message recevied, turning on alarm
+Aug 22, 2018 10:47:01 PM logger.logger_t info
+INFO: [ alarm_controller ] Last turn off message recevied, turning off alarm
+Aug 22, 2018 10:47:01 PM logger.logger_t info
+INFO: [ alarm_controller ] Initial turn on message recevied, turning on alarm
+Aug 22, 2018 10:47:03 PM logger.logger_t info
+INFO: [ alarm_controller ] Last turn off message recevied, turning off alarm
+Aug 22, 2018 10:47:03 PM logger.logger_t info
+INFO: [ alarm_controller ] Initial turn on message recevied, turning on alarm
+Aug 22, 2018 10:47:03 PM logger.logger_t info
+INFO: [ alarm_controller ] Last turn off message recevied, turning off alarm
+Aug 22, 2018 10:47:03 PM logger.logger_t info
+INFO: [ alarm_controller ] Initial turn on message recevied, turning on alarm
+Aug 22, 2018 10:47:07 PM logger.logger_t info
+INFO: [ alarm_controller ] Last turn off message recevied, turning off alarm
+Aug 22, 2018 10:47:07 PM logger.logger_t info
+INFO: [ alarm_controller ] Initial turn on message recevied, turning on alarm
+Aug 22, 2018 10:47:07 PM logger.logger_t info
+INFO: [ alarm_controller ] Last turn off message recevied, turning off alarm
+Aug 22, 2018 10:47:07 PM logger.logger_t info
+INFO: [ alarm_controller ] Initial turn on message recevied, turning on alarm
+Aug 22, 2018 10:47:08 PM logger.logger_t info
+INFO: [ alarm_controller ] Last turn off message recevied, turning off alarm
+Aug 22, 2018 10:47:08 PM logger.logger_t info
+INFO: [ alarm_controller ] Initial turn on message recevied, turning on alarm
+Aug 22, 2018 10:47:08 PM logger.logger_t info
+INFO: [ alarm_controller ] Last turn off message recevied, turning off alarm
+Aug 22, 2018 10:47:08 PM logger.logger_t info
+INFO: [ alarm_controller ] Initial turn on message recevied, turning on alarm
+Aug 22, 2018 10:47:09 PM logger.logger_t info
+INFO: [ alarm_controller ] Last turn off message recevied, turning off alarm
+Aug 22, 2018 10:47:09 PM logger.logger_t info
+INFO: [ alarm_controller ] Initial turn on message recevied, turning on alarm
+Aug 22, 2018 10:47:10 PM logger.logger_t info
+INFO: [ alarm_controller ] Last turn off message recevied, turning off alarm
+Aug 22, 2018 10:47:10 PM logger.logger_t info
+INFO: [ alarm_controller ] Initial turn on message recevied, turning on alarm

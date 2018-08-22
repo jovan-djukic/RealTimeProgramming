@@ -23,4 +23,13 @@ RoomModel devices {
 			Message state_normal ( )
 		}
 	}
+	
+	Enumeration device_state_t {
+		ON,
+		OFF
+	}
+
+	DataClass device_t {
+		Attribute state : device_state_t
+	}
 }
