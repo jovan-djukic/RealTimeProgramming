@@ -28,9 +28,6 @@ public class Sender extends ActorClassBase {
 	/*--------------------- attributes ---------------------*/
 
 	/*--------------------- operations ---------------------*/
-	public  void print() {
-		System.out.println ( "AAA" );
-	}
 
 
 	//--------------------- construction

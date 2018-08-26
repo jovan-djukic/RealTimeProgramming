@@ -1,0 +1,14 @@
+; generated MSC for Trace2UML
+# begin sub system initialization
+	/LogSys/subSystemRef (!) /LogSys/subSystemRef/topActor 
+	/LogSys/subSystemRef (!) /LogSys/subSystemRef/timingService 
+# done sub system initialization
+	/LogSys/subSystemRef >-- /LogSys/subSystemRef/topActor executeInitialTransition
+	/LogSys/subSystemRef >-- /LogSys/subSystemRef/timingService executeInitialTransition
+	/LogSys/subSystemRef --> /LogSys/subSystemRef/topActor executeInitialTransition
+	/LogSys/subSystemRef/topActor >>> helloState
+	/LogSys/subSystemRef --> /LogSys/subSystemRef/timingService executeInitialTransition
+	/LogSys/subSystemRef/timingService >>> Operational
+# begin sub system destruction
+	/LogSys/subSystemRef (X) /LogSys/subSystemRef/topActor 
+	/LogSys/subSystemRef (X) /LogSys/subSystemRef/timingService 

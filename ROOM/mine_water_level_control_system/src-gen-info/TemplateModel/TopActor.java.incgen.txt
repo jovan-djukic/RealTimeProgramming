@@ -6,12 +6,6 @@ import org.eclipse.etrice.runtime.java.debugging.*;
 
 import static org.eclipse.etrice.runtime.java.etunit.EtUnit.*;
 
-import devices.*;
-import environment_monitoring_station.*;
-import room.basic.service.timing.*;
-import room.basic.service.timing.PTimer.*;
-import environment_monitoring_station.environmonet_statition_actor_base_iprotocol_t.*;
-import devices.switch_protocol_t.*;
 
 
 
@@ -19,7 +13,6 @@ public class TopActor extends ActorClassBase {
 
 
 	//--------------------- ports
-	protected environmonet_statition_actor_base_iprotocol_tConjPort i = null;
 
 	//--------------------- saps
 
@@ -28,10 +21,8 @@ public class TopActor extends ActorClassBase {
 	//--------------------- optional actors
 
 	//--------------------- interface item IDs
-	public static final int IFITEM_i = 1;
 
 	/*--------------------- attributes ---------------------*/
-	public  water_level_detector_t d;
 
 	/*--------------------- operations ---------------------*/
 
@@ -42,21 +33,16 @@ public class TopActor extends ActorClassBase {
 		setClassName("TopActor");
 
 		// initialize attributes
-		this.setD(new water_level_detector_t());
 
 		// own ports
-		i = new environmonet_statition_actor_base_iprotocol_tConjPort(this, "i", IFITEM_i);
 
 		// own saps
 
 		// own service implementations
 
 		// sub actors
-		DebuggingService.getInstance().addMessageActorCreate(this, "s");
-		new low_water_level_detector_t(this, "s");
 
 		// wiring
-		InterfaceItemBase.connect(this, "s/iport", "i");
 
 
 		/* user defined constructor body */
@@ -64,18 +50,9 @@ public class TopActor extends ActorClassBase {
 	}
 
 	/* --------------------- attribute setters and getters */
-	public void setD(water_level_detector_t d) {
-		 this.d = d;
-	}
-	public water_level_detector_t getD() {
-		return this.d;
-	}
 
 
 	//--------------------- port getters
-	public environmonet_statition_actor_base_iprotocol_tConjPort getI (){
-		return this.i;
-	}
 
 	//--------------------- lifecycle functions
 	public void stop(){
@@ -115,8 +92,7 @@ public class TopActor extends ActorClassBase {
 	
 	/* Entry and Exit Codes */
 	protected void entry_helloState() {
-		System.out.println ( "Hello world" );
-		this.i.initialize ( new water_level_detector_base_idata_t ( 100, d ) );
+		System.out.println("### Hello World! ###");
 	}
 	
 	/* Action Codes */

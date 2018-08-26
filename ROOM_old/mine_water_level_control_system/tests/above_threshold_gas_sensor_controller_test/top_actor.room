@@ -1,0 +1,130 @@
+RoomModel top_actor {
+	import room.basic.types.* from "../../../org.eclipse.etrice.modellib.java/model/Types.room"
+	import room.basic.service.timing.* from "../../../org.eclipse.etrice.modellib.java/model/TimingService.room"
+	import devices.* from "../../model/devices.room"
+	import environment_monitoring_station.* from "../../model/environment_monitoring_station.room"
+
+	ActorClass top_actor_t {
+		Structure {
+			usercode1 '''
+				class Constants {
+					public static final int GAS_SENSOR_CONTROLLER_PERIOD_IN_MS = 500;
+					public static final int GAS_SENSOR_CONTROLLER_THRESHOLD = 500;
+					public static final int GAS_SENSOR_CONTROLLER_ERROR_COUNT_THRESHOLD = 2;
+					public static final int TEST_PERIOD_IN_MS = 750;
+					public static final int GAS_SENSOR_IVALUE = 0;
+					public static final boolean GAS_SENSOR_IERROR_OCCURRED = false;
+				}
+			'''		
+			
+			Attribute expecting_alarm_turn_on : boolean
+			Attribute error_count : int32
+
+			Attribute gas_sensor : gas_sensor_t
+			ActorRef gas_sensor_controller : gas_sensor_controller_t
+			
+			conjugated Port gas_sensor_controller_iport : environmonet_statition_actor_base_iprotocol_t
+			conjugated Port alarm_switch_port : switch_protocol_t
+
+			SAP timer_port : PTimer 
+			
+			Binding gas_sensor_controller_iport and gas_sensor_controller.iport
+			Binding alarm_switch_port and gas_sensor_controller.alarm_port
+		}
+		Behavior {
+			Operation process ( value : int32, error_occurred : boolean ) '''
+				if ( error_occurred == true ) {
+					this.error_count++;
+					if ( this.error_count > Constants.GAS_SENSOR_CONTROLLER_ERROR_COUNT_THRESHOLD )	 {
+						this.expecting_alarm_turn_on = true;
+					}
+				} else {
+					if ( value > Constants.GAS_SENSOR_CONTROLLER_THRESHOLD ) {
+						this.expecting_alarm_turn_on = true;
+					} else {
+						this.expecting_alarm_turn_on = false;
+					}
+				}
+			'''
+		
+			StateMachine {
+				State testing { }
+				
+				Transition start : initial -> testing {
+					action '''
+						this.expecting_alarm_turn_on = false;
+						this.error_count = 0;
+						
+						this.gas_sensor.value = Constants.GAS_SENSOR_IVALUE;
+						this.gas_sensor.error_occurred = Constants.GAS_SENSOR_IERROR_OCCURRED;
+						
+						this.process ( Constants.GAS_SENSOR_IVALUE, Constants.GAS_SENSOR_IERROR_OCCURRED );
+						
+						this.gas_sensor_controller_iport.initialize ( 
+							new gas_sensor_controller_idata_t ( 
+								Constants.GAS_SENSOR_CONTROLLER_PERIOD_IN_MS,
+								true,
+								Constants.GAS_SENSOR_CONTROLLER_THRESHOLD,
+								this.gas_sensor,
+								Constants.GAS_SENSOR_CONTROLLER_ERROR_COUNT_THRESHOLD
+							)
+						);
+						
+						this.timer_port.startTimeout ( Constants.TEST_PERIOD_IN_MS );
+					'''
+				}
+				
+				
+				Transition turn_off_message_received : testing -> testing {
+					triggers { 
+						< turn_off : alarm_switch_port >
+					}
+					action '''
+						if ( this.expecting_alarm_turn_on == true ) {
+							System.err.println ( "TURN OFF MESSAGE RECEIVED UNEXPECTEDLY " );
+						} else {
+							System.err.println ( "TURN OFF MESSAGE RECEIVED EXPECTEDLY " );
+						}
+					'''
+				}
+
+				Transition turn_on_message_received : testing -> testing {
+					triggers { 
+						< turn_on : alarm_switch_port >
+					}
+					action '''
+						if ( this.expecting_alarm_turn_on == true ) {
+							System.err.println ( "TURN ON MESSAGE RECEIVED EXPECTEDLY " );
+						} else {
+							System.err.println ( "TURN ON MESSAGE RECEIVED UNEXPECTEDLY " );
+						}
+					'''
+				}
+				
+				Transition timeout_message_received : testing -> testing {
+					triggers {
+						< timeout : timer_port > 
+					}
+					action '''
+						if ( Math.random ( ) > 0.5 ) {
+							boolean error_occurred = Math.random ( ) > 0.5 ? true : false;
+
+							int value = 0;
+							
+							if ( error_occurred == false ) {
+								value = ( int ) ( Math.random ( ) * 2 * Constants.GAS_SENSOR_CONTROLLER_THRESHOLD );
+							}
+							
+							this.process ( value, error_occurred );
+
+							this.gas_sensor.error_occurred = error_occurred;	
+							this.gas_sensor.value = value;	
+						}
+
+						this.timer_port.startTimeout ( Constants.TEST_PERIOD_IN_MS );
+					'''
+				}
+			}
+		}
+	}
+}

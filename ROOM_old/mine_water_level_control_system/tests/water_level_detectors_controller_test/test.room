@@ -1,0 +1,134 @@
+RoomModel test {
+	import room.basic.types.* from "../../../org.eclipse.etrice.modellib.java/model/Types.room"
+	import room.basic.service.timing.* from "../../../org.eclipse.etrice.modellib.java/model/TimingService.room"
+	import devices.* from "../../model/devices.room"
+	import environment_monitoring_station.* from "../../model/environment_monitoring_station.room"
+
+	LogicalSystem log_sys {
+		SubSystemRef sub_system_ref: sub_sys_class 
+	}
+
+	SubSystemClass sub_sys_class {
+		ActorRef top_actor: top_actor_t 
+		ActorRef timing_service: ATimingService
+		LayerConnection ref top_actor satisfied_by timing_service.timer
+		LogicalThread thread
+	}
+
+	ActorClass top_actor_t {
+		Structure {
+			usercode1 '''
+				class Constants {
+					public static final int HIGH_WATER_LEVEL_DETECTOR_CONTROLLER_PERIOD_IN_MS = 500;
+					public static final int TEST_PERIOD_IN_MS = 750;
+					public static final int LOW_WATER_LEVEL_DETECTOR_IVALUE = 0;
+					public static final int HIGH_WATER_LEVEL_DETECTOR_IVALUE = 0;
+				}
+			'''		
+			
+			Attribute pump_turn_off_expected : boolean
+			Attribute pump_turn_on_expected : boolean
+			
+			Attribute low_water_level_detector : water_level_detector_t
+			Attribute high_water_level_detector : water_level_detector_t
+			ActorRef water_level_detectors_controller : water_level_detectors_controller_t
+			
+			conjugated Port water_level_detectors_controller_iport : environmonet_statition_actor_base_iprotocol_t
+			conjugated Port pump_switch_port : switch_protocol_t
+
+			SAP timer_port : PTimer 
+			
+			Binding water_level_detectors_controller_iport and water_level_detectors_controller.iport
+			Binding pump_switch_port and water_level_detectors_controller.pump_switch_port
+		}
+		Behavior {
+			Operation process ( low_water_level_detector_value : int32, high_water_level_detector_value : int32 ) : void '''
+				this.pump_turn_off_expected = false;
+				this.pump_turn_on_expected = false;
+				
+				if ( low_water_level_detector_value != 0 ) {
+					this.pump_turn_off_expected = true;
+				} else if ( high_water_level_detector_value != 0 ) {
+					this.pump_turn_on_expected = true;	
+				}
+			'''
+			StateMachine {
+				State testing { }
+				
+				Transition start : initial -> testing {
+					action '''
+						this.low_water_level_detector.value = Constants.LOW_WATER_LEVEL_DETECTOR_IVALUE;
+						this.high_water_level_detector.value = Constants.HIGH_WATER_LEVEL_DETECTOR_IVALUE;
+						
+						this.process(
+							this.low_water_level_detector.value,
+							this.high_water_level_detector.value
+						);
+						
+						this.water_level_detectors_controller_iport.initialize ( 
+							new water_level_detectors_controller_idata_t ( 
+								Constants.HIGH_WATER_LEVEL_DETECTOR_CONTROLLER_PERIOD_IN_MS,
+								this.low_water_level_detector,
+								this.high_water_level_detector
+							)
+						);
+						
+						this.timer_port.startTimeout ( Constants.TEST_PERIOD_IN_MS );
+					'''
+				}
+				
+				
+				Transition turn_off_message_received : testing -> testing {
+					triggers { 
+						< turn_off : pump_switch_port >
+					}
+					action '''
+						if ( this.pump_turn_off_expected == true ) {
+							System.err.println ( "TURN OFF MESSAGE RECEIVED EXPECTEDLY " );
+						} else {
+							System.err.println ( "TURN OFF MESSAGE RECEIVED UNEXPECTEDLY " );
+						}
+					'''
+				}
+
+				Transition turn_on_message_received : testing -> testing {
+					triggers { 
+						< turn_on : pump_switch_port >
+					}
+					action '''
+						if ( this.pump_turn_on_expected == true ) {
+							System.err.println ( "TURN ON MESSAGE RECEIVED EXPECTEDLY " );
+						} else {
+							System.err.println ( "TURN OF MESSAGE RECEIVED UNEXPECTEDLY " );
+						}
+					'''
+				}
+				
+				Transition timeout_message_received : testing -> testing {
+					triggers {
+						< timeout : timer_port > 
+					}
+					action '''
+						double random = Math.random ( );
+						
+						this.low_water_level_detector.value = 0;
+						this.high_water_level_detector.value = 0;
+
+						if ( random > 0.7 ) {
+							this.high_water_level_detector.value = 1;
+						} else if ( random < 0.3 ) {
+							this.low_water_level_detector.value = 1;
+						}
+
+						this.process(
+							this.low_water_level_detector.value,
+							this.high_water_level_detector.value
+						);
+
+						this.timer_port.startTimeout ( Constants.TEST_PERIOD_IN_MS );
+					'''
+				}
+			}
+		}
+	}
+}

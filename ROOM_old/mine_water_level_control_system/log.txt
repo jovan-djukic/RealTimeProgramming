@@ -1,0 +1,590 @@
+Aug 23, 2018 1:24:37 AM logger.logger_t info
+INFO: [ pump_controller ] Turn on message, turning on pump
+Aug 23, 2018 1:24:37 AM logger.logger_t info
+INFO: [ pump_controller ] Methane threshold breached while pump turned on, turning off pump
+Aug 23, 2018 1:24:37 AM logger.logger_t info
+INFO: [ pump_controller ] Turn off message received while methane threshold breached
+Aug 23, 2018 1:24:37 AM logger.logger_t info
+INFO: [ pump_controller ] Turn on message received while methane threshold breached, will turn on when methane state is normal
+Aug 23, 2018 1:24:37 AM logger.logger_t info
+INFO: [ pump_controller ] Turn off message received while methane threshold breached
+Aug 23, 2018 1:24:37 AM logger.logger_t info
+INFO: [ pump_controller ] Turn on message received while methane threshold breached, will turn on when methane state is normal
+Aug 23, 2018 1:24:37 AM logger.logger_t info
+INFO: [ pump_controller ] Turn off message received while methane threshold breached
+Aug 23, 2018 1:24:37 AM logger.logger_t info
+INFO: [ pump_controller ] Turn on message received while methane threshold breached, will turn on when methane state is normal
+Aug 23, 2018 1:24:38 AM logger.logger_t info
+INFO: [ pump_controller ] Turn on message received while methane threshold breached, will turn on when methane state is normal
+Aug 23, 2018 1:24:38 AM logger.logger_t info
+INFO: [ pump_controller ] Turn off message received while methane threshold breached
+Aug 23, 2018 1:24:38 AM logger.logger_t info
+INFO: [ pump_controller ] Turn off message received while methane threshold breached
+Aug 23, 2018 1:24:38 AM logger.logger_t info
+INFO: [ pump_controller ] Turn on message received while methane threshold breached, will turn on when methane state is normal
+Aug 23, 2018 1:24:38 AM logger.logger_t info
+INFO: [ pump_controller ] Turn on message received while methane threshold breached, will turn on when methane state is normal
+Aug 23, 2018 1:24:38 AM logger.logger_t info
+INFO: [ pump_controller ] Turn off message received while methane threshold breached
+Aug 23, 2018 1:24:38 AM logger.logger_t info
+INFO: [ pump_controller ] Turn off message received while methane threshold breached
+Aug 23, 2018 1:24:38 AM logger.logger_t info
+INFO: [ pump_controller ] Turn on message received while methane threshold breached, will turn on when methane state is normal
+Aug 23, 2018 1:24:38 AM logger.logger_t info
+INFO: [ pump_controller ] Turn off message received while methane threshold breached
+Aug 23, 2018 1:24:38 AM logger.logger_t info
+INFO: [ pump_controller ] Turn on message received while methane threshold breached, will turn on when methane state is normal
+Aug 23, 2018 1:24:39 AM logger.logger_t info
+INFO: [ pump_controller ] Turn on message received while methane threshold breached, will turn on when methane state is normal
+Aug 23, 2018 1:24:39 AM logger.logger_t info
+INFO: [ pump_controller ] Methane state normal received, turning on pump
+Aug 23, 2018 1:24:39 AM logger.logger_t info
+INFO: [ pump_controller ] Turn off message, turning on pump
+Aug 23, 2018 1:24:39 AM logger.logger_t info
+INFO: [ pump_controller ] Turn on message, turning on pump
+Aug 23, 2018 1:24:39 AM logger.logger_t info
+INFO: [ pump_controller ] Turn off message, turning on pump
+Aug 23, 2018 1:24:39 AM logger.logger_t info
+INFO: [ pump_controller ] Turn on message, turning on pump
+Aug 23, 2018 1:24:39 AM logger.logger_t info
+INFO: [ pump_controller ] Methane threshold breached while pump turned on, turning off pump
+Aug 23, 2018 1:24:40 AM logger.logger_t info
+INFO: [ pump_controller ] Methane state normal received, turning on pump
+Aug 23, 2018 1:24:40 AM logger.logger_t info
+INFO: [ pump_controller ] Turn off message, turning on pump
+Aug 23, 2018 1:24:40 AM logger.logger_t info
+INFO: [ pump_controller ] Methane threshold breached while pump turned off
+Aug 23, 2018 1:24:40 AM logger.logger_t info
+INFO: [ pump_controller ] Turn off message received while methane threshold breached
+Aug 23, 2018 1:24:40 AM logger.logger_t info
+INFO: [ pump_controller ] Turn on message received while methane threshold breached, will turn on when methane state is normal
+Aug 23, 2018 1:24:40 AM logger.logger_t info
+INFO: [ pump_controller ] Methane state normal received, turning on pump
+Aug 23, 2018 1:24:40 AM logger.logger_t info
+INFO: [ pump_controller ] Turn off message, turning on pump
+Aug 23, 2018 1:24:40 AM logger.logger_t info
+INFO: [ pump_controller ] Turn on message, turning on pump
+Aug 23, 2018 1:24:40 AM logger.logger_t info
+INFO: [ pump_controller ] Methane threshold breached while pump turned on, turning off pump
+Aug 23, 2018 1:24:40 AM logger.logger_t info
+INFO: [ pump_controller ] Turn on message received while methane threshold breached, will turn on when methane state is normal
+Aug 23, 2018 1:24:41 AM logger.logger_t info
+INFO: [ pump_controller ] Turn off message received while methane threshold breached
+Aug 23, 2018 1:24:41 AM logger.logger_t info
+INFO: [ pump_controller ] Turn off message received while methane threshold breached
+Aug 23, 2018 1:24:41 AM logger.logger_t info
+INFO: [ pump_controller ] Turn on message received while methane threshold breached, will turn on when methane state is normal
+Aug 23, 2018 1:24:41 AM logger.logger_t info
+INFO: [ pump_controller ] Methane state normal received, turning on pump
+Aug 23, 2018 1:24:41 AM logger.logger_t info
+INFO: [ pump_controller ] Turn off message, turning on pump
+Aug 23, 2018 1:24:41 AM logger.logger_t info
+INFO: [ pump_controller ] Methane threshold breached while pump turned off
+Aug 23, 2018 1:24:41 AM logger.logger_t info
+INFO: [ pump_controller ] Methane state normal received
+Aug 23, 2018 1:24:41 AM logger.logger_t info
+INFO: [ pump_controller ] Turn on message, turning on pump
+Aug 23, 2018 1:24:42 AM logger.logger_t info
+INFO: [ pump_controller ] Turn off message, turning on pump
+Aug 23, 2018 1:24:42 AM logger.logger_t info
+INFO: [ pump_controller ] Methane threshold breached while pump turned off
+Aug 23, 2018 1:24:42 AM logger.logger_t info
+INFO: [ pump_controller ] Turn on message received while methane threshold breached, will turn on when methane state is normal
+Aug 23, 2018 1:24:42 AM logger.logger_t info
+INFO: [ pump_controller ] Methane state normal received, turning on pump
+Aug 23, 2018 1:24:42 AM logger.logger_t info
+INFO: [ pump_controller ] Turn off message, turning on pump
+Aug 23, 2018 1:24:42 AM logger.logger_t info
+INFO: [ pump_controller ] Turn on message, turning on pump
+Aug 23, 2018 1:24:42 AM logger.logger_t info
+INFO: [ pump_controller ] Turn off message, turning on pump
+Aug 23, 2018 1:24:42 AM logger.logger_t info
+INFO: [ pump_controller ] Turn on message, turning on pump
+Aug 23, 2018 1:24:43 AM logger.logger_t info
+INFO: [ pump_controller ] Methane threshold breached while pump turned on, turning off pump
+Aug 23, 2018 1:24:43 AM logger.logger_t info
+INFO: [ pump_controller ] Turn off message received while methane threshold breached
+Aug 23, 2018 1:24:43 AM logger.logger_t info
+INFO: [ pump_controller ] Methane state normal received
+Aug 23, 2018 1:24:43 AM logger.logger_t info
+INFO: [ pump_controller ] Turn on message, turning on pump
+Aug 23, 2018 1:24:43 AM logger.logger_t info
+INFO: [ pump_controller ] Methane threshold breached while pump turned on, turning off pump
+Aug 23, 2018 1:24:43 AM logger.logger_t info
+INFO: [ pump_controller ] Methane state normal received, turning on pump
+Aug 23, 2018 1:24:43 AM logger.logger_t info
+INFO: [ pump_controller ] Methane threshold breached while pump turned on, turning off pump
+Aug 23, 2018 1:24:43 AM logger.logger_t info
+INFO: [ pump_controller ] Methane state normal received, turning on pump
+Aug 23, 2018 1:24:43 AM logger.logger_t info
+INFO: [ pump_controller ] Turn off message, turning on pump
+Aug 23, 2018 1:24:44 AM logger.logger_t info
+INFO: [ pump_controller ] Turn on message, turning on pump
+Aug 23, 2018 1:24:44 AM logger.logger_t info
+INFO: [ pump_controller ] Methane threshold breached while pump turned on, turning off pump
+Aug 23, 2018 1:24:44 AM logger.logger_t info
+INFO: [ pump_controller ] Turn off message received while methane threshold breached
+Aug 23, 2018 1:24:44 AM logger.logger_t info
+INFO: [ pump_controller ] Turn off message received while methane threshold breached
+Aug 23, 2018 1:24:44 AM logger.logger_t info
+INFO: [ pump_controller ] Turn on message received while methane threshold breached, will turn on when methane state is normal
+Aug 23, 2018 1:24:44 AM logger.logger_t info
+INFO: [ pump_controller ] Turn off message received while methane threshold breached
+Aug 23, 2018 1:24:44 AM logger.logger_t info
+INFO: [ pump_controller ] Turn on message received while methane threshold breached, will turn on when methane state is normal
+Aug 23, 2018 1:24:44 AM logger.logger_t info
+INFO: [ pump_controller ] Turn off message received while methane threshold breached
+Aug 23, 2018 1:24:44 AM logger.logger_t info
+INFO: [ pump_controller ] Methane state normal received
+Aug 23, 2018 1:24:45 AM logger.logger_t info
+INFO: [ pump_controller ] Turn on message, turning on pump
+Aug 23, 2018 1:24:45 AM logger.logger_t info
+INFO: [ pump_controller ] Turn off message, turning on pump
+Aug 23, 2018 1:24:45 AM logger.logger_t info
+INFO: [ pump_controller ] Turn on message, turning on pump
+Aug 23, 2018 1:24:45 AM logger.logger_t info
+INFO: [ pump_controller ] Turn off message, turning on pump
+Aug 23, 2018 1:24:45 AM logger.logger_t info
+INFO: [ pump_controller ] Turn on message, turning on pump
+Aug 23, 2018 1:24:45 AM logger.logger_t info
+INFO: [ pump_controller ] Turn off message, turning on pump
+Aug 23, 2018 1:24:45 AM logger.logger_t info
+INFO: [ pump_controller ] Methane threshold breached while pump turned off
+Aug 23, 2018 1:24:45 AM logger.logger_t info
+INFO: [ pump_controller ] Turn on message received while methane threshold breached, will turn on when methane state is normal
+Aug 23, 2018 1:24:46 AM logger.logger_t info
+INFO: [ pump_controller ] Turn on message received while methane threshold breached, will turn on when methane state is normal
+Aug 23, 2018 1:24:46 AM logger.logger_t info
+INFO: [ pump_controller ] Methane state normal received, turning on pump
+Aug 23, 2018 1:24:46 AM logger.logger_t info
+INFO: [ pump_controller ] Turn off message, turning on pump
+Aug 23, 2018 1:24:46 AM logger.logger_t info
+INFO: [ pump_controller ] Methane threshold breached while pump turned off
+Aug 23, 2018 1:24:46 AM logger.logger_t info
+INFO: [ pump_controller ] Turn off message received while methane threshold breached
+Aug 23, 2018 1:24:46 AM logger.logger_t info
+INFO: [ pump_controller ] Methane state normal received
+Aug 23, 2018 1:24:46 AM logger.logger_t info
+INFO: [ pump_controller ] Turn on message, turning on pump
+Aug 23, 2018 1:24:46 AM logger.logger_t info
+INFO: [ pump_controller ] Turn off message, turning on pump
+Aug 23, 2018 1:24:46 AM logger.logger_t info
+INFO: [ pump_controller ] Methane threshold breached while pump turned off
+Aug 23, 2018 1:24:46 AM logger.logger_t info
+INFO: [ pump_controller ] Methane state normal received
+Aug 23, 2018 1:24:47 AM logger.logger_t info
+INFO: [ pump_controller ] Methane threshold breached while pump turned off
+Aug 23, 2018 1:24:47 AM logger.logger_t info
+INFO: [ pump_controller ] Turn on message received while methane threshold breached, will turn on when methane state is normal
+Aug 23, 2018 1:24:47 AM logger.logger_t info
+INFO: [ pump_controller ] Turn on message received while methane threshold breached, will turn on when methane state is normal
+Aug 23, 2018 1:24:47 AM logger.logger_t info
+INFO: [ pump_controller ] Methane state normal received, turning on pump
+Aug 23, 2018 1:24:47 AM logger.logger_t info
+INFO: [ pump_controller ] Turn off message, turning on pump
+Aug 23, 2018 1:24:47 AM logger.logger_t info
+INFO: [ pump_controller ] Turn on message, turning on pump
+Aug 23, 2018 1:24:47 AM logger.logger_t info
+INFO: [ pump_controller ] Turn off message, turning on pump
+Aug 23, 2018 1:24:47 AM logger.logger_t info
+INFO: [ pump_controller ] Turn on message, turning on pump
+Aug 23, 2018 1:24:47 AM logger.logger_t info
+INFO: [ pump_controller ] Methane threshold breached while pump turned on, turning off pump
+Aug 23, 2018 1:24:48 AM logger.logger_t info
+INFO: [ pump_controller ] Turn on message received while methane threshold breached, will turn on when methane state is normal
+Aug 23, 2018 1:24:48 AM logger.logger_t info
+INFO: [ pump_controller ] Methane state normal received, turning on pump
+Aug 23, 2018 1:24:48 AM logger.logger_t info
+INFO: [ pump_controller ] Turn off message, turning on pump
+Aug 23, 2018 1:24:48 AM logger.logger_t info
+INFO: [ pump_controller ] Turn on message, turning on pump
+Aug 23, 2018 1:24:48 AM logger.logger_t info
+INFO: [ pump_controller ] Turn off message, turning on pump
+Aug 23, 2018 1:24:48 AM logger.logger_t info
+INFO: [ pump_controller ] Methane threshold breached while pump turned off
+Aug 23, 2018 1:24:48 AM logger.logger_t info
+INFO: [ pump_controller ] Turn on message received while methane threshold breached, will turn on when methane state is normal
+Aug 23, 2018 1:24:48 AM logger.logger_t info
+INFO: [ pump_controller ] Turn off message received while methane threshold breached
+Aug 23, 2018 1:24:48 AM logger.logger_t info
+INFO: [ pump_controller ] Methane state normal received
+Aug 23, 2018 1:24:48 AM logger.logger_t info
+INFO: [ pump_controller ] Turn on message, turning on pump
+Aug 23, 2018 1:24:49 AM logger.logger_t info
+INFO: [ pump_controller ] Methane threshold breached while pump turned on, turning off pump
+Aug 23, 2018 1:24:49 AM logger.logger_t info
+INFO: [ pump_controller ] Methane state normal received, turning on pump
+Aug 23, 2018 1:24:49 AM logger.logger_t info
+INFO: [ pump_controller ] Methane threshold breached while pump turned on, turning off pump
+Aug 23, 2018 1:24:49 AM logger.logger_t info
+INFO: [ pump_controller ] Turn off message received while methane threshold breached
+Aug 23, 2018 1:24:49 AM logger.logger_t info
+INFO: [ pump_controller ] Methane state normal received
+Aug 23, 2018 1:24:49 AM logger.logger_t info
+INFO: [ pump_controller ] Methane threshold breached while pump turned off
+Aug 23, 2018 1:24:49 AM logger.logger_t info
+INFO: [ pump_controller ] Turn on message received while methane threshold breached, will turn on when methane state is normal
+Aug 23, 2018 1:24:49 AM logger.logger_t info
+INFO: [ pump_controller ] Turn off message received while methane threshold breached
+Aug 23, 2018 1:24:49 AM logger.logger_t info
+INFO: [ pump_controller ] Turn off message received while methane threshold breached
+Aug 23, 2018 1:24:50 AM logger.logger_t info
+INFO: [ pump_controller ] Turn on message received while methane threshold breached, will turn on when methane state is normal
+Aug 23, 2018 1:24:50 AM logger.logger_t info
+INFO: [ pump_controller ] Turn on message received while methane threshold breached, will turn on when methane state is normal
+Aug 23, 2018 1:24:50 AM logger.logger_t info
+INFO: [ pump_controller ] Methane state normal received, turning on pump
+Aug 23, 2018 1:24:50 AM logger.logger_t info
+INFO: [ pump_controller ] Turn off message, turning on pump
+Aug 23, 2018 1:24:50 AM logger.logger_t info
+INFO: [ pump_controller ] Turn on message, turning on pump
+Aug 23, 2018 1:24:50 AM logger.logger_t info
+INFO: [ pump_controller ] Methane threshold breached while pump turned on, turning off pump
+Aug 23, 2018 1:24:50 AM logger.logger_t info
+INFO: [ pump_controller ] Turn on message received while methane threshold breached, will turn on when methane state is normal
+Aug 23, 2018 1:24:50 AM logger.logger_t info
+INFO: [ pump_controller ] Methane state normal received, turning on pump
+Aug 23, 2018 1:24:50 AM logger.logger_t info
+INFO: [ pump_controller ] Turn off message, turning on pump
+Aug 23, 2018 1:24:51 AM logger.logger_t info
+INFO: [ pump_controller ] Turn on message, turning on pump
+Aug 23, 2018 1:24:51 AM logger.logger_t info
+INFO: [ pump_controller ] Turn off message, turning on pump
+Aug 23, 2018 1:24:51 AM logger.logger_t info
+INFO: [ pump_controller ] Turn on message, turning on pump
+Aug 23, 2018 1:24:51 AM logger.logger_t info
+INFO: [ pump_controller ] Turn off message, turning on pump
+Aug 23, 2018 1:24:51 AM logger.logger_t info
+INFO: [ pump_controller ] Methane threshold breached while pump turned off
+Aug 23, 2018 1:24:51 AM logger.logger_t info
+INFO: [ pump_controller ] Turn on message received while methane threshold breached, will turn on when methane state is normal
+Aug 23, 2018 1:24:51 AM logger.logger_t info
+INFO: [ pump_controller ] Turn off message received while methane threshold breached
+Aug 23, 2018 1:24:51 AM logger.logger_t info
+INFO: [ pump_controller ] Turn on message received while methane threshold breached, will turn on when methane state is normal
+Aug 23, 2018 1:24:51 AM logger.logger_t info
+INFO: [ pump_controller ] Turn off message received while methane threshold breached
+Aug 23, 2018 1:24:52 AM logger.logger_t info
+INFO: [ pump_controller ] Turn on message received while methane threshold breached, will turn on when methane state is normal
+Aug 23, 2018 1:24:52 AM logger.logger_t info
+INFO: [ pump_controller ] Turn on message received while methane threshold breached, will turn on when methane state is normal
+Aug 23, 2018 1:24:52 AM logger.logger_t info
+INFO: [ pump_controller ] Turn off message received while methane threshold breached
+Aug 23, 2018 1:24:52 AM logger.logger_t info
+INFO: [ pump_controller ] Methane state normal received
+Aug 23, 2018 1:24:52 AM logger.logger_t info
+INFO: [ pump_controller ] Turn on message, turning on pump
+Aug 23, 2018 1:24:52 AM logger.logger_t info
+INFO: [ pump_controller ] Turn off message, turning on pump
+Aug 23, 2018 1:24:52 AM logger.logger_t info
+INFO: [ pump_controller ] Turn on message, turning on pump
+Aug 23, 2018 1:24:52 AM logger.logger_t info
+INFO: [ pump_controller ] Turn off message, turning on pump
+Aug 23, 2018 1:24:53 AM logger.logger_t info
+INFO: [ pump_controller ] Methane threshold breached while pump turned off
+Aug 23, 2018 1:24:53 AM logger.logger_t info
+INFO: [ pump_controller ] Turn off message received while methane threshold breached
+Aug 23, 2018 1:24:53 AM logger.logger_t info
+INFO: [ pump_controller ] Turn on message received while methane threshold breached, will turn on when methane state is normal
+Aug 23, 2018 1:24:53 AM logger.logger_t info
+INFO: [ pump_controller ] Turn off message received while methane threshold breached
+Aug 23, 2018 1:24:53 AM logger.logger_t info
+INFO: [ pump_controller ] Turn on message received while methane threshold breached, will turn on when methane state is normal
+Aug 23, 2018 1:24:53 AM logger.logger_t info
+INFO: [ pump_controller ] Turn off message received while methane threshold breached
+Aug 23, 2018 1:24:53 AM logger.logger_t info
+INFO: [ pump_controller ] Methane state normal received
+Aug 23, 2018 1:24:53 AM logger.logger_t info
+INFO: [ pump_controller ] Turn on message, turning on pump
+Aug 23, 2018 1:24:53 AM logger.logger_t info
+INFO: [ pump_controller ] Methane threshold breached while pump turned on, turning off pump
+Aug 23, 2018 1:24:53 AM logger.logger_t info
+INFO: [ pump_controller ] Turn on message received while methane threshold breached, will turn on when methane state is normal
+Aug 23, 2018 1:24:54 AM logger.logger_t info
+INFO: [ pump_controller ] Turn off message received while methane threshold breached
+Aug 23, 2018 1:24:54 AM logger.logger_t info
+INFO: [ pump_controller ] Turn off message received while methane threshold breached
+Aug 23, 2018 1:24:54 AM logger.logger_t info
+INFO: [ pump_controller ] Turn on message received while methane threshold breached, will turn on when methane state is normal
+Aug 23, 2018 1:24:54 AM logger.logger_t info
+INFO: [ pump_controller ] Methane state normal received, turning on pump
+Aug 23, 2018 1:24:54 AM logger.logger_t info
+INFO: [ pump_controller ] Turn off message, turning on pump
+Aug 23, 2018 1:24:54 AM logger.logger_t info
+INFO: [ pump_controller ] Turn on message, turning on pump
+Aug 23, 2018 1:24:54 AM logger.logger_t info
+INFO: [ pump_controller ] Turn off message, turning on pump
+Aug 23, 2018 1:24:55 AM logger.logger_t info
+INFO: [ pump_controller ] Methane threshold breached while pump turned off
+Aug 23, 2018 1:24:55 AM logger.logger_t info
+INFO: [ pump_controller ] Methane state normal received
+Aug 23, 2018 1:24:55 AM logger.logger_t info
+INFO: [ pump_controller ] Turn on message, turning on pump
+Aug 23, 2018 1:24:55 AM logger.logger_t info
+INFO: [ pump_controller ] Methane threshold breached while pump turned on, turning off pump
+Aug 23, 2018 1:24:55 AM logger.logger_t info
+INFO: [ pump_controller ] Turn off message received while methane threshold breached
+Aug 23, 2018 1:24:55 AM logger.logger_t info
+INFO: [ pump_controller ] Methane state normal received
+Aug 23, 2018 1:24:55 AM logger.logger_t info
+INFO: [ pump_controller ] Turn on message, turning on pump
+Aug 23, 2018 1:24:55 AM logger.logger_t info
+INFO: [ pump_controller ] Turn off message, turning on pump
+Aug 23, 2018 1:24:55 AM logger.logger_t info
+INFO: [ pump_controller ] Methane threshold breached while pump turned off
+Aug 23, 2018 1:24:56 AM logger.logger_t info
+INFO: [ pump_controller ] Turn on message received while methane threshold breached, will turn on when methane state is normal
+Aug 23, 2018 1:24:56 AM logger.logger_t info
+INFO: [ pump_controller ] Methane state normal received, turning on pump
+Aug 23, 2018 1:24:56 AM logger.logger_t info
+INFO: [ pump_controller ] Methane threshold breached while pump turned on, turning off pump
+Aug 23, 2018 1:24:56 AM logger.logger_t info
+INFO: [ pump_controller ] Methane state normal received, turning on pump
+Aug 23, 2018 1:24:56 AM logger.logger_t info
+INFO: [ pump_controller ] Turn off message, turning on pump
+Aug 23, 2018 1:24:56 AM logger.logger_t info
+INFO: [ pump_controller ] Methane threshold breached while pump turned off
+Aug 23, 2018 1:24:56 AM logger.logger_t info
+INFO: [ pump_controller ] Methane state normal received
+Aug 23, 2018 1:24:56 AM logger.logger_t info
+INFO: [ pump_controller ] Turn on message, turning on pump
+Aug 23, 2018 1:24:56 AM logger.logger_t info
+INFO: [ pump_controller ] Methane threshold breached while pump turned on, turning off pump
+Aug 23, 2018 1:24:56 AM logger.logger_t info
+INFO: [ pump_controller ] Methane state normal received, turning on pump
+Aug 23, 2018 1:24:57 AM logger.logger_t info
+INFO: [ pump_controller ] Turn off message, turning on pump
+Aug 23, 2018 1:24:57 AM logger.logger_t info
+INFO: [ pump_controller ] Turn on message, turning on pump
+Aug 23, 2018 1:24:57 AM logger.logger_t info
+INFO: [ pump_controller ] Turn off message, turning on pump
+Aug 23, 2018 1:24:57 AM logger.logger_t info
+INFO: [ pump_controller ] Turn on message, turning on pump
+Aug 23, 2018 1:24:57 AM logger.logger_t info
+INFO: [ pump_controller ] Turn off message, turning on pump
+Aug 23, 2018 1:24:57 AM logger.logger_t info
+INFO: [ pump_controller ] Turn on message, turning on pump
+Aug 23, 2018 1:24:57 AM logger.logger_t info
+INFO: [ pump_controller ] Methane threshold breached while pump turned on, turning off pump
+Aug 23, 2018 1:24:57 AM logger.logger_t info
+INFO: [ pump_controller ] Methane state normal received, turning on pump
+Aug 23, 2018 1:24:57 AM logger.logger_t info
+INFO: [ pump_controller ] Turn off message, turning on pump
+Aug 23, 2018 1:24:57 AM logger.logger_t info
+INFO: [ pump_controller ] Turn on message, turning on pump
+Aug 23, 2018 1:24:58 AM logger.logger_t info
+INFO: [ pump_controller ] Turn off message, turning on pump
+Aug 23, 2018 1:24:58 AM logger.logger_t info
+INFO: [ pump_controller ] Methane threshold breached while pump turned off
+Aug 23, 2018 1:24:58 AM logger.logger_t info
+INFO: [ pump_controller ] Turn on message received while methane threshold breached, will turn on when methane state is normal
+Aug 23, 2018 1:24:58 AM logger.logger_t info
+INFO: [ pump_controller ] Methane state normal received, turning on pump
+Aug 23, 2018 1:24:58 AM logger.logger_t info
+INFO: [ pump_controller ] Turn off message, turning on pump
+Aug 23, 2018 1:24:58 AM logger.logger_t info
+INFO: [ pump_controller ] Methane threshold breached while pump turned off
+Aug 23, 2018 1:24:58 AM logger.logger_t info
+INFO: [ pump_controller ] Turn on message received while methane threshold breached, will turn on when methane state is normal
+Aug 23, 2018 1:24:58 AM logger.logger_t info
+INFO: [ pump_controller ] Methane state normal received, turning on pump
+Aug 23, 2018 1:24:58 AM logger.logger_t info
+INFO: [ pump_controller ] Turn off message, turning on pump
+Aug 23, 2018 1:24:59 AM logger.logger_t info
+INFO: [ pump_controller ] Turn on message, turning on pump
+Aug 23, 2018 1:24:59 AM logger.logger_t info
+INFO: [ pump_controller ] Turn off message, turning on pump
+Aug 23, 2018 1:24:59 AM logger.logger_t info
+INFO: [ pump_controller ] Turn on message, turning on pump
+Aug 23, 2018 1:24:59 AM logger.logger_t info
+INFO: [ pump_controller ] Methane threshold breached while pump turned on, turning off pump
+Aug 23, 2018 1:24:59 AM logger.logger_t info
+INFO: [ pump_controller ] Turn off message received while methane threshold breached
+Aug 23, 2018 1:24:59 AM logger.logger_t info
+INFO: [ pump_controller ] Methane state normal received
+Aug 23, 2018 1:24:59 AM logger.logger_t info
+INFO: [ pump_controller ] Turn on message, turning on pump
+Aug 23, 2018 1:24:59 AM logger.logger_t info
+INFO: [ pump_controller ] Turn off message, turning on pump
+Aug 23, 2018 1:25:00 AM logger.logger_t info
+INFO: [ pump_controller ] Methane threshold breached while pump turned off
+Aug 23, 2018 1:25:00 AM logger.logger_t info
+INFO: [ pump_controller ] Methane state normal received
+Aug 23, 2018 1:25:00 AM logger.logger_t info
+INFO: [ pump_controller ] Methane threshold breached while pump turned off
+Aug 23, 2018 1:25:00 AM logger.logger_t info
+INFO: [ pump_controller ] Turn on message received while methane threshold breached, will turn on when methane state is normal
+Aug 23, 2018 1:25:00 AM logger.logger_t info
+INFO: [ pump_controller ] Methane state normal received, turning on pump
+Aug 23, 2018 1:25:00 AM logger.logger_t info
+INFO: [ pump_controller ] Turn off message, turning on pump
+Aug 23, 2018 1:25:00 AM logger.logger_t info
+INFO: [ pump_controller ] Turn on message, turning on pump
+Aug 23, 2018 1:25:00 AM logger.logger_t info
+INFO: [ pump_controller ] Turn off message, turning on pump
+Aug 23, 2018 1:25:00 AM logger.logger_t info
+INFO: [ pump_controller ] Turn on message, turning on pump
+Aug 23, 2018 1:25:01 AM logger.logger_t info
+INFO: [ pump_controller ] Turn off message, turning on pump
+Aug 23, 2018 1:25:01 AM logger.logger_t info
+INFO: [ pump_controller ] Methane threshold breached while pump turned off
+Aug 23, 2018 1:25:01 AM logger.logger_t info
+INFO: [ pump_controller ] Turn on message received while methane threshold breached, will turn on when methane state is normal
+Aug 23, 2018 1:25:01 AM logger.logger_t info
+INFO: [ pump_controller ] Turn off message received while methane threshold breached
+Aug 23, 2018 1:25:01 AM logger.logger_t info
+INFO: [ pump_controller ] Methane state normal received
+Aug 23, 2018 1:25:01 AM logger.logger_t info
+INFO: [ pump_controller ] Turn on message, turning on pump
+Aug 23, 2018 1:25:01 AM logger.logger_t info
+INFO: [ pump_controller ] Methane threshold breached while pump turned on, turning off pump
+Aug 23, 2018 1:25:01 AM logger.logger_t info
+INFO: [ pump_controller ] Methane state normal received, turning on pump
+Aug 23, 2018 1:25:01 AM logger.logger_t info
+INFO: [ pump_controller ] Methane threshold breached while pump turned on, turning off pump
+Aug 23, 2018 1:25:01 AM logger.logger_t info
+INFO: [ pump_controller ] Turn on message received while methane threshold breached, will turn on when methane state is normal
+Aug 23, 2018 1:25:02 AM logger.logger_t info
+INFO: [ pump_controller ] Turn off message received while methane threshold breached
+Aug 23, 2018 1:25:02 AM logger.logger_t info
+INFO: [ pump_controller ] Methane state normal received
+Aug 23, 2018 1:25:02 AM logger.logger_t info
+INFO: [ pump_controller ] Methane threshold breached while pump turned off
+Aug 23, 2018 1:25:02 AM logger.logger_t info
+INFO: [ pump_controller ] Turn off message received while methane threshold breached
+Aug 23, 2018 1:25:02 AM logger.logger_t info
+INFO: [ pump_controller ] Methane state normal received
+Aug 23, 2018 1:25:02 AM logger.logger_t info
+INFO: [ pump_controller ] Methane threshold breached while pump turned off
+Aug 23, 2018 1:25:02 AM logger.logger_t info
+INFO: [ pump_controller ] Methane state normal received
+Aug 23, 2018 1:25:02 AM logger.logger_t info
+INFO: [ pump_controller ] Methane threshold breached while pump turned off
+Aug 23, 2018 1:25:02 AM logger.logger_t info
+INFO: [ pump_controller ] Turn on message received while methane threshold breached, will turn on when methane state is normal
+Aug 23, 2018 1:25:02 AM logger.logger_t info
+INFO: [ pump_controller ] Methane state normal received, turning on pump
+Aug 23, 2018 1:25:03 AM logger.logger_t info
+INFO: [ pump_controller ] Turn off message, turning on pump
+Aug 23, 2018 1:25:03 AM logger.logger_t info
+INFO: [ pump_controller ] Methane threshold breached while pump turned off
+Aug 23, 2018 1:25:03 AM logger.logger_t info
+INFO: [ pump_controller ] Turn off message received while methane threshold breached
+Aug 23, 2018 1:25:03 AM logger.logger_t info
+INFO: [ pump_controller ] Methane state normal received
+Aug 23, 2018 1:25:03 AM logger.logger_t info
+INFO: [ pump_controller ] Turn on message, turning on pump
+Aug 23, 2018 1:25:03 AM logger.logger_t info
+INFO: [ pump_controller ] Methane threshold breached while pump turned on, turning off pump
+Aug 23, 2018 1:25:03 AM logger.logger_t info
+INFO: [ pump_controller ] Methane state normal received, turning on pump
+Aug 23, 2018 1:25:03 AM logger.logger_t info
+INFO: [ pump_controller ] Methane threshold breached while pump turned on, turning off pump
+Aug 23, 2018 1:25:03 AM logger.logger_t info
+INFO: [ pump_controller ] Methane state normal received, turning on pump
+Aug 23, 2018 1:25:04 AM logger.logger_t info
+INFO: [ pump_controller ] Methane threshold breached while pump turned on, turning off pump
+Aug 23, 2018 1:25:04 AM logger.logger_t info
+INFO: [ pump_controller ] Turn off message received while methane threshold breached
+Aug 23, 2018 1:25:04 AM logger.logger_t info
+INFO: [ pump_controller ] Turn off message received while methane threshold breached
+Aug 23, 2018 1:25:04 AM logger.logger_t info
+INFO: [ pump_controller ] Turn on message received while methane threshold breached, will turn on when methane state is normal
+Aug 23, 2018 1:25:04 AM logger.logger_t info
+INFO: [ pump_controller ] Turn on message received while methane threshold breached, will turn on when methane state is normal
+Aug 23, 2018 1:25:04 AM logger.logger_t info
+INFO: [ pump_controller ] Turn off message received while methane threshold breached
+Aug 23, 2018 1:25:04 AM logger.logger_t info
+INFO: [ pump_controller ] Turn off message received while methane threshold breached
+Aug 23, 2018 1:25:04 AM logger.logger_t info
+INFO: [ pump_controller ] Turn on message received while methane threshold breached, will turn on when methane state is normal
+Aug 23, 2018 1:25:04 AM logger.logger_t info
+INFO: [ pump_controller ] Turn off message received while methane threshold breached
+Aug 23, 2018 1:25:05 AM logger.logger_t info
+INFO: [ pump_controller ] Methane state normal received
+Aug 23, 2018 1:25:05 AM logger.logger_t info
+INFO: [ pump_controller ] Methane threshold breached while pump turned off
+Aug 23, 2018 1:25:05 AM logger.logger_t info
+INFO: [ pump_controller ] Methane state normal received
+Aug 23, 2018 1:25:05 AM logger.logger_t info
+INFO: [ pump_controller ] Methane threshold breached while pump turned off
+Aug 23, 2018 1:25:05 AM logger.logger_t info
+INFO: [ pump_controller ] Turn on message received while methane threshold breached, will turn on when methane state is normal
+Aug 23, 2018 1:25:05 AM logger.logger_t info
+INFO: [ pump_controller ] Turn off message received while methane threshold breached
+Aug 23, 2018 1:25:05 AM logger.logger_t info
+INFO: [ pump_controller ] Turn on message received while methane threshold breached, will turn on when methane state is normal
+Aug 23, 2018 1:25:05 AM logger.logger_t info
+INFO: [ pump_controller ] Turn on message received while methane threshold breached, will turn on when methane state is normal
+Aug 23, 2018 1:25:05 AM logger.logger_t info
+INFO: [ pump_controller ] Methane state normal received, turning on pump
+Aug 23, 2018 1:25:05 AM logger.logger_t info
+INFO: [ pump_controller ] Turn off message, turning on pump
+Aug 23, 2018 1:25:06 AM logger.logger_t info
+INFO: [ pump_controller ] Methane threshold breached while pump turned off
+Aug 23, 2018 1:25:06 AM logger.logger_t info
+INFO: [ pump_controller ] Methane state normal received
+Aug 23, 2018 1:25:06 AM logger.logger_t info
+INFO: [ pump_controller ] Turn on message, turning on pump
+Aug 23, 2018 1:25:06 AM logger.logger_t info
+INFO: [ pump_controller ] Methane threshold breached while pump turned on, turning off pump
+Aug 23, 2018 1:25:06 AM logger.logger_t info
+INFO: [ pump_controller ] Turn off message received while methane threshold breached
+Aug 23, 2018 1:25:06 AM logger.logger_t info
+INFO: [ pump_controller ] Turn on message received while methane threshold breached, will turn on when methane state is normal
+Aug 23, 2018 1:25:06 AM logger.logger_t info
+INFO: [ pump_controller ] Methane state normal received, turning on pump
+Aug 23, 2018 1:25:06 AM logger.logger_t info
+INFO: [ pump_controller ] Methane threshold breached while pump turned on, turning off pump
+Aug 23, 2018 1:25:07 AM logger.logger_t info
+INFO: [ pump_controller ] Methane state normal received, turning on pump
+Aug 23, 2018 1:25:07 AM logger.logger_t info
+INFO: [ pump_controller ] Turn off message, turning on pump
+Aug 23, 2018 1:25:07 AM logger.logger_t info
+INFO: [ pump_controller ] Turn on message, turning on pump
+Aug 23, 2018 1:25:07 AM logger.logger_t info
+INFO: [ pump_controller ] Turn off message, turning on pump
+Aug 23, 2018 1:25:07 AM logger.logger_t info
+INFO: [ pump_controller ] Turn on message, turning on pump
+Aug 23, 2018 1:25:07 AM logger.logger_t info
+INFO: [ pump_controller ] Methane threshold breached while pump turned on, turning off pump
+Aug 23, 2018 1:25:07 AM logger.logger_t info
+INFO: [ pump_controller ] Turn off message received while methane threshold breached
+Aug 23, 2018 1:25:07 AM logger.logger_t info
+INFO: [ pump_controller ] Turn on message received while methane threshold breached, will turn on when methane state is normal
+Aug 23, 2018 1:25:07 AM logger.logger_t info
+INFO: [ pump_controller ] Turn off message received while methane threshold breached
+Aug 23, 2018 1:25:07 AM logger.logger_t info
+INFO: [ pump_controller ] Turn on message received while methane threshold breached, will turn on when methane state is normal
+Aug 23, 2018 1:25:08 AM logger.logger_t info
+INFO: [ pump_controller ] Methane state normal received, turning on pump
+Aug 23, 2018 1:25:08 AM logger.logger_t info
+INFO: [ pump_controller ] Turn off message, turning on pump
+Aug 23, 2018 1:25:08 AM logger.logger_t info
+INFO: [ pump_controller ] Methane threshold breached while pump turned off
+Aug 23, 2018 1:25:08 AM logger.logger_t info
+INFO: [ pump_controller ] Turn on message received while methane threshold breached, will turn on when methane state is normal
+Aug 23, 2018 1:25:08 AM logger.logger_t info
+INFO: [ pump_controller ] Turn on message received while methane threshold breached, will turn on when methane state is normal
+Aug 23, 2018 1:25:08 AM logger.logger_t info
+INFO: [ pump_controller ] Methane state normal received, turning on pump
+Aug 23, 2018 1:25:08 AM logger.logger_t info
+INFO: [ pump_controller ] Turn off message, turning on pump
+Aug 23, 2018 1:25:08 AM logger.logger_t info
+INFO: [ pump_controller ] Turn on message, turning on pump
+Aug 23, 2018 1:25:08 AM logger.logger_t info
+INFO: [ pump_controller ] Methane threshold breached while pump turned on, turning off pump
+Aug 23, 2018 1:25:09 AM logger.logger_t info
+INFO: [ pump_controller ] Methane state normal received, turning on pump
+Aug 23, 2018 1:25:09 AM logger.logger_t info
+INFO: [ pump_controller ] Methane threshold breached while pump turned on, turning off pump
+Aug 23, 2018 1:25:09 AM logger.logger_t info
+INFO: [ pump_controller ] Methane state normal received, turning on pump
+Aug 23, 2018 1:25:09 AM logger.logger_t info
+INFO: [ pump_controller ] Methane threshold breached while pump turned on, turning off pump
+Aug 23, 2018 1:25:09 AM logger.logger_t info
+INFO: [ pump_controller ] Turn on message received while methane threshold breached, will turn on when methane state is normal
+Aug 23, 2018 1:25:09 AM logger.logger_t info
+INFO: [ pump_controller ] Turn off message received while methane threshold breached
+Aug 23, 2018 1:25:09 AM logger.logger_t info
+INFO: [ pump_controller ] Turn off message received while methane threshold breached

@@ -1,0 +1,149 @@
+RoomModel pump_station {
+	import room.basic.types.* from "../../org.eclipse.etrice.modellib.java/model/Types.room"
+	import devices.* from "devices.room"
+	import logger.* from "logger.room"
+	
+	DataClass pump_controller_idata_t {
+		Attribute pump : device_t ref
+	}
+
+	ProtocolClass pump_controller_iprotocol_t {
+		incoming {
+			Message initialize ( data : pump_controller_idata_t )
+		}
+	}
+
+	ActorClass pump_controller_t extends logger_t { 
+		Interface {
+			Port iport : pump_controller_iprotocol_t
+			conjugated Port water_level_detectors_controller_port : switch_protocol_t
+			conjugated Port user_port : switch_protocol_t
+			conjugated Port methane_port : methane_protocol_t	
+		}
+		Structure {
+			external Port iport
+			external Port water_level_detectors_controller_port
+			external Port user_port
+			external Port methane_port
+			
+			Attribute pump : device_t ref
+			Attribute pump_state : device_state_t
+		}
+		Behavior {
+			StateMachine {
+				State waiting_for_imessage { }
+
+				State pump_turned_off {
+					entry '''
+						this.pump.state = device_state_t.OFF;	
+					'''
+				}	
+
+				State pump_turned_on {
+					entry '''
+						this.pump.state = device_state_t.ON;	
+					'''
+				}	
+				
+				State methane_threshold_breached { }
+
+				Transition start : initial -> waiting_for_imessage { }
+				
+				Transition imessage_received : waiting_for_imessage -> pump_turned_off {
+					triggers {
+						< initialize : iport >
+					}
+					action '''
+						this.pump = data.pump;	
+					'''
+				}
+				
+				Transition turn_on_message_received : pump_turned_off -> pump_turned_on {
+					triggers {
+						< turn_on : water_level_detectors_controller_port > or
+						< turn_on : user_port >
+					}
+					action '''
+						super.info ( super.getName ( ), "Turn on message, turning on pump" );
+					'''
+				}
+
+				Transition turn_off_message_received : pump_turned_on -> pump_turned_off {
+					triggers {
+						< turn_off : water_level_detectors_controller_port > or
+						< turn_off : user_port >
+					}
+					action '''
+						super.info ( super.getName ( ), "Turn off message, turning on pump" );
+					'''
+				}
+				
+				Transition methane_threshold_breached_received_while_pump_off : pump_turned_off -> methane_threshold_breached {
+					triggers {
+						< threshold_breached : methane_port >
+					}
+					action '''
+						this.pump_state = this.pump.state;	
+						this.pump.state = device_state_t.OFF;
+						super.info ( super.getName ( ), "Methane threshold breached while pump turned off" );
+					'''
+				}
+
+				Transition methane_threshold_breached_received_while_pump_on : pump_turned_on -> methane_threshold_breached {
+					triggers {
+						< threshold_breached : methane_port >
+					}
+					action '''
+						this.pump_state = this.pump.state;	
+						this.pump.state = device_state_t.OFF;
+						super.info ( super.getName ( ), "Methane threshold breached while pump turned on, turning off pump" );
+					'''
+				}
+				
+				Transition state_normal_received_pump_was_turned_on : methane_threshold_breached -> pump_turned_on {
+					triggers {
+						< state_normal : methane_port guard '''
+							this.pump_state == device_state_t.ON
+						''' >
+					}
+					action '''
+						super.info ( super.getName ( ), "Methane state normal received, turning on pump" );
+					'''
+				}
+
+				Transition state_normal_received_pump_was_turned_off : methane_threshold_breached -> pump_turned_off {
+					triggers {
+						< state_normal : methane_port guard '''
+							this.pump_state == device_state_t.OFF
+						''' >
+					}
+					action '''
+						super.info ( super.getName ( ), "Methane state normal received" );
+					'''
+				}
+
+				Transition turn_on_message_received_while_methane_threshold_breached : methane_threshold_breached -> methane_threshold_breached {
+					triggers {
+						< turn_on : water_level_detectors_controller_port > or
+						< turn_on : user_port >
+					} 
+					action '''
+						this.pump_state = device_state_t.ON;	
+						super.info ( super.getName ( ), "Turn on message received while methane threshold breached, will turn on when methane state is normal" );
+					'''
+				}
+
+				Transition turn_off_message_received_while_methane_threshold_breached : methane_threshold_breached -> methane_threshold_breached {
+					triggers {
+						< turn_off : water_level_detectors_controller_port > or
+						< turn_off : user_port >
+					} 
+					action '''
+						this.pump_state = device_state_t.OFF;	
+						super.info ( super.getName ( ), "Turn off message received while methane threshold breached" );
+					'''
+				}
+			}
+		}
+	}
+}
