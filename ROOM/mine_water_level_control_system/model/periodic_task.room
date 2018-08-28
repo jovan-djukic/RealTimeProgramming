@@ -1,0 +1,52 @@
+RoomModel periodic_task {
+	import room.basic.types.* from "../../org.eclipse.etrice.modellib.java/model/Types.room"
+	import room.basic.service.timing.* from "../../org.eclipse.etrice.modellib.java/model/TimingService.room"
+	import logger.logger_t from "logger.room"
+	
+	DataClass periodic_task_idata_t {
+		Attribute period : int32 = '0'
+	}
+	
+	ProtocolClass periodic_task_iprotocol_t {
+		incoming {
+			Message initialize ( data : periodic_task_idata_t )
+		}
+	}
+	
+	abstract ActorClass periodic_task_t extends logger_t {
+		Interface { 
+			Port iport : periodic_task_iprotocol_t 
+		}	
+		Structure {
+			external Port iport
+
+			SAP timer_access_point : PTimer
+
+			Attribute period : int32 = '0'
+
+		}
+		Behavior {
+			StateMachine {
+				State waiting_for_imessage { }
+				State sleeping { 
+					entry '''
+						super.info ( this.getName( ), "Starting timeout" );
+						this.timer_access_point.startTimeout ( this.period );
+					'''	
+				}
+
+				Transition start : initial -> waiting_for_imessage { }
+				
+				Transition imessage_received : waiting_for_imessage -> sleeping {
+					triggers {
+						< initialize : iport >
+					}	
+					action '''
+						this.period = data.period;
+						super.info ( this.getName ( ), "Initialization message received" );
+					'''
+				}
+			}
+		}
+	}
+}

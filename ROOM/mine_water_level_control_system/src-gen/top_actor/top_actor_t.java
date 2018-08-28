@@ -7,21 +7,21 @@ import org.eclipse.etrice.runtime.java.debugging.*;
 import static org.eclipse.etrice.runtime.java.etunit.EtUnit.*;
 
 import devices.*;
-import environment_monitoring_station.*;
 import logger.*;
+import pump_station.*;
 import room.basic.service.timing.*;
 import room.basic.service.timing.PTimer.*;
-import environment_monitoring_station.environmonet_statition_actor_base_iprotocol_t.*;
+import devices.methane_protocol_t.*;
+import pump_station.pump_controller_iprotocol_t.*;
 import devices.switch_protocol_t.*;
 
 /*--------------------- begin user code ---------------------*/
 class Constants {
-	public static final int GAS_SENSOR_CONTROLLER_PERIOD_IN_MS = 500;
-	public static final int GAS_SENSOR_CONTROLLER_THRESHOLD = 500;
-	public static final int GAS_SENSOR_CONTROLLER_ERROR_COUNT_THRESHOLD = 2;
-	public static final int TEST_PERIOD_IN_MS = 750;
-	public static final int GAS_SENSOR_IVALUE = 0;
-	public static final boolean GAS_SENSOR_IERROR_OCCURRED = false;
+	public static final int TEST_PERIOD_IN_MS = 100;
+	public static final int NUMBER_OF_CONTROLLERS = 3;
+	public static final int WATER_DETECTORS_CONTROLLER_CONTROLLER = 0;
+	public static final int USER = 1;
+	public static final int METHANE_CONTROLLER = 2;
 }
 
 /*--------------------- end user code ---------------------*/
@@ -31,8 +31,10 @@ public class top_actor_t extends ActorClassBase {
 
 
 	//--------------------- ports
-	protected environmonet_statition_actor_base_iprotocol_tConjPort gas_sensor_controller_iport = null;
-	protected switch_protocol_tConjPort alarm_switch_port = null;
+	protected pump_controller_iprotocol_tConjPort pump_controler_iport = null;
+	protected switch_protocol_tPort water_detectors_pump_switch_port = null;
+	protected switch_protocol_tPort user_switch_port = null;
+	protected methane_protocol_tPort methane_port = null;
 
 	//--------------------- saps
 	protected PTimerConjPort timer_port = null;
@@ -42,30 +44,20 @@ public class top_actor_t extends ActorClassBase {
 	//--------------------- optional actors
 
 	//--------------------- interface item IDs
-	public static final int IFITEM_gas_sensor_controller_iport = 1;
-	public static final int IFITEM_alarm_switch_port = 2;
-	public static final int IFITEM_timer_port = 3;
+	public static final int IFITEM_pump_controler_iport = 1;
+	public static final int IFITEM_water_detectors_pump_switch_port = 2;
+	public static final int IFITEM_user_switch_port = 3;
+	public static final int IFITEM_methane_port = 4;
+	public static final int IFITEM_timer_port = 5;
 
 	/*--------------------- attributes ---------------------*/
-	public  boolean expecting_alarm_turn_on;
-	public  int error_count;
-	public  gas_sensor_t gas_sensor;
+	public  int expected_state;
+	public  int pump_state;
+	public  boolean turn_on_message_sent[];
+	public  boolean methane_threshold_breached;
+	public  device_t pump;
 
 	/*--------------------- operations ---------------------*/
-	public  void process(int value, boolean error_occurred) {
-		if ( error_occurred == true ) {
-			this.error_count++;
-			if ( this.error_count > Constants.GAS_SENSOR_CONTROLLER_ERROR_COUNT_THRESHOLD )	 {
-				this.expecting_alarm_turn_on = true;
-			}
-		} else {
-			if ( value > Constants.GAS_SENSOR_CONTROLLER_THRESHOLD ) {
-				this.expecting_alarm_turn_on = true;
-			} else {
-				this.expecting_alarm_turn_on = false;
-			}
-		}
-	}
 
 
 	//--------------------- construction
@@ -74,13 +66,23 @@ public class top_actor_t extends ActorClassBase {
 		setClassName("top_actor_t");
 
 		// initialize attributes
-		this.setExpecting_alarm_turn_on(false);
-		this.setError_count(0);
-		this.setGas_sensor(new gas_sensor_t());
+		this.setExpected_state(0);
+		this.setPump_state(0);
+		{
+			boolean[] array = new boolean[2];
+			for (int i=0;i<2;i++){
+				array[i] = false;
+			}
+			this.setTurn_on_message_sent(array);
+		}
+		this.setMethane_threshold_breached(false);
+		this.setPump(new device_t());
 
 		// own ports
-		gas_sensor_controller_iport = new environmonet_statition_actor_base_iprotocol_tConjPort(this, "gas_sensor_controller_iport", IFITEM_gas_sensor_controller_iport);
-		alarm_switch_port = new switch_protocol_tConjPort(this, "alarm_switch_port", IFITEM_alarm_switch_port);
+		pump_controler_iport = new pump_controller_iprotocol_tConjPort(this, "pump_controler_iport", IFITEM_pump_controler_iport);
+		water_detectors_pump_switch_port = new switch_protocol_tPort(this, "water_detectors_pump_switch_port", IFITEM_water_detectors_pump_switch_port);
+		user_switch_port = new switch_protocol_tPort(this, "user_switch_port", IFITEM_user_switch_port);
+		methane_port = new methane_protocol_tPort(this, "methane_port", IFITEM_methane_port);
 
 		// own saps
 		timer_port = new PTimerConjPort(this, "timer_port", IFITEM_timer_port, 0);
@@ -88,12 +90,14 @@ public class top_actor_t extends ActorClassBase {
 		// own service implementations
 
 		// sub actors
-		DebuggingService.getInstance().addMessageActorCreate(this, "gas_sensor_controller");
-		new gas_sensor_controller_t(this, "gas_sensor_controller");
+		DebuggingService.getInstance().addMessageActorCreate(this, "pump_controller");
+		new pump_controller_t(this, "pump_controller");
 
 		// wiring
-		InterfaceItemBase.connect(this, "gas_sensor_controller/iport", "gas_sensor_controller_iport");
-		InterfaceItemBase.connect(this, "gas_sensor_controller/alarm_port", "alarm_switch_port");
+		InterfaceItemBase.connect(this, "pump_controller/iport", "pump_controler_iport");
+		InterfaceItemBase.connect(this, "pump_controller/water_level_detectors_controller_port", "water_detectors_pump_switch_port");
+		InterfaceItemBase.connect(this, "pump_controller/user_port", "user_switch_port");
+		InterfaceItemBase.connect(this, "pump_controller/methane_port", "methane_port");
 
 
 		/* user defined constructor body */
@@ -101,32 +105,50 @@ public class top_actor_t extends ActorClassBase {
 	}
 
 	/* --------------------- attribute setters and getters */
-	public void setExpecting_alarm_turn_on(boolean expecting_alarm_turn_on) {
-		 this.expecting_alarm_turn_on = expecting_alarm_turn_on;
+	public void setExpected_state(int expected_state) {
+		 this.expected_state = expected_state;
 	}
-	public boolean getExpecting_alarm_turn_on() {
-		return this.expecting_alarm_turn_on;
+	public int getExpected_state() {
+		return this.expected_state;
 	}
-	public void setError_count(int error_count) {
-		 this.error_count = error_count;
+	public void setPump_state(int pump_state) {
+		 this.pump_state = pump_state;
 	}
-	public int getError_count() {
-		return this.error_count;
+	public int getPump_state() {
+		return this.pump_state;
 	}
-	public void setGas_sensor(gas_sensor_t gas_sensor) {
-		 this.gas_sensor = gas_sensor;
+	public void setTurn_on_message_sent(boolean[] turn_on_message_sent) {
+		 this.turn_on_message_sent = turn_on_message_sent;
 	}
-	public gas_sensor_t getGas_sensor() {
-		return this.gas_sensor;
+	public boolean[] getTurn_on_message_sent() {
+		return this.turn_on_message_sent;
+	}
+	public void setMethane_threshold_breached(boolean methane_threshold_breached) {
+		 this.methane_threshold_breached = methane_threshold_breached;
+	}
+	public boolean getMethane_threshold_breached() {
+		return this.methane_threshold_breached;
+	}
+	public void setPump(device_t pump) {
+		 this.pump = pump;
+	}
+	public device_t getPump() {
+		return this.pump;
 	}
 
 
 	//--------------------- port getters
-	public environmonet_statition_actor_base_iprotocol_tConjPort getGas_sensor_controller_iport (){
-		return this.gas_sensor_controller_iport;
+	public pump_controller_iprotocol_tConjPort getPump_controler_iport (){
+		return this.pump_controler_iport;
 	}
-	public switch_protocol_tConjPort getAlarm_switch_port (){
-		return this.alarm_switch_port;
+	public switch_protocol_tPort getWater_detectors_pump_switch_port (){
+		return this.water_detectors_pump_switch_port;
+	}
+	public switch_protocol_tPort getUser_switch_port (){
+		return this.user_switch_port;
+	}
+	public methane_protocol_tPort getMethane_port (){
+		return this.methane_port;
 	}
 	public PTimerConjPort getTimer_port (){
 		return this.timer_port;
@@ -149,14 +171,10 @@ public class top_actor_t extends ActorClassBase {
 	
 	/* transition chains */
 	public static final int CHAIN_TRANS_INITIAL_TO__testing = 1;
-	public static final int CHAIN_TRANS_turn_off_message_received_FROM_testing_TO_testing_BY_turn_offalarm_switch_port_turn_off_message_received = 2;
-	public static final int CHAIN_TRANS_turn_on_message_received_FROM_testing_TO_testing_BY_turn_onalarm_switch_port_turn_on_message_received = 3;
-	public static final int CHAIN_TRANS_timeout_message_received_FROM_testing_TO_testing_BY_timeouttimer_port_timeout_message_received = 4;
+	public static final int CHAIN_TRANS_timeout_message_received_FROM_testing_TO_testing_BY_timeouttimer_port_timeout_message_received = 2;
 	
 	/* triggers */
 	public static final int POLLING = 0;
-	public static final int TRIG_alarm_switch_port__turn_on = IFITEM_alarm_switch_port + EVT_SHIFT*switch_protocol_t.OUT_turn_on;
-	public static final int TRIG_alarm_switch_port__turn_off = IFITEM_alarm_switch_port + EVT_SHIFT*switch_protocol_t.OUT_turn_off;
 	public static final int TRIG_timer_port__timeout = IFITEM_timer_port + EVT_SHIFT*PTimer.OUT_timeout;
 	public static final int TRIG_timer_port__internalTimer = IFITEM_timer_port + EVT_SHIFT*PTimer.OUT_internalTimer;
 	public static final int TRIG_timer_port__internalTimeout = IFITEM_timer_port + EVT_SHIFT*PTimer.OUT_internalTimeout;
@@ -180,54 +198,90 @@ public class top_actor_t extends ActorClassBase {
 	
 	/* Action Codes */
 	protected void action_TRANS_INITIAL_TO__testing() {
-	    this.expecting_alarm_turn_on = false;
-	    this.error_count = 0;
+	    this.expected_state = device_state_t.OFF;
+	    this.pump_state = device_state_t.OFF;
+	    for ( int i = 0; i < ( Constants.NUMBER_OF_CONTROLLERS - 1 ); i++ ) {
+	    	this.turn_on_message_sent[i] = false;
+	    }
+	    this.methane_threshold_breached = false;
+	    this.pump.state = device_state_t.OFF;
 	    
-	    this.gas_sensor.value = Constants.GAS_SENSOR_IVALUE;
-	    this.gas_sensor.error_occurred = Constants.GAS_SENSOR_IERROR_OCCURRED;
-	    
-	    this.process ( Constants.GAS_SENSOR_IVALUE, Constants.GAS_SENSOR_IERROR_OCCURRED );
-	    
-	    this.gas_sensor_controller_iport.initialize ( 
-	    	new gas_sensor_controller_idata_t ( 
-	    		Constants.GAS_SENSOR_CONTROLLER_PERIOD_IN_MS,
-	    		true,
-	    		Constants.GAS_SENSOR_CONTROLLER_THRESHOLD,
-	    		this.gas_sensor,
-	    		Constants.GAS_SENSOR_CONTROLLER_ERROR_COUNT_THRESHOLD
+	    this.pump_controler_iport.initialize ( 
+	    	new pump_controller_idata_t ( 
+	    		this.pump
 	    	)
 	    );
 	    
 	    this.timer_port.startTimeout ( Constants.TEST_PERIOD_IN_MS );
 	}
-	protected void action_TRANS_turn_off_message_received_FROM_testing_TO_testing_BY_turn_offalarm_switch_port_turn_off_message_received(InterfaceItemBase ifitem) {
-	    if ( this.expecting_alarm_turn_on == true ) {
-	    	System.err.println ( "TURN OFF MESSAGE RECEIVED UNEXPECTEDLY " );
-	    } else {
-	    	System.err.println ( "TURN OFF MESSAGE RECEIVED EXPECTEDLY " );
-	    }
-	}
-	protected void action_TRANS_turn_on_message_received_FROM_testing_TO_testing_BY_turn_onalarm_switch_port_turn_on_message_received(InterfaceItemBase ifitem) {
-	    if ( this.expecting_alarm_turn_on == true ) {
-	    	System.err.println ( "TURN ON MESSAGE RECEIVED EXPECTEDLY " );
-	    } else {
-	    	System.err.println ( "TURN ON MESSAGE RECEIVED UNEXPECTEDLY " );
-	    }
-	}
 	protected void action_TRANS_timeout_message_received_FROM_testing_TO_testing_BY_timeouttimer_port_timeout_message_received(InterfaceItemBase ifitem) {
-	    if ( Math.random ( ) > 0.5 ) {
-	    	boolean error_occurred = Math.random ( ) > 0.5 ? true : false;
+	    if ( this.expected_state == this.pump.state ) {
+	    	System.out.println ( "Expected pump state" );
+	    } else {
+	    	System.err.println ( "Unexpected pump state" );
+	    }
 	    
-	    	int value = 0;
-	    	
-	    	if ( error_occurred == false ) {
-	    		value = ( int ) ( Math.random ( ) * 2 * Constants.GAS_SENSOR_CONTROLLER_THRESHOLD );
+	    int action = (int) ( Math.random ( ) * Constants.NUMBER_OF_CONTROLLERS );
+	    
+	    if ( action < ( Constants.NUMBER_OF_CONTROLLERS - 1 ) ) {
+	    	this.turn_on_message_sent[ action ] = !this.turn_on_message_sent[ action ];
+	    } else {
+	    	this.methane_threshold_breached = !this.methane_threshold_breached;
+	    }
+	    
+	    switch ( action ) {
+	    	case Constants.WATER_DETECTORS_CONTROLLER_CONTROLLER : {
+	    		if ( this.turn_on_message_sent[ action ] == true ) {
+	    			this.water_detectors_pump_switch_port.turn_on ( );
+	    		} else {
+	    			this.water_detectors_pump_switch_port.turn_off ( );
+	    		}
+	    
+	    		break;
 	    	}
-	    	
-	    	this.process ( value, error_occurred );
 	    
-	    	this.gas_sensor.error_occurred = error_occurred;	
-	    	this.gas_sensor.value = value;	
+	    	case Constants.USER : {
+	    		if ( this.turn_on_message_sent[ action ] == true ) {
+	    			this.user_switch_port.turn_on ( );
+	    		} else {
+	    			this.user_switch_port.turn_off ( );
+	    		}
+	    
+	    		break;
+	    	}
+	    
+	    	case Constants.METHANE_CONTROLLER : {
+	    		if ( this.methane_threshold_breached == true ) {
+	    			this.methane_port.threshold_breached ( );
+	    		} else {
+	    			this.methane_port.state_normal ( );
+	    		}
+	    
+	    		break;
+	    	}
+	    }
+	    
+	    if ( action < ( Constants.NUMBER_OF_CONTROLLERS - 1 ) ) {
+	    	if ( this.methane_threshold_breached == false ) {
+	    		if ( this.turn_on_message_sent[ action ] == true ) {
+	    			this.expected_state = device_state_t.ON;
+	    		} else {
+	    			this.expected_state = device_state_t.OFF;
+	    		}
+	    	} else {
+	    		if ( this.turn_on_message_sent[ action ] == true ) {
+	    			this.pump_state = device_state_t.ON;
+	    		} else {
+	    			this.pump_state = device_state_t.OFF;
+	    		}
+	    	}
+	    } else {
+	    	if ( this.methane_threshold_breached == true ) {
+	    		this.pump_state = this.pump.state;
+	    		this.expected_state = device_state_t.OFF;
+	    	} else {
+	    		this.expected_state = this.pump_state;
+	    	}
 	    }
 	    
 	    this.timer_port.startTimeout ( Constants.TEST_PERIOD_IN_MS );
@@ -266,16 +320,6 @@ public class top_actor_t extends ActorClassBase {
 			case top_actor_t.CHAIN_TRANS_INITIAL_TO__testing:
 			{
 				action_TRANS_INITIAL_TO__testing();
-				return STATE_testing;
-			}
-			case top_actor_t.CHAIN_TRANS_turn_off_message_received_FROM_testing_TO_testing_BY_turn_offalarm_switch_port_turn_off_message_received:
-			{
-				action_TRANS_turn_off_message_received_FROM_testing_TO_testing_BY_turn_offalarm_switch_port_turn_off_message_received(ifitem);
-				return STATE_testing;
-			}
-			case top_actor_t.CHAIN_TRANS_turn_on_message_received_FROM_testing_TO_testing_BY_turn_onalarm_switch_port_turn_on_message_received:
-			{
-				action_TRANS_turn_on_message_received_FROM_testing_TO_testing_BY_turn_onalarm_switch_port_turn_on_message_received(ifitem);
 				return STATE_testing;
 			}
 			case top_actor_t.CHAIN_TRANS_timeout_message_received_FROM_testing_TO_testing_BY_timeouttimer_port_timeout_message_received:
@@ -332,18 +376,6 @@ public class top_actor_t extends ActorClassBase {
 			switch (getState()) {
 			    case STATE_testing:
 			        switch(trigger__et) {
-			                case TRIG_alarm_switch_port__turn_off:
-			                    {
-			                        chain__et = top_actor_t.CHAIN_TRANS_turn_off_message_received_FROM_testing_TO_testing_BY_turn_offalarm_switch_port_turn_off_message_received;
-			                        catching_state__et = STATE_TOP;
-			                    }
-			                break;
-			                case TRIG_alarm_switch_port__turn_on:
-			                    {
-			                        chain__et = top_actor_t.CHAIN_TRANS_turn_on_message_received_FROM_testing_TO_testing_BY_turn_onalarm_switch_port_turn_on_message_received;
-			                        catching_state__et = STATE_TOP;
-			                    }
-			                break;
 			                case TRIG_timer_port__timeout:
 			                    {
 			                        chain__et = top_actor_t.CHAIN_TRANS_timeout_message_received_FROM_testing_TO_testing_BY_timeouttimer_port_timeout_message_received;

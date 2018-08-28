@@ -6,12 +6,11 @@ import org.eclipse.etrice.runtime.java.debugging.*;
 
 import static org.eclipse.etrice.runtime.java.etunit.EtUnit.*;
 
-import devices.*;
 import logger.*;
+import periodic_task.*;
 import room.basic.service.timing.*;
 import room.basic.service.timing.PTimer.*;
-import environment_monitoring_station.environmonet_statition_actor_base_iprotocol_t.*;
-import devices.switch_protocol_t.*;
+import periodic_task.periodic_task_iprotocol_t.*;
 
 /*--------------------- begin user code ---------------------*/
 import java.util.logging.*;
@@ -20,11 +19,10 @@ import java.io.IOException;
 /*--------------------- end user code ---------------------*/
 
 
-public class gas_sensor_controller_t extends environment_station_actor_base_t {
+public abstract class sensor_controller_t extends periodic_task_t {
 
 
 	//--------------------- ports
-	protected switch_protocol_tPort alarm_port = null;
 
 	//--------------------- saps
 
@@ -33,54 +31,23 @@ public class gas_sensor_controller_t extends environment_station_actor_base_t {
 	//--------------------- optional actors
 
 	//--------------------- interface item IDs
-	public static final int IFITEM_alarm_port = 3;
 
 	/*--------------------- attributes ---------------------*/
-	public  boolean detect_above_threshold;
-	public  int threshold;
-	public  gas_sensor_t gas_sensor;
-	public  int error_count_threshold;
-	public  int error_count;
 
 	/*--------------------- operations ---------------------*/
 	public  void query_action() {
-		if ( this.gas_sensor.error_occurred == true ) {
-			this.error_count++;
-			if ( this.error_count > this.error_count_threshold ) {
-				this.alarm_port.turn_on ( );
-				super.info ( super.getName ( ), "Error count threshold breached, turning on alarm" );
-			}
-		} else {
-			this.error_count = 0;
 		
-			if ( this.detect_above_threshold == true && this.gas_sensor.value > this.threshold ) {
-				this.alarm_port.turn_on ( );
-				super.info ( super.getName ( ), "Threshold breached, turning on alarm" );
-			} else if ( this.detect_above_threshold == false && this.gas_sensor.value < this.threshold ) {
-				this.alarm_port.turn_on ( );
-				super.info ( super.getName ( ), "Threshold breached, turning on alarm" );
-			} else {
-				this.alarm_port.turn_off ( );
-				super.info ( super.getName ( ), "Threshold stabilizied, turning off alarm" );
-			}
-		}
 	}
 
 
 	//--------------------- construction
-	public gas_sensor_controller_t(IRTObject parent, String name) {
+	public sensor_controller_t(IRTObject parent, String name) {
 		super(parent, name);
-		setClassName("gas_sensor_controller_t");
+		setClassName("sensor_controller_t");
 
 		// initialize attributes
-		this.setDetect_above_threshold(false);
-		this.setThreshold(0);
-		this.setGas_sensor(null);
-		this.setError_count_threshold(0);
-		this.setError_count(0);
 
 		// own ports
-		alarm_port = new switch_protocol_tPort(this, "alarm_port", IFITEM_alarm_port);
 
 		// own saps
 
@@ -96,42 +63,9 @@ public class gas_sensor_controller_t extends environment_station_actor_base_t {
 	}
 
 	/* --------------------- attribute setters and getters */
-	public void setDetect_above_threshold(boolean detect_above_threshold) {
-		 this.detect_above_threshold = detect_above_threshold;
-	}
-	public boolean getDetect_above_threshold() {
-		return this.detect_above_threshold;
-	}
-	public void setThreshold(int threshold) {
-		 this.threshold = threshold;
-	}
-	public int getThreshold() {
-		return this.threshold;
-	}
-	public void setGas_sensor(gas_sensor_t gas_sensor) {
-		 this.gas_sensor = gas_sensor;
-	}
-	public gas_sensor_t getGas_sensor() {
-		return this.gas_sensor;
-	}
-	public void setError_count_threshold(int error_count_threshold) {
-		 this.error_count_threshold = error_count_threshold;
-	}
-	public int getError_count_threshold() {
-		return this.error_count_threshold;
-	}
-	public void setError_count(int error_count) {
-		 this.error_count = error_count;
-	}
-	public int getError_count() {
-		return this.error_count;
-	}
 
 
 	//--------------------- port getters
-	public switch_protocol_tPort getAlarm_port (){
-		return this.alarm_port;
-	}
 
 	//--------------------- lifecycle functions
 	public void stop(){
@@ -148,9 +82,9 @@ public class gas_sensor_controller_t extends environment_station_actor_base_t {
 	public static final int STATE_MAX = 4;
 	
 	/* transition chains */
-	public static final int CHAIN_TRANS_INITIAL_TO__waiting_for_imessage = 1;
-	public static final int CHAIN_TRANS_imessage_received_FROM_waiting_for_imessage_TO_querying_BY_initializeiport = 2;
-	public static final int CHAIN_TRANS_timeout_received_FROM_querying_TO_querying_BY_timeouttimer_access_point_timeout_received = 3;
+	public static final int CHAIN_TRANS_timeout_received_FROM_sleeping_TO_sleeping_BY_timeouttimer_access_point_timeout_received = 1;
+	public static final int CHAIN_TRANS_INITIAL_TO__waiting_for_imessage = 2;
+	public static final int CHAIN_TRANS_imessage_received_FROM_waiting_for_imessage_TO_sleeping_BY_initializeiport = 3;
 	
 	/* triggers */
 	public static final int POLLING = 0;
@@ -160,7 +94,7 @@ public class gas_sensor_controller_t extends environment_station_actor_base_t {
 		"<no state>",
 		"<top>",
 		"waiting_for_imessage",
-		"querying"
+		"sleeping"
 	};
 	
 	// history
@@ -174,14 +108,10 @@ public class gas_sensor_controller_t extends environment_station_actor_base_t {
 	/* Entry and Exit Codes */
 	
 	/* Action Codes */
-	protected void action_TRANS_imessage_received_FROM_waiting_for_imessage_TO_querying_BY_initializeiport(InterfaceItemBase ifitem, environment_station_actor_base_idata_t data) {
-	    this.period = data.period;
-	    
-	    this.detect_above_threshold = ( ( gas_sensor_controller_idata_t ) data ).detect_above_threshold;
-	    this.threshold = ( ( gas_sensor_controller_idata_t ) data ).threshold;
-	    this.gas_sensor = ( ( gas_sensor_controller_idata_t ) data ).gas_sensor;
-	    this.error_count_threshold = ( ( gas_sensor_controller_idata_t ) data ).error_count_threshold;
-	    this.error_count = 0;
+	protected void action_TRANS_timeout_received_FROM_sleeping_TO_sleeping_BY_timeouttimer_access_point_timeout_received(InterfaceItemBase ifitem) {
+	    super.info ( this.getName ( ), "Query action begin" );
+	    this.query_action ( );
+	    super.info ( this.getName ( ), "Query action end" );
 	}
 	
 	/* State Switch Methods */
@@ -198,8 +128,8 @@ public class gas_sensor_controller_t extends environment_station_actor_base_t {
 					this.history[STATE_TOP] = STATE_waiting_for_imessage;
 					current__et = STATE_TOP;
 					break;
-				case STATE_querying:
-					this.history[STATE_TOP] = STATE_querying;
+				case STATE_sleeping:
+					this.history[STATE_TOP] = STATE_sleeping;
 					current__et = STATE_TOP;
 					break;
 				default:
@@ -218,19 +148,20 @@ public class gas_sensor_controller_t extends environment_station_actor_base_t {
 	 */
 	private int executeTransitionChain(int chain__et, InterfaceItemBase ifitem, Object generic_data__et) {
 		switch (chain__et) {
-			case gas_sensor_controller_t.CHAIN_TRANS_INITIAL_TO__waiting_for_imessage:
+			case sensor_controller_t.CHAIN_TRANS_timeout_received_FROM_sleeping_TO_sleeping_BY_timeouttimer_access_point_timeout_received:
+			{
+				action_TRANS_timeout_received_FROM_sleeping_TO_sleeping_BY_timeouttimer_access_point_timeout_received(ifitem);
+				return STATE_sleeping;
+			}
+			case sensor_controller_t.CHAIN_TRANS_INITIAL_TO__waiting_for_imessage:
 			{
 				return STATE_waiting_for_imessage;
 			}
-			case gas_sensor_controller_t.CHAIN_TRANS_imessage_received_FROM_waiting_for_imessage_TO_querying_BY_initializeiport:
+			case sensor_controller_t.CHAIN_TRANS_imessage_received_FROM_waiting_for_imessage_TO_sleeping_BY_initializeiport:
 			{
-				environment_station_actor_base_idata_t data = (environment_station_actor_base_idata_t) generic_data__et;
-				action_TRANS_imessage_received_FROM_waiting_for_imessage_TO_querying_BY_initializeiport(ifitem, data);
-				return STATE_querying;
-			}
-			case gas_sensor_controller_t.CHAIN_TRANS_timeout_received_FROM_querying_TO_querying_BY_timeouttimer_access_point_timeout_received:
-			{
-				return STATE_querying;
+				periodic_task_idata_t data = (periodic_task_idata_t) generic_data__et;
+				action_TRANS_imessage_received_FROM_waiting_for_imessage_TO_sleeping_BY_initializeiport(ifitem, data);
+				return STATE_sleeping;
 			}
 				default:
 					/* should not occur */
@@ -255,10 +186,10 @@ public class gas_sensor_controller_t extends environment_station_actor_base_t {
 				case STATE_waiting_for_imessage:
 					/* in leaf state: return state id */
 					return STATE_waiting_for_imessage;
-				case STATE_querying:
-					if (!(skip_entry__et)) entry_querying();
+				case STATE_sleeping:
+					if (!(skip_entry__et)) entry_sleeping();
 					/* in leaf state: return state id */
-					return STATE_querying;
+					return STATE_sleeping;
 				case STATE_TOP:
 					state__et = this.history[STATE_TOP];
 					break;
@@ -272,7 +203,7 @@ public class gas_sensor_controller_t extends environment_station_actor_base_t {
 	}
 	
 	public void executeInitTransition() {
-		int chain__et = gas_sensor_controller_t.CHAIN_TRANS_INITIAL_TO__waiting_for_imessage;
+		int chain__et = sensor_controller_t.CHAIN_TRANS_INITIAL_TO__waiting_for_imessage;
 		int next__et = executeTransitionChain(chain__et, null, null);
 		next__et = enterHistory(next__et);
 		setState(next__et);
@@ -290,7 +221,7 @@ public class gas_sensor_controller_t extends environment_station_actor_base_t {
 			        switch(trigger__et) {
 			                case TRIG_iport__initialize:
 			                    {
-			                        chain__et = gas_sensor_controller_t.CHAIN_TRANS_imessage_received_FROM_waiting_for_imessage_TO_querying_BY_initializeiport;
+			                        chain__et = sensor_controller_t.CHAIN_TRANS_imessage_received_FROM_waiting_for_imessage_TO_sleeping_BY_initializeiport;
 			                        catching_state__et = STATE_TOP;
 			                    }
 			                break;
@@ -299,11 +230,11 @@ public class gas_sensor_controller_t extends environment_station_actor_base_t {
 			                    break;
 			        }
 			        break;
-			    case STATE_querying:
+			    case STATE_sleeping:
 			        switch(trigger__et) {
 			                case TRIG_timer_access_point__timeout:
 			                    {
-			                        chain__et = gas_sensor_controller_t.CHAIN_TRANS_timeout_received_FROM_querying_TO_querying_BY_timeouttimer_access_point_timeout_received;
+			                        chain__et = sensor_controller_t.CHAIN_TRANS_timeout_received_FROM_sleeping_TO_sleeping_BY_timeouttimer_access_point_timeout_received;
 			                        catching_state__et = STATE_TOP;
 			                    }
 			                break;

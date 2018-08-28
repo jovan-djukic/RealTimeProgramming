@@ -8,10 +8,10 @@ import static org.eclipse.etrice.runtime.java.etunit.EtUnit.*;
 
 import devices.*;
 import logger.*;
+import periodic_task.*;
 import room.basic.service.timing.*;
 import room.basic.service.timing.PTimer.*;
-import environment_monitoring_station.environmonet_statition_actor_base_iprotocol_t.*;
-import devices.methane_protocol_t.*;
+import periodic_task.periodic_task_iprotocol_t.*;
 import devices.switch_protocol_t.*;
 
 /*--------------------- begin user code ---------------------*/
@@ -21,11 +21,11 @@ import java.io.IOException;
 /*--------------------- end user code ---------------------*/
 
 
-public class methane_sensor_controller_t extends gas_sensor_controller_t {
+public class water_level_detectors_sensor_controller_t extends sensor_controller_t {
 
 
 	//--------------------- ports
-	protected methane_protocol_tPort methane_port = null;
+	protected switch_protocol_tPort pump_switch_port = null;
 
 	//--------------------- saps
 
@@ -34,34 +34,35 @@ public class methane_sensor_controller_t extends gas_sensor_controller_t {
 	//--------------------- optional actors
 
 	//--------------------- interface item IDs
-	public static final int IFITEM_methane_port = 4;
+	public static final int IFITEM_pump_switch_port = 3;
 
 	/*--------------------- attributes ---------------------*/
+	public  water_level_detector_t low_water_level_detector;
+	public  water_level_detector_t high_water_level_detector;
 
 	/*--------------------- operations ---------------------*/
 	public  void query_action() {
-		super.query_action ( );
-		if ( super.gas_sensor.error_occurred == false ) {
-			if ( super.gas_sensor.value > super.threshold ) {
-				this.methane_port.threshold_breached ( );
-				super.info ( super.getName ( ), "Threshold breached, sending message to pump controller" );
-			} else {
-				this.methane_port.state_normal ( );
-				super.info ( super.getName ( ), "State normal, sending message to pump controller" );
-			}
+		if ( this.low_water_level_detector.value != 0 )	{
+			this.pump_switch_port.turn_off ( );
+			super.info ( this.getName ( ), "Water under low threshold, turning off pump" );
+		} else if ( this.high_water_level_detector.value != 0 ) {
+			this.pump_switch_port.turn_on ( );
+			super.info ( this.getName ( ), "Water over high threshold, turning on pump" );
 		}
 	}
 
 
 	//--------------------- construction
-	public methane_sensor_controller_t(IRTObject parent, String name) {
+	public water_level_detectors_sensor_controller_t(IRTObject parent, String name) {
 		super(parent, name);
-		setClassName("methane_sensor_controller_t");
+		setClassName("water_level_detectors_sensor_controller_t");
 
 		// initialize attributes
+		this.setLow_water_level_detector(null);
+		this.setHigh_water_level_detector(null);
 
 		// own ports
-		methane_port = new methane_protocol_tPort(this, "methane_port", IFITEM_methane_port);
+		pump_switch_port = new switch_protocol_tPort(this, "pump_switch_port", IFITEM_pump_switch_port);
 
 		// own saps
 
@@ -77,11 +78,23 @@ public class methane_sensor_controller_t extends gas_sensor_controller_t {
 	}
 
 	/* --------------------- attribute setters and getters */
+	public void setLow_water_level_detector(water_level_detector_t low_water_level_detector) {
+		 this.low_water_level_detector = low_water_level_detector;
+	}
+	public water_level_detector_t getLow_water_level_detector() {
+		return this.low_water_level_detector;
+	}
+	public void setHigh_water_level_detector(water_level_detector_t high_water_level_detector) {
+		 this.high_water_level_detector = high_water_level_detector;
+	}
+	public water_level_detector_t getHigh_water_level_detector() {
+		return this.high_water_level_detector;
+	}
 
 
 	//--------------------- port getters
-	public methane_protocol_tPort getMethane_port (){
-		return this.methane_port;
+	public switch_protocol_tPort getPump_switch_port (){
+		return this.pump_switch_port;
 	}
 
 	//--------------------- lifecycle functions
@@ -99,9 +112,9 @@ public class methane_sensor_controller_t extends gas_sensor_controller_t {
 	public static final int STATE_MAX = 4;
 	
 	/* transition chains */
-	public static final int CHAIN_TRANS_INITIAL_TO__waiting_for_imessage = 1;
-	public static final int CHAIN_TRANS_imessage_received_FROM_waiting_for_imessage_TO_querying_BY_initializeiport = 2;
-	public static final int CHAIN_TRANS_timeout_received_FROM_querying_TO_querying_BY_timeouttimer_access_point_timeout_received = 3;
+	public static final int CHAIN_TRANS_timeout_received_FROM_sleeping_TO_sleeping_BY_timeouttimer_access_point_timeout_received = 1;
+	public static final int CHAIN_TRANS_INITIAL_TO__waiting_for_imessage = 2;
+	public static final int CHAIN_TRANS_imessage_received_FROM_waiting_for_imessage_TO_sleeping_BY_initializeiport = 3;
 	
 	/* triggers */
 	public static final int POLLING = 0;
@@ -111,7 +124,7 @@ public class methane_sensor_controller_t extends gas_sensor_controller_t {
 		"<no state>",
 		"<top>",
 		"waiting_for_imessage",
-		"querying"
+		"sleeping"
 	};
 	
 	// history
@@ -125,16 +138,12 @@ public class methane_sensor_controller_t extends gas_sensor_controller_t {
 	/* Entry and Exit Codes */
 	
 	/* Action Codes */
-	protected void action_TRANS_imessage_received_FROM_waiting_for_imessage_TO_querying_BY_initializeiport(InterfaceItemBase ifitem, environment_station_actor_base_idata_t data) {
+	protected void action_TRANS_imessage_received_FROM_waiting_for_imessage_TO_sleeping_BY_initializeiport(InterfaceItemBase ifitem, periodic_task_idata_t data) {
 	    this.period = data.period;
+	    super.info ( this.getName ( ), "Initialization message received" );
 	    
-	    this.detect_above_threshold = ( ( gas_sensor_controller_idata_t ) data ).detect_above_threshold;
-	    this.threshold = ( ( gas_sensor_controller_idata_t ) data ).threshold;
-	    this.gas_sensor = ( ( gas_sensor_controller_idata_t ) data ).gas_sensor;
-	    this.error_count_threshold = ( ( gas_sensor_controller_idata_t ) data ).error_count_threshold;
-	    this.error_count = 0;
-	    
-	    super.detect_above_threshold = true;
+	    this.low_water_level_detector = ( ( water_level_detectors_controller_idata_t ) data ).low_water_level_detector;
+	    this.high_water_level_detector = ( ( water_level_detectors_controller_idata_t ) data ).high_water_level_detector;
 	}
 	
 	/* State Switch Methods */
@@ -151,8 +160,8 @@ public class methane_sensor_controller_t extends gas_sensor_controller_t {
 					this.history[STATE_TOP] = STATE_waiting_for_imessage;
 					current__et = STATE_TOP;
 					break;
-				case STATE_querying:
-					this.history[STATE_TOP] = STATE_querying;
+				case STATE_sleeping:
+					this.history[STATE_TOP] = STATE_sleeping;
 					current__et = STATE_TOP;
 					break;
 				default:
@@ -171,19 +180,20 @@ public class methane_sensor_controller_t extends gas_sensor_controller_t {
 	 */
 	private int executeTransitionChain(int chain__et, InterfaceItemBase ifitem, Object generic_data__et) {
 		switch (chain__et) {
-			case methane_sensor_controller_t.CHAIN_TRANS_INITIAL_TO__waiting_for_imessage:
+			case water_level_detectors_sensor_controller_t.CHAIN_TRANS_timeout_received_FROM_sleeping_TO_sleeping_BY_timeouttimer_access_point_timeout_received:
+			{
+				action_TRANS_timeout_received_FROM_sleeping_TO_sleeping_BY_timeouttimer_access_point_timeout_received(ifitem);
+				return STATE_sleeping;
+			}
+			case water_level_detectors_sensor_controller_t.CHAIN_TRANS_INITIAL_TO__waiting_for_imessage:
 			{
 				return STATE_waiting_for_imessage;
 			}
-			case methane_sensor_controller_t.CHAIN_TRANS_imessage_received_FROM_waiting_for_imessage_TO_querying_BY_initializeiport:
+			case water_level_detectors_sensor_controller_t.CHAIN_TRANS_imessage_received_FROM_waiting_for_imessage_TO_sleeping_BY_initializeiport:
 			{
-				environment_station_actor_base_idata_t data = (environment_station_actor_base_idata_t) generic_data__et;
-				action_TRANS_imessage_received_FROM_waiting_for_imessage_TO_querying_BY_initializeiport(ifitem, data);
-				return STATE_querying;
-			}
-			case methane_sensor_controller_t.CHAIN_TRANS_timeout_received_FROM_querying_TO_querying_BY_timeouttimer_access_point_timeout_received:
-			{
-				return STATE_querying;
+				periodic_task_idata_t data = (periodic_task_idata_t) generic_data__et;
+				action_TRANS_imessage_received_FROM_waiting_for_imessage_TO_sleeping_BY_initializeiport(ifitem, data);
+				return STATE_sleeping;
 			}
 				default:
 					/* should not occur */
@@ -208,10 +218,10 @@ public class methane_sensor_controller_t extends gas_sensor_controller_t {
 				case STATE_waiting_for_imessage:
 					/* in leaf state: return state id */
 					return STATE_waiting_for_imessage;
-				case STATE_querying:
-					if (!(skip_entry__et)) entry_querying();
+				case STATE_sleeping:
+					if (!(skip_entry__et)) entry_sleeping();
 					/* in leaf state: return state id */
-					return STATE_querying;
+					return STATE_sleeping;
 				case STATE_TOP:
 					state__et = this.history[STATE_TOP];
 					break;
@@ -225,7 +235,7 @@ public class methane_sensor_controller_t extends gas_sensor_controller_t {
 	}
 	
 	public void executeInitTransition() {
-		int chain__et = methane_sensor_controller_t.CHAIN_TRANS_INITIAL_TO__waiting_for_imessage;
+		int chain__et = water_level_detectors_sensor_controller_t.CHAIN_TRANS_INITIAL_TO__waiting_for_imessage;
 		int next__et = executeTransitionChain(chain__et, null, null);
 		next__et = enterHistory(next__et);
 		setState(next__et);
@@ -243,7 +253,7 @@ public class methane_sensor_controller_t extends gas_sensor_controller_t {
 			        switch(trigger__et) {
 			                case TRIG_iport__initialize:
 			                    {
-			                        chain__et = methane_sensor_controller_t.CHAIN_TRANS_imessage_received_FROM_waiting_for_imessage_TO_querying_BY_initializeiport;
+			                        chain__et = water_level_detectors_sensor_controller_t.CHAIN_TRANS_imessage_received_FROM_waiting_for_imessage_TO_sleeping_BY_initializeiport;
 			                        catching_state__et = STATE_TOP;
 			                    }
 			                break;
@@ -252,11 +262,11 @@ public class methane_sensor_controller_t extends gas_sensor_controller_t {
 			                    break;
 			        }
 			        break;
-			    case STATE_querying:
+			    case STATE_sleeping:
 			        switch(trigger__et) {
 			                case TRIG_timer_access_point__timeout:
 			                    {
-			                        chain__et = methane_sensor_controller_t.CHAIN_TRANS_timeout_received_FROM_querying_TO_querying_BY_timeouttimer_access_point_timeout_received;
+			                        chain__et = water_level_detectors_sensor_controller_t.CHAIN_TRANS_timeout_received_FROM_sleeping_TO_sleeping_BY_timeouttimer_access_point_timeout_received;
 			                        catching_state__et = STATE_TOP;
 			                    }
 			                break;

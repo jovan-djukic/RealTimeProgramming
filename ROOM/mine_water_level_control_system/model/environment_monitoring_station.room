@@ -2,69 +2,35 @@ RoomModel environment_monitoring_station {
 	import room.basic.types.* from "../../org.eclipse.etrice.modellib.java/model/Types.room"
 	import room.basic.service.timing.* from "../../org.eclipse.etrice.modellib.java/model/TimingService.room"
 	import devices.* from "devices.room"
-	import logger.logger_t from "logger.room"
+	import periodic_task.* from "periodic_task.room"
 	
-	DataClass environment_station_actor_base_idata_t {
-		Attribute period : int32 = '0'
-	}
-	
-	ProtocolClass environmonet_statition_actor_base_iprotocol_t {
-		incoming {
-			Message initialize ( data : environment_station_actor_base_idata_t )
-		}
-	}
-	
-	abstract ActorClass environment_station_actor_base_t extends logger_t {
-		Interface { 
-			Port iport : environmonet_statition_actor_base_iprotocol_t
-		}	
-		Structure {
-			external Port iport
-
-			SAP timer_access_point : PTimer
-
-			Attribute period : int32 = '0'
-
-		}
+	abstract ActorClass sensor_controller_t extends periodic_task_t {
 		Behavior {
 			Operation query_action ( ) : void '''
 
 			'''
 			StateMachine {
-				State waiting_for_imessage { }
-				State querying { 
-					entry '''
-						this.query_action ( );
-						timer_access_point.startTimeout( this.period );
-					'''
-				}
-				
-				Transition start : initial -> waiting_for_imessage { }
-				
-				Transition imessage_received : waiting_for_imessage -> querying {
-					triggers {
-						< initialize : iport >
-					}	
-					action '''
-						this.period = data.period;
-					'''
-				}
-				
-				Transition timeout_received : querying -> querying {
+
+				Transition timeout_received : sleeping -> sleeping {
 					triggers {
 						< timeout : timer_access_point >
 					}
+					action '''
+						super.info ( this.getName ( ), "Query action begin" );
+						this.query_action ( );
+						super.info ( this.getName ( ), "Query action end" );
+					'''
 				}
 			}
 		}
 	}
 
-	DataClass water_level_detectors_controller_idata_t extends environment_station_actor_base_idata_t {
+	DataClass water_level_detectors_controller_idata_t extends periodic_task_idata_t {
 		Attribute low_water_level_detector : water_level_detector_t	ref
 		Attribute high_water_level_detector : water_level_detector_t ref
 	}
 	
-	ActorClass water_level_detectors_controller_t extends environment_station_actor_base_t {
+	ActorClass water_level_detectors_sensor_controller_t extends sensor_controller_t {
 		Interface {
 			Port pump_switch_port : switch_protocol_t
 		}
@@ -96,14 +62,14 @@ RoomModel environment_monitoring_station {
 	}
 	
 	
-	DataClass gas_sensor_controller_idata_t extends environment_station_actor_base_idata_t {
+	DataClass gas_sensor_controller_idata_t extends periodic_task_idata_t {
 		Attribute detect_above_threshold : boolean
 		Attribute threshold : int32	
 		Attribute gas_sensor : gas_sensor_t ref
 		Attribute error_count_threshold : int32
 	}
 
-	ActorClass gas_sensor_controller_t extends environment_station_actor_base_t {
+	ActorClass gas_sensor_controller_t extends sensor_controller_t {
 		Interface {
 			Port alarm_port : switch_protocol_t			
 		}	

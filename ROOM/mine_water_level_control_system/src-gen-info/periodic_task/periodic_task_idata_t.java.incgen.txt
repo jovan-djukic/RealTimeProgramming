@@ -1,4 +1,4 @@
-package environment_monitoring_station;
+package periodic_task;
 
 import static org.eclipse.etrice.runtime.java.etunit.EtUnit.*;
 import java.io.Serializable;
@@ -6,9 +6,9 @@ import java.io.Serializable;
 
 
 
-public class environment_station_actor_base_idata_t implements Serializable {
+public class periodic_task_idata_t implements Serializable {
 
-	private static final long serialVersionUID = 578271012L;
+	private static final long serialVersionUID = 266151977L;
 
 
 	/*--------------------- attributes ---------------------*/
@@ -25,7 +25,7 @@ public class environment_station_actor_base_idata_t implements Serializable {
 	/*--------------------- operations ---------------------*/
 
 	// default constructor
-	public environment_station_actor_base_idata_t() {
+	public periodic_task_idata_t() {
 		super();
 
 		// initialize attributes
@@ -35,7 +35,7 @@ public class environment_station_actor_base_idata_t implements Serializable {
 	}
 
 	// constructor using fields
-	public environment_station_actor_base_idata_t(int period) {
+	public periodic_task_idata_t(int period) {
 		super();
 
 		this.period = period;
@@ -44,8 +44,8 @@ public class environment_station_actor_base_idata_t implements Serializable {
 	}
 
 	// deep copy
-	public environment_station_actor_base_idata_t deepCopy() {
-		environment_station_actor_base_idata_t copy = new environment_station_actor_base_idata_t();
+	public periodic_task_idata_t deepCopy() {
+		periodic_task_idata_t copy = new periodic_task_idata_t();
 		copy.period = period;
 		return copy;
 	}

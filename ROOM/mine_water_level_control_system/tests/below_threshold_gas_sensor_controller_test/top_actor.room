@@ -3,6 +3,7 @@ RoomModel top_actor {
 	import room.basic.service.timing.* from "../../../org.eclipse.etrice.modellib.java/model/TimingService.room"
 	import devices.* from "../../model/devices.room"
 	import environment_monitoring_station.* from "../../model/environment_monitoring_station.room"
+	import periodic_task.* from "../../model/periodic_task.room"
 
 	ActorClass top_actor_t {
 		Structure {
@@ -23,7 +24,7 @@ RoomModel top_actor {
 			Attribute gas_sensor : gas_sensor_t
 			ActorRef gas_sensor_controller : gas_sensor_controller_t
 			
-			conjugated Port gas_sensor_controller_iport : environmonet_statition_actor_base_iprotocol_t
+			conjugated Port gas_sensor_controller_iport : periodic_task_iprotocol_t
 			conjugated Port alarm_switch_port : switch_protocol_t
 
 			SAP timer_port : PTimer 
@@ -83,7 +84,7 @@ RoomModel top_actor {
 						if ( this.expecting_alarm_turn_on == true ) {
 							System.err.println ( "TURN OFF MESSAGE RECEIVED UNEXPECTEDLY " );
 						} else {
-							System.err.println ( "TURN OFF MESSAGE RECEIVED EXPECTEDLY " );
+							System.out.println ( "TURN OFF MESSAGE RECEIVED EXPECTEDLY " );
 						}
 					'''
 				}
@@ -94,7 +95,7 @@ RoomModel top_actor {
 					}
 					action '''
 						if ( this.expecting_alarm_turn_on == true ) {
-							System.err.println ( "TURN ON MESSAGE RECEIVED EXPECTEDLY " );
+							System.out.println ( "TURN ON MESSAGE RECEIVED EXPECTEDLY " );
 						} else {
 							System.err.println ( "TURN ON MESSAGE RECEIVED UNEXPECTEDLY " );
 						}
@@ -114,6 +115,7 @@ RoomModel top_actor {
 							if ( error_occurred == false ) {
 								value = ( int ) ( Math.random ( ) * 2 * Constants.GAS_SENSOR_CONTROLLER_THRESHOLD );
 							}
+							System.out.println ( value + " / " + Constants.GAS_SENSOR_CONTROLLER_THRESHOLD );
 							
 							this.process ( value, error_occurred );
 

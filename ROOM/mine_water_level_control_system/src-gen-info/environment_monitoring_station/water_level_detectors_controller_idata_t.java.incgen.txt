@@ -4,10 +4,11 @@ import static org.eclipse.etrice.runtime.java.etunit.EtUnit.*;
 import java.io.Serializable;
 
 import devices.*;
+import periodic_task.*;
 
 
 
-public class water_level_detectors_controller_idata_t extends environment_station_actor_base_idata_t implements Serializable {
+public class water_level_detectors_controller_idata_t extends periodic_task_idata_t implements Serializable {
 
 	private static final long serialVersionUID = -180942557L;
 

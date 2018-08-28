@@ -67,13 +67,10 @@ RoomModel top_actor {
 						< timeout : timer_port > 
 					}
 					action '''
-						String pump_state_string = this.pump.state == device_state_t.ON ? "ON" : "OFF";
-						String expected_state_string = this.expected_state == device_state_t.ON ? "ON" : "OFF";
 						if ( this.expected_state == this.pump.state ) {
-							System.err.println ( "Expected pump state " + expected_state_string + "/" + pump_state_string );
+							System.out.println ( "Expected pump state" );
 						} else {
-							System.err.println ( "Unexpected pump state " + expected_state_string + "/" + pump_state_string );
-							System.exit(1);
+							System.err.println ( "Unexpected pump state" );
 						}
 
 						int action = (int) ( Math.random ( ) * Constants.NUMBER_OF_CONTROLLERS );
@@ -88,10 +85,8 @@ RoomModel top_actor {
 							case Constants.WATER_DETECTORS_CONTROLLER_CONTROLLER : {
 								if ( this.turn_on_message_sent[ action ] == true ) {
 									this.water_detectors_pump_switch_port.turn_on ( );
-									System.err.println(0);
 								} else {
 									this.water_detectors_pump_switch_port.turn_off ( );
-									System.err.println(1);
 								}
 
 								break;
@@ -100,10 +95,8 @@ RoomModel top_actor {
 							case Constants.USER : {
 								if ( this.turn_on_message_sent[ action ] == true ) {
 									this.user_switch_port.turn_on ( );
-									System.err.println(2);
 								} else {
 									this.user_switch_port.turn_off ( );
-									System.err.println(3);
 								}
 
 								break;
@@ -112,10 +105,8 @@ RoomModel top_actor {
 							case Constants.METHANE_CONTROLLER : {
 								if ( this.methane_threshold_breached == true ) {
 									this.methane_port.threshold_breached ( );
-									System.err.println(4);
 								} else {
 									this.methane_port.state_normal ( );
-									System.err.println(5);
 								}
 
 								break;

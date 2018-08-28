@@ -22,7 +22,7 @@ import java.io.IOException;
 /*--------------------- end user code ---------------------*/
 
 
-public class methane_sensor_controller_t extends gas_sensor_controller_t {
+public class methane_sensor_sensor_controller_t extends gas_sensor_sensor_controller_t {
 
 
 	//--------------------- ports
@@ -55,9 +55,9 @@ public class methane_sensor_controller_t extends gas_sensor_controller_t {
 
 
 	//--------------------- construction
-	public methane_sensor_controller_t(IRTObject parent, String name) {
+	public methane_sensor_sensor_controller_t(IRTObject parent, String name) {
 		super(parent, name);
-		setClassName("methane_sensor_controller_t");
+		setClassName("methane_sensor_sensor_controller_t");
 
 		// initialize attributes
 
@@ -173,16 +173,16 @@ public class methane_sensor_controller_t extends gas_sensor_controller_t {
 	 */
 	private int executeTransitionChain(int chain__et, InterfaceItemBase ifitem, Object generic_data__et) {
 		switch (chain__et) {
-			case methane_sensor_controller_t.CHAIN_TRANS_timeout_received_FROM_sleeping_TO_sleeping_BY_timeouttimer_access_point_timeout_received:
+			case methane_sensor_sensor_controller_t.CHAIN_TRANS_timeout_received_FROM_sleeping_TO_sleeping_BY_timeouttimer_access_point_timeout_received:
 			{
 				action_TRANS_timeout_received_FROM_sleeping_TO_sleeping_BY_timeouttimer_access_point_timeout_received(ifitem);
 				return STATE_sleeping;
 			}
-			case methane_sensor_controller_t.CHAIN_TRANS_INITIAL_TO__waiting_for_imessage:
+			case methane_sensor_sensor_controller_t.CHAIN_TRANS_INITIAL_TO__waiting_for_imessage:
 			{
 				return STATE_waiting_for_imessage;
 			}
-			case methane_sensor_controller_t.CHAIN_TRANS_imessage_received_FROM_waiting_for_imessage_TO_sleeping_BY_initializeiport:
+			case methane_sensor_sensor_controller_t.CHAIN_TRANS_imessage_received_FROM_waiting_for_imessage_TO_sleeping_BY_initializeiport:
 			{
 				periodic_task_idata_t data = (periodic_task_idata_t) generic_data__et;
 				action_TRANS_imessage_received_FROM_waiting_for_imessage_TO_sleeping_BY_initializeiport(ifitem, data);
@@ -228,7 +228,7 @@ public class methane_sensor_controller_t extends gas_sensor_controller_t {
 	}
 	
 	public void executeInitTransition() {
-		int chain__et = methane_sensor_controller_t.CHAIN_TRANS_INITIAL_TO__waiting_for_imessage;
+		int chain__et = methane_sensor_sensor_controller_t.CHAIN_TRANS_INITIAL_TO__waiting_for_imessage;
 		int next__et = executeTransitionChain(chain__et, null, null);
 		next__et = enterHistory(next__et);
 		setState(next__et);
@@ -246,7 +246,7 @@ public class methane_sensor_controller_t extends gas_sensor_controller_t {
 			        switch(trigger__et) {
 			                case TRIG_iport__initialize:
 			                    {
-			                        chain__et = methane_sensor_controller_t.CHAIN_TRANS_imessage_received_FROM_waiting_for_imessage_TO_sleeping_BY_initializeiport;
+			                        chain__et = methane_sensor_sensor_controller_t.CHAIN_TRANS_imessage_received_FROM_waiting_for_imessage_TO_sleeping_BY_initializeiport;
 			                        catching_state__et = STATE_TOP;
 			                    }
 			                break;
@@ -259,7 +259,7 @@ public class methane_sensor_controller_t extends gas_sensor_controller_t {
 			        switch(trigger__et) {
 			                case TRIG_timer_access_point__timeout:
 			                    {
-			                        chain__et = methane_sensor_controller_t.CHAIN_TRANS_timeout_received_FROM_sleeping_TO_sleeping_BY_timeouttimer_access_point_timeout_received;
+			                        chain__et = methane_sensor_sensor_controller_t.CHAIN_TRANS_timeout_received_FROM_sleeping_TO_sleeping_BY_timeouttimer_access_point_timeout_received;
 			                        catching_state__et = STATE_TOP;
 			                    }
 			                break;

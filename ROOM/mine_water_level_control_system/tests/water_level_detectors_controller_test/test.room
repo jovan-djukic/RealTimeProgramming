@@ -3,6 +3,7 @@ RoomModel test {
 	import room.basic.service.timing.* from "../../../org.eclipse.etrice.modellib.java/model/TimingService.room"
 	import devices.* from "../../model/devices.room"
 	import environment_monitoring_station.* from "../../model/environment_monitoring_station.room"
+	import periodic_task.* from "../../model/periodic_task.room"
 
 	LogicalSystem log_sys {
 		SubSystemRef sub_system_ref: sub_sys_class 
@@ -31,9 +32,9 @@ RoomModel test {
 			
 			Attribute low_water_level_detector : water_level_detector_t
 			Attribute high_water_level_detector : water_level_detector_t
-			ActorRef water_level_detectors_controller : water_level_detectors_controller_t
+			ActorRef water_level_detectors_controller : water_level_detectors_sensor_controller_t 
 			
-			conjugated Port water_level_detectors_controller_iport : environmonet_statition_actor_base_iprotocol_t
+			conjugated Port water_level_detectors_controller_iport : periodic_task_iprotocol_t
 			conjugated Port pump_switch_port : switch_protocol_t
 
 			SAP timer_port : PTimer 
@@ -84,7 +85,7 @@ RoomModel test {
 					}
 					action '''
 						if ( this.pump_turn_off_expected == true ) {
-							System.err.println ( "TURN OFF MESSAGE RECEIVED EXPECTEDLY " );
+							System.out.println ( "TURN OFF MESSAGE RECEIVED EXPECTEDLY " );
 						} else {
 							System.err.println ( "TURN OFF MESSAGE RECEIVED UNEXPECTEDLY " );
 						}
@@ -97,7 +98,7 @@ RoomModel test {
 					}
 					action '''
 						if ( this.pump_turn_on_expected == true ) {
-							System.err.println ( "TURN ON MESSAGE RECEIVED EXPECTEDLY " );
+							System.out.println ( "TURN ON MESSAGE RECEIVED EXPECTEDLY " );
 						} else {
 							System.err.println ( "TURN OF MESSAGE RECEIVED UNEXPECTEDLY " );
 						}

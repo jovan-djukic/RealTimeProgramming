@@ -1,4 +1,4 @@
-package environment_monitoring_station;
+package alarm_station;
 
 import org.eclipse.etrice.runtime.java.messaging.Message;
 import org.eclipse.etrice.runtime.java.modelbase.EventMessage;
@@ -11,8 +11,9 @@ import org.eclipse.etrice.runtime.java.debugging.DebuggingService;
 import static org.eclipse.etrice.runtime.java.etunit.EtUnit.*;
 
 
+import devices.*;
 
-public class environmonet_statition_actor_base_iprotocol_t {
+public class alarm_controller_iprotocol_t {
 	// message IDs
 	public static final int MSG_MIN = 0;
 	public static final int IN_initialize = 1;
@@ -33,12 +34,12 @@ public class environmonet_statition_actor_base_iprotocol_t {
 
 	
 	// port class
-	static public class environmonet_statition_actor_base_iprotocol_tPort extends PortBase {
+	static public class alarm_controller_iprotocol_tPort extends PortBase {
 		// constructors
-		public environmonet_statition_actor_base_iprotocol_tPort(IInterfaceItemOwner actor, String name, int localId) {
+		public alarm_controller_iprotocol_tPort(IInterfaceItemOwner actor, String name, int localId) {
 			this(actor, name, localId, 0);
 		}
-		public environmonet_statition_actor_base_iprotocol_tPort(IInterfaceItemOwner actor, String name, int localId, int idx) {
+		public alarm_controller_iprotocol_tPort(IInterfaceItemOwner actor, String name, int localId, int idx) {
 			super(actor, name, localId, idx);
 			DebuggingService.getInstance().addPortInstance(this);
 		}
@@ -67,9 +68,9 @@ public class environmonet_statition_actor_base_iprotocol_t {
 	}
 	
 	// replicated port class
-	static public class environmonet_statition_actor_base_iprotocol_tReplPort extends ReplicatedPortBase {
+	static public class alarm_controller_iprotocol_tReplPort extends ReplicatedPortBase {
 	
-		public environmonet_statition_actor_base_iprotocol_tReplPort(IInterfaceItemOwner actor, String name, int localId) {
+		public alarm_controller_iprotocol_tReplPort(IInterfaceItemOwner actor, String name, int localId) {
 			super(actor, name, localId);
 		}
 	
@@ -81,12 +82,12 @@ public class environmonet_statition_actor_base_iprotocol_t {
 				return ifitem.getIdx();
 		}
 	
-		public environmonet_statition_actor_base_iprotocol_tPort get(int idx) {
-			return (environmonet_statition_actor_base_iprotocol_tPort) getInterfaceItem(idx);
+		public alarm_controller_iprotocol_tPort get(int idx) {
+			return (alarm_controller_iprotocol_tPort) getInterfaceItem(idx);
 		}
 	
 		protected InterfaceItemBase createInterfaceItem(IInterfaceItemOwner rcv, String name, int lid, int idx) {
-			return new environmonet_statition_actor_base_iprotocol_tPort(rcv, name, lid, idx);
+			return new alarm_controller_iprotocol_tPort(rcv, name, lid, idx);
 		}
 	
 		// outgoing messages
@@ -94,12 +95,12 @@ public class environmonet_statition_actor_base_iprotocol_t {
 	
 	
 	// port class
-	static public class environmonet_statition_actor_base_iprotocol_tConjPort extends PortBase {
+	static public class alarm_controller_iprotocol_tConjPort extends PortBase {
 		// constructors
-		public environmonet_statition_actor_base_iprotocol_tConjPort(IInterfaceItemOwner actor, String name, int localId) {
+		public alarm_controller_iprotocol_tConjPort(IInterfaceItemOwner actor, String name, int localId) {
 			this(actor, name, localId, 0);
 		}
-		public environmonet_statition_actor_base_iprotocol_tConjPort(IInterfaceItemOwner actor, String name, int localId, int idx) {
+		public alarm_controller_iprotocol_tConjPort(IInterfaceItemOwner actor, String name, int localId, int idx) {
 			super(actor, name, localId, idx);
 			DebuggingService.getInstance().addPortInstance(this);
 		}
@@ -125,20 +126,20 @@ public class environmonet_statition_actor_base_iprotocol_t {
 	
 	
 		// sent messages
-		public void initialize(environment_station_actor_base_idata_t data) {
+		public void initialize(alarm_controller_idata_t data) {
 			DebuggingService.getInstance().addMessageAsyncOut(getAddress(), getPeerAddress(), messageStrings[IN_initialize]);
 			if (getPeerAddress()!=null)
 				getPeerMsgReceiver().receive(new EventWithDataMessage(getPeerAddress(), IN_initialize, data.deepCopy()));
 		}
-		public void initialize(int period) {
-			initialize(new environment_station_actor_base_idata_t(period));
+		public void initialize(device_t alarm) {
+			initialize(new alarm_controller_idata_t(alarm));
 		}
 	}
 	
 	// replicated port class
-	static public class environmonet_statition_actor_base_iprotocol_tConjReplPort extends ReplicatedPortBase {
+	static public class alarm_controller_iprotocol_tConjReplPort extends ReplicatedPortBase {
 	
-		public environmonet_statition_actor_base_iprotocol_tConjReplPort(IInterfaceItemOwner actor, String name, int localId) {
+		public alarm_controller_iprotocol_tConjReplPort(IInterfaceItemOwner actor, String name, int localId) {
 			super(actor, name, localId);
 		}
 	
@@ -150,18 +151,18 @@ public class environmonet_statition_actor_base_iprotocol_t {
 				return ifitem.getIdx();
 		}
 	
-		public environmonet_statition_actor_base_iprotocol_tConjPort get(int idx) {
-			return (environmonet_statition_actor_base_iprotocol_tConjPort) getInterfaceItem(idx);
+		public alarm_controller_iprotocol_tConjPort get(int idx) {
+			return (alarm_controller_iprotocol_tConjPort) getInterfaceItem(idx);
 		}
 	
 		protected InterfaceItemBase createInterfaceItem(IInterfaceItemOwner rcv, String name, int lid, int idx) {
-			return new environmonet_statition_actor_base_iprotocol_tConjPort(rcv, name, lid, idx);
+			return new alarm_controller_iprotocol_tConjPort(rcv, name, lid, idx);
 		}
 	
 		// incoming messages
-		public void initialize(environment_station_actor_base_idata_t data){
+		public void initialize(alarm_controller_idata_t data){
 			for (InterfaceItemBase item : getItems()) {
-				((environmonet_statition_actor_base_iprotocol_tConjPort)item).initialize( data);
+				((alarm_controller_iprotocol_tConjPort)item).initialize( data);
 			}
 		}
 	}
