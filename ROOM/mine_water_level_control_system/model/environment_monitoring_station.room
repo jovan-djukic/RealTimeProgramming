@@ -37,17 +37,25 @@ RoomModel environment_monitoring_station {
 		Structure {
 			external Port pump_port
 			
+			Attribute pump_turned_on : boolean
+			
 			Attribute low_water_level_sensor : water_level_sensor_t ref
 			Attribute high_water_level_sensor : water_level_sensor_t ref
 		}
 		Behavior {
 			override Operation query_action ( ) : void '''
 				if ( this.low_water_level_sensor.value != 0 )	{
-					this.pump_port.turn_off ( );
-					super.info ( this.getName ( ), "Water under low threshold, turning off pump" );
+					if ( this.pump_turned_on == true ) {
+						this.pump_port.turn_off ( );
+						this.pump_turned_on = false;
+						super.info ( this.getName ( ), "Water under low threshold, turning off pump" );
+					}
 				} else if ( this.high_water_level_sensor.value != 0 ) {
-					this.pump_port.turn_on ( );
-					super.info ( this.getName ( ), "Water over high threshold, turning on pump" );
+					if ( this.pump_turned_on == false ) {
+						this.pump_port.turn_on ( );
+						this.pump_turned_on = true;
+						super.info ( this.getName ( ), "Water over high threshold, turning on pump" );
+					}
 				}
 			'''
 			StateMachine {
@@ -55,6 +63,7 @@ RoomModel environment_monitoring_station {
 					action '''
 						this.low_water_level_sensor = ( ( water_level_sensors_controller_idata_t ) data ).low_water_level_sensor;
 						this.high_water_level_sensor = ( ( water_level_sensors_controller_idata_t ) data ).high_water_level_sensor;
+						this.pump_turned_on = false;
 					'''
 				}
 			}
@@ -81,14 +90,18 @@ RoomModel environment_monitoring_station {
 			Attribute gas_sensor : gas_sensor_t ref
 			Attribute error_count_threshold : int32
 			Attribute error_count : int32
+			Attribute alarm_turned_on : boolean
 		}
 		Behavior {
 			override Operation query_action ( ) : void '''
 				if ( this.gas_sensor.error_occurred == true ) {
 					this.error_count++;
 					if ( this.error_count > this.error_count_threshold ) {
-						this.alarm_port.turn_on ( );
-						super.info ( super.getName ( ), "Error received, count threshold breached, turning on alarm" );
+						if ( this.alarm_turned_on == false ) {
+							this.alarm_port.turn_on ( );
+							super.info ( super.getName ( ), "Error received, count threshold breached, turning on alarm" );
+							this.alarm_turned_on = true;	
+						}
 					} else {
 						super.info ( super.getName ( ), "Error received, count normal" );
 					}
@@ -96,14 +109,23 @@ RoomModel environment_monitoring_station {
 					this.error_count = 0;
 
 					if ( this.detect_above_threshold == true && this.gas_sensor.value > this.threshold ) {
-						this.alarm_port.turn_on ( );
-						super.info ( super.getName ( ), "Threshold breached, turning on alarm" );
+						if ( this.alarm_turned_on == false ) {
+							this.alarm_port.turn_on ( );
+							super.info ( super.getName ( ), "Error received, count threshold breached, turning on alarm" );
+							this.alarm_turned_on = true;	
+						}
 					} else if ( this.detect_above_threshold == false && this.gas_sensor.value < this.threshold ) {
-						this.alarm_port.turn_on ( );
-						super.info ( super.getName ( ), "Threshold breached, turning on alarm" );
+						if ( this.alarm_turned_on == false ) {
+							this.alarm_port.turn_on ( );
+							super.info ( super.getName ( ), "Error received, count threshold breached, turning on alarm" );
+							this.alarm_turned_on = true;	
+						}
 					} else {
-						this.alarm_port.turn_off ( );
-						super.info ( super.getName ( ), "Threshold stabilizied, turning off alarm" );
+						if ( this.alarm_turned_on == true ) {
+							this.alarm_port.turn_off ( );
+							super.info ( super.getName ( ), "Threshold stabilizied, turning off alarm" );
+							this.alarm_turned_on = false;	
+						}
 					}
 				}
 			'''
@@ -115,6 +137,7 @@ RoomModel environment_monitoring_station {
 						this.gas_sensor = ( ( gas_sensor_controller_idata_t ) data ).gas_sensor;
 						this.error_count_threshold = ( ( gas_sensor_controller_idata_t ) data ).error_count_threshold;
 						this.error_count = 0;
+						this.alarm_turned_on = false;
 					'''
 				}
 			}
@@ -127,17 +150,25 @@ RoomModel environment_monitoring_station {
 		}
 		Structure {
 			external Port methane_port 
+			
+			Attribute threshold_breached : boolean
 		}
 		Behavior {
 			override Operation query_action ( ) : void '''
 				super.query_action ( );
 				if ( super.gas_sensor.error_occurred == false ) {
 					if ( super.gas_sensor.value > super.threshold ) {
-						this.methane_port.threshold_breached ( );
-						super.info ( super.getName ( ), "Threshold breached, sending message to pump controller" );
+						if ( this.threshold_breached == false ) {
+							this.methane_port.threshold_breached ( );
+							super.info ( super.getName ( ), "Threshold breached, sending message to pump controller" );
+							this.threshold_breached = true;
+						}
 					} else {
-						this.methane_port.state_normal ( );
-						super.info ( super.getName ( ), "State normal, sending message to pump controller" );
+						if ( this.threshold_breached == true ) {
+							this.methane_port.state_normal ( );
+							super.info ( super.getName ( ), "State normal, sending message to pump controller" );
+							this.threshold_breached = false;
+						}
 					}
 				}
 			'''
@@ -145,6 +176,8 @@ RoomModel environment_monitoring_station {
 				RefinedTransition imessage_received {
 					action '''
 						super.detect_above_threshold = true;
+
+						this.threshold_breached = false;
 					'''
 				}
 			}

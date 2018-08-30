@@ -44,14 +44,18 @@ public class gas_sensor_controller_t extends sensor_controller_t {
 	public  gas_sensor_t gas_sensor;
 	public  int error_count_threshold;
 	public  int error_count;
+	public  boolean alarm_turned_on;
 
 	/*--------------------- operations ---------------------*/
 	public  void query_action() {
 		if ( this.gas_sensor.error_occurred == true ) {
 			this.error_count++;
 			if ( this.error_count > this.error_count_threshold ) {
-				this.alarm_port.turn_on ( );
-				super.info ( super.getName ( ), "Error received, count threshold breached, turning on alarm" );
+				if ( this.alarm_turned_on == false ) {
+					this.alarm_port.turn_on ( );
+					super.info ( super.getName ( ), "Error received, count threshold breached, turning on alarm" );
+					this.alarm_turned_on = true;	
+				}
 			} else {
 				super.info ( super.getName ( ), "Error received, count normal" );
 			}
@@ -59,14 +63,23 @@ public class gas_sensor_controller_t extends sensor_controller_t {
 			this.error_count = 0;
 		
 			if ( this.detect_above_threshold == true && this.gas_sensor.value > this.threshold ) {
-				this.alarm_port.turn_on ( );
-				super.info ( super.getName ( ), "Threshold breached, turning on alarm" );
+				if ( this.alarm_turned_on == false ) {
+					this.alarm_port.turn_on ( );
+					super.info ( super.getName ( ), "Error received, count threshold breached, turning on alarm" );
+					this.alarm_turned_on = true;	
+				}
 			} else if ( this.detect_above_threshold == false && this.gas_sensor.value < this.threshold ) {
-				this.alarm_port.turn_on ( );
-				super.info ( super.getName ( ), "Threshold breached, turning on alarm" );
+				if ( this.alarm_turned_on == false ) {
+					this.alarm_port.turn_on ( );
+					super.info ( super.getName ( ), "Error received, count threshold breached, turning on alarm" );
+					this.alarm_turned_on = true;	
+				}
 			} else {
-				this.alarm_port.turn_off ( );
-				super.info ( super.getName ( ), "Threshold stabilizied, turning off alarm" );
+				if ( this.alarm_turned_on == true ) {
+					this.alarm_port.turn_off ( );
+					super.info ( super.getName ( ), "Threshold stabilizied, turning off alarm" );
+					this.alarm_turned_on = false;	
+				}
 			}
 		}
 	}
@@ -83,6 +96,7 @@ public class gas_sensor_controller_t extends sensor_controller_t {
 		this.setGas_sensor(null);
 		this.setError_count_threshold(0);
 		this.setError_count(0);
+		this.setAlarm_turned_on(false);
 
 		// own ports
 		alarm_port = new switch_protocol_tPort(this, "alarm_port", IFITEM_alarm_port);
@@ -130,6 +144,12 @@ public class gas_sensor_controller_t extends sensor_controller_t {
 	}
 	public int getError_count() {
 		return this.error_count;
+	}
+	public void setAlarm_turned_on(boolean alarm_turned_on) {
+		 this.alarm_turned_on = alarm_turned_on;
+	}
+	public boolean getAlarm_turned_on() {
+		return this.alarm_turned_on;
 	}
 
 
@@ -188,6 +208,7 @@ public class gas_sensor_controller_t extends sensor_controller_t {
 	    this.gas_sensor = ( ( gas_sensor_controller_idata_t ) data ).gas_sensor;
 	    this.error_count_threshold = ( ( gas_sensor_controller_idata_t ) data ).error_count_threshold;
 	    this.error_count = 0;
+	    this.alarm_turned_on = false;
 	}
 	
 	/* State Switch Methods */

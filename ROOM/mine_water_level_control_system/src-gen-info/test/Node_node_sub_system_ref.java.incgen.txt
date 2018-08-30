@@ -21,6 +21,7 @@ import logger.*;
 import periodic_task.*;
 import room.basic.service.timing.*;
 import test.*;
+import top_actor.*;
 
 
 public class Node_node_sub_system_ref extends SubSystemClassBase {
@@ -58,7 +59,7 @@ public class Node_node_sub_system_ref extends SubSystemClassBase {
 		// create service brokers in optional actor interfaces
 
 		// wiring
-		InterfaceItemBase.connect(this, "timing_service/timer", "top_actor/water_level_sensors_controller/timer_access_point");
+		InterfaceItemBase.connect(this, "timing_service/timer", "top_actor/gas_sensor_controller/timer_access_point");
 
 		// apply instance attribute configurations
 	}

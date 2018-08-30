@@ -1,0 +1,229 @@
+RoomModel top_actor {
+	import room.basic.service.timing.* from "../../../org.eclipse.etrice.modellib.java/model/TimingService.room"
+	import base_actor.* from "../base_actor.room"
+
+	ActorClass top_actor_t extends base_actor_t {
+		Behavior {
+			StateMachine {
+				State step1 { }
+				State step2 { }
+				State step3 { }
+				State step4 { }
+				State step5 { }
+				State step6 { }
+				State step7 { }
+				State step8 { }
+				State step9 { }
+
+				RefinedTransition start { 
+					action '''
+						System.out.println ( "Setting o sensor above threshold" );
+						super.o_sensor.value = super.get_above_threshold_value (
+							CONSTANTS.O_SENSOR_CONTROLLER.DETECT_ABOVE_THRESHOLD,
+							CONSTANTS.O_SENSOR_CONTROLLER.THRESHOLD
+						);
+						
+						super.timer_access_point.startTimeout (
+							CONSTANTS.SCENARION.CHECK_PERIOD
+						);
+					'''
+				}
+
+				Transition stall0 : step0 -> step0 {
+					triggers {
+						< timeout : timer_access_point guard '''
+							super.alarm.state != device_state_t.ON
+						'''>
+					}
+					action '''
+						super.timer_access_point.startTimeout (
+							CONSTANTS.SCENARION.CHECK_PERIOD
+						);
+					'''
+				}	
+					
+				Transition transition0 : step0 -> step1 {
+					triggers {
+						< timeout : timer_access_point guard '''
+							this.alarm.state == device_state_t.ON
+						'''>
+					}
+					action '''
+						System.out.println ( "Alarm activated" );
+						System.out.println ( "Setting o sensor below threshold" );
+						super.o_sensor.value = super.get_below_threshold_value (
+							CONSTANTS.O_SENSOR_CONTROLLER.DETECT_ABOVE_THRESHOLD,
+							CONSTANTS.O_SENSOR_CONTROLLER.THRESHOLD
+						);
+						
+						super.timer_access_point.startTimeout (
+							CONSTANTS.SCENARION.CHECK_PERIOD
+						);
+					'''
+				}
+
+				Transition stall1 : step1 -> step1 {
+					triggers {
+						< timeout : timer_access_point guard '''
+							super.alarm.state != device_state_t.OFF
+						'''>
+					}
+					action '''
+						super.timer_access_point.startTimeout (
+							CONSTANTS.SCENARION.CHECK_PERIOD
+						);
+					'''
+				}	
+					
+				Transition transition1 : step1 -> step2 {
+					triggers {
+						< timeout : timer_access_point guard '''
+							this.alarm.state == device_state_t.OFF
+						'''>
+					}
+					action '''
+						System.out.println ( "Alarm deactivated" );
+
+						System.out.println ( "Setting co sensor above threshold" );
+						super.co_sensor.value = super.get_above_threshold_value (
+							CONSTANTS.CO_SENSOR_CONTROLLER.DETECT_ABOVE_THRESHOLD,
+							CONSTANTS.CO_SENSOR_CONTROLLER.THRESHOLD
+						);
+						
+						super.timer_access_point.startTimeout (
+							CONSTANTS.SCENARION.CHECK_PERIOD
+						);
+					'''
+				}
+
+				Transition stall2 : step2 -> step2 {
+					triggers {
+						< timeout : timer_access_point guard '''
+							super.alarm.state != device_state_t.ON
+						'''>
+					}
+					action '''
+						super.timer_access_point.startTimeout (
+							CONSTANTS.SCENARION.CHECK_PERIOD
+						);
+					'''
+				}	
+					
+				Transition transition2 : step2 -> step3 {
+					triggers {
+						< timeout : timer_access_point guard '''
+							this.alarm.state == device_state_t.ON
+						'''>
+					}
+					action '''
+						System.out.println ( "Alarm activated" );
+
+						System.out.println ( "Setting co sensor below threshold" );
+						super.co_sensor.value = super.get_below_threshold_value (
+							CONSTANTS.CO_SENSOR_CONTROLLER.DETECT_ABOVE_THRESHOLD,
+							CONSTANTS.CO_SENSOR_CONTROLLER.THRESHOLD
+						);
+						
+						super.timer_access_point.startTimeout (
+							CONSTANTS.SCENARION.CHECK_PERIOD
+						);
+					'''
+				}
+
+				Transition stall3 : step3 -> step3 {
+					triggers {
+						< timeout : timer_access_point guard '''
+							super.alarm.state != device_state_t.OFF
+						'''>
+					}
+					action '''
+						super.timer_access_point.startTimeout (
+							CONSTANTS.SCENARION.CHECK_PERIOD
+						);
+					'''
+				}	
+					
+				Transition transition3 : step3 -> step4 {
+					triggers {
+						< timeout : timer_access_point guard '''
+							this.alarm.state == device_state_t.OFF
+						'''>
+					}
+					action '''
+						System.out.println ( "Alarm deactivated" );
+
+						System.out.println ( "Setting ch4 sensor above threshold" );
+						super.ch4_sensor.value = super.get_above_threshold_value (
+							CONSTANTS.CH4_SENSOR_CONTROLLER.DETECT_ABOVE_THRESHOLD,
+							CONSTANTS.CH4_SENSOR_CONTROLLER.THRESHOLD
+						);
+						
+						super.timer_access_point.startTimeout (
+							CONSTANTS.SCENARION.CHECK_PERIOD
+						);
+					'''
+				}
+
+				Transition stall4 : step4 -> step4 {
+					triggers {
+						< timeout : timer_access_point guard '''
+							super.alarm.state != device_state_t.ON
+						'''>
+					}
+					action '''
+						super.timer_access_point.startTimeout (
+							CONSTANTS.SCENARION.CHECK_PERIOD
+						);
+					'''
+				}	
+					
+				Transition transition4 : step4 -> step5 {
+					triggers {
+						< timeout : timer_access_point guard '''
+							this.alarm.state == device_state_t.ON
+						'''>
+					}
+					action '''
+						System.out.println ( "Alarm activated" );
+
+						System.out.println ( "Setting ch4 sensor below threshold" );
+						super.ch4_sensor.value = super.get_below_threshold_value (
+							CONSTANTS.CH4_SENSOR_CONTROLLER.DETECT_ABOVE_THRESHOLD,
+							CONSTANTS.CH4_SENSOR_CONTROLLER.THRESHOLD
+						);
+						
+						super.timer_access_point.startTimeout (
+							CONSTANTS.SCENARION.CHECK_PERIOD
+						);
+					'''
+				}
+
+				Transition stall5 : step5 -> step5 {
+					triggers {
+						< timeout : timer_access_point guard '''
+							super.alarm.state != device_state_t.OFF
+						'''>
+					}
+					action '''
+						super.timer_access_point.startTimeout (
+							CONSTANTS.SCENARION.CHECK_PERIOD
+						);
+					'''
+				}	
+					
+				Transition transition5 : step5 -> step6 {
+					triggers {
+						< timeout : timer_access_point guard '''
+							this.alarm.state == device_state_t.OFF
+						'''>
+					}
+					action '''
+						System.out.println ( "Alarm deactivated" );
+
+						super.stop_scenarion ( );
+					'''
+				}
+			}
+		}
+	}
+}

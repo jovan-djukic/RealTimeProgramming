@@ -44,6 +44,7 @@ public class alarm_controller_t extends logger_t {
 	/*--------------------- attributes ---------------------*/
 	public  device_t alarm;
 	public  int alarm_level;
+	public  int number_of_alarm_activators;
 
 	/*--------------------- operations ---------------------*/
 
@@ -56,6 +57,7 @@ public class alarm_controller_t extends logger_t {
 		// initialize attributes
 		this.setAlarm(null);
 		this.setAlarm_level(0);
+		this.setNumber_of_alarm_activators(0);
 
 		// own ports
 		iport = new alarm_controller_iprotocol_tPort(this, "iport", IFITEM_iport);
@@ -75,6 +77,7 @@ public class alarm_controller_t extends logger_t {
 
 		/* user defined constructor body */
 		this.alarm_level = 0;
+		this.number_of_alarm_activators = 4;
 
 	}
 
@@ -90,6 +93,12 @@ public class alarm_controller_t extends logger_t {
 	}
 	public int getAlarm_level() {
 		return this.alarm_level;
+	}
+	public void setNumber_of_alarm_activators(int number_of_alarm_activators) {
+		 this.number_of_alarm_activators = number_of_alarm_activators;
+	}
+	public int getNumber_of_alarm_activators() {
+		return this.number_of_alarm_activators;
 	}
 
 
@@ -167,7 +176,9 @@ public class alarm_controller_t extends logger_t {
 	    this.alarm = data.alarm;
 	}
 	protected void action_TRANS_turn_on_message_received_FROM_waiting_for_alarm_message_TO_waiting_for_alarm_message_BY_turn_onch4_sensor_controller_portturn_onco_sensor_controller_portturn_ono_sensor_controller_portturn_onwater_flow_sensor_controller_port_turn_on_message_received(InterfaceItemBase ifitem) {
-	    this.alarm_level++;
+	    if ( this.alarm_level < this.number_of_alarm_activators ) {
+	    	this.alarm_level++;
+	    }
 	    
 	    if ( this.alarm_level == 1 ) {
 	    	this.alarm.state = device_state_t.ON;	
@@ -175,7 +186,9 @@ public class alarm_controller_t extends logger_t {
 	    }
 	}
 	protected void action_TRANS_turn_off_message_received_FROM_waiting_for_alarm_message_TO_waiting_for_alarm_message_BY_turn_offch4_sensor_controller_portturn_offco_sensor_controller_portturn_offo_sensor_controller_portturn_offwater_flow_sensor_controller_port_turn_off_message_received(InterfaceItemBase ifitem) {
-	    this.alarm_level--;
+	    if ( this.alarm_level > 0 ) {
+	    	this.alarm_level--;
+	    }
 	    
 	    if ( this.alarm_level == 0 ) {
 	    	this.alarm.state = device_state_t.OFF;	

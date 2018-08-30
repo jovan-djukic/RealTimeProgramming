@@ -1,0 +1,196 @@
+RoomModel base_actor {
+	import room.basic.types.* from "../../org.eclipse.etrice.modellib.java/model/Types.room"
+	import room.basic.service.timing.* from "../../org.eclipse.etrice.modellib.java/model/TimingService.room"
+	import mine_water_level_control_system.* from "../model/mine_water_level_control_system.room"
+	import devices.* from "../model/devices.room"
+	import environment_monitoring_station.* from "../model/environment_monitoring_station.room" 
+	import alarm_station.* from "../model/alarm_station.room" 
+	import pump_station.* from "../model/pump_station.room" 
+	import logger.* from "../model/logger.room" 
+	import periodic_task.* from "../model/periodic_task.room" 
+
+	ActorClass base_actor_t {
+		Structure {
+			usercode1 '''
+				class CONSTANTS {
+					public class O_SENSOR_CONTROLLER {
+						public static final int PERIOD = 150;
+						public static final boolean DETECT_ABOVE_THRESHOLD = false;
+						public static final int THRESHOLD = 10;
+						public static final int ERROR_COUNT_THRESHOLD = 2;
+					}
+
+					public class O_SENSOR {
+						public static final int IVALUE = 50;
+						public static final boolean IERROR_OCCURRED = false;
+					}
+
+					public class CO_SENSOR_CONTROLLER {
+						public static final int PERIOD = 150;
+						public static final boolean DETECT_ABOVE_THRESHOLD = true;
+						public static final int THRESHOLD = 100;
+						public static final int ERROR_COUNT_THRESHOLD = 2;
+					}
+
+					public class CO_SENSOR {
+						public static final int IVALUE = 50;
+						public static final boolean IERROR_OCCURRED = false;
+					}
+
+					public class CH4_SENSOR_CONTROLLER {
+						public static final int PERIOD = 150;
+						public static final boolean DETECT_ABOVE_THRESHOLD = true;
+						public static final int THRESHOLD = 100;
+						public static final int ERROR_COUNT_THRESHOLD = 2;
+					}
+					
+					public class CH4_SENSOR {
+						public static final int IVALUE = 50;
+						public static final boolean IERROR_OCCURRED = false;
+					}
+
+					public class WATER_LEVEL_SENSORS_CONTROLLER {
+						public static final int PERIOD = 5000;
+					}
+					
+					public class LOW_WATER_LEVEL_SENSOR {
+						public static final int IVALUE = 0;
+					}
+
+					public class HIGH_WATER_LEVEL_SENSOR {
+						public static final int IVALUE = 0;
+					}
+
+					public class WATER_FLOW_SENSOR_CONTROLLER {
+						public static final int PERIOD = 150;
+						public static final int NUMBER_OF_ACTIVATIONS = 6;
+					}
+
+					public class WATER_FLOW_SENSOR {
+						public static final int IVALUE = 0;
+					}
+
+					public class ALARM {
+						public static final int ISTATE  = device_state_t.OFF;
+					}
+
+					public class PUMP {
+						public static final int ISTATE  = device_state_t.OFF;
+					}
+					
+					public class SCENARION {
+						public static final int CHECK_PERIOD = 300;
+					}
+				}
+			'''		
+			SAP timer_access_point : PTimer
+			
+			Attribute o_sensor : gas_sensor_t
+			Attribute co_sensor : gas_sensor_t
+			Attribute ch4_sensor : gas_sensor_t
+			
+			Attribute low_water_level_sensor : water_level_sensor_t
+			Attribute high_water_level_sensor : water_level_sensor_t
+			
+			Attribute water_flow_sensor : water_flow_sensor_t
+			
+			Attribute alarm : device_t
+			Attribute pump : device_t
+			
+			conjugated Port mine_water_level_control_system_iport : mine_water_level_control_system_iprotocol_t
+			ActorRef mine_water_level_control_system : mine_water_level_control_system_t
+			
+			Binding mine_water_level_control_system.iport and mine_water_level_control_system_iport
+		}
+		Behavior {
+			Operation get_above_threshold_value ( detect_above_threshold : boolean, threshold : int32 ) : int32 '''
+				if ( detect_above_threshold == true ) {
+					return threshold + 1;
+				} else {
+					return threshold - 1;
+				}
+			'''
+			Operation get_below_threshold_value ( detect_above_threshold : boolean, threshold : int32 ) : int32 '''
+				if ( detect_above_threshold == true ) {
+					return threshold - 1;
+				} else {
+					return threshold + 1;
+				}
+			'''
+			
+			Operation stop_scenarion ( ) : void '''
+				System.out.println ( "Scenarion is a success " );
+				System.exit ( 1 );
+			'''
+		
+			StateMachine {
+				State step0 { }
+				
+				Transition start : initial -> step0 {
+					action '''
+						// initialize sensors 
+						this.o_sensor.value = CONSTANTS.O_SENSOR.IVALUE;
+						this.o_sensor.error_occurred = CONSTANTS.O_SENSOR.IERROR_OCCURRED;
+
+						this.co_sensor.value = CONSTANTS.CO_SENSOR.IVALUE;
+						this.co_sensor.error_occurred = CONSTANTS.CO_SENSOR.IERROR_OCCURRED;
+
+						this.ch4_sensor.value = CONSTANTS.CH4_SENSOR.IVALUE;
+						this.ch4_sensor.error_occurred = CONSTANTS.CH4_SENSOR.IERROR_OCCURRED;
+						
+						this.low_water_level_sensor.value = CONSTANTS.LOW_WATER_LEVEL_SENSOR.IVALUE;
+						this.high_water_level_sensor.value = CONSTANTS.HIGH_WATER_LEVEL_SENSOR.IVALUE;
+
+						this.water_flow_sensor.value = CONSTANTS.WATER_FLOW_SENSOR.IVALUE;
+						
+						this.alarm.state = CONSTANTS.ALARM.ISTATE;
+
+						this.pump.state = CONSTANTS.PUMP.ISTATE;
+
+						// initialize system
+						this.mine_water_level_control_system_iport.initialize ( 
+							new gas_sensor_controller_idata_t ( 
+								CONSTANTS.CO_SENSOR_CONTROLLER.PERIOD,
+								CONSTANTS.CO_SENSOR_CONTROLLER.DETECT_ABOVE_THRESHOLD,
+								CONSTANTS.CO_SENSOR_CONTROLLER.THRESHOLD,
+								this.co_sensor,
+								CONSTANTS.CO_SENSOR_CONTROLLER.ERROR_COUNT_THRESHOLD
+							),
+							new gas_sensor_controller_idata_t ( 
+								CONSTANTS.O_SENSOR_CONTROLLER.PERIOD,
+								CONSTANTS.O_SENSOR_CONTROLLER.DETECT_ABOVE_THRESHOLD,
+								CONSTANTS.O_SENSOR_CONTROLLER.THRESHOLD,
+								this.o_sensor,
+								CONSTANTS.O_SENSOR_CONTROLLER.ERROR_COUNT_THRESHOLD
+							),
+							new gas_sensor_controller_idata_t ( 
+								CONSTANTS.CH4_SENSOR_CONTROLLER.PERIOD,
+								CONSTANTS.CH4_SENSOR_CONTROLLER.DETECT_ABOVE_THRESHOLD,
+								CONSTANTS.CH4_SENSOR_CONTROLLER.THRESHOLD,
+								this.ch4_sensor,
+								CONSTANTS.CH4_SENSOR_CONTROLLER.ERROR_COUNT_THRESHOLD
+							),
+							new water_level_sensors_controller_idata_t ( 
+								CONSTANTS.WATER_LEVEL_SENSORS_CONTROLLER.PERIOD,
+								this.low_water_level_sensor,
+								this.high_water_level_sensor
+							),
+							new water_flow_sensor_controller_idata_t (
+								CONSTANTS.WATER_FLOW_SENSOR_CONTROLLER.PERIOD,
+								this.pump,
+								this.water_flow_sensor,
+								CONSTANTS.WATER_FLOW_SENSOR_CONTROLLER.NUMBER_OF_ACTIVATIONS
+							),
+							new alarm_controller_idata_t ( 
+								this.alarm	
+							),
+							new pump_controller_idata_t ( 
+								this.pump
+							)
+						);
+					'''
+				}
+			}
+		}
+	}
+}

@@ -7,56 +7,113 @@ import org.eclipse.etrice.runtime.java.debugging.*;
 import static org.eclipse.etrice.runtime.java.etunit.EtUnit.*;
 
 import alarm_station.*;
+import base_actor.*;
 import devices.*;
+import environment_monitoring_station.*;
 import logger.*;
+import mine_water_level_control_system.*;
+import periodic_task.*;
+import pump_station.*;
 import room.basic.service.timing.*;
+import test.*;
 import room.basic.service.timing.PTimer.*;
 import alarm_station.alarm_controller_iprotocol_t.*;
+import devices.methane_protocol_t.*;
+import mine_water_level_control_system.mine_water_level_control_system_iprotocol_t.*;
+import periodic_task.periodic_task_iprotocol_t.*;
+import pump_station.pump_controller_iprotocol_t.*;
 import devices.switch_protocol_t.*;
+import test.test_protocol_t.*;
 
 /*--------------------- begin user code ---------------------*/
-class Constants {
-	public static final int TEST_PERIOD_IN_MS = 50;
-	public static final int NUMBER_OF_CONTROLLERS = 4;
-	public static final int CH4_SENSOR_CONTROLLER = 0;
-	public static final int CO_SENSOR_SENSOR_CONTROLLER = 1;
-	public static final int O_SENSOR_CONTROLLER = 2;
-	public static final int WATER_FLOW_SENSOR_CONTROLLER = 3;
+class CONSTANTS {
+	public class O_SENSOR_CONTROLLER {
+		public static final int PERIOD = 150;
+		public static final boolean DETECT_ABOVE_THRESHOLD = false;
+		public static final int THRESHOLD = 10;
+		public static final int ERROR_COUNT_THRESHOLD = 2;
+	}
+
+	public class O_SENSOR {
+		public static final int IVALUE = 50;
+		public static final boolean IERROR_OCCURRED = false;
+	}
+
+	public class CO_SENSOR_CONTROLLER {
+		public static final int PERIOD = 150;
+		public static final boolean DETECT_ABOVE_THRESHOLD = true;
+		public static final int THRESHOLD = 100;
+		public static final int ERROR_COUNT_THRESHOLD = 2;
+	}
+
+	public class CO_SENSOR {
+		public static final int IVALUE = 50;
+		public static final boolean IERROR_OCCURRED = false;
+	}
+
+	public class CH4_SENSOR_CONTROLLER {
+		public static final int PERIOD = 150;
+		public static final boolean DETECT_ABOVE_THRESHOLD = true;
+		public static final int THRESHOLD = 100;
+		public static final int ERROR_COUNT_THRESHOLD = 2;
+	}
+	
+	public class CH4_SENSOR {
+		public static final int IVALUE = 50;
+		public static final boolean IERROR_OCCURRED = false;
+	}
+
+	public class WATER_LEVEL_SENSORS_CONTROLLER {
+		public static final int PERIOD = 5000;
+	}
+	
+	public class LOW_WATER_LEVEL_SENSOR {
+		public static final int IVALUE = 0;
+	}
+
+	public class HIGH_WATER_LEVEL_SENSOR {
+		public static final int IVALUE = 0;
+	}
+
+	public class WATER_FLOW_SENSOR_CONTROLLER {
+		public static final int PERIOD = 150;
+		public static final int NUMBER_OF_ACTIVATIONS = 6;
+	}
+
+	public class WATER_FLOW_SENSOR {
+		public static final int IVALUE = 0;
+	}
+
+	public class ALARM {
+		public static final int ISTATE  = device_state_t.OFF;
+	}
+
+	public class PUMP {
+		public static final int ISTATE  = device_state_t.OFF;
+	}
+	
+	public class SCENARION {
+		public static final int CHECK_PERIOD = 300;
+	}
 }
 
 /*--------------------- end user code ---------------------*/
 
 
-public class top_actor_t extends ActorClassBase {
+public class top_actor_t extends base_actor_t {
 
 
 	//--------------------- ports
-	protected alarm_controller_iprotocol_tConjPort alarm_controler_iport = null;
-	protected switch_protocol_tPort ch4_sensor_controller_alarm_port = null;
-	protected switch_protocol_tPort co_sensor_controller_alarm_port = null;
-	protected switch_protocol_tPort o_sensor_controller_alarm_port = null;
-	protected switch_protocol_tPort water_flow_sensor_controller_alarm_port = null;
 
 	//--------------------- saps
-	protected PTimerConjPort timer_port = null;
 
 	//--------------------- services
 
 	//--------------------- optional actors
 
 	//--------------------- interface item IDs
-	public static final int IFITEM_alarm_controler_iport = 1;
-	public static final int IFITEM_ch4_sensor_controller_alarm_port = 2;
-	public static final int IFITEM_co_sensor_controller_alarm_port = 3;
-	public static final int IFITEM_o_sensor_controller_alarm_port = 4;
-	public static final int IFITEM_water_flow_sensor_controller_alarm_port = 5;
-	public static final int IFITEM_timer_port = 6;
 
 	/*--------------------- attributes ---------------------*/
-	public  int expected_state;
-	public  boolean turn_on_message_sent[];
-	public  int alarm_level;
-	public  device_t alarm;
 
 	/*--------------------- operations ---------------------*/
 
@@ -67,39 +124,17 @@ public class top_actor_t extends ActorClassBase {
 		setClassName("top_actor_t");
 
 		// initialize attributes
-		this.setExpected_state(0);
-		{
-			boolean[] array = new boolean[4];
-			for (int i=0;i<4;i++){
-				array[i] = false;
-			}
-			this.setTurn_on_message_sent(array);
-		}
-		this.setAlarm_level(0);
-		this.setAlarm(new device_t());
 
 		// own ports
-		alarm_controler_iport = new alarm_controller_iprotocol_tConjPort(this, "alarm_controler_iport", IFITEM_alarm_controler_iport);
-		ch4_sensor_controller_alarm_port = new switch_protocol_tPort(this, "ch4_sensor_controller_alarm_port", IFITEM_ch4_sensor_controller_alarm_port);
-		co_sensor_controller_alarm_port = new switch_protocol_tPort(this, "co_sensor_controller_alarm_port", IFITEM_co_sensor_controller_alarm_port);
-		o_sensor_controller_alarm_port = new switch_protocol_tPort(this, "o_sensor_controller_alarm_port", IFITEM_o_sensor_controller_alarm_port);
-		water_flow_sensor_controller_alarm_port = new switch_protocol_tPort(this, "water_flow_sensor_controller_alarm_port", IFITEM_water_flow_sensor_controller_alarm_port);
 
 		// own saps
-		timer_port = new PTimerConjPort(this, "timer_port", IFITEM_timer_port, 0);
 
 		// own service implementations
 
 		// sub actors
-		DebuggingService.getInstance().addMessageActorCreate(this, "alarm_controller");
-		new alarm_controller_t(this, "alarm_controller");
 
 		// wiring
-		InterfaceItemBase.connect(this, "alarm_controller/iport", "alarm_controler_iport");
-		InterfaceItemBase.connect(this, "alarm_controller/ch4_sensor_controller_port", "ch4_sensor_controller_alarm_port");
-		InterfaceItemBase.connect(this, "alarm_controller/co_sensor_controller_port", "co_sensor_controller_alarm_port");
-		InterfaceItemBase.connect(this, "alarm_controller/o_sensor_controller_port", "o_sensor_controller_alarm_port");
-		InterfaceItemBase.connect(this, "alarm_controller/water_flow_sensor_controller_port", "water_flow_sensor_controller_alarm_port");
+		InterfaceItemBase.connect(this, "mine_water_level_control_system/iport", "mine_water_level_control_system_iport");
 
 
 		/* user defined constructor body */
@@ -107,51 +142,9 @@ public class top_actor_t extends ActorClassBase {
 	}
 
 	/* --------------------- attribute setters and getters */
-	public void setExpected_state(int expected_state) {
-		 this.expected_state = expected_state;
-	}
-	public int getExpected_state() {
-		return this.expected_state;
-	}
-	public void setTurn_on_message_sent(boolean[] turn_on_message_sent) {
-		 this.turn_on_message_sent = turn_on_message_sent;
-	}
-	public boolean[] getTurn_on_message_sent() {
-		return this.turn_on_message_sent;
-	}
-	public void setAlarm_level(int alarm_level) {
-		 this.alarm_level = alarm_level;
-	}
-	public int getAlarm_level() {
-		return this.alarm_level;
-	}
-	public void setAlarm(device_t alarm) {
-		 this.alarm = alarm;
-	}
-	public device_t getAlarm() {
-		return this.alarm;
-	}
 
 
 	//--------------------- port getters
-	public alarm_controller_iprotocol_tConjPort getAlarm_controler_iport (){
-		return this.alarm_controler_iport;
-	}
-	public switch_protocol_tPort getCh4_sensor_controller_alarm_port (){
-		return this.ch4_sensor_controller_alarm_port;
-	}
-	public switch_protocol_tPort getCo_sensor_controller_alarm_port (){
-		return this.co_sensor_controller_alarm_port;
-	}
-	public switch_protocol_tPort getO_sensor_controller_alarm_port (){
-		return this.o_sensor_controller_alarm_port;
-	}
-	public switch_protocol_tPort getWater_flow_sensor_controller_alarm_port (){
-		return this.water_flow_sensor_controller_alarm_port;
-	}
-	public PTimerConjPort getTimer_port (){
-		return this.timer_port;
-	}
 
 	//--------------------- lifecycle functions
 	public void stop(){
@@ -165,28 +158,53 @@ public class top_actor_t extends ActorClassBase {
 	}
 
 	/* state IDs */
-	public static final int STATE_testing = 2;
-	public static final int STATE_MAX = 3;
+	public static final int STATE_step1 = 3;
+	public static final int STATE_step2 = 4;
+	public static final int STATE_step3 = 5;
+	public static final int STATE_step4 = 6;
+	public static final int STATE_step5 = 7;
+	public static final int STATE_step6 = 8;
+	public static final int STATE_step7 = 9;
+	public static final int STATE_step8 = 10;
+	public static final int STATE_step9 = 11;
+	public static final int STATE_MAX = 12;
 	
 	/* transition chains */
-	public static final int CHAIN_TRANS_INITIAL_TO__testing = 1;
-	public static final int CHAIN_TRANS_timeout_message_received_FROM_testing_TO_testing_BY_timeouttimer_port_timeout_message_received = 2;
+	public static final int CHAIN_TRANS_stall0_FROM_step0_TO_step0_BY_timeouttimer_access_point_stall0 = 1;
+	public static final int CHAIN_TRANS_transition0_FROM_step0_TO_step1_BY_timeouttimer_access_point = 2;
+	public static final int CHAIN_TRANS_stall1_FROM_step1_TO_step1_BY_timeouttimer_access_point_stall1 = 3;
+	public static final int CHAIN_TRANS_transition1_FROM_step1_TO_step2_BY_timeouttimer_access_point = 4;
+	public static final int CHAIN_TRANS_stall2_FROM_step2_TO_step2_BY_timeouttimer_access_point_stall2 = 5;
+	public static final int CHAIN_TRANS_transition2_FROM_step2_TO_step3_BY_timeouttimer_access_point = 6;
+	public static final int CHAIN_TRANS_stall3_FROM_step3_TO_step3_BY_timeouttimer_access_point_stall3 = 7;
+	public static final int CHAIN_TRANS_transition3_FROM_step3_TO_step4_BY_timeouttimer_access_point = 8;
+	public static final int CHAIN_TRANS_stall4_FROM_step4_TO_step4_BY_timeouttimer_access_point_stall4 = 9;
+	public static final int CHAIN_TRANS_transition4_FROM_step4_TO_step5_BY_timeouttimer_access_point = 10;
+	public static final int CHAIN_TRANS_stall5_FROM_step5_TO_step5_BY_timeouttimer_access_point_stall5 = 11;
+	public static final int CHAIN_TRANS_transition5_FROM_step5_TO_step6_BY_timeouttimer_access_point = 12;
+	public static final int CHAIN_TRANS_INITIAL_TO__step0 = 13;
 	
 	/* triggers */
 	public static final int POLLING = 0;
-	public static final int TRIG_timer_port__timeout = IFITEM_timer_port + EVT_SHIFT*PTimer.OUT_timeout;
-	public static final int TRIG_timer_port__internalTimer = IFITEM_timer_port + EVT_SHIFT*PTimer.OUT_internalTimer;
-	public static final int TRIG_timer_port__internalTimeout = IFITEM_timer_port + EVT_SHIFT*PTimer.OUT_internalTimeout;
 	
 	// state names
 	protected static final String stateStrings[] = {
 		"<no state>",
 		"<top>",
-		"testing"
+		"step0",
+		"step1",
+		"step2",
+		"step3",
+		"step4",
+		"step5",
+		"step6",
+		"step7",
+		"step8",
+		"step9"
 	};
 	
 	// history
-	protected int history[] = {NO_STATE, NO_STATE, NO_STATE};
+	protected int history[] = {NO_STATE, NO_STATE, NO_STATE, NO_STATE, NO_STATE, NO_STATE, NO_STATE, NO_STATE, NO_STATE, NO_STATE, NO_STATE, NO_STATE};
 	
 	private void setState(int new_state) {
 		DebuggingService.getInstance().addActorState(this,stateStrings[new_state]);
@@ -196,88 +214,185 @@ public class top_actor_t extends ActorClassBase {
 	/* Entry and Exit Codes */
 	
 	/* Action Codes */
-	protected void action_TRANS_INITIAL_TO__testing() {
-	    this.expected_state = device_state_t.OFF;
-	    for ( int i = 0; i < Constants.NUMBER_OF_CONTROLLERS; i++ ) {
-	    	this.turn_on_message_sent[i] = false;
-	    }
-	    this.alarm_level = 0;
-	    this.alarm.state = device_state_t.OFF;
+	protected void action_TRANS_stall0_FROM_step0_TO_step0_BY_timeouttimer_access_point_stall0(InterfaceItemBase ifitem) {
+	    super.timer_access_point.startTimeout (
+	    	CONSTANTS.SCENARION.CHECK_PERIOD
+	    );
+	}
+	protected void action_TRANS_transition0_FROM_step0_TO_step1_BY_timeouttimer_access_point(InterfaceItemBase ifitem) {
+	    System.out.println ( "Alarm activated" );
+	    System.out.println ( "Setting o sensor below threshold" );
+	    super.o_sensor.value = super.get_below_threshold_value (
+	    	CONSTANTS.O_SENSOR_CONTROLLER.DETECT_ABOVE_THRESHOLD,
+	    	CONSTANTS.O_SENSOR_CONTROLLER.THRESHOLD
+	    );
 	    
-	    this.alarm_controler_iport.initialize ( 
+	    super.timer_access_point.startTimeout (
+	    	CONSTANTS.SCENARION.CHECK_PERIOD
+	    );
+	}
+	protected void action_TRANS_stall1_FROM_step1_TO_step1_BY_timeouttimer_access_point_stall1(InterfaceItemBase ifitem) {
+	    super.timer_access_point.startTimeout (
+	    	CONSTANTS.SCENARION.CHECK_PERIOD
+	    );
+	}
+	protected void action_TRANS_transition1_FROM_step1_TO_step2_BY_timeouttimer_access_point(InterfaceItemBase ifitem) {
+	    System.out.println ( "Alarm deactivated" );
+	    
+	    System.out.println ( "Setting co sensor above threshold" );
+	    super.co_sensor.value = super.get_above_threshold_value (
+	    	CONSTANTS.CO_SENSOR_CONTROLLER.DETECT_ABOVE_THRESHOLD,
+	    	CONSTANTS.CO_SENSOR_CONTROLLER.THRESHOLD
+	    );
+	    
+	    super.timer_access_point.startTimeout (
+	    	CONSTANTS.SCENARION.CHECK_PERIOD
+	    );
+	}
+	protected void action_TRANS_stall2_FROM_step2_TO_step2_BY_timeouttimer_access_point_stall2(InterfaceItemBase ifitem) {
+	    super.timer_access_point.startTimeout (
+	    	CONSTANTS.SCENARION.CHECK_PERIOD
+	    );
+	}
+	protected void action_TRANS_transition2_FROM_step2_TO_step3_BY_timeouttimer_access_point(InterfaceItemBase ifitem) {
+	    System.out.println ( "Alarm activated" );
+	    
+	    System.out.println ( "Setting co sensor below threshold" );
+	    super.co_sensor.value = super.get_below_threshold_value (
+	    	CONSTANTS.CO_SENSOR_CONTROLLER.DETECT_ABOVE_THRESHOLD,
+	    	CONSTANTS.CO_SENSOR_CONTROLLER.THRESHOLD
+	    );
+	    
+	    super.timer_access_point.startTimeout (
+	    	CONSTANTS.SCENARION.CHECK_PERIOD
+	    );
+	}
+	protected void action_TRANS_stall3_FROM_step3_TO_step3_BY_timeouttimer_access_point_stall3(InterfaceItemBase ifitem) {
+	    super.timer_access_point.startTimeout (
+	    	CONSTANTS.SCENARION.CHECK_PERIOD
+	    );
+	}
+	protected void action_TRANS_transition3_FROM_step3_TO_step4_BY_timeouttimer_access_point(InterfaceItemBase ifitem) {
+	    System.out.println ( "Alarm deactivated" );
+	    
+	    System.out.println ( "Setting ch4 sensor above threshold" );
+	    super.ch4_sensor.value = super.get_above_threshold_value (
+	    	CONSTANTS.CH4_SENSOR_CONTROLLER.DETECT_ABOVE_THRESHOLD,
+	    	CONSTANTS.CH4_SENSOR_CONTROLLER.THRESHOLD
+	    );
+	    
+	    super.timer_access_point.startTimeout (
+	    	CONSTANTS.SCENARION.CHECK_PERIOD
+	    );
+	}
+	protected void action_TRANS_stall4_FROM_step4_TO_step4_BY_timeouttimer_access_point_stall4(InterfaceItemBase ifitem) {
+	    super.timer_access_point.startTimeout (
+	    	CONSTANTS.SCENARION.CHECK_PERIOD
+	    );
+	}
+	protected void action_TRANS_transition4_FROM_step4_TO_step5_BY_timeouttimer_access_point(InterfaceItemBase ifitem) {
+	    System.out.println ( "Alarm activated" );
+	    
+	    System.out.println ( "Setting ch4 sensor below threshold" );
+	    super.ch4_sensor.value = super.get_below_threshold_value (
+	    	CONSTANTS.CH4_SENSOR_CONTROLLER.DETECT_ABOVE_THRESHOLD,
+	    	CONSTANTS.CH4_SENSOR_CONTROLLER.THRESHOLD
+	    );
+	    
+	    super.timer_access_point.startTimeout (
+	    	CONSTANTS.SCENARION.CHECK_PERIOD
+	    );
+	}
+	protected void action_TRANS_stall5_FROM_step5_TO_step5_BY_timeouttimer_access_point_stall5(InterfaceItemBase ifitem) {
+	    super.timer_access_point.startTimeout (
+	    	CONSTANTS.SCENARION.CHECK_PERIOD
+	    );
+	}
+	protected void action_TRANS_transition5_FROM_step5_TO_step6_BY_timeouttimer_access_point(InterfaceItemBase ifitem) {
+	    System.out.println ( "Alarm deactivated" );
+	    
+	    super.stop_scenarion ( );
+	    System.out.println ( "Setting co sensor below threshold" );
+	    super.co_sensor.value = super.get_below_threshold_value (
+	    	CONSTANTS.CO_SENSOR_CONTROLLER.DETECT_ABOVE_THRESHOLD,
+	    	CONSTANTS.CO_SENSOR_CONTROLLER.THRESHOLD
+	    );
+	    
+	    super.timer_access_point.startTimeout (
+	    	CONSTANTS.SCENARION.CHECK_PERIOD
+	    );
+	}
+	protected void action_TRANS_INITIAL_TO__step0() {
+	    // initialize sensors 
+	    this.o_sensor.value = CONSTANTS.O_SENSOR.IVALUE;
+	    this.o_sensor.error_occurred = CONSTANTS.O_SENSOR.IERROR_OCCURRED;
+	    
+	    this.co_sensor.value = CONSTANTS.CO_SENSOR.IVALUE;
+	    this.co_sensor.error_occurred = CONSTANTS.CO_SENSOR.IERROR_OCCURRED;
+	    
+	    this.ch4_sensor.value = CONSTANTS.CH4_SENSOR.IVALUE;
+	    this.ch4_sensor.error_occurred = CONSTANTS.CH4_SENSOR.IERROR_OCCURRED;
+	    
+	    this.low_water_level_sensor.value = CONSTANTS.LOW_WATER_LEVEL_SENSOR.IVALUE;
+	    this.high_water_level_sensor.value = CONSTANTS.HIGH_WATER_LEVEL_SENSOR.IVALUE;
+	    
+	    this.water_flow_sensor.value = CONSTANTS.WATER_FLOW_SENSOR.IVALUE;
+	    
+	    this.alarm.state = CONSTANTS.ALARM.ISTATE;
+	    
+	    this.pump.state = CONSTANTS.PUMP.ISTATE;
+	    
+	    // initialize system
+	    this.mine_water_level_control_system_iport.initialize ( 
+	    	new gas_sensor_controller_idata_t ( 
+	    		CONSTANTS.CO_SENSOR_CONTROLLER.PERIOD,
+	    		CONSTANTS.CO_SENSOR_CONTROLLER.DETECT_ABOVE_THRESHOLD,
+	    		CONSTANTS.CO_SENSOR_CONTROLLER.THRESHOLD,
+	    		this.co_sensor,
+	    		CONSTANTS.CO_SENSOR_CONTROLLER.ERROR_COUNT_THRESHOLD
+	    	),
+	    	new gas_sensor_controller_idata_t ( 
+	    		CONSTANTS.O_SENSOR_CONTROLLER.PERIOD,
+	    		CONSTANTS.O_SENSOR_CONTROLLER.DETECT_ABOVE_THRESHOLD,
+	    		CONSTANTS.O_SENSOR_CONTROLLER.THRESHOLD,
+	    		this.o_sensor,
+	    		CONSTANTS.O_SENSOR_CONTROLLER.ERROR_COUNT_THRESHOLD
+	    	),
+	    	new gas_sensor_controller_idata_t ( 
+	    		CONSTANTS.CH4_SENSOR_CONTROLLER.PERIOD,
+	    		CONSTANTS.CH4_SENSOR_CONTROLLER.DETECT_ABOVE_THRESHOLD,
+	    		CONSTANTS.CH4_SENSOR_CONTROLLER.THRESHOLD,
+	    		this.ch4_sensor,
+	    		CONSTANTS.CH4_SENSOR_CONTROLLER.ERROR_COUNT_THRESHOLD
+	    	),
+	    	new water_level_sensors_controller_idata_t ( 
+	    		CONSTANTS.WATER_LEVEL_SENSORS_CONTROLLER.PERIOD,
+	    		this.low_water_level_sensor,
+	    		this.high_water_level_sensor
+	    	),
+	    	new water_flow_sensor_controller_idata_t (
+	    		CONSTANTS.WATER_FLOW_SENSOR_CONTROLLER.PERIOD,
+	    		this.pump,
+	    		this.water_flow_sensor,
+	    		CONSTANTS.WATER_FLOW_SENSOR_CONTROLLER.NUMBER_OF_ACTIVATIONS
+	    	),
 	    	new alarm_controller_idata_t ( 
-	    		this.alarm
+	    		this.alarm	
+	    	),
+	    	new pump_controller_idata_t ( 
+	    		this.pump
 	    	)
 	    );
 	    
-	    this.timer_port.startTimeout ( Constants.TEST_PERIOD_IN_MS );
-	}
-	protected void action_TRANS_timeout_message_received_FROM_testing_TO_testing_BY_timeouttimer_port_timeout_message_received(InterfaceItemBase ifitem) {
-	    if ( this.expected_state == this.alarm.state ) {
-	    	System.out.println ( "Expected alarm state" );
-	    } else {
-	    	System.err.println ( "Unexpected alarm state" );
-	    }
+	    System.out.println ( "Setting o sensor above threshold" );
+	    super.o_sensor.value = super.get_above_threshold_value (
+	    	CONSTANTS.O_SENSOR_CONTROLLER.DETECT_ABOVE_THRESHOLD,
+	    	CONSTANTS.O_SENSOR_CONTROLLER.THRESHOLD
+	    );
 	    
-	    int controller_index = (int) ( Math.random ( ) * Constants.NUMBER_OF_CONTROLLERS );
-	    
-	    this.turn_on_message_sent[ controller_index ] = !this.turn_on_message_sent[ controller_index ];
-	    
-	    switch ( controller_index ) {
-	    	case Constants.CH4_SENSOR_CONTROLLER : {
-	    		if ( this.turn_on_message_sent[ controller_index ] == true ) {
-	    			this.ch4_sensor_controller_alarm_port.turn_on ( );
-	    		} else {
-	    			this.ch4_sensor_controller_alarm_port.turn_off ( );
-	    		}
-	    
-	    		break;
-	    	}
-	    
-	    	case Constants.CO_SENSOR_SENSOR_CONTROLLER : {
-	    		if ( this.turn_on_message_sent[ controller_index ] == true ) {
-	    			this.co_sensor_controller_alarm_port.turn_on ( );
-	    		} else {
-	    			this.co_sensor_controller_alarm_port.turn_off ( );
-	    		}
-	    
-	    		break;
-	    	}
-	    
-	    	case Constants.O_SENSOR_CONTROLLER : {
-	    		if ( this.turn_on_message_sent[ controller_index ] == true ) {
-	    			this.o_sensor_controller_alarm_port.turn_on ( );
-	    		} else {
-	    			this.o_sensor_controller_alarm_port.turn_off ( );
-	    		}
-	    
-	    		break;
-	    	}
-	    
-	    	case Constants.WATER_FLOW_SENSOR_CONTROLLER : {
-	    		if ( this.turn_on_message_sent[ controller_index ] == true ) {
-	    			this.water_flow_sensor_controller_alarm_port.turn_on ( );
-	    		} else {
-	    			this.water_flow_sensor_controller_alarm_port.turn_off ( );
-	    		}
-	    
-	    		break;
-	    	}
-	    }
-	    
-	    if ( this.turn_on_message_sent[ controller_index ] == true ) {
-	    	this.alarm_level++;
-	    	if ( this.alarm_level == 1 ) {
-	    		this.expected_state = device_state_t.ON;
-	    	} 
-	    } else {
-	    	this.alarm_level--;
-	    	if ( this.alarm_level == 0 ) {
-	    		this.expected_state = device_state_t.OFF;
-	    	} 
-	    }
-	    
-	    this.timer_port.startTimeout ( Constants.TEST_PERIOD_IN_MS );
+	    super.timer_access_point.startTimeout (
+	    	CONSTANTS.SCENARION.CHECK_PERIOD
+	    );
 	}
 	
 	/* State Switch Methods */
@@ -290,8 +405,44 @@ public class top_actor_t extends ActorClassBase {
 	private void exitTo(int current__et, int to) {
 		while (current__et!=to) {
 			switch (current__et) {
-				case STATE_testing:
-					this.history[STATE_TOP] = STATE_testing;
+				case STATE_step1:
+					this.history[STATE_TOP] = STATE_step1;
+					current__et = STATE_TOP;
+					break;
+				case STATE_step2:
+					this.history[STATE_TOP] = STATE_step2;
+					current__et = STATE_TOP;
+					break;
+				case STATE_step3:
+					this.history[STATE_TOP] = STATE_step3;
+					current__et = STATE_TOP;
+					break;
+				case STATE_step4:
+					this.history[STATE_TOP] = STATE_step4;
+					current__et = STATE_TOP;
+					break;
+				case STATE_step5:
+					this.history[STATE_TOP] = STATE_step5;
+					current__et = STATE_TOP;
+					break;
+				case STATE_step6:
+					this.history[STATE_TOP] = STATE_step6;
+					current__et = STATE_TOP;
+					break;
+				case STATE_step7:
+					this.history[STATE_TOP] = STATE_step7;
+					current__et = STATE_TOP;
+					break;
+				case STATE_step8:
+					this.history[STATE_TOP] = STATE_step8;
+					current__et = STATE_TOP;
+					break;
+				case STATE_step9:
+					this.history[STATE_TOP] = STATE_step9;
+					current__et = STATE_TOP;
+					break;
+				case STATE_step0:
+					this.history[STATE_TOP] = STATE_step0;
 					current__et = STATE_TOP;
 					break;
 				default:
@@ -310,15 +461,70 @@ public class top_actor_t extends ActorClassBase {
 	 */
 	private int executeTransitionChain(int chain__et, InterfaceItemBase ifitem, Object generic_data__et) {
 		switch (chain__et) {
-			case top_actor_t.CHAIN_TRANS_INITIAL_TO__testing:
+			case top_actor_t.CHAIN_TRANS_stall0_FROM_step0_TO_step0_BY_timeouttimer_access_point_stall0:
 			{
-				action_TRANS_INITIAL_TO__testing();
-				return STATE_testing;
+				action_TRANS_stall0_FROM_step0_TO_step0_BY_timeouttimer_access_point_stall0(ifitem);
+				return STATE_step0;
 			}
-			case top_actor_t.CHAIN_TRANS_timeout_message_received_FROM_testing_TO_testing_BY_timeouttimer_port_timeout_message_received:
+			case top_actor_t.CHAIN_TRANS_transition0_FROM_step0_TO_step1_BY_timeouttimer_access_point:
 			{
-				action_TRANS_timeout_message_received_FROM_testing_TO_testing_BY_timeouttimer_port_timeout_message_received(ifitem);
-				return STATE_testing;
+				action_TRANS_transition0_FROM_step0_TO_step1_BY_timeouttimer_access_point(ifitem);
+				return STATE_step1;
+			}
+			case top_actor_t.CHAIN_TRANS_stall1_FROM_step1_TO_step1_BY_timeouttimer_access_point_stall1:
+			{
+				action_TRANS_stall1_FROM_step1_TO_step1_BY_timeouttimer_access_point_stall1(ifitem);
+				return STATE_step1;
+			}
+			case top_actor_t.CHAIN_TRANS_transition1_FROM_step1_TO_step2_BY_timeouttimer_access_point:
+			{
+				action_TRANS_transition1_FROM_step1_TO_step2_BY_timeouttimer_access_point(ifitem);
+				return STATE_step2;
+			}
+			case top_actor_t.CHAIN_TRANS_stall2_FROM_step2_TO_step2_BY_timeouttimer_access_point_stall2:
+			{
+				action_TRANS_stall2_FROM_step2_TO_step2_BY_timeouttimer_access_point_stall2(ifitem);
+				return STATE_step2;
+			}
+			case top_actor_t.CHAIN_TRANS_transition2_FROM_step2_TO_step3_BY_timeouttimer_access_point:
+			{
+				action_TRANS_transition2_FROM_step2_TO_step3_BY_timeouttimer_access_point(ifitem);
+				return STATE_step3;
+			}
+			case top_actor_t.CHAIN_TRANS_stall3_FROM_step3_TO_step3_BY_timeouttimer_access_point_stall3:
+			{
+				action_TRANS_stall3_FROM_step3_TO_step3_BY_timeouttimer_access_point_stall3(ifitem);
+				return STATE_step3;
+			}
+			case top_actor_t.CHAIN_TRANS_transition3_FROM_step3_TO_step4_BY_timeouttimer_access_point:
+			{
+				action_TRANS_transition3_FROM_step3_TO_step4_BY_timeouttimer_access_point(ifitem);
+				return STATE_step4;
+			}
+			case top_actor_t.CHAIN_TRANS_stall4_FROM_step4_TO_step4_BY_timeouttimer_access_point_stall4:
+			{
+				action_TRANS_stall4_FROM_step4_TO_step4_BY_timeouttimer_access_point_stall4(ifitem);
+				return STATE_step4;
+			}
+			case top_actor_t.CHAIN_TRANS_transition4_FROM_step4_TO_step5_BY_timeouttimer_access_point:
+			{
+				action_TRANS_transition4_FROM_step4_TO_step5_BY_timeouttimer_access_point(ifitem);
+				return STATE_step5;
+			}
+			case top_actor_t.CHAIN_TRANS_stall5_FROM_step5_TO_step5_BY_timeouttimer_access_point_stall5:
+			{
+				action_TRANS_stall5_FROM_step5_TO_step5_BY_timeouttimer_access_point_stall5(ifitem);
+				return STATE_step5;
+			}
+			case top_actor_t.CHAIN_TRANS_transition5_FROM_step5_TO_step6_BY_timeouttimer_access_point:
+			{
+				action_TRANS_transition5_FROM_step5_TO_step6_BY_timeouttimer_access_point(ifitem);
+				return STATE_step6;
+			}
+			case top_actor_t.CHAIN_TRANS_INITIAL_TO__step0:
+			{
+				action_TRANS_INITIAL_TO__step0();
+				return STATE_step0;
 			}
 				default:
 					/* should not occur */
@@ -338,9 +544,36 @@ public class top_actor_t extends ActorClassBase {
 		}
 		while (true) {
 			switch (state__et) {
-				case STATE_testing:
+				case STATE_step1:
 					/* in leaf state: return state id */
-					return STATE_testing;
+					return STATE_step1;
+				case STATE_step2:
+					/* in leaf state: return state id */
+					return STATE_step2;
+				case STATE_step3:
+					/* in leaf state: return state id */
+					return STATE_step3;
+				case STATE_step4:
+					/* in leaf state: return state id */
+					return STATE_step4;
+				case STATE_step5:
+					/* in leaf state: return state id */
+					return STATE_step5;
+				case STATE_step6:
+					/* in leaf state: return state id */
+					return STATE_step6;
+				case STATE_step7:
+					/* in leaf state: return state id */
+					return STATE_step7;
+				case STATE_step8:
+					/* in leaf state: return state id */
+					return STATE_step8;
+				case STATE_step9:
+					/* in leaf state: return state id */
+					return STATE_step9;
+				case STATE_step0:
+					/* in leaf state: return state id */
+					return STATE_step0;
 				case STATE_TOP:
 					state__et = this.history[STATE_TOP];
 					break;
@@ -353,7 +586,7 @@ public class top_actor_t extends ActorClassBase {
 	}
 	
 	public void executeInitTransition() {
-		int chain__et = top_actor_t.CHAIN_TRANS_INITIAL_TO__testing;
+		int chain__et = top_actor_t.CHAIN_TRANS_INITIAL_TO__step0;
 		int next__et = executeTransitionChain(chain__et, null, null);
 		next__et = enterHistory(next__et);
 		setState(next__et);
@@ -367,12 +600,145 @@ public class top_actor_t extends ActorClassBase {
 	
 		if (!handleSystemEvent(ifitem, evt, generic_data__et)) {
 			switch (getState()) {
-			    case STATE_testing:
+			    case STATE_step1:
 			        switch(trigger__et) {
-			                case TRIG_timer_port__timeout:
+			                case TRIG_timer_access_point__timeout:
+			                    { 
+			                    if (super.alarm.state != device_state_t.OFF
+			                    )
 			                    {
-			                        chain__et = top_actor_t.CHAIN_TRANS_timeout_message_received_FROM_testing_TO_testing_BY_timeouttimer_port_timeout_message_received;
+			                        chain__et = top_actor_t.CHAIN_TRANS_stall1_FROM_step1_TO_step1_BY_timeouttimer_access_point_stall1;
 			                        catching_state__et = STATE_TOP;
+			                    } else 
+			                    if (this.alarm.state == device_state_t.OFF
+			                    )
+			                    {
+			                        chain__et = top_actor_t.CHAIN_TRANS_transition1_FROM_step1_TO_step2_BY_timeouttimer_access_point;
+			                        catching_state__et = STATE_TOP;
+			                    }
+			                    }
+			                break;
+			                default:
+			                    /* should not occur */
+			                    break;
+			        }
+			        break;
+			    case STATE_step2:
+			        switch(trigger__et) {
+			                case TRIG_timer_access_point__timeout:
+			                    { 
+			                    if (super.alarm.state != device_state_t.ON
+			                    )
+			                    {
+			                        chain__et = top_actor_t.CHAIN_TRANS_stall2_FROM_step2_TO_step2_BY_timeouttimer_access_point_stall2;
+			                        catching_state__et = STATE_TOP;
+			                    } else 
+			                    if (this.alarm.state == device_state_t.ON
+			                    )
+			                    {
+			                        chain__et = top_actor_t.CHAIN_TRANS_transition2_FROM_step2_TO_step3_BY_timeouttimer_access_point;
+			                        catching_state__et = STATE_TOP;
+			                    }
+			                    }
+			                break;
+			                default:
+			                    /* should not occur */
+			                    break;
+			        }
+			        break;
+			    case STATE_step3:
+			        switch(trigger__et) {
+			                case TRIG_timer_access_point__timeout:
+			                    { 
+			                    if (super.alarm.state != device_state_t.OFF
+			                    )
+			                    {
+			                        chain__et = top_actor_t.CHAIN_TRANS_stall3_FROM_step3_TO_step3_BY_timeouttimer_access_point_stall3;
+			                        catching_state__et = STATE_TOP;
+			                    } else 
+			                    if (this.alarm.state == device_state_t.OFF
+			                    )
+			                    {
+			                        chain__et = top_actor_t.CHAIN_TRANS_transition3_FROM_step3_TO_step4_BY_timeouttimer_access_point;
+			                        catching_state__et = STATE_TOP;
+			                    }
+			                    }
+			                break;
+			                default:
+			                    /* should not occur */
+			                    break;
+			        }
+			        break;
+			    case STATE_step4:
+			        switch(trigger__et) {
+			                case TRIG_timer_access_point__timeout:
+			                    { 
+			                    if (super.alarm.state != device_state_t.ON
+			                    )
+			                    {
+			                        chain__et = top_actor_t.CHAIN_TRANS_stall4_FROM_step4_TO_step4_BY_timeouttimer_access_point_stall4;
+			                        catching_state__et = STATE_TOP;
+			                    } else 
+			                    if (this.alarm.state == device_state_t.ON
+			                    )
+			                    {
+			                        chain__et = top_actor_t.CHAIN_TRANS_transition4_FROM_step4_TO_step5_BY_timeouttimer_access_point;
+			                        catching_state__et = STATE_TOP;
+			                    }
+			                    }
+			                break;
+			                default:
+			                    /* should not occur */
+			                    break;
+			        }
+			        break;
+			    case STATE_step5:
+			        switch(trigger__et) {
+			                case TRIG_timer_access_point__timeout:
+			                    { 
+			                    if (super.alarm.state != device_state_t.OFF
+			                    )
+			                    {
+			                        chain__et = top_actor_t.CHAIN_TRANS_stall5_FROM_step5_TO_step5_BY_timeouttimer_access_point_stall5;
+			                        catching_state__et = STATE_TOP;
+			                    } else 
+			                    if (this.alarm.state == device_state_t.OFF
+			                    )
+			                    {
+			                        chain__et = top_actor_t.CHAIN_TRANS_transition5_FROM_step5_TO_step6_BY_timeouttimer_access_point;
+			                        catching_state__et = STATE_TOP;
+			                    }
+			                    }
+			                break;
+			                default:
+			                    /* should not occur */
+			                    break;
+			        }
+			        break;
+			    case STATE_step6:
+			        break;
+			    case STATE_step7:
+			        break;
+			    case STATE_step8:
+			        break;
+			    case STATE_step9:
+			        break;
+			    case STATE_step0:
+			        switch(trigger__et) {
+			                case TRIG_timer_access_point__timeout:
+			                    { 
+			                    if (super.alarm.state != device_state_t.ON
+			                    )
+			                    {
+			                        chain__et = top_actor_t.CHAIN_TRANS_stall0_FROM_step0_TO_step0_BY_timeouttimer_access_point_stall0;
+			                        catching_state__et = STATE_TOP;
+			                    } else 
+			                    if (this.alarm.state == device_state_t.ON
+			                    )
+			                    {
+			                        chain__et = top_actor_t.CHAIN_TRANS_transition0_FROM_step0_TO_step1_BY_timeouttimer_access_point;
+			                        catching_state__et = STATE_TOP;
+			                    }
 			                    }
 			                break;
 			                default:

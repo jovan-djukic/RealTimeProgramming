@@ -15,7 +15,7 @@ public class water_flow_sensor_controller_idata_t extends periodic_task_idata_t 
 
 	/*--------------------- attributes ---------------------*/
 	public  device_t pump;
-	public  device_t water_flow_sensor;
+	public  water_flow_sensor_t water_flow_sensor;
 	public  int number_of_activations;
 
 	/* --------------------- attribute setters and getters */
@@ -25,10 +25,10 @@ public class water_flow_sensor_controller_idata_t extends periodic_task_idata_t 
 	public device_t getPump() {
 		return this.pump;
 	}
-	public void setWater_flow_sensor(device_t water_flow_sensor) {
+	public void setWater_flow_sensor(water_flow_sensor_t water_flow_sensor) {
 		 this.water_flow_sensor = water_flow_sensor;
 	}
-	public device_t getWater_flow_sensor() {
+	public water_flow_sensor_t getWater_flow_sensor() {
 		return this.water_flow_sensor;
 	}
 	public void setNumber_of_activations(int number_of_activations) {
@@ -52,7 +52,7 @@ public class water_flow_sensor_controller_idata_t extends periodic_task_idata_t 
 	}
 
 	// constructor using fields
-	public water_flow_sensor_controller_idata_t(int period, device_t pump, device_t water_flow_sensor, int number_of_activations) {
+	public water_flow_sensor_controller_idata_t(int period, device_t pump, water_flow_sensor_t water_flow_sensor, int number_of_activations) {
 		super(period);
 
 		this.pump = pump;

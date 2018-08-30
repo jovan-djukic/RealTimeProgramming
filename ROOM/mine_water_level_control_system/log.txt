@@ -1,230 +1,298 @@
-Aug 30, 2018 7:56:49 PM logger.logger_t info
-INFO: [ water_level_sensors_controller ] Initialization message received
-Aug 30, 2018 7:56:49 PM logger.logger_t info
-INFO: [ water_level_sensors_controller ] Starting timeout
-Aug 30, 2018 7:56:50 PM logger.logger_t info
-INFO: [ water_level_sensors_controller ] Query action begin
-Aug 30, 2018 7:56:50 PM logger.logger_t info
-INFO: [ water_level_sensors_controller ] Query action end
-Aug 30, 2018 7:56:50 PM logger.logger_t info
-INFO: [ water_level_sensors_controller ] Starting timeout
-Aug 30, 2018 7:56:50 PM logger.logger_t info
-INFO: [ water_level_sensors_controller ] Query action begin
-Aug 30, 2018 7:56:50 PM logger.logger_t info
-INFO: [ water_level_sensors_controller ] Water over high threshold, turning on pump
-Aug 30, 2018 7:56:50 PM logger.logger_t info
-INFO: [ water_level_sensors_controller ] Query action end
-Aug 30, 2018 7:56:50 PM logger.logger_t info
-INFO: [ water_level_sensors_controller ] Starting timeout
-Aug 30, 2018 7:56:51 PM logger.logger_t info
-INFO: [ water_level_sensors_controller ] Query action begin
-Aug 30, 2018 7:56:51 PM logger.logger_t info
-INFO: [ water_level_sensors_controller ] Water over high threshold, turning on pump
-Aug 30, 2018 7:56:51 PM logger.logger_t info
-INFO: [ water_level_sensors_controller ] Query action end
-Aug 30, 2018 7:56:51 PM logger.logger_t info
-INFO: [ water_level_sensors_controller ] Starting timeout
-Aug 30, 2018 7:56:51 PM logger.logger_t info
-INFO: [ water_level_sensors_controller ] Query action begin
-Aug 30, 2018 7:56:51 PM logger.logger_t info
-INFO: [ water_level_sensors_controller ] Water over high threshold, turning on pump
-Aug 30, 2018 7:56:51 PM logger.logger_t info
-INFO: [ water_level_sensors_controller ] Query action end
-Aug 30, 2018 7:56:51 PM logger.logger_t info
-INFO: [ water_level_sensors_controller ] Starting timeout
-Aug 30, 2018 7:56:52 PM logger.logger_t info
-INFO: [ water_level_sensors_controller ] Query action begin
-Aug 30, 2018 7:56:52 PM logger.logger_t info
-INFO: [ water_level_sensors_controller ] Water over high threshold, turning on pump
-Aug 30, 2018 7:56:52 PM logger.logger_t info
-INFO: [ water_level_sensors_controller ] Query action end
-Aug 30, 2018 7:56:52 PM logger.logger_t info
-INFO: [ water_level_sensors_controller ] Starting timeout
-Aug 30, 2018 7:56:52 PM logger.logger_t info
-INFO: [ water_level_sensors_controller ] Query action begin
-Aug 30, 2018 7:56:52 PM logger.logger_t info
-INFO: [ water_level_sensors_controller ] Water over high threshold, turning on pump
-Aug 30, 2018 7:56:52 PM logger.logger_t info
-INFO: [ water_level_sensors_controller ] Query action end
-Aug 30, 2018 7:56:52 PM logger.logger_t info
-INFO: [ water_level_sensors_controller ] Starting timeout
-Aug 30, 2018 7:56:53 PM logger.logger_t info
-INFO: [ water_level_sensors_controller ] Query action begin
-Aug 30, 2018 7:56:53 PM logger.logger_t info
-INFO: [ water_level_sensors_controller ] Query action end
-Aug 30, 2018 7:56:53 PM logger.logger_t info
-INFO: [ water_level_sensors_controller ] Starting timeout
-Aug 30, 2018 7:56:53 PM logger.logger_t info
-INFO: [ water_level_sensors_controller ] Query action begin
-Aug 30, 2018 7:56:53 PM logger.logger_t info
-INFO: [ water_level_sensors_controller ] Water under low threshold, turning off pump
-Aug 30, 2018 7:56:53 PM logger.logger_t info
-INFO: [ water_level_sensors_controller ] Query action end
-Aug 30, 2018 7:56:53 PM logger.logger_t info
-INFO: [ water_level_sensors_controller ] Starting timeout
-Aug 30, 2018 7:56:54 PM logger.logger_t info
-INFO: [ water_level_sensors_controller ] Query action begin
-Aug 30, 2018 7:56:54 PM logger.logger_t info
-INFO: [ water_level_sensors_controller ] Query action end
-Aug 30, 2018 7:56:54 PM logger.logger_t info
-INFO: [ water_level_sensors_controller ] Starting timeout
-Aug 30, 2018 7:56:54 PM logger.logger_t info
-INFO: [ water_level_sensors_controller ] Query action begin
-Aug 30, 2018 7:56:54 PM logger.logger_t info
-INFO: [ water_level_sensors_controller ] Water over high threshold, turning on pump
-Aug 30, 2018 7:56:54 PM logger.logger_t info
-INFO: [ water_level_sensors_controller ] Query action end
-Aug 30, 2018 7:56:54 PM logger.logger_t info
-INFO: [ water_level_sensors_controller ] Starting timeout
-Aug 30, 2018 7:56:55 PM logger.logger_t info
-INFO: [ water_level_sensors_controller ] Query action begin
-Aug 30, 2018 7:56:55 PM logger.logger_t info
-INFO: [ water_level_sensors_controller ] Water over high threshold, turning on pump
-Aug 30, 2018 7:56:55 PM logger.logger_t info
-INFO: [ water_level_sensors_controller ] Query action end
-Aug 30, 2018 7:56:55 PM logger.logger_t info
-INFO: [ water_level_sensors_controller ] Starting timeout
-Aug 30, 2018 7:56:55 PM logger.logger_t info
-INFO: [ water_level_sensors_controller ] Query action begin
-Aug 30, 2018 7:56:55 PM logger.logger_t info
-INFO: [ water_level_sensors_controller ] Query action end
-Aug 30, 2018 7:56:55 PM logger.logger_t info
-INFO: [ water_level_sensors_controller ] Starting timeout
-Aug 30, 2018 7:56:56 PM logger.logger_t info
-INFO: [ water_level_sensors_controller ] Query action begin
-Aug 30, 2018 7:56:56 PM logger.logger_t info
-INFO: [ water_level_sensors_controller ] Query action end
-Aug 30, 2018 7:56:56 PM logger.logger_t info
-INFO: [ water_level_sensors_controller ] Starting timeout
-Aug 30, 2018 7:56:56 PM logger.logger_t info
-INFO: [ water_level_sensors_controller ] Query action begin
-Aug 30, 2018 7:56:56 PM logger.logger_t info
-INFO: [ water_level_sensors_controller ] Water under low threshold, turning off pump
-Aug 30, 2018 7:56:56 PM logger.logger_t info
-INFO: [ water_level_sensors_controller ] Query action end
-Aug 30, 2018 7:56:56 PM logger.logger_t info
-INFO: [ water_level_sensors_controller ] Starting timeout
-Aug 30, 2018 7:56:57 PM logger.logger_t info
-INFO: [ water_level_sensors_controller ] Query action begin
-Aug 30, 2018 7:56:57 PM logger.logger_t info
-INFO: [ water_level_sensors_controller ] Water over high threshold, turning on pump
-Aug 30, 2018 7:56:57 PM logger.logger_t info
-INFO: [ water_level_sensors_controller ] Query action end
-Aug 30, 2018 7:56:57 PM logger.logger_t info
-INFO: [ water_level_sensors_controller ] Starting timeout
-Aug 30, 2018 7:56:57 PM logger.logger_t info
-INFO: [ water_level_sensors_controller ] Query action begin
-Aug 30, 2018 7:56:57 PM logger.logger_t info
-INFO: [ water_level_sensors_controller ] Query action end
-Aug 30, 2018 7:56:57 PM logger.logger_t info
-INFO: [ water_level_sensors_controller ] Starting timeout
-Aug 30, 2018 7:56:58 PM logger.logger_t info
-INFO: [ water_level_sensors_controller ] Query action begin
-Aug 30, 2018 7:56:58 PM logger.logger_t info
-INFO: [ water_level_sensors_controller ] Query action end
-Aug 30, 2018 7:56:58 PM logger.logger_t info
-INFO: [ water_level_sensors_controller ] Starting timeout
-Aug 30, 2018 7:56:58 PM logger.logger_t info
-INFO: [ water_level_sensors_controller ] Query action begin
-Aug 30, 2018 7:56:58 PM logger.logger_t info
-INFO: [ water_level_sensors_controller ] Query action end
-Aug 30, 2018 7:56:58 PM logger.logger_t info
-INFO: [ water_level_sensors_controller ] Starting timeout
-Aug 30, 2018 7:56:59 PM logger.logger_t info
-INFO: [ water_level_sensors_controller ] Query action begin
-Aug 30, 2018 7:56:59 PM logger.logger_t info
-INFO: [ water_level_sensors_controller ] Water over high threshold, turning on pump
-Aug 30, 2018 7:56:59 PM logger.logger_t info
-INFO: [ water_level_sensors_controller ] Query action end
-Aug 30, 2018 7:56:59 PM logger.logger_t info
-INFO: [ water_level_sensors_controller ] Starting timeout
-Aug 30, 2018 7:56:59 PM logger.logger_t info
-INFO: [ water_level_sensors_controller ] Query action begin
-Aug 30, 2018 7:56:59 PM logger.logger_t info
-INFO: [ water_level_sensors_controller ] Water over high threshold, turning on pump
-Aug 30, 2018 7:56:59 PM logger.logger_t info
-INFO: [ water_level_sensors_controller ] Query action end
-Aug 30, 2018 7:56:59 PM logger.logger_t info
-INFO: [ water_level_sensors_controller ] Starting timeout
-Aug 30, 2018 7:57:00 PM logger.logger_t info
-INFO: [ water_level_sensors_controller ] Query action begin
-Aug 30, 2018 7:57:00 PM logger.logger_t info
-INFO: [ water_level_sensors_controller ] Water over high threshold, turning on pump
-Aug 30, 2018 7:57:00 PM logger.logger_t info
-INFO: [ water_level_sensors_controller ] Query action end
-Aug 30, 2018 7:57:00 PM logger.logger_t info
-INFO: [ water_level_sensors_controller ] Starting timeout
-Aug 30, 2018 7:57:00 PM logger.logger_t info
-INFO: [ water_level_sensors_controller ] Query action begin
-Aug 30, 2018 7:57:00 PM logger.logger_t info
-INFO: [ water_level_sensors_controller ] Water over high threshold, turning on pump
-Aug 30, 2018 7:57:00 PM logger.logger_t info
-INFO: [ water_level_sensors_controller ] Query action end
-Aug 30, 2018 7:57:00 PM logger.logger_t info
-INFO: [ water_level_sensors_controller ] Starting timeout
-Aug 30, 2018 7:57:01 PM logger.logger_t info
-INFO: [ water_level_sensors_controller ] Query action begin
-Aug 30, 2018 7:57:01 PM logger.logger_t info
-INFO: [ water_level_sensors_controller ] Query action end
-Aug 30, 2018 7:57:01 PM logger.logger_t info
-INFO: [ water_level_sensors_controller ] Starting timeout
-Aug 30, 2018 7:57:01 PM logger.logger_t info
-INFO: [ water_level_sensors_controller ] Query action begin
-Aug 30, 2018 7:57:01 PM logger.logger_t info
-INFO: [ water_level_sensors_controller ] Query action end
-Aug 30, 2018 7:57:01 PM logger.logger_t info
-INFO: [ water_level_sensors_controller ] Starting timeout
-Aug 30, 2018 7:57:02 PM logger.logger_t info
-INFO: [ water_level_sensors_controller ] Query action begin
-Aug 30, 2018 7:57:02 PM logger.logger_t info
-INFO: [ water_level_sensors_controller ] Water over high threshold, turning on pump
-Aug 30, 2018 7:57:02 PM logger.logger_t info
-INFO: [ water_level_sensors_controller ] Query action end
-Aug 30, 2018 7:57:02 PM logger.logger_t info
-INFO: [ water_level_sensors_controller ] Starting timeout
-Aug 30, 2018 7:57:02 PM logger.logger_t info
-INFO: [ water_level_sensors_controller ] Query action begin
-Aug 30, 2018 7:57:02 PM logger.logger_t info
-INFO: [ water_level_sensors_controller ] Query action end
-Aug 30, 2018 7:57:02 PM logger.logger_t info
-INFO: [ water_level_sensors_controller ] Starting timeout
-Aug 30, 2018 7:57:03 PM logger.logger_t info
-INFO: [ water_level_sensors_controller ] Query action begin
-Aug 30, 2018 7:57:03 PM logger.logger_t info
-INFO: [ water_level_sensors_controller ] Water under low threshold, turning off pump
-Aug 30, 2018 7:57:03 PM logger.logger_t info
-INFO: [ water_level_sensors_controller ] Query action end
-Aug 30, 2018 7:57:03 PM logger.logger_t info
-INFO: [ water_level_sensors_controller ] Starting timeout
-Aug 30, 2018 7:57:03 PM logger.logger_t info
-INFO: [ water_level_sensors_controller ] Query action begin
-Aug 30, 2018 7:57:03 PM logger.logger_t info
-INFO: [ water_level_sensors_controller ] Water under low threshold, turning off pump
-Aug 30, 2018 7:57:03 PM logger.logger_t info
-INFO: [ water_level_sensors_controller ] Query action end
-Aug 30, 2018 7:57:03 PM logger.logger_t info
-INFO: [ water_level_sensors_controller ] Starting timeout
-Aug 30, 2018 7:57:04 PM logger.logger_t info
-INFO: [ water_level_sensors_controller ] Query action begin
-Aug 30, 2018 7:57:04 PM logger.logger_t info
-INFO: [ water_level_sensors_controller ] Water over high threshold, turning on pump
-Aug 30, 2018 7:57:04 PM logger.logger_t info
-INFO: [ water_level_sensors_controller ] Query action end
-Aug 30, 2018 7:57:04 PM logger.logger_t info
-INFO: [ water_level_sensors_controller ] Starting timeout
-Aug 30, 2018 7:57:04 PM logger.logger_t info
-INFO: [ water_level_sensors_controller ] Query action begin
-Aug 30, 2018 7:57:04 PM logger.logger_t info
-INFO: [ water_level_sensors_controller ] Water over high threshold, turning on pump
-Aug 30, 2018 7:57:04 PM logger.logger_t info
-INFO: [ water_level_sensors_controller ] Query action end
-Aug 30, 2018 7:57:04 PM logger.logger_t info
-INFO: [ water_level_sensors_controller ] Starting timeout
-Aug 30, 2018 7:57:05 PM logger.logger_t info
-INFO: [ water_level_sensors_controller ] Query action begin
-Aug 30, 2018 7:57:05 PM logger.logger_t info
-INFO: [ water_level_sensors_controller ] Water under low threshold, turning off pump
-Aug 30, 2018 7:57:05 PM logger.logger_t info
-INFO: [ water_level_sensors_controller ] Query action end
-Aug 30, 2018 7:57:05 PM logger.logger_t info
-INFO: [ water_level_sensors_controller ] Starting timeout
+Aug 31, 2018 12:24:33 AM logger.logger_t info
+INFO: [ mine_water_level_control_system ] System waiting for initialization message
+Aug 31, 2018 12:24:33 AM logger.logger_t info
+INFO: [ mine_water_level_control_system ] System initialized and running
+Aug 31, 2018 12:24:33 AM logger.logger_t info
+INFO: [ co_sensor_controller ] Initialization message received
+Aug 31, 2018 12:24:33 AM logger.logger_t info
+INFO: [ co_sensor_controller ] Starting timeout
+Aug 31, 2018 12:24:33 AM logger.logger_t info
+INFO: [ o_sensor_controller ] Initialization message received
+Aug 31, 2018 12:24:33 AM logger.logger_t info
+INFO: [ o_sensor_controller ] Starting timeout
+Aug 31, 2018 12:24:33 AM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Initialization message received
+Aug 31, 2018 12:24:33 AM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Starting timeout
+Aug 31, 2018 12:24:33 AM logger.logger_t info
+INFO: [ water_level_detectors_sensor_controller ] Initialization message received
+Aug 31, 2018 12:24:33 AM logger.logger_t info
+INFO: [ water_level_detectors_sensor_controller ] Starting timeout
+Aug 31, 2018 12:24:33 AM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] Initialization message received
+Aug 31, 2018 12:24:33 AM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] Starting timeout
+Aug 31, 2018 12:24:33 AM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action begin
+Aug 31, 2018 12:24:33 AM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action end
+Aug 31, 2018 12:24:33 AM logger.logger_t info
+INFO: [ co_sensor_controller ] Starting timeout
+Aug 31, 2018 12:24:33 AM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] State normal
+Aug 31, 2018 12:24:33 AM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] Starting timeout
+Aug 31, 2018 12:24:33 AM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action begin
+Aug 31, 2018 12:24:33 AM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action end
+Aug 31, 2018 12:24:33 AM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Starting timeout
+Aug 31, 2018 12:24:33 AM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action begin
+Aug 31, 2018 12:24:33 AM logger.logger_t info
+INFO: [ o_sensor_controller ] Error received, count threshold breached, turning on alarm
+Aug 31, 2018 12:24:33 AM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action end
+Aug 31, 2018 12:24:33 AM logger.logger_t info
+INFO: [ o_sensor_controller ] Starting timeout
+Aug 31, 2018 12:24:33 AM logger.logger_t info
+INFO: [ alarm_controller ] Initial turn on message recevied, turning on alarm
+Aug 31, 2018 12:24:33 AM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] State normal
+Aug 31, 2018 12:24:33 AM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] Starting timeout
+Aug 31, 2018 12:24:33 AM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action begin
+Aug 31, 2018 12:24:33 AM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action end
+Aug 31, 2018 12:24:33 AM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Starting timeout
+Aug 31, 2018 12:24:33 AM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action begin
+Aug 31, 2018 12:24:33 AM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action end
+Aug 31, 2018 12:24:33 AM logger.logger_t info
+INFO: [ co_sensor_controller ] Starting timeout
+Aug 31, 2018 12:24:33 AM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action begin
+Aug 31, 2018 12:24:33 AM logger.logger_t info
+INFO: [ o_sensor_controller ] Threshold stabilizied, turning off alarm
+Aug 31, 2018 12:24:33 AM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action end
+Aug 31, 2018 12:24:33 AM logger.logger_t info
+INFO: [ o_sensor_controller ] Starting timeout
+Aug 31, 2018 12:24:33 AM logger.logger_t info
+INFO: [ alarm_controller ] Last turn off message recevied, turning off alarm
+Aug 31, 2018 12:24:33 AM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] State normal
+Aug 31, 2018 12:24:33 AM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] Starting timeout
+Aug 31, 2018 12:24:33 AM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action begin
+Aug 31, 2018 12:24:33 AM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action end
+Aug 31, 2018 12:24:33 AM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Starting timeout
+Aug 31, 2018 12:24:33 AM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action begin
+Aug 31, 2018 12:24:33 AM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action end
+Aug 31, 2018 12:24:33 AM logger.logger_t info
+INFO: [ co_sensor_controller ] Starting timeout
+Aug 31, 2018 12:24:33 AM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action begin
+Aug 31, 2018 12:24:33 AM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action end
+Aug 31, 2018 12:24:33 AM logger.logger_t info
+INFO: [ o_sensor_controller ] Starting timeout
+Aug 31, 2018 12:24:33 AM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action begin
+Aug 31, 2018 12:24:33 AM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action end
+Aug 31, 2018 12:24:33 AM logger.logger_t info
+INFO: [ o_sensor_controller ] Starting timeout
+Aug 31, 2018 12:24:33 AM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action begin
+Aug 31, 2018 12:24:33 AM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action end
+Aug 31, 2018 12:24:33 AM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Starting timeout
+Aug 31, 2018 12:24:33 AM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action begin
+Aug 31, 2018 12:24:33 AM logger.logger_t info
+INFO: [ co_sensor_controller ] Error received, count threshold breached, turning on alarm
+Aug 31, 2018 12:24:33 AM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action end
+Aug 31, 2018 12:24:33 AM logger.logger_t info
+INFO: [ co_sensor_controller ] Starting timeout
+Aug 31, 2018 12:24:33 AM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] State normal
+Aug 31, 2018 12:24:33 AM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] Starting timeout
+Aug 31, 2018 12:24:33 AM logger.logger_t info
+INFO: [ alarm_controller ] Initial turn on message recevied, turning on alarm
+Aug 31, 2018 12:24:34 AM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action begin
+Aug 31, 2018 12:24:34 AM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action end
+Aug 31, 2018 12:24:34 AM logger.logger_t info
+INFO: [ o_sensor_controller ] Starting timeout
+Aug 31, 2018 12:24:34 AM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action begin
+Aug 31, 2018 12:24:34 AM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action end
+Aug 31, 2018 12:24:34 AM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Starting timeout
+Aug 31, 2018 12:24:34 AM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action begin
+Aug 31, 2018 12:24:34 AM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action end
+Aug 31, 2018 12:24:34 AM logger.logger_t info
+INFO: [ co_sensor_controller ] Starting timeout
+Aug 31, 2018 12:24:34 AM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] State normal
+Aug 31, 2018 12:24:34 AM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] Starting timeout
+Aug 31, 2018 12:24:34 AM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] State normal
+Aug 31, 2018 12:24:34 AM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] Starting timeout
+Aug 31, 2018 12:24:34 AM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action begin
+Aug 31, 2018 12:24:34 AM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action end
+Aug 31, 2018 12:24:34 AM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Starting timeout
+Aug 31, 2018 12:24:34 AM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action begin
+Aug 31, 2018 12:24:34 AM logger.logger_t info
+INFO: [ co_sensor_controller ] Threshold stabilizied, turning off alarm
+Aug 31, 2018 12:24:34 AM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action end
+Aug 31, 2018 12:24:34 AM logger.logger_t info
+INFO: [ co_sensor_controller ] Starting timeout
+Aug 31, 2018 12:24:34 AM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action begin
+Aug 31, 2018 12:24:34 AM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action end
+Aug 31, 2018 12:24:34 AM logger.logger_t info
+INFO: [ o_sensor_controller ] Starting timeout
+Aug 31, 2018 12:24:34 AM logger.logger_t info
+INFO: [ alarm_controller ] Last turn off message recevied, turning off alarm
+Aug 31, 2018 12:24:34 AM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] State normal
+Aug 31, 2018 12:24:34 AM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] Starting timeout
+Aug 31, 2018 12:24:34 AM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action begin
+Aug 31, 2018 12:24:34 AM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action end
+Aug 31, 2018 12:24:34 AM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Starting timeout
+Aug 31, 2018 12:24:34 AM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action begin
+Aug 31, 2018 12:24:34 AM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action end
+Aug 31, 2018 12:24:34 AM logger.logger_t info
+INFO: [ co_sensor_controller ] Starting timeout
+Aug 31, 2018 12:24:34 AM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action begin
+Aug 31, 2018 12:24:34 AM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action end
+Aug 31, 2018 12:24:34 AM logger.logger_t info
+INFO: [ o_sensor_controller ] Starting timeout
+Aug 31, 2018 12:24:34 AM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action begin
+Aug 31, 2018 12:24:34 AM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action end
+Aug 31, 2018 12:24:34 AM logger.logger_t info
+INFO: [ o_sensor_controller ] Starting timeout
+Aug 31, 2018 12:24:34 AM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action begin
+Aug 31, 2018 12:24:34 AM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Error received, count threshold breached, turning on alarm
+Aug 31, 2018 12:24:34 AM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Threshold breached, sending message to pump controller
+Aug 31, 2018 12:24:34 AM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action end
+Aug 31, 2018 12:24:34 AM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Starting timeout
+Aug 31, 2018 12:24:34 AM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action begin
+Aug 31, 2018 12:24:34 AM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action end
+Aug 31, 2018 12:24:34 AM logger.logger_t info
+INFO: [ co_sensor_controller ] Starting timeout
+Aug 31, 2018 12:24:34 AM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] State normal
+Aug 31, 2018 12:24:34 AM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] Starting timeout
+Aug 31, 2018 12:24:34 AM logger.logger_t info
+INFO: [ alarm_controller ] Initial turn on message recevied, turning on alarm
+Aug 31, 2018 12:24:34 AM logger.logger_t info
+INFO: [ pump_controller ] Methane threshold breached while pump turned off
+Aug 31, 2018 12:24:34 AM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action begin
+Aug 31, 2018 12:24:34 AM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action end
+Aug 31, 2018 12:24:34 AM logger.logger_t info
+INFO: [ o_sensor_controller ] Starting timeout
+Aug 31, 2018 12:24:34 AM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action begin
+Aug 31, 2018 12:24:34 AM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action end
+Aug 31, 2018 12:24:34 AM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Starting timeout
+Aug 31, 2018 12:24:34 AM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action begin
+Aug 31, 2018 12:24:34 AM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action end
+Aug 31, 2018 12:24:34 AM logger.logger_t info
+INFO: [ co_sensor_controller ] Starting timeout
+Aug 31, 2018 12:24:34 AM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] State normal
+Aug 31, 2018 12:24:34 AM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] Starting timeout
+Aug 31, 2018 12:24:34 AM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] State normal
+Aug 31, 2018 12:24:34 AM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] Starting timeout
+Aug 31, 2018 12:24:34 AM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action begin
+Aug 31, 2018 12:24:34 AM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Threshold stabilizied, turning off alarm
+Aug 31, 2018 12:24:34 AM logger.logger_t info
+INFO: [ ch4_sensor_controller ] State normal, sending message to pump controller
+Aug 31, 2018 12:24:34 AM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action end
+Aug 31, 2018 12:24:34 AM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Starting timeout
+Aug 31, 2018 12:24:34 AM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action begin
+Aug 31, 2018 12:24:34 AM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action end
+Aug 31, 2018 12:24:34 AM logger.logger_t info
+INFO: [ co_sensor_controller ] Starting timeout
+Aug 31, 2018 12:24:34 AM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action begin
+Aug 31, 2018 12:24:34 AM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action end
+Aug 31, 2018 12:24:34 AM logger.logger_t info
+INFO: [ o_sensor_controller ] Starting timeout
+Aug 31, 2018 12:24:34 AM logger.logger_t info
+INFO: [ alarm_controller ] Last turn off message recevied, turning off alarm
+Aug 31, 2018 12:24:34 AM logger.logger_t info
+INFO: [ pump_controller ] Methane state normal received
+Aug 31, 2018 12:24:34 AM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] State normal
+Aug 31, 2018 12:24:34 AM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] Starting timeout
+Aug 31, 2018 12:24:34 AM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action begin
+Aug 31, 2018 12:24:34 AM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action end
+Aug 31, 2018 12:24:34 AM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Starting timeout
+Aug 31, 2018 12:24:34 AM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action begin
+Aug 31, 2018 12:24:34 AM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action end
+Aug 31, 2018 12:24:34 AM logger.logger_t info
+INFO: [ co_sensor_controller ] Starting timeout
+Aug 31, 2018 12:24:34 AM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action begin
+Aug 31, 2018 12:24:34 AM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action end
+Aug 31, 2018 12:24:34 AM logger.logger_t info
+INFO: [ o_sensor_controller ] Starting timeout

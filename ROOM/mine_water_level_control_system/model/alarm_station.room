@@ -31,10 +31,12 @@ RoomModel alarm_station {
 			
 			Attribute alarm : device_t ref
 			Attribute alarm_level : int32
+			Attribute number_of_alarm_activators : int32
 		}
 		Behavior {
 			ctor '''
 				this.alarm_level = 0;
+				this.number_of_alarm_activators = 4;
 			'''
 			
 			StateMachine {
@@ -60,7 +62,9 @@ RoomModel alarm_station {
 						< turn_on : water_flow_sensor_controller_port >
 					}
 					action '''
-						this.alarm_level++;
+						if ( this.alarm_level < this.number_of_alarm_activators ) {
+							this.alarm_level++;
+						}
 						
 						if ( this.alarm_level == 1 ) {
 							this.alarm.state = device_state_t.ON;	
@@ -77,7 +81,9 @@ RoomModel alarm_station {
 						< turn_off : water_flow_sensor_controller_port >
 					}
 					action '''
-						this.alarm_level--;
+						if ( this.alarm_level > 0 ) {
+							this.alarm_level--;
+						}
 						
 						if ( this.alarm_level == 0 ) {
 							this.alarm.state = device_state_t.OFF;	

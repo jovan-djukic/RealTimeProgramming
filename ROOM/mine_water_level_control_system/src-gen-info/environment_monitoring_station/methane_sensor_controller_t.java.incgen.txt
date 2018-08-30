@@ -40,17 +40,24 @@ public class methane_sensor_controller_t extends gas_sensor_controller_t {
 	public static final int IFITEM_methane_port = 5;
 
 	/*--------------------- attributes ---------------------*/
+	public  boolean threshold_breached;
 
 	/*--------------------- operations ---------------------*/
 	public  void query_action() {
 		super.query_action ( );
 		if ( super.gas_sensor.error_occurred == false ) {
 			if ( super.gas_sensor.value > super.threshold ) {
-				this.methane_port.threshold_breached ( );
-				super.info ( super.getName ( ), "Threshold breached, sending message to pump controller" );
+				if ( this.threshold_breached == false ) {
+					this.methane_port.threshold_breached ( );
+					super.info ( super.getName ( ), "Threshold breached, sending message to pump controller" );
+					this.threshold_breached = true;
+				}
 			} else {
-				this.methane_port.state_normal ( );
-				super.info ( super.getName ( ), "State normal, sending message to pump controller" );
+				if ( this.threshold_breached == true ) {
+					this.methane_port.state_normal ( );
+					super.info ( super.getName ( ), "State normal, sending message to pump controller" );
+					this.threshold_breached = false;
+				}
 			}
 		}
 	}
@@ -62,6 +69,7 @@ public class methane_sensor_controller_t extends gas_sensor_controller_t {
 		setClassName("methane_sensor_controller_t");
 
 		// initialize attributes
+		this.setThreshold_breached(false);
 
 		// own ports
 		methane_port = new methane_protocol_tPort(this, "methane_port", IFITEM_methane_port);
@@ -80,6 +88,12 @@ public class methane_sensor_controller_t extends gas_sensor_controller_t {
 	}
 
 	/* --------------------- attribute setters and getters */
+	public void setThreshold_breached(boolean threshold_breached) {
+		 this.threshold_breached = threshold_breached;
+	}
+	public boolean getThreshold_breached() {
+		return this.threshold_breached;
+	}
 
 
 	//--------------------- port getters
@@ -137,8 +151,11 @@ public class methane_sensor_controller_t extends gas_sensor_controller_t {
 	    this.gas_sensor = ( ( gas_sensor_controller_idata_t ) data ).gas_sensor;
 	    this.error_count_threshold = ( ( gas_sensor_controller_idata_t ) data ).error_count_threshold;
 	    this.error_count = 0;
+	    this.alarm_turned_on = false;
 	    
 	    super.detect_above_threshold = true;
+	    
+	    this.threshold_breached = false;
 	}
 	
 	/* State Switch Methods */

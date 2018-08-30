@@ -32,4 +32,8 @@ RoomModel devices {
 	DataClass device_t {
 		Attribute state : device_state_t
 	}
+	
+	DataClass water_flow_sensor_t {
+		Attribute value : int32
+	}
 }
