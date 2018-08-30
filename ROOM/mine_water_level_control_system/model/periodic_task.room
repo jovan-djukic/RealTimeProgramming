@@ -2,7 +2,8 @@ RoomModel periodic_task {
 	import room.basic.types.* from "../../org.eclipse.etrice.modellib.java/model/Types.room"
 	import room.basic.service.timing.* from "../../org.eclipse.etrice.modellib.java/model/TimingService.room"
 	import logger.logger_t from "logger.room"
-	
+	import test.* from "test.room"
+
 	DataClass periodic_task_idata_t {
 		Attribute period : int32 = '0'
 	}
@@ -13,12 +14,15 @@ RoomModel periodic_task {
 		}
 	}
 	
+
 	abstract ActorClass periodic_task_t extends logger_t {
 		Interface { 
 			Port iport : periodic_task_iprotocol_t 
+			Port test_port : test_protocol_t
 		}	
 		Structure {
 			external Port iport
+			external Port test_port
 
 			SAP timer_access_point : PTimer
 
@@ -31,6 +35,7 @@ RoomModel periodic_task {
 				State sleeping { 
 					entry '''
 						super.info ( this.getName( ), "Starting timeout" );
+						this.test_port.activated ( );
 						this.timer_access_point.startTimeout ( this.period );
 					'''	
 				}

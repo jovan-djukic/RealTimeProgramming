@@ -23,10 +23,10 @@ public class alarm_controller_t extends logger_t {
 
 	//--------------------- ports
 	protected alarm_controller_iprotocol_tPort iport = null;
-	protected switch_protocol_tConjPort co_controller_port = null;
-	protected switch_protocol_tConjPort o_controller_port = null;
-	protected switch_protocol_tConjPort ch4_controller_port = null;
-	protected switch_protocol_tConjPort water_flow_controller_port = null;
+	protected switch_protocol_tConjPort co_sensor_controller_port = null;
+	protected switch_protocol_tConjPort o_sensor_controller_port = null;
+	protected switch_protocol_tConjPort ch4_sensor_controller_port = null;
+	protected switch_protocol_tConjPort water_flow_sensor_controller_port = null;
 
 	//--------------------- saps
 
@@ -36,10 +36,10 @@ public class alarm_controller_t extends logger_t {
 
 	//--------------------- interface item IDs
 	public static final int IFITEM_iport = 1;
-	public static final int IFITEM_co_controller_port = 2;
-	public static final int IFITEM_o_controller_port = 3;
-	public static final int IFITEM_ch4_controller_port = 4;
-	public static final int IFITEM_water_flow_controller_port = 5;
+	public static final int IFITEM_co_sensor_controller_port = 2;
+	public static final int IFITEM_o_sensor_controller_port = 3;
+	public static final int IFITEM_ch4_sensor_controller_port = 4;
+	public static final int IFITEM_water_flow_sensor_controller_port = 5;
 
 	/*--------------------- attributes ---------------------*/
 	public  device_t alarm;
@@ -59,10 +59,10 @@ public class alarm_controller_t extends logger_t {
 
 		// own ports
 		iport = new alarm_controller_iprotocol_tPort(this, "iport", IFITEM_iport);
-		co_controller_port = new switch_protocol_tConjPort(this, "co_controller_port", IFITEM_co_controller_port);
-		o_controller_port = new switch_protocol_tConjPort(this, "o_controller_port", IFITEM_o_controller_port);
-		ch4_controller_port = new switch_protocol_tConjPort(this, "ch4_controller_port", IFITEM_ch4_controller_port);
-		water_flow_controller_port = new switch_protocol_tConjPort(this, "water_flow_controller_port", IFITEM_water_flow_controller_port);
+		co_sensor_controller_port = new switch_protocol_tConjPort(this, "co_sensor_controller_port", IFITEM_co_sensor_controller_port);
+		o_sensor_controller_port = new switch_protocol_tConjPort(this, "o_sensor_controller_port", IFITEM_o_sensor_controller_port);
+		ch4_sensor_controller_port = new switch_protocol_tConjPort(this, "ch4_sensor_controller_port", IFITEM_ch4_sensor_controller_port);
+		water_flow_sensor_controller_port = new switch_protocol_tConjPort(this, "water_flow_sensor_controller_port", IFITEM_water_flow_sensor_controller_port);
 
 		// own saps
 
@@ -97,17 +97,17 @@ public class alarm_controller_t extends logger_t {
 	public alarm_controller_iprotocol_tPort getIport (){
 		return this.iport;
 	}
-	public switch_protocol_tConjPort getCo_controller_port (){
-		return this.co_controller_port;
+	public switch_protocol_tConjPort getCo_sensor_controller_port (){
+		return this.co_sensor_controller_port;
 	}
-	public switch_protocol_tConjPort getO_controller_port (){
-		return this.o_controller_port;
+	public switch_protocol_tConjPort getO_sensor_controller_port (){
+		return this.o_sensor_controller_port;
 	}
-	public switch_protocol_tConjPort getCh4_controller_port (){
-		return this.ch4_controller_port;
+	public switch_protocol_tConjPort getCh4_sensor_controller_port (){
+		return this.ch4_sensor_controller_port;
 	}
-	public switch_protocol_tConjPort getWater_flow_controller_port (){
-		return this.water_flow_controller_port;
+	public switch_protocol_tConjPort getWater_flow_sensor_controller_port (){
+		return this.water_flow_sensor_controller_port;
 	}
 
 	//--------------------- lifecycle functions
@@ -129,20 +129,20 @@ public class alarm_controller_t extends logger_t {
 	/* transition chains */
 	public static final int CHAIN_TRANS_INITIAL_TO__waiting_for_imessage = 1;
 	public static final int CHAIN_TRANS_imessage_received_FROM_waiting_for_imessage_TO_waiting_for_alarm_message_BY_initializeiport = 2;
-	public static final int CHAIN_TRANS_turn_on_message_received_FROM_waiting_for_alarm_message_TO_waiting_for_alarm_message_BY_turn_onch4_controller_portturn_onco_controller_portturn_ono_controller_portturn_onwater_flow_controller_port_turn_on_message_received = 3;
-	public static final int CHAIN_TRANS_turn_off_message_received_FROM_waiting_for_alarm_message_TO_waiting_for_alarm_message_BY_turn_offch4_controller_portturn_offco_controller_portturn_offo_controller_portturn_offwater_flow_controller_port_turn_off_message_received = 4;
+	public static final int CHAIN_TRANS_turn_on_message_received_FROM_waiting_for_alarm_message_TO_waiting_for_alarm_message_BY_turn_onch4_sensor_controller_portturn_onco_sensor_controller_portturn_ono_sensor_controller_portturn_onwater_flow_sensor_controller_port_turn_on_message_received = 3;
+	public static final int CHAIN_TRANS_turn_off_message_received_FROM_waiting_for_alarm_message_TO_waiting_for_alarm_message_BY_turn_offch4_sensor_controller_portturn_offco_sensor_controller_portturn_offo_sensor_controller_portturn_offwater_flow_sensor_controller_port_turn_off_message_received = 4;
 	
 	/* triggers */
 	public static final int POLLING = 0;
 	public static final int TRIG_iport__initialize = IFITEM_iport + EVT_SHIFT*alarm_controller_iprotocol_t.IN_initialize;
-	public static final int TRIG_co_controller_port__turn_on = IFITEM_co_controller_port + EVT_SHIFT*switch_protocol_t.OUT_turn_on;
-	public static final int TRIG_co_controller_port__turn_off = IFITEM_co_controller_port + EVT_SHIFT*switch_protocol_t.OUT_turn_off;
-	public static final int TRIG_o_controller_port__turn_on = IFITEM_o_controller_port + EVT_SHIFT*switch_protocol_t.OUT_turn_on;
-	public static final int TRIG_o_controller_port__turn_off = IFITEM_o_controller_port + EVT_SHIFT*switch_protocol_t.OUT_turn_off;
-	public static final int TRIG_ch4_controller_port__turn_on = IFITEM_ch4_controller_port + EVT_SHIFT*switch_protocol_t.OUT_turn_on;
-	public static final int TRIG_ch4_controller_port__turn_off = IFITEM_ch4_controller_port + EVT_SHIFT*switch_protocol_t.OUT_turn_off;
-	public static final int TRIG_water_flow_controller_port__turn_on = IFITEM_water_flow_controller_port + EVT_SHIFT*switch_protocol_t.OUT_turn_on;
-	public static final int TRIG_water_flow_controller_port__turn_off = IFITEM_water_flow_controller_port + EVT_SHIFT*switch_protocol_t.OUT_turn_off;
+	public static final int TRIG_co_sensor_controller_port__turn_on = IFITEM_co_sensor_controller_port + EVT_SHIFT*switch_protocol_t.OUT_turn_on;
+	public static final int TRIG_co_sensor_controller_port__turn_off = IFITEM_co_sensor_controller_port + EVT_SHIFT*switch_protocol_t.OUT_turn_off;
+	public static final int TRIG_o_sensor_controller_port__turn_on = IFITEM_o_sensor_controller_port + EVT_SHIFT*switch_protocol_t.OUT_turn_on;
+	public static final int TRIG_o_sensor_controller_port__turn_off = IFITEM_o_sensor_controller_port + EVT_SHIFT*switch_protocol_t.OUT_turn_off;
+	public static final int TRIG_ch4_sensor_controller_port__turn_on = IFITEM_ch4_sensor_controller_port + EVT_SHIFT*switch_protocol_t.OUT_turn_on;
+	public static final int TRIG_ch4_sensor_controller_port__turn_off = IFITEM_ch4_sensor_controller_port + EVT_SHIFT*switch_protocol_t.OUT_turn_off;
+	public static final int TRIG_water_flow_sensor_controller_port__turn_on = IFITEM_water_flow_sensor_controller_port + EVT_SHIFT*switch_protocol_t.OUT_turn_on;
+	public static final int TRIG_water_flow_sensor_controller_port__turn_off = IFITEM_water_flow_sensor_controller_port + EVT_SHIFT*switch_protocol_t.OUT_turn_off;
 	
 	// state names
 	protected static final String stateStrings[] = {
@@ -166,7 +166,7 @@ public class alarm_controller_t extends logger_t {
 	protected void action_TRANS_imessage_received_FROM_waiting_for_imessage_TO_waiting_for_alarm_message_BY_initializeiport(InterfaceItemBase ifitem, alarm_controller_idata_t data) {
 	    this.alarm = data.alarm;
 	}
-	protected void action_TRANS_turn_on_message_received_FROM_waiting_for_alarm_message_TO_waiting_for_alarm_message_BY_turn_onch4_controller_portturn_onco_controller_portturn_ono_controller_portturn_onwater_flow_controller_port_turn_on_message_received(InterfaceItemBase ifitem) {
+	protected void action_TRANS_turn_on_message_received_FROM_waiting_for_alarm_message_TO_waiting_for_alarm_message_BY_turn_onch4_sensor_controller_portturn_onco_sensor_controller_portturn_ono_sensor_controller_portturn_onwater_flow_sensor_controller_port_turn_on_message_received(InterfaceItemBase ifitem) {
 	    this.alarm_level++;
 	    
 	    if ( this.alarm_level == 1 ) {
@@ -174,7 +174,7 @@ public class alarm_controller_t extends logger_t {
 	    	super.info ( super.getName ( ), "Initial turn on message recevied, turning on alarm" );
 	    }
 	}
-	protected void action_TRANS_turn_off_message_received_FROM_waiting_for_alarm_message_TO_waiting_for_alarm_message_BY_turn_offch4_controller_portturn_offco_controller_portturn_offo_controller_portturn_offwater_flow_controller_port_turn_off_message_received(InterfaceItemBase ifitem) {
+	protected void action_TRANS_turn_off_message_received_FROM_waiting_for_alarm_message_TO_waiting_for_alarm_message_BY_turn_offch4_sensor_controller_portturn_offco_sensor_controller_portturn_offo_sensor_controller_portturn_offwater_flow_sensor_controller_port_turn_off_message_received(InterfaceItemBase ifitem) {
 	    this.alarm_level--;
 	    
 	    if ( this.alarm_level == 0 ) {
@@ -227,14 +227,14 @@ public class alarm_controller_t extends logger_t {
 				action_TRANS_imessage_received_FROM_waiting_for_imessage_TO_waiting_for_alarm_message_BY_initializeiport(ifitem, data);
 				return STATE_waiting_for_alarm_message;
 			}
-			case alarm_controller_t.CHAIN_TRANS_turn_on_message_received_FROM_waiting_for_alarm_message_TO_waiting_for_alarm_message_BY_turn_onch4_controller_portturn_onco_controller_portturn_ono_controller_portturn_onwater_flow_controller_port_turn_on_message_received:
+			case alarm_controller_t.CHAIN_TRANS_turn_on_message_received_FROM_waiting_for_alarm_message_TO_waiting_for_alarm_message_BY_turn_onch4_sensor_controller_portturn_onco_sensor_controller_portturn_ono_sensor_controller_portturn_onwater_flow_sensor_controller_port_turn_on_message_received:
 			{
-				action_TRANS_turn_on_message_received_FROM_waiting_for_alarm_message_TO_waiting_for_alarm_message_BY_turn_onch4_controller_portturn_onco_controller_portturn_ono_controller_portturn_onwater_flow_controller_port_turn_on_message_received(ifitem);
+				action_TRANS_turn_on_message_received_FROM_waiting_for_alarm_message_TO_waiting_for_alarm_message_BY_turn_onch4_sensor_controller_portturn_onco_sensor_controller_portturn_ono_sensor_controller_portturn_onwater_flow_sensor_controller_port_turn_on_message_received(ifitem);
 				return STATE_waiting_for_alarm_message;
 			}
-			case alarm_controller_t.CHAIN_TRANS_turn_off_message_received_FROM_waiting_for_alarm_message_TO_waiting_for_alarm_message_BY_turn_offch4_controller_portturn_offco_controller_portturn_offo_controller_portturn_offwater_flow_controller_port_turn_off_message_received:
+			case alarm_controller_t.CHAIN_TRANS_turn_off_message_received_FROM_waiting_for_alarm_message_TO_waiting_for_alarm_message_BY_turn_offch4_sensor_controller_portturn_offco_sensor_controller_portturn_offo_sensor_controller_portturn_offwater_flow_sensor_controller_port_turn_off_message_received:
 			{
-				action_TRANS_turn_off_message_received_FROM_waiting_for_alarm_message_TO_waiting_for_alarm_message_BY_turn_offch4_controller_portturn_offco_controller_portturn_offo_controller_portturn_offwater_flow_controller_port_turn_off_message_received(ifitem);
+				action_TRANS_turn_off_message_received_FROM_waiting_for_alarm_message_TO_waiting_for_alarm_message_BY_turn_offch4_sensor_controller_portturn_offco_sensor_controller_portturn_offo_sensor_controller_portturn_offwater_flow_sensor_controller_port_turn_off_message_received(ifitem);
 				return STATE_waiting_for_alarm_message;
 			}
 				default:
@@ -302,51 +302,51 @@ public class alarm_controller_t extends logger_t {
 			        break;
 			    case STATE_waiting_for_alarm_message:
 			        switch(trigger__et) {
-			                case TRIG_ch4_controller_port__turn_on:
+			                case TRIG_ch4_sensor_controller_port__turn_on:
 			                    {
-			                        chain__et = alarm_controller_t.CHAIN_TRANS_turn_on_message_received_FROM_waiting_for_alarm_message_TO_waiting_for_alarm_message_BY_turn_onch4_controller_portturn_onco_controller_portturn_ono_controller_portturn_onwater_flow_controller_port_turn_on_message_received;
+			                        chain__et = alarm_controller_t.CHAIN_TRANS_turn_on_message_received_FROM_waiting_for_alarm_message_TO_waiting_for_alarm_message_BY_turn_onch4_sensor_controller_portturn_onco_sensor_controller_portturn_ono_sensor_controller_portturn_onwater_flow_sensor_controller_port_turn_on_message_received;
 			                        catching_state__et = STATE_TOP;
 			                    }
 			                break;
-			                case TRIG_co_controller_port__turn_on:
+			                case TRIG_co_sensor_controller_port__turn_on:
 			                    {
-			                        chain__et = alarm_controller_t.CHAIN_TRANS_turn_on_message_received_FROM_waiting_for_alarm_message_TO_waiting_for_alarm_message_BY_turn_onch4_controller_portturn_onco_controller_portturn_ono_controller_portturn_onwater_flow_controller_port_turn_on_message_received;
+			                        chain__et = alarm_controller_t.CHAIN_TRANS_turn_on_message_received_FROM_waiting_for_alarm_message_TO_waiting_for_alarm_message_BY_turn_onch4_sensor_controller_portturn_onco_sensor_controller_portturn_ono_sensor_controller_portturn_onwater_flow_sensor_controller_port_turn_on_message_received;
 			                        catching_state__et = STATE_TOP;
 			                    }
 			                break;
-			                case TRIG_o_controller_port__turn_on:
+			                case TRIG_o_sensor_controller_port__turn_on:
 			                    {
-			                        chain__et = alarm_controller_t.CHAIN_TRANS_turn_on_message_received_FROM_waiting_for_alarm_message_TO_waiting_for_alarm_message_BY_turn_onch4_controller_portturn_onco_controller_portturn_ono_controller_portturn_onwater_flow_controller_port_turn_on_message_received;
+			                        chain__et = alarm_controller_t.CHAIN_TRANS_turn_on_message_received_FROM_waiting_for_alarm_message_TO_waiting_for_alarm_message_BY_turn_onch4_sensor_controller_portturn_onco_sensor_controller_portturn_ono_sensor_controller_portturn_onwater_flow_sensor_controller_port_turn_on_message_received;
 			                        catching_state__et = STATE_TOP;
 			                    }
 			                break;
-			                case TRIG_water_flow_controller_port__turn_on:
+			                case TRIG_water_flow_sensor_controller_port__turn_on:
 			                    {
-			                        chain__et = alarm_controller_t.CHAIN_TRANS_turn_on_message_received_FROM_waiting_for_alarm_message_TO_waiting_for_alarm_message_BY_turn_onch4_controller_portturn_onco_controller_portturn_ono_controller_portturn_onwater_flow_controller_port_turn_on_message_received;
+			                        chain__et = alarm_controller_t.CHAIN_TRANS_turn_on_message_received_FROM_waiting_for_alarm_message_TO_waiting_for_alarm_message_BY_turn_onch4_sensor_controller_portturn_onco_sensor_controller_portturn_ono_sensor_controller_portturn_onwater_flow_sensor_controller_port_turn_on_message_received;
 			                        catching_state__et = STATE_TOP;
 			                    }
 			                break;
-			                case TRIG_ch4_controller_port__turn_off:
+			                case TRIG_ch4_sensor_controller_port__turn_off:
 			                    {
-			                        chain__et = alarm_controller_t.CHAIN_TRANS_turn_off_message_received_FROM_waiting_for_alarm_message_TO_waiting_for_alarm_message_BY_turn_offch4_controller_portturn_offco_controller_portturn_offo_controller_portturn_offwater_flow_controller_port_turn_off_message_received;
+			                        chain__et = alarm_controller_t.CHAIN_TRANS_turn_off_message_received_FROM_waiting_for_alarm_message_TO_waiting_for_alarm_message_BY_turn_offch4_sensor_controller_portturn_offco_sensor_controller_portturn_offo_sensor_controller_portturn_offwater_flow_sensor_controller_port_turn_off_message_received;
 			                        catching_state__et = STATE_TOP;
 			                    }
 			                break;
-			                case TRIG_co_controller_port__turn_off:
+			                case TRIG_co_sensor_controller_port__turn_off:
 			                    {
-			                        chain__et = alarm_controller_t.CHAIN_TRANS_turn_off_message_received_FROM_waiting_for_alarm_message_TO_waiting_for_alarm_message_BY_turn_offch4_controller_portturn_offco_controller_portturn_offo_controller_portturn_offwater_flow_controller_port_turn_off_message_received;
+			                        chain__et = alarm_controller_t.CHAIN_TRANS_turn_off_message_received_FROM_waiting_for_alarm_message_TO_waiting_for_alarm_message_BY_turn_offch4_sensor_controller_portturn_offco_sensor_controller_portturn_offo_sensor_controller_portturn_offwater_flow_sensor_controller_port_turn_off_message_received;
 			                        catching_state__et = STATE_TOP;
 			                    }
 			                break;
-			                case TRIG_o_controller_port__turn_off:
+			                case TRIG_o_sensor_controller_port__turn_off:
 			                    {
-			                        chain__et = alarm_controller_t.CHAIN_TRANS_turn_off_message_received_FROM_waiting_for_alarm_message_TO_waiting_for_alarm_message_BY_turn_offch4_controller_portturn_offco_controller_portturn_offo_controller_portturn_offwater_flow_controller_port_turn_off_message_received;
+			                        chain__et = alarm_controller_t.CHAIN_TRANS_turn_off_message_received_FROM_waiting_for_alarm_message_TO_waiting_for_alarm_message_BY_turn_offch4_sensor_controller_portturn_offco_sensor_controller_portturn_offo_sensor_controller_portturn_offwater_flow_sensor_controller_port_turn_off_message_received;
 			                        catching_state__et = STATE_TOP;
 			                    }
 			                break;
-			                case TRIG_water_flow_controller_port__turn_off:
+			                case TRIG_water_flow_sensor_controller_port__turn_off:
 			                    {
-			                        chain__et = alarm_controller_t.CHAIN_TRANS_turn_off_message_received_FROM_waiting_for_alarm_message_TO_waiting_for_alarm_message_BY_turn_offch4_controller_portturn_offco_controller_portturn_offo_controller_portturn_offwater_flow_controller_port_turn_off_message_received;
+			                        chain__et = alarm_controller_t.CHAIN_TRANS_turn_off_message_received_FROM_waiting_for_alarm_message_TO_waiting_for_alarm_message_BY_turn_offch4_sensor_controller_portturn_offco_sensor_controller_portturn_offo_sensor_controller_portturn_offwater_flow_sensor_controller_port_turn_off_message_received;
 			                        catching_state__et = STATE_TOP;
 			                    }
 			                break;

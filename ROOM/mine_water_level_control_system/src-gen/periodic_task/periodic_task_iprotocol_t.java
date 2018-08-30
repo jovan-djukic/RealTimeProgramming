@@ -1,4 +1,4 @@
-package pump_station;
+package periodic_task;
 
 import org.eclipse.etrice.runtime.java.messaging.Message;
 import org.eclipse.etrice.runtime.java.modelbase.EventMessage;
@@ -11,9 +11,8 @@ import org.eclipse.etrice.runtime.java.debugging.DebuggingService;
 import static org.eclipse.etrice.runtime.java.etunit.EtUnit.*;
 
 
-import devices.*;
 
-public class pump_controller_iprotocol_t {
+public class periodic_task_iprotocol_t {
 	// message IDs
 	public static final int MSG_MIN = 0;
 	public static final int IN_initialize = 1;
@@ -34,12 +33,12 @@ public class pump_controller_iprotocol_t {
 
 	
 	// port class
-	static public class pump_controller_iprotocol_tPort extends PortBase {
+	static public class periodic_task_iprotocol_tPort extends PortBase {
 		// constructors
-		public pump_controller_iprotocol_tPort(IInterfaceItemOwner actor, String name, int localId) {
+		public periodic_task_iprotocol_tPort(IInterfaceItemOwner actor, String name, int localId) {
 			this(actor, name, localId, 0);
 		}
-		public pump_controller_iprotocol_tPort(IInterfaceItemOwner actor, String name, int localId, int idx) {
+		public periodic_task_iprotocol_tPort(IInterfaceItemOwner actor, String name, int localId, int idx) {
 			super(actor, name, localId, idx);
 			DebuggingService.getInstance().addPortInstance(this);
 		}
@@ -68,9 +67,9 @@ public class pump_controller_iprotocol_t {
 	}
 	
 	// replicated port class
-	static public class pump_controller_iprotocol_tReplPort extends ReplicatedPortBase {
+	static public class periodic_task_iprotocol_tReplPort extends ReplicatedPortBase {
 	
-		public pump_controller_iprotocol_tReplPort(IInterfaceItemOwner actor, String name, int localId) {
+		public periodic_task_iprotocol_tReplPort(IInterfaceItemOwner actor, String name, int localId) {
 			super(actor, name, localId);
 		}
 	
@@ -82,12 +81,12 @@ public class pump_controller_iprotocol_t {
 				return ifitem.getIdx();
 		}
 	
-		public pump_controller_iprotocol_tPort get(int idx) {
-			return (pump_controller_iprotocol_tPort) getInterfaceItem(idx);
+		public periodic_task_iprotocol_tPort get(int idx) {
+			return (periodic_task_iprotocol_tPort) getInterfaceItem(idx);
 		}
 	
 		protected InterfaceItemBase createInterfaceItem(IInterfaceItemOwner rcv, String name, int lid, int idx) {
-			return new pump_controller_iprotocol_tPort(rcv, name, lid, idx);
+			return new periodic_task_iprotocol_tPort(rcv, name, lid, idx);
 		}
 	
 		// outgoing messages
@@ -95,12 +94,12 @@ public class pump_controller_iprotocol_t {
 	
 	
 	// port class
-	static public class pump_controller_iprotocol_tConjPort extends PortBase {
+	static public class periodic_task_iprotocol_tConjPort extends PortBase {
 		// constructors
-		public pump_controller_iprotocol_tConjPort(IInterfaceItemOwner actor, String name, int localId) {
+		public periodic_task_iprotocol_tConjPort(IInterfaceItemOwner actor, String name, int localId) {
 			this(actor, name, localId, 0);
 		}
-		public pump_controller_iprotocol_tConjPort(IInterfaceItemOwner actor, String name, int localId, int idx) {
+		public periodic_task_iprotocol_tConjPort(IInterfaceItemOwner actor, String name, int localId, int idx) {
 			super(actor, name, localId, idx);
 			DebuggingService.getInstance().addPortInstance(this);
 		}
@@ -126,20 +125,20 @@ public class pump_controller_iprotocol_t {
 	
 	
 		// sent messages
-		public void initialize(pump_controller_idata_t data) {
+		public void initialize(periodic_task_idata_t data) {
 			DebuggingService.getInstance().addMessageAsyncOut(getAddress(), getPeerAddress(), messageStrings[IN_initialize]);
 			if (getPeerAddress()!=null)
 				getPeerMsgReceiver().receive(new EventWithDataMessage(getPeerAddress(), IN_initialize, data.deepCopy()));
 		}
-		public void initialize(device_t pump) {
-			initialize(new pump_controller_idata_t(pump));
+		public void initialize(int period) {
+			initialize(new periodic_task_idata_t(period));
 		}
 	}
 	
 	// replicated port class
-	static public class pump_controller_iprotocol_tConjReplPort extends ReplicatedPortBase {
+	static public class periodic_task_iprotocol_tConjReplPort extends ReplicatedPortBase {
 	
-		public pump_controller_iprotocol_tConjReplPort(IInterfaceItemOwner actor, String name, int localId) {
+		public periodic_task_iprotocol_tConjReplPort(IInterfaceItemOwner actor, String name, int localId) {
 			super(actor, name, localId);
 		}
 	
@@ -151,18 +150,18 @@ public class pump_controller_iprotocol_t {
 				return ifitem.getIdx();
 		}
 	
-		public pump_controller_iprotocol_tConjPort get(int idx) {
-			return (pump_controller_iprotocol_tConjPort) getInterfaceItem(idx);
+		public periodic_task_iprotocol_tConjPort get(int idx) {
+			return (periodic_task_iprotocol_tConjPort) getInterfaceItem(idx);
 		}
 	
 		protected InterfaceItemBase createInterfaceItem(IInterfaceItemOwner rcv, String name, int lid, int idx) {
-			return new pump_controller_iprotocol_tConjPort(rcv, name, lid, idx);
+			return new periodic_task_iprotocol_tConjPort(rcv, name, lid, idx);
 		}
 	
 		// incoming messages
-		public void initialize(pump_controller_idata_t data){
+		public void initialize(periodic_task_idata_t data){
 			for (InterfaceItemBase item : getItems()) {
-				((pump_controller_iprotocol_tConjPort)item).initialize( data);
+				((periodic_task_iprotocol_tConjPort)item).initialize( data);
 			}
 		}
 	}

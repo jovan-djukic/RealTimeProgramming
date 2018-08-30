@@ -25,36 +25,36 @@ RoomModel environment_monitoring_station {
 		}
 	}
 
-	DataClass water_level_detectors_controller_idata_t extends periodic_task_idata_t {
-		Attribute low_water_level_detector : water_level_detector_t	ref
-		Attribute high_water_level_detector : water_level_detector_t ref
+	DataClass water_level_sensors_controller_idata_t extends periodic_task_idata_t {
+		Attribute low_water_level_sensor : water_level_sensor_t	ref
+		Attribute high_water_level_sensor : water_level_sensor_t ref
 	}
 	
-	ActorClass water_level_detectors_sensor_controller_t extends sensor_controller_t {
+	ActorClass water_level_sensors_controller_t extends sensor_controller_t {
 		Interface {
-			Port pump_switch_port : switch_protocol_t
+			Port pump_port : switch_protocol_t
 		}
 		Structure {
-			external Port pump_switch_port
+			external Port pump_port
 			
-			Attribute low_water_level_detector : water_level_detector_t ref
-			Attribute high_water_level_detector : water_level_detector_t ref
+			Attribute low_water_level_sensor : water_level_sensor_t ref
+			Attribute high_water_level_sensor : water_level_sensor_t ref
 		}
 		Behavior {
 			override Operation query_action ( ) : void '''
-				if ( this.low_water_level_detector.value != 0 )	{
-					this.pump_switch_port.turn_off ( );
+				if ( this.low_water_level_sensor.value != 0 )	{
+					this.pump_port.turn_off ( );
 					super.info ( this.getName ( ), "Water under low threshold, turning off pump" );
-				} else if ( this.high_water_level_detector.value != 0 ) {
-					this.pump_switch_port.turn_on ( );
+				} else if ( this.high_water_level_sensor.value != 0 ) {
+					this.pump_port.turn_on ( );
 					super.info ( this.getName ( ), "Water over high threshold, turning on pump" );
 				}
 			'''
 			StateMachine {
 				RefinedTransition imessage_received {
 					action '''
-						this.low_water_level_detector = ( ( water_level_detectors_controller_idata_t ) data ).low_water_level_detector;
-						this.high_water_level_detector = ( ( water_level_detectors_controller_idata_t ) data ).high_water_level_detector;
+						this.low_water_level_sensor = ( ( water_level_sensors_controller_idata_t ) data ).low_water_level_sensor;
+						this.high_water_level_sensor = ( ( water_level_sensors_controller_idata_t ) data ).high_water_level_sensor;
 					'''
 				}
 			}
@@ -88,7 +88,9 @@ RoomModel environment_monitoring_station {
 					this.error_count++;
 					if ( this.error_count > this.error_count_threshold ) {
 						this.alarm_port.turn_on ( );
-						super.info ( super.getName ( ), "Error count threshold breached, turning on alarm" );
+						super.info ( super.getName ( ), "Error received, count threshold breached, turning on alarm" );
+					} else {
+						super.info ( super.getName ( ), "Error received, count normal" );
 					}
 				} else {
 					this.error_count = 0;

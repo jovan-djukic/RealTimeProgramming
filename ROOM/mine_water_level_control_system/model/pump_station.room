@@ -2,6 +2,7 @@ RoomModel pump_station {
 	import room.basic.types.* from "../../org.eclipse.etrice.modellib.java/model/Types.room"
 	import devices.* from "devices.room"
 	import logger.* from "logger.room"
+	import periodic_task.* from "periodic_task.room"
 	
 	DataClass pump_controller_idata_t {
 		Attribute pump : device_t ref
@@ -142,6 +143,148 @@ RoomModel pump_station {
 						this.pump_state = device_state_t.OFF;	
 						super.info ( super.getName ( ), "Turn off message received while methane threshold breached" );
 					'''
+				}
+			}
+		}
+	}
+
+	DataClass water_flow_sensor_controller_idata_t extends periodic_task_idata_t {
+		Attribute pump : device_t ref
+		Attribute water_flow_sensor : device_t ref
+		Attribute number_of_activations : int32
+	}
+
+	ActorClass water_flow_sensor_controller_t extends periodic_task_t {
+		Interface {
+			Port alarm_port : switch_protocol_t
+		}
+		Structure {
+			external Port alarm_port	
+			
+			Attribute pump : device_t ref
+			Attribute water_flow_sensor : device_t ref
+			Attribute number_of_activations : int32
+			Attribute pump_state : device_state_t
+			Attribute current_activation : int32
+		}
+		Behavior {
+			Operation is_water_flow_sensor_value_expected ( ) : boolean '''
+				if ( this.pump.state == device_state_t.ON )	{
+					return this.water_flow_sensor.value != 0;
+				} else {
+					return this.water_flow_sensor.value == 0;
+				}
+			'''
+			StateMachine {
+				State checking { 
+					entry '''
+						super.info ( this.getName( ), "Sleeping in checking state")
+						this.timer_access_point.startTimeout ( super.period );
+					'''
+				}
+				
+				State alarm {
+					entry '''
+						super.info ( this.getName( ), "Sleeping in alarm state")
+						this.timer_access_point.startTimeout ( super.period );
+					'''
+				}
+
+				RefinedTransition imessage_received {
+					action '''
+						this.pump = ( ( water_flow_sensor_controller_t ) data ).pump;
+						this.water_flow_sensor = ( ( water_flow_sensor_controller_t ) data ).water_flow_sensor;
+						this.number_of_activations = ( ( water_flow_sensor_controller_t ) data ).number_of_activations;
+						
+						this.pump_state = this.pump.state;
+						this.current_activation = 0;
+					'''
+				}
+
+				Transition state_normal_transition : sleeping -> sleeping {
+					triggers {
+						< timeout : timer_access_point guard '''
+							this.pump_state = this.pump.state && this.is_water_flow_sensor_value_expected ( )
+						'''>
+					}
+					action '''
+						super.info ( this.getName ( ), "State normal" );
+					'''
+				}	
+				
+				Transition pump_state_change_or_water_flow_sensor_error : sleeping -> checking {
+					triggers {
+						< timeout : timer_access_point guard '''
+							this.pump_state != this.pump.state || !this.is_water_flow_sensor_value_expected ( )	
+						'''>
+					}
+					action '''
+						this.current_activation = 0;					
+						super.info ( this.getName ( ), "Pump state changed or sensor broken" );
+					'''
+				}
+				
+				Transition check_succeeded : checking -> sleeping {
+					triggers {
+						< timeout : timer_access_point guard '''
+							this.is_water_flow_sensor_value_expected ( ) || this.pump_state == this.pump.state
+						'''>
+					}
+					action '''
+						this.current_activation = 0;	
+						this.pump_state = this.pump.state;
+						super.info ( this.getName ( ), "Pump in previous state or read expected water flow sensor value" );
+					'''	
+				}
+
+				Transition check_failed_within_limit : checking -> checking {
+					triggers {
+						< timeout : timer_access_point guard '''
+							!this.is_water_flow_sensor_value_expected ( ) && this.current_activation < this.number_of_activations
+						'''>
+					}
+					action '''
+						this.current_activation++;	
+						super.info ( this.getName ( ), "Read unexpected water flow sensor value, current activation is " + this.current_activation + ", within limit" );
+					'''	
+				}
+				
+				Transition check_failed_limit_exceeded : checking -> alarm {
+					triggers {
+						< timeout : timer_access_point guard '''
+							!this.is_water_flow_sensor_value_expected ( ) && this.current_activation == this.number_of_activations
+						'''>
+					}
+					action '''
+						this.current_activation = 0;	
+						this.alarm_port.turn_on ( );
+						super.info ( this.getName ( ), "Read unexpected water flow sensor value, limit breached, turning on alarm" );
+					'''	
+				}
+
+				Transition check_failed_alarm_turned_on : alarm -> alarm {
+					triggers {
+						< timeout : timer_access_point guard '''
+							this.pump_state != this.pump.state || !this.is_water_flow_sensor_value_expected ( )
+						'''>
+					}
+					action '''
+						this.current_activation = 0;	
+						super.info ( this.getName ( ), "Read unexpected water flow sensor value, leaving alarm on" );
+					'''	
+				}
+
+				Transition check_succeeded_alarm_turned_on : alarm -> checking {
+					triggers {
+						< timeout : timer_access_point guard '''
+							this.pump_state == this.pump.state || this.is_water_flow_sensor_value_expected ( )
+						'''>
+					}
+					action '''
+						this.current_activation = 0;	
+						this.alarm_port.turn_off ( );
+						super.info ( this.getName ( ), "Pump state changed or read expected water flow sensor value, turning off alarm" );
+					'''	
 				}
 			}
 		}

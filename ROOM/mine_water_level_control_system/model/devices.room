@@ -8,7 +8,7 @@ RoomModel devices {
 		}
 	}
 	
-	DataClass water_level_detector_t {
+	DataClass water_level_sensor_t {
 		Attribute value : int32 = '0'		
 	}	
 

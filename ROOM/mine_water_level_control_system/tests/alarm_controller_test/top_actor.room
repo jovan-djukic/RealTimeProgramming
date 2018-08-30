@@ -10,10 +10,10 @@ RoomModel top_actor {
 				class Constants {
 					public static final int TEST_PERIOD_IN_MS = 50;
 					public static final int NUMBER_OF_CONTROLLERS = 4;
-					public static final int CH4_CONTROLLER = 0;
-					public static final int CO_CONTROLLER = 1;
-					public static final int O_CONTROLLER = 2;
-					public static final int WATER_FLOW_CONTROLLER = 3;
+					public static final int CH4_SENSOR_CONTROLLER = 0;
+					public static final int CO_SENSOR_SENSOR_CONTROLLER = 1;
+					public static final int O_SENSOR_CONTROLLER = 2;
+					public static final int WATER_FLOW_SENSOR_CONTROLLER = 3;
 				}
 			'''		
 			
@@ -21,22 +21,22 @@ RoomModel top_actor {
 			Attribute turn_on_message_sent[4] : boolean
 			Attribute alarm_level : int32
 			
-			Attribute alarm :device_t 
+			Attribute alarm : device_t 
 			ActorRef alarm_controller : alarm_controller_t
 			
 			conjugated Port alarm_controler_iport : alarm_controller_iprotocol_t
-			Port ch4_alarm_switch_port : switch_protocol_t
-			Port co_alarm_switch_port : switch_protocol_t
-			Port o_alarm_switch_port : switch_protocol_t
-			Port water_flow_alarm_switch_port : switch_protocol_t
+			Port ch4_sensor_controller_alarm_port : switch_protocol_t
+			Port co_sensor_controller_alarm_port : switch_protocol_t
+			Port o_sensor_controller_alarm_port : switch_protocol_t
+			Port water_flow_sensor_controller_alarm_port : switch_protocol_t
 
 			SAP timer_port : PTimer 
 			
 			Binding alarm_controler_iport and alarm_controller.iport
-			Binding ch4_alarm_switch_port and alarm_controller.ch4_controller_port
-			Binding co_alarm_switch_port and alarm_controller.co_controller_port
-			Binding o_alarm_switch_port and alarm_controller.o_controller_port
-			Binding water_flow_alarm_switch_port and alarm_controller.water_flow_controller_port
+			Binding ch4_sensor_controller_alarm_port and alarm_controller.ch4_sensor_controller_port
+			Binding co_sensor_controller_alarm_port and alarm_controller.co_sensor_controller_port
+			Binding o_sensor_controller_alarm_port and alarm_controller.o_sensor_controller_port
+			Binding water_flow_sensor_controller_alarm_port and alarm_controller.water_flow_sensor_controller_port
 		}
 		Behavior {
 		
@@ -79,41 +79,41 @@ RoomModel top_actor {
 						this.turn_on_message_sent[ controller_index ] = !this.turn_on_message_sent[ controller_index ];
 
 						switch ( controller_index ) {
-							case Constants.CH4_CONTROLLER : {
+							case Constants.CH4_SENSOR_CONTROLLER : {
 								if ( this.turn_on_message_sent[ controller_index ] == true ) {
-									this.ch4_alarm_switch_port.turn_on ( );
+									this.ch4_sensor_controller_alarm_port.turn_on ( );
 								} else {
-									this.ch4_alarm_switch_port.turn_off ( );
+									this.ch4_sensor_controller_alarm_port.turn_off ( );
 								}
 
 								break;
 							}
 
-							case Constants.CO_CONTROLLER : {
+							case Constants.CO_SENSOR_SENSOR_CONTROLLER : {
 								if ( this.turn_on_message_sent[ controller_index ] == true ) {
-									this.co_alarm_switch_port.turn_on ( );
+									this.co_sensor_controller_alarm_port.turn_on ( );
 								} else {
-									this.co_alarm_switch_port.turn_off ( );
+									this.co_sensor_controller_alarm_port.turn_off ( );
 								}
 
 								break;
 							}
 
-							case Constants.O_CONTROLLER : {
+							case Constants.O_SENSOR_CONTROLLER : {
 								if ( this.turn_on_message_sent[ controller_index ] == true ) {
-									this.o_alarm_switch_port.turn_on ( );
+									this.o_sensor_controller_alarm_port.turn_on ( );
 								} else {
-									this.o_alarm_switch_port.turn_off ( );
+									this.o_sensor_controller_alarm_port.turn_off ( );
 								}
 
 								break;
 							}
 
-							case Constants.WATER_FLOW_CONTROLLER : {
+							case Constants.WATER_FLOW_SENSOR_CONTROLLER : {
 								if ( this.turn_on_message_sent[ controller_index ] == true ) {
-									this.water_flow_alarm_switch_port.turn_on ( );
+									this.water_flow_sensor_controller_alarm_port.turn_on ( );
 								} else {
-									this.water_flow_alarm_switch_port.turn_off ( );
+									this.water_flow_sensor_controller_alarm_port.turn_off ( );
 								}
 
 								break;

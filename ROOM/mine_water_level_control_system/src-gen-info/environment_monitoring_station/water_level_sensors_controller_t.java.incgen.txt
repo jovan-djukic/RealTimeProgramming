@@ -23,11 +23,11 @@ import java.io.IOException;
 /*--------------------- end user code ---------------------*/
 
 
-public class gas_sensor_controller_t extends sensor_controller_t {
+public class water_level_sensors_controller_t extends sensor_controller_t {
 
 
 	//--------------------- ports
-	protected switch_protocol_tPort alarm_port = null;
+	protected switch_protocol_tPort pump_port = null;
 
 	//--------------------- saps
 
@@ -36,56 +36,35 @@ public class gas_sensor_controller_t extends sensor_controller_t {
 	//--------------------- optional actors
 
 	//--------------------- interface item IDs
-	public static final int IFITEM_alarm_port = 4;
+	public static final int IFITEM_pump_port = 4;
 
 	/*--------------------- attributes ---------------------*/
-	public  boolean detect_above_threshold;
-	public  int threshold;
-	public  gas_sensor_t gas_sensor;
-	public  int error_count_threshold;
-	public  int error_count;
+	public  water_level_sensor_t low_water_level_sensor;
+	public  water_level_sensor_t high_water_level_sensor;
 
 	/*--------------------- operations ---------------------*/
 	public  void query_action() {
-		if ( this.gas_sensor.error_occurred == true ) {
-			this.error_count++;
-			if ( this.error_count > this.error_count_threshold ) {
-				this.alarm_port.turn_on ( );
-				super.info ( super.getName ( ), "Error received, count threshold breached, turning on alarm" );
-			} else {
-				super.info ( super.getName ( ), "Error received, count normal" );
-			}
-		} else {
-			this.error_count = 0;
-		
-			if ( this.detect_above_threshold == true && this.gas_sensor.value > this.threshold ) {
-				this.alarm_port.turn_on ( );
-				super.info ( super.getName ( ), "Threshold breached, turning on alarm" );
-			} else if ( this.detect_above_threshold == false && this.gas_sensor.value < this.threshold ) {
-				this.alarm_port.turn_on ( );
-				super.info ( super.getName ( ), "Threshold breached, turning on alarm" );
-			} else {
-				this.alarm_port.turn_off ( );
-				super.info ( super.getName ( ), "Threshold stabilizied, turning off alarm" );
-			}
+		if ( this.low_water_level_sensor.value != 0 )	{
+			this.pump_port.turn_off ( );
+			super.info ( this.getName ( ), "Water under low threshold, turning off pump" );
+		} else if ( this.high_water_level_sensor.value != 0 ) {
+			this.pump_port.turn_on ( );
+			super.info ( this.getName ( ), "Water over high threshold, turning on pump" );
 		}
 	}
 
 
 	//--------------------- construction
-	public gas_sensor_controller_t(IRTObject parent, String name) {
+	public water_level_sensors_controller_t(IRTObject parent, String name) {
 		super(parent, name);
-		setClassName("gas_sensor_controller_t");
+		setClassName("water_level_sensors_controller_t");
 
 		// initialize attributes
-		this.setDetect_above_threshold(false);
-		this.setThreshold(0);
-		this.setGas_sensor(null);
-		this.setError_count_threshold(0);
-		this.setError_count(0);
+		this.setLow_water_level_sensor(null);
+		this.setHigh_water_level_sensor(null);
 
 		// own ports
-		alarm_port = new switch_protocol_tPort(this, "alarm_port", IFITEM_alarm_port);
+		pump_port = new switch_protocol_tPort(this, "pump_port", IFITEM_pump_port);
 
 		// own saps
 
@@ -101,41 +80,23 @@ public class gas_sensor_controller_t extends sensor_controller_t {
 	}
 
 	/* --------------------- attribute setters and getters */
-	public void setDetect_above_threshold(boolean detect_above_threshold) {
-		 this.detect_above_threshold = detect_above_threshold;
+	public void setLow_water_level_sensor(water_level_sensor_t low_water_level_sensor) {
+		 this.low_water_level_sensor = low_water_level_sensor;
 	}
-	public boolean getDetect_above_threshold() {
-		return this.detect_above_threshold;
+	public water_level_sensor_t getLow_water_level_sensor() {
+		return this.low_water_level_sensor;
 	}
-	public void setThreshold(int threshold) {
-		 this.threshold = threshold;
+	public void setHigh_water_level_sensor(water_level_sensor_t high_water_level_sensor) {
+		 this.high_water_level_sensor = high_water_level_sensor;
 	}
-	public int getThreshold() {
-		return this.threshold;
-	}
-	public void setGas_sensor(gas_sensor_t gas_sensor) {
-		 this.gas_sensor = gas_sensor;
-	}
-	public gas_sensor_t getGas_sensor() {
-		return this.gas_sensor;
-	}
-	public void setError_count_threshold(int error_count_threshold) {
-		 this.error_count_threshold = error_count_threshold;
-	}
-	public int getError_count_threshold() {
-		return this.error_count_threshold;
-	}
-	public void setError_count(int error_count) {
-		 this.error_count = error_count;
-	}
-	public int getError_count() {
-		return this.error_count;
+	public water_level_sensor_t getHigh_water_level_sensor() {
+		return this.high_water_level_sensor;
 	}
 
 
 	//--------------------- port getters
-	public switch_protocol_tPort getAlarm_port (){
-		return this.alarm_port;
+	public switch_protocol_tPort getPump_port (){
+		return this.pump_port;
 	}
 
 	//--------------------- lifecycle functions
@@ -183,11 +144,8 @@ public class gas_sensor_controller_t extends sensor_controller_t {
 	    this.period = data.period;
 	    super.info ( this.getName ( ), "Initialization message received" );
 	    
-	    this.detect_above_threshold = ( ( gas_sensor_controller_idata_t ) data ).detect_above_threshold;
-	    this.threshold = ( ( gas_sensor_controller_idata_t ) data ).threshold;
-	    this.gas_sensor = ( ( gas_sensor_controller_idata_t ) data ).gas_sensor;
-	    this.error_count_threshold = ( ( gas_sensor_controller_idata_t ) data ).error_count_threshold;
-	    this.error_count = 0;
+	    this.low_water_level_sensor = ( ( water_level_sensors_controller_idata_t ) data ).low_water_level_sensor;
+	    this.high_water_level_sensor = ( ( water_level_sensors_controller_idata_t ) data ).high_water_level_sensor;
 	}
 	
 	/* State Switch Methods */
@@ -224,16 +182,16 @@ public class gas_sensor_controller_t extends sensor_controller_t {
 	 */
 	private int executeTransitionChain(int chain__et, InterfaceItemBase ifitem, Object generic_data__et) {
 		switch (chain__et) {
-			case gas_sensor_controller_t.CHAIN_TRANS_timeout_received_FROM_sleeping_TO_sleeping_BY_timeouttimer_access_point_timeout_received:
+			case water_level_sensors_controller_t.CHAIN_TRANS_timeout_received_FROM_sleeping_TO_sleeping_BY_timeouttimer_access_point_timeout_received:
 			{
 				action_TRANS_timeout_received_FROM_sleeping_TO_sleeping_BY_timeouttimer_access_point_timeout_received(ifitem);
 				return STATE_sleeping;
 			}
-			case gas_sensor_controller_t.CHAIN_TRANS_INITIAL_TO__waiting_for_imessage:
+			case water_level_sensors_controller_t.CHAIN_TRANS_INITIAL_TO__waiting_for_imessage:
 			{
 				return STATE_waiting_for_imessage;
 			}
-			case gas_sensor_controller_t.CHAIN_TRANS_imessage_received_FROM_waiting_for_imessage_TO_sleeping_BY_initializeiport:
+			case water_level_sensors_controller_t.CHAIN_TRANS_imessage_received_FROM_waiting_for_imessage_TO_sleeping_BY_initializeiport:
 			{
 				periodic_task_idata_t data = (periodic_task_idata_t) generic_data__et;
 				action_TRANS_imessage_received_FROM_waiting_for_imessage_TO_sleeping_BY_initializeiport(ifitem, data);
@@ -279,7 +237,7 @@ public class gas_sensor_controller_t extends sensor_controller_t {
 	}
 	
 	public void executeInitTransition() {
-		int chain__et = gas_sensor_controller_t.CHAIN_TRANS_INITIAL_TO__waiting_for_imessage;
+		int chain__et = water_level_sensors_controller_t.CHAIN_TRANS_INITIAL_TO__waiting_for_imessage;
 		int next__et = executeTransitionChain(chain__et, null, null);
 		next__et = enterHistory(next__et);
 		setState(next__et);
@@ -297,7 +255,7 @@ public class gas_sensor_controller_t extends sensor_controller_t {
 			        switch(trigger__et) {
 			                case TRIG_iport__initialize:
 			                    {
-			                        chain__et = gas_sensor_controller_t.CHAIN_TRANS_imessage_received_FROM_waiting_for_imessage_TO_sleeping_BY_initializeiport;
+			                        chain__et = water_level_sensors_controller_t.CHAIN_TRANS_imessage_received_FROM_waiting_for_imessage_TO_sleeping_BY_initializeiport;
 			                        catching_state__et = STATE_TOP;
 			                    }
 			                break;
@@ -310,7 +268,7 @@ public class gas_sensor_controller_t extends sensor_controller_t {
 			        switch(trigger__et) {
 			                case TRIG_timer_access_point__timeout:
 			                    {
-			                        chain__et = gas_sensor_controller_t.CHAIN_TRANS_timeout_received_FROM_sleeping_TO_sleeping_BY_timeouttimer_access_point_timeout_received;
+			                        chain__et = water_level_sensors_controller_t.CHAIN_TRANS_timeout_received_FROM_sleeping_TO_sleeping_BY_timeouttimer_access_point_timeout_received;
 			                        catching_state__et = STATE_TOP;
 			                    }
 			                break;

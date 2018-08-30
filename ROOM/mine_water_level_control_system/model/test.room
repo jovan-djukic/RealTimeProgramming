@@ -1,0 +1,7 @@
+RoomModel test {
+	ProtocolClass test_protocol_t {
+		outgoing {
+			Message activated ( )
+		}
+	}
+}

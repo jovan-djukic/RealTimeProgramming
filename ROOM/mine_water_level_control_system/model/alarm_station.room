@@ -17,17 +17,17 @@ RoomModel alarm_station {
 	ActorClass alarm_controller_t extends logger_t {
 		Interface {
 			Port iport : alarm_controller_iprotocol_t
-			conjugated Port co_controller_port : switch_protocol_t
-			conjugated Port o_controller_port : switch_protocol_t
-			conjugated Port ch4_controller_port : switch_protocol_t
-			conjugated Port water_flow_controller_port : switch_protocol_t
+			conjugated Port co_sensor_controller_port : switch_protocol_t
+			conjugated Port o_sensor_controller_port : switch_protocol_t
+			conjugated Port ch4_sensor_controller_port : switch_protocol_t
+			conjugated Port water_flow_sensor_controller_port : switch_protocol_t
 		}
 		Structure {
 			external Port iport
-			external Port co_controller_port
-			external Port o_controller_port
-			external Port ch4_controller_port
-			external Port water_flow_controller_port
+			external Port co_sensor_controller_port
+			external Port o_sensor_controller_port
+			external Port ch4_sensor_controller_port
+			external Port water_flow_sensor_controller_port
 			
 			Attribute alarm : device_t ref
 			Attribute alarm_level : int32
@@ -54,10 +54,10 @@ RoomModel alarm_station {
 				
 				Transition turn_on_message_received : waiting_for_alarm_message -> waiting_for_alarm_message {
 					triggers {
-						< turn_on : ch4_controller_port > or
-						< turn_on : co_controller_port > or
-						< turn_on : o_controller_port > or
-						< turn_on : water_flow_controller_port >
+						< turn_on : ch4_sensor_controller_port > or
+						< turn_on : co_sensor_controller_port > or
+						< turn_on : o_sensor_controller_port > or
+						< turn_on : water_flow_sensor_controller_port >
 					}
 					action '''
 						this.alarm_level++;
@@ -71,10 +71,10 @@ RoomModel alarm_station {
 
 				Transition turn_off_message_received : waiting_for_alarm_message -> waiting_for_alarm_message {
 					triggers {
-						< turn_off : ch4_controller_port > or
-						< turn_off : co_controller_port > or
-						< turn_off : o_controller_port > or
-						< turn_off : water_flow_controller_port >
+						< turn_off : ch4_sensor_controller_port > or
+						< turn_off : co_sensor_controller_port > or
+						< turn_off : o_sensor_controller_port > or
+						< turn_off : water_flow_sensor_controller_port >
 					}
 					action '''
 						this.alarm_level--;

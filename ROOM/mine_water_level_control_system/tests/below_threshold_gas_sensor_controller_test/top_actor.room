@@ -4,6 +4,7 @@ RoomModel top_actor {
 	import devices.* from "../../model/devices.room"
 	import environment_monitoring_station.* from "../../model/environment_monitoring_station.room"
 	import periodic_task.* from "../../model/periodic_task.room"
+	import test.* from "../../model/test.room"
 
 	ActorClass top_actor_t {
 		Structure {
@@ -26,11 +27,11 @@ RoomModel top_actor {
 			
 			conjugated Port gas_sensor_controller_iport : periodic_task_iprotocol_t
 			conjugated Port alarm_switch_port : switch_protocol_t
-
-			SAP timer_port : PTimer 
+			conjugated Port test_port : test_protocol_t
 			
 			Binding gas_sensor_controller_iport and gas_sensor_controller.iport
 			Binding alarm_switch_port and gas_sensor_controller.alarm_port
+			Binding test_port and gas_sensor_controller.test_port
 		}
 		Behavior {
 			Operation process ( value : int32, error_occurred : boolean ) '''
@@ -46,6 +47,23 @@ RoomModel top_actor {
 						this.expecting_alarm_turn_on = false;
 					}
 				}
+			'''
+			
+			Operation update ( ) : void '''
+				if ( Math.random ( ) > 0.5 ) {
+					boolean error_occurred = Math.random ( ) > 0.5 ? true : false;
+
+					int value = 0;
+					
+					if ( error_occurred == false ) {
+						value = ( int ) ( Math.random ( ) * 2 * Constants.GAS_SENSOR_CONTROLLER_THRESHOLD );
+					}
+					
+					this.gas_sensor.error_occurred = error_occurred;	
+					this.gas_sensor.value = value;	
+				}
+
+				this.process ( this.gas_sensor.value, this.gas_sensor.error_occurred );
 			'''
 		
 			StateMachine {
@@ -70,8 +88,6 @@ RoomModel top_actor {
 								Constants.GAS_SENSOR_CONTROLLER_ERROR_COUNT_THRESHOLD
 							)
 						);
-						
-						this.timer_port.startTimeout ( Constants.TEST_PERIOD_IN_MS );
 					'''
 				}
 				
@@ -104,26 +120,10 @@ RoomModel top_actor {
 				
 				Transition timeout_message_received : testing -> testing {
 					triggers {
-						< timeout : timer_port > 
+						< activated : test_port > 
 					}
 					action '''
-						if ( Math.random ( ) > 0.5 ) {
-							boolean error_occurred = Math.random ( ) > 0.5 ? true : false;
-
-							int value = 0;
-							
-							if ( error_occurred == false ) {
-								value = ( int ) ( Math.random ( ) * 2 * Constants.GAS_SENSOR_CONTROLLER_THRESHOLD );
-							}
-							System.out.println ( value + " / " + Constants.GAS_SENSOR_CONTROLLER_THRESHOLD );
-							
-							this.process ( value, error_occurred );
-
-							this.gas_sensor.error_occurred = error_occurred;	
-							this.gas_sensor.value = value;	
-						}
-
-						this.timer_port.startTimeout ( Constants.TEST_PERIOD_IN_MS );
+						this.update ( );
 					'''
 				}
 			}
