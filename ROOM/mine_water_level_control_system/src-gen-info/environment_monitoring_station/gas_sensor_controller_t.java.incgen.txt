@@ -65,13 +65,13 @@ public class gas_sensor_controller_t extends sensor_controller_t {
 			if ( this.detect_above_threshold == true && this.gas_sensor.value > this.threshold ) {
 				if ( this.alarm_turned_on == false ) {
 					this.alarm_port.turn_on ( );
-					super.info ( super.getName ( ), "Error received, count threshold breached, turning on alarm" );
+					super.info ( super.getName ( ), "Threshold breached, turning on alarm" );
 					this.alarm_turned_on = true;	
 				}
 			} else if ( this.detect_above_threshold == false && this.gas_sensor.value < this.threshold ) {
 				if ( this.alarm_turned_on == false ) {
 					this.alarm_port.turn_on ( );
-					super.info ( super.getName ( ), "Error received, count threshold breached, turning on alarm" );
+					super.info ( super.getName ( ), "Threshold breached, turning on alarm" );
 					this.alarm_turned_on = true;	
 				}
 			} else {

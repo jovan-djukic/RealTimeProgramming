@@ -1,0 +1,83 @@
+RoomModel top_actor {
+	import room.basic.service.timing.* from "../../../org.eclipse.etrice.modellib.java/model/TimingService.room"
+	import base_actor.* from "../base_actor.room"
+
+	ActorClass top_actor_t extends base_actor_t {
+		Behavior {
+			StateMachine {
+				State step1 { }
+				State step2 { }
+
+				RefinedTransition start { 
+					action '''
+						System.out.println ( "Setting high water level sensor" );
+						
+						super.high_water_level_sensor.value = 1;
+						
+						super.timer_access_point.startTimeout (
+							CONSTANTS.SCENARION.CHECK_PERIOD
+						);
+					'''
+				}
+
+				Transition stall0 : step0 -> step0 {
+					triggers {
+						< timeout : timer_access_point guard '''
+							super.pump.state != device_state_t.ON
+						'''>
+					}
+					action '''
+						super.timer_access_point.startTimeout (
+							CONSTANTS.SCENARION.CHECK_PERIOD
+						);
+					'''
+				}	
+					
+				Transition transition0 : step0 -> step1 {
+					triggers {
+						< timeout : timer_access_point guard '''
+							super.pump.state == device_state_t.ON
+						'''>
+					}
+					action '''
+						System.out.println ( "Pump activated" );
+						System.out.println ( "Setting low water level sensor controller ( disabling high because both cannot be active ) " );
+						
+						super.high_water_level_sensor.value = 0;
+						super.low_water_level_sensor.value = 1;
+						
+						super.timer_access_point.startTimeout (
+							CONSTANTS.SCENARION.CHECK_PERIOD
+						);
+					'''
+				}
+
+				Transition stall1 : step1 -> step1 {
+					triggers {
+						< timeout : timer_access_point guard '''
+							super.pump.state != device_state_t.OFF
+						'''>
+					}
+					action '''
+						super.timer_access_point.startTimeout (
+							CONSTANTS.SCENARION.CHECK_PERIOD
+						);
+					'''
+				}	
+					
+				Transition transition1 : step1 -> step2 {
+					triggers {
+						< timeout : timer_access_point guard '''
+							super.pump.state == device_state_t.OFF
+						'''>
+					}
+					action '''
+						System.out.println ( "Pump deactivated" );
+
+						super.stop_scenarion ( );
+					'''
+				}
+			}
+		}
+	}
+}

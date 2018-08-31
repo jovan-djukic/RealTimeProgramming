@@ -104,6 +104,7 @@ public class base_actor_t extends ActorClassBase {
 
 	//--------------------- ports
 	protected mine_water_level_control_system_iprotocol_tConjPort mine_water_level_control_system_iport = null;
+	protected switch_protocol_tPort mine_water_level_control_system_user_port = null;
 
 	//--------------------- saps
 	protected PTimerConjPort timer_access_point = null;
@@ -114,7 +115,8 @@ public class base_actor_t extends ActorClassBase {
 
 	//--------------------- interface item IDs
 	public static final int IFITEM_mine_water_level_control_system_iport = 1;
-	public static final int IFITEM_timer_access_point = 2;
+	public static final int IFITEM_mine_water_level_control_system_user_port = 2;
+	public static final int IFITEM_timer_access_point = 3;
 
 	/*--------------------- attributes ---------------------*/
 	public  gas_sensor_t o_sensor;
@@ -164,6 +166,7 @@ public class base_actor_t extends ActorClassBase {
 
 		// own ports
 		mine_water_level_control_system_iport = new mine_water_level_control_system_iprotocol_tConjPort(this, "mine_water_level_control_system_iport", IFITEM_mine_water_level_control_system_iport);
+		mine_water_level_control_system_user_port = new switch_protocol_tPort(this, "mine_water_level_control_system_user_port", IFITEM_mine_water_level_control_system_user_port);
 
 		// own saps
 		timer_access_point = new PTimerConjPort(this, "timer_access_point", IFITEM_timer_access_point, 0);
@@ -176,6 +179,7 @@ public class base_actor_t extends ActorClassBase {
 
 		// wiring
 		InterfaceItemBase.connect(this, "mine_water_level_control_system/iport", "mine_water_level_control_system_iport");
+		InterfaceItemBase.connect(this, "mine_water_level_control_system/pump_controller/user_port", "mine_water_level_control_system_user_port");
 
 
 		/* user defined constructor body */
@@ -236,6 +240,9 @@ public class base_actor_t extends ActorClassBase {
 	//--------------------- port getters
 	public mine_water_level_control_system_iprotocol_tConjPort getMine_water_level_control_system_iport (){
 		return this.mine_water_level_control_system_iport;
+	}
+	public switch_protocol_tPort getMine_water_level_control_system_user_port (){
+		return this.mine_water_level_control_system_user_port;
 	}
 	public PTimerConjPort getTimer_access_point (){
 		return this.timer_access_point;

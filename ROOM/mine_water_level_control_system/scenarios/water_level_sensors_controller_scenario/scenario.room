@@ -1,0 +1,15 @@
+RoomModel scenario {
+	import room.basic.service.timing.* from "../../../org.eclipse.etrice.modellib.java/model/TimingService.room"
+	import top_actor.* from "top_actor.room"
+
+	LogicalSystem log_sys {
+		SubSystemRef sub_system_ref: sub_sys_class 
+	}
+
+	SubSystemClass sub_sys_class {
+		ActorRef top_actor: top_actor_t 
+		ActorRef timing_service: ATimingService
+		LayerConnection ref top_actor satisfied_by timing_service.timer
+		LogicalThread thread
+	}
+}

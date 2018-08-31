@@ -39,24 +39,17 @@ public class water_level_sensors_controller_t extends sensor_controller_t {
 	public static final int IFITEM_pump_port = 4;
 
 	/*--------------------- attributes ---------------------*/
-	public  boolean pump_turned_on;
 	public  water_level_sensor_t low_water_level_sensor;
 	public  water_level_sensor_t high_water_level_sensor;
 
 	/*--------------------- operations ---------------------*/
 	public  void query_action() {
 		if ( this.low_water_level_sensor.value != 0 )	{
-			if ( this.pump_turned_on == true ) {
-				this.pump_port.turn_off ( );
-				this.pump_turned_on = false;
-				super.info ( this.getName ( ), "Water under low threshold, turning off pump" );
-			}
+			this.pump_port.turn_off ( );
+			super.info ( this.getName ( ), "Water under low threshold, turning off pump" );
 		} else if ( this.high_water_level_sensor.value != 0 ) {
-			if ( this.pump_turned_on == false ) {
-				this.pump_port.turn_on ( );
-				this.pump_turned_on = true;
-				super.info ( this.getName ( ), "Water over high threshold, turning on pump" );
-			}
+			this.pump_port.turn_on ( );
+			super.info ( this.getName ( ), "Water over high threshold, turning on pump" );
 		}
 	}
 
@@ -67,7 +60,6 @@ public class water_level_sensors_controller_t extends sensor_controller_t {
 		setClassName("water_level_sensors_controller_t");
 
 		// initialize attributes
-		this.setPump_turned_on(false);
 		this.setLow_water_level_sensor(null);
 		this.setHigh_water_level_sensor(null);
 
@@ -88,12 +80,6 @@ public class water_level_sensors_controller_t extends sensor_controller_t {
 	}
 
 	/* --------------------- attribute setters and getters */
-	public void setPump_turned_on(boolean pump_turned_on) {
-		 this.pump_turned_on = pump_turned_on;
-	}
-	public boolean getPump_turned_on() {
-		return this.pump_turned_on;
-	}
 	public void setLow_water_level_sensor(water_level_sensor_t low_water_level_sensor) {
 		 this.low_water_level_sensor = low_water_level_sensor;
 	}
@@ -160,7 +146,6 @@ public class water_level_sensors_controller_t extends sensor_controller_t {
 	    
 	    this.low_water_level_sensor = ( ( water_level_sensors_controller_idata_t ) data ).low_water_level_sensor;
 	    this.high_water_level_sensor = ( ( water_level_sensors_controller_idata_t ) data ).high_water_level_sensor;
-	    this.pump_turned_on = false;
 	}
 	
 	/* State Switch Methods */

@@ -37,25 +37,17 @@ RoomModel environment_monitoring_station {
 		Structure {
 			external Port pump_port
 			
-			Attribute pump_turned_on : boolean
-			
 			Attribute low_water_level_sensor : water_level_sensor_t ref
 			Attribute high_water_level_sensor : water_level_sensor_t ref
 		}
 		Behavior {
 			override Operation query_action ( ) : void '''
 				if ( this.low_water_level_sensor.value != 0 )	{
-					if ( this.pump_turned_on == true ) {
-						this.pump_port.turn_off ( );
-						this.pump_turned_on = false;
-						super.info ( this.getName ( ), "Water under low threshold, turning off pump" );
-					}
+					this.pump_port.turn_off ( );
+					super.info ( this.getName ( ), "Water under low threshold, turning off pump" );
 				} else if ( this.high_water_level_sensor.value != 0 ) {
-					if ( this.pump_turned_on == false ) {
-						this.pump_port.turn_on ( );
-						this.pump_turned_on = true;
-						super.info ( this.getName ( ), "Water over high threshold, turning on pump" );
-					}
+					this.pump_port.turn_on ( );
+					super.info ( this.getName ( ), "Water over high threshold, turning on pump" );
 				}
 			'''
 			StateMachine {
@@ -63,7 +55,6 @@ RoomModel environment_monitoring_station {
 					action '''
 						this.low_water_level_sensor = ( ( water_level_sensors_controller_idata_t ) data ).low_water_level_sensor;
 						this.high_water_level_sensor = ( ( water_level_sensors_controller_idata_t ) data ).high_water_level_sensor;
-						this.pump_turned_on = false;
 					'''
 				}
 			}
@@ -111,13 +102,13 @@ RoomModel environment_monitoring_station {
 					if ( this.detect_above_threshold == true && this.gas_sensor.value > this.threshold ) {
 						if ( this.alarm_turned_on == false ) {
 							this.alarm_port.turn_on ( );
-							super.info ( super.getName ( ), "Error received, count threshold breached, turning on alarm" );
+							super.info ( super.getName ( ), "Threshold breached, turning on alarm" );
 							this.alarm_turned_on = true;	
 						}
 					} else if ( this.detect_above_threshold == false && this.gas_sensor.value < this.threshold ) {
 						if ( this.alarm_turned_on == false ) {
 							this.alarm_port.turn_on ( );
-							super.info ( super.getName ( ), "Error received, count threshold breached, turning on alarm" );
+							super.info ( super.getName ( ), "Threshold breached, turning on alarm" );
 							this.alarm_turned_on = true;	
 						}
 					} else {
