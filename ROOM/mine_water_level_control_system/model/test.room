@@ -2,6 +2,8 @@ RoomModel test {
 	ProtocolClass test_protocol_t {
 		outgoing {
 			Message activated ( )
+			Message checking ( )
+			Message alarm ( )
 		}
 	}
 }

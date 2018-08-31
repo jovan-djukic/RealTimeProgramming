@@ -105,6 +105,7 @@ public class base_actor_t extends ActorClassBase {
 	//--------------------- ports
 	protected mine_water_level_control_system_iprotocol_tConjPort mine_water_level_control_system_iport = null;
 	protected switch_protocol_tPort mine_water_level_control_system_user_port = null;
+	protected test_protocol_tConjPort mine_water_level_control_system_test_port = null;
 
 	//--------------------- saps
 	protected PTimerConjPort timer_access_point = null;
@@ -116,7 +117,8 @@ public class base_actor_t extends ActorClassBase {
 	//--------------------- interface item IDs
 	public static final int IFITEM_mine_water_level_control_system_iport = 1;
 	public static final int IFITEM_mine_water_level_control_system_user_port = 2;
-	public static final int IFITEM_timer_access_point = 3;
+	public static final int IFITEM_mine_water_level_control_system_test_port = 3;
+	public static final int IFITEM_timer_access_point = 4;
 
 	/*--------------------- attributes ---------------------*/
 	public  gas_sensor_t o_sensor;
@@ -143,8 +145,8 @@ public class base_actor_t extends ActorClassBase {
 			return threshold + 1;
 		}
 	}
-	public  void stop_scenarion() {
-		System.out.println ( "Scenarion is a success " );
+	public  void stop_scenario() {
+		System.out.println ( "Scenario is a success " );
 		System.exit ( 1 );
 	}
 
@@ -167,6 +169,7 @@ public class base_actor_t extends ActorClassBase {
 		// own ports
 		mine_water_level_control_system_iport = new mine_water_level_control_system_iprotocol_tConjPort(this, "mine_water_level_control_system_iport", IFITEM_mine_water_level_control_system_iport);
 		mine_water_level_control_system_user_port = new switch_protocol_tPort(this, "mine_water_level_control_system_user_port", IFITEM_mine_water_level_control_system_user_port);
+		mine_water_level_control_system_test_port = new test_protocol_tConjPort(this, "mine_water_level_control_system_test_port", IFITEM_mine_water_level_control_system_test_port);
 
 		// own saps
 		timer_access_point = new PTimerConjPort(this, "timer_access_point", IFITEM_timer_access_point, 0);
@@ -180,6 +183,7 @@ public class base_actor_t extends ActorClassBase {
 		// wiring
 		InterfaceItemBase.connect(this, "mine_water_level_control_system/iport", "mine_water_level_control_system_iport");
 		InterfaceItemBase.connect(this, "mine_water_level_control_system/pump_controller/user_port", "mine_water_level_control_system_user_port");
+		InterfaceItemBase.connect(this, "mine_water_level_control_system/water_flow_sensors_controller/test_port", "mine_water_level_control_system_test_port");
 
 
 		/* user defined constructor body */
@@ -244,6 +248,9 @@ public class base_actor_t extends ActorClassBase {
 	public switch_protocol_tPort getMine_water_level_control_system_user_port (){
 		return this.mine_water_level_control_system_user_port;
 	}
+	public test_protocol_tConjPort getMine_water_level_control_system_test_port (){
+		return this.mine_water_level_control_system_test_port;
+	}
 	public PTimerConjPort getTimer_access_point (){
 		return this.timer_access_point;
 	}
@@ -268,6 +275,9 @@ public class base_actor_t extends ActorClassBase {
 	
 	/* triggers */
 	public static final int POLLING = 0;
+	public static final int TRIG_mine_water_level_control_system_test_port__activated = IFITEM_mine_water_level_control_system_test_port + EVT_SHIFT*test_protocol_t.OUT_activated;
+	public static final int TRIG_mine_water_level_control_system_test_port__checking = IFITEM_mine_water_level_control_system_test_port + EVT_SHIFT*test_protocol_t.OUT_checking;
+	public static final int TRIG_mine_water_level_control_system_test_port__alarm = IFITEM_mine_water_level_control_system_test_port + EVT_SHIFT*test_protocol_t.OUT_alarm;
 	public static final int TRIG_timer_access_point__timeout = IFITEM_timer_access_point + EVT_SHIFT*PTimer.OUT_timeout;
 	public static final int TRIG_timer_access_point__internalTimer = IFITEM_timer_access_point + EVT_SHIFT*PTimer.OUT_internalTimer;
 	public static final int TRIG_timer_access_point__internalTimeout = IFITEM_timer_access_point + EVT_SHIFT*PTimer.OUT_internalTimeout;

@@ -5,6 +5,7 @@ RoomModel mine_water_level_control_system {
 	import pump_station.* from "pump_station.room"
 	import logger.* from "logger.room"
 	import periodic_task.* from "periodic_task.room"
+	import test.* from "test.room"
 	
 	DataClass mine_water_level_control_system_idata_t {
 		// gas sensor controllers idata
@@ -36,6 +37,7 @@ RoomModel mine_water_level_control_system {
 		Interface {
 			Port iport : mine_water_level_control_system_iprotocol_t	
 			conjugated Port user_port : switch_protocol_t
+			Port test_port : test_protocol_t
 		}
 		Structure {
 			external Port iport
@@ -89,6 +91,7 @@ RoomModel mine_water_level_control_system {
 			Binding water_level_detectors_sensor_controller.pump_port and pump_controller.water_level_detectors_controller_port
 			Binding water_flow_sensors_controller.iport and water_flow_sensors_controller_iport
 			Binding water_flow_sensors_controller.alarm_port and alarm_controller.water_flow_sensor_controller_port
+			Binding water_flow_sensors_controller.test_port and test_port
 			
 			// pump controller ports
 			Binding pump_controller.iport and pump_controller_iport

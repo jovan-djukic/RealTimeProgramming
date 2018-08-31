@@ -18,6 +18,7 @@ RoomModel top_actor {
 
 				RefinedTransition start { 
 					action '''
+						this.stop_scenario ( );
 						System.out.println ( "Setting o sensor above threshold" );
 						super.o_sensor.value = super.get_above_threshold_value (
 							CONSTANTS.O_SENSOR_CONTROLLER.DETECT_ABOVE_THRESHOLD,
@@ -365,7 +366,7 @@ RoomModel top_actor {
 					action '''
 						System.out.println ( "Alarm deactivated" );
 
-						super.stop_scenario ( );
+						super.stop_scenarion ( );
 					'''
 				}
 			}

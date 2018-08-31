@@ -178,14 +178,16 @@ RoomModel pump_station {
 			StateMachine {
 				State checking { 
 					entry '''
-						super.info ( this.getName( ), "Sleeping in checking state");
+						super.info ( this.getName ( ), "Sleeping in checking state");
+						super.test_port.checking ( );
 						this.timer_access_point.startTimeout ( super.period );
 					'''
 				}
 				
 				State alarm {
 					entry '''
-						super.info ( this.getName( ), "Sleeping in alarm state");
+						super.info ( this.getName ( ), "Sleeping in alarm state");
+						super.test_port.alarm ( );
 						this.timer_access_point.startTimeout ( super.period );
 					'''
 				}

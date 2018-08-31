@@ -8,6 +8,7 @@ RoomModel base_actor {
 	import pump_station.* from "../model/pump_station.room" 
 	import logger.* from "../model/logger.room" 
 	import periodic_task.* from "../model/periodic_task.room" 
+	import test.* from "../model/test.room"
 
 	ActorClass base_actor_t {
 		Structure {
@@ -99,11 +100,13 @@ RoomModel base_actor {
 			
 			conjugated Port mine_water_level_control_system_iport : mine_water_level_control_system_iprotocol_t
 			Port mine_water_level_control_system_user_port : switch_protocol_t
+			conjugated Port mine_water_level_control_system_test_port : test_protocol_t
 
 			ActorRef mine_water_level_control_system : mine_water_level_control_system_t
 			
 			Binding mine_water_level_control_system.iport and mine_water_level_control_system_iport
 			Binding mine_water_level_control_system.user_port and mine_water_level_control_system_user_port 
+			Binding mine_water_level_control_system.test_port and mine_water_level_control_system_test_port
 		}
 		Behavior {
 			Operation get_above_threshold_value ( detect_above_threshold : boolean, threshold : int32 ) : int32 '''
@@ -121,8 +124,8 @@ RoomModel base_actor {
 				}
 			'''
 			
-			Operation stop_scenarion ( ) : void '''
-				System.out.println ( "Scenarion is a success " );
+			Operation stop_scenario ( ) : void '''
+				System.out.println ( "Scenario is a success " );
 				System.exit ( 1 );
 			'''
 		

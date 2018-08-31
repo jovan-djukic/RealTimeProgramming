@@ -171,11 +171,13 @@ public class water_flow_sensor_controller_t extends periodic_task_t {
 	
 	/* Entry and Exit Codes */
 	protected void entry_checking() {
-		super.info ( this.getName( ), "Sleeping in checking state");
+		super.info ( this.getName ( ), "Sleeping in checking state");
+		super.test_port.checking ( );
 		this.timer_access_point.startTimeout ( super.period );
 	}
 	protected void entry_alarm() {
-		super.info ( this.getName( ), "Sleeping in alarm state");
+		super.info ( this.getName ( ), "Sleeping in alarm state");
+		super.test_port.alarm ( );
 		this.timer_access_point.startTimeout ( super.period );
 	}
 	

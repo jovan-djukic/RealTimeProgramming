@@ -266,7 +266,7 @@ RoomModel top_actor {
 					action '''
 						System.out.println ( "Pump deactivated" );
 						
-						super.stop_scenarion ( );
+						super.stop_scenario ( );
 					'''
 				}
 			}

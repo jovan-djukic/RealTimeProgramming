@@ -16,10 +16,12 @@ public class test_protocol_t {
 	// message IDs
 	public static final int MSG_MIN = 0;
 	public static final int OUT_activated = 1;
-	public static final int MSG_MAX = 2;
+	public static final int OUT_checking = 2;
+	public static final int OUT_alarm = 3;
+	public static final int MSG_MAX = 4;
 
 
-	private static String messageStrings[] = {"MIN", "activated", "MAX"};
+	private static String messageStrings[] = {"MIN", "activated","checking","alarm", "MAX"};
 
 	public String getMessageString(int msg_id) {
 		if (msg_id<MSG_MIN || msg_id>MSG_MAX+1){
@@ -69,6 +71,16 @@ public class test_protocol_t {
 			if (getPeerAddress()!=null)
 				getPeerMsgReceiver().receive(new EventMessage(getPeerAddress(), OUT_activated));
 		}
+		public void checking() {
+			DebuggingService.getInstance().addMessageAsyncOut(getAddress(), getPeerAddress(), messageStrings[OUT_checking]);
+			if (getPeerAddress()!=null)
+				getPeerMsgReceiver().receive(new EventMessage(getPeerAddress(), OUT_checking));
+		}
+		public void alarm() {
+			DebuggingService.getInstance().addMessageAsyncOut(getAddress(), getPeerAddress(), messageStrings[OUT_alarm]);
+			if (getPeerAddress()!=null)
+				getPeerMsgReceiver().receive(new EventMessage(getPeerAddress(), OUT_alarm));
+		}
 	}
 	
 	// replicated port class
@@ -98,6 +110,16 @@ public class test_protocol_t {
 		public void activated(){
 			for (InterfaceItemBase item : getItems()) {
 				((test_protocol_tPort)item).activated();
+			}
+		}
+		public void checking(){
+			for (InterfaceItemBase item : getItems()) {
+				((test_protocol_tPort)item).checking();
+			}
+		}
+		public void alarm(){
+			for (InterfaceItemBase item : getItems()) {
+				((test_protocol_tPort)item).alarm();
 			}
 		}
 	}
