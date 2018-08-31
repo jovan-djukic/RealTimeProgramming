@@ -25,7 +25,6 @@ RoomModel top_actor {
 				State step14 { }
 				State step15 { }
 				State step16 { }
-				State step17 { }
 
 				RefinedTransition start { 
 					action '''
@@ -98,7 +97,6 @@ RoomModel top_actor {
 						''' >
 					}
 					action '''
-						System.out.println ( "Water flow sensor activated" );
 						System.out.println ( "One more try left before activation of alarm" );
 						System.out.println ( "Setting water flow sensor to avoid alarm activation" );
 						
@@ -111,12 +109,19 @@ RoomModel top_actor {
 						< activated : mine_water_level_control_system_test_port >
 					}
 					action '''
-						System.out.println ( "Water flow sensor in sleeping state" );
-						System.out.println ( "Setting low water level sensor" );
+						System.out.println ( "Pump state confirmed" );
+						System.out.println ( "Pausing for " + CONSTANTS.SCENARIO.SLEEP_TIME_IN_S + " seconds" );
 						
-						super.low_water_level_sensor.value = 1;
-						super.high_water_level_sensor.value = 0;
-						this.number_of_activations = 0;
+						try {
+							java.lang.Thread.sleep ( CONSTANTS.SCENARIO.SLEEP_TIME_IN_S * 1000 );
+						} catch ( InterruptedException e ) { }
+						
+						System.out.println ( "Setting methane levels over threshold" );
+						
+						super.ch4_sensor.value = super.get_above_threshold_value (
+							CONSTANTS.CH4_SENSOR_CONTROLLER.DETECT_ABOVE_THRESHOLD,
+							CONSTANTS.CH4_SENSOR_CONTROLLER.THRESHOLD
+						);
 
 						super.timer_access_point.startTimeout (
 							CONSTANTS.SCENARIO.CHECK_PERIOD
@@ -127,7 +132,7 @@ RoomModel top_actor {
 				Transition stall4 : step4 -> step4 {
 					triggers {
 						< timeout : timer_access_point guard '''
-							super.pump.state != device_state_t.OFF	
+							super.alarm.state != device_state_t.ON	|| super.pump.state != device_state_t.OFF
 						'''>
 					}
 					action '''
@@ -140,12 +145,11 @@ RoomModel top_actor {
 				Transition transition4 : step4 -> step5 {
 					triggers {
 						< timeout : timer_access_point guard '''
-							super.pump.state == device_state_t.OFF	
+							super.alarm.state == device_state_t.ON	&& super.pump.state == device_state_t.OFF	
 						'''>
 					}
 					action '''
-						System.out.println ( "Pump turned off" );
-						this.number_of_activations = 0;
+						System.out.println ( "Alarm activated and pump deactivated" );
 					'''
 				}
 
@@ -163,7 +167,7 @@ RoomModel top_actor {
 				Transition stall6 : step6 -> step6 {
 					triggers {
 						< checking : mine_water_level_control_system_test_port guard '''
-							this.number_of_activations != CONSTANTS.WATER_FLOW_SENSOR_CONTROLLER.NUMBER_OF_ACTIVATIONS	
+							this.number_of_activations != ( CONSTANTS.WATER_FLOW_SENSOR_CONTROLLER.NUMBER_OF_ACTIVATIONS - 1 )
 						''' >
 					}
 					action '''
@@ -174,113 +178,37 @@ RoomModel top_actor {
 					
 				Transition transition6 : step6 -> step7 {
 					triggers {
-						< alarm : mine_water_level_control_system_test_port >
+						< checking : mine_water_level_control_system_test_port guard '''
+							this.number_of_activations == ( CONSTANTS.WATER_FLOW_SENSOR_CONTROLLER.NUMBER_OF_ACTIVATIONS - 1 )
+						''' >
 					}
 					action '''
-						System.out.println ( "Last check" );
-						System.out.println ( "Turn on alarm message sent" );
-
-						super.timer_access_point.startTimeout (
-							CONSTANTS.SCENARIO.CHECK_PERIOD
-						);
-					'''
-				}
-				
-				Transition stall7 : step7 -> step7 {
-					triggers {
-						< timeout : timer_access_point guard '''
-							super.alarm.state != device_state_t.ON	
-						'''>
-					}
-					action '''
-						super.timer_access_point.startTimeout (
-							CONSTANTS.SCENARIO.CHECK_PERIOD
-						);
-					'''
-				}
-
-				Transition transition7 : step7 -> step8 {
-					triggers {
-						< timeout : timer_access_point guard '''
-							super.alarm.state == device_state_t.ON	
-						'''>
-					}
-					action '''
-						System.out.println ( "Alarm on state confirmed" );
 						System.out.println ( "Unsetting water flow sensor" );
 						
 						super.water_flow_sensor.value = 0;
 					'''
 				}
-
-				Transition transition8 : step8 -> step9 {
-					triggers {
-						< checking : mine_water_level_control_system_test_port >
-					}
-					action '''
-						System.out.println ( "Water flow sensor controller is checking" );
-					'''
-				}
-
-
-				Transition transition9 : step9 -> step10 {
-					triggers {
-						< activated : mine_water_level_control_system_test_port >
-					}
-					action '''
-						System.out.println ( "Water flow sensor controller is sleeping" );
-						System.out.println ( "Setting water flow sensor" );
-
-						super.water_flow_sensor.value = 1;
-					'''
-				}
 				
-				Transition transition10 : step10 -> step11 {
-					triggers {
-						< checking : mine_water_level_control_system_test_port>	
-					}
-					action '''
-						System.out.println ( "Water flow sensor controller initial check" );
 
-						this.number_of_activations = 0;
-					'''
-				}
-				
-				Transition stall11 : step11 -> step11 {
+				Transition transition7 : step7 -> step8 {
 					triggers {
-						< checking : mine_water_level_control_system_test_port guard '''
-							this.number_of_activations != ( CONSTANTS.WATER_FLOW_SENSOR_CONTROLLER.NUMBER_OF_ACTIVATIONS - 1 )	
-						'''>
+						< activated : mine_water_level_control_system_test_port>
 					}
 					action '''
-						this.number_of_activations++;
-						System.out.println ( "Water flow sensor activated, " + this.number_of_activations + " / " + CONSTANTS.WATER_FLOW_SENSOR_CONTROLLER.NUMBER_OF_ACTIVATIONS );
-					'''
-				}
-					
-				Transition transition11 : step11 -> step12 {
-					triggers {
-						< checking : mine_water_level_control_system_test_port guard '''
-							this.number_of_activations == ( CONSTANTS.WATER_FLOW_SENSOR_CONTROLLER.NUMBER_OF_ACTIVATIONS - 1 )	
-						'''>
-					}
-					action '''
-						System.out.println ( "Last check before alarm activation" );
-						System.out.println ( "Unsetting water flow sensor" );
+						System.out.println ( "Pump state confirmed" );
+						
+						System.out.println ( "Pausing for " + CONSTANTS.SCENARIO.SLEEP_TIME_IN_S + " seconds" );
+						
+						try {
+							java.lang.Thread.sleep ( CONSTANTS.SCENARIO.SLEEP_TIME_IN_S * 1000 );
+						} catch ( InterruptedException e ) { }
 
-						this.water_flow_sensor.value = 0;
-					'''
-				}
-				
-				Transition transition12 : step12 -> step13 {
-					triggers {
-						< activated : mine_water_level_control_system_test_port >
-					}
-					action '''
-						System.out.println ( "Water flow sensor controller is in sleeping state" );
-						System.out.println ( "Turning on pump using user port" );
+						System.out.println ( "Setting methane below over threshold" );
 
-						super.mine_water_level_control_system_user_port.turn_on ( );
+						super.ch4_sensor.value = super.get_below_threshold_value (
+							CONSTANTS.CH4_SENSOR_CONTROLLER.DETECT_ABOVE_THRESHOLD,
+							CONSTANTS.CH4_SENSOR_CONTROLLER.THRESHOLD
+						);
 
 						super.timer_access_point.startTimeout (
 							CONSTANTS.SCENARIO.CHECK_PERIOD
@@ -288,10 +216,10 @@ RoomModel top_actor {
 					'''
 				}
 
-				Transition stall13 : step13 -> step13 {
+				Transition stall8 : step8 -> step8 {
 					triggers {
 						< timeout : timer_access_point guard '''
-							super.pump.state != device_state_t.ON	
+							super.alarm.state != device_state_t.OFF || super.pump.state != device_state_t.ON
 						'''>
 					}
 					action '''
@@ -300,62 +228,148 @@ RoomModel top_actor {
 						);
 					'''
 				}	
-				
-				Transition transition13 : step13 -> step14 {
+					
+				Transition transition8 : step8 -> step9 {
 					triggers {
 						< timeout : timer_access_point guard '''
-							super.pump.state == device_state_t.ON	
+							super.alarm.state == device_state_t.OFF && super.pump.state == device_state_t.ON
 						'''>
 					}
 					action '''
-						System.out.println ( "Pump turned on" );
+						System.out.println ( "Alarm deactivated and pump activated" );
 					'''
 				}
-				
-				Transition transition14 : step14 -> step15 {
+
+				Transition transition9 : step9 -> step10 {
 					triggers {
-						< checking : mine_water_level_control_system_test_port>	
+						< checking : mine_water_level_control_system_test_port >
 					}
 					action '''
-						System.out.println ( "Water flow sensor controller initial check" );
-
+						System.out.println ( "Water flow sensor controller detected state change" );
+						
 						this.number_of_activations = 0;
 					'''
 				}
-				
-				Transition stall15 : step15 -> step15 {
+
+				Transition stall10 : step10 -> step10 {
 					triggers {
 						< checking : mine_water_level_control_system_test_port guard '''
-							this.number_of_activations != ( CONSTANTS.WATER_FLOW_SENSOR_CONTROLLER.NUMBER_OF_ACTIVATIONS - 1 )	
-						'''>
+							this.number_of_activations != ( CONSTANTS.WATER_FLOW_SENSOR_CONTROLLER.NUMBER_OF_ACTIVATIONS - 1 )
+						''' >
 					}
 					action '''
 						this.number_of_activations++;
 						System.out.println ( "Water flow sensor activated, " + this.number_of_activations + " / " + CONSTANTS.WATER_FLOW_SENSOR_CONTROLLER.NUMBER_OF_ACTIVATIONS );
 					'''
-				}
+				}	
 					
-				Transition transition15 : step15 -> step16 {
+				Transition transition10 : step10 -> step11 {
 					triggers {
 						< checking : mine_water_level_control_system_test_port guard '''
-							this.number_of_activations == ( CONSTANTS.WATER_FLOW_SENSOR_CONTROLLER.NUMBER_OF_ACTIVATIONS - 1 )	
-						'''>
+							this.number_of_activations == ( CONSTANTS.WATER_FLOW_SENSOR_CONTROLLER.NUMBER_OF_ACTIVATIONS - 1 )
+						''' >
 					}
 					action '''
-						System.out.println ( "Last check before alarm activation" );
-						System.out.println ( "Turning pump off using user port" );
-
-						super.mine_water_level_control_system_user_port.turn_off ( );
+						System.out.println ( "Setting water flow sensor" );
+						
+						super.water_flow_sensor.value = 1;
 					'''
 				}
-				
-				Transition transition16 : step16 -> step17 {
+
+				Transition transition11 : step11 -> step12 {
 					triggers {
 						< activated : mine_water_level_control_system_test_port >
 					}
 					action '''
-						System.out.println ( "Water flow sensor controller is in sleeping state" );
+						System.out.println ( "Pump state confirmed" );
+						
+						System.out.println ( "Pausing for " + CONSTANTS.SCENARIO.SLEEP_TIME_IN_S + " seconds" );
+						
+						try {
+							java.lang.Thread.sleep ( CONSTANTS.SCENARIO.SLEEP_TIME_IN_S * 1000 );
+						} catch ( InterruptedException e ) { }
 
+						System.out.println ( "Setting low water level sensor" );
+
+						super.high_water_level_sensor.value = 0;
+						super.low_water_level_sensor.value = 1;
+
+						super.timer_access_point.startTimeout (
+							CONSTANTS.SCENARIO.CHECK_PERIOD
+						);
+					'''
+				}
+
+				Transition stall12 : step12 -> step12 {
+					triggers {
+						< timeout : timer_access_point guard '''
+							super.pump.state != device_state_t.OFF
+						'''>
+					}
+					action '''
+						super.timer_access_point.startTimeout (
+							CONSTANTS.SCENARIO.CHECK_PERIOD
+						);
+					'''
+				}	
+					
+				Transition transition12 : step12 -> step13 {
+					triggers {
+						< timeout : timer_access_point guard '''
+							super.pump.state == device_state_t.OFF
+						'''>
+					}
+					action '''
+						System.out.println ( "Pump deactivated" );
+					'''
+				}
+
+				Transition transition13 : step13 -> step14 {
+					triggers {
+						< checking : mine_water_level_control_system_test_port >
+					}
+					action '''
+						System.out.println ( "Water flow sensor controller detected state change" );
+						
+						this.number_of_activations = 0;
+					'''
+				}
+
+				Transition stall14 : step14 -> step14 {
+					triggers {
+						< checking : mine_water_level_control_system_test_port guard '''
+							this.number_of_activations != ( CONSTANTS.WATER_FLOW_SENSOR_CONTROLLER.NUMBER_OF_ACTIVATIONS - 1 )
+						''' >
+					}
+					action '''
+						this.number_of_activations++;
+						System.out.println ( "Water flow sensor activated, " + this.number_of_activations + " / " + CONSTANTS.WATER_FLOW_SENSOR_CONTROLLER.NUMBER_OF_ACTIVATIONS );
+					'''
+				}	
+					
+				Transition transition14 : step14 -> step15 {
+					triggers {
+						< checking : mine_water_level_control_system_test_port guard '''
+							this.number_of_activations == ( CONSTANTS.WATER_FLOW_SENSOR_CONTROLLER.NUMBER_OF_ACTIVATIONS - 1 )
+						''' >
+					}
+					action '''
+						System.out.println ( "Unsetting water flow sensor" );
+						
+						super.water_flow_sensor.value = 0;
+					'''
+				}
+
+				Transition transition15 : step15 -> step16 {
+					triggers {
+						< activated : mine_water_level_control_system_test_port >
+					}
+					action '''
+						System.out.println ( "Pump state confirmed" );
+						System.out.println ( "Unsetting low water level sensor" );
+						
+						super.low_water_level_sensor.value = 0;
+						
 						super.stop_scenario ( );
 					'''
 				}

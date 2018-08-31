@@ -20,7 +20,7 @@ RoomModel top_actor {
 						super.high_water_level_sensor.value = 1;
 						
 						super.timer_access_point.startTimeout (
-							CONSTANTS.SCENARION.CHECK_PERIOD
+							CONSTANTS.SCENARIO.CHECK_PERIOD
 						);
 					'''
 				}
@@ -33,7 +33,7 @@ RoomModel top_actor {
 					}
 					action '''
 						super.timer_access_point.startTimeout (
-							CONSTANTS.SCENARION.CHECK_PERIOD
+							CONSTANTS.SCENARIO.CHECK_PERIOD
 						);
 					'''
 				}	
@@ -55,7 +55,7 @@ RoomModel top_actor {
 						super.water_flow_sensor.value = 1;
 						
 						super.timer_access_point.startTimeout (
-							CONSTANTS.SCENARION.CHECK_PERIOD
+							CONSTANTS.SCENARIO.CHECK_PERIOD
 						);
 					'''
 				}
@@ -68,7 +68,7 @@ RoomModel top_actor {
 					}
 					action '''
 						super.timer_access_point.startTimeout (
-							CONSTANTS.SCENARION.CHECK_PERIOD
+							CONSTANTS.SCENARIO.CHECK_PERIOD
 						);
 					'''
 				}	
@@ -92,7 +92,7 @@ RoomModel top_actor {
 						super.water_flow_sensor.value = 0;
 						
 						super.timer_access_point.startTimeout (
-							CONSTANTS.SCENARION.CHECK_PERIOD
+							CONSTANTS.SCENARIO.CHECK_PERIOD
 						);
 					'''
 				}
@@ -105,7 +105,7 @@ RoomModel top_actor {
 					}
 					action '''
 						super.timer_access_point.startTimeout (
-							CONSTANTS.SCENARION.CHECK_PERIOD
+							CONSTANTS.SCENARIO.CHECK_PERIOD
 						);
 					'''
 				}	
@@ -127,7 +127,7 @@ RoomModel top_actor {
 						super.mine_water_level_control_system_user_port.turn_off ( );
 						
 						super.timer_access_point.startTimeout (
-							CONSTANTS.SCENARION.CHECK_PERIOD
+							CONSTANTS.SCENARIO.CHECK_PERIOD
 						);
 					'''
 				}
@@ -140,7 +140,7 @@ RoomModel top_actor {
 					}
 					action '''
 						super.timer_access_point.startTimeout (
-							CONSTANTS.SCENARION.CHECK_PERIOD
+							CONSTANTS.SCENARIO.CHECK_PERIOD
 						);
 					'''
 				}	
@@ -166,7 +166,7 @@ RoomModel top_actor {
 						super.water_flow_sensor.value = 0;
 
 						super.timer_access_point.startTimeout (
-							CONSTANTS.SCENARION.CHECK_PERIOD
+							CONSTANTS.SCENARIO.CHECK_PERIOD
 						);
 					'''
 				}
@@ -179,7 +179,7 @@ RoomModel top_actor {
 					}
 					action '''
 						super.timer_access_point.startTimeout (
-							CONSTANTS.SCENARION.CHECK_PERIOD
+							CONSTANTS.SCENARIO.CHECK_PERIOD
 						);
 					'''
 				}	
@@ -203,7 +203,7 @@ RoomModel top_actor {
 						);
 						
 						super.timer_access_point.startTimeout (
-							CONSTANTS.SCENARION.CHECK_PERIOD
+							CONSTANTS.SCENARIO.CHECK_PERIOD
 						);
 					'''
 				}
@@ -216,7 +216,7 @@ RoomModel top_actor {
 					}
 					action '''
 						super.timer_access_point.startTimeout (
-							CONSTANTS.SCENARION.CHECK_PERIOD
+							CONSTANTS.SCENARIO.CHECK_PERIOD
 						);
 					'''
 				}	
@@ -239,7 +239,7 @@ RoomModel top_actor {
 						super.low_water_level_sensor.value = 1;
 
 						super.timer_access_point.startTimeout (
-							CONSTANTS.SCENARION.CHECK_PERIOD
+							CONSTANTS.SCENARIO.CHECK_PERIOD
 						);
 					'''
 				}
@@ -252,7 +252,7 @@ RoomModel top_actor {
 					}
 					action '''
 						super.timer_access_point.startTimeout (
-							CONSTANTS.SCENARION.CHECK_PERIOD
+							CONSTANTS.SCENARIO.CHECK_PERIOD
 						);
 					'''
 				}	

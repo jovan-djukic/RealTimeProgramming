@@ -25,7 +25,7 @@ RoomModel top_actor {
 						);
 						
 						super.timer_access_point.startTimeout (
-							CONSTANTS.SCENARION.CHECK_PERIOD
+							CONSTANTS.SCENARIO.CHECK_PERIOD
 						);
 					'''
 				}
@@ -38,7 +38,7 @@ RoomModel top_actor {
 					}
 					action '''
 						super.timer_access_point.startTimeout (
-							CONSTANTS.SCENARION.CHECK_PERIOD
+							CONSTANTS.SCENARIO.CHECK_PERIOD
 						);
 					'''
 				}	
@@ -58,7 +58,7 @@ RoomModel top_actor {
 						);
 						
 						super.timer_access_point.startTimeout (
-							CONSTANTS.SCENARION.CHECK_PERIOD
+							CONSTANTS.SCENARIO.CHECK_PERIOD
 						);
 					'''
 				}
@@ -71,7 +71,7 @@ RoomModel top_actor {
 					}
 					action '''
 						super.timer_access_point.startTimeout (
-							CONSTANTS.SCENARION.CHECK_PERIOD
+							CONSTANTS.SCENARIO.CHECK_PERIOD
 						);
 					'''
 				}	
@@ -92,7 +92,7 @@ RoomModel top_actor {
 						);
 						
 						super.timer_access_point.startTimeout (
-							CONSTANTS.SCENARION.CHECK_PERIOD
+							CONSTANTS.SCENARIO.CHECK_PERIOD
 						);
 					'''
 				}
@@ -105,7 +105,7 @@ RoomModel top_actor {
 					}
 					action '''
 						super.timer_access_point.startTimeout (
-							CONSTANTS.SCENARION.CHECK_PERIOD
+							CONSTANTS.SCENARIO.CHECK_PERIOD
 						);
 					'''
 				}	
@@ -126,7 +126,7 @@ RoomModel top_actor {
 						);
 						
 						super.timer_access_point.startTimeout (
-							CONSTANTS.SCENARION.CHECK_PERIOD
+							CONSTANTS.SCENARIO.CHECK_PERIOD
 						);
 					'''
 				}
@@ -139,7 +139,7 @@ RoomModel top_actor {
 					}
 					action '''
 						super.timer_access_point.startTimeout (
-							CONSTANTS.SCENARION.CHECK_PERIOD
+							CONSTANTS.SCENARIO.CHECK_PERIOD
 						);
 					'''
 				}	
@@ -160,7 +160,7 @@ RoomModel top_actor {
 						);
 						
 						super.timer_access_point.startTimeout (
-							CONSTANTS.SCENARION.CHECK_PERIOD
+							CONSTANTS.SCENARIO.CHECK_PERIOD
 						);
 					'''
 				}
@@ -173,7 +173,7 @@ RoomModel top_actor {
 					}
 					action '''
 						super.timer_access_point.startTimeout (
-							CONSTANTS.SCENARION.CHECK_PERIOD
+							CONSTANTS.SCENARIO.CHECK_PERIOD
 						);
 					'''
 				}	
@@ -194,7 +194,7 @@ RoomModel top_actor {
 						);
 						
 						super.timer_access_point.startTimeout (
-							CONSTANTS.SCENARION.CHECK_PERIOD
+							CONSTANTS.SCENARIO.CHECK_PERIOD
 						);
 					'''
 				}
@@ -207,7 +207,7 @@ RoomModel top_actor {
 					}
 					action '''
 						super.timer_access_point.startTimeout (
-							CONSTANTS.SCENARION.CHECK_PERIOD
+							CONSTANTS.SCENARIO.CHECK_PERIOD
 						);
 					'''
 				}	
@@ -236,7 +236,7 @@ RoomModel top_actor {
 						);
 
 						super.timer_access_point.startTimeout (
-							CONSTANTS.SCENARION.CHECK_PERIOD
+							CONSTANTS.SCENARIO.CHECK_PERIOD
 						);
 					'''
 				}
@@ -249,7 +249,7 @@ RoomModel top_actor {
 					}
 					action '''
 						super.timer_access_point.startTimeout (
-							CONSTANTS.SCENARION.CHECK_PERIOD
+							CONSTANTS.SCENARIO.CHECK_PERIOD
 						);
 					'''
 				}	
@@ -270,7 +270,7 @@ RoomModel top_actor {
 						);
 
 						super.timer_access_point.startTimeout (
-							CONSTANTS.SCENARION.CHECK_PERIOD
+							CONSTANTS.SCENARIO.CHECK_PERIOD
 						);
 					'''
 				}
@@ -283,7 +283,7 @@ RoomModel top_actor {
 					}
 					action '''
 						super.timer_access_point.startTimeout (
-							CONSTANTS.SCENARION.CHECK_PERIOD
+							CONSTANTS.SCENARIO.CHECK_PERIOD
 						);
 					'''
 				}	
@@ -304,7 +304,7 @@ RoomModel top_actor {
 						);
 
 						super.timer_access_point.startTimeout (
-							CONSTANTS.SCENARION.CHECK_PERIOD
+							CONSTANTS.SCENARIO.CHECK_PERIOD
 						);
 					'''
 				}
@@ -317,7 +317,7 @@ RoomModel top_actor {
 					}
 					action '''
 						super.timer_access_point.startTimeout (
-							CONSTANTS.SCENARION.CHECK_PERIOD
+							CONSTANTS.SCENARIO.CHECK_PERIOD
 						);
 					'''
 				}	
@@ -338,7 +338,7 @@ RoomModel top_actor {
 						);
 
 						super.timer_access_point.startTimeout (
-							CONSTANTS.SCENARION.CHECK_PERIOD
+							CONSTANTS.SCENARIO.CHECK_PERIOD
 						);
 					'''
 				}
@@ -351,7 +351,7 @@ RoomModel top_actor {
 					}
 					action '''
 						super.timer_access_point.startTimeout (
-							CONSTANTS.SCENARION.CHECK_PERIOD
+							CONSTANTS.SCENARIO.CHECK_PERIOD
 						);
 					'''
 				}	

@@ -1,4 +1,4 @@
-package scenario;
+package test;
 
 import org.eclipse.etrice.runtime.java.config.IVariableService;
 import org.eclipse.etrice.runtime.java.debugging.DebuggingService;
@@ -15,17 +15,12 @@ import org.eclipse.etrice.runtime.java.modelbase.SubSystemClassBase;
 import org.eclipse.etrice.runtime.java.modelbase.InterfaceItemBase;
 import org.eclipse.etrice.runtime.java.modelbase.InterfaceItemBroker;
 
-import alarm_station.*;
-import base_actor.*;
 import devices.*;
 import environment_monitoring_station.*;
 import logger.*;
-import mine_water_level_control_system.*;
 import periodic_task.*;
-import pump_station.*;
 import room.basic.service.timing.*;
 import test.*;
-import top_actor.*;
 
 
 public class Node_node_sub_system_ref extends SubSystemClassBase {
@@ -63,12 +58,7 @@ public class Node_node_sub_system_ref extends SubSystemClassBase {
 		// create service brokers in optional actor interfaces
 
 		// wiring
-		InterfaceItemBase.connect(this, "timing_service/timer", "top_actor/timer_access_point");
-		InterfaceItemBase.connect(this, "timing_service/timer", "top_actor/mine_water_level_control_system/co_sensor_controller/timer_access_point");
-		InterfaceItemBase.connect(this, "timing_service/timer", "top_actor/mine_water_level_control_system/o_sensor_controller/timer_access_point");
-		InterfaceItemBase.connect(this, "timing_service/timer", "top_actor/mine_water_level_control_system/ch4_sensor_controller/timer_access_point");
-		InterfaceItemBase.connect(this, "timing_service/timer", "top_actor/mine_water_level_control_system/water_level_detectors_sensor_controller/timer_access_point");
-		InterfaceItemBase.connect(this, "timing_service/timer", "top_actor/mine_water_level_control_system/water_flow_sensors_controller/timer_access_point");
+		InterfaceItemBase.connect(this, "timing_service/timer", "top_actor/water_level_sensors_controller/timer_access_point");
 
 		// apply instance attribute configurations
 	}
