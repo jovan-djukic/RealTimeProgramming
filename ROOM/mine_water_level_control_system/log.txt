@@ -1,0 +1,2186 @@
+Aug 31, 2018 11:15:56 PM logger.logger_t info
+INFO: [ mine_water_level_control_system ] System waiting for initialization message
+Aug 31, 2018 11:15:56 PM logger.logger_t info
+INFO: [ mine_water_level_control_system ] System initialized and running
+Aug 31, 2018 11:15:56 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Initialization message received
+Aug 31, 2018 11:15:56 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Starting timeout
+Aug 31, 2018 11:15:56 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Initialization message received
+Aug 31, 2018 11:15:56 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Starting timeout
+Aug 31, 2018 11:15:56 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Initialization message received
+Aug 31, 2018 11:15:56 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Starting timeout
+Aug 31, 2018 11:15:56 PM logger.logger_t info
+INFO: [ water_level_detectors_sensor_controller ] Initialization message received
+Aug 31, 2018 11:15:56 PM logger.logger_t info
+INFO: [ water_level_detectors_sensor_controller ] Starting timeout
+Aug 31, 2018 11:15:56 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] Initialization message received
+Aug 31, 2018 11:15:56 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] Starting timeout
+Aug 31, 2018 11:15:56 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action begin
+Aug 31, 2018 11:15:56 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action end
+Aug 31, 2018 11:15:56 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Starting timeout
+Aug 31, 2018 11:15:56 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action begin
+Aug 31, 2018 11:15:56 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action end
+Aug 31, 2018 11:15:56 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Starting timeout
+Aug 31, 2018 11:15:56 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] State normal
+Aug 31, 2018 11:15:56 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] Starting timeout
+Aug 31, 2018 11:15:56 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action begin
+Aug 31, 2018 11:15:56 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action end
+Aug 31, 2018 11:15:56 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Starting timeout
+Aug 31, 2018 11:15:56 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action begin
+Aug 31, 2018 11:15:56 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action end
+Aug 31, 2018 11:15:56 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Starting timeout
+Aug 31, 2018 11:15:56 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] State normal
+Aug 31, 2018 11:15:56 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] Starting timeout
+Aug 31, 2018 11:15:56 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action begin
+Aug 31, 2018 11:15:56 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action end
+Aug 31, 2018 11:15:56 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Starting timeout
+Aug 31, 2018 11:15:56 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action begin
+Aug 31, 2018 11:15:56 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action end
+Aug 31, 2018 11:15:56 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Starting timeout
+Aug 31, 2018 11:15:56 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action begin
+Aug 31, 2018 11:15:56 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action end
+Aug 31, 2018 11:15:56 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Starting timeout
+Aug 31, 2018 11:15:56 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action begin
+Aug 31, 2018 11:15:56 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action end
+Aug 31, 2018 11:15:56 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Starting timeout
+Aug 31, 2018 11:15:56 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] State normal
+Aug 31, 2018 11:15:56 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] Starting timeout
+Aug 31, 2018 11:15:56 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action begin
+Aug 31, 2018 11:15:56 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action end
+Aug 31, 2018 11:15:56 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Starting timeout
+Aug 31, 2018 11:15:57 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action begin
+Aug 31, 2018 11:15:57 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action end
+Aug 31, 2018 11:15:57 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Starting timeout
+Aug 31, 2018 11:15:57 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action begin
+Aug 31, 2018 11:15:57 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action end
+Aug 31, 2018 11:15:57 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Starting timeout
+Aug 31, 2018 11:15:57 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] State normal
+Aug 31, 2018 11:15:57 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] Starting timeout
+Aug 31, 2018 11:15:57 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action begin
+Aug 31, 2018 11:15:57 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action end
+Aug 31, 2018 11:15:57 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Starting timeout
+Aug 31, 2018 11:15:57 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action begin
+Aug 31, 2018 11:15:57 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action end
+Aug 31, 2018 11:15:57 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Starting timeout
+Aug 31, 2018 11:15:57 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] State normal
+Aug 31, 2018 11:15:57 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] Starting timeout
+Aug 31, 2018 11:15:57 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action begin
+Aug 31, 2018 11:15:57 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action end
+Aug 31, 2018 11:15:57 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Starting timeout
+Aug 31, 2018 11:15:57 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action begin
+Aug 31, 2018 11:15:57 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action end
+Aug 31, 2018 11:15:57 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Starting timeout
+Aug 31, 2018 11:15:57 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action begin
+Aug 31, 2018 11:15:57 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action end
+Aug 31, 2018 11:15:57 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Starting timeout
+Aug 31, 2018 11:15:57 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] State normal
+Aug 31, 2018 11:15:57 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] Starting timeout
+Aug 31, 2018 11:15:57 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action begin
+Aug 31, 2018 11:15:57 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action end
+Aug 31, 2018 11:15:57 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Starting timeout
+Aug 31, 2018 11:15:57 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action begin
+Aug 31, 2018 11:15:57 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action end
+Aug 31, 2018 11:15:57 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Starting timeout
+Aug 31, 2018 11:15:57 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action begin
+Aug 31, 2018 11:15:57 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action end
+Aug 31, 2018 11:15:57 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Starting timeout
+Aug 31, 2018 11:15:57 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] State normal
+Aug 31, 2018 11:15:57 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] Starting timeout
+Aug 31, 2018 11:15:57 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action begin
+Aug 31, 2018 11:15:57 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action end
+Aug 31, 2018 11:15:57 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Starting timeout
+Aug 31, 2018 11:15:57 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action begin
+Aug 31, 2018 11:15:57 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action end
+Aug 31, 2018 11:15:57 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Starting timeout
+Aug 31, 2018 11:15:57 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action begin
+Aug 31, 2018 11:15:57 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action end
+Aug 31, 2018 11:15:57 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Starting timeout
+Aug 31, 2018 11:15:57 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action begin
+Aug 31, 2018 11:15:57 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action end
+Aug 31, 2018 11:15:57 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Starting timeout
+Aug 31, 2018 11:15:57 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] State normal
+Aug 31, 2018 11:15:57 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] Starting timeout
+Aug 31, 2018 11:15:57 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action begin
+Aug 31, 2018 11:15:57 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action end
+Aug 31, 2018 11:15:57 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Starting timeout
+Aug 31, 2018 11:15:57 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action begin
+Aug 31, 2018 11:15:57 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action end
+Aug 31, 2018 11:15:57 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Starting timeout
+Aug 31, 2018 11:15:57 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action begin
+Aug 31, 2018 11:15:57 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action end
+Aug 31, 2018 11:15:57 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Starting timeout
+Aug 31, 2018 11:15:57 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] State normal
+Aug 31, 2018 11:15:57 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] Starting timeout
+Aug 31, 2018 11:15:57 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action begin
+Aug 31, 2018 11:15:57 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action end
+Aug 31, 2018 11:15:57 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Starting timeout
+Aug 31, 2018 11:15:57 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action begin
+Aug 31, 2018 11:15:57 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action end
+Aug 31, 2018 11:15:57 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Starting timeout
+Aug 31, 2018 11:15:57 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action begin
+Aug 31, 2018 11:15:57 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action end
+Aug 31, 2018 11:15:57 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Starting timeout
+Aug 31, 2018 11:15:57 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] State normal
+Aug 31, 2018 11:15:57 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] Starting timeout
+Aug 31, 2018 11:15:57 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action begin
+Aug 31, 2018 11:15:57 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action end
+Aug 31, 2018 11:15:57 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Starting timeout
+Aug 31, 2018 11:15:58 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action begin
+Aug 31, 2018 11:15:58 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action end
+Aug 31, 2018 11:15:58 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Starting timeout
+Aug 31, 2018 11:15:58 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action begin
+Aug 31, 2018 11:15:58 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action end
+Aug 31, 2018 11:15:58 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Starting timeout
+Aug 31, 2018 11:15:58 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] State normal
+Aug 31, 2018 11:15:58 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] Starting timeout
+Aug 31, 2018 11:15:58 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action begin
+Aug 31, 2018 11:15:58 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action end
+Aug 31, 2018 11:15:58 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Starting timeout
+Aug 31, 2018 11:15:58 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action begin
+Aug 31, 2018 11:15:58 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action end
+Aug 31, 2018 11:15:58 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Starting timeout
+Aug 31, 2018 11:15:58 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] State normal
+Aug 31, 2018 11:15:58 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] Starting timeout
+Aug 31, 2018 11:15:58 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action begin
+Aug 31, 2018 11:15:58 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action end
+Aug 31, 2018 11:15:58 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Starting timeout
+Aug 31, 2018 11:15:58 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action begin
+Aug 31, 2018 11:15:58 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action end
+Aug 31, 2018 11:15:58 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Starting timeout
+Aug 31, 2018 11:15:58 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action begin
+Aug 31, 2018 11:15:58 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action end
+Aug 31, 2018 11:15:58 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Starting timeout
+Aug 31, 2018 11:15:58 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] State normal
+Aug 31, 2018 11:15:58 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] Starting timeout
+Aug 31, 2018 11:15:58 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action begin
+Aug 31, 2018 11:15:58 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action end
+Aug 31, 2018 11:15:58 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Starting timeout
+Aug 31, 2018 11:15:58 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action begin
+Aug 31, 2018 11:15:58 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action end
+Aug 31, 2018 11:15:58 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Starting timeout
+Aug 31, 2018 11:15:58 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action begin
+Aug 31, 2018 11:15:58 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action end
+Aug 31, 2018 11:15:58 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Starting timeout
+Aug 31, 2018 11:15:58 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action begin
+Aug 31, 2018 11:15:58 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action end
+Aug 31, 2018 11:15:58 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Starting timeout
+Aug 31, 2018 11:15:58 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action begin
+Aug 31, 2018 11:15:58 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action end
+Aug 31, 2018 11:15:58 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Starting timeout
+Aug 31, 2018 11:15:58 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] State normal
+Aug 31, 2018 11:15:58 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] Starting timeout
+Aug 31, 2018 11:15:58 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action begin
+Aug 31, 2018 11:15:58 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action end
+Aug 31, 2018 11:15:58 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Starting timeout
+Aug 31, 2018 11:15:58 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action begin
+Aug 31, 2018 11:15:58 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action end
+Aug 31, 2018 11:15:58 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Starting timeout
+Aug 31, 2018 11:15:58 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action begin
+Aug 31, 2018 11:15:58 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action end
+Aug 31, 2018 11:15:58 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Starting timeout
+Aug 31, 2018 11:15:58 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] State normal
+Aug 31, 2018 11:15:58 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] Starting timeout
+Aug 31, 2018 11:15:58 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action begin
+Aug 31, 2018 11:15:58 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action end
+Aug 31, 2018 11:15:58 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Starting timeout
+Aug 31, 2018 11:15:58 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action begin
+Aug 31, 2018 11:15:58 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action end
+Aug 31, 2018 11:15:58 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Starting timeout
+Aug 31, 2018 11:15:58 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action begin
+Aug 31, 2018 11:15:58 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action end
+Aug 31, 2018 11:15:58 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Starting timeout
+Aug 31, 2018 11:15:58 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] State normal
+Aug 31, 2018 11:15:58 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] Starting timeout
+Aug 31, 2018 11:15:59 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action begin
+Aug 31, 2018 11:15:59 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action end
+Aug 31, 2018 11:15:59 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Starting timeout
+Aug 31, 2018 11:15:59 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action begin
+Aug 31, 2018 11:15:59 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action end
+Aug 31, 2018 11:15:59 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Starting timeout
+Aug 31, 2018 11:15:59 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action begin
+Aug 31, 2018 11:15:59 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action end
+Aug 31, 2018 11:15:59 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Starting timeout
+Aug 31, 2018 11:15:59 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] State normal
+Aug 31, 2018 11:15:59 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] Starting timeout
+Aug 31, 2018 11:15:59 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] State normal
+Aug 31, 2018 11:15:59 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] Starting timeout
+Aug 31, 2018 11:15:59 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action begin
+Aug 31, 2018 11:15:59 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action end
+Aug 31, 2018 11:15:59 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Starting timeout
+Aug 31, 2018 11:15:59 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action begin
+Aug 31, 2018 11:15:59 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action end
+Aug 31, 2018 11:15:59 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Starting timeout
+Aug 31, 2018 11:15:59 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action begin
+Aug 31, 2018 11:15:59 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action end
+Aug 31, 2018 11:15:59 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Starting timeout
+Aug 31, 2018 11:15:59 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] State normal
+Aug 31, 2018 11:15:59 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] Starting timeout
+Aug 31, 2018 11:15:59 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action begin
+Aug 31, 2018 11:15:59 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action end
+Aug 31, 2018 11:15:59 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Starting timeout
+Aug 31, 2018 11:15:59 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action begin
+Aug 31, 2018 11:15:59 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action end
+Aug 31, 2018 11:15:59 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Starting timeout
+Aug 31, 2018 11:15:59 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action begin
+Aug 31, 2018 11:15:59 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action end
+Aug 31, 2018 11:15:59 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Starting timeout
+Aug 31, 2018 11:15:59 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action begin
+Aug 31, 2018 11:15:59 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action end
+Aug 31, 2018 11:15:59 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Starting timeout
+Aug 31, 2018 11:15:59 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action begin
+Aug 31, 2018 11:15:59 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action end
+Aug 31, 2018 11:15:59 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Starting timeout
+Aug 31, 2018 11:15:59 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action begin
+Aug 31, 2018 11:15:59 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action end
+Aug 31, 2018 11:15:59 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Starting timeout
+Aug 31, 2018 11:15:59 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] State normal
+Aug 31, 2018 11:15:59 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] Starting timeout
+Aug 31, 2018 11:15:59 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action begin
+Aug 31, 2018 11:15:59 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action end
+Aug 31, 2018 11:15:59 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Starting timeout
+Aug 31, 2018 11:15:59 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action begin
+Aug 31, 2018 11:15:59 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action end
+Aug 31, 2018 11:15:59 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Starting timeout
+Aug 31, 2018 11:15:59 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action begin
+Aug 31, 2018 11:15:59 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action end
+Aug 31, 2018 11:15:59 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Starting timeout
+Aug 31, 2018 11:15:59 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] State normal
+Aug 31, 2018 11:15:59 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] Starting timeout
+Aug 31, 2018 11:15:59 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] State normal
+Aug 31, 2018 11:15:59 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] Starting timeout
+Aug 31, 2018 11:15:59 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action begin
+Aug 31, 2018 11:15:59 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action end
+Aug 31, 2018 11:15:59 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Starting timeout
+Aug 31, 2018 11:15:59 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action begin
+Aug 31, 2018 11:15:59 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action end
+Aug 31, 2018 11:15:59 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Starting timeout
+Aug 31, 2018 11:15:59 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action begin
+Aug 31, 2018 11:15:59 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action end
+Aug 31, 2018 11:15:59 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Starting timeout
+Aug 31, 2018 11:15:59 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] State normal
+Aug 31, 2018 11:15:59 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] Starting timeout
+Aug 31, 2018 11:15:59 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action begin
+Aug 31, 2018 11:15:59 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action end
+Aug 31, 2018 11:15:59 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Starting timeout
+Aug 31, 2018 11:15:59 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action begin
+Aug 31, 2018 11:15:59 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action end
+Aug 31, 2018 11:15:59 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Starting timeout
+Aug 31, 2018 11:15:59 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action begin
+Aug 31, 2018 11:15:59 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action end
+Aug 31, 2018 11:15:59 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:00 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] State normal
+Aug 31, 2018 11:16:00 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] Starting timeout
+Aug 31, 2018 11:16:00 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:00 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action end
+Aug 31, 2018 11:16:00 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:00 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:00 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action end
+Aug 31, 2018 11:16:00 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:00 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:00 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action end
+Aug 31, 2018 11:16:00 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:00 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:00 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action end
+Aug 31, 2018 11:16:00 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:00 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:00 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action end
+Aug 31, 2018 11:16:00 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:00 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:00 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action end
+Aug 31, 2018 11:16:00 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:00 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] State normal
+Aug 31, 2018 11:16:00 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] Starting timeout
+Aug 31, 2018 11:16:00 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:00 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action end
+Aug 31, 2018 11:16:00 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:00 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:00 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action end
+Aug 31, 2018 11:16:00 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:00 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:00 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action end
+Aug 31, 2018 11:16:00 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:00 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] State normal
+Aug 31, 2018 11:16:00 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] Starting timeout
+Aug 31, 2018 11:16:00 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] State normal
+Aug 31, 2018 11:16:00 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] Starting timeout
+Aug 31, 2018 11:16:00 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:00 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action end
+Aug 31, 2018 11:16:00 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:00 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:00 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action end
+Aug 31, 2018 11:16:00 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:00 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:00 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action end
+Aug 31, 2018 11:16:00 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:00 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] State normal
+Aug 31, 2018 11:16:00 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] Starting timeout
+Aug 31, 2018 11:16:00 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:00 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action end
+Aug 31, 2018 11:16:00 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:00 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:00 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action end
+Aug 31, 2018 11:16:00 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:00 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:00 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action end
+Aug 31, 2018 11:16:00 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:00 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] State normal
+Aug 31, 2018 11:16:00 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] Starting timeout
+Aug 31, 2018 11:16:00 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:00 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action end
+Aug 31, 2018 11:16:00 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:00 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:00 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action end
+Aug 31, 2018 11:16:00 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:00 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:00 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action end
+Aug 31, 2018 11:16:00 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:00 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:00 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action end
+Aug 31, 2018 11:16:00 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:00 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:00 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action end
+Aug 31, 2018 11:16:00 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:00 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:00 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action end
+Aug 31, 2018 11:16:00 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:00 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] State normal
+Aug 31, 2018 11:16:00 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] Starting timeout
+Aug 31, 2018 11:16:01 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:01 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action end
+Aug 31, 2018 11:16:01 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:01 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:01 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action end
+Aug 31, 2018 11:16:01 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:01 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:01 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action end
+Aug 31, 2018 11:16:01 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:01 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] State normal
+Aug 31, 2018 11:16:01 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] Starting timeout
+Aug 31, 2018 11:16:01 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:01 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action end
+Aug 31, 2018 11:16:01 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:01 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:01 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action end
+Aug 31, 2018 11:16:01 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:01 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:01 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action end
+Aug 31, 2018 11:16:01 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:01 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] State normal
+Aug 31, 2018 11:16:01 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] Starting timeout
+Aug 31, 2018 11:16:01 PM logger.logger_t info
+INFO: [ water_level_detectors_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:01 PM logger.logger_t info
+INFO: [ water_level_detectors_sensor_controller ] Water over high threshold, turning on pump
+Aug 31, 2018 11:16:01 PM logger.logger_t info
+INFO: [ water_level_detectors_sensor_controller ] Query action end
+Aug 31, 2018 11:16:01 PM logger.logger_t info
+INFO: [ water_level_detectors_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:01 PM logger.logger_t info
+INFO: [ pump_controller ] Turn on message, turning on pump
+Aug 31, 2018 11:16:01 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:01 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action end
+Aug 31, 2018 11:16:01 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:01 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:01 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action end
+Aug 31, 2018 11:16:01 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:01 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:01 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action end
+Aug 31, 2018 11:16:01 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:01 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] Pump state changed or sensor error
+Aug 31, 2018 11:16:01 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] Sleeping in checking state
+Aug 31, 2018 11:16:01 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:01 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action end
+Aug 31, 2018 11:16:01 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:01 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] Read unexpected water flow sensor value, current activation is 1, within limit
+Aug 31, 2018 11:16:01 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] Sleeping in checking state
+Aug 31, 2018 11:16:01 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:01 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action end
+Aug 31, 2018 11:16:01 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:01 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:01 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action end
+Aug 31, 2018 11:16:01 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:01 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:01 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action end
+Aug 31, 2018 11:16:01 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:01 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:01 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action end
+Aug 31, 2018 11:16:01 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:01 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:01 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action end
+Aug 31, 2018 11:16:01 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:01 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] Read unexpected water flow sensor value, current activation is 2, within limit
+Aug 31, 2018 11:16:01 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] Sleeping in checking state
+Aug 31, 2018 11:16:01 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:01 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action end
+Aug 31, 2018 11:16:01 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:01 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] Read unexpected water flow sensor value, current activation is 3, within limit
+Aug 31, 2018 11:16:01 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] Sleeping in checking state
+Aug 31, 2018 11:16:01 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:01 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action end
+Aug 31, 2018 11:16:01 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:01 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:01 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action end
+Aug 31, 2018 11:16:01 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:02 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:02 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action end
+Aug 31, 2018 11:16:02 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:02 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:02 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action end
+Aug 31, 2018 11:16:02 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:02 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:02 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action end
+Aug 31, 2018 11:16:02 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:02 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] Read unexpected water flow sensor value, current activation is 4, within limit
+Aug 31, 2018 11:16:02 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] Sleeping in checking state
+Aug 31, 2018 11:16:02 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:02 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action end
+Aug 31, 2018 11:16:02 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:02 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] Read unexpected water flow sensor value, current activation is 5, within limit
+Aug 31, 2018 11:16:02 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] Sleeping in checking state
+Aug 31, 2018 11:16:02 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:02 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action end
+Aug 31, 2018 11:16:02 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:02 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:02 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action end
+Aug 31, 2018 11:16:02 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:02 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:02 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action end
+Aug 31, 2018 11:16:02 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:02 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:02 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action end
+Aug 31, 2018 11:16:02 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:02 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:02 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action end
+Aug 31, 2018 11:16:02 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:02 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] Read unexpected water flow sensor value, current activation is 6, within limit
+Aug 31, 2018 11:16:02 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] Sleeping in checking state
+Aug 31, 2018 11:16:02 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:02 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action end
+Aug 31, 2018 11:16:02 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:02 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] Pump in previous state or read expected water flow sensor value
+Aug 31, 2018 11:16:02 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] Starting timeout
+Aug 31, 2018 11:16:02 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:02 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action end
+Aug 31, 2018 11:16:02 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:02 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:02 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action end
+Aug 31, 2018 11:16:02 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:02 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:02 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action end
+Aug 31, 2018 11:16:02 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:02 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:02 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action end
+Aug 31, 2018 11:16:02 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:02 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:02 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action end
+Aug 31, 2018 11:16:02 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:02 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] State normal
+Aug 31, 2018 11:16:02 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] Starting timeout
+Aug 31, 2018 11:16:02 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:02 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action end
+Aug 31, 2018 11:16:02 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:02 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:02 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action end
+Aug 31, 2018 11:16:02 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:02 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:02 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action end
+Aug 31, 2018 11:16:02 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:02 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] State normal
+Aug 31, 2018 11:16:02 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] Starting timeout
+Aug 31, 2018 11:16:02 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:02 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action end
+Aug 31, 2018 11:16:02 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:02 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:02 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action end
+Aug 31, 2018 11:16:02 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:02 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:02 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action end
+Aug 31, 2018 11:16:02 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:02 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] State normal
+Aug 31, 2018 11:16:02 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] Starting timeout
+Aug 31, 2018 11:16:03 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:03 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action end
+Aug 31, 2018 11:16:03 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:03 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:03 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action end
+Aug 31, 2018 11:16:03 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:03 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:03 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action end
+Aug 31, 2018 11:16:03 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:03 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] State normal
+Aug 31, 2018 11:16:03 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] Starting timeout
+Aug 31, 2018 11:16:03 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:03 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action end
+Aug 31, 2018 11:16:03 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:03 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:03 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action end
+Aug 31, 2018 11:16:03 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:03 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] State normal
+Aug 31, 2018 11:16:03 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] Starting timeout
+Aug 31, 2018 11:16:03 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:03 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action end
+Aug 31, 2018 11:16:03 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:03 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:03 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action end
+Aug 31, 2018 11:16:03 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:03 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:03 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action end
+Aug 31, 2018 11:16:03 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:03 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] State normal
+Aug 31, 2018 11:16:03 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] Starting timeout
+Aug 31, 2018 11:16:03 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:03 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action end
+Aug 31, 2018 11:16:03 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:03 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:03 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action end
+Aug 31, 2018 11:16:03 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:03 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:03 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action end
+Aug 31, 2018 11:16:03 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:03 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] State normal
+Aug 31, 2018 11:16:03 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] Starting timeout
+Aug 31, 2018 11:16:03 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:03 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action end
+Aug 31, 2018 11:16:03 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:03 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:03 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action end
+Aug 31, 2018 11:16:03 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:03 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:03 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action end
+Aug 31, 2018 11:16:03 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:03 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] State normal
+Aug 31, 2018 11:16:03 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] Starting timeout
+Aug 31, 2018 11:16:03 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:03 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action end
+Aug 31, 2018 11:16:03 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:03 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:03 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action end
+Aug 31, 2018 11:16:03 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:03 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] State normal
+Aug 31, 2018 11:16:03 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] Starting timeout
+Aug 31, 2018 11:16:03 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:03 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action end
+Aug 31, 2018 11:16:03 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:03 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:03 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action end
+Aug 31, 2018 11:16:03 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:04 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:04 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action end
+Aug 31, 2018 11:16:04 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:04 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] State normal
+Aug 31, 2018 11:16:04 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] Starting timeout
+Aug 31, 2018 11:16:04 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:04 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action end
+Aug 31, 2018 11:16:04 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:04 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:04 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action end
+Aug 31, 2018 11:16:04 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:04 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:04 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action end
+Aug 31, 2018 11:16:04 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:04 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] State normal
+Aug 31, 2018 11:16:04 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] Starting timeout
+Aug 31, 2018 11:16:04 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:04 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action end
+Aug 31, 2018 11:16:04 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:04 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:04 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action end
+Aug 31, 2018 11:16:04 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:04 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:04 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action end
+Aug 31, 2018 11:16:04 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:04 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] State normal
+Aug 31, 2018 11:16:04 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] Starting timeout
+Aug 31, 2018 11:16:04 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:04 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action end
+Aug 31, 2018 11:16:04 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:04 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:04 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action end
+Aug 31, 2018 11:16:04 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:04 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:04 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action end
+Aug 31, 2018 11:16:04 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:04 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:04 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action end
+Aug 31, 2018 11:16:04 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:04 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:04 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action end
+Aug 31, 2018 11:16:04 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:04 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] State normal
+Aug 31, 2018 11:16:04 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] Starting timeout
+Aug 31, 2018 11:16:04 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:04 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action end
+Aug 31, 2018 11:16:04 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:04 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:04 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action end
+Aug 31, 2018 11:16:04 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:04 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:04 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action end
+Aug 31, 2018 11:16:04 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:04 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] State normal
+Aug 31, 2018 11:16:04 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] Starting timeout
+Aug 31, 2018 11:16:04 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:04 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action end
+Aug 31, 2018 11:16:04 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:04 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:04 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action end
+Aug 31, 2018 11:16:04 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:04 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:04 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action end
+Aug 31, 2018 11:16:04 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:04 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] State normal
+Aug 31, 2018 11:16:04 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] Starting timeout
+Aug 31, 2018 11:16:04 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:04 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action end
+Aug 31, 2018 11:16:04 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:04 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:04 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action end
+Aug 31, 2018 11:16:04 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:04 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:04 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action end
+Aug 31, 2018 11:16:04 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:04 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] State normal
+Aug 31, 2018 11:16:04 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] Starting timeout
+Aug 31, 2018 11:16:05 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:05 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action end
+Aug 31, 2018 11:16:05 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:05 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:05 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action end
+Aug 31, 2018 11:16:05 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:05 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:05 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action end
+Aug 31, 2018 11:16:05 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:05 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] State normal
+Aug 31, 2018 11:16:05 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] Starting timeout
+Aug 31, 2018 11:16:05 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:05 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action end
+Aug 31, 2018 11:16:05 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:05 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:05 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action end
+Aug 31, 2018 11:16:05 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:05 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] State normal
+Aug 31, 2018 11:16:05 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] Starting timeout
+Aug 31, 2018 11:16:05 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:05 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action end
+Aug 31, 2018 11:16:05 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:05 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:05 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action end
+Aug 31, 2018 11:16:05 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:05 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] State normal
+Aug 31, 2018 11:16:05 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] Starting timeout
+Aug 31, 2018 11:16:05 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:05 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action end
+Aug 31, 2018 11:16:05 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:05 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:05 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action end
+Aug 31, 2018 11:16:05 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:05 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:05 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action end
+Aug 31, 2018 11:16:05 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:05 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] State normal
+Aug 31, 2018 11:16:05 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] Starting timeout
+Aug 31, 2018 11:16:05 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:05 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action end
+Aug 31, 2018 11:16:05 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:05 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:05 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action end
+Aug 31, 2018 11:16:05 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:05 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:05 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action end
+Aug 31, 2018 11:16:05 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:05 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] State normal
+Aug 31, 2018 11:16:05 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] Starting timeout
+Aug 31, 2018 11:16:05 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:05 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action end
+Aug 31, 2018 11:16:05 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:05 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:05 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action end
+Aug 31, 2018 11:16:05 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:05 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:05 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action end
+Aug 31, 2018 11:16:05 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:05 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] State normal
+Aug 31, 2018 11:16:05 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] Starting timeout
+Aug 31, 2018 11:16:05 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:05 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action end
+Aug 31, 2018 11:16:05 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:05 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:05 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action end
+Aug 31, 2018 11:16:05 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:06 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:06 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action end
+Aug 31, 2018 11:16:06 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:06 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] State normal
+Aug 31, 2018 11:16:06 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] Starting timeout
+Aug 31, 2018 11:16:06 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:06 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action end
+Aug 31, 2018 11:16:06 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:06 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:06 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action end
+Aug 31, 2018 11:16:06 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:06 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:06 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action end
+Aug 31, 2018 11:16:06 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:06 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:06 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action end
+Aug 31, 2018 11:16:06 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:06 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] State normal
+Aug 31, 2018 11:16:06 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] Starting timeout
+Aug 31, 2018 11:16:06 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:06 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action end
+Aug 31, 2018 11:16:06 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:06 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:06 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action end
+Aug 31, 2018 11:16:06 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:06 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:06 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action end
+Aug 31, 2018 11:16:06 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:06 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] State normal
+Aug 31, 2018 11:16:06 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] Starting timeout
+Aug 31, 2018 11:16:06 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:06 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action end
+Aug 31, 2018 11:16:06 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:06 PM logger.logger_t info
+INFO: [ water_level_detectors_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:06 PM logger.logger_t info
+INFO: [ water_level_detectors_sensor_controller ] Water under low threshold, turning off pump
+Aug 31, 2018 11:16:06 PM logger.logger_t info
+INFO: [ water_level_detectors_sensor_controller ] Query action end
+Aug 31, 2018 11:16:06 PM logger.logger_t info
+INFO: [ water_level_detectors_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:06 PM logger.logger_t info
+INFO: [ pump_controller ] Turn off message, turning on pump
+Aug 31, 2018 11:16:06 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:06 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action end
+Aug 31, 2018 11:16:06 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:06 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] Pump state changed or sensor error
+Aug 31, 2018 11:16:06 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] Sleeping in checking state
+Aug 31, 2018 11:16:06 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:06 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action end
+Aug 31, 2018 11:16:06 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:06 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:06 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action end
+Aug 31, 2018 11:16:06 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:06 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:06 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action end
+Aug 31, 2018 11:16:06 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:06 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:06 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action end
+Aug 31, 2018 11:16:06 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:06 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:06 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action end
+Aug 31, 2018 11:16:06 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:06 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] Read unexpected water flow sensor value, current activation is 1, within limit
+Aug 31, 2018 11:16:06 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] Sleeping in checking state
+Aug 31, 2018 11:16:06 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:06 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action end
+Aug 31, 2018 11:16:06 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:06 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] Read unexpected water flow sensor value, current activation is 2, within limit
+Aug 31, 2018 11:16:06 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] Sleeping in checking state
+Aug 31, 2018 11:16:06 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:06 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action end
+Aug 31, 2018 11:16:06 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:06 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:06 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action end
+Aug 31, 2018 11:16:06 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:06 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:06 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action end
+Aug 31, 2018 11:16:06 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:06 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:06 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action end
+Aug 31, 2018 11:16:06 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:06 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:06 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action end
+Aug 31, 2018 11:16:06 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:06 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] Read unexpected water flow sensor value, current activation is 3, within limit
+Aug 31, 2018 11:16:06 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] Sleeping in checking state
+Aug 31, 2018 11:16:07 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:07 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action end
+Aug 31, 2018 11:16:07 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:07 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] Read unexpected water flow sensor value, current activation is 4, within limit
+Aug 31, 2018 11:16:07 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] Sleeping in checking state
+Aug 31, 2018 11:16:07 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:07 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action end
+Aug 31, 2018 11:16:07 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:07 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:07 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action end
+Aug 31, 2018 11:16:07 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:07 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:07 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action end
+Aug 31, 2018 11:16:07 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:07 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:07 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action end
+Aug 31, 2018 11:16:07 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:07 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:07 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action end
+Aug 31, 2018 11:16:07 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:07 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] Read unexpected water flow sensor value, current activation is 5, within limit
+Aug 31, 2018 11:16:07 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] Sleeping in checking state
+Aug 31, 2018 11:16:07 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:07 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action end
+Aug 31, 2018 11:16:07 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:07 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] Read unexpected water flow sensor value, current activation is 6, within limit
+Aug 31, 2018 11:16:07 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] Sleeping in checking state
+Aug 31, 2018 11:16:07 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:07 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action end
+Aug 31, 2018 11:16:07 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:07 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:07 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action end
+Aug 31, 2018 11:16:07 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:07 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:07 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action end
+Aug 31, 2018 11:16:07 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:07 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:07 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action end
+Aug 31, 2018 11:16:07 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:07 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:07 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action end
+Aug 31, 2018 11:16:07 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:07 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] Read unexpected water flow sensor value, limit breached, turning on alarm
+Aug 31, 2018 11:16:07 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] Sleeping in alarm state
+Aug 31, 2018 11:16:07 PM logger.logger_t info
+INFO: [ alarm_controller ] Initial turn on message recevied, turning on alarm
+Aug 31, 2018 11:16:07 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:07 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action end
+Aug 31, 2018 11:16:07 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:07 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] Pump state changed or read expected water flow sensor value, turning off alarm
+Aug 31, 2018 11:16:07 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] Sleeping in checking state
+Aug 31, 2018 11:16:07 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:07 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action end
+Aug 31, 2018 11:16:07 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:07 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:07 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action end
+Aug 31, 2018 11:16:07 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:07 PM logger.logger_t info
+INFO: [ alarm_controller ] Last turn off message recevied, turning off alarm
+Aug 31, 2018 11:16:07 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:07 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action end
+Aug 31, 2018 11:16:07 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:07 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:07 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action end
+Aug 31, 2018 11:16:07 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:07 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:07 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action end
+Aug 31, 2018 11:16:07 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:07 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] Pump in previous state or read expected water flow sensor value
+Aug 31, 2018 11:16:07 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] Starting timeout
+Aug 31, 2018 11:16:07 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:07 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action end
+Aug 31, 2018 11:16:07 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:07 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] Pump state changed or sensor error
+Aug 31, 2018 11:16:07 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] Sleeping in checking state
+Aug 31, 2018 11:16:07 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:07 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action end
+Aug 31, 2018 11:16:07 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:07 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:07 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action end
+Aug 31, 2018 11:16:07 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:08 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:08 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action end
+Aug 31, 2018 11:16:08 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:08 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:08 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action end
+Aug 31, 2018 11:16:08 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:08 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:08 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action end
+Aug 31, 2018 11:16:08 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:08 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] Pump in previous state or read expected water flow sensor value
+Aug 31, 2018 11:16:08 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] Starting timeout
+Aug 31, 2018 11:16:08 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:08 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action end
+Aug 31, 2018 11:16:08 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:08 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] Pump state changed or sensor error
+Aug 31, 2018 11:16:08 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] Sleeping in checking state
+Aug 31, 2018 11:16:08 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:08 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action end
+Aug 31, 2018 11:16:08 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:08 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:08 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action end
+Aug 31, 2018 11:16:08 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:08 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:08 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action end
+Aug 31, 2018 11:16:08 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:08 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:08 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action end
+Aug 31, 2018 11:16:08 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:08 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:08 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action end
+Aug 31, 2018 11:16:08 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:08 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] Pump in previous state or read expected water flow sensor value
+Aug 31, 2018 11:16:08 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] Starting timeout
+Aug 31, 2018 11:16:08 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:08 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action end
+Aug 31, 2018 11:16:08 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:08 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] Pump state changed or sensor error
+Aug 31, 2018 11:16:08 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] Sleeping in checking state
+Aug 31, 2018 11:16:08 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:08 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action end
+Aug 31, 2018 11:16:08 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:08 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:08 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action end
+Aug 31, 2018 11:16:08 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:08 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:08 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action end
+Aug 31, 2018 11:16:08 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:08 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:08 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action end
+Aug 31, 2018 11:16:08 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:08 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:08 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action end
+Aug 31, 2018 11:16:08 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:08 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] Pump in previous state or read expected water flow sensor value
+Aug 31, 2018 11:16:08 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] Starting timeout
+Aug 31, 2018 11:16:08 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:08 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action end
+Aug 31, 2018 11:16:08 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:08 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] Pump state changed or sensor error
+Aug 31, 2018 11:16:08 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] Sleeping in checking state
+Aug 31, 2018 11:16:08 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:08 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action end
+Aug 31, 2018 11:16:08 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:08 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:08 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action end
+Aug 31, 2018 11:16:08 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:09 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:09 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action end
+Aug 31, 2018 11:16:09 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:09 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:09 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action end
+Aug 31, 2018 11:16:09 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:09 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:09 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action end
+Aug 31, 2018 11:16:09 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:09 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] Pump in previous state or read expected water flow sensor value
+Aug 31, 2018 11:16:09 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] Starting timeout
+Aug 31, 2018 11:16:09 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:09 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action end
+Aug 31, 2018 11:16:09 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:09 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] Pump state changed or sensor error
+Aug 31, 2018 11:16:09 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] Sleeping in checking state
+Aug 31, 2018 11:16:09 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:09 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action end
+Aug 31, 2018 11:16:09 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:09 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:09 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action end
+Aug 31, 2018 11:16:09 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:09 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:09 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action end
+Aug 31, 2018 11:16:09 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:09 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:09 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action end
+Aug 31, 2018 11:16:09 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:09 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:09 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action end
+Aug 31, 2018 11:16:09 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:09 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] Pump in previous state or read expected water flow sensor value
+Aug 31, 2018 11:16:09 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] Starting timeout
+Aug 31, 2018 11:16:09 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:09 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action end
+Aug 31, 2018 11:16:09 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:09 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] Pump state changed or sensor error
+Aug 31, 2018 11:16:09 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] Sleeping in checking state
+Aug 31, 2018 11:16:09 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:09 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action end
+Aug 31, 2018 11:16:09 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:09 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:09 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action end
+Aug 31, 2018 11:16:09 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:09 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:09 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action end
+Aug 31, 2018 11:16:09 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:09 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:09 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action end
+Aug 31, 2018 11:16:09 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:09 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:09 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action end
+Aug 31, 2018 11:16:09 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:09 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] Pump in previous state or read expected water flow sensor value
+Aug 31, 2018 11:16:09 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] Starting timeout
+Aug 31, 2018 11:16:09 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:09 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action end
+Aug 31, 2018 11:16:09 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:09 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] Pump state changed or sensor error
+Aug 31, 2018 11:16:09 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] Sleeping in checking state
+Aug 31, 2018 11:16:09 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:09 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action end
+Aug 31, 2018 11:16:09 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:09 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:09 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action end
+Aug 31, 2018 11:16:09 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:09 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:09 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action end
+Aug 31, 2018 11:16:09 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:09 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:09 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action end
+Aug 31, 2018 11:16:09 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:09 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:09 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action end
+Aug 31, 2018 11:16:09 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:09 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] Pump in previous state or read expected water flow sensor value
+Aug 31, 2018 11:16:09 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] Starting timeout
+Aug 31, 2018 11:16:09 PM logger.logger_t info
+INFO: [ pump_controller ] Turn on message, turning on pump
+Aug 31, 2018 11:16:10 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:10 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action end
+Aug 31, 2018 11:16:10 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:10 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] Pump state changed or sensor error
+Aug 31, 2018 11:16:10 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] Sleeping in checking state
+Aug 31, 2018 11:16:10 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:10 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action end
+Aug 31, 2018 11:16:10 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:10 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:10 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action end
+Aug 31, 2018 11:16:10 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:10 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:10 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action end
+Aug 31, 2018 11:16:10 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:10 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:10 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action end
+Aug 31, 2018 11:16:10 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:10 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:10 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action end
+Aug 31, 2018 11:16:10 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:10 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] Read unexpected water flow sensor value, current activation is 1, within limit
+Aug 31, 2018 11:16:10 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] Sleeping in checking state
+Aug 31, 2018 11:16:10 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:10 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action end
+Aug 31, 2018 11:16:10 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:10 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] Read unexpected water flow sensor value, current activation is 2, within limit
+Aug 31, 2018 11:16:10 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] Sleeping in checking state
+Aug 31, 2018 11:16:10 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:10 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action end
+Aug 31, 2018 11:16:10 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:10 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:10 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action end
+Aug 31, 2018 11:16:10 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:10 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:10 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action end
+Aug 31, 2018 11:16:10 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:10 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:10 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action end
+Aug 31, 2018 11:16:10 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:10 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:10 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action end
+Aug 31, 2018 11:16:10 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:10 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] Read unexpected water flow sensor value, current activation is 3, within limit
+Aug 31, 2018 11:16:10 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] Sleeping in checking state
+Aug 31, 2018 11:16:10 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:10 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action end
+Aug 31, 2018 11:16:10 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:10 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] Read unexpected water flow sensor value, current activation is 4, within limit
+Aug 31, 2018 11:16:10 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] Sleeping in checking state
+Aug 31, 2018 11:16:10 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:10 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action end
+Aug 31, 2018 11:16:10 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:10 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:10 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action end
+Aug 31, 2018 11:16:10 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:10 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:10 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action end
+Aug 31, 2018 11:16:10 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:10 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:10 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action end
+Aug 31, 2018 11:16:10 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:10 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:10 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action end
+Aug 31, 2018 11:16:10 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:10 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] Read unexpected water flow sensor value, current activation is 5, within limit
+Aug 31, 2018 11:16:10 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] Sleeping in checking state
+Aug 31, 2018 11:16:11 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:11 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action end
+Aug 31, 2018 11:16:11 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:11 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] Read unexpected water flow sensor value, current activation is 6, within limit
+Aug 31, 2018 11:16:11 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] Sleeping in checking state
+Aug 31, 2018 11:16:11 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:11 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action end
+Aug 31, 2018 11:16:11 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:11 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:11 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action end
+Aug 31, 2018 11:16:11 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:11 PM logger.logger_t info
+INFO: [ pump_controller ] Turn off message, turning on pump
+Aug 31, 2018 11:16:11 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:11 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action end
+Aug 31, 2018 11:16:11 PM logger.logger_t info
+INFO: [ co_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:11 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:11 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action end
+Aug 31, 2018 11:16:11 PM logger.logger_t info
+INFO: [ o_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:11 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action begin
+Aug 31, 2018 11:16:11 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action end
+Aug 31, 2018 11:16:11 PM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Starting timeout
+Aug 31, 2018 11:16:11 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] Pump in previous state or read expected water flow sensor value
+Aug 31, 2018 11:16:11 PM logger.logger_t info
+INFO: [ water_flow_sensors_controller ] Starting timeout

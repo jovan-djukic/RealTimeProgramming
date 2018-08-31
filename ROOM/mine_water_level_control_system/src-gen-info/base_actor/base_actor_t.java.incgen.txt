@@ -92,7 +92,7 @@ class CONSTANTS {
 	}
 	
 	public class SCENARION {
-		public static final int CHECK_PERIOD = 300;
+		public static final int CHECK_PERIOD = 10;
 	}
 }
 

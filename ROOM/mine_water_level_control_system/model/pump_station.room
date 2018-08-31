@@ -222,7 +222,7 @@ RoomModel pump_station {
 					}
 					action '''
 						this.current_activation = 0;					
-						super.info ( this.getName ( ), "Pump state changed or sensor broken" );
+						super.info ( this.getName ( ), "Pump state changed or sensor error" );
 					'''
 				}
 				
@@ -267,7 +267,7 @@ RoomModel pump_station {
 				Transition check_failed_alarm_turned_on : alarm -> alarm {
 					triggers {
 						< timeout : timer_access_point guard '''
-							this.pump_state != this.pump.state || !this.is_water_flow_sensor_value_expected ( )
+							this.pump_state != this.pump.state && !this.is_water_flow_sensor_value_expected ( )
 						'''>
 					}
 					action '''

@@ -187,7 +187,7 @@ public class water_flow_sensor_controller_t extends periodic_task_t {
 	}
 	protected void action_TRANS_pump_state_change_or_water_flow_sensor_error_FROM_sleeping_TO_checking_BY_timeouttimer_access_point(InterfaceItemBase ifitem) {
 	    this.current_activation = 0;					
-	    super.info ( this.getName ( ), "Pump state changed or sensor broken" );
+	    super.info ( this.getName ( ), "Pump state changed or sensor error" );
 	}
 	protected void action_TRANS_check_succeeded_FROM_checking_TO_sleeping_BY_timeouttimer_access_point(InterfaceItemBase ifitem) {
 	    this.current_activation = 0;	
@@ -406,7 +406,7 @@ public class water_flow_sensor_controller_t extends periodic_task_t {
 			        switch(trigger__et) {
 			                case TRIG_timer_access_point__timeout:
 			                    { 
-			                    if (this.pump_state != this.pump.state || !this.is_water_flow_sensor_value_expected ( )
+			                    if (this.pump_state != this.pump.state && !this.is_water_flow_sensor_value_expected ( )
 			                    )
 			                    {
 			                        chain__et = water_flow_sensor_controller_t.CHAIN_TRANS_check_failed_alarm_turned_on_FROM_alarm_TO_alarm_BY_timeouttimer_access_point_check_failed_alarm_turned_on;
