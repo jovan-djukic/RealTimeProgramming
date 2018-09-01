@@ -1,0 +1,1 @@
+gui.adb:31:17: warning: formal parameter "grid" is read but never assigned

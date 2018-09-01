@@ -1,0 +1,27 @@
+[GENERATED OBJECT FILE]
+b__main.o
+[PROJECT FILES]
+D:\RealTimeProgramming\ADAGPSProject\mine_water_level_control_system.gpr
+20180901101920
+C:\GtkAda\lib\gnat\gtkada.gpr
+20180828211200
+[BOUND OBJECT FILES]
+D:\RealTimeProgramming\ADAGPSProject\obj\constants.o
+D:\RealTimeProgramming\ADAGPSProject\obj\gui.o
+D:\RealTimeProgramming\ADAGPSProject\obj\main.o
+[GENERATED SOURCE FILES]
+b__main.ads
+b__main.adb
+b__main.ali
+[RESULTING OPTIONS]
+-LD:\RealTimeProgramming\ADAGPSProject\obj\
+-LD:\RealTimeProgramming\ADAGPSProject\obj\
+-LC:\GtkAda\lib\gtkada\gtkada.static\gtkada\
+-LC:/gnat/2018/lib/gcc/x86_64-pc-mingw32/7.3.1/adalib/
+-static
+-static-libgcc
+-shared-libgcc
+-shared-libgcc
+-shared-libgcc
+C:/gnat/2018/lib/gcc/x86_64-pc-mingw32/7.3.1/adalib/libgnat.a
+-Wl,--stack=0x2000000

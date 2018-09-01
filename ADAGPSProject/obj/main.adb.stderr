@@ -1,0 +1,2 @@
+main.adb:13:22: "device_t" is not visible (more references follow)
+main.adb:13:22: non-visible declaration at devices.ads:5
