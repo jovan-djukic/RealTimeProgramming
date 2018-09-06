@@ -1,10 +1,12 @@
-with Gtk.Window;
 with devices;
+with mine_water_level_control_system;
 
 package gui is
-	procedure initialize_gui (
-		window : out Gtk.Window.Gtk_Window;
-		pump   : access devices.device_t;
-		alarm  : access devices.device_t
-	);
+	task type gui_controller_t (
+		pump  : access devices.device_t;
+		alarm : access devices.device_t;
+		top   : access mine_water_level_control_system.top_t
+	) is
+		entry join;
+	end gui_controller_t;
 end gui;

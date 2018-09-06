@@ -5,9 +5,11 @@ with Gtk.Grid;
 with Gtk.Button;
 with Gdk.RGBA;
 with Glib;
+with GNATCOLL.Traces;
+
+with Ada.Task_Identification;
 
 with constants;
-with gui;
 with devices;
 
 -- for testing
@@ -15,68 +17,47 @@ with Ada.Text_IO;
 
 package body gui is
 	-- device controller, when state changes it updates button
-	task type device_state_gui_controller_t is
-	begin
-		entry initialize ( 
-			device_to_watch : in access devices.device_t;
-			device_button   : in access Gtk.Button.Gtk_Button
-		);
+	task type device_state_gui_controller_t (
+		device             : access devices.device_t;
+		button             : Gtk.Button.Gtk_Button;
+		on_label           : access String;
+		off_label          : access String
+	)is
 	end device_state_gui_controller_t;
 
 	task body device_state_gui_controller_t is
-		device    : access devices.device_t;
-		button    : access Gtk.Button.Gtk_Button;
-		on_label  : String;
-		off_label : String;
 	begin
-		accept initialize (
-			device_to_watch  : in access devices.device_t;
-			button_to_set    : in access Gtk.Button.Gtk_Button;
-			device_on_label  : String;
-			device_off_label : String
-		) do
-			device    : = device;
-			button    : = button_to_set;
-			on_label  : = device_on_label;
-			off_label : = device_off_label;
-		end initialize;
-		
-		loop
+		check_loop : loop
 			device.wait_for_state_change;
-			
-			if ( device.get_state = ON ) then
-				button.Override_Color (
-					State => button.Get_State,
-					Color => constants.gui.device_state_colors.on_color
-				);
-				button.Set_Label (
-					Label => on_label
-				);
-			else
-				button.Override_Color (
-					State => button.Get_State,
-					Color => constants.gui.device_state_colors.off_color
-				);
-				button.Set_Label (
-					Label => off_label
-				);
-			end if;
-		end loop;
+		   	
+		   	if ( devices."=" ( device.get_state, devices.ON ) ) then
+		   		button.Override_Color (
+		   			State => button.Get_State_Flags,
+		   			Color => constants.gui.device_state_buttons.colors.on_color
+		   		);
+		   		button.Set_Label (
+		   			Label => on_label.all
+		   		);
+		   	else
+		   		button.Override_Color (
+		   			State => button.Get_State_Flags,
+		   			Color => constants.gui.device_state_buttons.colors.off_color
+		   		);
+		   		button.Set_Label (
+		   			Label => off_label.all
+		   		);
+		   	end if;
+		end loop check_loop;
 	end device_state_gui_controller_t;
 
 	-- attach device buttons and start controllers
 	procedure attach_device_buttons (
-		grid : out Gtk.Grid.Gtk_Grid,
-		pump : access devices.device_t,
-		alarm : access devices.device_t
+		grid         : in Gtk.Grid.Gtk_Grid;
+		pump         : access devices.device_t;
+		alarm        : access devices.device_t;
+		pump_button  : out Gtk.Button.Gtk_Button;
+		alarm_button : out Gtk.Button.Gtk_Button
 	) is
-		-- buttons
-		pump_button  : Gtk.Button.Gtk_Button;
-		alarm_button : Gtk.Button.Gtk_Button;
-
-		-- controllers
-		pump_controller  : device_state_gui_controller_t;
-		alarm_controller : device_state_gui_controller_t;
 	begin
 		-- create buttons
 		Gtk.Button.Gtk_New (
@@ -106,26 +87,13 @@ package body gui is
 			Height => constants.gui.device_state_buttons.alarm.height
 		);
 
-	end attach_device_buttons
-
-	-- callbacks for user buttons
-	procedure turn_on_button_clicked (
-		self : access Gtk.Button.Gtk_Button_Record'Class
-	) is
-	begin
-		Ada.Text_IO.Put_Line ( "Turn on button clicked" );	
-	end turn_on_button_clicked;
-
-	procedure turn_off_button_clicked (
-		self : access Gtk.Button.Gtk_Button_Record'Class
-	) is
-	begin
-		Ada.Text_IO.Put_Line ( "Turn off button clicked" );	
-	end turn_off_button_clicked;
+	end attach_device_buttons;
 
 	-- attach user buttons to gui
 	procedure attach_user_buttons (
-		grid : out Gtk.Grid.Gtk_Grid
+		grid                     : in Gtk.Grid.Gtk_Grid;
+		turn_on_button_callback  : Gtk.Button.Cb_Gtk_Button_Void;
+		turn_off_button_callback : Gtk.Button.Cb_Gtk_Button_Void
 	) is
 		-- user buttons 
 		turn_on_button : Gtk.Button.Gtk_Button;
@@ -159,11 +127,11 @@ package body gui is
 		);
 
 		turn_on_button.On_Clicked (
-			Call => turn_on_button_clicked'Access
+			Call => turn_on_button_callback 
 		);
 
 		turn_off_button.On_Clicked (
-			Call => turn_off_button_clicked'Access
+			Call => turn_off_button_callback
 		);
 	end attach_user_buttons;
 
@@ -173,14 +141,59 @@ package body gui is
 		Gtk.Main.Main_Quit;
 	end quit;
 	
-	procedure initialize_gui (
-		window : out Gtk.Window.Gtk_Window,
-		pump   : access devices.device_t,
-		alarm  : access devices.device_t
-	) is
+	task body gui_controller_t is
+		window : Gtk.Window.Gtk_Window;
 		grid : Gtk.Grid.Gtk_Grid;
+
+		pump_button : Gtk.Button.Gtk_Button;
+		alarm_button : Gtk.Button.Gtk_Button;
+		
+		pump_controller_on_label   : access String := new String' ( constants.gui.device_state_buttons.pump.on_label );
+		pump_controller_off_label  : access String := new String' ( constants.gui.device_state_buttons.pump.off_label );
+		alarm_controller_on_label  : access String := new String' ( constants.gui.device_state_buttons.alarm.on_label );
+		alarm_controller_off_label : access String := new String' ( constants.gui.device_state_buttons.alarm.off_label );
+
+		pump_controller : access device_state_gui_controller_t;
+		alarm_controller : access device_state_gui_controller_t;
+
+		-- callbacks for user buttons
+		procedure turn_on_button_clicked (
+			self : access Gtk.Button.Gtk_Button_Record'Class
+		) is
+		begin
+			GNATCOLL.Traces.Trace (
+				Handle  => constants.log.gui.stream,
+				Message => "Pump turn on button clicked"
+			);
+			top.turn_on;
+		end turn_on_button_clicked;
+
+		procedure turn_off_button_clicked (
+			self : access Gtk.Button.Gtk_Button_Record'Class
+		) is
+		begin
+			GNATCOLL.Traces.Trace (
+				Handle  => constants.log.gui.stream,
+				Message => "Pump turn off button clicked"
+			);
+			top.turn_off;
+		end turn_off_button_clicked;
+
 	begin
+		GNATCOLL.Traces.Trace (
+			Handle  => constants.log.gui.stream,
+			Message => "Initializing GTK"
+		);
+
+		-- initialize gtk
+		Gtk.Main.Init;
+
+
 		-- setup window
+		GNATCOLL.Traces.Trace (
+			Handle  => constants.log.gui.stream,
+			Message => "Creating window"
+		);
 	
 		Gtk.Window.Gtk_New (
 			Window => window 
@@ -211,18 +224,89 @@ package body gui is
 		window.Add (
 			Widget => grid
 		);
+
+		GNATCOLL.Traces.Trace (
+			Handle  => constants.log.gui.stream,
+			Message => "Attaching user buttons"
+		);
 		
 		attach_user_buttons (
-			grid => grid
+			grid                     => grid,
+			turn_on_button_callback  => turn_on_button_clicked'Unrestricted_Access,
+			turn_off_button_callback => turn_off_button_clicked'Unrestricted_Access
 		);	
+
+		GNATCOLL.Traces.Trace (
+			Handle  => constants.log.gui.stream,
+			Message => "Attaching device buttons"
+		);
 
 		attach_device_buttons (
 			grid  => grid,
 			pump  => pump,
-			alarm => alarm
+			alarm => alarm,
+			pump_button => pump_button,
+			alarm_button => alarm_button
 		);
 		
 		window.Show_All;
-	end initialize_gui;
+
+		-- start device controllers
+		GNATCOLL.Traces.Trace (
+			Handle  => constants.log.gui.stream,
+			Message => "Starting device controllers"
+		);
+
+		pump_controller := new device_state_gui_controller_t (
+			device    => pump,
+			button    => pump_button,
+			on_label  => pump_controller_on_label,
+			off_label => pump_controller_off_label 
+		);
+
+		alarm_controller := new device_state_gui_controller_t (
+			device    => alarm,
+			button    => alarm_button,
+			on_label  => alarm_controller_on_label,
+			off_label => alarm_controller_off_label
+		);
+
+		-- start main loop
+		GNATCOLL.Traces.Trace (
+			Handle  => constants.log.gui.stream,
+			Message => "Starting main loop"
+		);
+
+		Gtk.Main.Main;
+
+		GNATCOLL.Traces.Trace (
+			Handle  => constants.log.gui.stream,
+			Message => "Waiting for device controllers to finish"
+		);
+
+		Ada.Task_Identification.Abort_Task (
+			T => pump_controller'Identity
+		);
+
+		Ada.Task_Identification.Abort_Task (
+			T => alarm_controller'Identity
+		);
+
+
+		while ( not pump_controller'Terminated ) loop 
+			null;
+		end loop;
+
+		while ( not alarm_controller'Terminated ) loop 
+			null;
+		end loop;
+
+		GNATCOLL.Traces.Trace (
+			Handle  => constants.log.gui.stream,
+			Message => "All tasks finished"
+		);
+
+		accept join;
+	end gui_controller_t;
 end gui;
 

@@ -2,11 +2,28 @@
 b__main.o
 [PROJECT FILES]
 D:\RealTimeProgramming\ADAGPSProject\mine_water_level_control_system.gpr
-20180901101920
+20180906122444
 C:\GtkAda\lib\gnat\gtkada.gpr
 20180828211200
+C:\GNAT\2018\share\gpr\gpr.gpr
+20180524165522
+C:\GNAT\2018\share\gpr\xmlada_schema.gpr
+20180524165036
+C:\GNAT\2018\share\gpr\xmlada_input.gpr
+20180524165038
+C:\GNAT\2018\share\gpr\xmlada_unicode.gpr
+20180524165038
+C:\GNAT\2018\share\gpr\xmlada_sax.gpr
+20180524165036
+C:\GNAT\2018\share\gpr\xmlada_dom.gpr
+20180524165036
+C:\GNAT\2018\share\gpr\gnatcoll.gpr
+20180524170604
 [BOUND OBJECT FILES]
+D:\RealTimeProgramming\ADAGPSProject\obj\devices.o
 D:\RealTimeProgramming\ADAGPSProject\obj\constants.o
+D:\RealTimeProgramming\ADAGPSProject\obj\pump_station.o
+D:\RealTimeProgramming\ADAGPSProject\obj\mine_water_level_control_system.o
 D:\RealTimeProgramming\ADAGPSProject\obj\gui.o
 D:\RealTimeProgramming\ADAGPSProject\obj\main.o
 [GENERATED SOURCE FILES]
@@ -16,6 +33,13 @@ b__main.ali
 [RESULTING OPTIONS]
 -LD:\RealTimeProgramming\ADAGPSProject\obj\
 -LD:\RealTimeProgramming\ADAGPSProject\obj\
+-LC:\GNAT\2018\lib\gnatcoll.static\
+-LC:\GNAT\2018\lib\xmlada\xmlada_dom.static\
+-LC:\GNAT\2018\lib\xmlada\xmlada_sax.static\
+-LC:\GNAT\2018\lib\xmlada\xmlada_unicode.static\
+-LC:\GNAT\2018\lib\xmlada\xmlada_input.static\
+-LC:\GNAT\2018\lib\xmlada\xmlada_schema.static\
+-LC:\GNAT\2018\lib\gpr\static\gpr\
 -LC:\GtkAda\lib\gtkada\gtkada.static\gtkada\
 -LC:/gnat/2018/lib/gcc/x86_64-pc-mingw32/7.3.1/adalib/
 -static
@@ -23,5 +47,8 @@ b__main.ali
 -shared-libgcc
 -shared-libgcc
 -shared-libgcc
+C:/gnat/2018/lib/gcc/x86_64-pc-mingw32/7.3.1/adalib/libgnarl.a
 C:/gnat/2018/lib/gcc/x86_64-pc-mingw32/7.3.1/adalib/libgnat.a
--Wl,--stack=0x2000000
+-Xlinker
+--stack=0x200000,0x1000
+-mthreads

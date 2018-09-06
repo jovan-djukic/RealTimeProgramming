@@ -1,0 +1,11 @@
+[MAIN] Main starting
+[GUI] Initializing GTK
+[GUI] Creating window
+[GUI] Attaching user buttons
+[GUI] Attaching device buttons
+[GUI] Starting device controllers
+[GUI] Starting main loop
+[GUI] Waiting for device controllers to finish
+[GUI] All tasks finished
+[MAIN] All tasks finished
+[MAIN] Main ending

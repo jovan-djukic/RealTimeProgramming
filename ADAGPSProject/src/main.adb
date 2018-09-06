@@ -1,27 +1,50 @@
-with Gtk.Main;
-with Gtk.Window;
-with devices;
+with GNATCOLL.Traces;
 
+with constants;
+with devices;
+with mine_water_level_control_system;
 with gui;
 
+-- for debugging
+with Ada.Text_IO;
+
 procedure main is
-	main_window : Gtk.Window.Gtk_Window;
-	pump        : access devices.device_t;
-	alarm       : access devices.device_t;
+	pump           : access devices.device_t;
+	alarm          : access devices.device_t;
+	gui_controller : access gui.gui_controller_t;
+	top            : access mine_water_level_control_system.top_t;
 begin
-	-- allocate devices
-	pump  := new device_t;
-	alarm := new device_t;
-
-	-- initialize gtk
-	Gtk.Main.Init;
-
-	gui.initialize_gui (
-		window => main_window,
-		pump   => pump,
-		alarm  => alarm
+	-- initialize logging
+	GNATCOLL.Traces.Parse_Config (
+		Config => constants.log.configuration
 	);
 
-	-- start main loop
-	Gtk.Main.Main;
+	GNATCOLL.Traces.Trace (
+		Handle  => constants.log.main.stream,
+		Message => "Main starting"
+	);
+
+	-- allocate devices
+	pump  := new devices.device_t;
+	alarm := new devices.device_t;
+	
+	gui_controller := new gui.gui_controller_t (
+		pump  => pump,
+		alarm => alarm,
+		top   => top
+	);	
+
+	-- wait for all tasks to finish and finalize logging
+	gui_controller.join;
+
+	GNATCOLL.Traces.Trace (
+		Handle  => constants.log.main.stream,
+		Message => "All tasks finished"
+	);
+	GNATCOLL.Traces.Trace (
+		Handle  => constants.log.main.stream,
+		Message => "Main ending"
+	);
+
+	GNATCOLL.Traces.Finalize;
 end main;

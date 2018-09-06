@@ -1,5 +1,7 @@
 with Glib;
 with Gdk.RGBA;
+with GNATCOLL.Traces;
+with Ada.Characters.Latin_1;
 
 package constants is
 	package gui is
@@ -44,7 +46,7 @@ package constants is
 				top       : constant Glib.Gint := 5;
 				width     : constant Glib.Gint := 3;
 				height    : constant Glib.Gint := 1;
-			end pump;
+			end alarm;
 
 			package colors is
 				on_color : constant Gdk.RGBA.Gdk_RGBA := (
@@ -60,8 +62,25 @@ package constants is
 					Blue  => Glib.Gdouble ( 0 ),
 					Alpha => Glib.Gdouble ( 1 )
 				);
-			end device_state_colors;
-		end device_state;
+			end colors;
+		end device_state_buttons;
 	end gui;
 	
+	package log is
+		configuration : constant String := 
+			"+" & Ada.Characters.Latin_1.LF & 
+			">log.txt";
+
+		package main is
+			stream : constant GNATCOLL.Traces.Trace_Handle := GNATCOLL.Traces.Create (
+				Unit_Name => "MAIN"
+			);
+		end main;
+
+		package gui is
+			stream : constant GNATCOLL.Traces.Trace_Handle := GNATCOLL.Traces.Create (
+				Unit_Name => "GUI"
+			);
+		end gui;
+	end log;	
 end constants;

@@ -1,3 +1,4 @@
+limited with "C:\GNAT\2018\share\gpr\gnatcoll.gpr";
 limited with "C:\GtkAda\lib\gnat\gtkada.gpr";
 
 project Mine_Water_Level_Control_System is
@@ -11,7 +12,7 @@ project Mine_Water_Level_Control_System is
 
       when "static" =>
          for Source_Dirs use ("src/**");
-         for Main use ("gui_helpers", "devices", "main.adb");
+         for Main use ("main.adb");
 
       when "static-pic" =>
          for Source_Dirs use ("src");

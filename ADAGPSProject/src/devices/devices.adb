@@ -10,11 +10,14 @@ package body devices is
 			new_state : in device_state_t 
 		) is 
 		begin
+			if ( new_state /= state ) then
+				changed := True;
+			end if;
+
 			state   := new_state;
-			changed := True;
 		end set_state;
-		
-		entry wait_for_state_change when changed = True is
+
+		entry wait_for_state_change when changed is
 		begin
 			changed := False;
 		end wait_for_state_change;
