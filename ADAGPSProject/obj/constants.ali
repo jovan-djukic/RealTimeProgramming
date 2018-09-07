@@ -11,7 +11,7 @@ RV NO_IMPLEMENTATION_PRAGMAS
 RV NO_ELABORATION_CODE
 RV SPARK_05
 
-U constants%s		constants.ads		d1593eb3 EE OO PK IL
+U constants%s		constants.ads		baaede40 EE OO PK IL
 W ada%s			ada.ads			ada.ali
 W ada.characters%s	a-charac.ads		a-charac.ali
 W ada.characters.latin_1%s  a-chlat1.ads	a-chlat1.ali
@@ -37,7 +37,7 @@ D a-tags.ads		20180524051738 491b781d ada.tags%s
 D a-textio.ads		20180524051738 881db35a ada.text_io%s
 D a-unccon.ads		20180524051738 0e9b276f ada.unchecked_conversion%s
 D a-uncdea.ads		20180524051736 eff36322 ada.unchecked_deallocation%s
-D constants.ads		20180906153026 109189ec constants%s
+D constants.ads		20180906220904 7b66691f constants%s
 D gdk.ads		20180524063416 96d821f3 gdk%s
 D gdk-rgba.ads		20180524063422 2609514a gdk.rgba%s
 D glib.ads		20180524063416 cd438a72 glib%s
@@ -104,18 +104,18 @@ D s-traent.ads		20180524051736 005bf670 system.traceback_entries%s
 D s-unstyp.ads		20180524051736 34867c83 system.unsigned_types%s
 D s-wchcon.ads		20180524051738 1b7d22d2 system.wch_con%s
 X 1 ada.ads
-16K9*Ada 20e8 16|4r6 71r31
+16K9*Ada 20e8 16|4r6 69r31 70r38
 X 3 a-charac.ads
-16K13*Characters 18e19 16|4r10 71r35
+16K13*Characters 18e19 16|4r10 69r35 70r42
 X 4 a-chahan.ads
 66V13*To_Lower{character} 39|283i21
 67V13*To_Upper{character} 39|285i21
 X 5 a-chlat1.ads
-18K24*Latin_1 296e27 16|4w21 71r46
-35e4*LF{character} 16|71r54
+18K24*Latin_1 296e27 16|4w21 69r46 70r53
+35e4*LF{character} 16|69r54 70r61
 X 16 constants.ads
-6K9*constants 86l5 86e14
-7K17*gui 67l13 67e16
+6K9*constants 105l5 105e14
+7K17*gui 65l13 65e16
 8K25*window 12l21 12e27
 9a25*title{string}
 10i25*width{19|49I9}
@@ -133,57 +133,64 @@ X 16 constants.ads
 26i33*top{19|49I9}
 27i33*width{19|49I9}
 28i33*height{19|49I9}
-32K25*device_state_buttons 66l21 66e41
-33K33*pump 40l29 40e33
-34a33*on_label{string}
-35a33*off_label{string}
-36i33*left{19|49I9}
-37i33*top{19|49I9}
-38i33*width{19|49I9}
-39i33*height{19|49I9}
-42K33*alarm 49l29 49e34
-43a33*on_label{string}
-44a33*off_label{string}
-45i33*left{19|49I9}
-46i33*top{19|49I9}
-47i33*width{19|49I9}
-48i33*height{19|49I9}
-51K33*colors 65l29 65e35
-52r33*on_color{18|37R9}
-59r33*off_color{18|37R9}
-69K17*log 85l13 85e16
-70a17*configuration{string}
-74K25*main 78l21 78e25
-75p25*stream{42|341P9}
-80K25*gui 84l21 84e24
-81p25*stream{42|341P9}
+32K25*device_state_buttons 64l21 64e41
+33K33*pump 39l29 39e33
+34a33*label{string}
+35i33*left{19|49I9}
+36i33*top{19|49I9}
+37i33*width{19|49I9}
+38i33*height{19|49I9}
+41K33*alarm 47l29 47e34
+42a33*label{string}
+43i33*left{19|49I9}
+44i33*top{19|49I9}
+45i33*width{19|49I9}
+46i33*height{19|49I9}
+49K33*colors 63l29 63e35
+50r33*on_color{18|37R9}
+57r33*off_color{18|37R9}
+67K17*log 104l13 104e16
+68a17*configuration{string}
+73K25*main 77l21 77e25
+74p25*stream{42|341P9}
+79K25*gui 83l21 83e24
+80p25*stream{42|341P9}
+85K25*mine_water_level_control_system 103l21 103e52
+86K33*top 90l29 90e32
+87p33*stream{42|341P9}
+92K33*pump_controller 96l29 96e44
+93p33*stream{42|341P9}
+98K33*alarm_controller 102l29 102e45
+99p33*stream{42|341P9}
 X 17 gdk.ads
-38K9*Gdk 16|2r6 52r53 59r54 17|48e8
+38K9*Gdk 16|2r6 50r53 57r54 17|48e8
 X 18 gdk-rgba.ads
-35K13*RGBA 16|2w10 52r57 59r58 18|145e13
-37R9*Gdk_RGBA 16|52r62 59r63 18|42e14
-38f7*Red{19|59F9} 16|53m41 60m41
-39f7*Green{19|59F9} 16|54m41 61m41
-40f7*Blue{19|59F9} 16|55m41 62m41
-41f7*Alpha{19|59F9} 16|56m41 63m41
+35K13*RGBA 16|2w10 50r57 57r58 18|145e13
+37R9*Gdk_RGBA 16|50r62 57r63 18|42e14
+38f7*Red{19|59F9} 16|51m41 58m41
+39f7*Green{19|59F9} 16|52m41 59m41
+40f7*Blue{19|59F9} 16|53m41 60m41
+41f7*Alpha{19|59F9} 16|54m41 61m41
 X 19 glib.ads
 38K9*Glib 16|1w6 10r43 11r43 17r51 18r51 19r51 20r51 25r51 26r51 27r51 28r51
-. 36r54 37r54 38r54 39r54 45r54 46r54 47r54 48r54 53r50 54r50 55r50 56r50
-. 60r50 61r50 62r50 63r50 19|428e9
+. 35r51 36r51 37r51 38r51 43r51 44r51 45r51 46r51 51r50 52r50 53r50 54r50
+. 58r50 59r50 60r50 61r50 19|428e9
 49I9*Gint<48|35I9> 16|10r48 11r48 17r56 18r56 19r56 20r56 25r56 26r56 27r56
-. 28r56 36r59 37r59 38r59 39r59 45r59 46r59 47r59 48r59
-59F9*Gdouble<48|65F9> 16|53r55 54r55 55r55 56r55 60r55 61r55 62r55 63r55
+. 28r56 35r56 36r56 37r56 38r56 43r56 44r56 45r56 46r56
+59F9*Gdouble<48|65F9> 16|51r55 52r55 53r55 54r55 58r55 59r55 60r55 61r55
 X 22 glib-object.ads
 41P9*GObject(40R9)
 673V13*Convert{51|67M9} 20|58i21 21|49i21
 674V13*Convert{41P9} 20|59i21 21|50i21
 X 28 gnatcoll.ads
-24K9*GNATCOLL 16|3r6 75r43 75r75 81r43 81r75 28|27e13
+24K9*GNATCOLL 16|3r6 74r43 74r75 80r43 80r75 87r51 87r83 93r51 93r83 99r51
+. 99r83 28|27e13
 X 42 gnatcoll-traces.ads
-251K18*Traces 16|3w15 75r52 75r84 81r52 81r84 42|927e20
-341P9*Trace_Handle(340R9) 16|75r59 81r59
-353V13*Create{342P12} 16|75s91 81s91
-354a7 Unit_Name{string} 16|76r33 82r33
+251K18*Traces 16|3w15 74r52 74r84 80r52 80r84 87r60 87r92 93r60 93r92 99r60
+. 99r92 42|927e20
+341P9*Trace_Handle(340R9) 16|74r59 80r59 87r67 93r67 99r67
+353V13*Create{342P12} 16|74s91 80s91 87s99 93s99 99s99
+354a7 Unit_Name{string} 16|75r33 81r33 88r41 94r41 100r41
 X 48 i-c.ads
 35I9*int<integer>
 65F9*double<long_float>

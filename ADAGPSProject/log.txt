@@ -1,11 +1,111 @@
 [MAIN] Main starting
+[MAIN] Instantiating system
+[MINE WATER LEVEL CONTROL SYSTEM] Starting
+[MAIN] Instantiating GUI
+[PUMP CONTROLLER] Starting
+[PUMP CONTROLLER] Turning off pump
 [GUI] Initializing GTK
+[MAIN] GUI task finished
+[MINE WATER LEVEL CONTROL SYSTEM] Starting
 [GUI] Creating window
 [GUI] Attaching user buttons
 [GUI] Attaching device buttons
 [GUI] Starting device controllers
 [GUI] Starting main loop
+[GUI] Pump turn on button clicked
+[MINE WATER LEVEL CONTROL SYSTEM] Initial turn on received, turning on alarm
+[GUI] Pump turn off button clicked
+[MINE WATER LEVEL CONTROL SYSTEM] Last turn off received turning off alarm
+[GUI] Pump turn on button clicked
+[MINE WATER LEVEL CONTROL SYSTEM] Initial turn on received, turning on alarm
+[GUI] Pump turn off button clicked
+[MINE WATER LEVEL CONTROL SYSTEM] Last turn off received turning off alarm
+[GUI] Pump turn on button clicked
+[MINE WATER LEVEL CONTROL SYSTEM] Initial turn on received, turning on alarm
+[GUI] Pump turn on button clicked
+[MINE WATER LEVEL CONTROL SYSTEM] Following turn on received
+[GUI] Pump turn off button clicked
+[MINE WATER LEVEL CONTROL SYSTEM] Turn off received
+[GUI] Pump turn off button clicked
+[MINE WATER LEVEL CONTROL SYSTEM] Last turn off received turning off alarm
+[GUI] Pump turn on button clicked
+[MINE WATER LEVEL CONTROL SYSTEM] Initial turn on received, turning on alarm
+[GUI] Pump turn on button clicked
+[MINE WATER LEVEL CONTROL SYSTEM] Following turn on received
+[GUI] Pump turn on button clicked
+[MINE WATER LEVEL CONTROL SYSTEM] Following turn on received
+[GUI] Pump turn on button clicked
+[MINE WATER LEVEL CONTROL SYSTEM] Following turn on received
+[GUI] Pump turn off button clicked
+[MINE WATER LEVEL CONTROL SYSTEM] Turn off received
+[GUI] Pump turn off button clicked
+[MINE WATER LEVEL CONTROL SYSTEM] Turn off received
+[GUI] Pump turn off button clicked
+[MINE WATER LEVEL CONTROL SYSTEM] Turn off received
+[GUI] Pump turn off button clicked
+[MINE WATER LEVEL CONTROL SYSTEM] Last turn off received turning off alarm
+[GUI] Pump turn on button clicked
+[MINE WATER LEVEL CONTROL SYSTEM] Initial turn on received, turning on alarm
+[GUI] Pump turn off button clicked
+[MINE WATER LEVEL CONTROL SYSTEM] Last turn off received turning off alarm
+[GUI] Pump turn on button clicked
+[MINE WATER LEVEL CONTROL SYSTEM] Initial turn on received, turning on alarm
+[GUI] Pump turn off button clicked
+[MINE WATER LEVEL CONTROL SYSTEM] Last turn off received turning off alarm
+[GUI] Pump turn on button clicked
+[MINE WATER LEVEL CONTROL SYSTEM] Initial turn on received, turning on alarm
+[GUI] Pump turn off button clicked
+[MINE WATER LEVEL CONTROL SYSTEM] Last turn off received turning off alarm
+[GUI] Pump turn on button clicked
+[MINE WATER LEVEL CONTROL SYSTEM] Initial turn on received, turning on alarm
+[GUI] Pump turn off button clicked
+[MINE WATER LEVEL CONTROL SYSTEM] Last turn off received turning off alarm
+[GUI] Pump turn on button clicked
+[MINE WATER LEVEL CONTROL SYSTEM] Initial turn on received, turning on alarm
+[GUI] Pump turn off button clicked
+[MINE WATER LEVEL CONTROL SYSTEM] Last turn off received turning off alarm
+[GUI] Pump turn on button clicked
+[MINE WATER LEVEL CONTROL SYSTEM] Initial turn on received, turning on alarm
+[GUI] Pump turn off button clicked
+[MINE WATER LEVEL CONTROL SYSTEM] Last turn off received turning off alarm
+[GUI] Pump turn on button clicked
+[MINE WATER LEVEL CONTROL SYSTEM] Initial turn on received, turning on alarm
+[GUI] Pump turn off button clicked
+[MINE WATER LEVEL CONTROL SYSTEM] Last turn off received turning off alarm
+[GUI] Pump turn on button clicked
+[MINE WATER LEVEL CONTROL SYSTEM] Initial turn on received, turning on alarm
+[GUI] Pump turn off button clicked
+[MINE WATER LEVEL CONTROL SYSTEM] Last turn off received turning off alarm
+[GUI] Pump turn on button clicked
+[MINE WATER LEVEL CONTROL SYSTEM] Initial turn on received, turning on alarm
+[GUI] Pump turn off button clicked
+[MINE WATER LEVEL CONTROL SYSTEM] Last turn off received turning off alarm
+[GUI] Pump turn on button clicked
+[MINE WATER LEVEL CONTROL SYSTEM] Initial turn on received, turning on alarm
+[GUI] Pump turn off button clicked
+[MINE WATER LEVEL CONTROL SYSTEM] Last turn off received turning off alarm
+[GUI] Pump turn on button clicked
+[MINE WATER LEVEL CONTROL SYSTEM] Initial turn on received, turning on alarm
+[GUI] Pump turn off button clicked
+[MINE WATER LEVEL CONTROL SYSTEM] Last turn off received turning off alarm
+[GUI] Pump turn on button clicked
+[MINE WATER LEVEL CONTROL SYSTEM] Initial turn on received, turning on alarm
+[GUI] Pump turn off button clicked
+[MINE WATER LEVEL CONTROL SYSTEM] Last turn off received turning off alarm
+[GUI] Pump turn on button clicked
+[MINE WATER LEVEL CONTROL SYSTEM] Initial turn on received, turning on alarm
+[GUI] Pump turn off button clicked
+[MINE WATER LEVEL CONTROL SYSTEM] Last turn off received turning off alarm
+[GUI] Pump turn on button clicked
+[MINE WATER LEVEL CONTROL SYSTEM] Initial turn on received, turning on alarm
+[GUI] Pump turn off button clicked
+[MINE WATER LEVEL CONTROL SYSTEM] Last turn off received turning off alarm
 [GUI] Waiting for device controllers to finish
 [GUI] All tasks finished
-[MAIN] All tasks finished
+[MAIN] Mine water level control system task finished
+[MINE WATER LEVEL CONTROL SYSTEM] Stopping pump controller
+[PUMP CONTROLLER] Finished
+[MINE WATER LEVEL CONTROL SYSTEM] Stopping alarm controller
+[MINE WATER LEVEL CONTROL SYSTEM] Finished
+[MINE WATER LEVEL CONTROL SYSTEM] Finished
 [MAIN] Main ending

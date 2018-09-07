@@ -31,21 +31,19 @@ package constants is
 		
 		package device_state_buttons is
 			package pump is
-				on_label  : constant String    := "Pump activated";
-				off_label : constant String    := "Pump deactivated";
-				left      : constant Glib.Gint := 15;
-				top       : constant Glib.Gint := 3;
-				width     : constant Glib.Gint := 3;
-				height    : constant Glib.Gint := 1;
+				label  : constant String    := "PUMP";
+				left   : constant Glib.Gint := 15;
+				top    : constant Glib.Gint := 3;
+				width  : constant Glib.Gint := 3;
+				height : constant Glib.Gint := 1;
 			end pump;
 
 			package alarm is
-				on_label  : constant String := "Alarm activated";
-				off_label : constant String := "Alarm deactivated";
-				left      : constant Glib.Gint := 15;
-				top       : constant Glib.Gint := 5;
-				width     : constant Glib.Gint := 3;
-				height    : constant Glib.Gint := 1;
+				label  : constant String    := "ALARM";
+				left   : constant Glib.Gint := 15;
+				top    : constant Glib.Gint := 5;
+				width  : constant Glib.Gint := 3;
+				height : constant Glib.Gint := 1;
 			end alarm;
 
 			package colors is
@@ -69,11 +67,12 @@ package constants is
 	package log is
 		configuration : constant String := 
 			"+" & Ada.Characters.Latin_1.LF & 
-			">log.txt";
+			">log.txt" & Ada.Characters.Latin_1.LF &
+			"*.EXCEPTIONS=yes";
 
 		package main is
 			stream : constant GNATCOLL.Traces.Trace_Handle := GNATCOLL.Traces.Create (
-				Unit_Name => "MAIN"
+				Unit_Name => "main"
 			);
 		end main;
 
@@ -82,5 +81,25 @@ package constants is
 				Unit_Name => "GUI"
 			);
 		end gui;
+
+		package mine_water_level_control_system is
+			package top is
+				stream : constant GNATCOLL.Traces.Trace_Handle := GNATCOLL.Traces.Create (
+					Unit_Name => "Mine water level control system"
+				);
+			end top;
+
+			package pump_controller is
+				stream : constant GNATCOLL.Traces.Trace_Handle := GNATCOLL.Traces.Create (
+					Unit_Name => "pump controller"
+				);
+			end pump_controller;
+
+			package alarm_controller is
+				stream : constant GNATCOLL.Traces.Trace_Handle := GNATCOLL.Traces.Create (
+					Unit_Name => "alarm controller"
+				);
+			end alarm_controller;
+		end mine_water_level_control_system;
 	end log;	
 end constants;

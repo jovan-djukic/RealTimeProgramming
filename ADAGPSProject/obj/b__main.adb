@@ -99,6 +99,7 @@ package body ada_main is
    E396 : Short_Integer; pragma Import (Ada, E396, "gdk__color_E");
    E140 : Short_Integer; pragma Import (Ada, E140, "gdk__rgba_E");
    E114 : Short_Integer; pragma Import (Ada, E114, "constants_E");
+   E541 : Short_Integer; pragma Import (Ada, E541, "alarm_station_E");
    E373 : Short_Integer; pragma Import (Ada, E373, "gdk__event_E");
    E507 : Short_Integer; pragma Import (Ada, E507, "glib__key_file_E");
    E388 : Short_Integer; pragma Import (Ada, E388, "glib__properties_E");
@@ -177,7 +178,7 @@ package body ada_main is
    E365 : Short_Integer; pragma Import (Ada, E365, "gtk__button_E");
    E533 : Short_Integer; pragma Import (Ada, E533, "gtk__grid_E");
    E535 : Short_Integer; pragma Import (Ada, E535, "gtk__main_E");
-   E541 : Short_Integer; pragma Import (Ada, E541, "pump_station_E");
+   E543 : Short_Integer; pragma Import (Ada, E543, "pump_station_E");
    E539 : Short_Integer; pragma Import (Ada, E539, "mine_water_level_control_system_E");
    E358 : Short_Integer; pragma Import (Ada, E358, "gui_E");
 
@@ -873,7 +874,7 @@ package body ada_main is
            True, True, False, True, True, True, True, False, 
            False, True, False, False, False, True, True, True, 
            True, False, True, False),
-         Count => (0, 0, 0, 1, 3, 5, 3, 0, 2, 0),
+         Count => (0, 0, 0, 1, 5, 5, 3, 0, 3, 0),
          Unknown => (False, False, False, False, False, False, True, False, True, False));
       Priority_Specific_Dispatching :=
         Local_Priority_Specific_Dispatching'Address;
@@ -1074,6 +1075,8 @@ package body ada_main is
       E140 := E140 + 1;
       constants'elab_spec;
       E114 := E114 + 1;
+      alarm_station'elab_body;
+      E541 := E541 + 1;
       E373 := E373 + 1;
       E507 := E507 + 1;
       E388 := E388 + 1;
@@ -1267,7 +1270,7 @@ package body ada_main is
       E533 := E533 + 1;
       E535 := E535 + 1;
       pump_station'elab_body;
-      E541 := E541 + 1;
+      E543 := E543 + 1;
       mine_water_level_control_system'elab_body;
       E539 := E539 + 1;
       gui'elab_spec;
@@ -1310,6 +1313,7 @@ package body ada_main is
 --  BEGIN Object file/option list
    --   D:\RealTimeProgramming\ADAGPSProject\obj\devices.o
    --   D:\RealTimeProgramming\ADAGPSProject\obj\constants.o
+   --   D:\RealTimeProgramming\ADAGPSProject\obj\alarm_station.o
    --   D:\RealTimeProgramming\ADAGPSProject\obj\pump_station.o
    --   D:\RealTimeProgramming\ADAGPSProject\obj\mine_water_level_control_system.o
    --   D:\RealTimeProgramming\ADAGPSProject\obj\gui.o

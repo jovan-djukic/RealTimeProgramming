@@ -7,6 +7,6 @@ package gui is
 		alarm : access devices.device_t;
 		top   : access mine_water_level_control_system.top_t
 	) is
-		entry join;
+		entry stop;
 	end gui_controller_t;
 end gui;

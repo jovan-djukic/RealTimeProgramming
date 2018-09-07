@@ -27,6 +27,21 @@ begin
 	-- allocate devices
 	pump  := new devices.device_t;
 	alarm := new devices.device_t;
+
+	GNATCOLL.Traces.Trace (
+		Handle  => constants.log.main.stream,
+		Message => "Instantiating system"
+	);
+	
+	top := new mine_water_level_control_system.top_t (
+		pump  => pump,
+		alarm => alarm
+	);
+
+	GNATCOLL.Traces.Trace (
+		Handle  => constants.log.main.stream,
+		Message => "Instantiating GUI"
+	);
 	
 	gui_controller := new gui.gui_controller_t (
 		pump  => pump,
@@ -35,12 +50,20 @@ begin
 	);	
 
 	-- wait for all tasks to finish and finalize logging
-	gui_controller.join;
+	GNATCOLL.Traces.Trace (
+		Handle  => constants.log.main.stream,
+		Message => "GUI task finished"
+	);
+
+	gui_controller.stop;
 
 	GNATCOLL.Traces.Trace (
 		Handle  => constants.log.main.stream,
-		Message => "All tasks finished"
+		Message => "Mine water level control system task finished"
 	);
+	
+	top.stop;
+
 	GNATCOLL.Traces.Trace (
 		Handle  => constants.log.main.stream,
 		Message => "Main ending"

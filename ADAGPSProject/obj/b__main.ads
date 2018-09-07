@@ -37,7 +37,7 @@ package ada_main is
    pragma Export (C, main, "main");
 
    type Version_32 is mod 2 ** 32;
-   u00001 : constant Version_32 := 16#532cda5c#;
+   u00001 : constant Version_32 := 16#0897e9fd#;
    pragma Export (C, u00001, "mainB");
    u00002 : constant Version_32 := 16#050ff2f0#;
    pragma Export (C, u00002, "system__standard_libraryB");
@@ -263,7 +263,7 @@ package ada_main is
    pragma Export (C, u00112, "system__finalization_rootS");
    u00113 : constant Version_32 := 16#cf3f1b90#;
    pragma Export (C, u00113, "system__file_control_blockS");
-   u00114 : constant Version_32 := 16#d1593eb3#;
+   u00114 : constant Version_32 := 16#baaede40#;
    pragma Export (C, u00114, "constantsS");
    u00115 : constant Version_32 := 16#693b2ab9#;
    pragma Export (C, u00115, "gdkS");
@@ -749,9 +749,9 @@ package ada_main is
    pragma Export (C, u00355, "system__tasking__rendezvousB");
    u00356 : constant Version_32 := 16#f242aaf9#;
    pragma Export (C, u00356, "system__tasking__rendezvousS");
-   u00357 : constant Version_32 := 16#940ae75f#;
+   u00357 : constant Version_32 := 16#96617c40#;
    pragma Export (C, u00357, "guiB");
-   u00358 : constant Version_32 := 16#67d576b8#;
+   u00358 : constant Version_32 := 16#c1a7f5fa#;
    pragma Export (C, u00358, "guiS");
    u00359 : constant Version_32 := 16#c04d61ca#;
    pragma Export (C, u00359, "ada__real_timeB");
@@ -1111,14 +1111,18 @@ package ada_main is
    pragma Export (C, u00536, "system__tasking__stagesB");
    u00537 : constant Version_32 := 16#fb9a8375#;
    pragma Export (C, u00537, "system__tasking__stagesS");
-   u00538 : constant Version_32 := 16#c451fdf9#;
+   u00538 : constant Version_32 := 16#7369d202#;
    pragma Export (C, u00538, "mine_water_level_control_systemB");
-   u00539 : constant Version_32 := 16#9abcf420#;
+   u00539 : constant Version_32 := 16#3aaa33a7#;
    pragma Export (C, u00539, "mine_water_level_control_systemS");
-   u00540 : constant Version_32 := 16#68e342a3#;
-   pragma Export (C, u00540, "pump_stationB");
-   u00541 : constant Version_32 := 16#7fdd2208#;
-   pragma Export (C, u00541, "pump_stationS");
+   u00540 : constant Version_32 := 16#eb676b2a#;
+   pragma Export (C, u00540, "alarm_stationB");
+   u00541 : constant Version_32 := 16#7c64b555#;
+   pragma Export (C, u00541, "alarm_stationS");
+   u00542 : constant Version_32 := 16#278502d7#;
+   pragma Export (C, u00542, "pump_stationB");
+   u00543 : constant Version_32 := 16#7fdd2208#;
+   pragma Export (C, u00543, "pump_stationS");
 
    --  BEGIN ELABORATION ORDER
    --  ada%s
@@ -1496,6 +1500,8 @@ package ada_main is
    --  gdk.rgba%s
    --  gdk.rgba%b
    --  constants%s
+   --  alarm_station%s
+   --  alarm_station%b
    --  gdk.types%s
    --  gdk.event%s
    --  gdk.event%b

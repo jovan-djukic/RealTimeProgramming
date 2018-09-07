@@ -19,9 +19,7 @@ package body gui is
 	-- device controller, when state changes it updates button
 	task type device_state_gui_controller_t (
 		device             : access devices.device_t;
-		button             : Gtk.Button.Gtk_Button;
-		on_label           : access String;
-		off_label          : access String
+		button             : Gtk.Button.Gtk_Button
 	)is
 	end device_state_gui_controller_t;
 
@@ -35,16 +33,10 @@ package body gui is
 		   			State => button.Get_State_Flags,
 		   			Color => constants.gui.device_state_buttons.colors.on_color
 		   		);
-		   		button.Set_Label (
-		   			Label => on_label.all
-		   		);
 		   	else
 		   		button.Override_Color (
 		   			State => button.Get_State_Flags,
 		   			Color => constants.gui.device_state_buttons.colors.off_color
-		   		);
-		   		button.Set_Label (
-		   			Label => off_label.all
 		   		);
 		   	end if;
 		end loop check_loop;
@@ -69,6 +61,14 @@ package body gui is
 			Button => alarm_button,
 			Label  => ""
 		);		
+
+		pump_button.Set_Label (
+			Label => constants.gui.device_state_buttons.pump.label
+		);
+
+		alarm_button.Set_Label (
+			Label => constants.gui.device_state_buttons.alarm.label
+		);
 		
 		-- attach to grid
 		grid.Attach (
@@ -148,11 +148,6 @@ package body gui is
 		pump_button : Gtk.Button.Gtk_Button;
 		alarm_button : Gtk.Button.Gtk_Button;
 		
-		pump_controller_on_label   : access String := new String' ( constants.gui.device_state_buttons.pump.on_label );
-		pump_controller_off_label  : access String := new String' ( constants.gui.device_state_buttons.pump.off_label );
-		alarm_controller_on_label  : access String := new String' ( constants.gui.device_state_buttons.alarm.on_label );
-		alarm_controller_off_label : access String := new String' ( constants.gui.device_state_buttons.alarm.off_label );
-
 		pump_controller : access device_state_gui_controller_t;
 		alarm_controller : access device_state_gui_controller_t;
 
@@ -187,7 +182,6 @@ package body gui is
 
 		-- initialize gtk
 		Gtk.Main.Init;
-
 
 		-- setup window
 		GNATCOLL.Traces.Trace (
@@ -259,16 +253,12 @@ package body gui is
 
 		pump_controller := new device_state_gui_controller_t (
 			device    => pump,
-			button    => pump_button,
-			on_label  => pump_controller_on_label,
-			off_label => pump_controller_off_label 
+			button    => pump_button
 		);
 
 		alarm_controller := new device_state_gui_controller_t (
 			device    => alarm,
-			button    => alarm_button,
-			on_label  => alarm_controller_on_label,
-			off_label => alarm_controller_off_label
+			button    => alarm_button
 		);
 
 		-- start main loop
@@ -306,7 +296,9 @@ package body gui is
 			Message => "All tasks finished"
 		);
 
-		accept join;
+		accept stop do
+			null;
+		end stop; 
 	end gui_controller_t;
 end gui;
 
