@@ -32,7 +32,7 @@ package body alarm_station is
 							null;
 						end turn_on;
 						GNATCOLL.Traces.Trace (
-							Handle  => constants.log.mine_water_level_control_system.top.stream,
+							Handle  => constants.log.mine_water_level_control_system.alarm_controller.stream,
 							Message => "Initial turn on received, turning on alarm"
 						);
 
@@ -59,7 +59,7 @@ package body alarm_station is
 							null;
 						end turn_on;
 						GNATCOLL.Traces.Trace (
-							Handle  => constants.log.mine_water_level_control_system.top.stream,
+							Handle  => constants.log.mine_water_level_control_system.alarm_controller.stream,
 							Message => "Following turn on received"
 						);
 
@@ -72,14 +72,14 @@ package body alarm_station is
 						number_of_activations := number_of_activations - 1;
 						if ( number_of_activations = 0 ) then
 							GNATCOLL.Traces.Trace (
-								Handle  => constants.log.mine_water_level_control_system.top.stream,
+								Handle  => constants.log.mine_water_level_control_system.alarm_controller.stream,
 								Message => "Last turn off received turning off alarm"
 							);
 
 							state := ALARM_TURNED_OFF;
 						else
 							GNATCOLL.Traces.Trace (
-								Handle  => constants.log.mine_water_level_control_system.top.stream,
+								Handle  => constants.log.mine_water_level_control_system.alarm_controller.stream,
 								Message => "Turn off received"
 							);
 						end if;
@@ -93,7 +93,7 @@ package body alarm_station is
 		end loop running_loop;
 
 		GNATCOLL.Traces.Trace (
-			Handle  => constants.log.mine_water_level_control_system.top.stream,
+			Handle  => constants.log.mine_water_level_control_system.alarm_controller.stream,
 			Message => "Finished"
 		);
 	end alarm_controller_t;	

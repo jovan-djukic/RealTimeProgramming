@@ -11,6 +11,7 @@ RV NO_ALLOCATORS
 RV NO_ANONYMOUS_ALLOCATORS
 RV NO_EXCEPTION_HANDLERS
 RV NO_EXCEPTIONS
+RV NO_FLOATING_POINT
 RV NO_IO
 RV NO_LOCAL_ALLOCATORS
 RV NO_LOCAL_PROTECTED_OBJECTS
@@ -27,7 +28,7 @@ RV NO_IMPLEMENTATION_PRAGMAS
 RV SPARK_05
 RV MAX_TASKS=1+
 
-U main%b		main.adb		0897e9fd NE OO SU IL
+U main%b		main.adb		00680d76 NE OO SU IL
 W ada%s			ada.ads			ada.ali
 Z ada.exceptions%s	a-except.adb		a-except.ali
 Z ada.tags%s		a-tags.adb		a-tags.ali
@@ -36,6 +37,8 @@ W constants%s		constants.ads		constants.ali
 W devices%s		devices.adb		devices.ali
 W gnatcoll%s		gnatcoll.ads		gnatcoll.ali
 W gnatcoll.traces%s	gnatcoll-traces.adb	gnatcoll-traces.ali
+W gtk%s			gtk.ads			gtk.ali
+W gtk.button%s		gtk-button.adb		gtk-button.ali
 W gui%s			gui.adb			gui.ali
 W mine_water_level_control_system%s  mine_water_level_control_system.adb  mine_water_level_control_system.ali
 Z system%s		system.ads		system.ali
@@ -67,15 +70,36 @@ D a-tags.ads		20180524051738 491b781d ada.tags%s
 D a-textio.ads		20180524051738 881db35a ada.text_io%s
 D a-unccon.ads		20180524051738 0e9b276f ada.unchecked_conversion%s
 D a-uncdea.ads		20180524051736 eff36322 ada.unchecked_deallocation%s
-D constants.ads		20180906220904 7b66691f constants%s
-D devices.ads		20180906104156 e28284df devices%s
+D cairo.ads		20180524063416 925d4aaa cairo%s
+D cairo-region.ads	20180524063416 b7133728 cairo.region%s
+D constants.ads		20180907232306 014dece4 constants%s
+D devices.ads		20180907212612 ffcc2fbc devices%s
 D gdk.ads		20180524063416 96d821f3 gdk%s
+D gdk-color.ads		20180524063418 ef57bc34 gdk.color%s
+D gdk-device.ads	20180524063422 04c1ecbd gdk.device%s
+D gdk-display.ads	20180524063422 d91ec37e gdk.display%s
+D gdk-drag_contexts.ads	20180524063422 11b1346e gdk.drag_contexts%s
+D gdk-event.ads		20180524063420 1bda38e2 gdk.event%s
+D gdk-frame_clock.ads	20180524063420 dadfbe52 gdk.frame_clock%s
+D gdk-frame_timings.ads	20180524063422 98b5e7d1 gdk.frame_timings%s
+D gdk-pixbuf.ads	20180524063420 499fe1c7 gdk.pixbuf%s
+D gdk-rectangle.ads	20180524063418 7b900608 gdk.rectangle%s
 D gdk-rgba.ads		20180524063422 2609514a gdk.rgba%s
+D gdk-screen.ads	20180524063422 9fe578a4 gdk.screen%s
+D gdk-types.ads		20180524063418 921dc8b2 gdk.types%s
+D gdk-visual.ads	20180524063420 615e934c gdk.visual%s
 D glib.ads		20180524063416 cd438a72 glib%s
+D glib-error.ads	20180524063418 e055fabe glib.error%s
+D glib-g_icon.ads	20180524063422 099367ad glib.g_icon%s
+D glib-generic_properties.ads  20180524063418 f3dc70df glib.generic_properties%s
 D glib-glist.ads	20180524063420 65a6e1be glib.glist%s
 D glib-gslist.ads	20180524063420 953541be glib.gslist%s
 D glib-object.ads	20180524063416 236e9d03 glib.object%s
+D glib-properties.ads	20180524063420 4118b916 glib.properties%s
+D glib-string.ads	20180524063420 deea1b42 glib.string%s
+D glib-types.ads	20180524063418 86ac71ae glib.types%s
 D glib-values.ads	20180524063418 5ef3ad24 glib.values%s
+D glib-variant.ads	20180524063422 aee5d7d3 glib.variant%s
 D gnat.ads		20180524051738 fd2ad2f1 gnat%s
 D g-os_lib.ads		20180524051736 0db74523 gnat.os_lib%s
 D g-souinf.ads		20180524051738 291df751 gnat.source_info%s
@@ -97,15 +121,45 @@ D gnatcoll-terminal.ads	20180524054208 d1bdf60c gnatcoll.terminal%s
 D gnatcoll-traces.ads	20180524054208 4cc71156 gnatcoll.traces%s
 D gnatcoll-vfs.ads	20180524054208 df779196 gnatcoll.vfs%s
 D gnatcoll-vfs_types.ads  20180524054208 14be4a8d gnatcoll.vfs_types%s
+D gtk.ads		20180524063420 cfdeaf1c gtk%s
+D gtk-accel_group.ads	20180524063420 a14a159a gtk.accel_group%s
+D gtk-action.ads	20180524063420 98120d78 gtk.action%s
+D gtk-actionable.ads	20180524063420 35cd241d gtk.actionable%s
+D gtk-activatable.ads	20180524063420 873be5b9 gtk.activatable%s
+D gtk-adjustment.ads	20180524063422 bbcb1fda gtk.adjustment%s
+D gtk-bin.ads		20180524063422 4e8a2236 gtk.bin%s
+D gtk-buildable.ads	20180524063422 e8198b57 gtk.buildable%s
+D gtk-builder.ads	20180524063422 35d802c2 gtk.builder%s
+D gtk-button.ads	20180524063422 bc9a559f gtk.button%s
+D gtk-container.ads	20180524063420 dc3d0898 gtk.container%s
+D gtk-enums.ads		20180524063420 e3f2f3ba gtk.enums%s
+D gtk-selection_data.ads  20180524063420 061b2148 gtk.selection_data%s
+D gtk-style.ads		20180524063422 3c4cbc07 gtk.style%s
+D gtk-target_entry.ads	20180524063420 02690213 gtk.target_entry%s
+D gtk-target_list.ads	20180524063420 a9d79eb7 gtk.target_list%s
+D gtk-widget.ads	20180524063422 07bd7883 gtk.widget%s
 D gtkada.ads		20180524063420 57aea1c7 gtkada%s
 D gtkada-types.ads	20180524063420 471f54b5 gtkada.types%s
-D gui.ads		20180906163258 fb0dc65d gui%s
+D gui.ads		20180907223602 680c0dc1 gui%s
 D interfac.ads		20180524051736 5ab55268 interfaces%s
 D i-c.ads		20180524051736 5421119b interfaces.c%s
 D i-cstrin.ads		20180524051736 341d0ddf interfaces.c.strings%s
 D i-cstrea.ads		20180524051736 e53d8b8e interfaces.c_streams%s
-D main.adb		20180906184038 768cd714 main%b
-D mine_water_level_control_system.ads  20180906183956 d828b778 mine_water_level_control_system%s
+D main.adb		20180907225428 368d8304 main%b
+D mine_water_level_control_system.ads  20180907154212 d828b778 mine_water_level_control_system%s
+D pango.ads		20180524063418 e51ea573 pango%s
+D pango-attributes.ads	20180524063422 b2832a43 pango.attributes%s
+D pango-context.ads	20180524063420 5a6f0fe6 pango.context%s
+D pango-enums.ads	20180524063422 eff085ce pango.enums%s
+D pango-font.ads	20180524063422 35d36c4b pango.font%s
+D pango-font_face.ads	20180524063422 c62e6ce5 pango.font_face%s
+D pango-font_family.ads	20180524063420 1fdea8b4 pango.font_family%s
+D pango-font_metrics.ads  20180524063422 25e6f301 pango.font_metrics%s
+D pango-fontset.ads	20180524063422 af4fe708 pango.fontset%s
+D pango-language.ads	20180524063420 e96cb8f4 pango.language%s
+D pango-layout.ads	20180524063422 d240b716 pango.layout%s
+D pango-matrix.ads	20180524063420 309f74b5 pango.matrix%s
+D pango-tabs.ads	20180524063420 0c575925 pango.tabs%s
 D system.ads		20180524051738 32a08138 system%s
 D s-atacco.ads		20180524051738 4c36d12f system.address_to_access_conversions%s
 D s-atocou.ads		20180524051738 b45c2d8d system.atomic_counters%s
@@ -151,60 +205,92 @@ D s-traent.ads		20180524051736 005bf670 system.traceback_entries%s
 D s-unstyp.ads		20180524051736 34867c83 system.unsigned_types%s
 D s-wchcon.ads		20180524051738 1b7d22d2 system.wch_con%s
 D s-win32.ads		20180524051736 b7f96285 system.win32%s
+D unchconv.ads		20180524051736 ca2f9e18 unchecked_conversion%s
 X 1 ada.ads
-16K9*Ada 20e8 54|9r6
+16K9*Ada 20e8 92|10r6
 X 4 a-chahan.ads
-66V13*To_Lower{character} 41|283i21
-67V13*To_Upper{character} 41|285i21
+66V13*To_Lower{character} 62|283i21
+67V13*To_Upper{character} 62|285i21
 X 14 a-textio.ads
-49K13*Text_IO 471e16 54|9w10
-X 17 constants.ads
-6K9*constants 105e14 54|3w6 19r27 23r28 32r28 42r28 54r28 61r28 68r28
-67K17*log 104e16 54|19r37 23r38 32r38 42r38 54r38 61r38 68r38
-68a17*configuration{string} 54|19r41
-73K25*main 77e25 54|23r42 32r42 42r42 54r42 61r42 68r42
-74p25*stream{44|341P9} 54|23r47 32r47 42r47 54r47 61r47 68r47
-X 18 devices.ads
-1K9*devices 16e12 54|4w6 12r33 13r33 28r22 29r22
-5W24*device_t 14e21 54|12r41 13r41 28r30 29r30
-X 24 glib-object.ads
+49K13*Text_IO 471e16 92|10w10
+X 19 constants.ads
+6K9*constants 206e14 92|5w6 25r27 29r28 39r44 40r44 41r44 45r28 55r28 71r28
+. 78r28 83r28
+7K17*system 15e19 92|39r54 40r54 41r54
+8K25*sensors 14e28 92|39r61 40r61 41r61
+9K33*co_sensor 13e38 92|39r69 40r69 41r69
+10f33*initial_value{float} 92|39r79
+11f33*threshold{float} 92|40r79
+12b33*detects_above_threshold{boolean} 92|41r79
+168K17*log 205e16 92|25r37 29r38 45r38 55r38 71r38 78r38 83r38
+169a17*configuration{string} 92|25r41
+174K25*main 178e25 92|29r42 45r42 55r42 71r42 78r42 83r42
+175p25*stream{65|341P9} 92|29r47 45r47 55r47 71r47 78r47 83r47
+X 20 devices.ads
+1K9*devices 38e12 92|4w6 14r24 15r24 18r28 34r22 35r22 38r26
+5W24*device_t 14e21 92|14r32 15r32 34r30 35r30
+16W24*sensor_t 36e21 92|18r36 38r34
+X 21 gdk.ads
+46P9*Gdk_Visual<35|152P9>
+X 23 gdk-device.ads
+49P9*Gdk_Device(48R9)
+59V13*Convert{107|67M9} 39|58i21
+60V13*Convert{49P9} 39|59i21
+X 34 gdk-visual.ads
+78V13*Convert[152|20]{107|67M9} 39|58i21
+79V13*Convert[152|20]{21|46P9} 39|59i21
+X 35 glib.ads
+152P9*C_Proxy(149R9)
+X 41 glib-object.ads
 41P9*GObject(40R9)
-673V13*Convert{56|67M9} 22|58i21 23|49i21
-674V13*Convert{41P9} 22|59i21 23|50i21
-X 30 gnatcoll.ads
-24K9*GNATCOLL 27e13 54|1r6 18r9 22r9 31r9 41r9 53r9 60r9 67r9 72r9
-X 44 gnatcoll-traces.ads
-251K18*Traces 927e20 54|1w15 18r18 22r18 31r18 41r18 53r18 60r18 67r18 72r18
-308U14*Parse_Config 54|18s25
-309a7 Config{string} 54|19r17
-331U14*Finalize 54|72s25
+673V13*Convert{107|67M9} 39|58i21 40|49i21
+674V13*Convert{41P9} 39|59i21 40|50i21
+X 51 gnatcoll.ads
+24K9*GNATCOLL 27e13 92|1r6 24r9 28r9 44r9 54r9 70r9 77r9 82r9 87r9
+X 65 gnatcoll-traces.ads
+251K18*Traces 927e20 92|1w15 24r18 28r18 44r18 54r18 70r18 77r18 82r18 87r18
+308U14*Parse_Config 92|24s25
+309a7 Config{string} 92|25r17
+331U14*Finalize 92|87s25
 341P9*Trace_Handle(340R9)
-518U14*Trace 54|22s25 31s25 41s25 53s25 60s25 67s25
-519p7 Handle(340R9) 54|23r17 32r17 42r17 54r17 61r17 68r17
-520a7 Message{string} 54|24r17 33r17 43r17 55r17 62r17 69r17
-X 49 gui.ads
-4K9*gui 12e8 54|6w6 14r33 46r31
-5T19*gui_controller_t 11e29 54|14r37 46r35
-10Y23 stop 54|58s24
-X 54 main.adb
-11U11*main 11b11 73l5 73t9
-12p9 pump(18|5W24) 28m9 37r26 47r26
-13p9 alarm(18|5W24) 29m9 38r26 48r26
-14p9 gui_controller(49|5T19) 46m9 58r9
-15p9 top(55|4T19) 36m9 49r26 65r9
-X 55 mine_water_level_control_system.ads
-3K9*mine_water_level_control_system 54|5w6 15r33 36r20 55|12e36
-4T19*top_t 54|15r65 36r52 55|11e18
-10Y23 stop 54|65s13
-X 56 system.ads
+518U14*Trace 92|28s25 44s25 54s25 70s25 77s25 82s25
+519p7 Handle(340R9) 92|29r17 45r17 55r17 71r17 78r17 83r17
+520a7 Message{string} 92|30r17 46r17 56r17 72r17 79r17 84r17
+X 68 gtk.ads
+41K9*Gtk 79e8 92|2r6
+X 77 gtk-button.ads
+53K13*Button 595e15 92|2w10
+X 79 gtk-enums.ads
+865V13*Convert{107|67M9} 39|58i21 40|49i21
+866V13*Convert{string} 39|59i21 40|50i21
+X 84 gtk-widget.ads
+344P9*Gtk_Widget(343R9)
+431V13*Convert{107|67M9} 39|58i21 40|49i21
+432V13*Convert{344P9} 39|59i21 40|50i21
+X 87 gui.ads
+6K9*gui 16e8 92|7w6 20r35 59r31
+7T19*gui_controller_t 14e29 92|20r39 59r35
+13Y23 finished 92|68s24
+X 92 main.adb
+12U11*main 12b11 88l5 88t9
+14p9 pump(20|5W24) 34m9 50r26 60r30
+15p9 alarm(20|5W24) 35m9 51r26 61r30
+18p9 co_sensor(20|16W24) 38m9 62r30
+20p9 gui_controller(87|7T19) 59m9 68r9
+21p9 top(93|4T19) 49m9 63r30 75r9
+X 93 mine_water_level_control_system.ads
+3K9*mine_water_level_control_system 92|6w6 21r35 49r20 93|12e36
+4T19*top_t 92|21r67 49r52 93|11e18
+10Y23 stop 92|75s13
+X 107 system.ads
 67M9*Address
-X 68 s-memory.ads
-53V13*Alloc{56|67M9} 103i<c,__gnat_malloc>22
+X 119 s-memory.ads
+53V13*Alloc{107|67M9} 103i<c,__gnat_malloc>22
 68U14*Free 104i<c,__gnat_free>22
-76V13*Realloc{56|67M9} 105i<c,__gnat_realloc>22
-X 78 s-stausa.ads
+76V13*Realloc{107|67M9} 105i<c,__gnat_realloc>22
+X 129 s-stausa.ads
 203U14*Initialize 204i<c,__gnat_stack_usage_initialize>22
 268U14*Output_Results 272i<c,__gnat_stack_usage_output_results>22
-X 80 s-stalib.adb
+X 131 s-stalib.adb
 93U14 Break_Start 94i<c,__gnat_break_start>22
 

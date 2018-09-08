@@ -13,4 +13,26 @@ package devices is
 		changed : boolean        := True;
 	end device_t;
 
+	protected type sensor_t (
+		intital_value           : access constant Float;
+		threshold               : access constant Float;
+		detects_above_threshold : Boolean
+	) is
+		function get_value return Float;
+		function get_read_error_occurred return Boolean;
+		function get_threshold return Float;
+		procedure set_value (
+			new_value : Float
+		);
+		procedure set_read_error_occured (
+			new_read_error_occurred : Boolean
+		);
+		function is_threshold_breached return Boolean;
+		entry wait_for_value_change;
+	private
+		value               : Float   := intital_value.all;
+		read_error_occurred : Boolean := False;
+		changed             : Boolean := True;
+	end sensor_t;
+
 end devices;

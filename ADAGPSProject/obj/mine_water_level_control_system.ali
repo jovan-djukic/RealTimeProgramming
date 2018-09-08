@@ -25,7 +25,7 @@ RV MAX_SELECT_ALTERNATIVES=3
 RV MAX_TASK_ENTRIES=3
 RV MAX_TASKS=1+
 
-U mine_water_level_control_system%b  mine_water_level_control_system.adb  7369d202 OO PK IL
+U mine_water_level_control_system%b  mine_water_level_control_system.adb  01c98b6e OO PK IL
 Z ada.tags%s		a-tags.adb		a-tags.ali
 W alarm_station%s	alarm_station.adb	alarm_station.ali
 W constants%s		constants.ads		constants.ali
@@ -39,7 +39,7 @@ Z system.tasking%s	s-taskin.adb		s-taskin.ali
 Z system.tasking.rendezvous%s  s-tasren.adb	s-tasren.ali
 Z system.tasking.stages%s  s-tassta.adb		s-tassta.ali
 
-U mine_water_level_control_system%s  mine_water_level_control_system.ads  3aaa33a7 EE NE OO PK IL
+U mine_water_level_control_system%s  mine_water_level_control_system.ads  27e498c4 EE NE OO PK IL
 Z ada.real_time%s	a-reatim.adb		a-reatim.ali
 W devices%s		devices.adb		devices.ali
 Z system%s		system.ads		system.ali
@@ -64,9 +64,9 @@ D a-tags.ads		20180524051738 491b781d ada.tags%s
 D a-textio.ads		20180524051738 881db35a ada.text_io%s
 D a-unccon.ads		20180524051738 0e9b276f ada.unchecked_conversion%s
 D a-uncdea.ads		20180524051736 eff36322 ada.unchecked_deallocation%s
-D alarm_station.ads	20180906210122 9ee6318a alarm_station%s
-D constants.ads		20180906220904 7b66691f constants%s
-D devices.ads		20180906104156 e28284df devices%s
+D alarm_station.ads	20180907073540 f17976e2 alarm_station%s
+D constants.ads		20180907232306 014dece4 constants%s
+D devices.ads		20180907212612 ffcc2fbc devices%s
 D gdk.ads		20180524063416 96d821f3 gdk%s
 D gdk-rgba.ads		20180524063422 2609514a gdk.rgba%s
 D glib.ads		20180524063416 cd438a72 glib%s
@@ -101,8 +101,8 @@ D interfac.ads		20180524051736 5ab55268 interfaces%s
 D i-c.ads		20180524051736 5421119b interfaces.c%s
 D i-cstrin.ads		20180524051736 341d0ddf interfaces.c.strings%s
 D i-cstrea.ads		20180524051736 e53d8b8e interfaces.c_streams%s
-D mine_water_level_control_system.ads  20180906183956 d828b778 mine_water_level_control_system%s
-D mine_water_level_control_system.adb  20180907072448 7ddb0eb1 mine_water_level_control_system%b
+D mine_water_level_control_system.ads  20180907154212 d828b778 mine_water_level_control_system%s
+D mine_water_level_control_system.adb  20180907154146 07813e2d mine_water_level_control_system%b
 D pump_station.ads	20180906105056 9d5fa6d7 pump_station%s
 D system.ads		20180524051738 32a08138 system%s
 D s-atacco.ads		20180524051738 4c36d12f system.address_to_access_conversions%s
@@ -152,46 +152,46 @@ X 4 a-chahan.ads
 66V13*To_Lower{character} 42|283i21
 67V13*To_Upper{character} 42|285i21
 X 17 alarm_station.ads
-3K9*alarm_station 12e18 55|6w6 11r43 22r41
-4T19*alarm_controller_t 11e31 55|11r57 22r55
-8Y23 turn_on 55|33s50
-9Y23 turn_off 55|39s50
-10Y23 stop 55|54s58
+3K9*alarm_station 11e18 55|6w6 11r43 22r41
+4T19*alarm_controller_t 10e31 55|11r57 22r55
+9Y23 stop 55|51s58
 X 18 constants.ads
-6K9*constants 105e14 55|3w6 14r36 43r60 50r60 61r36
-67K17*log 104e16 55|14r46 43r70 50r70 61r46
-85K25*mine_water_level_control_system 103e52 55|14r50 43r74 50r74 61r50
-86K33*top 90e32 55|14r82 43r106 50r106 61r82
-87p33*stream{45|341P9} 55|14r86 43r110 50r110 61r86
+6K9*constants 206e14 55|3w6 14r36 40r60 47r60 58r36
+168K17*log 205e16 55|14r46 40r70 47r70 58r46
+186K25*mine_water_level_control_system 204e52 55|14r50 40r74 47r74 58r50
+187K33*top 191e32 55|14r82 40r106 47r106 58r82
+188p33*stream{45|341P9} 55|14r86 40r110 47r110 58r86
 X 19 devices.ads
-1K9*devices 16e12 54|1w6 5r32 6r32 55|4w6
+1K9*devices 38e12 54|1w6 5r32 6r32 55|4w6
 5W24*device_t 14e21 54|5r40 6r40
 X 25 glib-object.ads
 41P9*GObject(40R9)
 673V13*Convert{57|67M9} 23|58i21 24|49i21
 674V13*Convert{41P9} 23|59i21 24|50i21
 X 31 gnatcoll.ads
-24K9*GNATCOLL 27e13 55|1r6 13r17 42r41 49r41 60r17
+24K9*GNATCOLL 27e13 55|1r6 13r17 39r41 46r41 57r17
 X 45 gnatcoll-traces.ads
-251K18*Traces 927e20 55|1w15 13r26 42r50 49r50 60r26
+251K18*Traces 927e20 55|1w15 13r26 39r50 46r50 57r26
 341P9*Trace_Handle(340R9)
-518U14*Trace 55|13s33 42s57 49s57 60s33
-519p7 Handle(340R9) 55|14r25 43r49 50r49 61r25
-520a7 Message{string} 55|15r25 44r49 51r49 62r25
+518U14*Trace 55|13s33 39s57 46s57 57s33
+519p7 Handle(340R9) 55|14r25 40r49 47r49 58r25
+520a7 Message{string} 55|15r25 41r49 48r49 59r25
 X 54 mine_water_level_control_system.ads
-3K9*mine_water_level_control_system 12l5 12e36 55|8b14 66l5 66t36
-4T19*top_t 5d17 6d17 11l13 11e18 55|9b19 64l13 64t18
-8Y23 turn_on 55|29b40 31l37 31t44
-9Y23 turn_off 55|35b40 37l37 37t45
-10Y23 stop 55|41b40 55l37 55t41
+3K9*mine_water_level_control_system 12l5 12e36 55|8b14 63l5 63t36
+4T19*top_t 5d17 6d17 11l13 11e18 55|9b19 61l13 61t18
+8Y23 turn_on 55|28b40 30l37 30t44
+9Y23 turn_off 55|33b40 35l37 35t45
+10Y23 stop 55|38b40 52l37 52t41
 X 55 mine_water_level_control_system.adb
-10p17 pump_controller(56|4T19) 18m17 47r41
-11p17 alarm_controller(17|4T19) 22m17 33r33 39r33 54r41
-27l17 running_loop 56r46 58l26 58e38
+10p17 pump_controller(56|4T19) 18m17 31r33 36r33 44r41
+11p17 alarm_controller(17|4T19) 22m17 51r41
+26l17 running_loop 53r46 55l26 55e38
 X 56 pump_station.ads
 3K9*pump_station 55|5w6 10r43 18r40 56|13e17
 4T19*pump_controller_t 55|10r56 18r53 56|12e30
-11Y23 stop 55|47s57
+7Y23 turn_on 55|31s49
+8Y23 turn_off 55|36s49
+11Y23 stop 55|44s57
 X 57 system.ads
 67M9*Address
 X 69 s-memory.ads

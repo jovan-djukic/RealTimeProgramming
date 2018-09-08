@@ -8,8 +8,10 @@ P ZX
 RN
 RV NO_ALLOCATORS
 RV NO_ANONYMOUS_ALLOCATORS
+RV NO_DIRECT_BOOLEAN_OPERATORS
 RV NO_DISPATCH
 RV NO_DISPATCHING_CALLS
+RV NO_FLOATING_POINT
 RV NO_IO
 RV NO_LOCAL_ALLOCATORS
 RV NO_STANDARD_ALLOCATORS_AFTER_ELABORATION
@@ -19,6 +21,7 @@ RV NO_TASK_HIERARCHY
 RV NO_TASKING
 RV NO_UNCHECKED_ACCESS
 RV NO_DEFAULT_INITIALIZATION
+RV NO_DYNAMIC_SIZED_OBJECTS
 RV NO_IMPLEMENTATION_ATTRIBUTES
 RV NO_IMPLEMENTATION_PRAGMAS
 RV NO_ELABORATION_CODE
@@ -27,13 +30,13 @@ RV MAX_TASK_ENTRIES=1
 RV MAX_TASKS=1+
 RV MAX_ENTRY_QUEUE_LENGTH=1+
 
-U gui%b			gui.adb			96617c40 OO PK IL
+U gui%b			gui.adb			732baac4 OO PK IL
 W ada%s			ada.ads			ada.ali
-Z ada.real_time%s	a-reatim.adb		a-reatim.ali
 Z ada.tags%s		a-tags.adb		a-tags.ali
 W ada.task_identification%s  a-taside.adb	a-taside.ali
 W ada.text_io%s		a-textio.adb		a-textio.ali
 W constants%s		constants.ads		constants.ali
+W controllers%s		controllers.adb		controllers.ali
 W devices%s		devices.adb		devices.ali
 W gdk%s			gdk.ads			gdk.ali
 W gdk.rgba%s		gdk-rgba.adb		gdk-rgba.ali
@@ -44,22 +47,21 @@ W gtk%s			gtk.ads			gtk.ali
 W gtk.button%s		gtk-button.adb		gtk-button.ali
 W gtk.grid%s		gtk-grid.adb		gtk-grid.ali
 W gtk.main%s		gtk-main.adb		gtk-main.ali
+W gtk.progress_bar%s	gtk-progress_bar.adb	gtk-progress_bar.ali
 W gtk.widget%s		gtk-widget.adb		gtk-widget.ali
 W gtk.window%s		gtk-window.adb		gtk-window.ali
 Z system%s		system.ads		system.ali
-Z system.parameters%s	s-parame.adb		s-parame.ali
 Z system.soft_links%s	s-soflin.adb		s-soflin.ali
-Z system.task_info%s	s-tasinf.adb		s-tasinf.ali
 Z system.tasking%s	s-taskin.adb		s-taskin.ali
-Z system.tasking.protected_objects%s  s-taprob.adb  s-taprob.ali
-Z system.tasking.protected_objects.operations%s  s-tpobop.adb  s-tpobop.ali
 Z system.tasking.rendezvous%s  s-tasren.adb	s-tasren.ali
 Z system.tasking.stages%s  s-tassta.adb		s-tassta.ali
 
-U gui%s			gui.ads			c1a7f5fa EE OO PK IL
+U gui%s			gui.ads			f372c09a EE OO PK IL
 Z ada.real_time%s	a-reatim.adb		a-reatim.ali
 Z ada.tags%s		a-tags.adb		a-tags.ali
 W devices%s		devices.adb		devices.ali
+W gtk%s			gtk.ads			gtk.ali
+W gtk.button%s		gtk-button.adb		gtk-button.ali
 W mine_water_level_control_system%s  mine_water_level_control_system.adb  mine_water_level_control_system.ali
 Z system%s		system.ads		system.ali
 Z system.parameters%s	s-parame.adb		s-parame.ali
@@ -87,8 +89,9 @@ D a-unccon.ads		20180524051738 0e9b276f ada.unchecked_conversion%s
 D a-uncdea.ads		20180524051736 eff36322 ada.unchecked_deallocation%s
 D cairo.ads		20180524063416 925d4aaa cairo%s
 D cairo-region.ads	20180524063416 b7133728 cairo.region%s
-D constants.ads		20180906220904 7b66691f constants%s
-D devices.ads		20180906104156 e28284df devices%s
+D constants.ads		20180907232306 014dece4 constants%s
+D controllers.ads	20180907232250 3cc2fe6d controllers%s
+D devices.ads		20180907212612 ffcc2fbc devices%s
 D gdk.ads		20180524063416 96d821f3 gdk%s
 D gdk-color.ads		20180524063418 ef57bc34 gdk.color%s
 D gdk-device.ads	20180524063422 04c1ecbd gdk.device%s
@@ -152,6 +155,7 @@ D gtk-enums.ads		20180524063420 e3f2f3ba gtk.enums%s
 D gtk-grid.ads		20180524063420 b314585d gtk.grid%s
 D gtk-main.ads		20180524063422 e684a528 gtk.main%s
 D gtk-orientable.ads	20180524063422 673b3a02 gtk.orientable%s
+D gtk-progress_bar.ads	20180524063422 eda3db1c gtk.progress_bar%s
 D gtk-selection_data.ads  20180524063420 061b2148 gtk.selection_data%s
 D gtk-style.ads		20180524063422 3c4cbc07 gtk.style%s
 D gtk-target_entry.ads	20180524063420 02690213 gtk.target_entry%s
@@ -160,13 +164,13 @@ D gtk-widget.ads	20180524063422 07bd7883 gtk.widget%s
 D gtk-window.ads	20180524063422 e91a448d gtk.window%s
 D gtkada.ads		20180524063420 57aea1c7 gtkada%s
 D gtkada-types.ads	20180524063420 471f54b5 gtkada.types%s
-D gui.ads		20180906163258 fb0dc65d gui%s
-D gui.adb		20180906200512 1f5577a5 gui%b
+D gui.ads		20180907223602 680c0dc1 gui%s
+D gui.adb		20180907232256 df1a6154 gui%b
 D interfac.ads		20180524051736 5ab55268 interfaces%s
 D i-c.ads		20180524051736 5421119b interfaces.c%s
 D i-cstrin.ads		20180524051736 341d0ddf interfaces.c.strings%s
 D i-cstrea.ads		20180524051736 e53d8b8e interfaces.c_streams%s
-D mine_water_level_control_system.ads  20180906183956 d828b778 mine_water_level_control_system%s
+D mine_water_level_control_system.ads  20180907154212 d828b778 mine_water_level_control_system%s
 D pango.ads		20180524063418 e51ea573 pango%s
 D pango-attributes.ads	20180524063422 b2832a43 pango.attributes%s
 D pango-context.ads	20180524063420 5a6f0fe6 pango.context%s
@@ -218,7 +222,6 @@ D s-taprop.ads		20180524051738 1dd2e1b6 system.task_primitives.operations%s
 D s-taskin.ads		20180524051738 1d8c1ccb system.tasking%s
 D s-taprob.ads		20180524051738 acd6094d system.tasking.protected_objects%s
 D s-tpoben.ads		20180524051738 60ad3dae system.tasking.protected_objects.entries%s
-D s-tpobop.ads		20180524051738 5f548bb3 system.tasking.protected_objects.operations%s
 D s-tasren.ads		20180524051738 a67a9949 system.tasking.rendezvous%s
 D s-tassta.ads		20180524051738 cca55c94 system.tasking.stages%s
 D s-traent.ads		20180524051736 005bf670 system.traceback_entries%s
@@ -227,226 +230,370 @@ D s-wchcon.ads		20180524051738 1b7d22d2 system.wch_con%s
 D s-win32.ads		20180524051736 b7f96285 system.win32%s
 D unchconv.ads		20180524051736 ca2f9e18 unchecked_conversion%s
 X 1 ada.ads
-16K9*Ada 20e8 94|10r6 16r6 277r17 281r17
+16K9*Ada 20e8 96|12r6 19r6 530r17 534r17 538r17
 X 4 a-chahan.ads
-66V13*To_Lower{character} 64|283i21
-67V13*To_Upper{character} 64|285i21
+66V13*To_Lower{character} 65|283i21
+67V13*To_Upper{character} 65|285i21
 X 14 a-taside.ads
-39K13*Task_Identification 95e28 94|10w10 277r21 281r21
-47P9*Task_Id<148|109P9>
-69U14*Abort_Task 94|277s41 281s41
-69p26 T{47P9} 94|278r25 282r25
+39K13*Task_Identification 95e28 96|12w10 530r21 534r21 538r21
+47P9*Task_Id<150|109P9>
+69U14*Abort_Task 96|530s41 534s41 538s41
+69p26 T{47P9} 96|531r25 535r25 539r25
 X 15 a-textio.ads
-49K13*Text_IO 471e16 94|16w10
+49K13*Text_IO 471e16 96|19w10
 X 20 constants.ads
-6K9*constants 105e14 94|12w6 34r50 39r50 66r34 70r34 76r35 77r35 78r35 79r35
-. 84r35 85r35 86r35 87r35 105r34 110r34 115r35 116r35 117r35 118r35 123r35
-. 124r35 125r35 126r35 160r44 171r44 179r36 188r36 197r34 201r35 202r35 223r36
-. 234r36 250r36 266r36 273r36 295r36
-7K17*gui 65e16 94|34r60 39r60 66r44 70r44 76r45 77r45 78r45 79r45 84r45 85r45
-. 86r45 87r45 105r44 110r44 115r45 116r45 117r45 118r45 123r45 124r45 125r45
-. 126r45 197r44 201r45 202r45
-8K25*window 12e27 94|197r48 201r49 202r49
-9a25*title{string} 94|197r55
-10i25*width{37|49I9} 94|201r56
-11i25*height{37|49I9} 94|202r56
-14K25*user_buttons 30e33 94|105r48 110r48 115r49 116r49 117r49 118r49 123r49
-. 124r49 125r49 126r49
-15K33*turn_on_button 21e43 94|105r61 115r62 116r62 117r62 118r62
-16a33*label{string} 94|105r76
-17i33*left{37|49I9} 94|115r77
-18i33*top{37|49I9} 94|116r77
-19i33*width{37|49I9} 94|117r77
-20i33*height{37|49I9} 94|118r77
-23K33*turn_off_button 29e44 94|110r61 123r62 124r62 125r62 126r62
-24a33*label{string} 94|110r77
-25i33*left{37|49I9} 94|123r78
-26i33*top{37|49I9} 94|124r78
-27i33*width{37|49I9} 94|125r78
-28i33*height{37|49I9} 94|126r78
-32K25*device_state_buttons 64e41 94|34r64 39r64 66r48 70r48 76r49 77r49 78r49
-. 79r49 84r49 85r49 86r49 87r49
-33K33*pump 39e33 94|66r69 76r70 77r70 78r70 79r70
-34a33*label{string} 94|66r74
-35i33*left{37|49I9} 94|76r75
-36i33*top{37|49I9} 94|77r75
-37i33*width{37|49I9} 94|78r75
-38i33*height{37|49I9} 94|79r75
-41K33*alarm 47e34 94|70r69 84r70 85r70 86r70 87r70
-42a33*label{string} 94|70r75
-43i33*left{37|49I9} 94|84r76
-44i33*top{37|49I9} 94|85r76
-45i33*width{37|49I9} 94|86r76
-46i33*height{37|49I9} 94|87r76
-49K33*colors 63e35 94|34r85 39r85
-50r33*on_color{32|37R9} 94|34r92
-57r33*off_color{32|37R9} 94|39r92
-67K17*log 104e16 94|160r54 171r54 179r46 188r46 223r46 234r46 250r46 266r46
-. 273r46 295r46
-79K25*gui 83e24 94|160r58 171r58 179r50 188r50 223r50 234r50 250r50 266r50
-. 273r50 295r50
-80p25*stream{67|341P9} 94|160r62 171r62 179r54 188r54 223r54 234r54 250r54
-. 266r54 273r54 295r54
-X 21 devices.ads
-1K9*devices 16e12 93|1w6 6r32 7r32 94|13w6 21r45 31r30 31r62 48r39 49r39
-3n34*ON{3E14} 94|31r70
-5W24*device_t 14e21 93|6r40 7r40 94|21r53 48r47 49r47
-6V26 get_state{3E14} 94|31s51
-10Y23 wait_for_state_change 94|29s32
-X 22 gdk.ads
-38K9*Gdk 48e8 94|6r6
-43P9*Gdk_Window<37|152P9>
-46P9*Gdk_Visual<37|152P9>
-X 24 gdk-device.ads
+6K9*constants 206e14 96|15w6 62r35 63r35 64r35 65r35 66r35 72r35 73r35 74r35
+. 75r35 76r35 112r41 113r41 114r41 115r41 162r48 164r48 165r48 166r48 167r48
+. 173r48 175r48 176r48 177r48 178r48 196r48 198r48 199r48 200r48 201r48 207r48
+. 209r48 210r48 211r48 212r48 218r48 220r48 221r48 222r48 223r48 342r44 354r44
+. 368r44 373r68 385r44 390r68 401r44 411r36 420r36 425r48 426r48 427r48 435r36
+. 446r36 471r36 490r36 497r38 498r38 504r38 505r38 511r54 512r54 513r54 514r54
+. 519r36 526r36 552r36
+17K17*gui 166e16 96|62r45 63r45 64r45 65r45 66r45 72r45 73r45 74r45 75r45
+. 76r45 112r51 113r51 114r51 115r51 162r58 164r58 165r58 166r58 167r58 173r58
+. 175r58 176r58 177r58 178r58 196r58 198r58 199r58 200r58 201r58 207r58 209r58
+. 210r58 211r58 212r58 218r58 220r58 221r58 222r58 223r58 373r78 390r78 425r58
+. 426r58 427r58 497r48 498r48 504r48 505r48 511r64 512r64 513r64 514r64
+18K25*window 22e27 96|425r62 426r62 427r62
+19a25*title{string} 96|425r69
+20i25*width{38|49I9} 96|426r69
+21i25*height{38|49I9} 96|427r69
+24K25*user_buttons 76e33 96|162r62 164r62 165r62 166r62 167r62 173r62 175r62
+. 176r62 177r62 178r62 196r62 198r62 199r62 200r62 201r62 207r62 209r62 210r62
+. 211r62 212r62 218r62 220r62 221r62 222r62 223r62 373r82 390r82
+26K33*pump 42e33 96|162r75 164r75 165r75 166r75 167r75 173r75 175r75 176r75
+. 177r75 178r75
+27K41*turn_on 33e44 96|162r80 164r80 165r80 166r80 167r80
+28a41*label{string} 96|162r88
+29i41*left{38|49I9} 96|164r88
+30i41*top{38|49I9} 96|165r88
+31i41*width{38|49I9} 96|166r88
+32i41*height{38|49I9} 96|167r88
+35K41*turn_off 41e45 96|173r80 175r80 176r80 177r80 178r80
+36a41*label{string} 96|173r89
+37i41*left{38|49I9} 96|175r89
+38i41*top{38|49I9} 96|176r89
+39i41*width{38|49I9} 96|177r89
+40i41*height{38|49I9} 96|178r89
+44K33*sensors 74e36 96|196r75 198r75 199r75 200r75 201r75 207r75 209r75 210r75
+. 211r75 212r75 218r75 220r75 221r75 222r75 223r75 373r95 390r95
+45K41*co_sensor 72e46 96|196r83 198r83 199r83 200r83 201r83 207r83 209r83
+. 210r83 211r83 212r83 218r83 220r83 221r83 222r83 223r83 373r103 390r103
+47K49*increase 54e53 96|196r93 198r93 199r93 200r93 201r93 373r113 390r113
+48a49*label{string} 96|196r102
+49i49*left{38|49I9} 96|198r102
+50i49*top{38|49I9} 96|199r102
+51i49*width{38|49I9} 96|200r102
+52i49*height{38|49I9} 96|201r102
+53f49*delta_percentage{float} 96|373r122 390r122
+56K49*decrease 63e53 96|207r93 209r93 210r93 211r93 212r93
+57a49*label{string} 96|207r102
+58i49*left{38|49I9} 96|209r102
+59i49*top{38|49I9} 96|210r102
+60i49*width{38|49I9} 96|211r102
+61i49*height{38|49I9} 96|212r102
+65K49*error_in_reading 71e61 96|218r93 220r93 221r93 222r93 223r93
+66a49*label{string} 96|218r110
+67i49*left{38|49I9} 96|220r110
+68i49*top{38|49I9} 96|221r110
+69i49*width{38|49I9} 96|222r110
+70i49*height{38|49I9} 96|223r110
+78K25*state_widgets 105e34 96|62r49 63r49 64r49 65r49 66r49 72r49 73r49 74r49
+. 75r49 76r49 112r55 113r55 114r55 115r55
+79K33*device_state_widgets 95e49 96|62r63 63r63 64r63 65r63 66r63 72r63 73r63
+. 74r63 75r63 76r63
+80K41*pump 86e41 96|62r84 63r84 64r84 65r84 66r84
+81a41*label{string} 96|62r89
+82i41*left{38|49I9} 96|63r89
+83i41*top{38|49I9} 96|64r89
+84i41*width{38|49I9} 96|65r89
+85i41*height{38|49I9} 96|66r89
+88K41*alarm 94e42 96|72r84 73r84 74r84 75r84 76r84
+89a41*label{string} 96|72r90
+90i41*left{38|49I9} 96|73r90
+91i41*top{38|49I9} 96|74r90
+92i41*width{38|49I9} 96|75r90
+93i41*height{38|49I9} 96|76r90
+97K33*sensor_state_widgets 104e49 96|112r69 113r69 114r69 115r69
+98K41*co_sensor_progress_bar 103e59 96|112r90 113r90 114r90 115r90
+99i41*left{38|49I9} 96|112r113
+100i41*top{38|49I9} 96|113r113
+101i41*width{38|49I9} 96|114r113
+102i41*height{38|49I9} 96|115r113
+107K25*state_widget_controllers 165e45 96|497r52 498r52 504r52 505r52 511r68
+. 512r68 513r68 514r68
+108K33*device_state_controllers 140e53 96|497r77 498r77 504r77 505r77
+109K41*pump_controller 123e52 96|497r102 498r102
+110r41*on_color{33|37R9} 96|497r118
+117r41*off_color{33|37R9} 96|498r118
+125K41*alarm_controller 139e53 96|504r102 505r102
+126r41*on_color{33|37R9} 96|504r119
+133r41*off_color{33|37R9} 96|505r119
+142K33*gas_sensor_state_controllers 164e57 96|511r93 512r93 513r93 514r93
+143i33*multiplication_factor{integer} 96|511r122
+144r33*state_normal_color{33|37R9} 96|512r122
+151r33*threshold_breached_color{33|37R9} 96|513r122
+158r33*read_error_occurred_color{33|37R9} 96|514r122
+168K17*log 205e16 96|342r54 354r54 368r54 385r54 401r54 411r46 420r46 435r46
+. 446r46 471r46 490r46 519r46 526r46 552r46
+180K25*gui 184e24 96|342r58 354r58 368r58 385r58 401r58 411r50 420r50 435r50
+. 446r50 471r50 490r50 519r50 526r50 552r50
+181p25*stream{68|341P9} 96|342r62 354r62 368r62 385r62 401r62 411r54 420r54
+. 435r54 446r54 471r54 490r54 519r54 526r54 552r54
+X 21 controllers.ads
+6K9*controllers 26e16 96|14w6 322r43 323r43 326r47 494r40 501r41 508r45
+8T19*device_state_controller_t 14e38 96|322r55 323r55 494r52 501r53
+17T19*gas_sensor_state_controller_t 25e42 96|326r59 508r57
+X 22 devices.ads
+1K9*devices 38e12 95|3w6 8r36 9r36 10r36 96|16w6
+5W24*device_t 14e21 95|8r44 9r44
+16W24*sensor_t 36e21 95|10r44
+21V26 get_value{float} 96|372s44 389s44
+22V26 get_read_error_occurred{boolean} 96|406s74
+23V26 get_threshold{float} 96|373s52 390s52
+24U27 set_value 96|374s35 391s35
+25f25 new_value{float} 96|375r33 392r33
+27U27 set_read_error_occured 96|405s35
+28b25 new_read_error_occurred{boolean} 96|406r33
+X 23 gdk.ads
+38K9*Gdk 48e8 96|7r6
+43P9*Gdk_Window<38|152P9>
+46P9*Gdk_Visual<38|152P9>
+X 25 gdk-device.ads
 49P9*Gdk_Device(48R9)
-59V13*Convert{113|67M9} 41|58i21
-60V13*Convert{49P9} 41|59i21
-X 32 gdk-rgba.ads
-35K13*RGBA 145e13 94|6w10
-X 35 gdk-visual.ads
-78V13*Convert[158|20]{113|67M9} 41|58i21
-79V13*Convert[158|20]{22|46P9} 41|59i21
-X 36 gdk-window.ads
-280V13*Convert{113|67M9} 41|58i21
-281V13*Convert{22|43P9} 41|59i21
-X 37 glib.ads
-38K9*Glib 428e9 94|7w6
-49I9*Gint<96|35I9>
+59V13*Convert{115|67M9} 42|58i21
+60V13*Convert{49P9} 42|59i21
+X 33 gdk-rgba.ads
+35K13*RGBA 145e13 96|7w10
+X 36 gdk-visual.ads
+78V13*Convert[159|20]{115|67M9} 42|58i21
+79V13*Convert[159|20]{23|46P9} 42|59i21
+X 37 gdk-window.ads
+280V13*Convert{115|67M9} 42|58i21
+281V13*Convert{23|43P9} 42|59i21
+X 38 glib.ads
+38K9*Glib 428e9 96|8w6 26r29 27r29 28r29 29r29 83r35 84r35 85r35 86r35 124r42
+. 125r42 126r42 127r42 247r42 248r42
+49I9*Gint<98|35I9> 96|26r34 27r34 28r34 29r34 83r40 84r40 85r40 86r40 124r47
+. 125r47 126r47 127r47 247r47 248r47
 79A12*UTF8_String{string}<integer>
 152P9*C_Proxy(149R9)
-X 43 glib-object.ads
+X 44 glib-object.ads
 41P9*GObject(40R9)
-673V13*Convert{113|67M9} 41|58i21 42|49i21
-674V13*Convert{41P9} 41|59i21 42|50i21
-X 53 gnatcoll.ads
-24K9*GNATCOLL 27e13 94|8r6 159r25 170r25 178r17 187r17 222r17 233r17 249r17
-. 265r17 272r17 294r17
-X 67 gnatcoll-traces.ads
-251K18*Traces 927e20 94|8w15 159r34 170r34 178r26 187r26 222r26 233r26 249r26
-. 265r26 272r26 294r26
+673V13*Convert{115|67M9} 42|58i21 43|49i21
+674V13*Convert{41P9} 42|59i21 43|50i21
+X 54 gnatcoll.ads
+24K9*GNATCOLL 27e13 96|9r6 341r25 353r25 367r25 384r25 400r25 410r17 419r17
+. 434r17 445r17 470r17 489r17 518r17 525r17 551r17
+X 68 gnatcoll-traces.ads
+251K18*Traces 927e20 96|9w15 341r34 353r34 367r34 384r34 400r34 410r26 419r26
+. 434r26 445r26 470r26 489r26 518r26 525r26 551r26
 341P9*Trace_Handle(340R9)
-518U14*Trace 94|159s41 170s41 178s33 187s33 222s33 233s33 249s33 265s33 272s33
-. 294s33
-519p7 Handle(340R9) 94|160r33 171r33 179r25 188r25 223r25 234r25 250r25 266r25
-. 273r25 295r25
-520a7 Message{string} 94|161r33 172r33 180r25 189r25 224r25 235r25 251r25
-. 267r25 274r25 296r25
-X 70 gtk.ads
-41K9*Gtk 79e8 94|1r6 2r6 3r6 4r6 5r6 22r38 47r35 50r36 51r36 55r17 60r17
-. 94r47 95r44 96r44 99r34 100r35 103r17 108r17 139r40 141r17 145r26 146r24
-. 148r31 149r32 156r39 167r39 184r17 192r17 214r17 270r17
-X 79 gtk-button.ads
-53K13*Button 595e15 94|5w10 22r42 50r40 51r40 55r21 60r21 95r48 96r48 99r38
-. 100r39 103r21 108r21 148r35 149r36 156r43 167r43
-55R9*Gtk_Button_Record<76|45R9> 55e65 94|156r50 167r50
-56P9*Gtk_Button(55R9) 94|22r49 50r47 51r47 99r45 100r46 148r42 149r43
-119U14*Gtk_New 94|55s28 60s28 103s28 108s28
-119p23 Button{56P9} 94|56r25 61r25 104r25 109r25
-119a48 Label{37|79A12} 94|57r25 62r25 105r25 110r25
-282U14*Set_Label 94|65R29 69R30
-284a8 Label{37|79A12} 94|66r25 70r25
-450P9*Cb_Gtk_Button_Void 94|95r55 96r55
-471U14*On_Clicked 94|129R32 133R33
-473p8 Call{450P9} 94|130r25 134r25
-X 80 gtk-container.ads
-216U14*Add 94|218R24
-218p8 Widget(89|343R9) 94|219r25
-X 81 gtk-enums.ads
-499M9*Gtk_State_Flags
-865V13*Convert{113|67M9} 41|58i21 42|49i21
-866V13*Convert{string} 41|59i21 42|50i21
-X 82 gtk-grid.ads
-54K13*Grid 326e13 94|4w10 47r39 94r51 146r28 214r21
-57P9*Gtk_Grid(56R9) 94|47r44 94r56 146r33
-63U14*Gtk_New 94|214s26
-63p23 Self{57P9} 94|215r25
-79U14*Attach 94|74R22 82R22 113R22 121R22
-81p8 Child(89|343R9) 94|75r25 83r25 114r25 122r25
-82i8 Left{37|49I9} 94|76r25 84r25 115r25 123r25
-83i8 Top{37|49I9} 94|77r25 85r25 116r25 124r25
-84i8 Width{37|49I9} 94|78r25 86r25 117r25 125r25
-85i8 Height{37|49I9} 94|79r25 87r25 118r25 126r25
-X 83 gtk-main.ads
-33K13*Main 327e13 94|1w10 141r21 184r21 270r21
-62U14*Init 94|184s26
-197U14*Main 94|270s26
-205U14*Main_Quit 94|141s26
-X 89 gtk-widget.ads
-341K13*Widget 5431e15 94|3w10 139r44
-343R9*Gtk_Widget_Record<43|40R9> 343e65 94|139r51
+518U14*Trace 96|341s41 353s41 367s41 384s41 400s41 410s33 419s33 434s33 445s33
+. 470s33 489s33 518s33 525s33 551s33
+519p7 Handle(340R9) 96|342r33 354r33 368r33 385r33 401r33 411r25 420r25 435r25
+. 446r25 471r25 490r25 519r25 526r25 552r25
+520a7 Message{string} 96|343r33 355r33 369r33 386r33 402r33 412r25 421r25
+. 436r25 447r25 472r25 491r25 520r25 527r25 553r25
+X 71 gtk.ads
+41K9*Gtk 79e8 95|1r6 96|1r6 2r6 3r6 4r6 5r6 6r6 24r29 30r30 34r17 55r35 56r36
+. 57r36 82r35 87r36 91r17 106r45 107r46 123r42 128r42 129r43 133r17 154r55
+. 155r55 156r55 157r56 158r56 186r66 187r66 188r66 189r66 190r67 191r67 192r67
+. 231r29 232r30 235r17 250r42 251r43 254r17 278r28 279r28 284r43 285r43 286r43
+. 297r32 298r32 303r42 315r26 316r26 329r48 331r25 338r39 350r39 363r39 380r39
+. 397r39 416r17 523r17
+X 80 gtk-button.ads
+53K13*Button 595e15 95|1w10 96|5w10 30r34 34r21 56r40 57r40 128r46 129r47
+. 133r21 155r59 156r59 157r60 158r60 187r70 188r70 189r70 190r71 191r71 192r71
+. 278r32 279r32 284r47 285r47 286r47 297r36 298r36 338r43 350r43 363r43 380r43
+. 397r43
+55R9*Gtk_Button_Record<77|45R9> 55e65 96|338r50 350r50 363r50 380r50 397r50
+56P9*Gtk_Button(55R9) 96|30r41 56r47 57r47 129r54 157r67 158r67 190r78 191r78
+. 192r78 278r39 279r39 284r54 285r54 286r54 297r43 298r43
+119U14*Gtk_New 96|34s28 133s28
+119p23 Button{56P9} 96|35r25 134r25
+119a48 Label{38|79A12} 96|36r25 135r25
+450P9*Cb_Gtk_Button_Void 96|128r53 155r66 156r66 187r77 188r77 189r77
+471U14*On_Clicked 96|147R24
+473p8 Call{450P9} 96|148r25
+X 81 gtk-container.ads
+216U14*Add 96|239R24
+218p8 Widget(91|343R9) 96|240r25
+X 82 gtk-enums.ads
+865V13*Convert{115|67M9} 42|58i21 43|49i21
+866V13*Convert{string} 42|59i21 43|50i21
+X 83 gtk-grid.ads
+54K13*Grid 326e13 96|4w10 24r33 55r39 82r39 106r49 123r46 154r59 186r70 232r34
+. 235r21 316r30
+57P9*Gtk_Grid(56R9) 96|24r38 55r44 82r44 106r54 123r51 154r64 186r75 232r39
+. 316r35
+63U14*Gtk_New 96|235s26
+63p23 Self{57P9} 96|236r25
+79U14*Attach 96|44R22 96R22 138R22
+81p8 Child(91|343R9) 96|45r25 97r25 139r25
+82i8 Left{38|49I9} 96|46r25 98r25 140r25
+83i8 Top{38|49I9} 96|47r25 99r25 141r25
+84i8 Width{38|49I9} 96|48r25 100r25 142r25
+85i8 Height{38|49I9} 96|49r25 101r25 143r25
+X 84 gtk-main.ads
+33K13*Main 327e13 96|1w10 331r29 416r21 523r21
+62U14*Init 96|416s26
+197U14*Main 96|523s26
+205U14*Main_Quit 96|331s34
+X 86 gtk-progress_bar.ads
+63K13*Progress_Bar 287e21 96|6w10 87r40 91r21 107r50 303r46
+66P9*Gtk_Progress_Bar(65R9) 96|87r53 107r63 303r59
+72U14*Gtk_New 96|91s34
+72p23 Progress_Bar{66P9} 96|92r25
+X 91 gtk-widget.ads
+341K13*Widget 5431e15 96|3w10 250r46 329r52
+343R9*Gtk_Widget_Record<44|40R9> 343e65 96|329r59
 344P9*Gtk_Widget(343R9)
-431V13*Convert{113|67M9} 41|58i21 42|49i21
-432V13*Convert{344P9} 41|59i21 42|50i21
-1927U14*Set_Size_Request 94|200R24
-1929i8 Width{37|49I9} 94|201r25
-1930i8 Height{37|49I9} 94|202r25
-1994V13*Get_State_Flags{81|499M9} 94|33R57 38R57
-2605U14*Override_Color 94|32R40 37R40
-2607m8 State{81|499M9} 94|33r41 38r41
-2608r8 Color{32|37R9} 94|34r41 39r41
-2970U14*Show_All 94|246R24
-3618P9*Cb_Gtk_Widget_Void
-3838U14*On_Destroy 94|209R24
-3840p8 Call{3618P9} 94|210r25
-X 90 gtk-window.ads
-71K13*Window 1676e15 94|2w10 145r30 192r21
-74P9*Gtk_Window(73R9) 94|145r37
-83U14*Gtk_New 94|192s28
-84p8 Window{74P9} 94|193r25
-660U14*Set_Resizable 94|205R24
-662b8 Resizable{boolean} 94|206r25
-787U14*Set_Title 94|196R24
-789a8 Title{37|79A12} 94|197r25
-X 93 gui.ads
-4K9*gui 12l5 12e8 94|18b14 210r33 303l5 303t8
-5T19*gui_controller_t 6d17 7d17 8d17 11l13 11e29 94|144b19 302l13 302t29
-10Y23 stop 94|299b24 301l21 301t25
-X 94 gui.adb
-20T19 device_state_gui_controller_t 21d17 22d17 24l13 24e42 26b19 43l13 43t42
-. 151r42 152r43 254r40 259r41
-22p17 button{79|56P9} 32r33 33r50 37r33 38r50
-28l17 check_loop 42l26 42e36
-46U19 attach_device_buttons 46b19 47>17 48^17 49^17 50<17 51<17 90l13 90t34
-. 238s17
-47p17 grid{82|57P9} 74r17 82r17 239r25
-48p17 pump(21|5W24) 240r25
-49p17 alarm(21|5W24) 241r25
-50p17 pump_button{79|56P9} 56m35 65r17 75r35 242r25
-51p17 alarm_button{79|56P9} 61m35 69r17 83r35 243r25
-93U19 attach_user_buttons 93b19 94>17 95>17 96>17 136l13 136t32 227s17
-94p17 grid{82|57P9} 113r17 121r17 228r25
-95p17 turn_on_button_callback{79|450P9} 130r33 229r25
-96p17 turn_off_button_callback{79|450P9} 134r33 230r25
-99p17 turn_on_button{79|56P9} 104m35 104r35 114r35 129r17
-100p17 turn_off_button{79|56P9} 109m35 109r35 122r35 133r17
-139U19 quit 139b19 139^26 142l13 142t17 210r37
-139p26 self(89|343R9)
-145p17 window{90|74P9} 193m35 193r35 196r17 200r17 205r17 209r17 218r17 246r17
-146p17 grid{82|57P9} 215m33 215r33 219r35 228r53 239r34
-148p17 pump_button{79|56P9} 242m40 242r40 256r38
-149p17 alarm_button{79|56P9} 243m41 243r41 261r38
-151p17 pump_controller(20T19) 254m17 278r30 286r29
-152p17 alarm_controller(20T19) 259m17 282r30 290r29
-155U27 turn_on_button_clicked 155b27 156^25 164l21 164t43 229r53
-156p25 self(79|55R9)
-166U27 turn_off_button_clicked 166b27 167^25 175l21 175t44 230r53
-167p25 self(79|55R9)
-X 96 i-c.ads
+431V13*Convert{115|67M9} 42|58i21 43|49i21
+432V13*Convert{344P9} 42|59i21 43|50i21
+1905U14*Set_Sensitive 96|39R24
+1907b8 Sensitive{boolean} 96|40r25
+1927U14*Set_Size_Request 96|262R24
+1929i8 Width{38|49I9} 96|263r25
+1930i8 Height{38|49I9} 96|264r25
+2970U14*Show_All 96|486R24
+3618P9*Cb_Gtk_Widget_Void 96|250r53
+3838U14*On_Destroy 96|271R24
+3840p8 Call{3618P9} 96|272r25
+X 92 gtk-window.ads
+71K13*Window 1676e15 96|2w10 231r33 251r47 254r21 315r30
+74P9*Gtk_Window(73R9) 96|231r40 251r54 315r37
+83U14*Gtk_New 96|254s28
+84p8 Window{74P9} 96|255r25
+660U14*Set_Resizable 96|267R24
+662b8 Resizable{boolean} 96|268r25
+787U14*Set_Title 96|258R24
+789a8 Title{38|79A12} 96|259r25
+X 95 gui.ads
+6K9*gui 16l5 16e8 96|21b14 560l5 560t8
+7T19*gui_controller_t 8d17 9d17 10d17 11d17 14l13 14e29 96|313b19 559l13
+. 559t29
+13Y23 finished 96|556b24 558l21 558t29
+X 96 gui.adb
+23U19 attach_device_state_button 23b19 24>17 25>17 26>17 27>17 28>17 29>17
+. 30<17 52l13 52t39 60s17 70s17
+24p17 grid{83|57P9} 44r17 61r25 71r25
+25a17 label{string} 36r35 62r25 72r25
+26i17 left{38|49I9} 46r35 63r25 73r25
+27i17 top{38|49I9} 47r35 64r25 74r25
+28i17 width{38|49I9} 48r35 65r25 75r25
+29i17 height{38|49I9} 49r35 66r25 76r25
+30p17 button{80|56P9} 35m35 39r17 45r35 67r25 77r25
+54U19 attach_device_state_buttons 54b19 55>17 56<17 57<17 79l13 79t40 475s17
+55p17 grid{83|57P9} 61r35 71r35 476r25
+56p17 pump_button{80|56P9} 67m35 477r25
+57p17 alarm_button{80|56P9} 77m35 478r25
+81U19 attach_sensor_state_progress_bar 81b19 82>17 83>17 84>17 85>17 86>17
+. 87<17 103l13 103t45 110s17
+82p17 grid{83|57P9} 96r17 111r25
+83i17 left{38|49I9} 98r35 112r25
+84i17 top{38|49I9} 99r35 113r25
+85i17 width{38|49I9} 100r35 114r25
+86i17 height{38|49I9} 101r35 115r25
+87p17 progress_bar{86|66P9} 92m41 97r35 116r25
+105U19 attach_sensor_state_progress_bars 105b19 106>17 107<17 118l13 118t46
+. 481s17
+106p17 grid{83|57P9} 111r41 482r25
+107p17 co_sensor_progress_bar{86|66P9} 116m41 483r25
+121U19 attach_user_button 121b19 122>17 123>17 124>17 125>17 126>17 127>17
+. 128>17 129<17 150l13 150t31 161s17 172s17 195s17 206s17 217s17
+122a17 label{string} 135r35 162r25 173r25 196r25 207r25 218r25
+123p17 grid{83|57P9} 138r17 163r25 174r25 197r25 208r25 219r25
+124i17 left{38|49I9} 140r35 164r25 175r25 198r25 209r25 220r25
+125i17 top{38|49I9} 141r35 165r25 176r25 199r25 210r25 221r25
+126i17 width{38|49I9} 142r35 166r25 177r25 200r25 211r25 222r25
+127i17 height{38|49I9} 143r35 167r25 178r25 201r25 212r25 223r25
+128p17 on_clicked_callback{80|450P9} 148r33 168r25 179r25 202r25 213r25 224r25
+129p17 button{80|56P9} 134m35 139r35 147r17 169r25 180r25 203r25 214r25 225r25
+153U19 attach_pump_buttons 153b19 154>17 155>17 156>17 157<17 158<17 182l13
+. 182t32 451s17
+154p17 grid{83|57P9} 163r48 174r48 452r25
+155p17 turn_on_button_clicked_callback{80|450P9} 168r48 453r25
+156p17 turn_off_button_clicked_callback{80|450P9} 179r48 454r25
+157p17 turn_on_pump_button{80|56P9} 169m48 455r25
+158p17 turn_off_pump_button{80|56P9} 180m48 456r25
+185U19 attach_sensor_buttons 185b19 186>17 187>17 188>17 189>17 190<17 191<17
+. 192<17 227l13 227t34 459s17
+186p17 grid{83|57P9} 197r48 208r48 219r48 460r25
+187p17 co_increase_button_clicked_callback{80|450P9} 202r48 461r25
+188p17 co_decrease_button_clicked_callback{80|450P9} 213r48 462r25
+189p17 co_error_in_reading_button_clicked_callback{80|450P9} 224r48 463r25
+190p17 co_increase_button{80|56P9} 203m48 464r25
+191p17 co_decrease_button{80|56P9} 214m48 465r25
+192p17 co_error_in_reading_button{80|56P9} 225m48 466r25
+230U19 initialize_grid 230b19 231>17 232<17 242l13 242t28 439s17
+231p17 window{92|74P9} 239r17 440r25
+232p17 grid{83|57P9} 236m33 240r35 441r25
+245U19 initialize_window 245b19 246>17 247>17 248>17 249>17 250>17 251<17
+. 274l13 274t30 424s17
+246a17 title{string} 259r34 425r25
+247i17 width{38|49I9} 263r35 426r25
+248i17 height{38|49I9} 264r35 427r25
+249b17 resizible{boolean} 268r38 428r25
+250p17 on_destroy_callback{91|3618P9} 272r33 429r25
+251p17 window{92|74P9} 255m35 258r17 262r17 267r17 271r17 430r25
+276R14 device_buttons_t 280e19 291r37
+278p17*turn_on{80|56P9} 455m87
+279p17*turn_off{80|56P9} 456m87
+282R14 sensor_buttons_t 287e19 292r37
+284p17*increase_button{80|56P9} 464m103
+285p17*decrease_button{80|56P9} 465m103
+286p17*error_in_reading_button{80|56P9} 466m103
+289R14 user_buttons_t 293e19 318r33
+291r17*pump_buttons{276R14} 455m74 456m74
+292r17*co_sensor_buttons{282R14} 464m85 465m85 466m85
+295R14 device_state_widgets_t 299e19 308r40
+297p17*pump_button{80|56P9} 477m76 496r73
+298p17*alarm_button{80|56P9} 478m76 503r73
+301R14 sensor_state_widgets_t 304e19 309r40
+303p17*co_sensor_progress_bar{86|66P9} 483m86 510r89
+306R14 state_widgets_t 310e19 319r33
+308r17*device_state_widgets{295R14} 477m55 478m55 496r52 503r52
+309r17*sensor_state_widgets{301R14} 483m65 510r68
+315p17 window{92|74P9} 430m48 430r48 440r35 486r17
+316p17 grid{83|57P9} 441m35 441r35 452r61 460r72 476r41 482r51
+318r17 user_buttons{289R14} 455m61 455r61 456m61 456r61 464m72 464r72 465m72
+. 465r72 466m72 466r72
+319r17 state_widgets{306R14} 477m41 477r41 478m41 478r41 483m51 483r51 496r38
+. 503r38 510r54
+322p17 pump_controller(21|8T19) 494m17 531r30 544r31
+323p17 alarm_controller(21|8T19) 501m17 535r30 545r31
+326p17 co_sensor_controller(21|17T19) 508m17 539r30 546r31
+329U27 quit 329b27 329^34 332l21 332t25 429r48
+329p34 self(91|343R9)
+337U27 pump_turn_on_button_clicked 337b27 338^25 347l21 347t48 453r61
+338p25 self(80|55R9)
+349U27 pump_turn_off_button_clicked 349b27 350^25 359l21 359t49 454r61
+350p25 self(80|55R9)
+362U27 co_increase_button_clicked 362b27 363^25 377l21 377t47 461r72
+363p25 self(80|55R9)
+365f25 value{float} 372m25 373m25 373r34 375r46
+379U27 co_decrease_button_clicked 379b27 380^25 394l21 394t47 462r72
+380p25 self(80|55R9)
+382f25 value{float} 389m25 390m25 390r34 392r46
+396U27 co_error_in_reading_button_clicked 396b27 397^25 408l21 408t55 463r72
+397p25 self(80|55R9)
+X 98 i-c.ads
 35I9*int<integer>
-X 99 mine_water_level_control_system.ads
-3K9*mine_water_level_control_system 93|2w6 8r32 99|12e36
-4T19*top_t 93|8r64 99|11e18
-8Y23 turn_on 94|163s29
-9Y23 turn_off 94|174s29
-X 113 system.ads
+X 101 mine_water_level_control_system.ads
+3K9*mine_water_level_control_system 95|4w6 11r36 101|12e36
+4T19*top_t 95|11r68 101|11e18
+8Y23 turn_on 96|346s29
+9Y23 turn_off 96|358s29
+X 115 system.ads
 67M9*Address
-X 125 s-memory.ads
-53V13*Alloc{113|67M9} 103i<c,__gnat_malloc>22
+X 127 s-memory.ads
+53V13*Alloc{115|67M9} 103i<c,__gnat_malloc>22
 68U14*Free 104i<c,__gnat_free>22
-76V13*Realloc{113|67M9} 105i<c,__gnat_realloc>22
-X 135 s-stausa.ads
+76V13*Realloc{115|67M9} 105i<c,__gnat_realloc>22
+X 137 s-stausa.ads
 203U14*Initialize 204i<c,__gnat_stack_usage_initialize>22
 268U14*Output_Results 272i<c,__gnat_stack_usage_output_results>22
-X 148 s-taskin.ads
+X 150 s-taskin.ads
 109P9*Task_Id(107R9)
 

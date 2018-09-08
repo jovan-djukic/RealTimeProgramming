@@ -18,7 +18,7 @@ RV MAX_SELECT_ALTERNATIVES=3
 RV MAX_TASK_ENTRIES=3
 RV MAX_ENTRY_QUEUE_LENGTH=1+
 
-U alarm_station%b	alarm_station.adb	eb676b2a OO PK IL
+U alarm_station%b	alarm_station.adb	f5f4e851 OO PK IL
 Z ada.tags%s		a-tags.adb		a-tags.ali
 W constants%s		constants.ads		constants.ali
 W devices%s		devices.adb		devices.ali
@@ -31,7 +31,7 @@ Z system.tasking%s	s-taskin.adb		s-taskin.ali
 Z system.tasking.rendezvous%s  s-tasren.adb	s-tasren.ali
 Z system.tasking.stages%s  s-tassta.adb		s-tassta.ali
 
-U alarm_station%s	alarm_station.ads	7c64b555 EE NE OO PK IL
+U alarm_station%s	alarm_station.ads	0eb5595e EE NE OO PK IL
 Z ada.real_time%s	a-reatim.adb		a-reatim.ali
 W devices%s		devices.adb		devices.ali
 Z system%s		system.ads		system.ali
@@ -56,10 +56,10 @@ D a-tags.ads		20180524051738 491b781d ada.tags%s
 D a-textio.ads		20180524051738 881db35a ada.text_io%s
 D a-unccon.ads		20180524051738 0e9b276f ada.unchecked_conversion%s
 D a-uncdea.ads		20180524051736 eff36322 ada.unchecked_deallocation%s
-D alarm_station.ads	20180906210122 9ee6318a alarm_station%s
-D alarm_station.adb	20180907073306 a0a2a636 alarm_station%b
-D constants.ads		20180906220904 7b66691f constants%s
-D devices.ads		20180906104156 e28284df devices%s
+D alarm_station.ads	20180907073540 f17976e2 alarm_station%s
+D alarm_station.adb	20180907183932 b6cb4cbd alarm_station%b
+D constants.ads		20180907232306 014dece4 constants%s
+D devices.ads		20180907212612 ffcc2fbc devices%s
 D gdk.ads		20180524063416 96d821f3 gdk%s
 D gdk-rgba.ads		20180524063422 2609514a gdk.rgba%s
 D glib.ads		20180524063416 cd438a72 glib%s
@@ -142,32 +142,33 @@ X 4 a-chahan.ads
 66V13*To_Lower{character} 43|283i21
 67V13*To_Upper{character} 43|285i21
 X 17 alarm_station.ads
-3K9*alarm_station 12l5 12e18 18|6b14 103l5 103t18
-4T19*alarm_controller_t 5d17 6d17 11l13 11e31 18|12b19 102l13 102t31
-6i17 number_of_devices{integer} 18|67r78 68r82
-8Y23 turn_on 18|31b56 33l53 33t60 58b56 60l53 60t60
-9Y23 turn_off 18|42b56 44l53 44t61 71b56 73l53 73t61
-10Y23 stop 18|46b56 48l53 48t57 90b56 92l53 92t57
+3K9*alarm_station 11l5 11e18 18|6b14 100l5 100t18
+4T19*alarm_controller_t 5d17 10l13 10e31 18|12b19 99l13 99t31
+7Y23 turn_on 18|31b56 33l53 33t60 58b56 60l53 60t60
+8Y23 turn_off 18|42b56 44l53 44t61 68b56 70l53 70t61
+9Y23 stop 18|46b56 48l53 48t57 87b56 89l53 89t57
 X 18 alarm_station.adb
 7E14 alarm_state_t 10e10 14r41
 8n17 ALARM_TURNED_ON{7E14} 39r58 52r38
-9n17 ALARM_TURNED_OFF{7E14} 21r26 25r38 82r66
-13i17 number_of_activations{integer} 40m49 40r74 66m49 66r74 67r54 68m57
-. 75m49 75r74 76r54
-14e17 state{7E14} 21m17 24r32 39m49 82m57
-23l17 running_loop 49r54 93r54 96l26 96e38
+9n17 ALARM_TURNED_OFF{7E14} 21r26 25r38 79r66
+13i17 number_of_activations{integer} 40m49 40r74 66m49 66r74 72m49 72r74
+. 73r54
+14e17 state{7E14} 21m17 24r32 39m49 79m57
+23l17 running_loop 49r54 90r54 93l26 93e38
 X 19 constants.ads
-6K9*constants 18|3w6 17r36 35r68 62r68 78r76 85r76 99r36 19|105e14
-67K17*log 18|17r46 35r78 62r78 78r86 85r86 99r46 19|104e16
-85K25*mine_water_level_control_system 18|17r50 35r82 62r82 78r90 85r90 99r50
-. 19|103e52
-86K33*top 18|17r82 35r114 62r114 78r122 85r122 99r82 19|90e32
-87p33*stream{46|341P9} 18|17r86 35r118 62r118 78r126 85r126 99r86
+6K9*constants 18|3w6 17r36 35r68 62r68 75r76 82r76 96r36 19|206e14
+168K17*log 18|17r46 35r78 62r78 75r86 82r86 96r46 19|205e16
+186K25*mine_water_level_control_system 18|17r50 35r82 62r82 75r90 82r90 96r50
+. 19|204e52
+187K33*top 18|17r82 19|191e32
+188p33*stream{46|341P9} 18|17r86
+199K33*alarm_controller 18|35r114 62r114 75r122 82r122 96r82 19|203e45
+200p33*stream{46|341P9} 18|35r131 62r131 75r139 82r139 96r99
 X 20 devices.ads
-1K9*devices 17|1w6 5r44 18|4w6 27r62 54r62 20|16e12
+1K9*devices 17|1w6 5r32 18|4w6 27r62 54r62 20|38e12
 3n34*ON{3E14} 18|54r70
 3n38*OFF{3E14} 18|27r70
-5W24*device_t 17|5r52 20|14e21
+5W24*device_t 17|5r40 20|14e21
 7U27 set_state 18|26s47 53s47
 8e25 new_state{3E14} 18|27r49 54r49
 X 26 glib-object.ads
@@ -175,13 +176,13 @@ X 26 glib-object.ads
 673V13*Convert{55|67M9} 24|58i21 25|49i21
 674V13*Convert{41P9} 24|59i21 25|50i21
 X 32 gnatcoll.ads
-24K9*GNATCOLL 18|1r6 16r17 34r49 61r49 77r57 84r57 98r17 32|27e13
+24K9*GNATCOLL 18|1r6 16r17 34r49 61r49 74r57 81r57 95r17 32|27e13
 X 46 gnatcoll-traces.ads
-251K18*Traces 18|1w15 16r26 34r58 61r58 77r66 84r66 98r26 46|927e20
+251K18*Traces 18|1w15 16r26 34r58 61r58 74r66 81r66 95r26 46|927e20
 341P9*Trace_Handle(340R9)
-518U14*Trace 18|16s33 34s65 61s65 77s73 84s73 98s33
-519p7 Handle(340R9) 18|17r25 35r57 62r57 78r65 85r65 99r25
-520a7 Message{string} 18|18r25 36r57 63r57 79r65 86r65 100r25
+518U14*Trace 18|16s33 34s65 61s65 74s73 81s73 95s33
+519p7 Handle(340R9) 18|17r25 35r57 62r57 75r65 82r65 96r25
+520a7 Message{string} 18|18r25 36r57 63r57 76r65 83r65 97r25
 X 55 system.ads
 67M9*Address
 X 67 s-memory.ads

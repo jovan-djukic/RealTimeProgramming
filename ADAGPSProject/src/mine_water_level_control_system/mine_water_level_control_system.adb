@@ -16,12 +16,11 @@ package body mine_water_level_control_system is
 		);
 
 		pump_controller := new pump_station.pump_controller_t (
-			pump => pump
+			pump => pump 
 		);
 
 		alarm_controller := new alarm_station.alarm_controller_t (
-			alarm             => alarm,
-			number_of_devices => 4
+			alarm => alarm 
 		);	
 
 		running_loop : loop
@@ -29,14 +28,12 @@ package body mine_water_level_control_system is
 				accept turn_on do
 					null;
 				end turn_on;
-				--pump_controller.turn_on;
-				alarm_controller.turn_on;
+				pump_controller.turn_on;
 			or
 				accept turn_off do
 					null;
 				end turn_off;
-				-- pump_controller.turn_off;
-				alarm_controller.turn_off;
+				pump_controller.turn_off;
 			or
 				accept stop do
 					GNATCOLL.Traces.Trace (
