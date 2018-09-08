@@ -4,6 +4,10 @@ with Gtk.Widget;
 with Gtk.Grid;
 with Gtk.Button;
 with Gtk.Progress_Bar;
+
+with Gtk.Color_Button;
+with Gtk.Label;
+
 with Gdk.RGBA;
 with Glib;
 with GNATCOLL.Traces;
@@ -19,14 +23,16 @@ with devices;
 with Ada.Text_IO;
 
 package body gui is
+	-- device and sensor state widgets types and attach procedures
+
 	-- attach device state button
 	procedure attach_device_state_button (
 		grid   : in Gtk.Grid.Gtk_Grid;
-		label  : in String;
 		left   : in Glib.Gint;
 		top    : in Glib.Gint;
 		width  : in Glib.Gint;
 		height : in Glib.Gint;
+		label  : in String;
 		button : out Gtk.Button.Gtk_Button
 	) is
 	begin
@@ -48,37 +54,69 @@ package body gui is
 			Width  => width,
 			Height => height
 		);
-
 	end attach_device_state_button;
-	
-	procedure attach_device_state_buttons (
-		grid         : in Gtk.Grid.Gtk_Grid;
-		pump_button  : out Gtk.Button.Gtk_Button;
-		alarm_button : out Gtk.Button.Gtk_Button
+
+	type device_state_widgets_t is
+	record
+		button  : Gtk.Button.Gtk_Button;
+	end record;
+
+	-- attach device state widgets
+	procedure attach_device_state_widgets (
+		grid                 : in Gtk.Grid.Gtk_Grid;
+		button_left          : in Glib.Gint;
+		button_top           : in Glib.Gint;
+		button_width         : in Glib.Gint;
+		button_height        : in Glib.Gint;
+		button_label         : in String;
+		device_state_widgets : out device_state_widgets_t
 	) is
 	begin
 		attach_device_state_button (
 			grid   => grid,
-			label  => constants.gui.state_widgets.device_state_widgets.pump.label,
-			left   => constants.gui.state_widgets.device_state_widgets.pump.left,
-			top    => constants.gui.state_widgets.device_state_widgets.pump.top,
-			width  => constants.gui.state_widgets.device_state_widgets.pump.width,
-			height => constants.gui.state_widgets.device_state_widgets.pump.height,
-			button => pump_button 
+			left   => button_left,
+			top    => button_top,
+			width  => button_width,
+			height => button_height,
+			label  => button_label,
+			button => device_state_widgets.button
+		);
+	end attach_device_state_widgets;
+	
+	type device_state_widgets_list_t is
+	record
+		pump  : device_state_widgets_t;
+		alarm : device_state_widgets_t;
+	end record;
+
+	-- attach device state widgets list
+	procedure attach_device_state_widgets_list (
+		grid                      : in Gtk.Grid.Gtk_Grid;
+		device_state_widgets_list : out device_state_widgets_list_t
+	) is
+	begin
+		attach_device_state_widgets (
+			grid                 => grid,
+			button_left          => constants.gui.state_widgets.device_state_widgets.pump.left,
+			button_top           => constants.gui.state_widgets.device_state_widgets.pump.top,
+			button_width         => constants.gui.state_widgets.device_state_widgets.pump.width,
+			button_height        => constants.gui.state_widgets.device_state_widgets.pump.height,
+			button_label         => constants.gui.state_widgets.device_state_widgets.pump.label,
+			device_state_widgets => device_state_widgets_list.pump
 		);
 
-		attach_device_state_button (
-			grid   => grid,
-			label  => constants.gui.state_widgets.device_state_widgets.alarm.label,
-			left   => constants.gui.state_widgets.device_state_widgets.alarm.left,
-			top    => constants.gui.state_widgets.device_state_widgets.alarm.top,
-			width  => constants.gui.state_widgets.device_state_widgets.alarm.width,
-			height => constants.gui.state_widgets.device_state_widgets.alarm.height,
-			button => alarm_button 
+		attach_device_state_widgets (
+			grid                 => grid,
+			button_left          => constants.gui.state_widgets.device_state_widgets.alarm.left,
+			button_top           => constants.gui.state_widgets.device_state_widgets.alarm.top,
+			button_width         => constants.gui.state_widgets.device_state_widgets.alarm.width,
+			button_height        => constants.gui.state_widgets.device_state_widgets.alarm.height,
+			button_label         => constants.gui.state_widgets.device_state_widgets.alarm.label,
+			device_state_widgets => device_state_widgets_list.alarm
 		);
-	end attach_device_state_buttons;
+	end attach_device_state_widgets_list;
 
-	procedure attach_sensor_state_progress_bar (
+	procedure attach_gas_sensor_progress_bar (
 		grid         : in Gtk.Grid.Gtk_Grid;
 		left         : in Glib.Gint;
 		top          : in Glib.Gint;
@@ -100,31 +138,222 @@ package body gui is
 			Width  => width,
 			Height => height
 		);
-	end attach_sensor_state_progress_bar;
+	end attach_gas_sensor_progress_bar;
 
-	procedure attach_sensor_state_progress_bars (
-		grid                   : in Gtk.Grid.Gtk_Grid;
-		co_sensor_progress_bar : out Gtk.Progress_Bar.Gtk_Progress_Bar
+	procedure attach_gas_sensor_label (
+		grid   : in Gtk.Grid.Gtk_Grid;
+		left   : in Glib.Gint;
+		top    : in Glib.Gint;
+		width  : in Glib.Gint;
+		height : in Glib.Gint;
+		label  : out Gtk.Label.Gtk_Label
 	) is
 	begin
-		attach_sensor_state_progress_bar (
-			grid         => grid,
-			left         => constants.gui.state_widgets.sensor_state_widgets.co_sensor_progress_bar.left,
-			top          => constants.gui.state_widgets.sensor_state_widgets.co_sensor_progress_bar.top,
-			width        => constants.gui.state_widgets.sensor_state_widgets.co_sensor_progress_bar.width,
-			height       => constants.gui.state_widgets.sensor_state_widgets.co_sensor_progress_bar.height,
-			progress_bar => co_sensor_progress_bar 
+		-- create label 
+		Gtk.Label.Gtk_New (
+			Label => label
+		);	
+
+		-- attach to grid
+		grid.Attach (
+			Child  => label,
+			Left   => left,
+			Top    => top,
+			Width  => width,
+			Height => height
 		);
-	end attach_sensor_state_progress_bars;
+	end attach_gas_sensor_label;
+
+	procedure attach_gas_sensor_color_button (
+		grid         : in Gtk.Grid.Gtk_Grid;
+		left         : in Glib.Gint;
+		top          : in Glib.Gint;
+		width        : in Glib.Gint;
+		height       : in Glib.Gint;
+		color_button : out Gtk.Color_Button.Gtk_Color_Button
+	) is
+	begin
+		-- create label 
+		Gtk.Color_Button.Gtk_New (
+			Button => color_button 
+		);	
+
+		color_button.Set_Sensitive (
+			Sensitive => False
+		);
+
+		-- attach to grid
+		grid.Attach (
+			Child  => color_button,
+			Left   => left,
+			Top    => top,
+			Width  => width,
+			Height => height
+		);
+	end attach_gas_sensor_color_button;
+	
+	type gas_sensor_state_widgets_t is
+	record
+		progress_bar : Gtk.Progress_Bar.Gtk_Progress_Bar;
+		label        : Gtk.Label.Gtk_Label;
+		color_button : Gtk.Color_Button.Gtk_Color_Button;
+	end record;
+
+	procedure attach_gas_sensor_state_widgets (
+		grid                     : in Gtk.Grid.Gtk_Grid;
+		progress_bar_left        : in Glib.Gint;
+		progress_bar_top         : in Glib.Gint;
+		progress_bar_width       : in Glib.Gint;
+		progress_bar_height      : in Glib.Gint;
+		label_left               : in Glib.Gint;
+		label_top                : in Glib.Gint;
+		label_width              : in Glib.Gint;
+		label_height             : in Glib.Gint;
+		color_button_left        : in Glib.Gint;
+		color_button_top         : in Glib.Gint;
+		color_button_width       : in Glib.Gint;
+		color_button_height      : in Glib.Gint;
+		gas_sensor_state_widgets : out gas_sensor_state_widgets_t
+	) is
+	begin
+		attach_gas_sensor_progress_bar (
+			grid         => grid,
+			left         => progress_bar_left,
+			top          => progress_bar_top,
+			width        => progress_bar_width,
+			height       => progress_bar_height,
+			progress_bar => gas_sensor_state_widgets.progress_bar 
+		);
+
+		attach_gas_sensor_label (
+			grid   => grid,
+			left   => label_left,
+			top    => label_top,
+			width  => label_width,
+			height => label_height,
+			label  => gas_sensor_state_widgets.label
+		);
+
+		attach_gas_sensor_color_button (
+			grid         => grid,
+			left         => color_button_left,
+			top          => color_button_top,
+			width        => color_button_width,
+			height       => color_button_height,
+			color_button => gas_sensor_state_widgets.color_button
+		);
+	end attach_gas_sensor_state_widgets;
+
+	type gas_sensor_state_widgets_list_t is
+	record
+		co  : gas_sensor_state_widgets_t;
+		o   : gas_sensor_state_widgets_t;
+		ch4 : gas_sensor_state_widgets_t;
+	end record;
+
+	procedure attach_gas_sensor_state_widgets_list (
+		grid                          : in Gtk.Grid.Gtk_Grid;
+		gas_sensor_state_widgets_list : out gas_sensor_state_widgets_list_t
+	) is
+	begin
+		attach_gas_sensor_state_widgets (
+			grid                     => grid,
+			progress_bar_left        => constants.gui.state_widgets.sensor_state_widgets.gas_sensors.co.progress_bar.left,
+			progress_bar_top         => constants.gui.state_widgets.sensor_state_widgets.gas_sensors.co.progress_bar.top,
+			progress_bar_width       => constants.gui.state_widgets.sensor_state_widgets.gas_sensors.co.progress_bar.width,
+			progress_bar_height      => constants.gui.state_widgets.sensor_state_widgets.gas_sensors.co.progress_bar.height,
+			label_left               => constants.gui.state_widgets.sensor_state_widgets.gas_sensors.co.label.left,
+			label_top                => constants.gui.state_widgets.sensor_state_widgets.gas_sensors.co.label.top,
+			label_width              => constants.gui.state_widgets.sensor_state_widgets.gas_sensors.co.label.width,
+			label_height             => constants.gui.state_widgets.sensor_state_widgets.gas_sensors.co.label.height,
+			color_button_left        => constants.gui.state_widgets.sensor_state_widgets.gas_sensors.co.color_button.left,
+			color_button_top         => constants.gui.state_widgets.sensor_state_widgets.gas_sensors.co.color_button.top,
+			color_button_width       => constants.gui.state_widgets.sensor_state_widgets.gas_sensors.co.color_button.width,
+			color_button_height      => constants.gui.state_widgets.sensor_state_widgets.gas_sensors.co.color_button.height,
+			gas_sensor_state_widgets => gas_sensor_state_widgets_list.co
+		);
+
+		attach_gas_sensor_state_widgets (
+			grid                     => grid,
+			progress_bar_left        => constants.gui.state_widgets.sensor_state_widgets.gas_sensors.o.progress_bar.left,
+			progress_bar_top         => constants.gui.state_widgets.sensor_state_widgets.gas_sensors.o.progress_bar.top,
+			progress_bar_width       => constants.gui.state_widgets.sensor_state_widgets.gas_sensors.o.progress_bar.width,
+			progress_bar_height      => constants.gui.state_widgets.sensor_state_widgets.gas_sensors.o.progress_bar.height,
+			label_left               => constants.gui.state_widgets.sensor_state_widgets.gas_sensors.o.label.left,
+			label_top                => constants.gui.state_widgets.sensor_state_widgets.gas_sensors.o.label.top,
+			label_width              => constants.gui.state_widgets.sensor_state_widgets.gas_sensors.o.label.width,
+			label_height             => constants.gui.state_widgets.sensor_state_widgets.gas_sensors.o.label.height,
+			color_button_left        => constants.gui.state_widgets.sensor_state_widgets.gas_sensors.o.color_button.left,
+			color_button_top         => constants.gui.state_widgets.sensor_state_widgets.gas_sensors.o.color_button.top,
+			color_button_width       => constants.gui.state_widgets.sensor_state_widgets.gas_sensors.o.color_button.width,
+			color_button_height      => constants.gui.state_widgets.sensor_state_widgets.gas_sensors.o.color_button.height,
+			gas_sensor_state_widgets => gas_sensor_state_widgets_list.o
+		);
+
+		attach_gas_sensor_state_widgets (
+			grid                     => grid,
+			progress_bar_left        => constants.gui.state_widgets.sensor_state_widgets.gas_sensors.ch4.progress_bar.left,
+			progress_bar_top         => constants.gui.state_widgets.sensor_state_widgets.gas_sensors.ch4.progress_bar.top,
+			progress_bar_width       => constants.gui.state_widgets.sensor_state_widgets.gas_sensors.ch4.progress_bar.width,
+			progress_bar_height      => constants.gui.state_widgets.sensor_state_widgets.gas_sensors.ch4.progress_bar.height,
+			label_left               => constants.gui.state_widgets.sensor_state_widgets.gas_sensors.ch4.label.left,
+			label_top                => constants.gui.state_widgets.sensor_state_widgets.gas_sensors.ch4.label.top,
+			label_width              => constants.gui.state_widgets.sensor_state_widgets.gas_sensors.ch4.label.width,
+			label_height             => constants.gui.state_widgets.sensor_state_widgets.gas_sensors.ch4.label.height,
+			color_button_left        => constants.gui.state_widgets.sensor_state_widgets.gas_sensors.ch4.color_button.left,
+			color_button_top         => constants.gui.state_widgets.sensor_state_widgets.gas_sensors.ch4.color_button.top,
+			color_button_width       => constants.gui.state_widgets.sensor_state_widgets.gas_sensors.ch4.color_button.width,
+			color_button_height      => constants.gui.state_widgets.sensor_state_widgets.gas_sensors.ch4.color_button.height,
+			gas_sensor_state_widgets => gas_sensor_state_widgets_list.ch4
+		);
+	end attach_gas_sensor_state_widgets_list;
+
+	type sensor_state_widgets_list_t is
+	record
+		gas_sensors : gas_sensor_state_widgets_list_t;
+	end record;
+
+	procedure attach_sensor_state_widgets_list (
+		grid                      : in Gtk.Grid.Gtk_Grid;
+		sensor_state_widgets_list : out sensor_state_widgets_list_t
+	) is
+	begin
+		attach_gas_sensor_state_widgets_list (
+			grid                          => grid,
+			gas_sensor_state_widgets_list => sensor_state_widgets_list.gas_sensors
+		);
+	end attach_sensor_state_widgets_list;
+
+	type state_widgets_t is
+	record
+		devices : device_state_widgets_list_t;
+		sensors : sensor_state_widgets_list_t;
+	end record;
+
+	procedure attach_state_widgets (
+		grid          : in Gtk.Grid.Gtk_Grid;
+		state_widgets : out state_widgets_t
+	) is
+	begin
+		attach_device_state_widgets_list (
+			grid                          => grid,
+			device_state_widgets_list => state_widgets.devices
+		);
+
+		attach_sensor_state_widgets_list (
+			grid                      => grid,
+			sensor_state_widgets_list => state_widgets.sensors
+		);
+	end attach_state_widgets;
 
 	-- attach user buttons to gui
 	procedure attach_user_button (
-		label               : in String;
 		grid                : in Gtk.Grid.Gtk_Grid;
 		left                : in Glib.Gint;
 		top                 : in Glib.Gint;
 		width               : in Glib.Gint;
 		height              : in Glib.Gint;
+		label               : in String;
 		on_clicked_callback : in Gtk.Button.Cb_Gtk_Button_Void;
 		button              : out Gtk.Button.Gtk_Button
 	) is
@@ -148,83 +377,318 @@ package body gui is
 			Call => on_clicked_callback
 		);
 	end attach_user_button;
-	
-	-- attach pump buttons
-	procedure attach_pump_buttons (
+
+	-- user buttons types
+	type device_buttons_t is
+	record
+		turn_on  : Gtk.Button.Gtk_Button;
+		turn_off : Gtk.Button.Gtk_Button;
+	end record;
+
+	-- attach device buttons 
+	procedure attach_device_buttons (
 		grid                             : in Gtk.Grid.Gtk_Grid;
+		turn_on_button_left              : in Glib.Gint;
+		turn_on_button_top               : in Glib.Gint;
+		turn_on_button_width             : in Glib.Gint;
+		turn_on_button_height            : in Glib.Gint;
+		turn_on_button_label             : in String;
 		turn_on_button_clicked_callback  : in Gtk.Button.Cb_Gtk_Button_Void;
+		turn_off_button_left             : in Glib.Gint;
+		turn_off_button_top              : in Glib.Gint;
+		turn_off_button_width            : in Glib.Gint;
+		turn_off_button_height           : in Glib.Gint;
+		turn_off_button_label            : in String;
 		turn_off_button_clicked_callback : in Gtk.Button.Cb_Gtk_Button_Void;
-		turn_on_pump_button              : out Gtk.Button.Gtk_Button;
-		turn_off_pump_button             : out Gtk.Button.Gtk_Button
+		device_buttons                   : out device_buttons_t
 	) is
 	begin
 		attach_user_button (
-			label               => constants.gui.user_buttons.pump.turn_on.label,
 			grid                => grid, 
-			left                => constants.gui.user_buttons.pump.turn_on.left,
-			top                 => constants.gui.user_buttons.pump.turn_on.top,
-			width               => constants.gui.user_buttons.pump.turn_on.width,
-			height              => constants.gui.user_buttons.pump.turn_on.height,
+			left                => turn_on_button_left,
+			top                 => turn_on_button_top,
+			width               => turn_on_button_width,
+			height              => turn_on_button_height,
+			label               => turn_on_button_label,
 			on_clicked_callback => turn_on_button_clicked_callback, 
-			button              => turn_on_pump_button
+			button              => device_buttons.turn_on
 		);
 
 		attach_user_button (
-			label               => constants.gui.user_buttons.pump.turn_off.label,
 			grid                => grid, 
-			left                => constants.gui.user_buttons.pump.turn_off.left,
-			top                 => constants.gui.user_buttons.pump.turn_off.top,
-			width               => constants.gui.user_buttons.pump.turn_off.width,
-			height              => constants.gui.user_buttons.pump.turn_off.height,
-			on_clicked_callback => turn_off_button_clicked_callback,
-			button              => turn_off_pump_button
+			left                => turn_off_button_left,
+			top                 => turn_off_button_top,
+			width               => turn_off_button_width,
+			height              => turn_off_button_height,
+			label               => turn_off_button_label,
+			on_clicked_callback => turn_off_button_clicked_callback, 
+			button              => device_buttons.turn_off
 		);
-	end attach_pump_buttons;
+	end attach_device_buttons;
 
-	-- attach sensor buttons
-	procedure attach_sensor_buttons (
-		grid                                        : in Gtk.Grid.Gtk_Grid;
-		co_increase_button_clicked_callback         : in Gtk.Button.Cb_Gtk_Button_Void;
-		co_decrease_button_clicked_callback         : in Gtk.Button.Cb_Gtk_Button_Void;
-		co_error_in_reading_button_clicked_callback : in Gtk.Button.Cb_Gtk_Button_Void;
-		co_increase_button                          : out Gtk.Button.Gtk_Button;
-		co_decrease_button                          : out Gtk.Button.Gtk_Button;
-		co_error_in_reading_button                  : out Gtk.Button.Gtk_Button
+
+	type device_buttons_list_t is
+	record
+		pump : device_buttons_t; 
+	end record;
+
+	procedure attach_device_buttons_list (
+		grid                                  : in Gtk.Grid.Gtk_Grid;
+		pump_turn_on_button_clicked_callback  : in Gtk.Button.Cb_Gtk_Button_Void;
+		pump_turn_off_button_clicked_callback : in Gtk.Button.Cb_Gtk_Button_Void;
+		device_buttons_list                   : out device_buttons_list_t
+	) is
+	begin
+		attach_device_buttons (
+			grid                             => grid,
+			turn_on_button_left              => constants.gui.user_buttons.devices.pump.turn_on.left,
+			turn_on_button_top               => constants.gui.user_buttons.devices.pump.turn_on.top,
+			turn_on_button_width             => constants.gui.user_buttons.devices.pump.turn_on.width,
+			turn_on_button_height            => constants.gui.user_buttons.devices.pump.turn_on.height,
+			turn_on_button_label             => constants.gui.user_buttons.devices.pump.turn_on.label,
+			turn_on_button_clicked_callback  => pump_turn_on_button_clicked_callback,
+			turn_off_button_left             => constants.gui.user_buttons.devices.pump.turn_off.left,
+			turn_off_button_top              => constants.gui.user_buttons.devices.pump.turn_off.top,
+			turn_off_button_width            => constants.gui.user_buttons.devices.pump.turn_off.width,
+			turn_off_button_height           => constants.gui.user_buttons.devices.pump.turn_off.height,
+			turn_off_button_label            => constants.gui.user_buttons.devices.pump.turn_off.label,
+			turn_off_button_clicked_callback => pump_turn_off_button_clicked_callback,
+			device_buttons                   => device_buttons_list.pump
+		);
+	end attach_device_buttons_list;
+
+	type gas_sensor_buttons_t is
+	record
+		increase         : Gtk.Button.Gtk_Button;
+		decrease         : Gtk.Button.Gtk_Button;
+		error_in_reading : Gtk.Button.Gtk_Button;
+	end record;
+
+	procedure attach_gas_sensor_buttons (
+		grid                                     : in Gtk.Grid.Gtk_Grid;
+		increase_button_left                     : in Glib.Gint;
+		increase_button_top                      : in Glib.Gint;
+		increase_button_width                    : in Glib.Gint;
+		increase_button_height                   : in Glib.Gint;
+		increase_button_label                    : in String;
+		increase_button_clicked_callback         : in Gtk.Button.Cb_Gtk_Button_Void;
+		decrease_button_left                     : in Glib.Gint;
+		decrease_button_top                      : in Glib.Gint;
+		decrease_button_width                    : in Glib.Gint;
+		decrease_button_height                   : in Glib.Gint;
+		decrease_button_label                    : in String;
+		decrease_button_clicked_callback         : in Gtk.Button.Cb_Gtk_Button_Void;
+		error_in_reading_button_left             : in Glib.Gint;
+		error_in_reading_button_top              : in Glib.Gint;
+		error_in_reading_button_width            : in Glib.Gint;
+		error_in_reading_button_height           : in Glib.Gint;
+		error_in_reading_button_label            : in String;
+		error_in_reading_button_clicked_callback : in Gtk.Button.Cb_Gtk_Button_Void;
+		gas_sensor_buttons 						 : out gas_sensor_buttons_t
 	) is
 	begin
 		attach_user_button (
-			label               => constants.gui.user_buttons.sensors.co_sensor.increase.label,
 			grid                => grid, 
-			left                => constants.gui.user_buttons.sensors.co_sensor.increase.left,
-			top                 => constants.gui.user_buttons.sensors.co_sensor.increase.top,
-			width               => constants.gui.user_buttons.sensors.co_sensor.increase.width,
-			height              => constants.gui.user_buttons.sensors.co_sensor.increase.height,
-			on_clicked_callback => co_increase_button_clicked_callback, 
-			button              => co_increase_button 
+			left                => increase_button_left,
+			top                 => increase_button_top,
+			width               => increase_button_width,
+			height              => increase_button_height,
+			label               => increase_button_label,
+			on_clicked_callback => increase_button_clicked_callback, 
+			button              => gas_sensor_buttons.increase
 		);
 
 		attach_user_button (
-			label               => constants.gui.user_buttons.sensors.co_sensor.decrease.label,
 			grid                => grid, 
-			left                => constants.gui.user_buttons.sensors.co_sensor.decrease.left,
-			top                 => constants.gui.user_buttons.sensors.co_sensor.decrease.top,
-			width               => constants.gui.user_buttons.sensors.co_sensor.decrease.width,
-			height              => constants.gui.user_buttons.sensors.co_sensor.decrease.height,
-			on_clicked_callback => co_decrease_button_clicked_callback, 
-			button              => co_decrease_button 
+			left                => decrease_button_left,
+			top                 => decrease_button_top,
+			width               => decrease_button_width,
+			height              => decrease_button_height,
+			label               => decrease_button_label,
+			on_clicked_callback => decrease_button_clicked_callback, 
+			button              => gas_sensor_buttons.decrease
 		);
 
 		attach_user_button (
-			label               => constants.gui.user_buttons.sensors.co_sensor.error_in_reading.label,
 			grid                => grid, 
-			left                => constants.gui.user_buttons.sensors.co_sensor.error_in_reading.left,
-			top                 => constants.gui.user_buttons.sensors.co_sensor.error_in_reading.top,
-			width               => constants.gui.user_buttons.sensors.co_sensor.error_in_reading.width,
-			height              => constants.gui.user_buttons.sensors.co_sensor.error_in_reading.height,
-			on_clicked_callback => co_error_in_reading_button_clicked_callback, 
-			button              => co_error_in_reading_button 
+			left                => error_in_reading_button_left,
+			top                 => error_in_reading_button_top,
+			width               => error_in_reading_button_width,
+			height              => error_in_reading_button_height,
+			label               => error_in_reading_button_label,
+			on_clicked_callback => error_in_reading_button_clicked_callback, 
+			button              => gas_sensor_buttons.error_in_reading
 		);
-	end attach_sensor_buttons;
+	end attach_gas_sensor_buttons;
+
+	type gas_sensor_buttons_list_t is
+	record
+		co  : gas_sensor_buttons_t;
+		o   : gas_sensor_buttons_t;
+		ch4 : gas_sensor_buttons_t;
+	end record;
+
+	procedure attach_gas_sensor_buttons_list (
+		grid                                         : in Gtk.Grid.Gtk_Grid;
+		co_increase_button_clicked_callback          : in Gtk.Button.Cb_Gtk_Button_Void;
+		co_decrease_button_clicked_callback          : in Gtk.Button.Cb_Gtk_Button_Void;
+		co_error_in_reading_button_clicked_callback  : in Gtk.Button.Cb_Gtk_Button_Void;
+		o_increase_button_clicked_callback           : in Gtk.Button.Cb_Gtk_Button_Void;
+		o_decrease_button_clicked_callback           : in Gtk.Button.Cb_Gtk_Button_Void;
+		o_error_in_reading_button_clicked_callback   : in Gtk.Button.Cb_Gtk_Button_Void;
+		ch4_increase_button_clicked_callback         : in Gtk.Button.Cb_Gtk_Button_Void;
+		ch4_decrease_button_clicked_callback         : in Gtk.Button.Cb_Gtk_Button_Void;
+		ch4_error_in_reading_button_clicked_callback : in Gtk.Button.Cb_Gtk_Button_Void;
+		gas_sensor_buttons_list                      : out gas_sensor_buttons_list_t
+	) is
+	begin
+		attach_gas_sensor_buttons (
+			grid                                     => grid,
+			increase_button_left                     => constants.gui.user_buttons.sensors.gas_sensors.co.increase.left,
+			increase_button_top                      => constants.gui.user_buttons.sensors.gas_sensors.co.increase.top,
+			increase_button_width                    => constants.gui.user_buttons.sensors.gas_sensors.co.increase.width,
+			increase_button_height                   => constants.gui.user_buttons.sensors.gas_sensors.co.increase.height,
+			increase_button_label                    => constants.gui.user_buttons.sensors.gas_sensors.co.increase.label,
+			increase_button_clicked_callback         => co_increase_button_clicked_callback,
+			decrease_button_left                     => constants.gui.user_buttons.sensors.gas_sensors.co.decrease.left, 
+			decrease_button_top                      => constants.gui.user_buttons.sensors.gas_sensors.co.decrease.top,
+			decrease_button_width                    => constants.gui.user_buttons.sensors.gas_sensors.co.decrease.width,
+			decrease_button_height                   => constants.gui.user_buttons.sensors.gas_sensors.co.decrease.height,
+			decrease_button_label                    => constants.gui.user_buttons.sensors.gas_sensors.co.decrease.label,
+			decrease_button_clicked_callback         => co_decrease_button_clicked_callback,
+			error_in_reading_button_left             => constants.gui.user_buttons.sensors.gas_sensors.co.error_in_reading.left, 
+			error_in_reading_button_top              => constants.gui.user_buttons.sensors.gas_sensors.co.error_in_reading.top,
+			error_in_reading_button_width            => constants.gui.user_buttons.sensors.gas_sensors.co.error_in_reading.width,
+			error_in_reading_button_height           => constants.gui.user_buttons.sensors.gas_sensors.co.error_in_reading.height,
+			error_in_reading_button_label            => constants.gui.user_buttons.sensors.gas_sensors.co.error_in_reading.label,
+			error_in_reading_button_clicked_callback => co_error_in_reading_button_clicked_callback,
+			gas_sensor_buttons 						 => gas_sensor_buttons_list.co 
+		);
+
+		attach_gas_sensor_buttons (
+			grid                                     => grid,
+			increase_button_left                     => constants.gui.user_buttons.sensors.gas_sensors.o.increase.left,
+			increase_button_top                      => constants.gui.user_buttons.sensors.gas_sensors.o.increase.top,
+			increase_button_width                    => constants.gui.user_buttons.sensors.gas_sensors.o.increase.width,
+			increase_button_height                   => constants.gui.user_buttons.sensors.gas_sensors.o.increase.height,
+			increase_button_label                    => constants.gui.user_buttons.sensors.gas_sensors.o.increase.label,
+			increase_button_clicked_callback         => o_increase_button_clicked_callback,
+			decrease_button_left                     => constants.gui.user_buttons.sensors.gas_sensors.o.decrease.left, 
+			decrease_button_top                      => constants.gui.user_buttons.sensors.gas_sensors.o.decrease.top,
+			decrease_button_width                    => constants.gui.user_buttons.sensors.gas_sensors.o.decrease.width,
+			decrease_button_height                   => constants.gui.user_buttons.sensors.gas_sensors.o.decrease.height,
+			decrease_button_label                    => constants.gui.user_buttons.sensors.gas_sensors.o.decrease.label,
+			decrease_button_clicked_callback         => o_decrease_button_clicked_callback,
+			error_in_reading_button_left             => constants.gui.user_buttons.sensors.gas_sensors.o.error_in_reading.left, 
+			error_in_reading_button_top              => constants.gui.user_buttons.sensors.gas_sensors.o.error_in_reading.top,
+			error_in_reading_button_width            => constants.gui.user_buttons.sensors.gas_sensors.o.error_in_reading.width,
+			error_in_reading_button_height           => constants.gui.user_buttons.sensors.gas_sensors.o.error_in_reading.height,
+			error_in_reading_button_label            => constants.gui.user_buttons.sensors.gas_sensors.o.error_in_reading.label,
+			error_in_reading_button_clicked_callback => o_error_in_reading_button_clicked_callback,
+			gas_sensor_buttons 						 => gas_sensor_buttons_list.o 
+		);
+
+		attach_gas_sensor_buttons (
+			grid                                     => grid,
+			increase_button_left                     => constants.gui.user_buttons.sensors.gas_sensors.ch4.increase.left,
+			increase_button_top                      => constants.gui.user_buttons.sensors.gas_sensors.ch4.increase.top,
+			increase_button_width                    => constants.gui.user_buttons.sensors.gas_sensors.ch4.increase.width,
+			increase_button_height                   => constants.gui.user_buttons.sensors.gas_sensors.ch4.increase.height,
+			increase_button_label                    => constants.gui.user_buttons.sensors.gas_sensors.ch4.increase.label,
+			increase_button_clicked_callback         => ch4_increase_button_clicked_callback,
+			decrease_button_left                     => constants.gui.user_buttons.sensors.gas_sensors.ch4.decrease.left, 
+			decrease_button_top                      => constants.gui.user_buttons.sensors.gas_sensors.ch4.decrease.top,
+			decrease_button_width                    => constants.gui.user_buttons.sensors.gas_sensors.ch4.decrease.width,
+			decrease_button_height                   => constants.gui.user_buttons.sensors.gas_sensors.ch4.decrease.height,
+			decrease_button_label                    => constants.gui.user_buttons.sensors.gas_sensors.ch4.decrease.label,
+			decrease_button_clicked_callback         => ch4_decrease_button_clicked_callback,
+			error_in_reading_button_left             => constants.gui.user_buttons.sensors.gas_sensors.ch4.error_in_reading.left, 
+			error_in_reading_button_top              => constants.gui.user_buttons.sensors.gas_sensors.ch4.error_in_reading.top,
+			error_in_reading_button_width            => constants.gui.user_buttons.sensors.gas_sensors.ch4.error_in_reading.width,
+			error_in_reading_button_height           => constants.gui.user_buttons.sensors.gas_sensors.ch4.error_in_reading.height,
+			error_in_reading_button_label            => constants.gui.user_buttons.sensors.gas_sensors.ch4.error_in_reading.label,
+			error_in_reading_button_clicked_callback => ch4_error_in_reading_button_clicked_callback,
+			gas_sensor_buttons 						 => gas_sensor_buttons_list.ch4 
+		);
+	end attach_gas_sensor_buttons_list;
+
+	type sensor_buttons_list_t is
+	record
+		gas_sensors : gas_sensor_buttons_list_t;
+	end record;
+
+	procedure attach_sensor_buttons_list (
+		grid                                         : in Gtk.Grid.Gtk_Grid;
+		co_increase_button_clicked_callback          : in Gtk.Button.Cb_Gtk_Button_Void;
+		co_decrease_button_clicked_callback          : in Gtk.Button.Cb_Gtk_Button_Void;
+		co_error_in_reading_button_clicked_callback  : in Gtk.Button.Cb_Gtk_Button_Void;
+		o_increase_button_clicked_callback           : in Gtk.Button.Cb_Gtk_Button_Void;
+		o_decrease_button_clicked_callback           : in Gtk.Button.Cb_Gtk_Button_Void;
+		o_error_in_reading_button_clicked_callback   : in Gtk.Button.Cb_Gtk_Button_Void;
+		ch4_increase_button_clicked_callback         : in Gtk.Button.Cb_Gtk_Button_Void;
+		ch4_decrease_button_clicked_callback         : in Gtk.Button.Cb_Gtk_Button_Void;
+		ch4_error_in_reading_button_clicked_callback : in Gtk.Button.Cb_Gtk_Button_Void;
+		sensor_buttons_list                          : out sensor_buttons_list_t
+	) is
+	begin
+		attach_gas_sensor_buttons_list (
+			grid                                         => grid,
+			co_increase_button_clicked_callback          => co_increase_button_clicked_callback,
+			co_decrease_button_clicked_callback          => co_decrease_button_clicked_callback,
+			co_error_in_reading_button_clicked_callback  => co_error_in_reading_button_clicked_callback,
+			o_increase_button_clicked_callback           => o_increase_button_clicked_callback,
+			o_decrease_button_clicked_callback           => o_decrease_button_clicked_callback,
+			o_error_in_reading_button_clicked_callback   => o_error_in_reading_button_clicked_callback,
+			ch4_increase_button_clicked_callback         => ch4_increase_button_clicked_callback,
+			ch4_decrease_button_clicked_callback         => ch4_decrease_button_clicked_callback,
+			ch4_error_in_reading_button_clicked_callback => ch4_error_in_reading_button_clicked_callback,
+			gas_sensor_buttons_list                      => sensor_buttons_list.gas_sensors
+		);
+	end attach_sensor_buttons_list;
+
+	type user_buttons_t is
+	record
+		devices : device_buttons_list_t;
+		sensors : sensor_buttons_list_t;
+	end record;	
+
+	procedure attach_user_buttons (
+		grid                                         : in Gtk.Grid.Gtk_Grid;
+		pump_turn_on_button_clicked_callback         : in Gtk.Button.Cb_Gtk_Button_Void;
+		pump_turn_off_button_clicked_callback        : in Gtk.Button.Cb_Gtk_Button_Void;
+		co_increase_button_clicked_callback          : in Gtk.Button.Cb_Gtk_Button_Void;
+		co_decrease_button_clicked_callback          : in Gtk.Button.Cb_Gtk_Button_Void;
+		co_error_in_reading_button_clicked_callback  : in Gtk.Button.Cb_Gtk_Button_Void;
+		o_increase_button_clicked_callback           : in Gtk.Button.Cb_Gtk_Button_Void;
+		o_decrease_button_clicked_callback           : in Gtk.Button.Cb_Gtk_Button_Void;
+		o_error_in_reading_button_clicked_callback   : in Gtk.Button.Cb_Gtk_Button_Void;
+		ch4_increase_button_clicked_callback         : in Gtk.Button.Cb_Gtk_Button_Void;
+		ch4_decrease_button_clicked_callback         : in Gtk.Button.Cb_Gtk_Button_Void;
+		ch4_error_in_reading_button_clicked_callback : in Gtk.Button.Cb_Gtk_Button_Void;
+		user_buttons                                 : out user_buttons_t
+	) is
+	begin
+		attach_device_buttons_list (
+			grid                                  => grid,
+			pump_turn_on_button_clicked_callback  => pump_turn_on_button_clicked_callback,
+			pump_turn_off_button_clicked_callback => pump_turn_off_button_clicked_callback,
+			device_buttons_list                   => user_buttons.devices
+		);
+
+		attach_sensor_buttons_list (
+			grid                                         => grid,
+			co_increase_button_clicked_callback          => co_increase_button_clicked_callback,
+			co_decrease_button_clicked_callback          => co_decrease_button_clicked_callback,
+			co_error_in_reading_button_clicked_callback  => co_error_in_reading_button_clicked_callback,
+			o_increase_button_clicked_callback           => o_increase_button_clicked_callback,
+			o_decrease_button_clicked_callback           => o_decrease_button_clicked_callback,
+			o_error_in_reading_button_clicked_callback   => o_error_in_reading_button_clicked_callback,
+			ch4_increase_button_clicked_callback         => ch4_increase_button_clicked_callback,
+			ch4_decrease_button_clicked_callback         => ch4_decrease_button_clicked_callback,
+			ch4_error_in_reading_button_clicked_callback => ch4_error_in_reading_button_clicked_callback,
+			sensor_buttons_list                          => user_buttons.sensors
+		);
+	end attach_user_buttons;
 
 	--grid initialization
 	procedure initialize_grid (
@@ -273,42 +737,6 @@ package body gui is
 		);	
 	end initialize_window;
 
-	type device_buttons_t is
-	record
-		turn_on  : Gtk.Button.Gtk_Button;
-		turn_off : Gtk.Button.Gtk_Button;
-	end record;
-
-	type sensor_buttons_t is
-	record
-		increase_button         : Gtk.Button.Gtk_Button;
-		decrease_button         : Gtk.Button.Gtk_Button;
-		error_in_reading_button : Gtk.Button.Gtk_Button;
-	end record;
-
-	type user_buttons_t is
-	record
-		pump_buttons      : device_buttons_t;
-		co_sensor_buttons : sensor_buttons_t;
-	end record;	
-
-	type device_state_widgets_t is
-	record
-		pump_button  : Gtk.Button.Gtk_Button;
-		alarm_button : Gtk.Button.Gtk_Button;
-	end record;
-	
-	type sensor_state_widgets_t is
-	record
-		co_sensor_progress_bar : Gtk.Progress_Bar.Gtk_Progress_Bar;
-	end record;
-
-	type state_widgets_t is
-	record
-		device_state_widgets : device_state_widgets_t;
-		sensor_state_widgets : sensor_state_widgets_t;
-	end record;
-	
 	-- main gui task
 	task body gui_controller_t is
 
@@ -323,7 +751,9 @@ package body gui is
 		alarm_controller : access controllers.device_state_controller_t;
 
 		-- sensor state controllers
-		co_sensor_controller : access controllers.gas_sensor_state_controller_t;
+		co_sensor_controller  : access controllers.gas_sensor_state_controller_t;
+		o_sensor_controller   : access controllers.gas_sensor_state_controller_t;
+		ch4_sensor_controller : access controllers.gas_sensor_state_controller_t;
 
 		-- callbacks for window
 		procedure quit ( self : access Gtk.Widget.Gtk_Widget_Record'class ) is
@@ -333,79 +763,149 @@ package body gui is
 
 		-- button callbacks
 
-		-- pump button callbacks
-		procedure pump_turn_on_button_clicked (
+		-- pump button callback
+		procedure pump_button_clicked (
 			self : access Gtk.Button.Gtk_Button_Record'Class
 		) is
 		begin
-			GNATCOLL.Traces.Trace (
-				Handle  => constants.log.gui.stream,
-				Message => "Pump turn on button clicked"
-			);
 
-			top.turn_on;
-		end pump_turn_on_button_clicked;
-		
-		procedure pump_turn_off_button_clicked (
-			self : access Gtk.Button.Gtk_Button_Record'Class
-		) is
-		begin
-			GNATCOLL.Traces.Trace (
-				Handle  => constants.log.gui.stream,
-				Message => "Pump turn off button clicked"
-			);
+			if ( self = user_buttons.devices.pump.turn_on ) then
+				GNATCOLL.Traces.Trace (
+					Handle  => constants.log.gui.stream,
+					Message => "Pump turn on button clicked"
+				);
 
-			top.turn_off;
-		end pump_turn_off_button_clicked;
+				top.turn_on;
+			else
+				GNATCOLL.Traces.Trace (
+					Handle  => constants.log.gui.stream,
+					Message => "Pump turn off button clicked"
+				);
+
+				top.turn_off;
+			end if;
+
+		end pump_button_clicked;
 		
 		-- sensor button callbacks
-		procedure co_increase_button_clicked (
+		procedure co_button_clicked (
 			self : access Gtk.Button.Gtk_Button_Record'Class
 		) is
 			value : Float;
 		begin
-			GNATCOLL.Traces.Trace (
-				Handle  => constants.log.gui.stream,
-				Message => "CO increase button clicked"
-			);
 
-			value := co_sensor.get_value;
-			value := value + co_sensor.get_threshold * constants.gui.user_buttons.sensors.co_sensor.increase.delta_percentage;
-			co_sensor.set_value (
-				new_value => value
-			);	
-		end co_increase_button_clicked;
+			if ( self = user_buttons.sensors.gas_sensors.co.increase ) then
+				GNATCOLL.Traces.Trace (
+					Handle  => constants.log.gui.stream,
+					Message => "CO increase button clicked"
+				);
+				value := co_sensor.get_value;
+				value := value + co_sensor.get_threshold * constants.gui.user_buttons.sensors.gas_sensors.co.increase.delta_percentage;
+				co_sensor.set_value (
+					new_value => value
+				);	
+			elsif ( self = user_buttons.sensors.gas_sensors.co.decrease ) then
+				GNATCOLL.Traces.Trace (
+					Handle  => constants.log.gui.stream,
+					Message => "CO decrease button clicked"
+				);
+				value := co_sensor.get_value;
+				value := value - co_sensor.get_threshold * constants.gui.user_buttons.sensors.gas_sensors.co.increase.delta_percentage;
+				co_sensor.set_value (
+					new_value => value
+				);	
+			elsif ( self = user_buttons.sensors.gas_sensors.co.error_in_reading ) then
+				GNATCOLL.Traces.Trace (
+					Handle  => constants.log.gui.stream,
+					Message => "CO error in reading button clicked"
+				);
+				
+				co_sensor.set_read_error_occured (
+					new_read_error_occurred => not co_sensor.get_read_error_occurred
+				);
+			end if;
+		end co_button_clicked;
 
-		procedure co_decrease_button_clicked (
+		procedure o_button_clicked (
 			self : access Gtk.Button.Gtk_Button_Record'Class
 		) is
 			value : Float;
 		begin
-			GNATCOLL.Traces.Trace (
-				Handle  => constants.log.gui.stream,
-				Message => "CO decrease button clicked"
-			);
 
-			value := co_sensor.get_value;
-			value := value - co_sensor.get_threshold * constants.gui.user_buttons.sensors.co_sensor.increase.delta_percentage;
-			co_sensor.set_value (
-				new_value => value
-			);	
-		end co_decrease_button_clicked;
+			if ( self = user_buttons.sensors.gas_sensors.o.increase ) then
+				GNATCOLL.Traces.Trace (
+					Handle  => constants.log.gui.stream,
+					Message => "CO increase button clicked"
+				);
 
-		procedure co_error_in_reading_button_clicked (
+				value := o_sensor.get_value;
+				value := value + o_sensor.get_threshold * constants.gui.user_buttons.sensors.gas_sensors.o.increase.delta_percentage;
+				o_sensor.set_value (
+					new_value => value
+				);	
+			elsif ( self = user_buttons.sensors.gas_sensors.o.decrease ) then
+				GNATCOLL.Traces.Trace (
+					Handle  => constants.log.gui.stream,
+					Message => "CO decrease button clicked"
+				);
+
+				value := o_sensor.get_value;
+				value := value - o_sensor.get_threshold * constants.gui.user_buttons.sensors.gas_sensors.o.increase.delta_percentage;
+				o_sensor.set_value (
+					new_value => value
+				);	
+			elsif ( self = user_buttons.sensors.gas_sensors.o.error_in_reading ) then
+				GNATCOLL.Traces.Trace (
+					Handle  => constants.log.gui.stream,
+					Message => "CO error in reading button clicked"
+				);
+				
+				o_sensor.set_read_error_occured (
+					new_read_error_occurred => not o_sensor.get_read_error_occurred
+				);
+			end if;
+		end o_button_clicked;
+
+		procedure ch4_button_clicked (
 			self : access Gtk.Button.Gtk_Button_Record'Class
 		) is
+			value : Float;
 		begin
-			GNATCOLL.Traces.Trace (
-				Handle  => constants.log.gui.stream,
-				Message => "CO error in reading button clicked"
-			);
-			
-			co_sensor.set_read_error_occured (
-				new_read_error_occurred => not co_sensor.get_read_error_occurred
-			);
-		end co_error_in_reading_button_clicked;
+
+			if ( self = user_buttons.sensors.gas_sensors.ch4.increase ) then
+				GNATCOLL.Traces.Trace (
+					Handle  => constants.log.gui.stream,
+					Message => "CO increase button clicked"
+				);
+
+				value := ch4_sensor.get_value;
+				value := value + ch4_sensor.get_threshold * constants.gui.user_buttons.sensors.gas_sensors.ch4.increase.delta_percentage;
+				ch4_sensor.set_value (
+					new_value => value
+				);	
+			elsif ( self = user_buttons.sensors.gas_sensors.ch4.decrease ) then
+				GNATCOLL.Traces.Trace (
+					Handle  => constants.log.gui.stream,
+					Message => "CO decrease button clicked"
+				);
+
+				value := ch4_sensor.get_value;
+				value := value - ch4_sensor.get_threshold * constants.gui.user_buttons.sensors.gas_sensors.ch4.increase.delta_percentage;
+				ch4_sensor.set_value (
+					new_value => value
+				);	
+			elsif ( self = user_buttons.sensors.gas_sensors.ch4.error_in_reading ) then
+				GNATCOLL.Traces.Trace (
+					Handle  => constants.log.gui.stream,
+					Message => "CO error in reading button clicked"
+				);
+				
+				ch4_sensor.set_read_error_occured (
+					new_read_error_occurred => not ch4_sensor.get_read_error_occurred
+				);
+			end if;
+		end ch4_button_clicked;
+
 	begin
 		GNATCOLL.Traces.Trace (
 			Handle  => constants.log.gui.stream,
@@ -447,40 +947,32 @@ package body gui is
 			Message => "Attaching user buttons"
 		);
 
-		-- attach pump buttons
-		attach_pump_buttons (
-			grid                             => grid,
-			turn_on_button_clicked_callback  => pump_turn_on_button_clicked'Unrestricted_Access,
-			turn_off_button_clicked_callback => pump_turn_off_button_clicked'Unrestricted_Access,
-			turn_on_pump_button              => user_buttons.pump_buttons.turn_on,
-			turn_off_pump_button             => user_buttons.pump_buttons.turn_off
+		attach_user_buttons (
+			grid                                         => grid,
+			pump_turn_on_button_clicked_callback         => pump_button_clicked'Unrestricted_Access,
+			pump_turn_off_button_clicked_callback        => pump_button_clicked'Unrestricted_Access,
+			co_increase_button_clicked_callback          => co_button_clicked'Unrestricted_Access,
+			co_decrease_button_clicked_callback          => co_button_clicked'Unrestricted_Access,
+			co_error_in_reading_button_clicked_callback  => co_button_clicked'Unrestricted_Access,
+			o_increase_button_clicked_callback           => o_button_clicked'Unrestricted_Access,
+			o_decrease_button_clicked_callback           => o_button_clicked'Unrestricted_Access,
+			o_error_in_reading_button_clicked_callback   => o_button_clicked'Unrestricted_Access,
+			ch4_increase_button_clicked_callback         => ch4_button_clicked'Unrestricted_Access,
+			ch4_decrease_button_clicked_callback         => ch4_button_clicked'Unrestricted_Access,
+			ch4_error_in_reading_button_clicked_callback => ch4_button_clicked'Unrestricted_Access,
+			user_buttons                                 => user_buttons
 		);
 
-		attach_sensor_buttons (
-			grid                                        => grid,
-			co_increase_button_clicked_callback         => co_increase_button_clicked'Unrestricted_Access,
-			co_decrease_button_clicked_callback         => co_decrease_button_clicked'Unrestricted_Access,
-			co_error_in_reading_button_clicked_callback => co_error_in_reading_button_clicked'Unrestricted_Access,
-			co_increase_button                          => user_buttons.co_sensor_buttons.increase_button,
-			co_decrease_button                          => user_buttons.co_sensor_buttons.decrease_button,
-			co_error_in_reading_button                  => user_buttons.co_sensor_buttons.error_in_reading_button
-		);
 
-		-- attaching device buttons
+		-- attaching state widgets
 		GNATCOLL.Traces.Trace (
 			Handle  => constants.log.gui.stream,
-			Message => "Attaching device buttons"
-		);
-		
-		attach_device_state_buttons (
-			grid         => grid,
-			pump_button  => state_widgets.device_state_widgets.pump_button,
-			alarm_button => state_widgets.device_state_widgets.alarm_button
+			Message => "Attaching state widgets"
 		);
 
-		attach_sensor_state_progress_bars (
-			grid                   => grid,
-			co_sensor_progress_bar => state_widgets.sensor_state_widgets.co_sensor_progress_bar
+		attach_state_widgets (
+			grid          => grid,
+			state_widgets => state_widgets
 		);
 		
 		window.Show_All;
@@ -493,25 +985,49 @@ package body gui is
 
 		pump_controller := new controllers.device_state_controller_t (
 			device    => pump,
-			button    => state_widgets.device_state_widgets.pump_button,
-			on_color  => constants.gui.state_widget_controllers.device_state_controllers.pump_controller.on_color'Access,
-			off_color => constants.gui.state_widget_controllers.device_state_controllers.pump_controller.off_color'Access
+			button    => state_widgets.devices.pump.button,
+			on_color  => constants.gui.state_widget_controllers.devices.pump.on_color'Access,
+			off_color => constants.gui.state_widget_controllers.devices.pump.off_color'Access
 		);
 
 		alarm_controller := new controllers.device_state_controller_t (
 			device    => alarm,
-			button    => state_widgets.device_state_widgets.alarm_button,
-			on_color  => constants.gui.state_widget_controllers.device_state_controllers.alarm_controller.on_color'Access,
-			off_color => constants.gui.state_widget_controllers.device_state_controllers.alarm_controller.off_color'Access
+			button    => state_widgets.devices.alarm.button,
+			on_color  => constants.gui.state_widget_controllers.devices.alarm.on_color'Access,
+			off_color => constants.gui.state_widget_controllers.devices.alarm.off_color'Access
 		);
 
 		co_sensor_controller := new controllers.gas_sensor_state_controller_t (
 			sensor                    => co_sensor,
-			progress_bar              => state_widgets.sensor_state_widgets.co_sensor_progress_bar,
-			multiplication_factor     => constants.gui.state_widget_controllers.gas_sensor_state_controllers.multiplication_factor,
-			state_normal_color        => constants.gui.state_widget_controllers.gas_sensor_state_controllers.state_normal_color'Access,
-			threshold_breached_color  => constants.gui.state_widget_controllers.gas_sensor_state_controllers.threshold_breached_color'Access,
-			read_error_occurred_color => constants.gui.state_widget_controllers.gas_sensor_state_controllers.read_error_occurred_color'Access
+			progress_bar              => state_widgets.sensors.gas_sensors.co.progress_bar,
+			label                     => state_widgets.sensors.gas_sensors.co.label,
+			color_button              => state_widgets.sensors.gas_sensors.co.color_button,
+			multiplication_factor     => constants.gui.state_widget_controllers.sensors.gas_sensors.co.multiplication_factor,
+			state_normal_color        => constants.gui.state_widget_controllers.sensors.gas_sensors.co.state_normal_color'Access,
+			threshold_breached_color  => constants.gui.state_widget_controllers.sensors.gas_sensors.co.threshold_breached_color'Access,
+			read_error_occurred_color => constants.gui.state_widget_controllers.sensors.gas_sensors.co.read_error_occurred_color'Access
+		);
+
+		o_sensor_controller := new controllers.gas_sensor_state_controller_t (
+			sensor                    => o_sensor,
+			progress_bar              => state_widgets.sensors.gas_sensors.o.progress_bar,
+			label                     => state_widgets.sensors.gas_sensors.o.label,
+			color_button              => state_widgets.sensors.gas_sensors.o.color_button,
+			multiplication_factor     => constants.gui.state_widget_controllers.sensors.gas_sensors.o.multiplication_factor,
+			state_normal_color        => constants.gui.state_widget_controllers.sensors.gas_sensors.o.state_normal_color'Access,
+			threshold_breached_color  => constants.gui.state_widget_controllers.sensors.gas_sensors.o.threshold_breached_color'Access,
+			read_error_occurred_color => constants.gui.state_widget_controllers.sensors.gas_sensors.o.read_error_occurred_color'Access
+		);
+
+		ch4_sensor_controller := new controllers.gas_sensor_state_controller_t (
+			sensor                    => ch4_sensor,
+			progress_bar              => state_widgets.sensors.gas_sensors.ch4.progress_bar,
+			label                     => state_widgets.sensors.gas_sensors.ch4.label,
+			color_button              => state_widgets.sensors.gas_sensors.ch4.color_button,
+			multiplication_factor     => constants.gui.state_widget_controllers.sensors.gas_sensors.ch4.multiplication_factor,
+			state_normal_color        => constants.gui.state_widget_controllers.sensors.gas_sensors.ch4.state_normal_color'Access,
+			threshold_breached_color  => constants.gui.state_widget_controllers.sensors.gas_sensors.ch4.threshold_breached_color'Access,
+			read_error_occurred_color => constants.gui.state_widget_controllers.sensors.gas_sensors.ch4.read_error_occurred_color'Access
 		);
 
 		-- start main loop
@@ -539,11 +1055,20 @@ package body gui is
 			T => co_sensor_controller'Identity
 		);
 
+		Ada.Task_Identification.Abort_Task (
+			T => o_sensor_controller'Identity
+		);
+
+		Ada.Task_Identification.Abort_Task (
+			T => ch4_sensor_controller'Identity
+		);
 
 		while ( 
 			( not pump_controller'Terminated ) or
 			( not alarm_controller'Terminated ) or
-			( not co_sensor_controller'Terminated ) 
+			( not co_sensor_controller'Terminated ) or
+			( not o_sensor_controller'Terminated ) or
+			( not ch4_sensor_controller'Terminated ) 
 		) loop 
 			null;
 		end loop;

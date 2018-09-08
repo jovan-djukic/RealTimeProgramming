@@ -34,19 +34,20 @@ package body controllers is
 				)
 			);
 		   	
+			label.Set_Text (
+				Str => ( sensor.get_value'Image & " / " & sensor.get_threshold'Image )
+			);
+
 		   	if ( sensor.get_read_error_occurred = True ) then
-		   		progress_bar.Override_Background_Color (
-		   			State => progress_bar.Get_State_Flags,
+		   		color_button.Set_Rgba (
 		   			Color => read_error_occurred_color.all
 		   		);
 		   	elsif ( sensor.is_threshold_breached = True ) then
-		   		progress_bar.Override_Background_Color (
-		   			State => progress_bar.Get_State_Flags,
+		   		color_button.Set_Rgba (
 		   			Color => threshold_breached_color.all
 		   		);
 		   	else 
-		   		progress_bar.Override_Background_Color (
-		   			State => progress_bar.Get_State_Flags,
+		   		color_button.Set_Rgba (
 		   			Color => state_normal_color.all
 		   		);
 		   	end if;

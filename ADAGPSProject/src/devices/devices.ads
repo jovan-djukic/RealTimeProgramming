@@ -16,6 +16,7 @@ package devices is
 	protected type sensor_t (
 		intital_value           : access constant Float;
 		threshold               : access constant Float;
+		maximum_value           : access constant Float;
 		detects_above_threshold : Boolean
 	) is
 		function get_value return Float;

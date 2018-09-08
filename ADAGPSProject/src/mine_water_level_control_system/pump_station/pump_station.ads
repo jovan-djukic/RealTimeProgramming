@@ -1,8 +1,10 @@
+with GNATCOLL.Traces;
 with devices;
 	
 package pump_station is
 	task type pump_controller_t (
-		pump : access devices.device_t
+		pump   : access devices.device_t;
+		stream : GNATCOLL.Traces.Trace_Handle
 	) is
 		entry turn_on;
 		entry turn_off;

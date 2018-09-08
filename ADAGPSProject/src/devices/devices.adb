@@ -44,7 +44,13 @@ package body devices is
 		) is
 		begin
 			if ( new_value /= value ) then
-				value   := new_value;
+				if ( new_value <= 0.0 ) then
+					value := 0.0;
+				elsif ( new_value >= maximum_value.all ) then
+					value := maximum_value.all;
+				else
+					value   := new_value;
+				end if;
 				changed := True;
 			end if;
 		end set_value;

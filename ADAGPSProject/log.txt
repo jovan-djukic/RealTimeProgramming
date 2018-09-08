@@ -5,11 +5,11 @@
 [PUMP CONTROLLER] Starting
 [PUMP CONTROLLER] Turning off pump
 [GUI] Initializing GTK
-[MINE WATER LEVEL CONTROL SYSTEM] Starting
+[ALARM CONTROLLER] Starting
 [GUI] Initializing window
 [GUI] Initializing grid
 [GUI] Attaching user buttons
-[GUI] Attaching device buttons
+[GUI] Attaching state widgets
 [GUI] Starting device controllers
 [GUI] Starting main loop
 [GUI] CO increase button clicked
@@ -23,65 +23,186 @@
 [GUI] CO increase button clicked
 [GUI] CO increase button clicked
 [GUI] CO increase button clicked
-[GUI] CO increase button clicked
-[GUI] CO increase button clicked
-[GUI] CO decrease button clicked
-[GUI] CO decrease button clicked
-[GUI] CO decrease button clicked
+[CO SENSOR CONTROLLER] Threshold breached, turning on alarm
+[ALARM CONTROLLER] Initial turn on received, turning on alarm
 [GUI] CO error in reading button clicked
+[CH4 SENSOR CONTROLLER] Sensor read error occurred
+[CH4 SENSOR CONTROLLER] Sensor read error occurred
+[CH4 SENSOR CONTROLLER] Read error count threshold breached, turning on alarm
+[ALARM CONTROLLER] Following turn on received
+[CH4 SENSOR CONTROLLER] Sensor read error occurred
+[CH4 SENSOR CONTROLLER] Sensor read error occurred
+[CH4 SENSOR CONTROLLER] Sensor read error occurred
+[CH4 SENSOR CONTROLLER] Sensor read error occurred
+[CH4 SENSOR CONTROLLER] Sensor read error occurred
+[CH4 SENSOR CONTROLLER] Sensor read error occurred
+[GUI] CO decrease button clicked
+[CH4 SENSOR CONTROLLER] Sensor read error occurred
+[CO SENSOR CONTROLLER] State normal, turning off alarm
+[ALARM CONTROLLER] Turn off received
+[CH4 SENSOR CONTROLLER] Sensor read error occurred
+[CH4 SENSOR CONTROLLER] Sensor read error occurred
+[CH4 SENSOR CONTROLLER] Sensor read error occurred
+[CH4 SENSOR CONTROLLER] Sensor read error occurred
+[CH4 SENSOR CONTROLLER] Sensor read error occurred
+[CH4 SENSOR CONTROLLER] Sensor read error occurred
+[GUI] CO error in reading button clicked
+[CH4 SENSOR CONTROLLER] State normal, turning off alarm
+[ALARM CONTROLLER] Last turn off received turning off alarm
+[GUI] CO error in reading button clicked
+[O SENSOR CONTROLLER] Sensor read error occurred
+[O SENSOR CONTROLLER] Sensor read error occurred
+[O SENSOR CONTROLLER] Read error count threshold breached, turning on alarm
+[ALARM CONTROLLER] Initial turn on received, turning on alarm
+[O SENSOR CONTROLLER] Sensor read error occurred
+[O SENSOR CONTROLLER] Sensor read error occurred
+[GUI] CO error in reading button clicked
+[CH4 SENSOR CONTROLLER] Sensor read error occurred
+[O SENSOR CONTROLLER] Sensor read error occurred
+[O SENSOR CONTROLLER] Sensor read error occurred
+[CH4 SENSOR CONTROLLER] Sensor read error occurred
+[CH4 SENSOR CONTROLLER] Read error count threshold breached, turning on alarm
+[ALARM CONTROLLER] Following turn on received
+[O SENSOR CONTROLLER] Sensor read error occurred
+[CH4 SENSOR CONTROLLER] Sensor read error occurred
+[O SENSOR CONTROLLER] Sensor read error occurred
+[CH4 SENSOR CONTROLLER] Sensor read error occurred
+[CH4 SENSOR CONTROLLER] Sensor read error occurred
+[O SENSOR CONTROLLER] Sensor read error occurred
+[O SENSOR CONTROLLER] Sensor read error occurred
+[CH4 SENSOR CONTROLLER] Sensor read error occurred
+[GUI] CO increase button clicked
+[CO SENSOR CONTROLLER] Threshold breached, turning on alarm
+[O SENSOR CONTROLLER] Sensor read error occurred
+[ALARM CONTROLLER] Following turn on received
+[CH4 SENSOR CONTROLLER] Sensor read error occurred
+[O SENSOR CONTROLLER] Sensor read error occurred
+[CH4 SENSOR CONTROLLER] Sensor read error occurred
+[CH4 SENSOR CONTROLLER] Sensor read error occurred
+[O SENSOR CONTROLLER] Sensor read error occurred
+[O SENSOR CONTROLLER] Sensor read error occurred
+[CH4 SENSOR CONTROLLER] Sensor read error occurred
+[O SENSOR CONTROLLER] Sensor read error occurred
+[CH4 SENSOR CONTROLLER] Sensor read error occurred
+[CH4 SENSOR CONTROLLER] Sensor read error occurred
+[O SENSOR CONTROLLER] Sensor read error occurred
+[GUI] CO error in reading button clicked
+[O SENSOR CONTROLLER] State normal, turning off alarm
+[ALARM CONTROLLER] Turn off received
+[CH4 SENSOR CONTROLLER] Sensor read error occurred
+[CH4 SENSOR CONTROLLER] Sensor read error occurred
+[CH4 SENSOR CONTROLLER] Sensor read error occurred
+[CH4 SENSOR CONTROLLER] Sensor read error occurred
+[CH4 SENSOR CONTROLLER] Sensor read error occurred
+[CH4 SENSOR CONTROLLER] Sensor read error occurred
+[CH4 SENSOR CONTROLLER] Sensor read error occurred
+[GUI] CO error in reading button clicked
+[CO SENSOR CONTROLLER] Sensor read error occurred
+[CH4 SENSOR CONTROLLER] Sensor read error occurred
+[CO SENSOR CONTROLLER] Sensor read error occurred
+[CH4 SENSOR CONTROLLER] Sensor read error occurred
+[CH4 SENSOR CONTROLLER] Sensor read error occurred
+[CO SENSOR CONTROLLER] Sensor read error occurred
+[CO SENSOR CONTROLLER] Sensor read error occurred
+[CH4 SENSOR CONTROLLER] Sensor read error occurred
+[GUI] CO decrease button clicked
+[CH4 SENSOR CONTROLLER] Sensor read error occurred
+[CO SENSOR CONTROLLER] Sensor read error occurred
+[CO SENSOR CONTROLLER] Sensor read error occurred
+[CH4 SENSOR CONTROLLER] Sensor read error occurred
+[CH4 SENSOR CONTROLLER] Sensor read error occurred
+[CO SENSOR CONTROLLER] Sensor read error occurred
+[CO SENSOR CONTROLLER] Sensor read error occurred
+[CH4 SENSOR CONTROLLER] Sensor read error occurred
+[CH4 SENSOR CONTROLLER] Sensor read error occurred
+[CO SENSOR CONTROLLER] Sensor read error occurred
+[CO SENSOR CONTROLLER] Sensor read error occurred
+[CH4 SENSOR CONTROLLER] Sensor read error occurred
+[GUI] CO error in reading button clicked
+[CO SENSOR CONTROLLER] Sensor read error occurred
+[CH4 SENSOR CONTROLLER] State normal, turning off alarm
+[ALARM CONTROLLER] Turn off received
+[CO SENSOR CONTROLLER] Sensor read error occurred
+[CO SENSOR CONTROLLER] Sensor read error occurred
+[CO SENSOR CONTROLLER] Sensor read error occurred
+[CO SENSOR CONTROLLER] Sensor read error occurred
+[GUI] CO error in reading button clicked
+[CO SENSOR CONTROLLER] State normal, turning off alarm
+[ALARM CONTROLLER] Last turn off received turning off alarm
+[GUI] Pump turn on button clicked
+[PUMP CONTROLLER] Turn on received
+[PUMP CONTROLLER] Turning on pump
+[GUI] CO increase button clicked
+[GUI] CO increase button clicked
+[GUI] CO increase button clicked
+[GUI] CO increase button clicked
+[GUI] CO increase button clicked
+[GUI] CO increase button clicked
 [GUI] CO increase button clicked
 [GUI] CO increase button clicked
 [GUI] CO error in reading button clicked
-[GUI] CO decrease button clicked
-[GUI] CO decrease button clicked
-[GUI] CO decrease button clicked
+[CH4 SENSOR CONTROLLER] Sensor read error occurred
+[CH4 SENSOR CONTROLLER] Sensor read error occurred
+[CH4 SENSOR CONTROLLER] Read error count threshold breached, turning on alarm
+[ALARM CONTROLLER] Initial turn on received, turning on alarm
+[CH4 SENSOR CONTROLLER] Sensor read error occurred
+[CH4 SENSOR CONTROLLER] Sensor read error occurred
+[CH4 SENSOR CONTROLLER] Sensor read error occurred
 [GUI] CO increase button clicked
+[CH4 SENSOR CONTROLLER] Sensor read error occurred
+[CH4 SENSOR CONTROLLER] Sensor read error occurred
 [GUI] CO increase button clicked
+[CH4 SENSOR CONTROLLER] Sensor read error occurred
+[CH4 SENSOR CONTROLLER] Sensor read error occurred
+[CH4 SENSOR CONTROLLER] Sensor read error occurred
 [GUI] CO increase button clicked
+[CH4 SENSOR CONTROLLER] Sensor read error occurred
+[CH4 SENSOR CONTROLLER] Sensor read error occurred
+[CH4 SENSOR CONTROLLER] Sensor read error occurred
+[CH4 SENSOR CONTROLLER] Sensor read error occurred
+[CH4 SENSOR CONTROLLER] Sensor read error occurred
+[CH4 SENSOR CONTROLLER] Sensor read error occurred
+[GUI] CO increase button clicked
+[CH4 SENSOR CONTROLLER] Sensor read error occurred
+[CH4 SENSOR CONTROLLER] Sensor read error occurred
+[CH4 SENSOR CONTROLLER] Sensor read error occurred
+[CH4 SENSOR CONTROLLER] Sensor read error occurred
+[CH4 SENSOR CONTROLLER] Sensor read error occurred
+[CH4 SENSOR CONTROLLER] Sensor read error occurred
+[GUI] CO error in reading button clicked
+[CH4 SENSOR CONTROLLER] Threshold breached, signalizing pump
+[PUMP CONTROLLER] Threashold breached received
+[PUMP CONTROLLER] Turning off pump
+[GUI] CO error in reading button clicked
+[CH4 SENSOR CONTROLLER] Sensor read error occurred
+[CH4 SENSOR CONTROLLER] Sensor read error occurred
+[CH4 SENSOR CONTROLLER] Sensor read error occurred
 [GUI] CO decrease button clicked
+[CH4 SENSOR CONTROLLER] Sensor read error occurred
+[CH4 SENSOR CONTROLLER] Sensor read error occurred
 [GUI] CO decrease button clicked
+[CH4 SENSOR CONTROLLER] Sensor read error occurred
+[CH4 SENSOR CONTROLLER] Sensor read error occurred
 [GUI] CO decrease button clicked
-[GUI] CO increase button clicked
-[GUI] CO increase button clicked
-[GUI] CO increase button clicked
+[CH4 SENSOR CONTROLLER] Sensor read error occurred
+[CH4 SENSOR CONTROLLER] Sensor read error occurred
 [GUI] CO decrease button clicked
-[GUI] CO decrease button clicked
-[GUI] CO decrease button clicked
-[GUI] CO increase button clicked
-[GUI] CO increase button clicked
-[GUI] CO increase button clicked
-[GUI] CO decrease button clicked
-[GUI] CO decrease button clicked
-[GUI] CO decrease button clicked
-[GUI] CO increase button clicked
-[GUI] CO increase button clicked
-[GUI] CO increase button clicked
-[GUI] CO decrease button clicked
-[GUI] CO decrease button clicked
-[GUI] CO decrease button clicked
-[GUI] CO increase button clicked
-[GUI] CO increase button clicked
-[GUI] CO increase button clicked
-[GUI] CO decrease button clicked
-[GUI] CO decrease button clicked
-[GUI] CO decrease button clicked
-[GUI] CO increase button clicked
-[GUI] CO increase button clicked
-[GUI] CO increase button clicked
-[GUI] CO decrease button clicked
-[GUI] CO decrease button clicked
-[GUI] CO decrease button clicked
-[GUI] CO increase button clicked
-[GUI] CO increase button clicked
-[GUI] CO increase button clicked
-[GUI] CO decrease button clicked
-[GUI] CO decrease button clicked
-[GUI] CO increase button clicked
-[GUI] CO increase button clicked
-[GUI] CO decrease button clicked
-[GUI] CO decrease button clicked
-[GUI] CO increase button clicked
-[GUI] CO increase button clicked
+[CH4 SENSOR CONTROLLER] Sensor read error occurred
+[CH4 SENSOR CONTROLLER] Sensor read error occurred
+[CH4 SENSOR CONTROLLER] Sensor read error occurred
+[CH4 SENSOR CONTROLLER] Sensor read error occurred
+[CH4 SENSOR CONTROLLER] Sensor read error occurred
+[CH4 SENSOR CONTROLLER] Sensor read error occurred
+[CH4 SENSOR CONTROLLER] Sensor read error occurred
+[GUI] CO error in reading button clicked
+[CH4 SENSOR CONTROLLER] State normal, turning off alarm
+[ALARM CONTROLLER] Last turn off received turning off alarm
+[CH4 SENSOR CONTROLLER] State normal, signalizing pump
+[PUMP CONTROLLER] State normal received
+[PUMP CONTROLLER] Turning on pump
+[GUI] Pump turn off button clicked
+[PUMP CONTROLLER] Turn off received
+[PUMP CONTROLLER] Turning off pump
 [GUI] Waiting for device controllers to finish
 [GUI] All tasks finished
 [MAIN] GUI task finished
@@ -89,6 +210,12 @@
 [PUMP CONTROLLER] Finished
 [MINE WATER LEVEL CONTROL SYSTEM] Stopping alarm controller
 [ALARM CONTROLLER] Finished
+[MINE WATER LEVEL CONTROL SYSTEM] Stopping CO sensor controller
+[CO SENSOR CONTROLLER] Finished
+[MINE WATER LEVEL CONTROL SYSTEM] Stopping O sensor controller
+[O SENSOR CONTROLLER] Finished
+[MINE WATER LEVEL CONTROL SYSTEM] Stopping CH4 sensor controller
+[CH4 SENSOR CONTROLLER] Finished
 [MINE WATER LEVEL CONTROL SYSTEM] Finished
 [MAIN] Mine water level control system task finished
 [MAIN] Main ending

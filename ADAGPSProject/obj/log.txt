@@ -1,0 +1,154 @@
+[MAIN] Main starting
+[MAIN] Instantiating system
+[MINE WATER LEVEL CONTROL SYSTEM] Starting
+[MAIN] Instantiating GUI
+[PUMP CONTROLLER] Starting
+[PUMP CONTROLLER] Turning off pump
+[GUI] Initializing GTK
+[MINE WATER LEVEL CONTROL SYSTEM] Starting
+[GUI] Initializing window
+[GUI] Initializing grid
+[GUI] Attaching user buttons
+[GUI] Attaching state widgets
+[GUI] Starting device controllers
+[GUI] Starting main loop
+[GUI] CO error in reading button clicked
+[GUI] CO error in reading button clicked
+[GUI] CO increase button clicked
+[GUI] CO increase button clicked
+[GUI] CO increase button clicked
+[GUI] CO increase button clicked
+[GUI] CO increase button clicked
+[GUI] CO increase button clicked
+[GUI] CO increase button clicked
+[GUI] CO increase button clicked
+[GUI] CO increase button clicked
+[GUI] CO increase button clicked
+[GUI] CO increase button clicked
+[GUI] CO increase button clicked
+[GUI] Pump turn on button clicked
+[PUMP CONTROLLER] Turn on received
+[PUMP CONTROLLER] Turning on pump
+[GUI] Pump turn off button clicked
+[PUMP CONTROLLER] Turn off received
+[PUMP CONTROLLER] Turning off pump
+[GUI] Pump turn on button clicked
+[PUMP CONTROLLER] Turn on received
+[PUMP CONTROLLER] Turning on pump
+[GUI] Pump turn off button clicked
+[PUMP CONTROLLER] Turn off received
+[PUMP CONTROLLER] Turning off pump
+[GUI] CO decrease button clicked
+[GUI] CO decrease button clicked
+[GUI] CO decrease button clicked
+[GUI] CO decrease button clicked
+[GUI] CO increase button clicked
+[GUI] CO increase button clicked
+[GUI] CO increase button clicked
+[GUI] CO increase button clicked
+[GUI] CO decrease button clicked
+[GUI] CO decrease button clicked
+[GUI] CO decrease button clicked
+[GUI] Pump turn on button clicked
+[PUMP CONTROLLER] Turn on received
+[PUMP CONTROLLER] Turning on pump
+[GUI] Pump turn off button clicked
+[PUMP CONTROLLER] Turn off received
+[PUMP CONTROLLER] Turning off pump
+[GUI] Pump turn on button clicked
+[PUMP CONTROLLER] Turn on received
+[PUMP CONTROLLER] Turning on pump
+[GUI] Pump turn off button clicked
+[PUMP CONTROLLER] Turn off received
+[PUMP CONTROLLER] Turning off pump
+[GUI] Pump turn on button clicked
+[PUMP CONTROLLER] Turn on received
+[PUMP CONTROLLER] Turning on pump
+[GUI] Pump turn off button clicked
+[PUMP CONTROLLER] Turn off received
+[PUMP CONTROLLER] Turning off pump
+[GUI] CO increase button clicked
+[GUI] CO increase button clicked
+[GUI] CO increase button clicked
+[GUI] CO decrease button clicked
+[GUI] CO decrease button clicked
+[GUI] CO decrease button clicked
+[GUI] CO decrease button clicked
+[GUI] CO increase button clicked
+[GUI] CO increase button clicked
+[GUI] CO increase button clicked
+[GUI] CO increase button clicked
+[GUI] CO decrease button clicked
+[GUI] CO decrease button clicked
+[GUI] CO decrease button clicked
+[GUI] CO increase button clicked
+[GUI] CO increase button clicked
+[GUI] CO increase button clicked
+[GUI] CO decrease button clicked
+[GUI] CO decrease button clicked
+[GUI] CO decrease button clicked
+[GUI] CO increase button clicked
+[GUI] CO increase button clicked
+[GUI] CO increase button clicked
+[GUI] CO decrease button clicked
+[GUI] CO decrease button clicked
+[GUI] CO error in reading button clicked
+[GUI] CO error in reading button clicked
+[GUI] CO decrease button clicked
+[GUI] CO increase button clicked
+[GUI] CO error in reading button clicked
+[GUI] CO increase button clicked
+[GUI] CO decrease button clicked
+[GUI] CO error in reading button clicked
+[GUI] CO decrease button clicked
+[GUI] CO increase button clicked
+[GUI] CO increase button clicked
+[GUI] CO increase button clicked
+[GUI] CO decrease button clicked
+[GUI] CO error in reading button clicked
+[GUI] CO decrease button clicked
+[GUI] CO increase button clicked
+[GUI] CO increase button clicked
+[GUI] CO increase button clicked
+[GUI] CO increase button clicked
+[GUI] CO error in reading button clicked
+[GUI] CO decrease button clicked
+[GUI] CO decrease button clicked
+[GUI] CO decrease button clicked
+[GUI] CO decrease button clicked
+[GUI] CO increase button clicked
+[GUI] CO increase button clicked
+[GUI] CO decrease button clicked
+[GUI] CO error in reading button clicked
+[GUI] CO decrease button clicked
+[GUI] CO error in reading button clicked
+[GUI] CO increase button clicked
+[GUI] CO increase button clicked
+[GUI] CO error in reading button clicked
+[GUI] CO decrease button clicked
+[GUI] CO decrease button clicked
+[GUI] CO decrease button clicked
+[GUI] CO increase button clicked
+[GUI] CO error in reading button clicked
+[GUI] Pump turn on button clicked
+[PUMP CONTROLLER] Turn on received
+[PUMP CONTROLLER] Turning on pump
+[GUI] Pump turn off button clicked
+[PUMP CONTROLLER] Turn off received
+[PUMP CONTROLLER] Turning off pump
+[GUI] Pump turn on button clicked
+[PUMP CONTROLLER] Turn on received
+[PUMP CONTROLLER] Turning on pump
+[GUI] Pump turn off button clicked
+[PUMP CONTROLLER] Turn off received
+[PUMP CONTROLLER] Turning off pump
+[GUI] Waiting for device controllers to finish
+[GUI] All tasks finished
+[MAIN] GUI task finished
+[MINE WATER LEVEL CONTROL SYSTEM] Stopping pump controller
+[PUMP CONTROLLER] Finished
+[MINE WATER LEVEL CONTROL SYSTEM] Stopping alarm controller
+[ALARM CONTROLLER] Finished
+[MINE WATER LEVEL CONTROL SYSTEM] Finished
+[MAIN] Mine water level control system task finished
+[MAIN] Main ending

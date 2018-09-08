@@ -18,7 +18,7 @@ RV NO_IMPLEMENTATION_PRAGMAS
 RV SPARK_05
 RV MAX_PROTECTED_ENTRIES=1
 
-U devices%b		devices.adb		c2e9be08 NE OO PK IL
+U devices%b		devices.adb		685baa36 NE OO PK IL
 Z ada.tags%s		a-tags.adb		a-tags.ali
 Z system%s		system.ads		system.ali
 Z system.soft_links%s	s-soflin.adb		s-soflin.ali
@@ -26,7 +26,7 @@ Z system.tasking.protected_objects%s  s-taprob.adb  s-taprob.ali
 Z system.tasking.protected_objects.entries%s  s-tpoben.adb  s-tpoben.ali
 Z system.tasking.protected_objects.operations%s  s-tpobop.adb  s-tpobop.ali
 
-U devices%s		devices.ads		ffcc2fbc EE NE OO PK IL
+U devices%s		devices.ads		00c7a0b9 EE NE OO PK IL
 Z ada.exceptions%s	a-except.adb		a-except.ali
 Z ada.tags%s		a-tags.adb		a-tags.ali
 Z system%s		system.ads		system.ali
@@ -40,8 +40,8 @@ D a-finali.ads		20180524051738 bf4f806b ada.finalization%s
 D a-stream.ads		20180524051736 119b8fb3 ada.streams%s
 D a-tags.ads		20180524051738 491b781d ada.tags%s
 D a-unccon.ads		20180524051738 0e9b276f ada.unchecked_conversion%s
-D devices.ads		20180907212612 ffcc2fbc devices%s
-D devices.adb		20180907233948 3d2591b4 devices%b
+D devices.ads		20180908224536 00c7a0b9 devices%s
+D devices.adb		20180908224818 689c0a8f devices%b
 D interfac.ads		20180524051736 5ab55268 interfaces%s
 D i-c.ads		20180524051736 5421119b interfaces.c%s
 D i-cstrin.ads		20180524051736 341d0ddf interfaces.c.strings%s
@@ -68,7 +68,7 @@ D s-traent.ads		20180524051736 005bf670 system.traceback_entries%s
 D s-unstyp.ads		20180524051736 34867c83 system.unsigned_types%s
 D s-win32.ads		20180524051736 b7f96285 system.win32%s
 X 7 devices.ads
-1K9*devices 38l5 38e12 8|1b14 77l5 77t12
+1K9*devices 39l5 39e12 8|1b14 83l5 83t12
 3E14*device_state_t 3e43 6r43 8r40 12r27 8|4r43 10r40
 3n34*ON{3E14}
 3n38*OFF{3E14} 12r45
@@ -79,20 +79,20 @@ X 7 devices.ads
 10Y23 wait_for_state_change 8|20b23 23l21 23t42
 12e17 state{3E14} 8|6r32 13r43 17r25
 13b17 changed{boolean} 8|14r33 20r52 22r25
-16W24*sensor_t 17d17 18d17 19d17 33E17 36l13 36e21 8|26b24 76l13 76t21
-19b17 detects_above_threshold{boolean} 8|64r30
-21V26 get_value{float} 8|27b26 30l21 30t30
-22V26 get_read_error_occurred{boolean} 8|32b26 35l21 35t44
-23V26 get_threshold{float} 8|37b26 40l21 40t34
-24U27 set_value 25>25 8|42b27 50l21 50t30
-25f25 new_value{float} 8|43b25 46r30 47r44
-27U27 set_read_error_occured 28>25 8|52b27 60l21 60t43
-28b25 new_read_error_occurred{boolean} 8|53b25 56r30 57r56
-30V26 is_threshold_breached{boolean} 8|62b26 69l21 69t42
-31Y23 wait_for_value_change 8|71b23 74l21 74t42
-33f17 value{float} 8|29r32 46r43 47r33 65r42 67r42
-34b17 read_error_occurred{boolean} 8|34r32 56r57 57r33
-35b17 changed{boolean} 8|48r33 58r33 71r52 73r25
+16W24*sensor_t 17d17 18d17 19d17 20d17 34E17 37l13 37e21 8|26b24 82l13 82t21
+20b17 detects_above_threshold{boolean} 8|70r30
+22V26 get_value{float} 8|27b26 30l21 30t30
+23V26 get_read_error_occurred{boolean} 8|32b26 35l21 35t44
+24V26 get_threshold{float} 8|37b26 40l21 40t34
+25U27 set_value 26>25 8|42b27 56l21 56t30
+26f25 new_value{float} 8|43b25 46r30 47r38 49r41 52r52
+28U27 set_read_error_occured 29>25 8|58b27 66l21 66t43
+29b25 new_read_error_occurred{boolean} 8|59b25 62r30 63r56
+31V26 is_threshold_breached{boolean} 8|68b26 75l21 75t42
+32Y23 wait_for_value_change 8|77b23 80l21 80t42
+34f17 value{float} 8|29r32 46r43 48r41 50r41 52r41 71r42 73r42
+35b17 read_error_occurred{boolean} 8|34r32 62r57 63r33
+36b17 changed{boolean} 8|54r33 64r33 77r52 79r25
 X 22 s-stausa.ads
 203U14*Initialize 204i<c,__gnat_stack_usage_initialize>22
 268U14*Output_Results 272i<c,__gnat_stack_usage_output_results>22

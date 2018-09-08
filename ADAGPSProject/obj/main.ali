@@ -28,7 +28,7 @@ RV NO_IMPLEMENTATION_PRAGMAS
 RV SPARK_05
 RV MAX_TASKS=1+
 
-U main%b		main.adb		00680d76 NE OO SU IL
+U main%b		main.adb		e8837e57 NE OO SU IL
 W ada%s			ada.ads			ada.ali
 Z ada.exceptions%s	a-except.adb		a-except.ali
 Z ada.tags%s		a-tags.adb		a-tags.ali
@@ -72,8 +72,8 @@ D a-unccon.ads		20180524051738 0e9b276f ada.unchecked_conversion%s
 D a-uncdea.ads		20180524051736 eff36322 ada.unchecked_deallocation%s
 D cairo.ads		20180524063416 925d4aaa cairo%s
 D cairo-region.ads	20180524063416 b7133728 cairo.region%s
-D constants.ads		20180907232306 014dece4 constants%s
-D devices.ads		20180907212612 ffcc2fbc devices%s
+D constants.ads		20180908225252 dde79216 constants%s
+D devices.ads		20180908224536 00c7a0b9 devices%s
 D gdk.ads		20180524063416 96d821f3 gdk%s
 D gdk-color.ads		20180524063418 ef57bc34 gdk.color%s
 D gdk-device.ads	20180524063422 04c1ecbd gdk.device%s
@@ -140,13 +140,13 @@ D gtk-target_list.ads	20180524063420 a9d79eb7 gtk.target_list%s
 D gtk-widget.ads	20180524063422 07bd7883 gtk.widget%s
 D gtkada.ads		20180524063420 57aea1c7 gtkada%s
 D gtkada-types.ads	20180524063420 471f54b5 gtkada.types%s
-D gui.ads		20180907223602 680c0dc1 gui%s
+D gui.ads		20180908222530 14d32475 gui%s
 D interfac.ads		20180524051736 5ab55268 interfaces%s
 D i-c.ads		20180524051736 5421119b interfaces.c%s
 D i-cstrin.ads		20180524051736 341d0ddf interfaces.c.strings%s
 D i-cstrea.ads		20180524051736 e53d8b8e interfaces.c_streams%s
-D main.adb		20180907225428 368d8304 main%b
-D mine_water_level_control_system.ads  20180907154212 d828b778 mine_water_level_control_system%s
+D main.adb		20180908224608 eabfef21 main%b
+D mine_water_level_control_system.ads  20180908221202 b38f703f mine_water_level_control_system%s
 D pango.ads		20180524063418 e51ea573 pango%s
 D pango-attributes.ads	20180524063422 b2832a43 pango.attributes%s
 D pango-context.ads	20180524063420 5a6f0fe6 pango.context%s
@@ -214,22 +214,70 @@ X 4 a-chahan.ads
 X 14 a-textio.ads
 49K13*Text_IO 471e16 92|10w10
 X 19 constants.ads
-6K9*constants 206e14 92|5w6 25r27 29r28 39r44 40r44 41r44 45r28 55r28 71r28
-. 78r28 83r28
-7K17*system 15e19 92|39r54 40r54 41r54
-8K25*sensors 14e28 92|39r61 40r61 41r61
-9K33*co_sensor 13e38 92|39r69 40r69 41r69
-10f33*initial_value{float} 92|39r79
-11f33*threshold{float} 92|40r79
-12b33*detects_above_threshold{boolean} 92|41r79
-168K17*log 205e16 92|25r37 29r38 45r38 55r38 71r38 78r38 83r38
-169a17*configuration{string} 92|25r41
-174K25*main 178e25 92|29r42 45r42 55r42 71r42 78r42 83r42
-175p25*stream{65|341P9} 92|29r47 45r47 55r47 71r47 78r47 83r47
+6K9*constants 446e14 92|5w6 27r27 31r28 41r44 42r44 43r44 44r44 48r44 49r44
+. 50r44 51r44 55r44 56r44 57r44 58r44 62r28 75r78 76r78 77r78 78r78 79r78
+. 80r78 81r78 82r78 83r78 86r49 87r49 88r49 89r49 90r49 91r49 95r28 113r28
+. 120r28 125r28
+7K17*system 50e19 92|41r54 42r54 43r54 44r54 48r54 49r54 50r54 51r54 55r54
+. 56r54 57r54 58r54 75r88 76r88 77r88 78r88 79r88 80r88 81r88 82r88 83r88
+8K25*sensors 29e28 92|41r61 42r61 43r61 44r61 48r61 49r61 50r61 51r61 55r61
+. 56r61 57r61 58r61
+9K33*co 14e31 92|41r69 42r69 43r69 44r69
+10f33*initial_value{float} 92|41r72
+11f33*threshold{float} 92|42r72
+12f33*maximum_value{float} 92|43r72
+13b33*detects_above_threshold{boolean} 92|44r72
+16K33*o 21e30 92|48r69 49r69 50r69 51r69
+17f33*initial_value{float} 92|48r71
+18f33*threshold{float} 92|49r71
+19f33*maximum_value{float} 92|50r71
+20b33*detects_above_threshold{boolean} 92|51r71
+23K33*ch4 28e32 92|55r69 56r69 57r69 58r69
+24f33*initial_value{float} 92|55r73
+25f33*threshold{float} 92|56r73
+26f33*maximum_value{float} 92|57r73
+27b33*detects_above_threshold{boolean} 92|58r73
+31K25*controllers 49e32 92|75r95 76r95 77r95 78r95 79r95 80r95 81r95 82r95
+. 83r95
+32K33*co 36e31 92|75r107 76r107 77r107
+33i33*read_error_occurred_count_threshold{integer} 92|75r110
+34i33*period_in_ms{integer} 92|76r110
+35i33*dealine_in_ms{integer} 92|77r110
+38K33*o 42e30 92|78r107 79r107 80r107
+39i33*read_error_occurred_count_threshold{integer} 92|78r109
+40i33*period_in_ms{integer} 92|79r109
+41i33*dealine_in_ms{integer} 92|80r109
+44K33*ch4 48e32 92|81r107 82r107 83r107
+45i33*read_error_occurred_count_threshold{integer} 92|81r111
+46i33*period_in_ms{integer} 92|82r111
+47i33*dealine_in_ms{integer} 92|83r111
+384K17*log 445e16 92|27r37 31r38 62r38 86r59 87r59 88r59 89r59 90r59 91r59
+. 95r38 113r38 120r38 125r38
+385a17*configuration{string} 92|27r41
+390K25*main 394e25 92|31r42 62r42 95r42 113r42 120r42 125r42
+391p25*stream{65|341P9} 92|31r47 62r47 95r47 113r47 120r47 125r47
+402K25*mine_water_level_control_system 444e52 92|86r63 87r63 88r63 89r63
+. 90r63 91r63
+403K33*top 407e32 92|86r95
+404p33*stream{65|341P9} 92|86r99
+409K33*pump_station 415e41 92|87r95
+410K41*pump_controller 414e52 92|87r108
+411p41*stream{65|341P9} 92|87r124
+417K33*alarm_station 423e42 92|88r95
+418K41*alarm_controller 422e53 92|88r109
+419p41*stream{65|341P9} 92|88r126
+425K33*environment_station 443e48 92|89r95 90r95 91r95
+426K41*co_sensor_controller 430e57 92|89r115
+427p41*stream{65|341P9} 92|89r136
+432K41*o_sensor_controller 436e56 92|90r115
+433p41*stream{65|341P9} 92|90r135
+438K41*ch4_sensor_controller 442e58 92|91r115
+439p41*stream{65|341P9} 92|91r137
 X 20 devices.ads
-1K9*devices 38e12 92|4w6 14r24 15r24 18r28 34r22 35r22 38r26
-5W24*device_t 14e21 92|14r32 15r32 34r30 35r30
-16W24*sensor_t 36e21 92|18r36 38r34
+1K9*devices 39e12 92|4w6 14r24 15r24 18r29 19r29 20r29 36r22 37r22 40r26
+. 47r25 54r27
+5W24*device_t 14e21 92|14r32 15r32 36r30 37r30
+16W24*sensor_t 37e21 92|18r37 19r37 20r37 40r34 47r33 54r35
 X 21 gdk.ads
 46P9*Gdk_Visual<35|152P9>
 X 23 gdk-device.ads
@@ -246,16 +294,17 @@ X 41 glib-object.ads
 673V13*Convert{107|67M9} 39|58i21 40|49i21
 674V13*Convert{41P9} 39|59i21 40|50i21
 X 51 gnatcoll.ads
-24K9*GNATCOLL 27e13 92|1r6 24r9 28r9 44r9 54r9 70r9 77r9 82r9 87r9
+24K9*GNATCOLL 27e13 92|1r6 26r9 30r9 61r9 94r9 112r9 119r9 124r9 129r9
 X 65 gnatcoll-traces.ads
-251K18*Traces 927e20 92|1w15 24r18 28r18 44r18 54r18 70r18 77r18 82r18 87r18
-308U14*Parse_Config 92|24s25
-309a7 Config{string} 92|25r17
-331U14*Finalize 92|87s25
+251K18*Traces 927e20 92|1w15 26r18 30r18 61r18 94r18 112r18 119r18 124r18
+. 129r18
+308U14*Parse_Config 92|26s25
+309a7 Config{string} 92|27r17
+331U14*Finalize 92|129s25
 341P9*Trace_Handle(340R9)
-518U14*Trace 92|28s25 44s25 54s25 70s25 77s25 82s25
-519p7 Handle(340R9) 92|29r17 45r17 55r17 71r17 78r17 83r17
-520a7 Message{string} 92|30r17 46r17 56r17 72r17 79r17 84r17
+518U14*Trace 92|30s25 61s25 94s25 112s25 119s25 124s25
+519p7 Handle(340R9) 92|31r17 62r17 95r17 113r17 120r17 125r17
+520a7 Message{string} 92|32r17 63r17 96r17 114r17 121r17 126r17
 X 68 gtk.ads
 41K9*Gtk 79e8 92|2r6
 X 77 gtk-button.ads
@@ -268,20 +317,22 @@ X 84 gtk-widget.ads
 431V13*Convert{107|67M9} 39|58i21 40|49i21
 432V13*Convert{344P9} 39|59i21 40|50i21
 X 87 gui.ads
-6K9*gui 16e8 92|7w6 20r35 59r31
-7T19*gui_controller_t 14e29 92|20r39 59r35
-13Y23 finished 92|68s24
+6K9*gui 18e8 92|7w6 22r35 99r31
+7T19*gui_controller_t 16e29 92|22r39 99r35
+15Y23 finished 92|110s24
 X 92 main.adb
-12U11*main 12b11 88l5 88t9
-14p9 pump(20|5W24) 34m9 50r26 60r30
-15p9 alarm(20|5W24) 35m9 51r26 61r30
-18p9 co_sensor(20|16W24) 38m9 62r30
-20p9 gui_controller(87|7T19) 59m9 68r9
-21p9 top(93|4T19) 49m9 63r30 75r9
+12U11*main 12b11 130l5 130t9
+14p9 pump(20|5W24) 36m9 68r31 100r31
+15p9 alarm(20|5W24) 37m9 69r31 101r31
+18p9 co_sensor(20|16W24) 40m9 70r31 102r31
+19p9 o_sensor(20|16W24) 47m9 71r31 103r31
+20p9 ch4_sensor(20|16W24) 54m9 72r31 104r31
+22p9 gui_controller(87|7T19) 99m9 110r9
+23p9 top(93|5T19) 66m9 105r31 117r9
 X 93 mine_water_level_control_system.ads
-3K9*mine_water_level_control_system 92|6w6 21r35 49r20 93|12e36
-4T19*top_t 92|21r67 49r52 93|11e18
-10Y23 stop 92|75s13
+4K9*mine_water_level_control_system 92|6w6 23r35 66r20 93|36e36
+5T19*top_t 92|23r67 66r52 93|35e18
+34Y23 stop 92|117s13
 X 107 system.ads
 67M9*Address
 X 119 s-memory.ads

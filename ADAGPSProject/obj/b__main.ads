@@ -37,7 +37,7 @@ package ada_main is
    pragma Export (C, main, "main");
 
    type Version_32 is mod 2 ** 32;
-   u00001 : constant Version_32 := 16#00680d76#;
+   u00001 : constant Version_32 := 16#e8837e57#;
    pragma Export (C, u00001, "mainB");
    u00002 : constant Version_32 := 16#050ff2f0#;
    pragma Export (C, u00002, "system__standard_libraryB");
@@ -263,7 +263,7 @@ package ada_main is
    pragma Export (C, u00112, "system__finalization_rootS");
    u00113 : constant Version_32 := 16#cf3f1b90#;
    pragma Export (C, u00113, "system__file_control_blockS");
-   u00114 : constant Version_32 := 16#c0855bbb#;
+   u00114 : constant Version_32 := 16#1c2f2549#;
    pragma Export (C, u00114, "constantsS");
    u00115 : constant Version_32 := 16#693b2ab9#;
    pragma Export (C, u00115, "gdkS");
@@ -653,9 +653,9 @@ package ada_main is
    pragma Export (C, u00307, "gnatcoll__remote__dbB");
    u00308 : constant Version_32 := 16#329db92e#;
    pragma Export (C, u00308, "gnatcoll__remote__dbS");
-   u00309 : constant Version_32 := 16#c2e9be08#;
+   u00309 : constant Version_32 := 16#685baa36#;
    pragma Export (C, u00309, "devicesB");
-   u00310 : constant Version_32 := 16#ffcc2fbc#;
+   u00310 : constant Version_32 := 16#00c7a0b9#;
    pragma Export (C, u00310, "devicesS");
    u00311 : constant Version_32 := 16#f24a7f45#;
    pragma Export (C, u00311, "system__tasking__protected_objectsB");
@@ -1087,17 +1087,17 @@ package ada_main is
    pragma Export (C, u00524, "gtk__activatableB");
    u00525 : constant Version_32 := 16#da000517#;
    pragma Export (C, u00525, "gtk__activatableS");
-   u00526 : constant Version_32 := 16#732baac4#;
+   u00526 : constant Version_32 := 16#95724800#;
    pragma Export (C, u00526, "guiB");
-   u00527 : constant Version_32 := 16#f372c09a#;
+   u00527 : constant Version_32 := 16#1b01a16c#;
    pragma Export (C, u00527, "guiS");
    u00528 : constant Version_32 := 16#679d4f55#;
    pragma Export (C, u00528, "ada__task_identificationB");
    u00529 : constant Version_32 := 16#9ab4cdfa#;
    pragma Export (C, u00529, "ada__task_identificationS");
-   u00530 : constant Version_32 := 16#f146123b#;
+   u00530 : constant Version_32 := 16#d899198e#;
    pragma Export (C, u00530, "controllersB");
-   u00531 : constant Version_32 := 16#b43e0e18#;
+   u00531 : constant Version_32 := 16#cf18c6e2#;
    pragma Export (C, u00531, "controllersS");
    u00532 : constant Version_32 := 16#7724692c#;
    pragma Export (C, u00532, "system__tasking__stagesB");
@@ -1107,30 +1107,78 @@ package ada_main is
    pragma Export (C, u00534, "ada__real_timeB");
    u00535 : constant Version_32 := 16#69ea8064#;
    pragma Export (C, u00535, "ada__real_timeS");
-   u00536 : constant Version_32 := 16#11421018#;
-   pragma Export (C, u00536, "gtk__progress_barB");
-   u00537 : constant Version_32 := 16#91a7bbb0#;
-   pragma Export (C, u00537, "gtk__progress_barS");
-   u00538 : constant Version_32 := 16#e71bfee4#;
-   pragma Export (C, u00538, "gtk__gridB");
-   u00539 : constant Version_32 := 16#c16d877f#;
-   pragma Export (C, u00539, "gtk__gridS");
-   u00540 : constant Version_32 := 16#bdad985b#;
-   pragma Export (C, u00540, "gtk__mainB");
-   u00541 : constant Version_32 := 16#87ce5cdc#;
-   pragma Export (C, u00541, "gtk__mainS");
-   u00542 : constant Version_32 := 16#01c98b6e#;
-   pragma Export (C, u00542, "mine_water_level_control_systemB");
-   u00543 : constant Version_32 := 16#27e498c4#;
-   pragma Export (C, u00543, "mine_water_level_control_systemS");
-   u00544 : constant Version_32 := 16#f5f4e851#;
-   pragma Export (C, u00544, "alarm_stationB");
-   u00545 : constant Version_32 := 16#0eb5595e#;
-   pragma Export (C, u00545, "alarm_stationS");
-   u00546 : constant Version_32 := 16#40e02c4f#;
-   pragma Export (C, u00546, "pump_stationB");
-   u00547 : constant Version_32 := 16#6293896b#;
-   pragma Export (C, u00547, "pump_stationS");
+   u00536 : constant Version_32 := 16#f2bc6252#;
+   pragma Export (C, u00536, "gtk__color_buttonB");
+   u00537 : constant Version_32 := 16#47736da1#;
+   pragma Export (C, u00537, "gtk__color_buttonS");
+   u00538 : constant Version_32 := 16#19544478#;
+   pragma Export (C, u00538, "gtk__color_chooserB");
+   u00539 : constant Version_32 := 16#e592bcce#;
+   pragma Export (C, u00539, "gtk__color_chooserS");
+   u00540 : constant Version_32 := 16#9d4e6c12#;
+   pragma Export (C, u00540, "gtk__labelB");
+   u00541 : constant Version_32 := 16#3e1b604e#;
+   pragma Export (C, u00541, "gtk__labelS");
+   u00542 : constant Version_32 := 16#4f972627#;
+   pragma Export (C, u00542, "gtk__menuB");
+   u00543 : constant Version_32 := 16#59f67735#;
+   pragma Export (C, u00543, "gtk__menuS");
+   u00544 : constant Version_32 := 16#9b0b4687#;
+   pragma Export (C, u00544, "glib__menu_modelB");
+   u00545 : constant Version_32 := 16#2107ccef#;
+   pragma Export (C, u00545, "glib__menu_modelS");
+   u00546 : constant Version_32 := 16#cccaa8b0#;
+   pragma Export (C, u00546, "gtk__menu_itemB");
+   u00547 : constant Version_32 := 16#d405b24c#;
+   pragma Export (C, u00547, "gtk__menu_itemS");
+   u00548 : constant Version_32 := 16#13ab89f3#;
+   pragma Export (C, u00548, "gtk__menu_shellB");
+   u00549 : constant Version_32 := 16#f91c3cce#;
+   pragma Export (C, u00549, "gtk__menu_shellS");
+   u00550 : constant Version_32 := 16#11421018#;
+   pragma Export (C, u00550, "gtk__progress_barB");
+   u00551 : constant Version_32 := 16#91a7bbb0#;
+   pragma Export (C, u00551, "gtk__progress_barS");
+   u00552 : constant Version_32 := 16#e71bfee4#;
+   pragma Export (C, u00552, "gtk__gridB");
+   u00553 : constant Version_32 := 16#c16d877f#;
+   pragma Export (C, u00553, "gtk__gridS");
+   u00554 : constant Version_32 := 16#bdad985b#;
+   pragma Export (C, u00554, "gtk__mainB");
+   u00555 : constant Version_32 := 16#87ce5cdc#;
+   pragma Export (C, u00555, "gtk__mainS");
+   u00556 : constant Version_32 := 16#3805b304#;
+   pragma Export (C, u00556, "mine_water_level_control_systemB");
+   u00557 : constant Version_32 := 16#ff8fc1d0#;
+   pragma Export (C, u00557, "mine_water_level_control_systemS");
+   u00558 : constant Version_32 := 16#c606f672#;
+   pragma Export (C, u00558, "alarm_stationB");
+   u00559 : constant Version_32 := 16#0c116cdb#;
+   pragma Export (C, u00559, "alarm_stationS");
+   u00560 : constant Version_32 := 16#811aba6d#;
+   pragma Export (C, u00560, "environment_stationB");
+   u00561 : constant Version_32 := 16#50acd04d#;
+   pragma Export (C, u00561, "environment_stationS");
+   u00562 : constant Version_32 := 16#357666d8#;
+   pragma Export (C, u00562, "ada__calendar__delaysB");
+   u00563 : constant Version_32 := 16#a808adf5#;
+   pragma Export (C, u00563, "ada__calendar__delaysS");
+   u00564 : constant Version_32 := 16#08516a8c#;
+   pragma Export (C, u00564, "ada__real_time__delaysB");
+   u00565 : constant Version_32 := 16#0a5c26d7#;
+   pragma Export (C, u00565, "ada__real_time__delaysS");
+   u00566 : constant Version_32 := 16#b89a4f4a#;
+   pragma Export (C, u00566, "system__tasking__async_delaysB");
+   u00567 : constant Version_32 := 16#5faa1c14#;
+   pragma Export (C, u00567, "system__tasking__async_delaysS");
+   u00568 : constant Version_32 := 16#0110e3c6#;
+   pragma Export (C, u00568, "system__interrupt_management__operationsB");
+   u00569 : constant Version_32 := 16#19b909c9#;
+   pragma Export (C, u00569, "system__interrupt_management__operationsS");
+   u00570 : constant Version_32 := 16#349a9855#;
+   pragma Export (C, u00570, "pump_stationB");
+   u00571 : constant Version_32 := 16#47409d34#;
+   pragma Export (C, u00571, "pump_stationS");
 
    --  BEGIN ELABORATION ORDER
    --  ada%s
@@ -1357,12 +1405,16 @@ package ada_main is
    --  system.task_primitives.operations%b
    --  ada.calendar%s
    --  ada.calendar%b
+   --  ada.calendar.delays%s
+   --  ada.calendar.delays%b
    --  ada.calendar.time_zones%s
    --  ada.calendar.time_zones%b
    --  ada.calendar.formatting%s
    --  ada.calendar.formatting%b
    --  ada.real_time%s
    --  ada.real_time%b
+   --  ada.real_time.delays%s
+   --  ada.real_time.delays%b
    --  ada.text_io%s
    --  ada.text_io%b
    --  gnat.calendar%s
@@ -1383,6 +1435,8 @@ package ada_main is
    --  gnat.debug_pools%s
    --  gnat.debug_pools%b
    --  system.file_attributes%s
+   --  system.interrupt_management.operations%s
+   --  system.interrupt_management.operations%b
    --  system.pool_global%s
    --  system.pool_global%b
    --  gnat.expect%s
@@ -1421,6 +1475,8 @@ package ada_main is
    --  system.tasking.rendezvous%b
    --  system.tasking.stages%s
    --  system.tasking.stages%b
+   --  system.tasking.async_delays%s
+   --  system.tasking.async_delays%b
    --  gnatcoll%s
    --  gnatcoll.storage_pools%s
    --  gtkada%s
@@ -1659,22 +1715,38 @@ package ada_main is
    --  gdk.frame_clock%b
    --  gdk.display%b
    --  gtk.arguments%b
+   --  glib.menu_model%s
+   --  glib.menu_model%b
    --  gtk.action%s
    --  gtk.action%b
    --  gtk.activatable%s
    --  gtk.activatable%b
    --  gtk.button%s
    --  gtk.button%b
+   --  gtk.color_chooser%s
+   --  gtk.color_chooser%b
+   --  gtk.color_button%s
+   --  gtk.color_button%b
    --  gtk.grid%s
    --  gtk.grid%b
    --  gtk.main%s
    --  gtk.main%b
+   --  gtk.menu_item%s
+   --  gtk.menu_item%b
+   --  gtk.menu_shell%s
+   --  gtk.menu_shell%b
+   --  gtk.menu%s
+   --  gtk.menu%b
+   --  gtk.label%s
+   --  gtk.label%b
    --  gtk.progress_bar%s
    --  gtk.progress_bar%b
    --  controllers%s
    --  controllers%b
    --  pump_station%s
    --  pump_station%b
+   --  environment_station%s
+   --  environment_station%b
    --  mine_water_level_control_system%s
    --  mine_water_level_control_system%b
    --  gui%s

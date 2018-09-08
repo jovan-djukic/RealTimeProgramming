@@ -1,6 +1,5 @@
 with GNATCOLL.Traces;
 
-with constants;
 with devices;
 
 package body pump_station is
@@ -16,7 +15,7 @@ package body pump_station is
 		pump_state : devices.device_state_t;
 	begin
 		GNATCOLL.Traces.Trace (
-			Handle  => constants.log.mine_water_level_control_system.pump_controller.stream,
+			Handle  => stream,
 			Message => "Starting"
 		);
 
@@ -26,7 +25,7 @@ package body pump_station is
 
 				when PUMP_TURNED_OFF => begin
 					GNATCOLL.Traces.Trace (
-						Handle  => constants.log.mine_water_level_control_system.pump_controller.stream,
+						Handle  => stream,
 						Message => "Turning off pump"
 					);
 
@@ -37,7 +36,7 @@ package body pump_station is
 					select
 						accept turn_on do
 							GNATCOLL.Traces.Trace (
-								Handle  => constants.log.mine_water_level_control_system.pump_controller.stream,
+								Handle  => stream,
 								Message => "Turn on received"
 							);
 
@@ -50,8 +49,8 @@ package body pump_station is
 					or
 						accept threshold_breached do
 							GNATCOLL.Traces.Trace (
-								Handle  => constants.log.mine_water_level_control_system.pump_controller.stream,
-								Message => "Threashold breached received"
+								Handle  => stream,
+								Message => "Threshold breached received"
 							);
 
 							pump_state := pump.get_state;
@@ -71,7 +70,7 @@ package body pump_station is
 
 				when PUMP_TURNED_ON => begin
 					GNATCOLL.Traces.Trace (
-						Handle  => constants.log.mine_water_level_control_system.pump_controller.stream,
+						Handle  => stream,
 						Message => "Turning on pump"
 					);
 
@@ -86,7 +85,7 @@ package body pump_station is
 					or
 						accept turn_off do
 							GNATCOLL.Traces.Trace (
-								Handle  => constants.log.mine_water_level_control_system.pump_controller.stream,
+								Handle  => stream,
 								Message => "Turn off received"
 							);
 
@@ -95,7 +94,7 @@ package body pump_station is
 					or
 						accept threshold_breached do
 							GNATCOLL.Traces.Trace (
-								Handle  => constants.log.mine_water_level_control_system.pump_controller.stream,
+								Handle  => stream,
 								Message => "Threashold breached received"
 							);
 
@@ -116,7 +115,7 @@ package body pump_station is
 				
 				when METHANE_THREASHOLD_BREACHED => begin
 					GNATCOLL.Traces.Trace (
-						Handle  => constants.log.mine_water_level_control_system.pump_controller.stream,
+						Handle  => stream,
 						Message => "Turning off pump"
 					);
 
@@ -127,7 +126,7 @@ package body pump_station is
 					select
 						accept turn_on do 
 							GNATCOLL.Traces.Trace (
-								Handle  => constants.log.mine_water_level_control_system.pump_controller.stream,
+								Handle  => stream,
 								Message => "Turning on pump received while methane threshold breached"
 							);
 
@@ -136,7 +135,7 @@ package body pump_station is
 					or
 						accept turn_off do
 							GNATCOLL.Traces.Trace (
-								Handle  => constants.log.mine_water_level_control_system.pump_controller.stream,
+								Handle  => stream,
 								Message => "Turning off pump received while methane threshold breached"
 							);
 
@@ -149,7 +148,7 @@ package body pump_station is
 					or 
 						accept state_normal do
 							GNATCOLL.Traces.Trace (
-								Handle  => constants.log.mine_water_level_control_system.pump_controller.stream,
+								Handle  => stream,
 								Message => "State normal received"
 							);
 	
@@ -170,7 +169,7 @@ package body pump_station is
 		end loop running_loop;
 
 		GNATCOLL.Traces.Trace (
-			Handle  => constants.log.mine_water_level_control_system.pump_controller.stream,
+			Handle  => stream,
 			Message => "Finished"
 		);
 	end;
