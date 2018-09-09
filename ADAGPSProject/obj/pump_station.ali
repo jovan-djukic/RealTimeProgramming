@@ -1,48 +1,68 @@
 V "GNAT Lib v2018"
 A -gnatA
-A -gnat12
 A -mtune=generic
 A -march=x86-64
 P ZX
 
 RN
+RV NO_DELAY
+RV NO_DIRECT_BOOLEAN_OPERATORS
 RV NO_EXCEPTION_HANDLERS
 RV NO_EXCEPTIONS
+RV NO_FIXED_POINT
+RV NO_IMPLICIT_CONDITIONALS
+RV NO_PROTECTED_TYPES
+RV NO_RELATIVE_DELAY
 RV NO_SELECT_STATEMENTS
 RV NO_STANDARD_STORAGE_POOLS
 RV NO_TASKING
+RV STATIC_PRIORITIES
+RV NO_DYNAMIC_SIZED_OBJECTS
 RV NO_IMPLEMENTATION_PRAGMAS
 RV NO_ELABORATION_CODE
 RV SPARK_05
-RV MAX_SELECT_ALTERNATIVES=5
-RV MAX_TASK_ENTRIES=5
+RV MAX_SELECT_ALTERNATIVES=1
+RV MAX_TASK_ENTRIES=1
+RV MAX_ASYNCHRONOUS_SELECT_NESTING=1+
 RV MAX_ENTRY_QUEUE_LENGTH=1+
 
-U pump_station%b	pump_station.adb	349a9855 OO PK IL
+U pump_station%b	pump_station.adb	71d694da OO PK IL
+W ada%s			ada.ads			ada.ali
+Z ada.calendar.delays%s	a-caldel.adb		a-caldel.ali
+W ada.real_time%s	a-reatim.adb		a-reatim.ali
+Z ada.real_time.delays%s  a-retide.adb		a-retide.ali
 Z ada.tags%s		a-tags.adb		a-tags.ali
 W devices%s		devices.adb		devices.ali
 W gnatcoll%s		gnatcoll.ads		gnatcoll.ali
 W gnatcoll.traces%s	gnatcoll-traces.adb	gnatcoll-traces.ali
 Z interfaces%s		interfac.ads		interfac.ali
 Z system%s		system.ads		system.ali
+Z system.concat_4%s	s-conca4.adb		s-conca4.ali
+Z system.img_int%s	s-imgint.adb		s-imgint.ali
 Z system.soft_links%s	s-soflin.adb		s-soflin.ali
 Z system.tasking%s	s-taskin.adb		s-taskin.ali
+Z system.tasking.async_delays%s  s-taasde.adb	s-taasde.ali
+Z system.tasking.protected_objects%s  s-taprob.adb  s-taprob.ali
 Z system.tasking.rendezvous%s  s-tasren.adb	s-tasren.ali
 Z system.tasking.stages%s  s-tassta.adb		s-tassta.ali
 
-U pump_station%s	pump_station.ads	47409d34 EE NE OO PK IL
+U pump_station%s	pump_station.ads	5cc5b7c1 EE NE OO PK IL
 Z ada.real_time%s	a-reatim.adb		a-reatim.ali
+Z ada.tags%s		a-tags.adb		a-tags.ali
+W alarm_station%s	alarm_station.adb	alarm_station.ali
 W devices%s		devices.adb		devices.ali
 W gnatcoll%s		gnatcoll.ads		gnatcoll.ali
 W gnatcoll.traces%s	gnatcoll-traces.adb	gnatcoll-traces.ali
-Z system%s		system.ads		system.ali
+W system%s		system.ads		system.ali
 Z system.parameters%s	s-parame.adb		s-parame.ali
 Z system.task_info%s	s-tasinf.adb		s-tasinf.ali
 Z system.tasking%s	s-taskin.adb		s-taskin.ali
+Z system.tasking.protected_objects%s  s-taprob.adb  s-taprob.ali
 Z system.tasking.stages%s  s-tassta.adb		s-tassta.ali
 
 D ada.ads		20180524051736 76789da1 ada%s
 D a-calend.ads		20180524051738 372815c8 ada.calendar%s
+D a-caldel.ads		20180524051736 9f20b83d ada.calendar.delays%s
 D a-charac.ads		20180524051736 2d3ec45b ada.characters%s
 D a-chahan.ads		20180524051736 1601a50f ada.characters.handling%s
 D a-contai.ads		20180524051736 61e5e089 ada.containers%s
@@ -50,13 +70,15 @@ D a-except.ads		20180524051736 291912d5 ada.exceptions%s
 D a-finali.ads		20180524051738 bf4f806b ada.finalization%s
 D a-ioexce.ads		20180524051736 e4a01f64 ada.io_exceptions%s
 D a-reatim.ads		20180524051738 0240fc73 ada.real_time%s
+D a-retide.ads		20180524051738 081cdaa4 ada.real_time.delays%s
 D a-stream.ads		20180524051736 119b8fb3 ada.streams%s
 D a-string.ads		20180524051736 90ac6797 ada.strings%s
 D a-tags.ads		20180524051738 491b781d ada.tags%s
 D a-textio.ads		20180524051738 881db35a ada.text_io%s
 D a-unccon.ads		20180524051738 0e9b276f ada.unchecked_conversion%s
 D a-uncdea.ads		20180524051736 eff36322 ada.unchecked_deallocation%s
-D devices.ads		20180908224536 00c7a0b9 devices%s
+D alarm_station.ads	20180909132712 b2ea8fb6 alarm_station%s
+D devices.ads		20180909212602 d7649a5d devices%s
 D gnat.ads		20180524051738 fd2ad2f1 gnat%s
 D g-os_lib.ads		20180524051736 0db74523 gnat.os_lib%s
 D g-souinf.ads		20180524051738 291df751 gnat.source_info%s
@@ -82,13 +104,14 @@ D interfac.ads		20180524051736 5ab55268 interfaces%s
 D i-c.ads		20180524051736 5421119b interfaces.c%s
 D i-cstrin.ads		20180524051736 341d0ddf interfaces.c.strings%s
 D i-cstrea.ads		20180524051736 e53d8b8e interfaces.c_streams%s
-D pump_station.ads	20180908192532 0b402cdb pump_station%s
-D pump_station.adb	20180908192528 73da0561 pump_station%b
+D pump_station.ads	20180909221746 472c3244 pump_station%s
+D pump_station.adb	20180909225934 af19d1e6 pump_station%b
 D system.ads		20180524051738 32a08138 system%s
 D s-atacco.ads		20180524051738 4c36d12f system.address_to_access_conversions%s
 D s-atocou.ads		20180524051738 b45c2d8d system.atomic_counters%s
 D s-carun8.ads		20180524051738 a903718d system.compare_array_unsigned_8%s
 D s-conca3.ads		20180524051738 0b705ca5 system.concat_3%s
+D s-conca4.ads		20180524051738 7e642b20 system.concat_4%s
 D s-conca5.ads		20180524051736 875e432e system.concat_5%s
 D s-crtl.ads		20180524051736 0ebbdb71 system.crtl%s
 D s-exctab.ads		20180524051738 54135002 system.exception_table%s
@@ -120,6 +143,7 @@ D s-tasinf.ads		20180524051738 601f6b72 system.task_info%s
 D s-taspri.ads		20180524051738 6c1d93d4 system.task_primitives%s
 D s-taprop.ads		20180524051738 1dd2e1b6 system.task_primitives.operations%s
 D s-taskin.ads		20180524051738 1d8c1ccb system.tasking%s
+D s-taasde.ads		20180524051738 422600df system.tasking.async_delays%s
 D s-taprob.ads		20180524051738 acd6094d system.tasking.protected_objects%s
 D s-tpoben.ads		20180524051738 60ad3dae system.tasking.protected_objects.entries%s
 D s-tasren.ads		20180524051738 a67a9949 system.tasking.rendezvous%s
@@ -128,59 +152,114 @@ D s-traent.ads		20180524051736 005bf670 system.traceback_entries%s
 D s-unstyp.ads		20180524051736 34867c83 system.unsigned_types%s
 D s-wchcon.ads		20180524051738 1b7d22d2 system.wch_con%s
 D s-win32.ads		20180524051736 b7f96285 system.win32%s
-X 4 a-chahan.ads
-66V13*To_Lower{character} 32|283i21
-67V13*To_Upper{character} 32|285i21
-X 16 devices.ads
-1K9*devices 39e12 42|2w6 6r33 43|3w6 15r30 33r62 78r62 123r62 133r71 142r71
-. 155r62 155r88
-3E14*device_state_t 3e43 43|15r38
-3n34*ON{3E14} 43|78r70 133r79 155r96
-3n38*OFF{3E14} 43|33r70 123r70 142r79
-5W24*device_t 14e21 42|6r41
-6V26 get_state{3E14} 43|56s76 101s76
-7U27 set_state 43|32s46 77s46 122s46
-8e25 new_state{3E14} 43|33r49 78r49 123r49
-X 21 gnatcoll.ads
-24K9*GNATCOLL 27e13 42|1r6 7r26 43|1r6 17r17 27r41 38r57 51r57 72r41 87r57
-. 96r57 117r41 128r57 137r57 150r57 171r17
-X 35 gnatcoll-traces.ads
-251K18*Traces 927e20 42|1w15 7r35 43|1w15 17r26 27r50 38r66 51r66 72r50 87r66
-. 96r66 117r50 128r66 137r66 150r66 171r26
-341P9*Trace_Handle(340R9) 42|7r42
-518U14*Trace 43|17s33 27s57 38s73 51s73 72s57 87s73 96s73 117s57 128s73 137s73
-. 150s73 171s33
-519p7 Handle(340R9) 43|18r25 28r49 39r65 52r65 73r49 88r65 97r65 118r49 129r65
-. 138r65 151r65 172r25
-520a7 Message{string} 43|19r25 29r49 40r65 53r65 74r49 89r65 98r65 119r49
-. 130r65 139r65 152r65 173r25
-X 42 pump_station.ads
-4K9*pump_station 15l5 15e17 43|5b14 176l5 176t17
-5T19*pump_controller_t 6d17 7d17 14l13 14e30 43|13b19 175t12
-7p17 stream{35|341P9} 43|18r36 28r60 39r76 52r76 73r60 88r76 97r76 118r60
-. 129r76 138r76 151r76 172r36
-9Y23 turn_on 43|37b56 44l53 44t60 82b56 84l53 84t60 127b56 134l53 134t60
-10Y23 turn_off 43|46b56 48l53 48t61 86b56 93l53 93t61 136b56 143l53 143t61
-11Y23 threshold_breached 43|50b56 58l53 58t71 95b56 103l53 103t71 145b56
-. 147l53 147t71
-12Y23 state_normal 43|60b56 62l53 62t65 105b56 107l53 107t65 149b56 160l53
-. 160t65
-13Y23 stop 43|64b56 66l53 66t57 109b56 111l53 111t57 162b56 164l53 164t57
-X 43 pump_station.adb
-7E14 pump_controller_state_t 11e10 14r30
-8n17 PUMP_TURNED_OFF{7E14} 22r26 26r38 92r66 158r74
-9n17 PUMP_TURNED_ON{7E14} 43r66 71r38 156r74
-10n17 METHANE_THREASHOLD_BREACHED{7E14} 57r71 102r71 116r38
-14e17 state{7E14} 22m17 24r30 43m57 57m57 92m57 102m57 156m65 158m65
-15e17 pump_state{16|3E14} 56m57 101m57 133m57 142m57 155r76
-23l17 running_loop 67r54 112r54 165r54 169l26 169e38
-X 44 system.ads
+X 1 ada.ads
+16K9*Ada 20e8 46|1r6 128r35 128r62 132r37 132r64 136r38 136r78 174r47 249r44
+X 5 a-chahan.ads
+66V13*To_Lower{character} 35|283i21
+67V13*To_Upper{character} 35|285i21
+X 10 a-reatim.ads
+39K13*Real_Time 185e18 46|1w10 128r39 128r66 132r41 132r68 136r42 136r82
+. 174r51 249r48
+49O9*Time<duration> 46|136r52
+54O9*Time_Span<duration> 46|128r49 132r51
+61V13*Clock{49O9} 46|136s92
+65V14*"+"{49O9} 46|249s59
+65o19 Left{49O9} 46|250r33
+65o37 Right{54O9} 46|251r33
+83V14*"+"{54O9} 46|249r59
+110V13*To_Duration{duration} 46|174s61
+110o27 TS{54O9} 46|175r49
+119V13*Milliseconds{54O9} 46|128s76 132s78
+119i27 MS{integer} 46|129r25 133r25
+X 18 alarm_station.ads
+5K9*alarm_station 28e18 45|6w6 45r48
+11W24*alarm_controller_t 27e31 45|45r62
+17U27 turn_on 46|215s90
+18p25 stream{38|341P9} 46|216r81
+21U27 turn_off 46|237s82
+22p25 stream{38|341P9} 46|238r73
+X 19 devices.ads
+1K9*devices 78e12 45|5w6 17r35 39r30 39r57 44r48 46r48 46|4w6 22r62 39r55
+. 64r62 74r55 91r46 104r30 106r42 110r54 115r54 137r38 142r46 144r42 158r32
+3E14*device_state_t 3e43 45|39r38 46|137r46
+3n34*ON{3E14} 46|22r70 39r63 106r50 110r62 144r50
+3n38*OFF{3E14} 45|39r65 46|64r70 74r63 91r54 115r62
+5W24*device_t 14e21 45|17r43 44r56
+6V26 get_state{3E14} 46|89s44 137s83 143s47 159s47 205s100
+7U27 set_state 46|21s46 63s46 90s30 109s38 114s38
+8e25 new_state{3E14} 46|22r49 64r49 91r33 110r41 115r41
+64W24*water_flow_sensor_t 76e32 45|46r56
+66V26 is_water_flowing{boolean} 46|147s70
+X 24 gnatcoll.ads
+24K9*GNATCOLL 27e13 45|3r6 22r37 26r37 30r37 34r37 50r41 46|3r6 9r37 15r41
+. 27r41 34r41 45r37 50r41 57r41 69r41 80r37 83r25 96r37 99r25 178r41 186r65
+. 198r65 210r73 222r73 232r65 257r17
+X 38 gnatcoll-traces.ads
+251K18*Traces 927e20 45|3w15 22r46 26r46 30r46 34r46 50r50 46|3w15 9r46 15r50
+. 27r50 34r50 45r46 50r50 57r50 69r50 80r46 83r34 96r46 99r34 178r50 186r74
+. 198r74 210r82 222r82 232r74 257r26
+341P9*Trace_Handle(340R9) 45|22r53 26r53 30r53 34r53 50r57 46|9r53 45r53
+. 80r53 96r53
+518U14*Trace 46|15s57 27s57 34s57 50s57 57s57 69s57 83s41 99s41 178s57 186s81
+. 198s81 210s89 222s89 232s81 257s33
+519p7 Handle(340R9) 46|16r49 28r49 35r49 51r49 58r49 70r49 84r33 100r33 179r49
+. 187r73 199r73 211r81 223r81 233r73 258r25
+520a7 Message{string} 46|17r49 29r49 36r49 52r49 59r49 71r49 85r33 101r33
+. 180r49 188r73 200r73 212r81 224r81 234r73 259r25
+X 45 pump_station.ads
+8K9*pump_station 58l5 58e17 46|6b14 263l5 263t17
+9E14*pump_controller_state_t 13e10 38r30
+10n17*PUMP_TURNED_OFF{9E14} 38r57 46|13r38 49r38 62r50 113r42
+11n17*PUMP_TURNED_ON{9E14} 46|20r50 26r38 56r38 108r42
+12n17*METHANE_THREASHOLD_BREACHED{9E14} 46|33r38 68r38 88r39
+15W24*pump_controller_t 16d17 17d17 38E17 40l13 40e30 46|7b24 119l13 119t30
+16i17 priority{47|101I12} 19r35
+21U27 turn_on 22>25 46|8b27 42l21 42t28
+22p25 stream{38|341P9} 46|9b25 16r60 28r60 35r60
+25U27 turn_off 26>25 46|44b27 77l21 77t29
+26p25 stream{38|341P9} 46|45b25 51r60 58r60 70r60
+29U27 threshold_breached 30>25 46|79b27 93l21 93t39
+30p25 stream{38|341P9} 46|80b25 84r44
+33U27 state_normal 34>25 46|95b27 118l21 118t33
+34p25 stream{38|341P9} 46|96b25 100r44
+38e17 state{9E14} 46|12r32 20r41 48r32 62r41 88r25 108r33 113r33
+39e17 pump_state{19|3E14} 46|39r41 74r41 89r25 105r42
+42T19*water_flow_sensor_controller_t 43d17 44d17 45d17 46d17 47d17 48d17
+. 49d17 50d17 55l13 55e43 46|127b19 261l13 261t43
+43i17 priority{47|101I12} 52r35
+47i17 period_in_ms{integer} 46|129r31
+48i17 deadline_in_ms{integer} 46|133r31
+49i17 number_of_activations{integer} 46|209r91 224r166
+50p17 stream{38|341P9} 46|179r60 187r84 199r84 211r92 216r91 223r92 233r84
+. 238r83 258r36
+54Y23 stop 46|168b40 170l37 170t41
+X 46 pump_station.adb
+121E14 water_flow_sensor_controller_state_t 125e10 138r38
+122n17 STATE_NORMAL{121E14} 138r78 184r54 204r87
+123n17 CHECKING{121E14} 192r87 196r54 242r87
+124n17 ALARM{121E14} 220r95 230r54
+128o17 period{10|54O9} 251r42
+132o17 deadline{10|54O9} 175r55
+136o17 next_activation{10|49O9} 249m25 250r42 253r37
+137e17 pump_state{19|3E14} 160r42 205m65
+138e17 state{121E14} 183r48 192m65 204m65 220m73 242m65
+139i17 current_activation{integer} 191m65 203m65 207m65 207r87 209r70 219m73
+. 224r131 241m65
+141V26 expected_water_flow{boolean} 141b26 154t20 185s98 197s62 231s62
+142b25 pump_on{boolean} 149r34 149r89
+147b25 water_flowing{boolean} 149r57 149r113
+156V26 is_pump_state_same{boolean} 156b26 162l21 162t39 185s64
+166l17 running_loop 171r38 255l26 255e38
+X 47 system.ads
+37K9*System 45|1w6 16r28 43r41 47|200e11
 67M9*Address
-X 56 s-memory.ads
-53V13*Alloc{44|67M9} 103i<c,__gnat_malloc>22
+100I12*Any_Priority{integer}
+101I12*Priority{100I12} 45|16r35 43r48
+X 60 s-memory.ads
+53V13*Alloc{47|67M9} 103i<c,__gnat_malloc>22
 68U14*Free 104i<c,__gnat_free>22
-76V13*Realloc{44|67M9} 105i<c,__gnat_realloc>22
-X 66 s-stausa.ads
+76V13*Realloc{47|67M9} 105i<c,__gnat_realloc>22
+X 70 s-stausa.ads
 203U14*Initialize 204i<c,__gnat_stack_usage_initialize>22
 268U14*Output_Results 272i<c,__gnat_stack_usage_output_results>22
 

@@ -4,14 +4,13 @@ with Gtk.Widget;
 with Gtk.Grid;
 with Gtk.Button;
 with Gtk.Progress_Bar;
-
 with Gtk.Color_Button;
 with Gtk.Label;
+with Gtk.Enums;
 
 with Gdk.RGBA;
 with Glib;
 with GNATCOLL.Traces;
-
 
 with Ada.Task_Identification;
 
@@ -19,14 +18,11 @@ with controllers;
 with constants;
 with devices;
 
--- for testing
-with Ada.Text_IO;
-
 package body gui is
 	-- device and sensor state widgets types and attach procedures
 
 	-- attach device state button
-	procedure attach_device_state_button (
+	procedure attach_state_button (
 		grid   : in Gtk.Grid.Gtk_Grid;
 		left   : in Glib.Gint;
 		top    : in Glib.Gint;
@@ -54,7 +50,7 @@ package body gui is
 			Width  => width,
 			Height => height
 		);
-	end attach_device_state_button;
+	end attach_state_button;
 
 	type device_state_widgets_t is
 	record
@@ -72,7 +68,7 @@ package body gui is
 		device_state_widgets : out device_state_widgets_t
 	) is
 	begin
-		attach_device_state_button (
+		attach_state_button (
 			grid   => grid,
 			left   => button_left,
 			top    => button_top,
@@ -122,6 +118,8 @@ package body gui is
 		top          : in Glib.Gint;
 		width        : in Glib.Gint;
 		height       : in Glib.Gint;
+		orientation  : in Gtk.Enums.Gtk_Orientation;
+		inverted     : Boolean;
 		progress_bar : out Gtk.Progress_Bar.Gtk_Progress_Bar
 	) is
 	begin
@@ -129,6 +127,16 @@ package body gui is
 		Gtk.Progress_Bar.Gtk_New (
 			Progress_Bar => progress_bar
 		);		
+
+		-- set orientation
+		progress_bar.Set_Orientation (
+			Orientation => orientation
+		);
+
+		-- set inverted
+		progress_bar.Set_Inverted (
+			Inverted => inverted 
+		);
 
 		-- attach to grid
 		grid.Attach (
@@ -222,7 +230,9 @@ package body gui is
 			top          => progress_bar_top,
 			width        => progress_bar_width,
 			height       => progress_bar_height,
-			progress_bar => gas_sensor_state_widgets.progress_bar 
+			orientation  => Gtk.Enums.Orientation_Horizontal,
+			inverted     => False,
+			progress_bar => gas_sensor_state_widgets.progress_bar
 		);
 
 		attach_gas_sensor_label (
@@ -308,9 +318,74 @@ package body gui is
 		);
 	end attach_gas_sensor_state_widgets_list;
 
+	type water_level_sensors_state_widgets_t is
+	record
+		progress_bar : Gtk.Progress_Bar.Gtk_Progress_Bar;
+		label        : Gtk.Label.Gtk_Label;
+		color_button : Gtk.Color_Button.Gtk_Color_Button;
+	end record;
+
+	procedure attach_water_level_sensors_state_widgets (
+		grid                              : in Gtk.Grid.Gtk_Grid;
+		water_level_sensors_state_widgets : out water_level_sensors_state_widgets_t
+	) is
+	begin
+		attach_gas_sensor_progress_bar (
+			grid         => grid,
+			left         => constants.gui.state_widgets.sensor_state_widgets.water_level_sensors.progress_bar.left,
+			top          => constants.gui.state_widgets.sensor_state_widgets.water_level_sensors.progress_bar.top,
+			width        => constants.gui.state_widgets.sensor_state_widgets.water_level_sensors.progress_bar.width,
+			height       => constants.gui.state_widgets.sensor_state_widgets.water_level_sensors.progress_bar.height,
+			orientation  => Gtk.Enums.Orientation_Vertical,
+			inverted     => True,
+			progress_bar => water_level_sensors_state_widgets.progress_bar
+		);
+
+		attach_gas_sensor_label (
+			grid   => grid,
+			left   => constants.gui.state_widgets.sensor_state_widgets.water_level_sensors.label.left,
+			top    => constants.gui.state_widgets.sensor_state_widgets.water_level_sensors.label.top,
+			width  => constants.gui.state_widgets.sensor_state_widgets.water_level_sensors.label.width,
+			height => constants.gui.state_widgets.sensor_state_widgets.water_level_sensors.label.height,
+			label  => water_level_sensors_state_widgets.label
+		);
+
+		attach_gas_sensor_color_button (
+			grid         => grid,
+			left         => constants.gui.state_widgets.sensor_state_widgets.water_level_sensors.color_button.left,
+			top          => constants.gui.state_widgets.sensor_state_widgets.water_level_sensors.color_button.top,
+			width        => constants.gui.state_widgets.sensor_state_widgets.water_level_sensors.color_button.width,
+			height       => constants.gui.state_widgets.sensor_state_widgets.water_level_sensors.color_button.height,
+			color_button => water_level_sensors_state_widgets.color_button
+		);
+	end attach_water_level_sensors_state_widgets;
+	
+	type water_flow_sensor_state_widgets_t is
+	record
+		button : Gtk.Button.Gtk_Button;
+	end record;
+
+	procedure attach_water_flow_sensor_state_widgets (
+		grid                            : in Gtk.Grid.Gtk_Grid;
+		water_flow_sensor_state_widgets : out water_flow_sensor_state_widgets_t
+	) is
+	begin
+		attach_state_button (
+			grid   => grid,
+			left   => constants.gui.state_widgets.sensor_state_widgets.water_flow_sensor.left, 
+			top    => constants.gui.state_widgets.sensor_state_widgets.water_flow_sensor.top,
+			width  => constants.gui.state_widgets.sensor_state_widgets.water_flow_sensor.width,
+			height => constants.gui.state_widgets.sensor_state_widgets.water_flow_sensor.height,
+			label  => constants.gui.state_widgets.sensor_state_widgets.water_flow_sensor.label,
+			button => water_flow_sensor_state_widgets.button
+		);
+	end attach_water_flow_sensor_state_widgets;
+
 	type sensor_state_widgets_list_t is
 	record
-		gas_sensors : gas_sensor_state_widgets_list_t;
+		gas_sensors         : gas_sensor_state_widgets_list_t;
+		water_level_sensors : water_level_sensors_state_widgets_t;
+		water_flow_sensor   : water_flow_sensor_state_widgets_t;
 	end record;
 
 	procedure attach_sensor_state_widgets_list (
@@ -321,6 +396,16 @@ package body gui is
 		attach_gas_sensor_state_widgets_list (
 			grid                          => grid,
 			gas_sensor_state_widgets_list => sensor_state_widgets_list.gas_sensors
+		);
+
+		attach_water_level_sensors_state_widgets (
+			grid                              => grid,
+			water_level_sensors_state_widgets => sensor_state_widgets_list.water_level_sensors
+		);
+
+		attach_water_flow_sensor_state_widgets (
+			grid                            => grid,
+			water_flow_sensor_state_widgets => sensor_state_widgets_list.water_flow_sensor
 		);
 	end attach_sensor_state_widgets_list;
 
@@ -612,9 +697,83 @@ package body gui is
 		);
 	end attach_gas_sensor_buttons_list;
 
+	type water_level_sensors_buttons_t is
+	record
+		increase : Gtk.Button.Gtk_Button;
+		decrease : Gtk.Button.Gtk_Button;
+	end record;
+
+	procedure attach_water_level_sensors_buttons (
+		grid                             : in Gtk.Grid.Gtk_Grid;
+		increase_button_clicked_callback : in Gtk.Button.Cb_Gtk_Button_Void;
+		decrease_button_clicked_callback : in Gtk.Button.Cb_Gtk_Button_Void;
+		water_level_sensors_buttons      : out water_level_sensors_buttons_t
+	) is
+	begin
+		attach_user_button (
+			grid                => grid, 
+			left                => constants.gui.user_buttons.sensors.water_level_sensors.increase.left,
+			top                 => constants.gui.user_buttons.sensors.water_level_sensors.increase.top,
+			width               => constants.gui.user_buttons.sensors.water_level_sensors.increase.width,
+			height              => constants.gui.user_buttons.sensors.water_level_sensors.increase.height,
+			label               => constants.gui.user_buttons.sensors.water_level_sensors.increase.label,
+			on_clicked_callback => increase_button_clicked_callback, 
+			button              => water_level_sensors_buttons.increase
+		);
+
+		attach_user_button (
+			grid                => grid, 
+			left                => constants.gui.user_buttons.sensors.water_level_sensors.decrease.left,
+			top                 => constants.gui.user_buttons.sensors.water_level_sensors.decrease.top,
+			width               => constants.gui.user_buttons.sensors.water_level_sensors.decrease.width,
+			height              => constants.gui.user_buttons.sensors.water_level_sensors.decrease.height,
+			label               => constants.gui.user_buttons.sensors.water_level_sensors.decrease.label,
+			on_clicked_callback => decrease_button_clicked_callback, 
+			button              => water_level_sensors_buttons.decrease
+		);
+	end attach_water_level_sensors_buttons;
+
+	type water_flow_sensor_buttons_t is
+	record
+		turn_on  : Gtk.Button.Gtk_Button;
+		turn_off : Gtk.Button.Gtk_Button;
+	end record;
+
+	procedure attach_water_flow_sensor_buttons (
+		grid                             : in Gtk.Grid.Gtk_Grid;
+		turn_on_button_clicked_callback  : in Gtk.Button.Cb_Gtk_Button_Void;
+		turn_off_button_clicked_callback : in Gtk.Button.Cb_Gtk_Button_Void;
+		water_flow_sensor_buttons        : out water_flow_sensor_buttons_t
+	) is
+	begin
+		attach_user_button (
+			grid                => grid, 
+			left                => constants.gui.user_buttons.sensors.water_flow_sensor.turn_on.left,
+			top                 => constants.gui.user_buttons.sensors.water_flow_sensor.turn_on.top,
+			width               => constants.gui.user_buttons.sensors.water_flow_sensor.turn_on.width,
+			height              => constants.gui.user_buttons.sensors.water_flow_sensor.turn_on.height,
+			label               => constants.gui.user_buttons.sensors.water_flow_sensor.turn_on.label,
+			on_clicked_callback => turn_on_button_clicked_callback, 
+			button              => water_flow_sensor_buttons.turn_on
+		);
+
+		attach_user_button (
+			grid                => grid, 
+			left                => constants.gui.user_buttons.sensors.water_flow_sensor.turn_off.left,
+			top                 => constants.gui.user_buttons.sensors.water_flow_sensor.turn_off.top,
+			width               => constants.gui.user_buttons.sensors.water_flow_sensor.turn_off.width,
+			height              => constants.gui.user_buttons.sensors.water_flow_sensor.turn_off.height,
+			label               => constants.gui.user_buttons.sensors.water_flow_sensor.turn_off.label,
+			on_clicked_callback => turn_off_button_clicked_callback, 
+			button              => water_flow_sensor_buttons.turn_off
+		);
+	end attach_water_flow_sensor_buttons;
+
 	type sensor_buttons_list_t is
 	record
-		gas_sensors : gas_sensor_buttons_list_t;
+		gas_sensors         : gas_sensor_buttons_list_t;
+		water_level_sensors : water_level_sensors_buttons_t;
+		water_flow_sensor   : water_flow_sensor_buttons_t;
 	end record;
 
 	procedure attach_sensor_buttons_list (
@@ -628,6 +787,10 @@ package body gui is
 		ch4_increase_button_clicked_callback         : in Gtk.Button.Cb_Gtk_Button_Void;
 		ch4_decrease_button_clicked_callback         : in Gtk.Button.Cb_Gtk_Button_Void;
 		ch4_error_in_reading_button_clicked_callback : in Gtk.Button.Cb_Gtk_Button_Void;
+		water_level_increase_button_clicked_callback : in Gtk.Button.Cb_Gtk_Button_Void;
+		water_level_decrease_button_clicked_callback : in Gtk.Button.Cb_Gtk_Button_Void;
+		water_flow_turn_on_button_clicked_callback   : in Gtk.Button.Cb_Gtk_Button_Void;
+		water_flow_turn_off_button_clicked_callback  : in Gtk.Button.Cb_Gtk_Button_Void;
 		sensor_buttons_list                          : out sensor_buttons_list_t
 	) is
 	begin
@@ -643,6 +806,20 @@ package body gui is
 			ch4_decrease_button_clicked_callback         => ch4_decrease_button_clicked_callback,
 			ch4_error_in_reading_button_clicked_callback => ch4_error_in_reading_button_clicked_callback,
 			gas_sensor_buttons_list                      => sensor_buttons_list.gas_sensors
+		);
+
+		attach_water_level_sensors_buttons (
+			grid                             => grid,
+			increase_button_clicked_callback => water_level_increase_button_clicked_callback,
+			decrease_button_clicked_callback => water_level_decrease_button_clicked_callback,
+			water_level_sensors_buttons      => sensor_buttons_list.water_level_sensors
+		);
+
+		attach_water_flow_sensor_buttons (
+			grid                             => grid,
+			turn_on_button_clicked_callback  => water_flow_turn_on_button_clicked_callback,
+			turn_off_button_clicked_callback => water_flow_turn_off_button_clicked_callback,
+			water_flow_sensor_buttons        => sensor_buttons_list.water_flow_sensor
 		);
 	end attach_sensor_buttons_list;
 
@@ -665,6 +842,10 @@ package body gui is
 		ch4_increase_button_clicked_callback         : in Gtk.Button.Cb_Gtk_Button_Void;
 		ch4_decrease_button_clicked_callback         : in Gtk.Button.Cb_Gtk_Button_Void;
 		ch4_error_in_reading_button_clicked_callback : in Gtk.Button.Cb_Gtk_Button_Void;
+		water_level_increase_button_clicked_callback : in Gtk.Button.Cb_Gtk_Button_Void;
+		water_level_decrease_button_clicked_callback : in Gtk.Button.Cb_Gtk_Button_Void;
+		water_flow_turn_on_button_clicked_callback   : in Gtk.Button.Cb_Gtk_Button_Void;
+		water_flow_turn_off_button_clicked_callback  : in Gtk.Button.Cb_Gtk_Button_Void;
 		user_buttons                                 : out user_buttons_t
 	) is
 	begin
@@ -686,6 +867,10 @@ package body gui is
 			ch4_increase_button_clicked_callback         => ch4_increase_button_clicked_callback,
 			ch4_decrease_button_clicked_callback         => ch4_decrease_button_clicked_callback,
 			ch4_error_in_reading_button_clicked_callback => ch4_error_in_reading_button_clicked_callback,
+			water_level_increase_button_clicked_callback => water_level_increase_button_clicked_callback,
+			water_level_decrease_button_clicked_callback => water_level_decrease_button_clicked_callback,
+			water_flow_turn_on_button_clicked_callback   => water_flow_turn_on_button_clicked_callback,
+			water_flow_turn_off_button_clicked_callback  => water_flow_turn_off_button_clicked_callback,
 			sensor_buttons_list                          => user_buttons.sensors
 		);
 	end attach_user_buttons;
@@ -745,15 +930,19 @@ package body gui is
 
 		user_buttons  : user_buttons_t;
 		state_widgets : state_widgets_t;
+
+		water_tank : access controllers.water_tank_t;
 		
 		-- device state controllers
 		pump_controller  : access controllers.device_state_controller_t;
 		alarm_controller : access controllers.device_state_controller_t;
 
 		-- sensor state controllers
-		co_sensor_controller  : access controllers.gas_sensor_state_controller_t;
-		o_sensor_controller   : access controllers.gas_sensor_state_controller_t;
-		ch4_sensor_controller : access controllers.gas_sensor_state_controller_t;
+		co_sensor_controller           : access controllers.gas_sensor_state_controller_t;
+		o_sensor_controller            : access controllers.gas_sensor_state_controller_t;
+		ch4_sensor_controller          : access controllers.gas_sensor_state_controller_t;
+		water_level_sensors_controller : access controllers.water_level_sensors_state_controller_t;
+		water_flow_sensor_controller   : access controllers.water_flow_sensor_state_controller_t;
 
 		-- callbacks for window
 		procedure quit ( self : access Gtk.Widget.Gtk_Widget_Record'class ) is
@@ -906,6 +1095,66 @@ package body gui is
 			end if;
 		end ch4_button_clicked;
 
+		procedure water_level_button_clicked (
+			self : access Gtk.Button.Gtk_Button_Record'Class
+		) is
+			value : Float;
+		begin
+
+			if ( self = user_buttons.sensors.water_level_sensors.increase ) then
+				GNATCOLL.Traces.Trace (
+					Handle  => constants.log.gui.stream,
+					Message => "H20 increase button clicked"
+				);
+				
+				value := water_tank.get_level;
+				value := value + constants.gui.user_buttons.sensors.water_level_sensors.increase.delta_percentage * water_tank.get_maximum_level;
+				water_tank.set_level (
+					new_level => value
+				);
+			elsif ( self = user_buttons.sensors.water_level_sensors.decrease ) then
+				GNATCOLL.Traces.Trace (
+					Handle  => constants.log.gui.stream,
+					Message => "H20 decrease button clicked"
+				);
+
+				value := water_tank.get_level;
+				value := value - constants.gui.user_buttons.sensors.water_level_sensors.decrease.delta_percentage * water_tank.get_maximum_level;
+				water_tank.set_level (
+					new_level => value
+				);
+			end if;
+
+			water_level_sensors.update (
+				water_level => value
+			);
+		end water_level_button_clicked;
+
+		procedure water_flow_button_clicked (
+			self : access Gtk.Button.Gtk_Button_Record'Class
+		) is
+		begin
+			if ( self = user_buttons.sensors.water_flow_sensor.turn_on ) then
+				GNATCOLL.Traces.Trace (
+					Handle  => constants.log.gui.stream,
+					Message => "Water flow turn on button clicked"
+				);
+
+				water_flow_sensor.set_water_flowing (
+					new_water_flowing => True
+				);
+			else
+				GNATCOLL.Traces.Trace (
+					Handle  => constants.log.gui.stream,
+					Message => "Water flow turn off button clicked"
+				);
+
+				water_flow_sensor.set_water_flowing (
+					new_water_flowing => False 
+				);
+			end if;
+		end water_flow_button_clicked;
+
 	begin
 		GNATCOLL.Traces.Trace (
 			Handle  => constants.log.gui.stream,
@@ -960,6 +1209,10 @@ package body gui is
 			ch4_increase_button_clicked_callback         => ch4_button_clicked'Unrestricted_Access,
 			ch4_decrease_button_clicked_callback         => ch4_button_clicked'Unrestricted_Access,
 			ch4_error_in_reading_button_clicked_callback => ch4_button_clicked'Unrestricted_Access,
+			water_level_increase_button_clicked_callback => water_level_button_clicked'Unrestricted_Access,
+			water_level_decrease_button_clicked_callback => water_level_button_clicked'Unrestricted_Access,
+			water_flow_turn_on_button_clicked_callback   => water_flow_button_clicked'Unrestricted_Access,
+			water_flow_turn_off_button_clicked_callback  => water_flow_button_clicked'Unrestricted_Access,
 			user_buttons                                 => user_buttons
 		);
 
@@ -1030,6 +1283,30 @@ package body gui is
 			read_error_occurred_color => constants.gui.state_widget_controllers.sensors.gas_sensors.ch4.read_error_occurred_color'Access
 		);
 
+		water_tank := new controllers.water_tank_t (
+			initital_level => constants.mine_water_level_control_system.sensors.water_level_sensors.initial_water_level'Access, 
+			maximum_level  => constants.mine_water_level_control_system.sensors.water_level_sensors.maximum_water_level'Access
+		);
+
+		water_level_sensors_controller := new controllers.water_level_sensors_state_controller_t (
+			water_level_sensors         	=> water_level_sensors,
+			water_tank                      => water_tank,
+			progress_bar                    => state_widgets.sensors.water_level_sensors.progress_bar,
+			label                           => state_widgets.sensors.water_level_sensors.label,
+			color_button                    => state_widgets.sensors.water_level_sensors.color_button,
+			state_normal_color              => constants.gui.state_widget_controllers.sensors.water_level_sensors.state_normal_color'Access,
+			low_water_level_breached_color  => constants.gui.state_widget_controllers.sensors.water_level_sensors.low_water_level_breached_color'Access,
+			high_water_level_breached_color => constants.gui.state_widget_controllers.sensors.water_level_sensors.high_water_level_breached_color'Access
+		);
+
+		water_flow_sensor_controller := new controllers.water_flow_sensor_state_controller_t (
+			water_flow_sensor => water_flow_sensor,
+			button            => state_widgets.sensors.water_flow_sensor.button,
+			flowing_color     => constants.gui.state_widget_controllers.sensors.water_flow_sensor.flowing_color'Access,
+			not_flowing_color => constants.gui.state_widget_controllers.sensors.water_flow_sensor.not_flowing_color'Access
+		);
+
+
 		-- start main loop
 		GNATCOLL.Traces.Trace (
 			Handle  => constants.log.gui.stream,
@@ -1063,12 +1340,22 @@ package body gui is
 			T => ch4_sensor_controller'Identity
 		);
 
+		Ada.Task_Identification.Abort_Task (
+			T => water_level_sensors_controller'Identity
+		);
+
+		Ada.Task_Identification.Abort_Task (
+			T => water_flow_sensor_controller'Identity
+		);
+
 		while ( 
 			( not pump_controller'Terminated ) or
 			( not alarm_controller'Terminated ) or
 			( not co_sensor_controller'Terminated ) or
 			( not o_sensor_controller'Terminated ) or
-			( not ch4_sensor_controller'Terminated ) 
+			( not ch4_sensor_controller'Terminated ) or
+			( not water_level_sensors_controller'Terminated ) or
+			( not water_flow_sensor_controller'Terminated ) 
 		) loop 
 			null;
 		end loop;

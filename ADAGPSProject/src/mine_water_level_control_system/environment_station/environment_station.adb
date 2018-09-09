@@ -53,7 +53,10 @@ package body environment_station is
 								Message => "Read error count threshold breached, turning on alarm"
 							);
 
-							alarm_controller.turn_on;
+							alarm_controller.turn_on (
+								stream => stream
+							);
+
 							alarm_turned_on := True;
 						end if;
 					end if;	
@@ -67,7 +70,9 @@ package body environment_station is
 								Message => "Threshold breached, turning on alarm"
 							);
 
-							alarm_controller.turn_on;
+							alarm_controller.turn_on (
+								stream => stream
+							);
 							alarm_turned_on := True;
 						end if;
 					else
@@ -77,7 +82,10 @@ package body environment_station is
 								Message => "State normal, turning off alarm"
 							);
 
-							alarm_controller.turn_off;
+							alarm_controller.turn_off (
+								stream => stream
+							);
+
 							alarm_turned_on := False;
 						end if;
 					end if;
@@ -151,7 +159,10 @@ package body environment_station is
 								Message => "Read error count threshold breached, turning on alarm"
 							);
 
-							alarm_controller.turn_on;
+							alarm_controller.turn_on (
+								stream => stream
+							);
+
 							alarm_turned_on := True;
 						end if;
 					end if;	
@@ -165,7 +176,9 @@ package body environment_station is
 								Message => "Threshold breached, turning on alarm"
 							);
 
-							alarm_controller.turn_on;
+							alarm_controller.turn_on (
+								stream => stream
+							);
 							alarm_turned_on := True;
 						end if;
 						
@@ -174,7 +187,11 @@ package body environment_station is
 								Handle  => stream,
 								Message => "Threshold breached, signalizing pump"
 							);
-							pump_controller.threshold_breached;
+
+							pump_controller.threshold_breached (
+								stream => stream
+							);
+
 							pump_threashold_breached := True;
 						end if;
 					else
@@ -184,7 +201,10 @@ package body environment_station is
 								Message => "State normal, turning off alarm"
 							);
 
-							alarm_controller.turn_off;
+							alarm_controller.turn_off (
+								stream => stream
+							);
+
 							alarm_turned_on := False;
 						end if;
 
@@ -194,7 +214,10 @@ package body environment_station is
 								Message => "State normal, signalizing pump"
 							);
 
-							pump_controller.state_normal;
+							pump_controller.state_normal (
+								stream => stream
+							);
+
 							pump_threashold_breached := False;
 						end if;
 					end if;
@@ -218,4 +241,44 @@ package body environment_station is
 		);
 
 	end ch4_sensor_controller_t;
+
+	task body water_level_sensors_controller_t is
+		deadline : constant Ada.Real_Time.Time_Span := Ada.Real_Time.Milliseconds ( 
+			MS => dealine_in_ms 
+		);
+	begin
+		running_loop : loop
+			water_level_sensors.wait_for_value_change;
+			select 
+				delay Ada.Real_Time.To_Duration (
+					TS => deadline
+				);
+
+				GNATCOLL.Traces.Trace (
+					Handle  => stream,
+					Message => "Deadline breached"
+				);
+			then abort
+				if ( water_level_sensors.is_low_water_level_threshold_breached = True ) then
+					GNATCOLL.Traces.Trace (
+						Handle  => stream,
+						Message => "Low water level threshold breached"
+					);
+
+					pump_controller.turn_off (
+						stream => stream
+					);
+				elsif ( water_level_sensors.is_high_water_level_threshold_breached = True ) then 
+					GNATCOLL.Traces.Trace (
+						Handle  => stream,
+						Message => "High water level threshold breached"
+					);
+
+					pump_controller.turn_on (
+						stream => stream
+					);
+				end if;
+			end select;
+		end loop running_loop;
+	end water_level_sensors_controller_t;
 end environment_station;

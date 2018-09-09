@@ -4,97 +4,70 @@ with constants;
 with devices;
 
 package body alarm_station is
-	type alarm_state_t is ( 
-		ALARM_TURNED_ON,
-		ALARM_TURNED_OFF
-	);
 
-	task body alarm_controller_t  is
-		number_of_activations : Integer := 0;
-		state                 : alarm_state_t;
-	begin
-		GNATCOLL.Traces.Trace (
-			Handle  => stream,
-			Message => "Starting"
-		);
-
-		state := ALARM_TURNED_OFF;
-		
-		running_loop : loop
+	protected body alarm_controller_t  is
+		procedure turn_on (
+			stream : in GNATCOLL.Traces.Trace_Handle
+		) is 
+		begin
 			case ( state ) is
-				when ALARM_TURNED_OFF => 
-					alarm.set_state (
-						new_state => devices.OFF
-					);
-					
-					select 
-						accept turn_on do 
-							null;
-						end turn_on;
-						GNATCOLL.Traces.Trace (
-							Handle  => stream,
-							Message => "Initial turn on received, turning on alarm"
-						);
-
-						state := ALARM_TURNED_ON;
-						number_of_activations := number_of_activations + 1;
-					or
-						accept turn_off do
-							null;
-						end turn_off;
-					or
-						accept stop do
-							null;
-						end stop;
-						exit running_loop;
-					end select;
-
-				when ALARM_TURNED_ON  => 
+				when ALARM_TURNED_OFF => begin
 					alarm.set_state (
 						new_state => devices.ON
 					);
+					
+					GNATCOLL.Traces.Trace (
+						Handle  => stream,
+						Message => "Initial alarm turn on, turning on alarm"
+					);
 
-					select 
-						accept turn_on do
-							null;
-						end turn_on;
+					state                 := ALARM_TURNED_ON;
+					number_of_activations := number_of_activations + 1;
+				end;
+
+				when ALARM_TURNED_ON  => begin
+					GNATCOLL.Traces.Trace (
+						Handle  => stream,
+						Message => "Following alarm turn on"
+					);
+
+					number_of_activations := number_of_activations + 1;
+				end;
+			end case;	
+		end turn_on;	
+
+		procedure turn_off (
+			stream : in GNATCOLL.Traces.Trace_Handle
+		) is 
+		begin
+			case ( state ) is
+				when ALARM_TURNED_OFF => begin
+					null;
+				end;
+
+				when ALARM_TURNED_ON  => begin
+					number_of_activations := number_of_activations - 1;
+
+					if ( number_of_activations = 0 ) then
 						GNATCOLL.Traces.Trace (
 							Handle  => stream,
-							Message => "Following turn on received"
+							Message => "Last alarm turn off, turning off alarm"
 						);
 
-						number_of_activations := number_of_activations + 1;
-					or
-						accept turn_off do
-							null;
-						end turn_off;
+						alarm.set_state (
+							new_state => devices.OFF
+						);
 
-						number_of_activations := number_of_activations - 1;
-						if ( number_of_activations = 0 ) then
-							GNATCOLL.Traces.Trace (
-								Handle  => stream,
-								Message => "Last turn off received turning off alarm"
-							);
-
-							state := ALARM_TURNED_OFF;
-						else
-							GNATCOLL.Traces.Trace (
-								Handle  => stream,
-								Message => "Turn off received"
-							);
-						end if;
-					or
-						accept stop do
-							null;
-						end stop;
-						exit running_loop;
-					end select;
+						state := ALARM_TURNED_OFF;
+					else
+						GNATCOLL.Traces.Trace (
+							Handle  => stream,
+							Message => "Alarm turn off"
+						);
+					end if;
+				end;
 			end case;	
-		end loop running_loop;
+		end turn_off;	
 
-		GNATCOLL.Traces.Trace (
-			Handle  => constants.log.mine_water_level_control_system.alarm_station.alarm_controller.stream,
-			Message => "Finished"
-		);
 	end alarm_controller_t;	
 end alarm_station;

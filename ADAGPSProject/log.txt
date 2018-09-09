@@ -1,221 +1,221 @@
 [MAIN] Main starting
 [MAIN] Instantiating system
-[MINE WATER LEVEL CONTROL SYSTEM] Starting
+[TOP] Starting
 [MAIN] Instantiating GUI
-[PUMP CONTROLLER] Starting
-[PUMP CONTROLLER] Turning off pump
 [GUI] Initializing GTK
-[ALARM CONTROLLER] Starting
 [GUI] Initializing window
 [GUI] Initializing grid
 [GUI] Attaching user buttons
 [GUI] Attaching state widgets
 [GUI] Starting device controllers
 [GUI] Starting main loop
-[GUI] CO increase button clicked
-[GUI] CO increase button clicked
-[GUI] CO increase button clicked
-[GUI] CO increase button clicked
-[GUI] CO increase button clicked
-[GUI] CO increase button clicked
-[GUI] CO increase button clicked
-[GUI] CO increase button clicked
-[GUI] CO increase button clicked
-[GUI] CO increase button clicked
-[GUI] CO increase button clicked
-[CO SENSOR CONTROLLER] Threshold breached, turning on alarm
-[ALARM CONTROLLER] Initial turn on received, turning on alarm
-[GUI] CO error in reading button clicked
-[CH4 SENSOR CONTROLLER] Sensor read error occurred
-[CH4 SENSOR CONTROLLER] Sensor read error occurred
-[CH4 SENSOR CONTROLLER] Read error count threshold breached, turning on alarm
-[ALARM CONTROLLER] Following turn on received
-[CH4 SENSOR CONTROLLER] Sensor read error occurred
-[CH4 SENSOR CONTROLLER] Sensor read error occurred
-[CH4 SENSOR CONTROLLER] Sensor read error occurred
-[CH4 SENSOR CONTROLLER] Sensor read error occurred
-[CH4 SENSOR CONTROLLER] Sensor read error occurred
-[CH4 SENSOR CONTROLLER] Sensor read error occurred
-[GUI] CO decrease button clicked
-[CH4 SENSOR CONTROLLER] Sensor read error occurred
-[CO SENSOR CONTROLLER] State normal, turning off alarm
-[ALARM CONTROLLER] Turn off received
-[CH4 SENSOR CONTROLLER] Sensor read error occurred
-[CH4 SENSOR CONTROLLER] Sensor read error occurred
-[CH4 SENSOR CONTROLLER] Sensor read error occurred
-[CH4 SENSOR CONTROLLER] Sensor read error occurred
-[CH4 SENSOR CONTROLLER] Sensor read error occurred
-[CH4 SENSOR CONTROLLER] Sensor read error occurred
-[GUI] CO error in reading button clicked
-[CH4 SENSOR CONTROLLER] State normal, turning off alarm
-[ALARM CONTROLLER] Last turn off received turning off alarm
-[GUI] CO error in reading button clicked
-[O SENSOR CONTROLLER] Sensor read error occurred
-[O SENSOR CONTROLLER] Sensor read error occurred
-[O SENSOR CONTROLLER] Read error count threshold breached, turning on alarm
-[ALARM CONTROLLER] Initial turn on received, turning on alarm
-[O SENSOR CONTROLLER] Sensor read error occurred
-[O SENSOR CONTROLLER] Sensor read error occurred
-[GUI] CO error in reading button clicked
-[CH4 SENSOR CONTROLLER] Sensor read error occurred
-[O SENSOR CONTROLLER] Sensor read error occurred
-[O SENSOR CONTROLLER] Sensor read error occurred
-[CH4 SENSOR CONTROLLER] Sensor read error occurred
-[CH4 SENSOR CONTROLLER] Read error count threshold breached, turning on alarm
-[ALARM CONTROLLER] Following turn on received
-[O SENSOR CONTROLLER] Sensor read error occurred
-[CH4 SENSOR CONTROLLER] Sensor read error occurred
-[O SENSOR CONTROLLER] Sensor read error occurred
-[CH4 SENSOR CONTROLLER] Sensor read error occurred
-[CH4 SENSOR CONTROLLER] Sensor read error occurred
-[O SENSOR CONTROLLER] Sensor read error occurred
-[O SENSOR CONTROLLER] Sensor read error occurred
-[CH4 SENSOR CONTROLLER] Sensor read error occurred
-[GUI] CO increase button clicked
-[CO SENSOR CONTROLLER] Threshold breached, turning on alarm
-[O SENSOR CONTROLLER] Sensor read error occurred
-[ALARM CONTROLLER] Following turn on received
-[CH4 SENSOR CONTROLLER] Sensor read error occurred
-[O SENSOR CONTROLLER] Sensor read error occurred
-[CH4 SENSOR CONTROLLER] Sensor read error occurred
-[CH4 SENSOR CONTROLLER] Sensor read error occurred
-[O SENSOR CONTROLLER] Sensor read error occurred
-[O SENSOR CONTROLLER] Sensor read error occurred
-[CH4 SENSOR CONTROLLER] Sensor read error occurred
-[O SENSOR CONTROLLER] Sensor read error occurred
-[CH4 SENSOR CONTROLLER] Sensor read error occurred
-[CH4 SENSOR CONTROLLER] Sensor read error occurred
-[O SENSOR CONTROLLER] Sensor read error occurred
-[GUI] CO error in reading button clicked
-[O SENSOR CONTROLLER] State normal, turning off alarm
-[ALARM CONTROLLER] Turn off received
-[CH4 SENSOR CONTROLLER] Sensor read error occurred
-[CH4 SENSOR CONTROLLER] Sensor read error occurred
-[CH4 SENSOR CONTROLLER] Sensor read error occurred
-[CH4 SENSOR CONTROLLER] Sensor read error occurred
-[CH4 SENSOR CONTROLLER] Sensor read error occurred
-[CH4 SENSOR CONTROLLER] Sensor read error occurred
-[CH4 SENSOR CONTROLLER] Sensor read error occurred
-[GUI] CO error in reading button clicked
-[CO SENSOR CONTROLLER] Sensor read error occurred
-[CH4 SENSOR CONTROLLER] Sensor read error occurred
-[CO SENSOR CONTROLLER] Sensor read error occurred
-[CH4 SENSOR CONTROLLER] Sensor read error occurred
-[CH4 SENSOR CONTROLLER] Sensor read error occurred
-[CO SENSOR CONTROLLER] Sensor read error occurred
-[CO SENSOR CONTROLLER] Sensor read error occurred
-[CH4 SENSOR CONTROLLER] Sensor read error occurred
-[GUI] CO decrease button clicked
-[CH4 SENSOR CONTROLLER] Sensor read error occurred
-[CO SENSOR CONTROLLER] Sensor read error occurred
-[CO SENSOR CONTROLLER] Sensor read error occurred
-[CH4 SENSOR CONTROLLER] Sensor read error occurred
-[CH4 SENSOR CONTROLLER] Sensor read error occurred
-[CO SENSOR CONTROLLER] Sensor read error occurred
-[CO SENSOR CONTROLLER] Sensor read error occurred
-[CH4 SENSOR CONTROLLER] Sensor read error occurred
-[CH4 SENSOR CONTROLLER] Sensor read error occurred
-[CO SENSOR CONTROLLER] Sensor read error occurred
-[CO SENSOR CONTROLLER] Sensor read error occurred
-[CH4 SENSOR CONTROLLER] Sensor read error occurred
-[GUI] CO error in reading button clicked
-[CO SENSOR CONTROLLER] Sensor read error occurred
-[CH4 SENSOR CONTROLLER] State normal, turning off alarm
-[ALARM CONTROLLER] Turn off received
-[CO SENSOR CONTROLLER] Sensor read error occurred
-[CO SENSOR CONTROLLER] Sensor read error occurred
-[CO SENSOR CONTROLLER] Sensor read error occurred
-[CO SENSOR CONTROLLER] Sensor read error occurred
-[GUI] CO error in reading button clicked
-[CO SENSOR CONTROLLER] State normal, turning off alarm
-[ALARM CONTROLLER] Last turn off received turning off alarm
 [GUI] Pump turn on button clicked
-[PUMP CONTROLLER] Turn on received
-[PUMP CONTROLLER] Turning on pump
-[GUI] CO increase button clicked
-[GUI] CO increase button clicked
-[GUI] CO increase button clicked
-[GUI] CO increase button clicked
-[GUI] CO increase button clicked
-[GUI] CO increase button clicked
-[GUI] CO increase button clicked
-[GUI] CO increase button clicked
-[GUI] CO error in reading button clicked
-[CH4 SENSOR CONTROLLER] Sensor read error occurred
-[CH4 SENSOR CONTROLLER] Sensor read error occurred
-[CH4 SENSOR CONTROLLER] Read error count threshold breached, turning on alarm
-[ALARM CONTROLLER] Initial turn on received, turning on alarm
-[CH4 SENSOR CONTROLLER] Sensor read error occurred
-[CH4 SENSOR CONTROLLER] Sensor read error occurred
-[CH4 SENSOR CONTROLLER] Sensor read error occurred
-[GUI] CO increase button clicked
-[CH4 SENSOR CONTROLLER] Sensor read error occurred
-[CH4 SENSOR CONTROLLER] Sensor read error occurred
-[GUI] CO increase button clicked
-[CH4 SENSOR CONTROLLER] Sensor read error occurred
-[CH4 SENSOR CONTROLLER] Sensor read error occurred
-[CH4 SENSOR CONTROLLER] Sensor read error occurred
-[GUI] CO increase button clicked
-[CH4 SENSOR CONTROLLER] Sensor read error occurred
-[CH4 SENSOR CONTROLLER] Sensor read error occurred
-[CH4 SENSOR CONTROLLER] Sensor read error occurred
-[CH4 SENSOR CONTROLLER] Sensor read error occurred
-[CH4 SENSOR CONTROLLER] Sensor read error occurred
-[CH4 SENSOR CONTROLLER] Sensor read error occurred
-[GUI] CO increase button clicked
-[CH4 SENSOR CONTROLLER] Sensor read error occurred
-[CH4 SENSOR CONTROLLER] Sensor read error occurred
-[CH4 SENSOR CONTROLLER] Sensor read error occurred
-[CH4 SENSOR CONTROLLER] Sensor read error occurred
-[CH4 SENSOR CONTROLLER] Sensor read error occurred
-[CH4 SENSOR CONTROLLER] Sensor read error occurred
-[GUI] CO error in reading button clicked
-[CH4 SENSOR CONTROLLER] Threshold breached, signalizing pump
-[PUMP CONTROLLER] Threashold breached received
-[PUMP CONTROLLER] Turning off pump
-[GUI] CO error in reading button clicked
-[CH4 SENSOR CONTROLLER] Sensor read error occurred
-[CH4 SENSOR CONTROLLER] Sensor read error occurred
-[CH4 SENSOR CONTROLLER] Sensor read error occurred
+[TOP] Turning on pump
+[WATER FLOW CONTROLLER] Pump state changed or water flow sensor broken
+[WATER FLOW CONTROLLER] Check failed, current activation:  1 /  6
+[WATER FLOW CONTROLLER] Check failed, current activation:  2 /  6
+[WATER FLOW CONTROLLER] Check failed, current activation:  3 /  6
+[WATER FLOW CONTROLLER] Check failed, current activation:  4 /  6
+[WATER FLOW CONTROLLER] Check failed, current activation:  5 /  6
+[WATER FLOW CONTROLLER] Water flow sensor deadline passed, turning on alarm
+[WATER FLOW CONTROLLER] Initial alarm turn on, turning on alarm
+[GUI] Water flow turn on button clicked
+[WATER FLOW CONTROLLER] Pump is in previous state or water flow sensor fixed, turning off alarm
+[WATER FLOW CONTROLLER] Last alarm turn off, turning off alarm
+[WATER FLOW CONTROLLER] Pump is in previous state or water flow sensor fixed
+[GUI] Water flow turn off button clicked
+[WATER FLOW CONTROLLER] Pump state changed or water flow sensor broken
+[WATER FLOW CONTROLLER] Check failed, current activation:  1 /  6
+[WATER FLOW CONTROLLER] Check failed, current activation:  2 /  6
+[WATER FLOW CONTROLLER] Check failed, current activation:  3 /  6
+[WATER FLOW CONTROLLER] Check failed, current activation:  4 /  6
+[WATER FLOW CONTROLLER] Check failed, current activation:  5 /  6
+[WATER FLOW CONTROLLER] Water flow sensor deadline passed, turning on alarm
+[WATER FLOW CONTROLLER] Initial alarm turn on, turning on alarm
+[GUI] Water flow turn on button clicked
+[WATER FLOW CONTROLLER] Pump is in previous state or water flow sensor fixed, turning off alarm
+[WATER FLOW CONTROLLER] Last alarm turn off, turning off alarm
+[WATER FLOW CONTROLLER] Pump is in previous state or water flow sensor fixed
+[GUI] Water flow turn off button clicked
+[WATER FLOW CONTROLLER] Pump state changed or water flow sensor broken
+[WATER FLOW CONTROLLER] Check failed, current activation:  1 /  6
+[WATER FLOW CONTROLLER] Check failed, current activation:  2 /  6
+[WATER FLOW CONTROLLER] Check failed, current activation:  3 /  6
+[WATER FLOW CONTROLLER] Check failed, current activation:  4 /  6
+[WATER FLOW CONTROLLER] Check failed, current activation:  5 /  6
+[WATER FLOW CONTROLLER] Water flow sensor deadline passed, turning on alarm
+[WATER FLOW CONTROLLER] Initial alarm turn on, turning on alarm
+[GUI] Water flow turn on button clicked
+[WATER FLOW CONTROLLER] Pump is in previous state or water flow sensor fixed, turning off alarm
+[WATER FLOW CONTROLLER] Last alarm turn off, turning off alarm
+[WATER FLOW CONTROLLER] Pump is in previous state or water flow sensor fixed
+[GUI] Water flow turn off button clicked
+[WATER FLOW CONTROLLER] Pump state changed or water flow sensor broken
+[WATER FLOW CONTROLLER] Check failed, current activation:  1 /  6
+[WATER FLOW CONTROLLER] Check failed, current activation:  2 /  6
+[WATER FLOW CONTROLLER] Check failed, current activation:  3 /  6
+[WATER FLOW CONTROLLER] Check failed, current activation:  4 /  6
+[WATER FLOW CONTROLLER] Check failed, current activation:  5 /  6
+[WATER FLOW CONTROLLER] Water flow sensor deadline passed, turning on alarm
+[WATER FLOW CONTROLLER] Initial alarm turn on, turning on alarm
 [GUI] CO decrease button clicked
-[CH4 SENSOR CONTROLLER] Sensor read error occurred
-[CH4 SENSOR CONTROLLER] Sensor read error occurred
 [GUI] CO decrease button clicked
-[CH4 SENSOR CONTROLLER] Sensor read error occurred
-[CH4 SENSOR CONTROLLER] Sensor read error occurred
-[GUI] CO decrease button clicked
-[CH4 SENSOR CONTROLLER] Sensor read error occurred
-[CH4 SENSOR CONTROLLER] Sensor read error occurred
-[GUI] CO decrease button clicked
-[CH4 SENSOR CONTROLLER] Sensor read error occurred
-[CH4 SENSOR CONTROLLER] Sensor read error occurred
-[CH4 SENSOR CONTROLLER] Sensor read error occurred
-[CH4 SENSOR CONTROLLER] Sensor read error occurred
-[CH4 SENSOR CONTROLLER] Sensor read error occurred
-[CH4 SENSOR CONTROLLER] Sensor read error occurred
-[CH4 SENSOR CONTROLLER] Sensor read error occurred
-[GUI] CO error in reading button clicked
-[CH4 SENSOR CONTROLLER] State normal, turning off alarm
-[ALARM CONTROLLER] Last turn off received turning off alarm
-[CH4 SENSOR CONTROLLER] State normal, signalizing pump
-[PUMP CONTROLLER] State normal received
-[PUMP CONTROLLER] Turning on pump
+[O SENSOR CONTROLLER] Threshold breached, turning on alarm
+[O SENSOR CONTROLLER] Following alarm turn on
+[GUI] Water flow turn on button clicked
+[WATER FLOW CONTROLLER] Pump is in previous state or water flow sensor fixed, turning off alarm
+[WATER FLOW CONTROLLER] Alarm turn off
+[WATER FLOW CONTROLLER] Pump is in previous state or water flow sensor fixed
+[GUI] CO increase button clicked
+[O SENSOR CONTROLLER] State normal, turning off alarm
+[O SENSOR CONTROLLER] Last alarm turn off, turning off alarm
 [GUI] Pump turn off button clicked
-[PUMP CONTROLLER] Turn off received
-[PUMP CONTROLLER] Turning off pump
+[TOP] Turning off pump
+[WATER FLOW CONTROLLER] Pump state changed or water flow sensor broken
+[WATER FLOW CONTROLLER] Check failed, current activation:  1 /  6
+[WATER FLOW CONTROLLER] Check failed, current activation:  2 /  6
+[WATER FLOW CONTROLLER] Check failed, current activation:  3 /  6
+[WATER FLOW CONTROLLER] Check failed, current activation:  4 /  6
+[WATER FLOW CONTROLLER] Check failed, current activation:  5 /  6
+[WATER FLOW CONTROLLER] Water flow sensor deadline passed, turning on alarm
+[WATER FLOW CONTROLLER] Initial alarm turn on, turning on alarm
+[GUI] CO decrease button clicked
+[O SENSOR CONTROLLER] Threshold breached, turning on alarm
+[O SENSOR CONTROLLER] Following alarm turn on
+[GUI] Water flow turn off button clicked
+[WATER FLOW CONTROLLER] Pump is in previous state or water flow sensor fixed, turning off alarm
+[WATER FLOW CONTROLLER] Alarm turn off
+[WATER FLOW CONTROLLER] Pump is in previous state or water flow sensor fixed
+[GUI] CO increase button clicked
+[O SENSOR CONTROLLER] State normal, turning off alarm
+[O SENSOR CONTROLLER] Last alarm turn off, turning off alarm
+[GUI] H20 increase button clicked
+[GUI] H20 increase button clicked
+[GUI] H20 increase button clicked
+[WATER LEVEL SENSOR CONTROLLER] High water level threshold breached
+[WATER LEVEL SENSOR CONTROLLER] Turning on pump
+[WATER FLOW CONTROLLER] Pump state changed or water flow sensor broken
+[WATER FLOW CONTROLLER] Check failed, current activation:  1 /  6
+[WATER FLOW CONTROLLER] Check failed, current activation:  2 /  6
+[WATER FLOW CONTROLLER] Check failed, current activation:  3 /  6
+[WATER FLOW CONTROLLER] Check failed, current activation:  4 /  6
+[WATER FLOW CONTROLLER] Check failed, current activation:  5 /  6
+[WATER FLOW CONTROLLER] Water flow sensor deadline passed, turning on alarm
+[WATER FLOW CONTROLLER] Initial alarm turn on, turning on alarm
+[GUI] Water flow turn on button clicked
+[WATER FLOW CONTROLLER] Pump is in previous state or water flow sensor fixed, turning off alarm
+[WATER FLOW CONTROLLER] Last alarm turn off, turning off alarm
+[WATER FLOW CONTROLLER] Pump is in previous state or water flow sensor fixed
+[GUI] Water flow turn off button clicked
+[WATER FLOW CONTROLLER] Pump state changed or water flow sensor broken
+[WATER FLOW CONTROLLER] Check failed, current activation:  1 /  6
+[WATER FLOW CONTROLLER] Check failed, current activation:  2 /  6
+[WATER FLOW CONTROLLER] Check failed, current activation:  3 /  6
+[WATER FLOW CONTROLLER] Check failed, current activation:  4 /  6
+[WATER FLOW CONTROLLER] Check failed, current activation:  5 /  6
+[WATER FLOW CONTROLLER] Water flow sensor deadline passed, turning on alarm
+[WATER FLOW CONTROLLER] Initial alarm turn on, turning on alarm
+[GUI] Water flow turn on button clicked
+[WATER FLOW CONTROLLER] Pump is in previous state or water flow sensor fixed, turning off alarm
+[WATER FLOW CONTROLLER] Last alarm turn off, turning off alarm
+[WATER FLOW CONTROLLER] Pump is in previous state or water flow sensor fixed
+[GUI] Pump turn off button clicked
+[TOP] Turning off pump
+[WATER FLOW CONTROLLER] Pump state changed or water flow sensor broken
+[WATER FLOW CONTROLLER] Check failed, current activation:  1 /  6
+[WATER FLOW CONTROLLER] Check failed, current activation:  2 /  6
+[WATER FLOW CONTROLLER] Check failed, current activation:  3 /  6
+[WATER FLOW CONTROLLER] Check failed, current activation:  4 /  6
+[WATER FLOW CONTROLLER] Check failed, current activation:  5 /  6
+[WATER FLOW CONTROLLER] Water flow sensor deadline passed, turning on alarm
+[WATER FLOW CONTROLLER] Initial alarm turn on, turning on alarm
+[GUI] Water flow turn off button clicked
+[WATER FLOW CONTROLLER] Pump is in previous state or water flow sensor fixed, turning off alarm
+[WATER FLOW CONTROLLER] Last alarm turn off, turning off alarm
+[WATER FLOW CONTROLLER] Pump is in previous state or water flow sensor fixed
+[GUI] H20 decrease button clicked
+[GUI] H20 increase button clicked
+[WATER LEVEL SENSOR CONTROLLER] High water level threshold breached
+[WATER LEVEL SENSOR CONTROLLER] Turning on pump
+[WATER FLOW CONTROLLER] Pump state changed or water flow sensor broken
+[WATER FLOW CONTROLLER] Check failed, current activation:  1 /  6
+[WATER FLOW CONTROLLER] Check failed, current activation:  2 /  6
+[WATER FLOW CONTROLLER] Check failed, current activation:  3 /  6
+[WATER FLOW CONTROLLER] Check failed, current activation:  4 /  6
+[WATER FLOW CONTROLLER] Check failed, current activation:  5 /  6
+[WATER FLOW CONTROLLER] Water flow sensor deadline passed, turning on alarm
+[WATER FLOW CONTROLLER] Initial alarm turn on, turning on alarm
+[GUI] Water flow turn on button clicked
+[WATER FLOW CONTROLLER] Pump is in previous state or water flow sensor fixed, turning off alarm
+[WATER FLOW CONTROLLER] Last alarm turn off, turning off alarm
+[WATER FLOW CONTROLLER] Pump is in previous state or water flow sensor fixed
+[GUI] CO increase button clicked
+[GUI] CO increase button clicked
+[GUI] CO increase button clicked
+[GUI] CO increase button clicked
+[GUI] CO increase button clicked
+[GUI] CO increase button clicked
+[GUI] CO increase button clicked
+[GUI] CO increase button clicked
+[GUI] CO increase button clicked
+[GUI] CO increase button clicked
+[GUI] CO increase button clicked
+[CH4 SENSOR CONTROLLER] Threshold breached, turning on alarm
+[CH4 SENSOR CONTROLLER] Initial alarm turn on, turning on alarm
+[CH4 SENSOR CONTROLLER] Threshold breached, signalizing pump
+[CH4 SENSOR CONTROLLER] Threshold breached, turning off pump
+[WATER FLOW CONTROLLER] Pump state changed or water flow sensor broken
+[WATER FLOW CONTROLLER] Check failed, current activation:  1 /  6
+[WATER FLOW CONTROLLER] Check failed, current activation:  2 /  6
+[WATER FLOW CONTROLLER] Check failed, current activation:  3 /  6
+[WATER FLOW CONTROLLER] Check failed, current activation:  4 /  6
+[WATER FLOW CONTROLLER] Check failed, current activation:  5 /  6
+[WATER FLOW CONTROLLER] Water flow sensor deadline passed, turning on alarm
+[WATER FLOW CONTROLLER] Following alarm turn on
+[GUI] CO decrease button clicked
+[CH4 SENSOR CONTROLLER] State normal, turning off alarm
+[CH4 SENSOR CONTROLLER] Alarm turn off
+[CH4 SENSOR CONTROLLER] State normal, signalizing pump
+[CH4 SENSOR CONTROLLER] State normal, returning pump to previous state
+[WATER FLOW CONTROLLER] Pump is in previous state or water flow sensor fixed, turning off alarm
+[WATER FLOW CONTROLLER] Last alarm turn off, turning off alarm
+[WATER FLOW CONTROLLER] Pump is in previous state or water flow sensor fixed
+[GUI] CO increase button clicked
+[CH4 SENSOR CONTROLLER] Threshold breached, turning on alarm
+[CH4 SENSOR CONTROLLER] Initial alarm turn on, turning on alarm
+[CH4 SENSOR CONTROLLER] Threshold breached, signalizing pump
+[CH4 SENSOR CONTROLLER] Threshold breached, turning off pump
+[WATER FLOW CONTROLLER] Pump state changed or water flow sensor broken
+[WATER FLOW CONTROLLER] Check failed, current activation:  1 /  6
+[WATER FLOW CONTROLLER] Check failed, current activation:  2 /  6
+[WATER FLOW CONTROLLER] Check failed, current activation:  3 /  6
+[WATER FLOW CONTROLLER] Check failed, current activation:  4 /  6
+[WATER FLOW CONTROLLER] Check failed, current activation:  5 /  6
+[WATER FLOW CONTROLLER] Water flow sensor deadline passed, turning on alarm
+[WATER FLOW CONTROLLER] Following alarm turn on
+[GUI] Pump turn off button clicked
+[TOP] Turning off pump received while methane threshold breached
+[GUI] CO decrease button clicked
+[CH4 SENSOR CONTROLLER] State normal, turning off alarm
+[CH4 SENSOR CONTROLLER] Alarm turn off
+[CH4 SENSOR CONTROLLER] State normal, signalizing pump
+[CH4 SENSOR CONTROLLER] State normal, returning pump to previous state
+[GUI] Water flow turn off button clicked
+[WATER FLOW CONTROLLER] Pump is in previous state or water flow sensor fixed, turning off alarm
+[WATER FLOW CONTROLLER] Last alarm turn off, turning off alarm
+[WATER FLOW CONTROLLER] Pump is in previous state or water flow sensor fixed
 [GUI] Waiting for device controllers to finish
 [GUI] All tasks finished
 [MAIN] GUI task finished
-[MINE WATER LEVEL CONTROL SYSTEM] Stopping pump controller
-[PUMP CONTROLLER] Finished
-[MINE WATER LEVEL CONTROL SYSTEM] Stopping alarm controller
-[ALARM CONTROLLER] Finished
-[MINE WATER LEVEL CONTROL SYSTEM] Stopping CO sensor controller
+[TOP] Stopping water level sensors controller
+[TOP] Stopping CO sensor controller
 [CO SENSOR CONTROLLER] Finished
-[MINE WATER LEVEL CONTROL SYSTEM] Stopping O sensor controller
+[TOP] Stopping O sensor controller
 [O SENSOR CONTROLLER] Finished
-[MINE WATER LEVEL CONTROL SYSTEM] Stopping CH4 sensor controller
+[TOP] Stopping CH4 sensor controller
 [CH4 SENSOR CONTROLLER] Finished
-[MINE WATER LEVEL CONTROL SYSTEM] Finished
+[TOP] Stopping water flow sensor controller
+[WATER FLOW CONTROLLER] Finished
+[TOP] Finished
 [MAIN] Mine water level control system task finished
 [MAIN] Main ending

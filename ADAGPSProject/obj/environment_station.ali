@@ -1,6 +1,5 @@
 V "GNAT Lib v2018"
 A -gnatA
-A -gnat12
 A -mtune=generic
 A -march=x86-64
 P ZX
@@ -15,6 +14,7 @@ RV NO_RELATIVE_DELAY
 RV NO_SELECT_STATEMENTS
 RV NO_STANDARD_STORAGE_POOLS
 RV NO_TASKING
+RV STATIC_PRIORITIES
 RV NO_IMPLEMENTATION_PRAGMAS
 RV NO_ELABORATION_CODE
 RV SPARK_05
@@ -23,7 +23,7 @@ RV MAX_TASK_ENTRIES=1
 RV MAX_ASYNCHRONOUS_SELECT_NESTING=1+
 RV MAX_ENTRY_QUEUE_LENGTH=1+
 
-U environment_station%b	environment_station.adb	811aba6d OO PK IL
+U environment_station%b	environment_station.adb	c89b4876 OO PK IL
 W ada%s			ada.ads			ada.ali
 Z ada.calendar.delays%s	a-caldel.adb		a-caldel.ali
 W ada.real_time%s	a-reatim.adb		a-reatim.ali
@@ -36,20 +36,20 @@ Z system%s		system.ads		system.ali
 Z system.soft_links%s	s-soflin.adb		s-soflin.ali
 Z system.tasking%s	s-taskin.adb		s-taskin.ali
 Z system.tasking.async_delays%s  s-taasde.adb	s-taasde.ali
+Z system.tasking.protected_objects%s  s-taprob.adb  s-taprob.ali
+Z system.tasking.protected_objects.operations%s  s-tpobop.adb  s-tpobop.ali
 Z system.tasking.rendezvous%s  s-tasren.adb	s-tasren.ali
 Z system.tasking.stages%s  s-tassta.adb		s-tassta.ali
 
-U environment_station%s	environment_station.ads	50acd04d EE OO PK IL
+U environment_station%s	environment_station.ads	a7acef6f EE NE OO PK IL
 Z ada.real_time%s	a-reatim.adb		a-reatim.ali
-Z ada.tags%s		a-tags.adb		a-tags.ali
 W alarm_station%s	alarm_station.adb	alarm_station.ali
 W devices%s		devices.adb		devices.ali
 W gnatcoll%s		gnatcoll.ads		gnatcoll.ali
 W gnatcoll.traces%s	gnatcoll-traces.adb	gnatcoll-traces.ali
 W pump_station%s	pump_station.adb	pump_station.ali
-Z system%s		system.ads		system.ali
+W system%s		system.ads		system.ali
 Z system.parameters%s	s-parame.adb		s-parame.ali
-Z system.soft_links%s	s-soflin.adb		s-soflin.ali
 Z system.task_info%s	s-tasinf.adb		s-tasinf.ali
 Z system.tasking%s	s-taskin.adb		s-taskin.ali
 Z system.tasking.stages%s  s-tassta.adb		s-tassta.ali
@@ -71,10 +71,10 @@ D a-tags.ads		20180524051738 491b781d ada.tags%s
 D a-textio.ads		20180524051738 881db35a ada.text_io%s
 D a-unccon.ads		20180524051738 0e9b276f ada.unchecked_conversion%s
 D a-uncdea.ads		20180524051736 eff36322 ada.unchecked_deallocation%s
-D alarm_station.ads	20180908191318 4011dd34 alarm_station%s
-D devices.ads		20180908224536 00c7a0b9 devices%s
-D environment_station.ads  20180908221346 57fd904d environment_station%s
-D environment_station.adb  20180908230234 98a767bc environment_station%b
+D alarm_station.ads	20180909132712 b2ea8fb6 alarm_station%s
+D devices.ads		20180909212602 d7649a5d devices%s
+D environment_station.ads  20180909194848 fb6958ae environment_station%s
+D environment_station.adb  20180909195618 aa1167a0 environment_station%b
 D gnat.ads		20180524051738 fd2ad2f1 gnat%s
 D g-os_lib.ads		20180524051736 0db74523 gnat.os_lib%s
 D g-souinf.ads		20180524051738 291df751 gnat.source_info%s
@@ -100,7 +100,7 @@ D interfac.ads		20180524051736 5ab55268 interfaces%s
 D i-c.ads		20180524051736 5421119b interfaces.c%s
 D i-cstrin.ads		20180524051736 341d0ddf interfaces.c.strings%s
 D i-cstrea.ads		20180524051736 e53d8b8e interfaces.c_streams%s
-D pump_station.ads	20180908192532 0b402cdb pump_station%s
+D pump_station.ads	20180909221746 472c3244 pump_station%s
 D system.ads		20180524051738 32a08138 system%s
 D s-atacco.ads		20180524051738 4c36d12f system.address_to_access_conversions%s
 D s-atocou.ads		20180524051738 b45c2d8d system.atomic_counters%s
@@ -140,6 +140,7 @@ D s-taskin.ads		20180524051738 1d8c1ccb system.tasking%s
 D s-taasde.ads		20180524051738 422600df system.tasking.async_delays%s
 D s-taprob.ads		20180524051738 acd6094d system.tasking.protected_objects%s
 D s-tpoben.ads		20180524051738 60ad3dae system.tasking.protected_objects.entries%s
+D s-tpobop.ads		20180524051738 5f548bb3 system.tasking.protected_objects.operations%s
 D s-tasren.ads		20180524051738 a67a9949 system.tasking.rendezvous%s
 D s-tassta.ads		20180524051738 cca55c94 system.tasking.stages%s
 D s-traent.ads		20180524051736 005bf670 system.traceback_entries%s
@@ -147,86 +148,113 @@ D s-unstyp.ads		20180524051736 34867c83 system.unsigned_types%s
 D s-wchcon.ads		20180524051738 1b7d22d2 system.wch_con%s
 D s-win32.ads		20180524051736 b7f96285 system.win32%s
 X 1 ada.ads
-16K9*Ada 20e8 21|2r6 9r35 9r62 13r37 13r64 17r44 21r36 31r47 89r44 106r35
-. 106r62 110r37 110r64 114r44 119r36 129r47 206r44
+16K9*Ada 20e8 21|2r6 9r35 9r62 13r37 13r64 17r44 21r36 31r47 97r44 114r35
+. 114r62 118r37 118r64 122r44 127r36 137r47 229r44 246r37 246r64 253r39
 X 5 a-chahan.ads
 66V13*To_Lower{character} 37|283i21
 67V13*To_Upper{character} 37|285i21
 X 10 a-reatim.ads
-39K13*Real_Time 185e18 21|2w10 9r39 9r66 13r41 13r68 17r48 21r40 31r51 89r48
-. 106r39 106r66 110r41 110r68 114r48 119r40 129r51 206r48
-49O9*Time<duration> 21|17r58 114r58
-54O9*Time_Span<duration> 21|9r49 13r51 106r49 110r51
-61V13*Clock{49O9} 21|21s50 119s50
-65V14*"+"{49O9} 21|89s59 206s59
-65o19 Left{49O9} 21|90r33 207r33
-65o37 Right{54O9} 21|91r33 208r33
-83V14*"+"{54O9} 21|89r59 206r59
-110V13*To_Duration{duration} 21|31s61 129s61
-110o27 TS{54O9} 21|32r49 130r49
-119V13*Milliseconds{54O9} 21|9s76 13s78 106s76 110s78
-119i27 MS{integer} 21|10r25 14r25 107r25 111r25
+39K13*Real_Time 185e18 21|2w10 9r39 9r66 13r41 13r68 17r48 21r40 31r51 97r48
+. 114r39 114r66 118r41 118r68 122r48 127r40 137r51 229r48 246r41 246r68 253r43
+49O9*Time<duration> 21|17r58 122r58
+54O9*Time_Span<duration> 21|9r49 13r51 114r49 118r51 246r51
+61V13*Clock{49O9} 21|21s50 127s50
+65V14*"+"{49O9} 21|97s59 229s59
+65o19 Left{49O9} 21|98r33 230r33
+65o37 Right{54O9} 21|99r33 231r33
+83V14*"+"{54O9} 21|97r59 229r59
+110V13*To_Duration{duration} 21|31s61 137s61 253s53
+110o27 TS{54O9} 21|32r49 138r49 254r41
+119V13*Milliseconds{54O9} 21|9s76 13s78 114s76 118s78 246s78
+119i27 MS{integer} 21|10r25 14r25 115r25 119r25 247r25
 X 18 alarm_station.ads
-4K9*alarm_station 13e18 20|2w6 12r62 23r62
-5T19*alarm_controller_t 12e31 20|12r76 23r76
-9Y23 turn_on 21|56s74 70s74 154s74 168s74
-10Y23 turn_off 21|80s74 187s74
+5K9*alarm_station 28e18 20|3w6 14r62 28r62
+11W24*alarm_controller_t 27e31 20|14r76 28r76
+17U27 turn_on 21|56s74 73s74 162s74 179s74
+18p25 stream{40|341P9} 21|57r65 74r65 163r65 180r65
+21U27 turn_off 21|85s74 204s74
+22p25 stream{40|341P9} 21|86r65 205r65
 X 19 devices.ads
-1K9*devices 39e12 20|4w6 11r62 22r62 21|4w6
-16W24*sensor_t 37e21 20|11r70 22r70
-23V26 get_read_error_occurred{boolean} 21|41s45 139s45
-31V26 is_threshold_breached{boolean} 21|63s53 161s53
+1K9*devices 78e12 20|5w6 13r62 27r62 40r50 21|4w6
+16W24*sensor_t 37e21 20|13r70 27r70
+23V26 get_read_error_occurred{boolean} 21|41s45 147s45
+31V26 is_threshold_breached{boolean} 21|66s53 172s53
+39W24*water_level_sensors_t 62e34 20|40r58
+44V26 is_low_water_level_threshold_breached{boolean} 21|262s58
+46V26 is_high_water_level_threshold_breached{boolean} 21|271s61
+56Y23 wait_for_value_change 21|251s45
 X 20 environment_station.ads
-6K9*environment_station 29l5 29e24 21|6b14 221l5 221t24
-7T19*gas_sensor_controller_t 8d17 9d17 10d17 11d17 12d17 13d17 16l13 16e36
-. 21|8b19 103l13 103t36
-8i17 read_error_occurred_count_threshold{integer} 21|49r74
-9i17 period_in_ms{integer} 21|10r31
-10i17 dealine_in_ms{integer} 21|14r31
-13p17 stream{40|341P9} 21|36r60 43r60 52r76 66r76 76r76 99r36
-15Y23 stop 21|25b40 27l37 27t41
-18T19*ch4_sensor_controller_t 19d17 20d17 21d17 22d17 23d17 24d17 25d17 28l13
-. 28e36 21|105b19 220l13 220t36
-19i17 read_error_occurred_count_threshold{integer} 21|147r74
-20i17 period_in_ms{integer} 21|107r31
-21i17 dealine_in_ms{integer} 21|111r31
-25p17 stream{40|341P9} 21|134r60 141r60 150r76 164r76 174r76 183r76 193r76
-. 216r36
-27Y23 stop 21|123b40 125l37 125t41
+7K9*environment_station 46l5 46e24 21|6b14 284l5 284t24
+8T19*gas_sensor_controller_t 9d17 10d17 11d17 12d17 13d17 14d17 15d17 20l13
+. 20e36 21|8b19 111l13 111t36
+9i17 priority{48|101I12} 17r35
+10i17 read_error_occurred_count_threshold{integer} 21|49r74
+11i17 period_in_ms{integer} 21|10r31
+12i17 dealine_in_ms{integer} 21|14r31
+15p17 stream{40|341P9} 21|36r60 43r60 52r76 57r75 69r76 74r75 81r76 86r75
+. 107r36
+19Y23 stop 21|25b40 27l37 27t41
+22T19*ch4_sensor_controller_t 23d17 24d17 25d17 26d17 27d17 28d17 29d17 30d17
+. 35l13 35e36 21|113b19 243l13 243t36
+23i17 priority{48|101I12} 32r35
+24i17 read_error_occurred_count_threshold{integer} 21|155r74
+25i17 period_in_ms{integer} 21|115r31
+26i17 dealine_in_ms{integer} 21|119r31
+30p17 stream{40|341P9} 21|142r60 149r60 158r76 163r75 175r76 180r75 187r76
+. 192r75 200r76 205r75 213r76 218r75 239r36
+34Y23 stop 21|131b40 133l37 133t41
+37T19*water_level_sensors_controller_t 38d17 39d17 40d17 41d17 42d17 45l13
+. 45e45 21|245b19 283l13 283t45
+38i17 priority{48|101I12} 44r35
+39i17 dealine_in_ms{integer} 21|247r31
+42p17 stream{40|341P9} 21|258r52 264r60 269r59 273r60 278r59
 X 21 environment_station.adb
-9o17 period{10|54O9} 91r42
+9o17 period{10|54O9} 99r42
 13o17 deadline{10|54O9} 32r55
-17o17 next_activation{10|49O9} 21m17 89m25 90r42 93r37
-18i17 read_error_occured_count{integer} 47m41 47r69 49r46 61m41
-19b17 alarm_turned_on{boolean} 50r54 57m57 64r54 71m57 74r54 81m57
-23l17 running_loop 28r38 95l26 95e38
-106o17 period{10|54O9} 208r42
-110o17 deadline{10|54O9} 130r55
-114o17 next_activation{10|49O9} 119m17 206m25 207r42 210r37
-115i17 read_error_occured_count{integer} 145m41 145r69 147r46 159m41
-116b17 alarm_turned_on{boolean} 148r54 155m57 162r54 169m57 181r54 188m57
-117b17 pump_threashold_breached{boolean} 172r54 178m57 191r54 198m57
-121l17 running_loop 126r38 212l26 212e38
+17o17 next_activation{10|49O9} 21m17 97m25 98r42 101r37
+18i17 read_error_occured_count{integer} 47m41 47r69 49r46 64m41
+19b17 alarm_turned_on{boolean} 50r54 60m57 67r54 76m57 79r54 89m57
+23l17 running_loop 28r38 103l26 103e38
+114o17 period{10|54O9} 231r42
+118o17 deadline{10|54O9} 138r55
+122o17 next_activation{10|49O9} 127m17 229m25 230r42 233r37
+123i17 read_error_occured_count{integer} 153m41 153r69 155r46 170m41
+124b17 alarm_turned_on{boolean} 156r54 166m57 173r54 182m57 198r54 208m57
+125b17 pump_threashold_breached{boolean} 185r54 195m57 211r54 221m57
+129l17 running_loop 134r38 235l26 235e38
+246o17 deadline{10|54O9} 254r47
+250l17 running_loop 282l26 282e38
 X 26 gnatcoll.ads
-24K9*GNATCOLL 20|1r6 13r55 25r55 21|1r6 35r41 42r41 51r57 65r57 75r57 98r17
-. 133r41 140r41 149r57 163r57 173r57 182r57 192r57 215r17 26|27e13
+24K9*GNATCOLL 20|2r6 15r55 30r55 42r43 21|1r6 35r41 42r41 51r57 68r57 80r57
+. 106r17 141r41 148r41 157r57 174r57 186r57 199r57 212r57 238r17 257r33 263r41
+. 272r41 26|27e13
 X 40 gnatcoll-traces.ads
-251K18*Traces 20|1w15 13r64 25r64 21|1w15 35r50 42r50 51r66 65r66 75r66 98r26
-. 133r50 140r50 149r66 163r66 173r66 182r66 192r66 215r26 40|927e20
-341P9*Trace_Handle(340R9) 20|13r71 25r71
-518U14*Trace 21|35s57 42s57 51s73 65s73 75s73 98s33 133s57 140s57 149s73
-. 163s73 173s73 182s73 192s73 215s33
-519p7 Handle(340R9) 21|36r49 43r49 52r65 66r65 76r65 99r25 134r49 141r49
-. 150r65 164r65 174r65 183r65 193r65 216r25
-520a7 Message{string} 21|37r49 44r49 53r65 67r65 77r65 100r25 135r49 142r49
-. 151r65 165r65 175r65 184r65 194r65 217r25
+251K18*Traces 20|2w15 15r64 30r64 42r52 21|1w15 35r50 42r50 51r66 68r66 80r66
+. 106r26 141r50 148r50 157r66 174r66 186r66 199r66 212r66 238r26 257r42 263r50
+. 272r50 40|927e20
+341P9*Trace_Handle(340R9) 20|15r71 30r71 42r59
+518U14*Trace 21|35s57 42s57 51s73 68s73 80s73 106s33 141s57 148s57 157s73
+. 174s73 186s73 199s73 212s73 238s33 257s49 263s57 272s57
+519p7 Handle(340R9) 21|36r49 43r49 52r65 69r65 81r65 107r25 142r49 149r49
+. 158r65 175r65 187r65 200r65 213r65 239r25 258r41 264r49 273r49
+520a7 Message{string} 21|37r49 44r49 53r65 70r65 82r65 108r25 143r49 150r49
+. 159r65 176r65 188r65 201r65 214r65 240r25 259r41 265r49 274r49
 X 47 pump_station.ads
-4K9*pump_station 20|3w6 24r62 47|15e17
-5T19*pump_controller_t 20|24r75 47|14e30
-11Y23 threshold_breached 21|177s73
-12Y23 state_normal 21|197s73
+8K9*pump_station 20|4w6 29r62 41r50 47|58e17
+15W24*pump_controller_t 20|29r75 41r63 47|40e30
+21U27 turn_on 21|277s57
+22p25 stream{40|341P9} 21|278r49
+25U27 turn_off 21|268s57
+26p25 stream{40|341P9} 21|269r49
+29U27 threshold_breached 21|191s73
+30p25 stream{40|341P9} 21|192r65
+33U27 state_normal 21|217s73
+34p25 stream{40|341P9} 21|218r65
 X 48 system.ads
+37K9*System 20|1w6 9r79 23r79 38r43 48|200e11
 67M9*Address
+100I12*Any_Priority{integer}
+101I12*Priority{100I12} 20|9r86 23r86 38r50
 X 60 s-memory.ads
 53V13*Alloc{48|67M9} 103i<c,__gnat_malloc>22
 68U14*Free 104i<c,__gnat_free>22

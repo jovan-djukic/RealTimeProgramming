@@ -80,5 +80,75 @@ package body devices is
 		end wait_for_value_change;
 
 	end sensor_t;
+
+	protected body water_level_sensors_t is
+
+		function is_low_water_level_threshold_breached return Boolean is
+		begin
+			return low_water_level_threshold_breached; 	
+		end is_low_water_level_threshold_breached;
+
+		function is_high_water_level_threshold_breached return Boolean is
+		begin
+			return high_water_level_threshold_breached;
+		end is_high_water_level_threshold_breached;
+	
+		function get_low_water_level_threshold return Float is
+		begin
+			return low_water_level_threshold.all;
+		end get_low_water_level_threshold;
+
+		function get_high_water_level_threshold return Float is
+		begin
+			return high_water_level_threshold.all;
+		end get_high_water_level_threshold;
+
+		procedure update ( 
+			water_level : Float
+		) is
+		begin
+			low_water_level_threshold_breached  := ( water_level < low_water_level_threshold.all );
+			high_water_level_threshold_breached := ( water_level > high_water_level_threshold.all );
+
+			if ( ( low_water_level_threshold_breached = True ) or ( high_water_level_threshold_breached = True ) ) then
+				if ( first_time = False ) then
+					first_time := True;
+					breached   := True;
+				end if;
+			else 
+				first_time := False;
+			end if;
+		end update;
+
+		entry wait_for_value_change when ( breached = True ) is
+		begin
+			breached := False;
+		end wait_for_value_change;
+
+	end water_level_sensors_t;
+
+	protected body water_flow_sensor_t is
+
+		function is_water_flowing return Boolean is
+		begin
+			return water_flowing;
+		end is_water_flowing;
+
+		procedure set_water_flowing (
+			new_water_flowing : Boolean 
+		) is
+		begin
+			if ( new_water_flowing /= water_flowing ) then
+				changed       := True;
+				water_flowing := new_water_flowing;
+			end if;
+		end set_water_flowing;
+
+		entry wait_for_value_change when ( changed = True ) is
+		begin
+			changed := False;
+		end wait_for_value_change;
+
+	end water_flow_sensor_t;
 end devices;
 

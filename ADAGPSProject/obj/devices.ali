@@ -1,12 +1,12 @@
 V "GNAT Lib v2018"
 A -gnatA
-A -gnat12
 A -mtune=generic
 A -march=x86-64
 P ZX
 
 RN
 RV SIMPLE_BARRIERS
+RV NO_DIRECT_BOOLEAN_OPERATORS
 RV NO_EXCEPTION_HANDLERS
 RV NO_EXCEPTION_PROPAGATION
 RV NO_EXCEPTIONS
@@ -18,7 +18,7 @@ RV NO_IMPLEMENTATION_PRAGMAS
 RV SPARK_05
 RV MAX_PROTECTED_ENTRIES=1
 
-U devices%b		devices.adb		685baa36 NE OO PK IL
+U devices%b		devices.adb		c3584730 NE OO PK IL
 Z ada.tags%s		a-tags.adb		a-tags.ali
 Z system%s		system.ads		system.ali
 Z system.soft_links%s	s-soflin.adb		s-soflin.ali
@@ -26,7 +26,7 @@ Z system.tasking.protected_objects%s  s-taprob.adb  s-taprob.ali
 Z system.tasking.protected_objects.entries%s  s-tpoben.adb  s-tpoben.ali
 Z system.tasking.protected_objects.operations%s  s-tpobop.adb  s-tpobop.ali
 
-U devices%s		devices.ads		00c7a0b9 EE NE OO PK IL
+U devices%s		devices.ads		d7649a5d EE NE OO PK IL
 Z ada.exceptions%s	a-except.adb		a-except.ali
 Z ada.tags%s		a-tags.adb		a-tags.ali
 Z system%s		system.ads		system.ali
@@ -40,8 +40,8 @@ D a-finali.ads		20180524051738 bf4f806b ada.finalization%s
 D a-stream.ads		20180524051736 119b8fb3 ada.streams%s
 D a-tags.ads		20180524051738 491b781d ada.tags%s
 D a-unccon.ads		20180524051738 0e9b276f ada.unchecked_conversion%s
-D devices.ads		20180908224536 00c7a0b9 devices%s
-D devices.adb		20180908224818 689c0a8f devices%b
+D devices.ads		20180909212602 d7649a5d devices%s
+D devices.adb		20180909212012 143cdd6d devices%b
 D interfac.ads		20180524051736 5ab55268 interfaces%s
 D i-c.ads		20180524051736 5421119b interfaces.c%s
 D i-cstrin.ads		20180524051736 341d0ddf interfaces.c.strings%s
@@ -68,7 +68,7 @@ D s-traent.ads		20180524051736 005bf670 system.traceback_entries%s
 D s-unstyp.ads		20180524051736 34867c83 system.unsigned_types%s
 D s-win32.ads		20180524051736 b7f96285 system.win32%s
 X 7 devices.ads
-1K9*devices 39l5 39e12 8|1b14 83l5 83t12
+1K9*devices 78l5 78e12 8|1b14 153l5 153t12
 3E14*device_state_t 3e43 6r43 8r40 12r27 8|4r43 10r40
 3n34*ON{3E14}
 3n38*OFF{3E14} 12r45
@@ -93,6 +93,26 @@ X 7 devices.ads
 34f17 value{float} 8|29r32 46r43 48r41 50r41 52r41 71r42 73r42
 35b17 read_error_occurred{boolean} 8|34r32 62r57 63r33
 36b17 changed{boolean} 8|54r33 64r33 77r52 79r25
+39W24*water_level_sensors_t 40d17 41d17 42d17 58E17 62l13 62e34 8|84b24 128l13
+. 128t34
+44V26 is_low_water_level_threshold_breached{boolean} 8|86b26 89l21 89t58
+46V26 is_high_water_level_threshold_breached{boolean} 8|91b26 94l21 94t59
+48V26 get_low_water_level_threshold{float} 8|96b26 99l21 99t50
+50V26 get_high_water_level_threshold{float} 8|101b26 104l21 104t51
+52U27 update 53>25 8|106b27 121l21 121t27
+53f25 water_level{float} 8|107b25 110r66 111r66
+56Y23 wait_for_value_change 8|123b23 126l21 126t42
+58b17 breached{boolean} 8|116r41 123r52 125r25
+59b17 first_time{boolean} 8|114r38 115r41 119r33
+60b17 low_water_level_threshold_breached{boolean} 8|88r32 110r25 113r32
+61b17 high_water_level_threshold_breached{boolean} 8|93r32 111r25 113r81
+64W24*water_flow_sensor_t 74E17 76l13 76e32 8|130b24 152l13 152t32
+66V26 is_water_flowing{boolean} 8|132b26 135l21 135t37
+68U27 set_water_flowing 69>25 8|137b27 145l21 145t38
+69b25 new_water_flowing{boolean} 8|138b25 141r30 143r50
+72Y23 wait_for_value_change 8|147b23 150l21 150t42
+74b17 water_flowing{boolean} 8|134r32 141r51 143r33
+75b17 changed{boolean} 8|142r33 147r52 149r25
 X 22 s-stausa.ads
 203U14*Initialize 204i<c,__gnat_stack_usage_initialize>22
 268U14*Output_Results 272i<c,__gnat_stack_usage_output_results>22

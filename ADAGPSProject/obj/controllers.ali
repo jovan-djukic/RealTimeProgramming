@@ -1,23 +1,31 @@
 V "GNAT Lib v2018"
 A -gnatA
-A -gnat12
 A -mtune=generic
 A -march=x86-64
 P ZX
 
 RN
+RV SIMPLE_BARRIERS
 RV NO_DISPATCHING_CALLS
+RV NO_EXCEPTION_HANDLERS
+RV NO_EXCEPTION_PROPAGATION
+RV NO_EXCEPTIONS
 RV NO_FLOATING_POINT
+RV NO_IO
+RV NO_PROTECTED_TYPES
 RV NO_STANDARD_STORAGE_POOLS
 RV NO_TASKING
 RV NO_DYNAMIC_SIZED_OBJECTS
 RV NO_IMPLEMENTATION_PRAGMAS
 RV NO_ELABORATION_CODE
 RV SPARK_05
+RV MAX_PROTECTED_ENTRIES=1
 RV MAX_ENTRY_QUEUE_LENGTH=1+
 
-U controllers%b		controllers.adb		d899198e OO PK IL
+U controllers%b		controllers.adb		0bbc4210 OO PK IL
+W ada%s			ada.ads			ada.ali
 Z ada.tags%s		a-tags.adb		a-tags.ali
+W ada.text_io%s		a-textio.adb		a-textio.ali
 W devices%s		devices.adb		devices.ali
 W gdk%s			gdk.ads			gdk.ali
 W gdk.rgba%s		gdk-rgba.adb		gdk-rgba.ali
@@ -26,15 +34,19 @@ W gtk%s			gtk.ads			gtk.ali
 W gtk.button%s		gtk-button.adb		gtk-button.ali
 Z system%s		system.ads		system.ali
 Z system.concat_3%s	s-conca3.adb		s-conca3.ali
+Z system.concat_5%s	s-conca5.adb		s-conca5.ali
 Z system.img_real%s	s-imgrea.adb		s-imgrea.ali
 Z system.soft_links%s	s-soflin.adb		s-soflin.ali
 Z system.tasking%s	s-taskin.adb		s-taskin.ali
 Z system.tasking.protected_objects%s  s-taprob.adb  s-taprob.ali
+Z system.tasking.protected_objects.entries%s  s-tpoben.adb  s-tpoben.ali
 Z system.tasking.protected_objects.operations%s  s-tpobop.adb  s-tpobop.ali
 Z system.tasking.stages%s  s-tassta.adb		s-tassta.ali
 
-U controllers%s		controllers.ads		cf18c6e2 EE NE OO PK IL
+U controllers%s		controllers.ads		48c69012 EE NE OO PK IL
+Z ada.exceptions%s	a-except.adb		a-except.ali
 Z ada.real_time%s	a-reatim.adb		a-reatim.ali
+Z ada.tags%s		a-tags.adb		a-tags.ali
 W devices%s		devices.adb		devices.ali
 W gdk%s			gdk.ads			gdk.ali
 W gdk.rgba%s		gdk-rgba.adb		gdk-rgba.ali
@@ -43,25 +55,29 @@ W gtk.button%s		gtk-button.adb		gtk-button.ali
 W gtk.color_button%s	gtk-color_button.adb	gtk-color_button.ali
 W gtk.label%s		gtk-label.adb		gtk-label.ali
 W gtk.progress_bar%s	gtk-progress_bar.adb	gtk-progress_bar.ali
-Z system%s		system.ads		system.ali
+W system%s		system.ads		system.ali
 Z system.parameters%s	s-parame.adb		s-parame.ali
 Z system.task_info%s	s-tasinf.adb		s-tasinf.ali
 Z system.tasking%s	s-taskin.adb		s-taskin.ali
+Z system.tasking.protected_objects%s  s-taprob.adb  s-taprob.ali
+Z system.tasking.protected_objects.entries%s  s-tpoben.adb  s-tpoben.ali
 Z system.tasking.stages%s  s-tassta.adb		s-tassta.ali
 
 D ada.ads		20180524051736 76789da1 ada%s
 D a-except.ads		20180524051736 291912d5 ada.exceptions%s
 D a-finali.ads		20180524051738 bf4f806b ada.finalization%s
+D a-ioexce.ads		20180524051736 e4a01f64 ada.io_exceptions%s
 D a-reatim.ads		20180524051738 0240fc73 ada.real_time%s
 D a-stream.ads		20180524051736 119b8fb3 ada.streams%s
 D a-tags.ads		20180524051738 491b781d ada.tags%s
+D a-textio.ads		20180524051738 881db35a ada.text_io%s
 D a-unccon.ads		20180524051738 0e9b276f ada.unchecked_conversion%s
 D a-uncdea.ads		20180524051736 eff36322 ada.unchecked_deallocation%s
 D cairo.ads		20180524063416 925d4aaa cairo%s
 D cairo-region.ads	20180524063416 b7133728 cairo.region%s
-D controllers.ads	20180908153616 5f17ebb9 controllers%s
-D controllers.adb	20180908154724 d099dc29 controllers%b
-D devices.ads		20180908224536 00c7a0b9 devices%s
+D controllers.ads	20180909212612 3dca0695 controllers%s
+D controllers.adb	20180909212842 3edfe325 controllers%b
+D devices.ads		20180909212602 d7649a5d devices%s
 D gdk.ads		20180524063416 96d821f3 gdk%s
 D gdk-color.ads		20180524063418 ef57bc34 gdk.color%s
 D gdk-device.ads	20180524063422 04c1ecbd gdk.device%s
@@ -122,6 +138,7 @@ D gtkada-types.ads	20180524063420 471f54b5 gtkada.types%s
 D interfac.ads		20180524051736 5ab55268 interfaces%s
 D i-c.ads		20180524051736 5421119b interfaces.c%s
 D i-cstrin.ads		20180524051736 341d0ddf interfaces.c.strings%s
+D i-cstrea.ads		20180524051736 e53d8b8e interfaces.c_streams%s
 D pango.ads		20180524063418 e51ea573 pango%s
 D pango-attributes.ads	20180524063422 b2832a43 pango.attributes%s
 D pango-context.ads	20180524063420 5a6f0fe6 pango.context%s
@@ -138,7 +155,10 @@ D pango-tabs.ads	20180524063420 0c575925 pango.tabs%s
 D system.ads		20180524051738 32a08138 system%s
 D s-atacco.ads		20180524051738 4c36d12f system.address_to_access_conversions%s
 D s-conca3.ads		20180524051738 0b705ca5 system.concat_3%s
+D s-conca5.ads		20180524051736 875e432e system.concat_5%s
+D s-crtl.ads		20180524051736 0ebbdb71 system.crtl%s
 D s-exctab.ads		20180524051738 54135002 system.exception_table%s
+D s-ficobl.ads		20180524051738 078245e4 system.file_control_block%s
 D s-finmas.ads		20180524051738 7811a767 system.finalization_masters%s
 D s-finroo.ads		20180524051738 4ff27390 system.finalization_root%s
 D s-imgrea.ads		20180524051736 c7a851e2 system.img_real%s
@@ -166,93 +186,131 @@ D s-tpobop.ads		20180524051738 5f548bb3 system.tasking.protected_objects.operati
 D s-tassta.ads		20180524051738 cca55c94 system.tasking.stages%s
 D s-traent.ads		20180524051736 005bf670 system.traceback_entries%s
 D s-unstyp.ads		20180524051736 34867c83 system.unsigned_types%s
+D s-wchcon.ads		20180524051738 1b7d22d2 system.wch_con%s
 D s-win32.ads		20180524051736 b7f96285 system.win32%s
 D unchconv.ads		20180524051736 ca2f9e18 unchecked_conversion%s
-X 11 controllers.ads
-9K9*controllers 31l5 31e16 12|6b14 56l5 56t16
-11T19*device_state_controller_t 12d17 13d17 14d17 15d17 17l13 17e38 12|7b19
-. 24l13 24t38
-13p17 button{52|56P9} 12|13r33 14r50 18r33 19r50
-20T19*gas_sensor_state_controller_t 21d17 22d17 23d17 24d17 25d17 26d17 27d17
-. 28d17 30l13 30e42 12|26b19 55l13 55t42
-22p17 progress_bar{63|66P9} 12|31r25
-23p17 label{57|183P9} 12|37r25
-24p17 color_button{53|52P9} 12|42r33 46r33 50r33
-25i17 multiplication_factor{integer} 12|33r70
-X 12 controllers.adb
-9l17 check_loop 23l26 23e36
-28l17 check_loop 54l26 54e36
-X 13 devices.ads
-1K9*devices 11|1w6 12r36 21r52 12|1w6 12r30 12r62 13|39e12
-3n34*ON{3E14} 12|12r70
-5W24*device_t 11|12r44 13|14e21
-6V26 get_state{3E14} 12|12s51
-10Y23 wait_for_state_change 12|10s32
-16W24*sensor_t 11|21r60 13|37e21
-22V26 get_value{float} 12|33s48 38s49
-23V26 get_read_error_occurred{boolean} 12|41s37
-24V26 get_threshold{float} 12|33s103 38s82
-31V26 is_threshold_breached{boolean} 12|45s40
-32Y23 wait_for_value_change 12|29s32
-X 14 gdk.ads
-38K9*Gdk 11|4r6 14r45 15r45 26r61 27r61 28r61 12|3r6 14|48e8
-46P9*Gdk_Visual<28|152P9>
-X 16 gdk-device.ads
+X 1 ada.ads
+16K9*Ada 20e8 14|6r6
+X 8 a-textio.ads
+49K13*Text_IO 471e16 14|6w10
+X 13 controllers.ads
+12K9*controllers 77l5 77e16 14|8b14 142l5 142t16
+14T19*device_state_controller_t 15d17 16d17 17d17 18d17 21l13 21e38 14|9b19
+. 26l13 26t38
+16p17 button{54|56P9} 14|15r33 16r50 20r33 21r50
+24T19*gas_sensor_state_controller_t 25d17 26d17 27d17 28d17 29d17 30d17 31d17
+. 32d17 35l13 35e42 14|28b19 57l13 57t42
+26p17 progress_bar{65|66P9} 14|33r25
+27p17 label{59|183P9} 14|39r25
+28p17 color_button{55|52P9} 14|44r33 48r33 52r33
+29i17 multiplication_factor{integer} 14|35r70
+38W24*water_tank_t 39d17 40d17 52E17 54l13 54e25 58r58 14|59b24 91l13 91t25
+42U27 set_level 43>25 14|60b27 75l21 75t30
+43f25 new_level{float} 14|61b25 64r30 65r38 67r41 70r50
+46V26 get_level{float} 14|77b26 80l21 80t30 100s60 105s119
+48V26 get_maximum_level{float} 14|82b26 85l21 85t38 100s85
+50Y23 wait_for_level_change 14|87b23 90l21 90t42 96s36
+52f17 level{float} 14|64r43 66r41 68r41 70r41 79r32
+53b17 changed{boolean} 14|73r33 87r52 89r25
+56T19*water_level_sensors_state_controller_t 57d17 58d17 59d17 60d17 61d17
+. 62d17 63d17 64d17 67l13 67e51 14|93b19 122l13 122t51
+59p17 progress_bar{65|66P9} 14|98r25
+60p17 label{59|183P9} 14|104r25
+61p17 color_button{55|52P9} 14|109r33 113r33 117r33
+69T19*water_flow_sensor_state_controller_t 70d17 71d17 72d17 73d17 76l13
+. 76e49 14|124b19 141l13 141t49
+71p17 button{54|56P9} 14|130r33 131r50 135r33 136r50
+X 14 controllers.adb
+11l17 check_loop 25l26 25e36
+30l17 check_loop 56l26 56e36
+95l17 check_loop 121l26 121e36
+126l17 check_loop 140l26 140e36
+X 15 devices.ads
+1K9*devices 13|10w6 15r36 25r52 57r58 70r44 14|1w6 14r30 14r62 15|78e12
+3n34*ON{3E14} 14|14r70
+5W24*device_t 13|15r44 15|14e21
+6V26 get_state{3E14} 14|14s51
+10Y23 wait_for_state_change 14|12s32
+16W24*sensor_t 13|25r60 15|37e21
+22V26 get_value{float} 14|35s48 40s49
+23V26 get_read_error_occurred{boolean} 14|43s37
+24V26 get_threshold{float} 14|35s103 40s82
+31V26 is_threshold_breached{boolean} 14|47s40
+32Y23 wait_for_value_change 14|31s32
+39W24*water_level_sensors_t 13|57r66 15|62e34
+44V26 is_low_water_level_threshold_breached{boolean} 14|108s50
+46V26 is_high_water_level_threshold_breached{boolean} 14|112s53
+48V26 get_low_water_level_threshold{float} 14|105s62
+50V26 get_high_water_level_threshold{float} 14|105s165
+64W24*water_flow_sensor_t 13|70r52 15|76e32
+66V26 is_water_flowing{boolean} 14|129s48
+72Y23 wait_for_value_change 14|127s43
+X 16 gdk.ads
+38K9*Gdk 13|5r6 17r45 18r45 30r61 31r61 32r61 62r67 63r67 64r67 72r53 73r53
+. 14|3r6 16|48e8
+46P9*Gdk_Visual<30|152P9>
+X 18 gdk-device.ads
 49P9*Gdk_Device(48R9)
-59V13*Convert{87|67M9} 32|58i21
-60V13*Convert{49P9} 32|59i21
-X 24 gdk-rgba.ads
-35K13*RGBA 11|4w10 14r49 15r49 26r65 27r65 28r65 12|3w10 24|145e13
-37R9*Gdk_RGBA 11|14r54 15r54 26r70 27r70 28r70 24|42e14
-X 27 gdk-visual.ads
-78V13*Convert[119|20]{87|67M9} 32|58i21
-79V13*Convert[119|20]{14|46P9} 32|59i21
-X 28 glib.ads
-38K9*Glib 12|4w6 32r45 28|428e9
-59F9*Gdouble<72|65F9> 12|32r50
+59V13*Convert{90|67M9} 34|58i21
+60V13*Convert{49P9} 34|59i21
+X 26 gdk-rgba.ads
+35K13*RGBA 13|5w10 17r49 18r49 30r65 31r65 32r65 62r71 63r71 64r71 72r57
+. 73r57 14|3w10 26|145e13
+37R9*Gdk_RGBA 13|17r54 18r54 30r70 31r70 32r70 62r76 63r76 64r76 72r62 73r62
+. 26|42e14
+X 29 gdk-visual.ads
+78V13*Convert[126|20]{90|67M9} 34|58i21
+79V13*Convert[126|20]{16|46P9} 34|59i21
+X 30 glib.ads
+38K9*Glib 14|4w6 34r45 99r45 30|428e9
+59F9*Gdouble<74|65F9> 14|34r50 99r50
 79A12*UTF8_String{string}<integer>
 152P9*C_Proxy(149R9)
-X 35 glib-object.ads
+X 37 glib-object.ads
 41P9*GObject(40R9)
-673V13*Convert{87|67M9} 32|58i21 33|49i21
-674V13*Convert{41P9} 32|59i21 33|50i21
-X 43 gtk.ads
-41K9*Gtk 11|2r6 3r6 6r6 7r6 13r29 22r45 23r45 24r45 12|2r6 43|79e8
-X 52 gtk-button.ads
-53K13*Button 11|2w10 13r33 12|2w10 52|595e15
-56P9*Gtk_Button(55R9) 11|13r40
-X 53 gtk-color_button.ads
-49K13*Color_Button 11|7w10 24r49 53|368e21
-52P9*Gtk_Color_Button(51R9) 11|24r62
-236U14*Set_Rgba 12|42R46 46R46 50R46
-238r8 Color{24|37R9} 12|43r41 47r41 51r41
-X 56 gtk-enums.ads
+673V13*Convert{90|67M9} 34|58i21 35|49i21
+674V13*Convert{41P9} 34|59i21 35|50i21
+X 45 gtk.ads
+41K9*Gtk 13|3r6 4r6 7r6 8r6 16r29 26r45 27r45 28r45 59r51 60r51 61r51 71r37
+. 14|2r6 45|79e8
+X 54 gtk-button.ads
+53K13*Button 13|3w10 16r33 71r41 14|2w10 54|595e15
+56P9*Gtk_Button(55R9) 13|16r40 71r48
+X 55 gtk-color_button.ads
+49K13*Color_Button 13|8w10 28r49 61r55 55|368e21
+52P9*Gtk_Color_Button(51R9) 13|28r62 61r68
+236U14*Set_Rgba 14|44R46 48R46 52R46 109R46 113R46 117R46
+238r8 Color{26|37R9} 14|45r41 49r41 53r41 110r41 114r41 118r41
+X 58 gtk-enums.ads
 499M9*Gtk_State_Flags
-865V13*Convert{87|67M9} 32|58i21 33|49i21
-866V13*Convert{string} 32|59i21 33|50i21
-X 57 gtk-label.ads
-180K13*Label 11|6w10 23r49 57|907e14
-183P9*Gtk_Label(182R9) 11|23r55
-502U14*Set_Text 12|37R31
-504a8 Str{28|79A12} 12|38r33
-X 63 gtk-progress_bar.ads
-63K13*Progress_Bar 11|3w10 22r49 63|287e21
-66P9*Gtk_Progress_Bar(65R9) 11|22r62
-109U14*Set_Fraction 12|31R38
-111f8 Fraction{28|59F9} 12|32r33
-X 68 gtk-widget.ads
+865V13*Convert{90|67M9} 34|58i21 35|49i21
+866V13*Convert{string} 34|59i21 35|50i21
+X 59 gtk-label.ads
+180K13*Label 13|7w10 27r49 60r55 59|907e14
+183P9*Gtk_Label(182R9) 13|27r55 60r61
+502U14*Set_Text 14|39R31 104R31
+504a8 Str{30|79A12} 14|40r33 105r33
+X 65 gtk-progress_bar.ads
+63K13*Progress_Bar 13|4w10 26r49 59r55 65|287e21
+66P9*Gtk_Progress_Bar(65R9) 13|26r62 59r68
+109U14*Set_Fraction 14|33R38 98R38
+111f8 Fraction{30|59F9} 14|34r33 99r33
+X 70 gtk-widget.ads
 344P9*Gtk_Widget(343R9)
-431V13*Convert{87|67M9} 32|58i21 33|49i21
-432V13*Convert{344P9} 32|59i21 33|50i21
-1994V13*Get_State_Flags{56|499M9} 12|14R57 19R57
-2605U14*Override_Color 12|13R40 18R40
-2607m8 State{56|499M9} 12|14r41 19r41
-2608r8 Color{24|37R9} 12|15r41 20r41
-X 72 i-c.ads
+431V13*Convert{90|67M9} 34|58i21 35|49i21
+432V13*Convert{344P9} 34|59i21 35|50i21
+1994V13*Get_State_Flags{58|499M9} 14|16R57 21R57 131R57 136R57
+2605U14*Override_Color 14|15R40 20R40 130R40 135R40
+2607m8 State{58|499M9} 14|16r41 21r41 131r41 136r41
+2608r8 Color{26|37R9} 14|17r41 22r41 132r41 137r41
+X 74 i-c.ads
 65F9*double<long_float>
-X 87 system.ads
+X 90 system.ads
+37K9*System 13|1w6 20r35 34r35 66r35 75r35 90|200e11
 67M9*Address
-X 101 s-stausa.ads
+100I12*Any_Priority{integer}
+101I12*Priority{100I12} 13|20r42 34r42 66r42 75r42
+X 107 s-stausa.ads
 203U14*Initialize 204i<c,__gnat_stack_usage_initialize>22
 268U14*Output_Results 272i<c,__gnat_stack_usage_output_results>22
 

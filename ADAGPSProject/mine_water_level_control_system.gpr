@@ -28,7 +28,7 @@ project Mine_Water_Level_Control_System is
       case LIBRARY_TYPE is
 
          when "static" =>
-            for Switches ("ada") use ("-gnat12");
+            --for Switches ("ada") use ("-gnat12", "-gnatec=gnat.adc");
 
          when "static-pic" =>
 
