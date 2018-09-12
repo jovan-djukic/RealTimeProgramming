@@ -6,25 +6,20 @@ import org.eclipse.etrice.runtime.java.debugging.*;
 
 import static org.eclipse.etrice.runtime.java.etunit.EtUnit.*;
 
+import deadline_task.*;
 import logger.*;
 import room.basic.service.timing.*;
 import test.*;
 import room.basic.service.timing.PTimer.*;
-import periodic_task.periodic_task_iprotocol_t.*;
+import deadline_task.deadline_task_iprotocol_t.*;
 import test.test_protocol_t.*;
 
-/*--------------------- begin user code ---------------------*/
-import java.util.logging.*;
-import java.io.IOException;
-
-/*--------------------- end user code ---------------------*/
 
 
-public abstract class periodic_task_t extends logger_t {
+public abstract class periodic_task_t extends deadline_task_t {
 
 
 	//--------------------- ports
-	protected periodic_task_iprotocol_tPort iport = null;
 	protected test_protocol_tPort test_port = null;
 
 	//--------------------- saps
@@ -35,14 +30,24 @@ public abstract class periodic_task_t extends logger_t {
 	//--------------------- optional actors
 
 	//--------------------- interface item IDs
-	public static final int IFITEM_iport = 1;
 	public static final int IFITEM_test_port = 2;
 	public static final int IFITEM_timer_access_point = 3;
 
 	/*--------------------- attributes ---------------------*/
 	public  int period;
+	public  boolean first_activation;
 
 	/*--------------------- operations ---------------------*/
+	public  void entry_action() {
+		if ( this.first_activation == true ) {
+			this.first_activation = false;
+		} else {
+			super.finished ( );
+		}
+	}
+	public  void exit_action() {
+		super.activated ( );
+	}
 
 
 	//--------------------- construction
@@ -52,9 +57,9 @@ public abstract class periodic_task_t extends logger_t {
 
 		// initialize attributes
 		this.setPeriod(0);
+		this.setFirst_activation(false);
 
 		// own ports
-		iport = new periodic_task_iprotocol_tPort(this, "iport", IFITEM_iport);
 		test_port = new test_protocol_tPort(this, "test_port", IFITEM_test_port);
 
 		// own saps
@@ -78,12 +83,15 @@ public abstract class periodic_task_t extends logger_t {
 	public int getPeriod() {
 		return this.period;
 	}
+	public void setFirst_activation(boolean first_activation) {
+		 this.first_activation = first_activation;
+	}
+	public boolean getFirst_activation() {
+		return this.first_activation;
+	}
 
 
 	//--------------------- port getters
-	public periodic_task_iprotocol_tPort getIport (){
-		return this.iport;
-	}
 	public test_protocol_tPort getTest_port (){
 		return this.test_port;
 	}
@@ -103,8 +111,6 @@ public abstract class periodic_task_t extends logger_t {
 	}
 
 	/* state IDs */
-	public static final int STATE_waiting_for_imessage = 2;
-	public static final int STATE_sleeping = 3;
 	public static final int STATE_MAX = 4;
 	
 	/* transition chains */
@@ -113,7 +119,6 @@ public abstract class periodic_task_t extends logger_t {
 	
 	/* triggers */
 	public static final int POLLING = 0;
-	public static final int TRIG_iport__initialize = IFITEM_iport + EVT_SHIFT*periodic_task_iprotocol_t.IN_initialize;
 	public static final int TRIG_timer_access_point__timeout = IFITEM_timer_access_point + EVT_SHIFT*PTimer.OUT_timeout;
 	public static final int TRIG_timer_access_point__internalTimer = IFITEM_timer_access_point + EVT_SHIFT*PTimer.OUT_internalTimer;
 	public static final int TRIG_timer_access_point__internalTimeout = IFITEM_timer_access_point + EVT_SHIFT*PTimer.OUT_internalTimeout;
@@ -136,15 +141,34 @@ public abstract class periodic_task_t extends logger_t {
 	
 	/* Entry and Exit Codes */
 	protected void entry_sleeping() {
-		super.info ( this.getName( ), "Starting timeout" );
+		this.entry_action ( );
+		
+		super.logger.info (
+			this.getName( ),
+			"Starting timeout"
+		);
+		
 		this.test_port.activated ( );
-		this.timer_access_point.startTimeout ( this.period );
+		
+		this.timer_access_point.startTimeout (
+			this.period
+		);
+	}
+	protected void exit_sleeping() {
+		this.exit_action ( );
 	}
 	
 	/* Action Codes */
-	protected void action_TRANS_imessage_received_FROM_waiting_for_imessage_TO_sleeping_BY_initializeiport(InterfaceItemBase ifitem, periodic_task_idata_t data) {
-	    this.period = data.period;
-	    super.info ( this.getName ( ), "Initialization message received" );
+	protected void action_TRANS_imessage_received_FROM_waiting_for_imessage_TO_sleeping_BY_initializeiport(InterfaceItemBase ifitem, deadline_task_idata_t data) {
+	    this.deadline = data.deadline;
+	    this.logger.info (
+	    	this.getName ( ),
+	    	"Initialization message received"
+	    );
+	    
+	    this.period =  ( ( periodic_task_idata_t ) data ).period;
+	    
+	    this.first_activation = true;
 	}
 	
 	/* State Switch Methods */
@@ -162,6 +186,7 @@ public abstract class periodic_task_t extends logger_t {
 					current__et = STATE_TOP;
 					break;
 				case STATE_sleeping:
+					exit_sleeping();
 					this.history[STATE_TOP] = STATE_sleeping;
 					current__et = STATE_TOP;
 					break;
@@ -187,7 +212,7 @@ public abstract class periodic_task_t extends logger_t {
 			}
 			case periodic_task_t.CHAIN_TRANS_imessage_received_FROM_waiting_for_imessage_TO_sleeping_BY_initializeiport:
 			{
-				periodic_task_idata_t data = (periodic_task_idata_t) generic_data__et;
+				deadline_task_idata_t data = (deadline_task_idata_t) generic_data__et;
 				action_TRANS_imessage_received_FROM_waiting_for_imessage_TO_sleeping_BY_initializeiport(ifitem, data);
 				return STATE_sleeping;
 			}

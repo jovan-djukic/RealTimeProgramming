@@ -6,28 +6,23 @@ import org.eclipse.etrice.runtime.java.debugging.*;
 
 import static org.eclipse.etrice.runtime.java.etunit.EtUnit.*;
 
+import alarm_station.*;
+import deadline_task.*;
 import devices.*;
 import logger.*;
 import periodic_task.*;
 import room.basic.service.timing.*;
 import test.*;
 import room.basic.service.timing.PTimer.*;
-import periodic_task.periodic_task_iprotocol_t.*;
-import devices.switch_protocol_t.*;
+import deadline_task.deadline_task_iprotocol_t.*;
 import test.test_protocol_t.*;
 
-/*--------------------- begin user code ---------------------*/
-import java.util.logging.*;
-import java.io.IOException;
-
-/*--------------------- end user code ---------------------*/
 
 
-public class gas_sensor_controller_t extends sensor_controller_t {
+public class gas_sensor_controller_t extends periodic_task_t {
 
 
 	//--------------------- ports
-	protected switch_protocol_tPort alarm_port = null;
 
 	//--------------------- saps
 
@@ -36,7 +31,6 @@ public class gas_sensor_controller_t extends sensor_controller_t {
 	//--------------------- optional actors
 
 	//--------------------- interface item IDs
-	public static final int IFITEM_alarm_port = 4;
 
 	/*--------------------- attributes ---------------------*/
 	public  boolean detect_above_threshold;
@@ -45,43 +39,100 @@ public class gas_sensor_controller_t extends sensor_controller_t {
 	public  int error_count_threshold;
 	public  int error_count;
 	public  boolean alarm_turned_on;
+	public  alarm_controller_t alarm_controller;
 
 	/*--------------------- operations ---------------------*/
+	public  void addittional_query_action() {
+	}
 	public  void query_action() {
-		if ( this.gas_sensor.error_occurred == true ) {
+		boolean read_error_occurred = this.gas_sensor.get_read_error_occurred (
+			super.logger,
+			super.getName ( )
+		);
+		
+		if ( read_error_occurred == true ) {
 			this.error_count++;
 			if ( this.error_count > this.error_count_threshold ) {
 				if ( this.alarm_turned_on == false ) {
-					this.alarm_port.turn_on ( );
-					super.info ( super.getName ( ), "Error received, count threshold breached, turning on alarm" );
+					super.logger.info (
+						super.getName ( ),
+						"Error received, count threshold breached, turning on alarm"
+					);
+		
+					this.alarm_controller.turn_on (
+						super.logger,
+						super.getName ( )
+					);
+		
 					this.alarm_turned_on = true;	
 				}
 			} else {
-				super.info ( super.getName ( ), "Error received, count normal" );
+				super.logger.info (
+					super.getName ( ), 
+					"Error received, count normal"
+				);
 			}
 		} else {
 			this.error_count = 0;
 		
-			if ( this.detect_above_threshold == true && this.gas_sensor.value > this.threshold ) {
+			int gas_sensor_value = this.gas_sensor.get_value (
+				super.logger,
+				super.getName ( )
+			);
+		
+			if ( this.detect_above_threshold == true && gas_sensor_value > this.threshold ) {
 				if ( this.alarm_turned_on == false ) {
-					this.alarm_port.turn_on ( );
-					super.info ( super.getName ( ), "Threshold breached, turning on alarm" );
+					super.logger.info (
+						super.getName ( ),
+						"Threshold breached, turning on alarm"
+					);
+		
+					this.alarm_controller.turn_on (
+						super.logger,
+						super.getName ( )
+					);
+		
 					this.alarm_turned_on = true;	
 				}
-			} else if ( this.detect_above_threshold == false && this.gas_sensor.value < this.threshold ) {
+			} else if ( this.detect_above_threshold == false && gas_sensor_value < this.threshold ) {
 				if ( this.alarm_turned_on == false ) {
-					this.alarm_port.turn_on ( );
-					super.info ( super.getName ( ), "Threshold breached, turning on alarm" );
+					super.logger.info (
+						super.getName ( ), 
+						"Threshold breached, turning on alarm"
+					);
+		
+					this.alarm_controller.turn_on (
+						super.logger,
+						super.getName ( )
+					);
+		
 					this.alarm_turned_on = true;	
 				}
 			} else {
 				if ( this.alarm_turned_on == true ) {
-					this.alarm_port.turn_off ( );
-					super.info ( super.getName ( ), "Threshold stabilizied, turning off alarm" );
+					super.logger.info ( 
+						super.getName ( ), 
+						"Threshold stabilizied, turning off alarm"
+					);
+		
+					this.alarm_controller.turn_off (
+						super.logger,
+						super.getName ( )
+					);
 					this.alarm_turned_on = false;	
 				}
 			}
 		}
+		
+		this.addittional_query_action ( );
+	}
+	public  void entry_action() {
+		this.gas_sensor.start_conversion (
+			super.logger,
+			super.getName ( )
+		);
+		
+		super.entry_action ( );
 	}
 
 
@@ -97,9 +148,9 @@ public class gas_sensor_controller_t extends sensor_controller_t {
 		this.setError_count_threshold(0);
 		this.setError_count(0);
 		this.setAlarm_turned_on(false);
+		this.setAlarm_controller(null);
 
 		// own ports
-		alarm_port = new switch_protocol_tPort(this, "alarm_port", IFITEM_alarm_port);
 
 		// own saps
 
@@ -151,12 +202,15 @@ public class gas_sensor_controller_t extends sensor_controller_t {
 	public boolean getAlarm_turned_on() {
 		return this.alarm_turned_on;
 	}
+	public void setAlarm_controller(alarm_controller_t alarm_controller) {
+		 this.alarm_controller = alarm_controller;
+	}
+	public alarm_controller_t getAlarm_controller() {
+		return this.alarm_controller;
+	}
 
 
 	//--------------------- port getters
-	public switch_protocol_tPort getAlarm_port (){
-		return this.alarm_port;
-	}
 
 	//--------------------- lifecycle functions
 	public void stop(){
@@ -199,16 +253,37 @@ public class gas_sensor_controller_t extends sensor_controller_t {
 	/* Entry and Exit Codes */
 	
 	/* Action Codes */
-	protected void action_TRANS_imessage_received_FROM_waiting_for_imessage_TO_sleeping_BY_initializeiport(InterfaceItemBase ifitem, periodic_task_idata_t data) {
-	    this.period = data.period;
-	    super.info ( this.getName ( ), "Initialization message received" );
+	protected void action_TRANS_timeout_received_FROM_sleeping_TO_sleeping_BY_timeouttimer_access_point_timeout_received(InterfaceItemBase ifitem) {
+	    super.logger.info (
+	    	this.getName ( ),
+	    	"Query action begin"
+	    );
+	    
+	    this.query_action ( );
+	    
+	    super.logger.info (
+	    	this.getName ( ),
+	    	"Query action end"
+	    );
+	}
+	protected void action_TRANS_imessage_received_FROM_waiting_for_imessage_TO_sleeping_BY_initializeiport(InterfaceItemBase ifitem, deadline_task_idata_t data) {
+	    this.deadline = data.deadline;
+	    this.logger.info (
+	    	this.getName ( ),
+	    	"Initialization message received"
+	    );
+	    
+	    this.period =  ( ( periodic_task_idata_t ) data ).period;
+	    
+	    this.first_activation = true;
 	    
 	    this.detect_above_threshold = ( ( gas_sensor_controller_idata_t ) data ).detect_above_threshold;
-	    this.threshold = ( ( gas_sensor_controller_idata_t ) data ).threshold;
-	    this.gas_sensor = ( ( gas_sensor_controller_idata_t ) data ).gas_sensor;
-	    this.error_count_threshold = ( ( gas_sensor_controller_idata_t ) data ).error_count_threshold;
-	    this.error_count = 0;
-	    this.alarm_turned_on = false;
+	    this.threshold  		    = ( ( gas_sensor_controller_idata_t ) data ).threshold;
+	    this.gas_sensor 		    = ( ( gas_sensor_controller_idata_t ) data ).gas_sensor;
+	    this.error_count_threshold  = ( ( gas_sensor_controller_idata_t ) data ).error_count_threshold;
+	    this.alarm_controller 	    = ( ( gas_sensor_controller_idata_t ) data ).alarm_controller;
+	    this.error_count 	  	    = 0;
+	    this.alarm_turned_on  	    = false;
 	}
 	
 	/* State Switch Methods */
@@ -226,6 +301,7 @@ public class gas_sensor_controller_t extends sensor_controller_t {
 					current__et = STATE_TOP;
 					break;
 				case STATE_sleeping:
+					exit_sleeping();
 					this.history[STATE_TOP] = STATE_sleeping;
 					current__et = STATE_TOP;
 					break;
@@ -256,7 +332,7 @@ public class gas_sensor_controller_t extends sensor_controller_t {
 			}
 			case gas_sensor_controller_t.CHAIN_TRANS_imessage_received_FROM_waiting_for_imessage_TO_sleeping_BY_initializeiport:
 			{
-				periodic_task_idata_t data = (periodic_task_idata_t) generic_data__et;
+				deadline_task_idata_t data = (deadline_task_idata_t) generic_data__et;
 				action_TRANS_imessage_received_FROM_waiting_for_imessage_TO_sleeping_BY_initializeiport(ifitem, data);
 				return STATE_sleeping;
 			}

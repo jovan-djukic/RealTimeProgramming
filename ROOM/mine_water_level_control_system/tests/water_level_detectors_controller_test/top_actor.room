@@ -1,0 +1,153 @@
+RoomModel top_actor {
+	import room.basic.types.* 		   		from "../../../org.eclipse.etrice.modellib.java/model/Types.room"
+	import room.basic.service.timing.* 		from "../../../org.eclipse.etrice.modellib.java/model/TimingService.room"
+	import devices.* 				   		from "../../model/devices.room"
+	import pump_station						from "../../model/pump_station.room"
+	import environment_monitoring_station.* from "../../model/environment_monitoring_station.room"
+	import test.* 							from "../../model/test.room"
+	import logger.*							from "../../model/logger.room"
+	import deadline_task.*					from "../../model/deadline_task.room"
+
+	ActorClass top_actor_t {
+		Structure {
+			usercode1 '''
+				class Constants {
+					public static final int TEST_PERIOD_IN_MS 		   					  = 100;
+					public static final int WATER_LEVEL_SENSORS_CONTROLLER_DEADLINE_IN_MS = 100;
+					public static final int LOW_WATER_LEVEL_THRESHOLD  					  = 50;
+					public static final int HIGH_WATER_LEVEL_THRESHOLD 					  = 150;
+					public static final int MAXIMUM_WATER_LEVEL 	   					  = Constants.HIGH_WATER_LEVEL_THRESHOLD + 50;
+					public static final int IWATER_LEVEL 			   					  = ( Constants.HIGH_WATER_LEVEL_THRESHOLD + Constants.LOW_WATER_LEVEL_THRESHOLD ) / 2;
+				}
+			'''		
+			
+			Attribute expected_pump_state : device_state_t
+			Attribute logger			  : logger_t
+			Attribute first_activation	  : boolean
+			
+			Attribute water_level					: int32
+			Attribute pump						    : device_t
+			Attribute pump_controller				: pump_station.pump_controller_t
+			ActorRef water_level_sensors 			: water_level_sensors_t
+			ActorRef water_level_sensors_controller : water_level_sensors_controller_t 
+			
+			conjugated Port water_level_sensors_iport 			 : water_level_sensors_iprotocol_t
+			conjugated Port water_level_sensors_update_port		 : water_level_sensors_update_protocol_t
+			conjugated Port water_level_sensors_controller_iport : deadline_task_iprotocol_t
+			conjugated Port test_port 							 : test_protocol_t
+			
+			SAP timer_access_point : PTimer
+
+			Binding water_level_sensors_controller_iport 		  and water_level_sensors_controller.iport
+			Binding water_level_sensors_iport		     		  and water_level_sensors.iport
+			Binding water_level_sensors_update_port		 		  and water_level_sensors.update_port
+			Binding water_level_sensors_controller.interrupt_port and water_level_sensors.interrupt_port
+		}
+		Behavior {
+			Operation process ( ) : void '''
+				if ( this.water_level < Constants.LOW_WATER_LEVEL_THRESHOLD ) {
+					this.expected_pump_state = device_state_t.OFF;
+				} else if ( this.water_level > Constants.HIGH_WATER_LEVEL_THRESHOLD ) {
+					this.expected_pump_state = device_state_t.ON;
+				}
+			'''
+
+			Operation update ( ) : void '''
+				this.water_level = ( int ) ( Constants.MAXIMUM_WATER_LEVEL * Math.random ( ) );
+				
+				this.water_level_sensors_update_port.update (
+					this.water_level	
+				);
+
+				this.process( );
+			'''
+
+			StateMachine {
+				State testing { }
+				
+				Transition start : initial -> testing {
+					action '''
+						this.first_activation = true;
+						this.water_level 	  = Constants.IWATER_LEVEL;
+
+						this.water_level_sensors_iport.initialize (
+							new water_level_sensors_idata_t (
+								Constants.LOW_WATER_LEVEL_THRESHOLD,
+								Constants.HIGH_WATER_LEVEL_THRESHOLD,
+								this.water_level
+							)
+						);
+
+						this.expected_pump_state = device_state_t.OFF;
+						
+						this.pump.set_state (
+							this.logger,
+							super.getName ( ),
+							device_state_t.OFF
+						);
+
+						
+						this.pump_controller.initialize (
+							this.logger,
+							super.getName ( ),
+							new pump_controller_idata_t (
+								this.pump
+							)
+						);
+						
+						this.process( );
+						
+						this.water_level_sensors_controller_iport.initialize ( 
+							new water_level_sensors_controller_idata_t ( 
+								Constants.WATER_LEVEL_SENSORS_CONTROLLER_DEADLINE_IN_MS,
+								this.pump_controller
+							)
+						);
+						
+						this.timer_access_point.startTimeout (
+							Constants.TEST_PERIOD_IN_MS
+						);
+					'''
+				}
+				
+				
+				
+				Transition timeout_received : testing -> testing {
+					triggers {
+						< timeout : timer_access_point > 
+					}
+					action '''
+						if ( this.first_activation == true ) {
+							this.first_activation = false;
+						} else {
+							if ( this.expected_pump_state == this.pump.state ) {
+								System.out.println ( 
+									"Pump in expected state"
+								);
+								this.logger.info (
+									super.getName ( ),
+									"Pump in expected state"
+								);
+							} else {
+								System.err.println ( 
+									"Pump in unexpected state"
+								);
+
+								this.logger.info (
+									super.getName ( ),
+									"Pump in unexpected state"
+								);
+							}
+
+							this.update ( );	
+						}
+
+						this.timer_access_point.startTimeout (
+							Constants.TEST_PERIOD_IN_MS
+						);
+					'''
+				}
+			}
+		}
+	}
+}

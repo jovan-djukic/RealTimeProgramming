@@ -13,72 +13,83 @@ RoomModel base_actor {
 	ActorClass base_actor_t {
 		Structure {
 			usercode1 '''
-				class CONSTANTS {
-					public class O_SENSOR_CONTROLLER {
-						public static final int PERIOD = 150;
-						public static final boolean DETECT_ABOVE_THRESHOLD = false;
-						public static final int THRESHOLD = 10;
-						public static final int ERROR_COUNT_THRESHOLD = 2;
-					}
-
-					public class O_SENSOR {
-						public static final int IVALUE = 50;
-						public static final boolean IERROR_OCCURRED = false;
-					}
-
-					public class CO_SENSOR_CONTROLLER {
-						public static final int PERIOD = 150;
-						public static final boolean DETECT_ABOVE_THRESHOLD = true;
-						public static final int THRESHOLD = 100;
-						public static final int ERROR_COUNT_THRESHOLD = 2;
-					}
-
-					public class CO_SENSOR {
-						public static final int IVALUE = 50;
-						public static final boolean IERROR_OCCURRED = false;
-					}
-
-					public class CH4_SENSOR_CONTROLLER {
-						public static final int PERIOD = 150;
-						public static final boolean DETECT_ABOVE_THRESHOLD = true;
-						public static final int THRESHOLD = 100;
-						public static final int ERROR_COUNT_THRESHOLD = 2;
-					}
-					
-					public class CH4_SENSOR {
-						public static final int IVALUE = 50;
-						public static final boolean IERROR_OCCURRED = false;
-					}
-
-					public class WATER_LEVEL_SENSORS_CONTROLLER {
-						public static final int PERIOD = 5000;
-					}
-					
-					public class LOW_WATER_LEVEL_SENSOR {
-						public static final int IVALUE = 0;
-					}
-
-					public class HIGH_WATER_LEVEL_SENSOR {
-						public static final int IVALUE = 0;
-					}
-
-					public class WATER_FLOW_SENSOR_CONTROLLER {
-						public static final int PERIOD = 150;
-						public static final int NUMBER_OF_ACTIVATIONS = 6;
-					}
-
-					public class WATER_FLOW_SENSOR {
-						public static final int IVALUE = 0;
-					}
-
+				class Constants {
 					public class ALARM {
-						public static final int ISTATE  = device_state_t.OFF;
+						public static final String NAME   = "ALARM";
+						public static final int    ISTATE = device_state_t.OFF;
 					}
 
 					public class PUMP {
-						public static final int ISTATE  = device_state_t.OFF;
+						public static final String NAME   = "PUMP";
+						public static final int    ISTATE = device_state_t.OFF;
 					}
 					
+					public class WATER_LEVEL_SENSORS {
+						public static final int LOW_WATER_LEVEL_THRESHOLD  = 50;
+						public static final int HIGH_WATER_LEVEL_THRESHOLD = 150;
+						public static final int WATER_LEVEL 				  = 100;
+					}
+
+					public class WATER_FLOW_SENSOR {
+						public static final String NAME 			  = "WATER FLOW SENSOR";
+						public static final int IVALUE 				  = 0;
+						public static final int CONVERSION_TIME_IN_MS = 50;
+					}
+
+					public class CO_SENSOR {
+						public static final String NAME 			     = "CO SENSOR";
+						public static final int IVALUE 				     = 50;
+						public static final boolean IREAD_ERROR_OCCURRED = false;
+						public static final int CONVERSION_TIME_IN_MS    = 50;
+					}
+
+					public class O_SENSOR {
+						public static final String NAME 			  	 = "O SENSOR";
+						public static final int IVALUE 				  	 = 150;
+						public static final boolean IREAD_ERROR_OCCURRED = false;
+						public static final int CONVERSION_TIME_IN_MS 	 = 50;
+					}
+
+					public class CH4_SENSOR {
+						public static final String NAME 			  	 = "CH4 SENSOR";
+						public static final int IVALUE 				  	 = 100;
+						public static final boolean IREAD_ERROR_OCCURRED = false;
+						public static final int CONVERSION_TIME_IN_MS    = 50;
+					}
+
+					public class CO_SENSOR_CONTROLLER {
+						public static final int DEADLINE_IN_MS 		  = 100;
+						public static final int PERIOD_IN_MS 		  = 150;
+						public static final int THRESHOLD 			  = 100;
+						public static final int ERROR_COUNT_THRESHOLD = 2;
+					}
+
+					public class O_SENSOR_CONTROLLER {
+						public static final int DEADLINE_IN_MS 		  = 100;
+						public static final int PERIOD_IN_MS 		  = 150;
+						public static final int THRESHOLD 			  = 100;
+						public static final int ERROR_COUNT_THRESHOLD = 2;
+					}
+
+					public class CH4_SENSOR_CONTROLLER {
+						public static final int DEADLINE_IN_MS 		  = 100;
+						public static final int PERIOD_IN_MS 		  = 150;
+						public static final int THRESHOLD 			  = 100;
+						public static final int ERROR_COUNT_THRESHOLD = 2;
+					}
+
+
+					public class WATER_LEVEL_SENSORS_CONTROLLER {
+						public static final int DEADLINE_IN_MS = 200;
+					}
+					
+					public class WATER_FLOW_SENSOR_CONTROLLER {
+						public static final int DEADLINE_IN_MS 		  = 100;
+						public static final int PERIOD_IN_MS 	      = 150;
+						public static final int NUMBER_OF_ACTIVATIONS = 6;
+					}
+
+
 					public class SCENARIO {
 						public static final int CHECK_PERIOD = 10;
 						public static final int SLEEP_TIME_IN_S = 2;
@@ -87,27 +98,28 @@ RoomModel base_actor {
 			'''		
 			SAP timer_access_point : PTimer
 			
-			Attribute o_sensor : gas_sensor_t
-			Attribute co_sensor : gas_sensor_t
+			Attribute logger 	 : logger_t
+
+			Attribute o_sensor 	 : gas_sensor_t
+			Attribute co_sensor  : gas_sensor_t
 			Attribute ch4_sensor : gas_sensor_t
 			
-			Attribute low_water_level_sensor : water_level_sensor_t
-			Attribute high_water_level_sensor : water_level_sensor_t
-			
-			Attribute water_flow_sensor : water_flow_sensor_t
+			Attribute water_flow_sensor : sensor_t
 			
 			Attribute alarm : device_t
-			Attribute pump : device_t
+			Attribute pump  : device_t
 			
-			conjugated Port mine_water_level_control_system_iport : mine_water_level_control_system_iprotocol_t
-			Port mine_water_level_control_system_user_port : switch_protocol_t
-			conjugated Port mine_water_level_control_system_test_port : test_protocol_t
+			conjugated Port mine_water_level_control_system_iport 	    : mine_water_level_control_system_iprotocol_t
+			conjugated Port mine_water_level_control_system_user_port 	: switch_protocol_t
+			conjugated Port mine_water_level_control_system_test_port 	: test_protocol_t
+			conjugated Port mine_water_level_control_system_update_port : water_level_sensors_update_protocol_t 
 
 			ActorRef mine_water_level_control_system : mine_water_level_control_system_t
 			
-			Binding mine_water_level_control_system.iport and mine_water_level_control_system_iport
-			Binding mine_water_level_control_system.user_port and mine_water_level_control_system_user_port 
-			Binding mine_water_level_control_system.test_port and mine_water_level_control_system_test_port
+			Binding mine_water_level_control_system.iport       and mine_water_level_control_system_iport
+			Binding mine_water_level_control_system.user_port   and mine_water_level_control_system_user_port 
+			Binding mine_water_level_control_system.test_port   and mine_water_level_control_system_test_port
+			Binding mine_water_level_control_system.update_port and mine_water_level_control_system_update_port
 		}
 		Behavior {
 			Operation get_above_threshold_value ( detect_above_threshold : boolean, threshold : int32 ) : int32 '''
@@ -125,74 +137,140 @@ RoomModel base_actor {
 				}
 			'''
 			
+			Operation is_pump_turned_on ( ) : boolean '''
+				int pump_state = this.pump.get_state (
+					this.logger,
+					super.getName ( )
+				);
+				
+				if ( pump_state == device_state_t.ON ) {
+					return true;
+				} else {
+					return false;
+				}
+			'''
+
+			Operation is_alarm_turned_on ( ) : boolean '''
+				int alarm_state = this.alarm.get_state (
+					this.logger,
+					super.getName ( )
+				);
+				
+				if ( alarm_state == device_state_t.ON ) {
+					return true;
+				} else {
+					return false;
+				}
+			'''
+			
+			Operation pause ( ) : void '''
+				System.out.println ( 
+					"Pausing for " + Constants.SCENARIO.SLEEP_TIME_IN_S + " seconds"
+				);
+
+				try {
+					java.lang.Thread.sleep ( 
+						Constants.SCENARIO.SLEEP_TIME_IN_S * 1000
+					);
+				} catch ( 
+					InterruptedException e
+				) { }
+			'''
+			
 			Operation stop_scenario ( ) : void '''
 				System.out.println ( "Scenario is a success " );
 				System.exit ( 1 );
 			'''
 		
 			StateMachine {
-				State step0 { }
+				State step0 {
+					entry '''
+						System.out.println (
+							"STEP 0"
+						);
+					'''
+				}
 				
 				Transition start : initial -> step0 {
 					action '''
+						this.co_sensor.initialize (
+							this.logger,
+							super.getName ( ),
+							Constants.CO_SENSOR.IVALUE,
+							Constants.CO_SENSOR.IREAD_ERROR_OCCURRED,
+							Constants.CO_SENSOR.CONVERSION_TIME_IN_MS,
+							Constants.CO_SENSOR.NAME
+						);
+
 						// initialize sensors 
-						this.o_sensor.value = CONSTANTS.O_SENSOR.IVALUE;
-						this.o_sensor.error_occurred = CONSTANTS.O_SENSOR.IERROR_OCCURRED;
+						this.o_sensor.initialize (
+							this.logger,
+							super.getName ( ),
+							Constants.O_SENSOR.IVALUE,
+							Constants.O_SENSOR.IREAD_ERROR_OCCURRED,
+							Constants.O_SENSOR.CONVERSION_TIME_IN_MS,
+							Constants.O_SENSOR.NAME
+						);
 
-						this.co_sensor.value = CONSTANTS.CO_SENSOR.IVALUE;
-						this.co_sensor.error_occurred = CONSTANTS.CO_SENSOR.IERROR_OCCURRED;
-
-						this.ch4_sensor.value = CONSTANTS.CH4_SENSOR.IVALUE;
-						this.ch4_sensor.error_occurred = CONSTANTS.CH4_SENSOR.IERROR_OCCURRED;
+						this.ch4_sensor.initialize (
+							this.logger,
+							super.getName ( ),
+							Constants.CH4_SENSOR.IVALUE,
+							Constants.CH4_SENSOR.IREAD_ERROR_OCCURRED,
+							Constants.CH4_SENSOR.CONVERSION_TIME_IN_MS,
+							Constants.CH4_SENSOR.NAME
+						);
 						
-						this.low_water_level_sensor.value = CONSTANTS.LOW_WATER_LEVEL_SENSOR.IVALUE;
-						this.high_water_level_sensor.value = CONSTANTS.HIGH_WATER_LEVEL_SENSOR.IVALUE;
-
-						this.water_flow_sensor.value = CONSTANTS.WATER_FLOW_SENSOR.IVALUE;
+						this.water_flow_sensor.initialize_without_read_error_occurred (
+							this.logger,
+							super.getName ( ),
+							Constants.WATER_FLOW_SENSOR.IVALUE,
+							Constants.WATER_FLOW_SENSOR.CONVERSION_TIME_IN_MS,
+							Constants.WATER_FLOW_SENSOR.NAME
+						);
 						
-						this.alarm.state = CONSTANTS.ALARM.ISTATE;
+						this.alarm.initialize (
+							this.logger,
+							super.getName ( ),
+							Constants.ALARM.NAME,
+							Constants.ALARM.ISTATE
+						);
 
-						this.pump.state = CONSTANTS.PUMP.ISTATE;
+						this.pump.initialize (
+							this.logger,
+							super.getName ( ),
+							Constants.PUMP.NAME,
+							Constants.PUMP.ISTATE
+						);
 
 						// initialize system
 						this.mine_water_level_control_system_iport.initialize ( 
-							new gas_sensor_controller_idata_t ( 
-								CONSTANTS.CO_SENSOR_CONTROLLER.PERIOD,
-								CONSTANTS.CO_SENSOR_CONTROLLER.DETECT_ABOVE_THRESHOLD,
-								CONSTANTS.CO_SENSOR_CONTROLLER.THRESHOLD,
-								this.co_sensor,
-								CONSTANTS.CO_SENSOR_CONTROLLER.ERROR_COUNT_THRESHOLD
-							),
-							new gas_sensor_controller_idata_t ( 
-								CONSTANTS.O_SENSOR_CONTROLLER.PERIOD,
-								CONSTANTS.O_SENSOR_CONTROLLER.DETECT_ABOVE_THRESHOLD,
-								CONSTANTS.O_SENSOR_CONTROLLER.THRESHOLD,
-								this.o_sensor,
-								CONSTANTS.O_SENSOR_CONTROLLER.ERROR_COUNT_THRESHOLD
-							),
-							new gas_sensor_controller_idata_t ( 
-								CONSTANTS.CH4_SENSOR_CONTROLLER.PERIOD,
-								CONSTANTS.CH4_SENSOR_CONTROLLER.DETECT_ABOVE_THRESHOLD,
-								CONSTANTS.CH4_SENSOR_CONTROLLER.THRESHOLD,
-								this.ch4_sensor,
-								CONSTANTS.CH4_SENSOR_CONTROLLER.ERROR_COUNT_THRESHOLD
-							),
-							new water_level_sensors_controller_idata_t ( 
-								CONSTANTS.WATER_LEVEL_SENSORS_CONTROLLER.PERIOD,
-								this.low_water_level_sensor,
-								this.high_water_level_sensor
-							),
-							new water_flow_sensor_controller_idata_t (
-								CONSTANTS.WATER_FLOW_SENSOR_CONTROLLER.PERIOD,
+							new mine_water_level_control_system_idata_t (
+								Constants.WATER_LEVEL_SENSORS.WATER_LEVEL,
+								Constants.WATER_LEVEL_SENSORS.LOW_WATER_LEVEL_THRESHOLD,
+								Constants.WATER_LEVEL_SENSORS.HIGH_WATER_LEVEL_THRESHOLD,
+								this.alarm,
 								this.pump,
-								this.water_flow_sensor,
-								CONSTANTS.WATER_FLOW_SENSOR_CONTROLLER.NUMBER_OF_ACTIVATIONS
-							),
-							new alarm_controller_idata_t ( 
-								this.alarm	
-							),
-							new pump_controller_idata_t ( 
-								this.pump
+								this.co_sensor,	
+								Constants.CO_SENSOR_CONTROLLER.DEADLINE_IN_MS,
+								Constants.CO_SENSOR_CONTROLLER.PERIOD_IN_MS,
+								Constants.CO_SENSOR_CONTROLLER.THRESHOLD,
+								Constants.CO_SENSOR_CONTROLLER.ERROR_COUNT_THRESHOLD,
+								this.o_sensor,	
+								Constants.O_SENSOR_CONTROLLER.DEADLINE_IN_MS,
+								Constants.O_SENSOR_CONTROLLER.PERIOD_IN_MS,
+								Constants.O_SENSOR_CONTROLLER.THRESHOLD,
+								Constants.O_SENSOR_CONTROLLER.ERROR_COUNT_THRESHOLD,
+								this.ch4_sensor,	
+								Constants.CH4_SENSOR_CONTROLLER.DEADLINE_IN_MS,
+								Constants.CH4_SENSOR_CONTROLLER.PERIOD_IN_MS,
+								Constants.CH4_SENSOR_CONTROLLER.THRESHOLD,
+								Constants.CH4_SENSOR_CONTROLLER.ERROR_COUNT_THRESHOLD,
+								Constants.WATER_LEVEL_SENSORS_CONTROLLER.DEADLINE_IN_MS,
+								this.water_flow_sensor,	
+								Constants.WATER_FLOW_SENSOR_CONTROLLER.DEADLINE_IN_MS,
+								Constants.WATER_FLOW_SENSOR_CONTROLLER.PERIOD_IN_MS,
+								Constants.WATER_FLOW_SENSOR_CONTROLLER.NUMBER_OF_ACTIVATIONS
 							)
 						);
 					'''

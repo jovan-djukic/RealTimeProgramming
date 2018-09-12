@@ -1,7 +1,7 @@
 MappingModel TemplateMapping {
 	
 	import physical.* from "../../model/physical.etphys"
-	import test.* from "test.room"
+	import test.*     from "test.room"
 
 	Mapping log_sys -> physical_system {
 		SubSystemMapping sub_system_ref -> node {

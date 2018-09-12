@@ -1,97 +1,83 @@
 RoomModel alarm_station {
 	import room.basic.types.* from "../../org.eclipse.etrice.modellib.java/model/Types.room"
-	import devices.* from "devices.room"
-	import logger.* from "logger.room"
+	import devices.* 		  from "devices.room"
+	import logger.* 	      from "logger.room"
 	
 	DataClass alarm_controller_idata_t {
-		Attribute alarm : device_t ref
+		Attribute alarm 			         : device_t ref
+		Attribute number_of_alarm_activators : int32
 	}
 	
-	ProtocolClass alarm_controller_iprotocol_t {
-		incoming {
-			Message initialize ( data : alarm_controller_idata_t )
-		}
-	}
-	
-	
-	ActorClass alarm_controller_t extends logger_t {
-		Interface {
-			Port iport : alarm_controller_iprotocol_t
-			conjugated Port co_sensor_controller_port : switch_protocol_t
-			conjugated Port o_sensor_controller_port : switch_protocol_t
-			conjugated Port ch4_sensor_controller_port : switch_protocol_t
-			conjugated Port water_flow_sensor_controller_port : switch_protocol_t
-		}
-		Structure {
-			external Port iport
-			external Port co_sensor_controller_port
-			external Port o_sensor_controller_port
-			external Port ch4_sensor_controller_port
-			external Port water_flow_sensor_controller_port
-			
-			Attribute alarm : device_t ref
-			Attribute alarm_level : int32
-			Attribute number_of_alarm_activators : int32
-		}
-		Behavior {
-			ctor '''
-				this.alarm_level = 0;
-				this.number_of_alarm_activators = 4;
-			'''
-			
-			StateMachine {
-				State waiting_for_imessage { }
-				State waiting_for_alarm_message { }
-				
-				Transition start : initial -> waiting_for_imessage { }
-				
-				Transition imessage_received : waiting_for_imessage -> waiting_for_alarm_message {
-					triggers {
-						< initialize : iport >
-					}
-					action '''
-						this.alarm = data.alarm;
-					'''
-				}
-				
-				Transition turn_on_message_received : waiting_for_alarm_message -> waiting_for_alarm_message {
-					triggers {
-						< turn_on : ch4_sensor_controller_port > or
-						< turn_on : co_sensor_controller_port > or
-						< turn_on : o_sensor_controller_port > or
-						< turn_on : water_flow_sensor_controller_port >
-					}
-					action '''
-						if ( this.alarm_level < this.number_of_alarm_activators ) {
-							this.alarm_level++;
-						}
-						
-						if ( this.alarm_level == 1 ) {
-							this.alarm.state = device_state_t.ON;	
-							super.info ( super.getName ( ), "Initial turn on message recevied, turning on alarm" );
-						}
-					'''
-				}
+	DataClass alarm_controller_t {
+		Attribute alarm 	  				 : device_t ref
+		Attribute alarm_level 				 : int32
+		Attribute number_of_alarm_activators : int32
 
-				Transition turn_off_message_received : waiting_for_alarm_message -> waiting_for_alarm_message {
-					triggers {
-						< turn_off : ch4_sensor_controller_port > or
-						< turn_off : co_sensor_controller_port > or
-						< turn_off : o_sensor_controller_port > or
-						< turn_off : water_flow_sensor_controller_port >
-					}
-					action '''
-						if ( this.alarm_level > 0 ) {
-							this.alarm_level--;
-						}
-						
-						if ( this.alarm_level == 0 ) {
-							this.alarm.state = device_state_t.OFF;	
-							super.info ( super.getName ( ), "Last turn off message recevied, turning off alarm" );
-						}
-					'''
+		Operation initialize (
+			logger 	   : logger_t, 
+			actor_name : string,
+			data 	   : alarm_controller_idata_t
+		) : void '''
+			logger.info (
+				actor_name,
+				"Initializing alarm controller"
+			);
+
+			this.alarm_level 				= 0;
+			this.alarm 		 				= data.alarm;
+			this.number_of_alarm_activators = data.number_of_alarm_activators;
+			
+			this.alarm.set_state (
+				logger,
+				actor_name,
+				device_state_t.OFF
+			);
+		'''
+				
+		Operation turn_on (
+			logger 	   : logger_t, 
+			actor_name : string
+		) : void '''
+			synchronized ( this ) { 
+				if ( this.alarm_level < this.number_of_alarm_activators ) {
+					this.alarm_level++;
+				}
+			
+				if ( this.alarm_level == 1 ) {
+					logger.info (
+						actor_name,
+						"Initial turn on message recevied, turning on alarm"
+					);
+
+					this.alarm.set_state (
+						logger,
+						actor_name,
+						device_state_t.ON
+					);
 				}
 			}
-		}
+		'''
+
+		Operation turn_off ( 
+			logger     : logger_t, 
+			actor_name : string
+		) : void '''
+			if ( this.alarm_level > 0 ) {
+				this.alarm_level--;
+			}
+			
+			if ( this.alarm_level == 0 ) {
+				logger.info (
+					actor_name,
+					"Last turn off message recevied, turning off alarm"
+				);
+				
+				this.alarm.set_state (
+					logger,
+					actor_name,
+					device_state_t.OFF
+				);
+			}
+		'''
 	}
 }

@@ -6,29 +6,24 @@ import org.eclipse.etrice.runtime.java.debugging.*;
 
 import static org.eclipse.etrice.runtime.java.etunit.EtUnit.*;
 
+import alarm_station.*;
+import deadline_task.*;
 import devices.*;
 import logger.*;
 import periodic_task.*;
+import pump_station.*;
 import room.basic.service.timing.*;
 import test.*;
 import room.basic.service.timing.PTimer.*;
-import devices.methane_protocol_t.*;
-import periodic_task.periodic_task_iprotocol_t.*;
-import devices.switch_protocol_t.*;
+import deadline_task.deadline_task_iprotocol_t.*;
 import test.test_protocol_t.*;
 
-/*--------------------- begin user code ---------------------*/
-import java.util.logging.*;
-import java.io.IOException;
-
-/*--------------------- end user code ---------------------*/
 
 
 public class methane_sensor_controller_t extends gas_sensor_controller_t {
 
 
 	//--------------------- ports
-	protected methane_protocol_tPort methane_port = null;
 
 	//--------------------- saps
 
@@ -37,25 +32,50 @@ public class methane_sensor_controller_t extends gas_sensor_controller_t {
 	//--------------------- optional actors
 
 	//--------------------- interface item IDs
-	public static final int IFITEM_methane_port = 5;
 
 	/*--------------------- attributes ---------------------*/
+	public  pump_controller_t pump_controller;
 	public  boolean threshold_breached;
 
 	/*--------------------- operations ---------------------*/
-	public  void query_action() {
-		super.query_action ( );
-		if ( super.gas_sensor.error_occurred == false ) {
-			if ( super.gas_sensor.value > super.threshold ) {
+	public  void addittional_query_action() {
+		boolean read_error_occurred = super.gas_sensor.get_read_error_occurred (
+			super.logger,
+			super.getName ( )
+		);
+		
+		if ( read_error_occurred == false ) {
+			int value = super.gas_sensor.get_value (
+				super.logger,
+				super.getName ( )
+			);
+		
+			if ( value > super.threshold ) {
 				if ( this.threshold_breached == false ) {
-					this.methane_port.threshold_breached ( );
-					super.info ( super.getName ( ), "Threshold breached, sending message to pump controller" );
+					super.logger.info (
+						super.getName ( ),
+						"Threshold breached, sending message to pump controller"
+					);
+		
+					this.pump_controller.methane_threshold_breached (
+						super.logger,
+						super.getName ( )
+					);
+		
 					this.threshold_breached = true;
 				}
 			} else {
 				if ( this.threshold_breached == true ) {
-					this.methane_port.state_normal ( );
-					super.info ( super.getName ( ), "State normal, sending message to pump controller" );
+					super.logger.info (
+						super.getName ( ), 
+						"State normal, sending message to pump controller"
+					);
+		
+					this.pump_controller.methane_state_normal (
+						super.logger,
+						super.getName ( )
+					);
+		
 					this.threshold_breached = false;
 				}
 			}
@@ -69,10 +89,10 @@ public class methane_sensor_controller_t extends gas_sensor_controller_t {
 		setClassName("methane_sensor_controller_t");
 
 		// initialize attributes
+		this.setPump_controller(null);
 		this.setThreshold_breached(false);
 
 		// own ports
-		methane_port = new methane_protocol_tPort(this, "methane_port", IFITEM_methane_port);
 
 		// own saps
 
@@ -88,6 +108,12 @@ public class methane_sensor_controller_t extends gas_sensor_controller_t {
 	}
 
 	/* --------------------- attribute setters and getters */
+	public void setPump_controller(pump_controller_t pump_controller) {
+		 this.pump_controller = pump_controller;
+	}
+	public pump_controller_t getPump_controller() {
+		return this.pump_controller;
+	}
 	public void setThreshold_breached(boolean threshold_breached) {
 		 this.threshold_breached = threshold_breached;
 	}
@@ -97,9 +123,6 @@ public class methane_sensor_controller_t extends gas_sensor_controller_t {
 
 
 	//--------------------- port getters
-	public methane_protocol_tPort getMethane_port (){
-		return this.methane_port;
-	}
 
 	//--------------------- lifecycle functions
 	public void stop(){
@@ -142,19 +165,28 @@ public class methane_sensor_controller_t extends gas_sensor_controller_t {
 	/* Entry and Exit Codes */
 	
 	/* Action Codes */
-	protected void action_TRANS_imessage_received_FROM_waiting_for_imessage_TO_sleeping_BY_initializeiport(InterfaceItemBase ifitem, periodic_task_idata_t data) {
-	    this.period = data.period;
-	    super.info ( this.getName ( ), "Initialization message received" );
+	protected void action_TRANS_imessage_received_FROM_waiting_for_imessage_TO_sleeping_BY_initializeiport(InterfaceItemBase ifitem, deadline_task_idata_t data) {
+	    this.deadline = data.deadline;
+	    this.logger.info (
+	    	this.getName ( ),
+	    	"Initialization message received"
+	    );
+	    
+	    this.period =  ( ( periodic_task_idata_t ) data ).period;
+	    
+	    this.first_activation = true;
 	    
 	    this.detect_above_threshold = ( ( gas_sensor_controller_idata_t ) data ).detect_above_threshold;
-	    this.threshold = ( ( gas_sensor_controller_idata_t ) data ).threshold;
-	    this.gas_sensor = ( ( gas_sensor_controller_idata_t ) data ).gas_sensor;
-	    this.error_count_threshold = ( ( gas_sensor_controller_idata_t ) data ).error_count_threshold;
-	    this.error_count = 0;
-	    this.alarm_turned_on = false;
+	    this.threshold  		    = ( ( gas_sensor_controller_idata_t ) data ).threshold;
+	    this.gas_sensor 		    = ( ( gas_sensor_controller_idata_t ) data ).gas_sensor;
+	    this.error_count_threshold  = ( ( gas_sensor_controller_idata_t ) data ).error_count_threshold;
+	    this.alarm_controller 	    = ( ( gas_sensor_controller_idata_t ) data ).alarm_controller;
+	    this.error_count 	  	    = 0;
+	    this.alarm_turned_on  	    = false;
 	    
 	    super.detect_above_threshold = true;
 	    
+	    this.pump_controller    = ( ( methane_sensor_controller_idata_t ) data ).pump_controller;
 	    this.threshold_breached = false;
 	}
 	
@@ -173,6 +205,7 @@ public class methane_sensor_controller_t extends gas_sensor_controller_t {
 					current__et = STATE_TOP;
 					break;
 				case STATE_sleeping:
+					exit_sleeping();
 					this.history[STATE_TOP] = STATE_sleeping;
 					current__et = STATE_TOP;
 					break;
@@ -203,7 +236,7 @@ public class methane_sensor_controller_t extends gas_sensor_controller_t {
 			}
 			case methane_sensor_controller_t.CHAIN_TRANS_imessage_received_FROM_waiting_for_imessage_TO_sleeping_BY_initializeiport:
 			{
-				periodic_task_idata_t data = (periodic_task_idata_t) generic_data__et;
+				deadline_task_idata_t data = (deadline_task_idata_t) generic_data__et;
 				action_TRANS_imessage_received_FROM_waiting_for_imessage_TO_sleeping_BY_initializeiport(ifitem, data);
 				return STATE_sleeping;
 			}

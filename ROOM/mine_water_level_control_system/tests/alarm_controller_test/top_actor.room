@@ -1,42 +1,26 @@
 RoomModel top_actor {
-	import room.basic.types.* from "../../../org.eclipse.etrice.modellib.java/model/Types.room"
+	import room.basic.types.* 		   from "../../../org.eclipse.etrice.modellib.java/model/Types.room"
 	import room.basic.service.timing.* from "../../../org.eclipse.etrice.modellib.java/model/TimingService.room"
-	import devices.* from "../../model/devices.room"
-	import alarm_station.* from "../../model/alarm_station.room"
+	import devices.* 				   from "../../model/devices.room"
+	import alarm_station.* 			   from "../../model/alarm_station.room"
+	import logger.* 				   from "../../model/logger.room"
 
 	ActorClass top_actor_t {
 		Structure {
 			usercode1 '''
 				class Constants {
-					public static final int TEST_PERIOD_IN_MS = 50;
-					public static final int NUMBER_OF_CONTROLLERS = 4;
-					public static final int CH4_SENSOR_CONTROLLER = 0;
-					public static final int CO_SENSOR_SENSOR_CONTROLLER = 1;
-					public static final int O_SENSOR_CONTROLLER = 2;
-					public static final int WATER_FLOW_SENSOR_CONTROLLER = 3;
+					public static final int    TEST_PERIOD_IN_MS 		  = 50;
+					public static final int    NUMBER_OF_ALARM_ACTIVATORS = 4;
+					public static final String ALARM_NAME 				  = "ALARM";
 				}
 			'''		
 			
-			Attribute expected_state : device_state_t 
-			Attribute turn_on_message_sent[4] : boolean
-			Attribute alarm_level : int32
+			Attribute logger		   : logger_t		
+			Attribute alarm            : device_t 
+			Attribute alarm_controller : alarm_controller_t
+			Attribute alarm_level      : int32
 			
-			Attribute alarm : device_t 
-			ActorRef alarm_controller : alarm_controller_t
-			
-			conjugated Port alarm_controler_iport : alarm_controller_iprotocol_t
-			Port ch4_sensor_controller_alarm_port : switch_protocol_t
-			Port co_sensor_controller_alarm_port : switch_protocol_t
-			Port o_sensor_controller_alarm_port : switch_protocol_t
-			Port water_flow_sensor_controller_alarm_port : switch_protocol_t
-
 			SAP timer_port : PTimer 
-			
-			Binding alarm_controler_iport and alarm_controller.iport
-			Binding ch4_sensor_controller_alarm_port and alarm_controller.ch4_sensor_controller_port
-			Binding co_sensor_controller_alarm_port and alarm_controller.co_sensor_controller_port
-			Binding o_sensor_controller_alarm_port and alarm_controller.o_sensor_controller_port
-			Binding water_flow_sensor_controller_alarm_port and alarm_controller.water_flow_sensor_controller_port
 		}
 		Behavior {
 		
@@ -45,20 +29,27 @@ RoomModel top_actor {
 				
 				Transition start : initial -> testing {
 					action '''
-						this.expected_state = device_state_t.OFF;
-						for ( int i = 0; i < Constants.NUMBER_OF_CONTROLLERS; i++ ) {
-							this.turn_on_message_sent[i] = false;
-						}
 						this.alarm_level = 0;
-						this.alarm.state = device_state_t.OFF;
 						
-						this.alarm_controler_iport.initialize ( 
+						this.alarm.initialize (
+							this.logger,
+							super.getName ( ),
+							Constants.ALARM_NAME,
+							device_state_t.OFF
+						);
+
+						this.alarm_controller.initialize ( 
+							this.logger,
+							super.getName ( ),
 							new alarm_controller_idata_t ( 
-								this.alarm
+								this.alarm,
+								Constants.NUMBER_OF_ALARM_ACTIVATORS
 							)
 						);
 						
-						this.timer_port.startTimeout ( Constants.TEST_PERIOD_IN_MS );
+						this.timer_port.startTimeout (
+							Constants.TEST_PERIOD_IN_MS
+						);
 					'''
 				}
 				
@@ -68,71 +59,68 @@ RoomModel top_actor {
 						< timeout : timer_port > 
 					}
 					action '''
-						if ( this.expected_state == this.alarm.state ) {
-							System.out.println ( "Expected alarm state" );
+						if ( Math.random ( ) < 0.5 ) {
+							this.alarm_controller.turn_on (
+								this.logger,
+								super.getName ( )
+							);	
+							
+							if ( this.alarm_level < Constants.NUMBER_OF_ALARM_ACTIVATORS ) {
+								this.alarm_level++;
+							}
 						} else {
-							System.err.println ( "Unexpected alarm state" );
-						}
-
-						int controller_index = (int) ( Math.random ( ) * Constants.NUMBER_OF_CONTROLLERS );
-						
-						this.turn_on_message_sent[ controller_index ] = !this.turn_on_message_sent[ controller_index ];
-
-						switch ( controller_index ) {
-							case Constants.CH4_SENSOR_CONTROLLER : {
-								if ( this.turn_on_message_sent[ controller_index ] == true ) {
-									this.ch4_sensor_controller_alarm_port.turn_on ( );
-								} else {
-									this.ch4_sensor_controller_alarm_port.turn_off ( );
-								}
-
-								break;
-							}
-
-							case Constants.CO_SENSOR_SENSOR_CONTROLLER : {
-								if ( this.turn_on_message_sent[ controller_index ] == true ) {
-									this.co_sensor_controller_alarm_port.turn_on ( );
-								} else {
-									this.co_sensor_controller_alarm_port.turn_off ( );
-								}
-
-								break;
-							}
-
-							case Constants.O_SENSOR_CONTROLLER : {
-								if ( this.turn_on_message_sent[ controller_index ] == true ) {
-									this.o_sensor_controller_alarm_port.turn_on ( );
-								} else {
-									this.o_sensor_controller_alarm_port.turn_off ( );
-								}
-
-								break;
-							}
-
-							case Constants.WATER_FLOW_SENSOR_CONTROLLER : {
-								if ( this.turn_on_message_sent[ controller_index ] == true ) {
-									this.water_flow_sensor_controller_alarm_port.turn_on ( );
-								} else {
-									this.water_flow_sensor_controller_alarm_port.turn_off ( );
-								}
-
-								break;
+							this.alarm_controller.turn_off (
+								this.logger,
+								super.getName ( )
+							);	
+							
+							if ( this.alarm_level > 0 ) {
+								this.alarm_level--;
 							}
 						}
 
-						if ( this.turn_on_message_sent[ controller_index ] == true ) {
-							this.alarm_level++;
-							if ( this.alarm_level == 1 ) {
-								this.expected_state = device_state_t.ON;
-							} 
+						int alarm_state = this.alarm.get_state (
+							this.logger,
+							super.getName ( )
+						);
+
+						if ( alarm_state == device_state_t.ON ) {
+							if ( this.alarm_level > 0 ) {
+								System.out.println ( "Expected state" );
+
+								this.logger.info (
+									super.getName ( ),
+									"Expected state"
+								);
+							} else {
+								System.err.println ( "Unexpected state" );
+
+								this.logger.info (
+									super.getName ( ),
+									"Unexpected state"
+								);
+							}
 						} else {
-							this.alarm_level--;
 							if ( this.alarm_level == 0 ) {
-								this.expected_state = device_state_t.OFF;
-							} 
+								System.out.println ( "Expected state" );
+
+								this.logger.info (
+									super.getName ( ),
+									"Expected state"
+								);
+							} else {
+								System.err.println ( "Unexpected state" );
+
+								this.logger.info (
+									super.getName ( ),
+									"Unexpected state"
+								);
+							}
 						}
 
-						this.timer_port.startTimeout ( Constants.TEST_PERIOD_IN_MS );
+						this.timer_port.startTimeout (
+							Constants.TEST_PERIOD_IN_MS
+						);
 					'''
 				}
 			}

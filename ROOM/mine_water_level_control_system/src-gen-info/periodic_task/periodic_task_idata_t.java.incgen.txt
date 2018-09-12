@@ -3,10 +3,11 @@ package periodic_task;
 import static org.eclipse.etrice.runtime.java.etunit.EtUnit.*;
 import java.io.Serializable;
 
+import deadline_task.*;
 
 
 
-public class periodic_task_idata_t implements Serializable {
+public class periodic_task_idata_t extends deadline_task_idata_t implements Serializable {
 
 	private static final long serialVersionUID = 266151977L;
 
@@ -35,8 +36,8 @@ public class periodic_task_idata_t implements Serializable {
 	}
 
 	// constructor using fields
-	public periodic_task_idata_t(int period) {
-		super();
+	public periodic_task_idata_t(int deadline, int period) {
+		super(deadline);
 
 		this.period = period;
 
@@ -46,6 +47,7 @@ public class periodic_task_idata_t implements Serializable {
 	// deep copy
 	public periodic_task_idata_t deepCopy() {
 		periodic_task_idata_t copy = new periodic_task_idata_t();
+		copy.deadline = deadline;
 		copy.period = period;
 		return copy;
 	}

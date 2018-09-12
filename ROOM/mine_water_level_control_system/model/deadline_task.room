@@ -1,0 +1,68 @@
+RoomModel deadline_task {
+	import room.basic.types.* 		   from "../../org.eclipse.etrice.modellib.java/model/Types.room"
+	import room.basic.service.timing.* from "../../org.eclipse.etrice.modellib.java/model/TimingService.room"
+	import logger.logger_t 			   from "logger.room"
+
+	DataClass deadline_task_idata_t {
+		Attribute deadline : int32 = '0'
+	}
+	
+	ProtocolClass deadline_task_iprotocol_t {
+		incoming {
+			Message initialize (
+				data : deadline_task_idata_t
+			)
+		}
+	}
+	
+
+	abstract ActorClass deadline_task_t {
+		Interface { 
+			Port iport : deadline_task_iprotocol_t 
+		}	
+		Structure {
+			external Port iport
+
+			Attribute deadline 			   : int32 = '0'
+			Attribute logger   			   : logger_t
+			Attribute last_activation_time : int64
+		}
+		Behavior {
+			Operation activated ( ) : void '''
+				this.last_activation_time = System.currentTimeMillis ( );
+			'''
+			
+			Operation finished ( ) : void '''
+				long elapsed_time = System.currentTimeMillis ( ) - this.last_activation_time;
+				
+				if ( elapsed_time > this.deadline )	 {
+					this.logger.info (
+						super.getName ( ),
+						"Deadline breached, stopping execution"
+					);
+					
+					System.exit( 1 );
+				}
+			'''
+			StateMachine {
+				State waiting_for_imessage { }
+				State sleeping { }
+
+				Transition start : initial -> waiting_for_imessage { }
+				
+				Transition imessage_received : waiting_for_imessage -> sleeping {
+					triggers {
+						< initialize : iport >
+					}	
+					action '''
+						this.deadline = data.deadline;
+						this.logger.info (
+							this.getName ( ),
+							"Initialization message received"
+						);
+					'''
+				}
+			}
+		}
+	}
+}

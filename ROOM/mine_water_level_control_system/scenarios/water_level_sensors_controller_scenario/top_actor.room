@@ -1,66 +1,69 @@
 RoomModel top_actor {
 	import room.basic.service.timing.* from "../../../org.eclipse.etrice.modellib.java/model/TimingService.room"
-	import base_actor.* from "../base_actor.room"
+	import base_actor.* 			   from "../base_actor.room"
 
 	ActorClass top_actor_t extends base_actor_t {
 		Behavior {
 			StateMachine {
-				State step1 { }
-				State step2 { }
+				State step1 {
+					entry '''
+						System.out.println (
+							"STEP 1"
+						);
+					'''
+				}
+				State step2 {
+					entry '''
+						System.out.println (
+							"STEP 2"
+						);
+					'''
+				}
+				State step3 {
+					entry '''
+						System.out.println (
+							"STEP 3"
+						);
+					'''
+				}
 
 				RefinedTransition start { 
 					action '''
-						System.out.println ( "Setting high water level sensor" );
-						
-						super.high_water_level_sensor.value = 1;
-						
 						super.timer_access_point.startTimeout (
-							CONSTANTS.SCENARIO.CHECK_PERIOD
+							Constants.SCENARIO.CHECK_PERIOD
 						);
 					'''
 				}
 
-				Transition stall0 : step0 -> step0 {
-					triggers {
-						< timeout : timer_access_point guard '''
-							super.pump.state != device_state_t.ON
-						'''>
-					}
-					action '''
-						super.timer_access_point.startTimeout (
-							CONSTANTS.SCENARIO.CHECK_PERIOD
-						);
-					'''
-				}	
-					
 				Transition transition0 : step0 -> step1 {
 					triggers {
-						< timeout : timer_access_point guard '''
-							super.pump.state == device_state_t.ON
-						'''>
+						< timeout : timer_access_point >
 					}
 					action '''
-						System.out.println ( "Pump activated" );
-						System.out.println ( "Setting low water level sensor controller ( unsetting high because both cannot be active ) " );
+						System.out.println ( 
+							"Setting high water level sensor"
+						);
 						
-						super.high_water_level_sensor.value = 0;
-						super.low_water_level_sensor.value = 1;
+						super.mine_water_level_control_system_update_port.update (
+							Constants.WATER_LEVEL_SENSORS.HIGH_WATER_LEVEL_THRESHOLD + 1	
+						);
 						
 						super.timer_access_point.startTimeout (
-							CONSTANTS.SCENARIO.CHECK_PERIOD
+							Constants.SCENARIO.CHECK_PERIOD
 						);
 					'''
 				}
+				
 
 				Transition stall1 : step1 -> step1 {
 					triggers {
 						< timeout : timer_access_point guard '''
-							super.pump.state != device_state_t.OFF
+							super.is_pump_turned_on ( ) == false
 						'''>
 					}
 					action '''
 						super.timer_access_point.startTimeout (
-							CONSTANTS.SCENARIO.CHECK_PERIOD
+							Constants.SCENARIO.CHECK_PERIOD
 						);
 					'''
 				}	
@@ -68,11 +71,53 @@ RoomModel top_actor {
 				Transition transition1 : step1 -> step2 {
 					triggers {
 						< timeout : timer_access_point guard '''
-							super.pump.state == device_state_t.OFF
+							super.is_pump_turned_on ( ) == true 
 						'''>
 					}
 					action '''
-						System.out.println ( "Pump deactivated" );
+						System.out.println (
+							"Pump activated"
+						);
+
+						super.pause ( );	
+
+						System.out.println (
+							"Setting low water level sensor controller ( unsetting high because both cannot be active ) "
+						);
+
+						super.mine_water_level_control_system_update_port.update (
+							Constants.WATER_LEVEL_SENSORS.LOW_WATER_LEVEL_THRESHOLD - 1	
+						);
+						
+						super.timer_access_point.startTimeout (
+							Constants.SCENARIO.CHECK_PERIOD
+						);
+					'''
+				}
+
+				Transition stall2 : step2 -> step2 {
+					triggers {
+						< timeout : timer_access_point guard '''
+							super.is_pump_turned_on ( ) == true 
+						'''>
+					}
+					action '''
+						super.timer_access_point.startTimeout (
+							Constants.SCENARIO.CHECK_PERIOD
+						);
+					'''
+				}	
+					
+				Transition transition2 : step2 -> step3 {
+					triggers {
+						< timeout : timer_access_point guard '''
+							super.is_pump_turned_on ( ) == false 
+						'''>
+					}
+					action '''
+						System.out.println (
+							"Pump deactivated"
+						);
 
 						super.stop_scenario ( );
 					'''

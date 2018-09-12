@@ -1,74 +1,98 @@
 RoomModel top_actor {
-	import room.basic.types.* from "../../../org.eclipse.etrice.modellib.java/model/Types.room"
-	import room.basic.service.timing.* from "../../../org.eclipse.etrice.modellib.java/model/TimingService.room"
-	import devices.* from "../../model/devices.room"
+	import room.basic.types.* 				from "../../../org.eclipse.etrice.modellib.java/model/Types.room"
+	import room.basic.service.timing.* 		from "../../../org.eclipse.etrice.modellib.java/model/TimingService.room"
+	import devices.* 						from "../../model/devices.room"
+	import alarm_station.*					from "../../model/alarm_station.room"
+	import pump_station.*					from "../../model/pump_station.room"
 	import environment_monitoring_station.* from "../../model/environment_monitoring_station.room"
-	import periodic_task.* from "../../model/periodic_task.room"
-	import test.* from "../../model/test.room"
-		
+	import deadline_task.* 					from "../../model/deadline_task.room"
+	import periodic_task.* 					from "../../model/periodic_task.room"
+	import test.* 							from "../../model/test.room"
+	import logger.*							from "../../model/logger.room"
+
 	ActorClass top_actor_t {
 		Structure {
 			usercode1 '''
 				class Constants {
-					public static final int GAS_SENSOR_CONTROLLER_PERIOD_IN_MS = 500;
-					public static final int GAS_SENSOR_CONTROLLER_THRESHOLD = 500;
-					public static final int GAS_SENSOR_CONTROLLER_ERROR_COUNT_THRESHOLD = 2;
-					public static final int TEST_PERIOD_IN_MS = 750;
-					public static final int GAS_SENSOR_IVALUE = 0;
-					public static final boolean GAS_SENSOR_IERROR_OCCURRED = false;
+					public static final int 	GAS_SENSOR_CONVERSION_TIME_IN_MS 			= 50;
+					public static final int 	GAS_SENSOR_CONTROLLER_DEADLINE_IN_MS 		= 100;
+					public static final int 	GAS_SENSOR_CONTROLLER_PERIOD_IN_MS 			= 150;
+					public static final int 	GAS_SENSOR_CONTROLLER_THRESHOLD 			= 100;
+					public static final int 	GAS_SENSOR_CONTROLLER_ERROR_COUNT_THRESHOLD = 2;
+					public static final int 	GAS_SENSOR_IVALUE 		   					= 0;
+					public static final boolean GAS_SENSOR_IERROR_OCCURRED 					= false;
+					public static final int 	NUMBER_OF_ALARM_ACTIVATORS 					= 1;
+					public static final String 	GAS_SENSOR_NAME			 					= "METHANE SENSOR";
+					public static final String 	ALARM_NAME 									= "ALARM";
+					public static final String 	PUMP_NAME 									= "PUMP";
 				}
 			'''		
 			
-			Attribute expecting_alarm_turn_on : boolean
-			Attribute expecting_threshold_breached : boolean
-			Attribute error_count : int32
+			Attribute value 			   : int32
+			Attribute read_error_occurred  : boolean
+			Attribute first_activation	   : boolean
+			Attribute expected_alarm_state : device_state_t 
+			Attribute expected_pump_state  : device_state_t 
+			Attribute error_count		   : int32
+			Attribute logger			   : logger_t
 
-			Attribute gas_sensor : gas_sensor_t
-			ActorRef gas_sensor_controller : methane_sensor_controller_t 
+			Attribute gas_sensor 		: gas_sensor_t
+			Attribute alarm 			: device_t
+			Attribute pump 				: device_t
+			Attribute alarm_controller  : alarm_controller_t
+			Attribute pump_controller   : pump_controller_t
+
+			ActorRef methane_sensor_controller : methane_sensor_controller_t
 			
-			conjugated Port gas_sensor_controller_iport : periodic_task.periodic_task_iprotocol_t
-			conjugated Port alarm_switch_port : switch_protocol_t
-			conjugated Port methane_port : methane_protocol_t
-			conjugated Port test_port : test_protocol_t
-
-			Binding gas_sensor_controller_iport and gas_sensor_controller.iport
-			Binding methane_port and gas_sensor_controller.methane_port
-			Binding alarm_switch_port and gas_sensor_controller.alarm_port
-			Binding test_port and gas_sensor_controller.test_port
+			conjugated Port methane_sensor_controller_iport : deadline_task_iprotocol_t
+			conjugated Port test_port 					    : test_protocol_t
+			
+			Binding methane_sensor_controller_iport and methane_sensor_controller.iport
+			Binding test_port 				    	and methane_sensor_controller.test_port
 		}
 		Behavior {
-			Operation process ( value : int32, error_occurred : boolean ) '''
-				if ( error_occurred == true ) {
+			Operation process (  ) '''
+				if ( this.read_error_occurred == true) {
 					this.error_count++;
 					if ( this.error_count > Constants.GAS_SENSOR_CONTROLLER_ERROR_COUNT_THRESHOLD )	 {
-						this.expecting_alarm_turn_on = true;
+						this.expected_alarm_state = device_state_t.ON;
 					}
 				} else {
 					this.error_count = 0;
-					if ( value > Constants.GAS_SENSOR_CONTROLLER_THRESHOLD ) {
-						this.expecting_alarm_turn_on = true;
-						this.expecting_threshold_breached = true;
+					if ( this.value > Constants.GAS_SENSOR_CONTROLLER_THRESHOLD ) {
+						this.expected_alarm_state = device_state_t.ON;
+						this.expected_pump_state  = device_state_t.OFF;
 					} else {
-						this.expecting_alarm_turn_on = false;
-						this.expecting_threshold_breached = false;
+						this.expected_alarm_state = device_state_t.OFF;
+						this.expected_pump_state  = device_state_t.ON;
 					}
 				}
 			'''
+			
 			Operation update ( ) : void '''
 				if ( Math.random ( ) > 0.5 ) {
-					boolean error_occurred = Math.random ( ) > 0.5 ? true : false;
+					this.read_error_occurred = Math.random ( ) > 0.5 ? true : false;
 
-					int value = 0;
+					this.value = 0;
 					
-					if ( error_occurred == false ) {
-						value = ( int ) ( Math.random ( ) * 2 * Constants.GAS_SENSOR_CONTROLLER_THRESHOLD );
-					} 							
+					if ( this.read_error_occurred == false ) {
+						this.value = ( int ) ( Math.random ( ) * 2 * Constants.GAS_SENSOR_CONTROLLER_THRESHOLD );
+					}
+					
+					this.gas_sensor.set_read_error_occurred (
+						this.logger,
+						super.getName ( ),
+						this.read_error_occurred
+					);
 
-					this.gas_sensor.error_occurred = error_occurred;	
-					this.gas_sensor.value = value;	
+					this.gas_sensor.set_value (
+						this.logger,
+						super.getName ( ),
+						this.value
+					);
 				}
 
-				this.process ( this.gas_sensor.value, this.gas_sensor.error_occurred );
+				this.process ( );
 			'''
 		
 			StateMachine {
@@ -76,84 +100,127 @@ RoomModel top_actor {
 				
 				Transition start : initial -> testing {
 					action '''
-						this.expecting_alarm_turn_on = false;
-						this.expecting_threshold_breached = false;
-						this.error_count = 0;
+						this.first_activation	  = true;
+						this.expected_alarm_state = device_state_t.OFF;
+						this.error_count 		  = 0;
 						
-						this.gas_sensor.value = Constants.GAS_SENSOR_IVALUE;
-						this.gas_sensor.error_occurred = Constants.GAS_SENSOR_IERROR_OCCURRED;
+						this.gas_sensor.initialize (
+							logger,
+							super.getName ( ),
+							Constants.GAS_SENSOR_IVALUE,
+							Constants.GAS_SENSOR_IERROR_OCCURRED,
+							Constants.GAS_SENSOR_CONVERSION_TIME_IN_MS,
+							Constants.GAS_SENSOR_NAME
+						);
 						
-						this.process ( Constants.GAS_SENSOR_IVALUE, Constants.GAS_SENSOR_IERROR_OCCURRED );
+						this.value 		         = Constants.GAS_SENSOR_IVALUE;
+						this.read_error_occurred = Constants.GAS_SENSOR_IERROR_OCCURRED;
+
+						this.alarm.initialize (
+							this.logger,
+							super.getName ( ),
+							Constants.ALARM_NAME,
+							device_state_t.OFF
+						);
+
+						this.pump.initialize (
+							this.logger,
+							super.getName ( ),
+							Constants.PUMP_NAME,
+							device_state_t.OFF
+						);
+
+						this.alarm_controller.initialize ( 
+							this.logger,
+							super.getName ( ),
+							new alarm_controller_idata_t (
+								this.alarm,
+								Constants.NUMBER_OF_ALARM_ACTIVATORS	
+							)
+						);
+
+						this.pump_controller.initialize ( 
+							this.logger,
+							super.getName ( ),
+							new pump_controller_idata_t (
+								this.pump
+							)
+						);
 						
-						this.gas_sensor_controller_iport.initialize ( 
-							new gas_sensor_controller_idata_t ( 
+						this.pump_controller.turn_on ( 
+							this.logger,
+							super.getName ( )
+						);
+
+						this.expected_pump_state = device_state_t.ON;
+
+						this.process ( );
+						
+						this.methane_sensor_controller_iport.initialize ( 
+							new methane_sensor_controller_idata_t ( 
+								Constants.GAS_SENSOR_CONTROLLER_DEADLINE_IN_MS,
 								Constants.GAS_SENSOR_CONTROLLER_PERIOD_IN_MS,
 								true,
 								Constants.GAS_SENSOR_CONTROLLER_THRESHOLD,
 								this.gas_sensor,
-								Constants.GAS_SENSOR_CONTROLLER_ERROR_COUNT_THRESHOLD
+								Constants.GAS_SENSOR_CONTROLLER_ERROR_COUNT_THRESHOLD,
+								this.alarm_controller,
+								this.pump_controller
 							)
 						);
 					'''
 				}
 				
-				Transition activated_message_received : testing -> testing {
+				Transition timeout_message_received : testing -> testing {
 					triggers {
-						< activated : test_port >
+						< activated : test_port > 
 					}
 					action '''
-						this.update ( );	
-					'''
-				}
-				
-				Transition turn_off_message_received : testing -> testing {
-					triggers { 
-						< turn_off : alarm_switch_port >
-					}
-					action '''
-						if ( this.expecting_alarm_turn_on == true ) {
-							System.err.println ( "TURN OFF MESSAGE RECEIVED UNEXPECTEDLY " );
+						if ( this.first_activation == true ) {
+							this.first_activation = false;
 						} else {
-							System.out.println ( "TURN OFF MESSAGE RECEIVED EXPECTEDLY " );
-						}
-					'''
-				}
+							if ( this.expected_alarm_state == this.alarm.state ) {
+								System.out.println (
+									"Alarm in expected state"
+								);
+								
+								this.logger.info (
+									super.getName ( ),
+									"Alarm in expected state"
+								);
+							} else {
+								System.err.println (
+									"Alarm in unexpected state"
+								);
 
-				Transition state_normal_message_received : testing -> testing {
-					triggers { 
-						< state_normal : methane_port >
-					}
-					action '''
-						if ( this.expecting_threshold_breached == true ) {
-							System.err.println ( "STATE NORMAL MESSAGE RECEIVED UNEXPECTEDLY " );
-						} else {
-							System.out.println ( "STATE NORMAL MESSAGE RECEIVED EXPECTEDLY " );
-						}
-					'''
-				}
+								this.logger.info (
+									super.getName ( ),
+									"Alarm in unexpected state"
+								);
+							}
 
-				Transition turn_on_message_received : testing -> testing {
-					triggers { 
-						< turn_on : alarm_switch_port >
-					}
-					action '''
-						if ( this.expecting_alarm_turn_on == true ) {
-							System.out.println ( "TURN ON MESSAGE RECEIVED EXPECTEDLY " );
-						} else {
-							System.err.println ( "TURN ON MESSAGE RECEIVED UNEXPECTEDLY " );
-						}
-					'''
-				}
+							if ( this.expected_pump_state == this.pump.state ) {
+								System.out.println (
+									"Pump in expected state"
+								);
+								
+								this.logger.info (
+									super.getName ( ),
+									"Pump in expected state"
+								);
+							} else {
+								System.err.println (
+									"Pump in unexpected state"
+								);
 
-				Transition threshold_breached_message_received : testing -> testing {
-					triggers { 
-						< threshold_breached : methane_port >
-					}
-					action '''
-						if ( this.expecting_threshold_breached == true ) {
-							System.out.println ( "THRESHOLD BREACHED MESSAGE RECEIVED EXPECTEDLY " );
-						} else {
-							System.err.println ( "THRESHOLD BREACHED MESSAGE RECEIVED UNEXPECTEDLY " );
+								this.logger.info (
+									super.getName ( ),
+									"Pump in unexpected state"
+								);
+							}
+								
+						
+							this.update ( );
 						}
 					'''
 				}

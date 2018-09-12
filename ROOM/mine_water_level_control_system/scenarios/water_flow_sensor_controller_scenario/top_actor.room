@@ -9,32 +9,130 @@ RoomModel top_actor {
 		}
 		Behavior {
 			StateMachine {
-				State step1 { }
-				State step2 { }
-				State step3 { }
-				State step4 { }
-				State step5 { }
-				State step6 { }
-				State step7 { }
-				State step8 { }
-				State step9 { }
-				State step10 { }
-				State step11 { }
-				State step12 { }
-				State step13 { }
-				State step14 { }
-				State step15 { }
-				State step16 { }
-				State step17 { }
+				State step1 {
+					entry '''
+						System.out.println (
+							"STEP 1"
+						);
+					'''	
+				}
+				State step2 { 
+					entry '''
+						System.out.println (
+							"STEP 2"
+						);
+					'''	
+				}
+				State step3 { 
+					entry '''
+						System.out.println (
+							"STEP 3"
+						);
+					'''	
+				}
+				State step4 { 
+					entry '''
+						System.out.println (
+							"STEP 4"
+						);
+					'''	
+				}
+				State step5 { 
+					entry '''
+						System.out.println (
+							"STEP 5"
+						);
+					'''	
+				}
+				State step6 { 
+					entry '''
+						System.out.println (
+							"STEP 6"
+						);
+					'''	
+				}
+				State step7 { 
+					entry '''
+						System.out.println (
+							"STEP 7"
+						);
+					'''	
+				}
+				State step8 { 
+					entry '''
+						System.out.println (
+							"STEP 8"
+						);
+					'''	
+				}
+				State step9 { 
+					entry '''
+						System.out.println (
+							"STEP 9"
+						);
+					'''	
+				}
+				State step10 { 
+					entry '''
+						System.out.println (
+							"STEP 10"
+						);
+					'''	
+				}
+				State step11 { 
+					entry '''
+						System.out.println (
+							"STEP 11"
+						);
+					'''	
+				}
+				State step12 { 
+					entry '''
+						System.out.println (
+							"STEP 12"
+						);
+					'''	
+				}
+				State step13 { 
+					entry '''
+						System.out.println (
+							"STEP 13"
+						);
+					'''	
+				}
+				State step14 { 
+					entry '''
+						System.out.println (
+							"STEP 14"
+						);
+					'''	
+				}
+				State step15 { 
+					entry '''
+						System.out.println (
+							"STEP 15"
+						);
+					'''	
+				}
+				State step16 { 
+					entry '''
+						System.out.println (
+							"STEP 16"
+						);
+					'''	
+				}
+				State step17 { 
+					entry '''
+						System.out.println (
+							"STEP 17"
+						);
+					'''	
+				}
 
 				RefinedTransition start { 
 					action '''
-						System.out.println ( "Setting high water level sensor" );
-
-						super.high_water_level_sensor.value = 1;	
-						
 						super.timer_access_point.startTimeout (
-							CONSTANTS.SCENARIO.CHECK_PERIOD
+							Constants.SCENARIO.CHECK_PERIOD
 						);
 					'''
 				}
@@ -42,12 +140,18 @@ RoomModel top_actor {
 				Transition stall0 : step0 -> step0 {
 					triggers {
 						< timeout : timer_access_point guard '''
-							super.pump.state != device_state_t.ON
+							super.is_pump_turned_on ( ) == false
 						'''>
 					}
 					action '''
+						System.out.println ( 
+							"Using user port to turn on pump"
+						);
+
+						super.mine_water_level_control_system_user_port.turn_on ( );
+						
 						super.timer_access_point.startTimeout (
-							CONSTANTS.SCENARIO.CHECK_PERIOD
+							Constants.SCENARIO.CHECK_PERIOD
 						);
 					'''
 				}	
@@ -55,14 +159,12 @@ RoomModel top_actor {
 				Transition transition0 : step0 -> step1 {
 					triggers {
 						< timeout : timer_access_point guard '''
-							super.pump.state == device_state_t.ON
+							super.is_pump_turned_on ( ) == true 
 						'''>
 					}
 					action '''
-						System.out.println ( "Pump activated" );
-						
-						super.timer_access_point.startTimeout (
-							CONSTANTS.SCENARIO.CHECK_PERIOD
+						System.out.println ( 
+							"Pump activated"
 						);
 					'''
 				}
@@ -73,7 +175,9 @@ RoomModel top_actor {
 						< checking : mine_water_level_control_system_test_port >
 					}
 					action '''
-						System.out.println ( "Water flow sensor controller detected state change" );
+						System.out.println ( 
+							"Water flow sensor controller detected state change"
+						);
 						
 						this.number_of_activations = 0;
 					'''
@@ -82,27 +186,42 @@ RoomModel top_actor {
 				Transition stall2 : step2 -> step2 {
 					triggers {
 						< checking : mine_water_level_control_system_test_port guard '''
-							this.number_of_activations != ( CONSTANTS.WATER_FLOW_SENSOR_CONTROLLER.NUMBER_OF_ACTIVATIONS - 1 )	
+							this.number_of_activations != ( Constants.WATER_FLOW_SENSOR_CONTROLLER.NUMBER_OF_ACTIVATIONS - 1 )	
 						''' >
 					}
 					action '''
 						this.number_of_activations++;
-						System.out.println ( "Water flow sensor activated, " + this.number_of_activations + " / " + CONSTANTS.WATER_FLOW_SENSOR_CONTROLLER.NUMBER_OF_ACTIVATIONS );
+
+						System.out.println (
+							"Water flow sensor activated, " + this.number_of_activations + " / " + Constants.WATER_FLOW_SENSOR_CONTROLLER.NUMBER_OF_ACTIVATIONS
+						);
 					'''
 				}	
 					
 				Transition transition2 : step2 -> step3 {
 					triggers {
 						< checking : mine_water_level_control_system_test_port guard '''
-							this.number_of_activations == ( CONSTANTS.WATER_FLOW_SENSOR_CONTROLLER.NUMBER_OF_ACTIVATIONS - 1 )	
+							this.number_of_activations == ( Constants.WATER_FLOW_SENSOR_CONTROLLER.NUMBER_OF_ACTIVATIONS - 1 )	
 						''' >
 					}
 					action '''
-						System.out.println ( "Water flow sensor activated" );
-						System.out.println ( "One more try left before activation of alarm" );
-						System.out.println ( "Setting water flow sensor to avoid alarm activation" );
+						System.out.println (
+							"Water flow sensor activated"
+						);
+
+						System.out.println ( 
+							"One more try left before activation of alarm"
+						);
+
+						System.out.println ( 
+							"Setting water flow sensor to avoid alarm activation"
+						);
 						
-						super.water_flow_sensor.value = 1;
+						super.water_flow_sensor.set_value (
+							super.logger,
+							super.getName ( ),
+							1
+						);
 					'''
 				}
 
@@ -111,15 +230,22 @@ RoomModel top_actor {
 						< activated : mine_water_level_control_system_test_port >
 					}
 					action '''
-						System.out.println ( "Water flow sensor in sleeping state" );
-						System.out.println ( "Setting low water level sensor" );
-						
-						super.low_water_level_sensor.value = 1;
-						super.high_water_level_sensor.value = 0;
+						System.out.println (
+							"Water flow sensor in sleeping state"
+						);
+
+						System.out.println ( 
+							"Setting low water level sensor"
+						);
+
+						super.mine_water_level_control_system_update_port.update (
+							Constants.WATER_LEVEL_SENSORS.LOW_WATER_LEVEL_THRESHOLD - 1	
+						);
+
 						this.number_of_activations = 0;
 
 						super.timer_access_point.startTimeout (
-							CONSTANTS.SCENARIO.CHECK_PERIOD
+							Constants.SCENARIO.CHECK_PERIOD
 						);
 					'''
 				}
@@ -127,12 +253,12 @@ RoomModel top_actor {
 				Transition stall4 : step4 -> step4 {
 					triggers {
 						< timeout : timer_access_point guard '''
-							super.pump.state != device_state_t.OFF	
+							super.is_pump_turned_on ( ) == true
 						'''>
 					}
 					action '''
 						super.timer_access_point.startTimeout (
-							CONSTANTS.SCENARIO.CHECK_PERIOD
+							Constants.SCENARIO.CHECK_PERIOD
 						);
 					'''
 				}	
@@ -140,11 +266,14 @@ RoomModel top_actor {
 				Transition transition4 : step4 -> step5 {
 					triggers {
 						< timeout : timer_access_point guard '''
-							super.pump.state == device_state_t.OFF	
+							super.is_pump_turned_on ( ) == false 
 						'''>
 					}
 					action '''
-						System.out.println ( "Pump turned off" );
+						System.out.println ( 
+							"Pump turned off"
+						);
+
 						this.number_of_activations = 0;
 					'''
 				}
@@ -154,7 +283,9 @@ RoomModel top_actor {
 						< checking : mine_water_level_control_system_test_port >
 					}
 					action '''
-						System.out.println ( "Water flow sensor controller detected state change" );
+						System.out.println ( 
+							"Water flow sensor controller detected state change"
+						);
 						
 						this.number_of_activations = 0;
 					'''
@@ -163,12 +294,15 @@ RoomModel top_actor {
 				Transition stall6 : step6 -> step6 {
 					triggers {
 						< checking : mine_water_level_control_system_test_port guard '''
-							this.number_of_activations != CONSTANTS.WATER_FLOW_SENSOR_CONTROLLER.NUMBER_OF_ACTIVATIONS	
+							this.number_of_activations != Constants.WATER_FLOW_SENSOR_CONTROLLER.NUMBER_OF_ACTIVATIONS	
 						''' >
 					}
 					action '''
 						this.number_of_activations++;
-						System.out.println ( "Water flow sensor activated, " + this.number_of_activations + " / " + CONSTANTS.WATER_FLOW_SENSOR_CONTROLLER.NUMBER_OF_ACTIVATIONS );
+
+						System.out.println ( 
+							"Water flow sensor activated, " + this.number_of_activations + " / " + Constants.WATER_FLOW_SENSOR_CONTROLLER.NUMBER_OF_ACTIVATIONS
+						);
 					'''
 				}	
 					
@@ -177,11 +311,16 @@ RoomModel top_actor {
 						< alarm : mine_water_level_control_system_test_port >
 					}
 					action '''
-						System.out.println ( "Last check" );
-						System.out.println ( "Turn on alarm message sent" );
+						System.out.println ( 
+							"Last check"
+						);
+
+						System.out.println ( 
+							"Turn on alarm message sent"
+						);
 
 						super.timer_access_point.startTimeout (
-							CONSTANTS.SCENARIO.CHECK_PERIOD
+							Constants.SCENARIO.CHECK_PERIOD
 						);
 					'''
 				}
@@ -189,12 +328,12 @@ RoomModel top_actor {
 				Transition stall7 : step7 -> step7 {
 					triggers {
 						< timeout : timer_access_point guard '''
-							super.alarm.state != device_state_t.ON	
+							super.is_alarm_turned_on ( ) == false
 						'''>
 					}
 					action '''
 						super.timer_access_point.startTimeout (
-							CONSTANTS.SCENARIO.CHECK_PERIOD
+							Constants.SCENARIO.CHECK_PERIOD
 						);
 					'''
 				}
@@ -202,14 +341,23 @@ RoomModel top_actor {
 				Transition transition7 : step7 -> step8 {
 					triggers {
 						< timeout : timer_access_point guard '''
-							super.alarm.state == device_state_t.ON	
+							super.is_alarm_turned_on ( ) == true 
 						'''>
 					}
 					action '''
-						System.out.println ( "Alarm on state confirmed" );
-						System.out.println ( "Unsetting water flow sensor" );
+						System.out.println ( 
+							"Alarm on state confirmed"
+						);
+
+						System.out.println ( 
+							"Unsetting water flow sensor"
+						);
 						
-						super.water_flow_sensor.value = 0;
+						super.water_flow_sensor.set_value (
+							super.logger,
+							super.getName ( ),
+							0
+						);
 					'''
 				}
 
@@ -218,7 +366,9 @@ RoomModel top_actor {
 						< checking : mine_water_level_control_system_test_port >
 					}
 					action '''
-						System.out.println ( "Water flow sensor controller is checking" );
+						System.out.println ( 
+							"Water flow sensor controller is checking"
+						);
 					'''
 				}
 
@@ -228,10 +378,19 @@ RoomModel top_actor {
 						< activated : mine_water_level_control_system_test_port >
 					}
 					action '''
-						System.out.println ( "Water flow sensor controller is sleeping" );
-						System.out.println ( "Setting water flow sensor" );
+						System.out.println ( 
+							"Water flow sensor controller is sleeping"
+						);
 
-						super.water_flow_sensor.value = 1;
+						System.out.println ( 
+							"Setting water flow sensor"
+						);
+
+						super.water_flow_sensor.set_value (
+							super.logger,
+							super.getName ( ),
+							1
+						);
 					'''
 				}
 				
@@ -240,7 +399,9 @@ RoomModel top_actor {
 						< checking : mine_water_level_control_system_test_port>	
 					}
 					action '''
-						System.out.println ( "Water flow sensor controller initial check" );
+						System.out.println ( 
+							"Water flow sensor controller initial check"
+						);
 
 						this.number_of_activations = 0;
 					'''
@@ -249,24 +410,32 @@ RoomModel top_actor {
 				Transition stall11 : step11 -> step11 {
 					triggers {
 						< checking : mine_water_level_control_system_test_port guard '''
-							this.number_of_activations != ( CONSTANTS.WATER_FLOW_SENSOR_CONTROLLER.NUMBER_OF_ACTIVATIONS - 1 )	
+							this.number_of_activations != ( Constants.WATER_FLOW_SENSOR_CONTROLLER.NUMBER_OF_ACTIVATIONS - 1 )	
 						'''>
 					}
 					action '''
 						this.number_of_activations++;
-						System.out.println ( "Water flow sensor activated, " + this.number_of_activations + " / " + CONSTANTS.WATER_FLOW_SENSOR_CONTROLLER.NUMBER_OF_ACTIVATIONS );
+
+						System.out.println ( 
+							"Water flow sensor activated, " + this.number_of_activations + " / " + Constants.WATER_FLOW_SENSOR_CONTROLLER.NUMBER_OF_ACTIVATIONS
+						);
 					'''
 				}
 					
 				Transition transition11 : step11 -> step12 {
 					triggers {
 						< checking : mine_water_level_control_system_test_port guard '''
-							this.number_of_activations == ( CONSTANTS.WATER_FLOW_SENSOR_CONTROLLER.NUMBER_OF_ACTIVATIONS - 1 )	
+							this.number_of_activations == ( Constants.WATER_FLOW_SENSOR_CONTROLLER.NUMBER_OF_ACTIVATIONS - 1 )	
 						'''>
 					}
 					action '''
-						System.out.println ( "Last check before alarm activation" );
-						System.out.println ( "Unsetting water flow sensor" );
+						System.out.println ( 
+							"Last check before alarm activation"
+						);
+
+						System.out.println ( 
+							"Unsetting water flow sensor"
+						);
 
 						this.water_flow_sensor.value = 0;
 					'''
@@ -277,13 +446,18 @@ RoomModel top_actor {
 						< activated : mine_water_level_control_system_test_port >
 					}
 					action '''
-						System.out.println ( "Water flow sensor controller is in sleeping state" );
-						System.out.println ( "Turning on pump using user port" );
+						System.out.println ( 
+							"Water flow sensor controller is in sleeping state"
+						);
+
+						System.out.println ( 
+							"Turning on pump using user port"
+						);
 
 						super.mine_water_level_control_system_user_port.turn_on ( );
 
 						super.timer_access_point.startTimeout (
-							CONSTANTS.SCENARIO.CHECK_PERIOD
+							Constants.SCENARIO.CHECK_PERIOD
 						);
 					'''
 				}
@@ -291,12 +465,12 @@ RoomModel top_actor {
 				Transition stall13 : step13 -> step13 {
 					triggers {
 						< timeout : timer_access_point guard '''
-							super.pump.state != device_state_t.ON	
+							super.is_pump_turned_on ( ) == false
 						'''>
 					}
 					action '''
 						super.timer_access_point.startTimeout (
-							CONSTANTS.SCENARIO.CHECK_PERIOD
+							Constants.SCENARIO.CHECK_PERIOD
 						);
 					'''
 				}	
@@ -304,11 +478,13 @@ RoomModel top_actor {
 				Transition transition13 : step13 -> step14 {
 					triggers {
 						< timeout : timer_access_point guard '''
-							super.pump.state == device_state_t.ON	
+							super.is_pump_turned_on ( ) == true
 						'''>
 					}
 					action '''
-						System.out.println ( "Pump turned on" );
+						System.out.println ( 
+							"Pump turned on"
+						);
 					'''
 				}
 				
@@ -317,7 +493,9 @@ RoomModel top_actor {
 						< checking : mine_water_level_control_system_test_port>	
 					}
 					action '''
-						System.out.println ( "Water flow sensor controller initial check" );
+						System.out.println ( 
+							"Water flow sensor controller initial check"
+						);
 
 						this.number_of_activations = 0;
 					'''
@@ -326,24 +504,32 @@ RoomModel top_actor {
 				Transition stall15 : step15 -> step15 {
 					triggers {
 						< checking : mine_water_level_control_system_test_port guard '''
-							this.number_of_activations != ( CONSTANTS.WATER_FLOW_SENSOR_CONTROLLER.NUMBER_OF_ACTIVATIONS - 1 )	
+							this.number_of_activations != ( Constants.WATER_FLOW_SENSOR_CONTROLLER.NUMBER_OF_ACTIVATIONS - 1 )	
 						'''>
 					}
 					action '''
 						this.number_of_activations++;
-						System.out.println ( "Water flow sensor activated, " + this.number_of_activations + " / " + CONSTANTS.WATER_FLOW_SENSOR_CONTROLLER.NUMBER_OF_ACTIVATIONS );
+
+						System.out.println ( 
+							"Water flow sensor activated, " + this.number_of_activations + " / " + Constants.WATER_FLOW_SENSOR_CONTROLLER.NUMBER_OF_ACTIVATIONS
+						);
 					'''
 				}
 					
 				Transition transition15 : step15 -> step16 {
 					triggers {
 						< checking : mine_water_level_control_system_test_port guard '''
-							this.number_of_activations == ( CONSTANTS.WATER_FLOW_SENSOR_CONTROLLER.NUMBER_OF_ACTIVATIONS - 1 )	
+							this.number_of_activations == ( Constants.WATER_FLOW_SENSOR_CONTROLLER.NUMBER_OF_ACTIVATIONS - 1 )	
 						'''>
 					}
 					action '''
-						System.out.println ( "Last check before alarm activation" );
-						System.out.println ( "Turning pump off using user port" );
+						System.out.println ( 
+							"Last check before alarm activation"
+						);
+
+						System.out.println ( 
+							"Turning pump off using user port"
+						);
 
 						super.mine_water_level_control_system_user_port.turn_off ( );
 					'''
@@ -354,7 +540,9 @@ RoomModel top_actor {
 						< activated : mine_water_level_control_system_test_port >
 					}
 					action '''
-						System.out.println ( "Water flow sensor controller is in sleeping state" );
+						System.out.println (
+							"Water flow sensor controller is in sleeping state"
+						);
 
 						super.stop_scenario ( );
 					'''

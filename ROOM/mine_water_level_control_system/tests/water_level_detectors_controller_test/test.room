@@ -1,137 +1,18 @@
 RoomModel test {
-	import room.basic.types.* from "../../../org.eclipse.etrice.modellib.java/model/Types.room"
 	import room.basic.service.timing.* from "../../../org.eclipse.etrice.modellib.java/model/TimingService.room"
-	import devices.* from "../../model/devices.room"
-	import environment_monitoring_station.* from "../../model/environment_monitoring_station.room"
-	import periodic_task.* from "../../model/periodic_task.room"
-	import test.* from "../../model/test.room"
+	import top_actor.*				   from "top_actor.room"
 
 	LogicalSystem log_sys {
-		SubSystemRef sub_system_ref: sub_sys_class 
+		SubSystemRef sub_system_ref : sub_sys_class 
 	}
 
 	SubSystemClass sub_sys_class {
-		ActorRef top_actor: top_actor_t 
-		ActorRef timing_service: ATimingService
+		ActorRef top_actor		: top_actor_t 
+		ActorRef timing_service : ATimingService
+
 		LayerConnection ref top_actor satisfied_by timing_service.timer
+
 		LogicalThread thread
 	}
 
-	ActorClass top_actor_t {
-		Structure {
-			usercode1 '''
-				class Constants {
-					public static final int HIGH_WATER_LEVEL_SENSOR_CONTROLLER_PERIOD_IN_MS = 500;
-					public static final int TEST_PERIOD_IN_MS = 750;
-					public static final int LOW_WATER_LEVEL_SENSOR_IVALUE = 0;
-					public static final int HIGH_WATER_LEVEL_SENSOR_IVALUE = 0;
-				}
-			'''		
-			
-			Attribute pump_turn_off_expected : boolean
-			Attribute pump_turn_on_expected : boolean
-			
-			Attribute low_water_level_sensor : water_level_sensor_t
-			Attribute high_water_level_sensor : water_level_sensor_t
-			ActorRef water_level_sensors_controller : water_level_sensors_controller_t 
-			
-			conjugated Port water_level_sensors_controller_iport : periodic_task_iprotocol_t
-			conjugated Port pump_port : switch_protocol_t
-			conjugated Port test_port : test_protocol_t
-
-			Binding water_level_sensors_controller_iport and water_level_sensors_controller.iport
-			Binding pump_port and water_level_sensors_controller.pump_port
-			Binding test_port and water_level_sensors_controller.test_port
-		}
-		Behavior {
-			Operation process ( low_water_level_sensor_value : int32, high_water_level_sensor_value : int32 ) : void '''
-				this.pump_turn_off_expected = false;
-				this.pump_turn_on_expected = false;
-				
-				if ( low_water_level_sensor_value != 0 ) {
-					this.pump_turn_off_expected = true;
-				} else if ( high_water_level_sensor_value != 0 ) {
-					this.pump_turn_on_expected = true;	
-				}
-			'''
-
-			Operation update ( ) : void '''
-				double random = Math.random ( );
-				
-				this.low_water_level_sensor.value = 0;
-				this.high_water_level_sensor.value = 0;
-
-				if ( random > 0.7 ) {
-					this.high_water_level_sensor.value = 1;
-				} else if ( random < 0.3 ) {
-					this.low_water_level_sensor.value = 1;
-				}
-
-				this.process(
-					this.low_water_level_sensor.value,
-					this.high_water_level_sensor.value
-				);
-			'''
-
-			StateMachine {
-				State testing { }
-				
-				Transition start : initial -> testing {
-					action '''
-						this.low_water_level_sensor.value = Constants.LOW_WATER_LEVEL_SENSOR_IVALUE;
-						this.high_water_level_sensor.value = Constants.HIGH_WATER_LEVEL_SENSOR_IVALUE;
-						
-						this.process(
-							this.low_water_level_sensor.value,
-							this.high_water_level_sensor.value
-						);
-						
-						this.water_level_sensors_controller_iport.initialize ( 
-							new water_level_sensors_controller_idata_t ( 
-								Constants.HIGH_WATER_LEVEL_SENSOR_CONTROLLER_PERIOD_IN_MS,
-								this.low_water_level_sensor,
-								this.high_water_level_sensor
-							)
-						);
-					'''
-				}
-				
-				
-				Transition turn_off_message_received : testing -> testing {
-					triggers { 
-						< turn_off : pump_port >
-					}
-					action '''
-						if ( this.pump_turn_off_expected == true ) {
-							System.out.println ( "TURN OFF MESSAGE RECEIVED EXPECTEDLY " );
-						} else {
-							System.err.println ( "TURN OFF MESSAGE RECEIVED UNEXPECTEDLY " );
-						}
-					'''
-				}
-
-				Transition turn_on_message_received : testing -> testing {
-					triggers { 
-						< turn_on : pump_port >
-					}
-					action '''
-						if ( this.pump_turn_on_expected == true ) {
-							System.out.println ( "TURN ON MESSAGE RECEIVED EXPECTEDLY " );
-						} else {
-							System.err.println ( "TURN OF MESSAGE RECEIVED UNEXPECTEDLY " );
-						}
-					'''
-				}
-				
-				Transition activated_message_received : testing -> testing {
-					triggers {
-						< activated : test_port > 
-					}
-					action '''
-						this.update ( );	
-					'''
-				}
-			}
-		}
-	}
 }

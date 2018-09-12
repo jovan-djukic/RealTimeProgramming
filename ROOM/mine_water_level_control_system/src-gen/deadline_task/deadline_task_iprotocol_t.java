@@ -1,4 +1,4 @@
-package devices;
+package deadline_task;
 
 import org.eclipse.etrice.runtime.java.messaging.Message;
 import org.eclipse.etrice.runtime.java.modelbase.EventMessage;
@@ -12,15 +12,14 @@ import static org.eclipse.etrice.runtime.java.etunit.EtUnit.*;
 
 
 
-public class switch_protocol_t {
+public class deadline_task_iprotocol_t {
 	// message IDs
 	public static final int MSG_MIN = 0;
-	public static final int OUT_turn_on = 1;
-	public static final int OUT_turn_off = 2;
-	public static final int MSG_MAX = 3;
+	public static final int IN_initialize = 1;
+	public static final int MSG_MAX = 2;
 
 
-	private static String messageStrings[] = {"MIN", "turn_on","turn_off", "MAX"};
+	private static String messageStrings[] = {"MIN",  "initialize","MAX"};
 
 	public String getMessageString(int msg_id) {
 		if (msg_id<MSG_MIN || msg_id>MSG_MAX+1){
@@ -34,12 +33,12 @@ public class switch_protocol_t {
 
 	
 	// port class
-	static public class switch_protocol_tPort extends PortBase {
+	static public class deadline_task_iprotocol_tPort extends PortBase {
 		// constructors
-		public switch_protocol_tPort(IInterfaceItemOwner actor, String name, int localId) {
+		public deadline_task_iprotocol_tPort(IInterfaceItemOwner actor, String name, int localId) {
 			this(actor, name, localId, 0);
 		}
-		public switch_protocol_tPort(IInterfaceItemOwner actor, String name, int localId, int idx) {
+		public deadline_task_iprotocol_tPort(IInterfaceItemOwner actor, String name, int localId, int idx) {
 			super(actor, name, localId, idx);
 			DebuggingService.getInstance().addPortInstance(this);
 		}
@@ -65,22 +64,12 @@ public class switch_protocol_t {
 	
 	
 		// sent messages
-		public void turn_on() {
-			DebuggingService.getInstance().addMessageAsyncOut(getAddress(), getPeerAddress(), messageStrings[OUT_turn_on]);
-			if (getPeerAddress()!=null)
-				getPeerMsgReceiver().receive(new EventMessage(getPeerAddress(), OUT_turn_on));
-		}
-		public void turn_off() {
-			DebuggingService.getInstance().addMessageAsyncOut(getAddress(), getPeerAddress(), messageStrings[OUT_turn_off]);
-			if (getPeerAddress()!=null)
-				getPeerMsgReceiver().receive(new EventMessage(getPeerAddress(), OUT_turn_off));
-		}
 	}
 	
 	// replicated port class
-	static public class switch_protocol_tReplPort extends ReplicatedPortBase {
+	static public class deadline_task_iprotocol_tReplPort extends ReplicatedPortBase {
 	
-		public switch_protocol_tReplPort(IInterfaceItemOwner actor, String name, int localId) {
+		public deadline_task_iprotocol_tReplPort(IInterfaceItemOwner actor, String name, int localId) {
 			super(actor, name, localId);
 		}
 	
@@ -92,35 +81,25 @@ public class switch_protocol_t {
 				return ifitem.getIdx();
 		}
 	
-		public switch_protocol_tPort get(int idx) {
-			return (switch_protocol_tPort) getInterfaceItem(idx);
+		public deadline_task_iprotocol_tPort get(int idx) {
+			return (deadline_task_iprotocol_tPort) getInterfaceItem(idx);
 		}
 	
 		protected InterfaceItemBase createInterfaceItem(IInterfaceItemOwner rcv, String name, int lid, int idx) {
-			return new switch_protocol_tPort(rcv, name, lid, idx);
+			return new deadline_task_iprotocol_tPort(rcv, name, lid, idx);
 		}
 	
 		// outgoing messages
-		public void turn_on(){
-			for (InterfaceItemBase item : getItems()) {
-				((switch_protocol_tPort)item).turn_on();
-			}
-		}
-		public void turn_off(){
-			for (InterfaceItemBase item : getItems()) {
-				((switch_protocol_tPort)item).turn_off();
-			}
-		}
 	}
 	
 	
 	// port class
-	static public class switch_protocol_tConjPort extends PortBase {
+	static public class deadline_task_iprotocol_tConjPort extends PortBase {
 		// constructors
-		public switch_protocol_tConjPort(IInterfaceItemOwner actor, String name, int localId) {
+		public deadline_task_iprotocol_tConjPort(IInterfaceItemOwner actor, String name, int localId) {
 			this(actor, name, localId, 0);
 		}
-		public switch_protocol_tConjPort(IInterfaceItemOwner actor, String name, int localId, int idx) {
+		public deadline_task_iprotocol_tConjPort(IInterfaceItemOwner actor, String name, int localId, int idx) {
 			super(actor, name, localId, idx);
 			DebuggingService.getInstance().addPortInstance(this);
 		}
@@ -146,12 +125,20 @@ public class switch_protocol_t {
 	
 	
 		// sent messages
+		public void initialize(deadline_task_idata_t data) {
+			DebuggingService.getInstance().addMessageAsyncOut(getAddress(), getPeerAddress(), messageStrings[IN_initialize]);
+			if (getPeerAddress()!=null)
+				getPeerMsgReceiver().receive(new EventWithDataMessage(getPeerAddress(), IN_initialize, data.deepCopy()));
+		}
+		public void initialize(int deadline) {
+			initialize(new deadline_task_idata_t(deadline));
+		}
 	}
 	
 	// replicated port class
-	static public class switch_protocol_tConjReplPort extends ReplicatedPortBase {
+	static public class deadline_task_iprotocol_tConjReplPort extends ReplicatedPortBase {
 	
-		public switch_protocol_tConjReplPort(IInterfaceItemOwner actor, String name, int localId) {
+		public deadline_task_iprotocol_tConjReplPort(IInterfaceItemOwner actor, String name, int localId) {
 			super(actor, name, localId);
 		}
 	
@@ -163,15 +150,20 @@ public class switch_protocol_t {
 				return ifitem.getIdx();
 		}
 	
-		public switch_protocol_tConjPort get(int idx) {
-			return (switch_protocol_tConjPort) getInterfaceItem(idx);
+		public deadline_task_iprotocol_tConjPort get(int idx) {
+			return (deadline_task_iprotocol_tConjPort) getInterfaceItem(idx);
 		}
 	
 		protected InterfaceItemBase createInterfaceItem(IInterfaceItemOwner rcv, String name, int lid, int idx) {
-			return new switch_protocol_tConjPort(rcv, name, lid, idx);
+			return new deadline_task_iprotocol_tConjPort(rcv, name, lid, idx);
 		}
 	
 		// incoming messages
+		public void initialize(deadline_task_idata_t data){
+			for (InterfaceItemBase item : getItems()) {
+				((deadline_task_iprotocol_tConjPort)item).initialize( data);
+			}
+		}
 	}
 	
 }

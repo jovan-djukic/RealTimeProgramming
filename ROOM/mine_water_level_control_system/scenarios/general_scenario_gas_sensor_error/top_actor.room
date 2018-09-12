@@ -1,21 +1,43 @@
 RoomModel top_actor {
 	import room.basic.service.timing.* from "../../../org.eclipse.etrice.modellib.java/model/TimingService.room"
-	import base_actor.* from "../base_actor.room"
+	import base_actor.* 			   from "../base_actor.room"
 
 	ActorClass top_actor_t extends base_actor_t {
 		Behavior {
 			StateMachine {
-				State step1 { }
-				State step2 { }
+				State step1 { 
+					entry '''
+						System.out.println (
+							"STEP 1"
+						);
+					'''
+				}
+				State step2 {
+					entry '''
+						System.out.println (
+							"STEP 2"
+						);
+					'''
+				}
 
 				RefinedTransition start { 
 					action '''
 						System.out.println ( "Setting o sensor to error" );
-						super.o_sensor.value = 0;
-						super.o_sensor.error_occurred = true;
+
+						super.o_sensor.set_value (
+							this.logger,
+							super.getName ( ),
+							0
+						);
+
+						super.o_sensor.set_read_error_occurred (
+							this.logger,
+							super.getName ( ),
+							true	
+						);
 						
 						super.timer_access_point.startTimeout (
-							CONSTANTS.SCENARIO.CHECK_PERIOD
+							Constants.SCENARIO.CHECK_PERIOD
 						);
 					'''
 				}
@@ -23,12 +45,12 @@ RoomModel top_actor {
 				Transition stall0 : step0 -> step0 {
 					triggers {
 						< timeout : timer_access_point guard '''
-							super.alarm.state != device_state_t.ON
+							super.is_alarm_turned_on ( ) == false
 						'''>
 					}
 					action '''
 						super.timer_access_point.startTimeout (
-							CONSTANTS.SCENARIO.CHECK_PERIOD
+							Constants.SCENARIO.CHECK_PERIOD
 						);
 					'''
 				}	
@@ -36,27 +58,39 @@ RoomModel top_actor {
 				Transition transition0 : step0 -> step1 {
 					triggers {
 						< timeout : timer_access_point guard '''
-							super.alarm.state == device_state_t.ON
+							super.is_alarm_turned_on ( ) == true 
 						'''>
 					}
 					action '''
-						System.out.println ( "Alarm activated" );
-
-						System.out.println ( "Pausing for " + CONSTANTS.SCENARIO.SLEEP_TIME_IN_S + " seconds" );
-						
-						try {
-							java.lang.Thread.sleep ( CONSTANTS.SCENARIO.SLEEP_TIME_IN_S * 1000 );
-						} catch ( InterruptedException e ) { }
-
-						System.out.println ( "Setting o sensor below threshold" );
-						super.o_sensor.value = super.get_below_threshold_value (
-							CONSTANTS.O_SENSOR_CONTROLLER.DETECT_ABOVE_THRESHOLD,
-							CONSTANTS.O_SENSOR_CONTROLLER.THRESHOLD
+						System.out.println (
+							"Alarm activated"
 						);
-						super.o_sensor.error_occurred = false;
+
+						super.pause ( );
+
+						System.out.println (
+							"Setting o sensor below threshold"
+						);
+
+						int o_sensor_value = super.get_below_threshold_value (
+							false,
+							Constants.O_SENSOR_CONTROLLER.THRESHOLD
+						);
+
+						super.o_sensor.set_value (
+							this.logger,
+							super.getName ( ),
+							o_sensor_value
+						);
+
+						super.o_sensor.set_read_error_occurred (
+							this.logger,
+							super.getName ( ),
+							false
+						);
 						
 						super.timer_access_point.startTimeout (
-							CONSTANTS.SCENARIO.CHECK_PERIOD
+							Constants.SCENARIO.CHECK_PERIOD
 						);
 					'''
 				}
@@ -64,12 +98,12 @@ RoomModel top_actor {
 				Transition stall1 : step1 -> step1 {
 					triggers {
 						< timeout : timer_access_point guard '''
-							super.alarm.state != device_state_t.OFF
+							super.is_alarm_turned_on ( ) == true 
 						'''>
 					}
 					action '''
 						super.timer_access_point.startTimeout (
-							CONSTANTS.SCENARIO.CHECK_PERIOD
+							Constants.SCENARIO.CHECK_PERIOD
 						);
 					'''
 				}	
@@ -77,11 +111,13 @@ RoomModel top_actor {
 				Transition transition1 : step1 -> step2 {
 					triggers {
 						< timeout : timer_access_point guard '''
-							super.alarm.state == device_state_t.OFF
+							super.is_alarm_turned_on ( ) == false 
 						'''>
 					}
 					action '''
-						System.out.println ( "Alarm deactivated" );
+						System.out.println (
+							"Alarm deactivated"
+						);
 						
 						super.stop_scenario ( );
 					'''

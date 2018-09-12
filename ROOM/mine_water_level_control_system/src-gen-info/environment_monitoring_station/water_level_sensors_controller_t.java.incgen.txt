@@ -6,28 +6,20 @@ import org.eclipse.etrice.runtime.java.debugging.*;
 
 import static org.eclipse.etrice.runtime.java.etunit.EtUnit.*;
 
+import deadline_task.*;
 import devices.*;
 import logger.*;
-import periodic_task.*;
-import room.basic.service.timing.*;
-import test.*;
-import room.basic.service.timing.PTimer.*;
-import periodic_task.periodic_task_iprotocol_t.*;
-import devices.switch_protocol_t.*;
-import test.test_protocol_t.*;
-
-/*--------------------- begin user code ---------------------*/
-import java.util.logging.*;
-import java.io.IOException;
-
-/*--------------------- end user code ---------------------*/
+import pump_station.*;
+import deadline_task.deadline_task_iprotocol_t.*;
+import devices.water_level_sensors_interrupt_protocol_t.*;
 
 
-public class water_level_sensors_controller_t extends sensor_controller_t {
+
+public class water_level_sensors_controller_t extends deadline_task_t {
 
 
 	//--------------------- ports
-	protected switch_protocol_tPort pump_port = null;
+	protected water_level_sensors_interrupt_protocol_tConjPort interrupt_port = null;
 
 	//--------------------- saps
 
@@ -36,22 +28,12 @@ public class water_level_sensors_controller_t extends sensor_controller_t {
 	//--------------------- optional actors
 
 	//--------------------- interface item IDs
-	public static final int IFITEM_pump_port = 4;
+	public static final int IFITEM_interrupt_port = 2;
 
 	/*--------------------- attributes ---------------------*/
-	public  water_level_sensor_t low_water_level_sensor;
-	public  water_level_sensor_t high_water_level_sensor;
+	public  pump_controller_t pump_controller;
 
 	/*--------------------- operations ---------------------*/
-	public  void query_action() {
-		if ( this.low_water_level_sensor.value != 0 )	{
-			this.pump_port.turn_off ( );
-			super.info ( this.getName ( ), "Water under low threshold, turning off pump" );
-		} else if ( this.high_water_level_sensor.value != 0 ) {
-			this.pump_port.turn_on ( );
-			super.info ( this.getName ( ), "Water over high threshold, turning on pump" );
-		}
-	}
 
 
 	//--------------------- construction
@@ -60,11 +42,10 @@ public class water_level_sensors_controller_t extends sensor_controller_t {
 		setClassName("water_level_sensors_controller_t");
 
 		// initialize attributes
-		this.setLow_water_level_sensor(null);
-		this.setHigh_water_level_sensor(null);
+		this.setPump_controller(null);
 
 		// own ports
-		pump_port = new switch_protocol_tPort(this, "pump_port", IFITEM_pump_port);
+		interrupt_port = new water_level_sensors_interrupt_protocol_tConjPort(this, "interrupt_port", IFITEM_interrupt_port);
 
 		// own saps
 
@@ -80,23 +61,17 @@ public class water_level_sensors_controller_t extends sensor_controller_t {
 	}
 
 	/* --------------------- attribute setters and getters */
-	public void setLow_water_level_sensor(water_level_sensor_t low_water_level_sensor) {
-		 this.low_water_level_sensor = low_water_level_sensor;
+	public void setPump_controller(pump_controller_t pump_controller) {
+		 this.pump_controller = pump_controller;
 	}
-	public water_level_sensor_t getLow_water_level_sensor() {
-		return this.low_water_level_sensor;
-	}
-	public void setHigh_water_level_sensor(water_level_sensor_t high_water_level_sensor) {
-		 this.high_water_level_sensor = high_water_level_sensor;
-	}
-	public water_level_sensor_t getHigh_water_level_sensor() {
-		return this.high_water_level_sensor;
+	public pump_controller_t getPump_controller() {
+		return this.pump_controller;
 	}
 
 
 	//--------------------- port getters
-	public switch_protocol_tPort getPump_port (){
-		return this.pump_port;
+	public water_level_sensors_interrupt_protocol_tConjPort getInterrupt_port (){
+		return this.interrupt_port;
 	}
 
 	//--------------------- lifecycle functions
@@ -114,12 +89,13 @@ public class water_level_sensors_controller_t extends sensor_controller_t {
 	public static final int STATE_MAX = 4;
 	
 	/* transition chains */
-	public static final int CHAIN_TRANS_timeout_received_FROM_sleeping_TO_sleeping_BY_timeouttimer_access_point_timeout_received = 1;
+	public static final int CHAIN_TRANS_interrupt_received_FROM_sleeping_TO_sleeping_BY_interruptinterrupt_port_interrupt_received = 1;
 	public static final int CHAIN_TRANS_INITIAL_TO__waiting_for_imessage = 2;
 	public static final int CHAIN_TRANS_imessage_received_FROM_waiting_for_imessage_TO_sleeping_BY_initializeiport = 3;
 	
 	/* triggers */
 	public static final int POLLING = 0;
+	public static final int TRIG_interrupt_port__interrupt = IFITEM_interrupt_port + EVT_SHIFT*water_level_sensors_interrupt_protocol_t.OUT_interrupt;
 	
 	// state names
 	protected static final String stateStrings[] = {
@@ -140,12 +116,42 @@ public class water_level_sensors_controller_t extends sensor_controller_t {
 	/* Entry and Exit Codes */
 	
 	/* Action Codes */
-	protected void action_TRANS_imessage_received_FROM_waiting_for_imessage_TO_sleeping_BY_initializeiport(InterfaceItemBase ifitem, periodic_task_idata_t data) {
-	    this.period = data.period;
-	    super.info ( this.getName ( ), "Initialization message received" );
+	protected void action_TRANS_interrupt_received_FROM_sleeping_TO_sleeping_BY_interruptinterrupt_port_interrupt_received(InterfaceItemBase ifitem, water_level_sensors_interrupt_data_t data) {
+	    super.activated ( );
 	    
-	    this.low_water_level_sensor = ( ( water_level_sensors_controller_idata_t ) data ).low_water_level_sensor;
-	    this.high_water_level_sensor = ( ( water_level_sensors_controller_idata_t ) data ).high_water_level_sensor;
+	    if ( data.low_water_level_threshold_breached == true )	{
+	    	this.logger.info (
+	    		this.getName ( ),
+	    		"Water under low threshold, turning off pump"
+	    	);
+	    
+	    	this.pump_controller.turn_off (
+	    		this.logger,
+	    		super.getName ( )
+	    	);
+	    
+	    } else if ( data.high_water_level_threshold_breached == true ) {
+	    	this.logger.info (
+	    		this.getName ( ), 
+	    		"Water over high threshold, turning on pump"
+	    	);
+	    
+	    	this.pump_controller.turn_on (
+	    		this.logger,
+	    		super.getName ( )
+	    	);
+	    }
+	    
+	    super.finished ( );
+	}
+	protected void action_TRANS_imessage_received_FROM_waiting_for_imessage_TO_sleeping_BY_initializeiport(InterfaceItemBase ifitem, deadline_task_idata_t data) {
+	    this.deadline = data.deadline;
+	    this.logger.info (
+	    	this.getName ( ),
+	    	"Initialization message received"
+	    );
+	    
+	    this.pump_controller = ( ( water_level_sensors_controller_idata_t ) data ).pump_controller;
 	}
 	
 	/* State Switch Methods */
@@ -182,9 +188,10 @@ public class water_level_sensors_controller_t extends sensor_controller_t {
 	 */
 	private int executeTransitionChain(int chain__et, InterfaceItemBase ifitem, Object generic_data__et) {
 		switch (chain__et) {
-			case water_level_sensors_controller_t.CHAIN_TRANS_timeout_received_FROM_sleeping_TO_sleeping_BY_timeouttimer_access_point_timeout_received:
+			case water_level_sensors_controller_t.CHAIN_TRANS_interrupt_received_FROM_sleeping_TO_sleeping_BY_interruptinterrupt_port_interrupt_received:
 			{
-				action_TRANS_timeout_received_FROM_sleeping_TO_sleeping_BY_timeouttimer_access_point_timeout_received(ifitem);
+				water_level_sensors_interrupt_data_t data = (water_level_sensors_interrupt_data_t) generic_data__et;
+				action_TRANS_interrupt_received_FROM_sleeping_TO_sleeping_BY_interruptinterrupt_port_interrupt_received(ifitem, data);
 				return STATE_sleeping;
 			}
 			case water_level_sensors_controller_t.CHAIN_TRANS_INITIAL_TO__waiting_for_imessage:
@@ -193,7 +200,7 @@ public class water_level_sensors_controller_t extends sensor_controller_t {
 			}
 			case water_level_sensors_controller_t.CHAIN_TRANS_imessage_received_FROM_waiting_for_imessage_TO_sleeping_BY_initializeiport:
 			{
-				periodic_task_idata_t data = (periodic_task_idata_t) generic_data__et;
+				deadline_task_idata_t data = (deadline_task_idata_t) generic_data__et;
 				action_TRANS_imessage_received_FROM_waiting_for_imessage_TO_sleeping_BY_initializeiport(ifitem, data);
 				return STATE_sleeping;
 			}
@@ -210,10 +217,8 @@ public class water_level_sensors_controller_t extends sensor_controller_t {
 	 * @return - the ID of the final leaf state
 	 */
 	private int enterHistory(int state__et) {
-		boolean skip_entry__et = false;
 		if (state__et >= STATE_MAX) {
 			state__et =  (state__et - STATE_MAX);
-			skip_entry__et = true;
 		}
 		while (true) {
 			switch (state__et) {
@@ -221,7 +226,6 @@ public class water_level_sensors_controller_t extends sensor_controller_t {
 					/* in leaf state: return state id */
 					return STATE_waiting_for_imessage;
 				case STATE_sleeping:
-					if (!(skip_entry__et)) entry_sleeping();
 					/* in leaf state: return state id */
 					return STATE_sleeping;
 				case STATE_TOP:
@@ -231,7 +235,6 @@ public class water_level_sensors_controller_t extends sensor_controller_t {
 					/* should not occur */
 					break;
 			}
-			skip_entry__et = false;
 		}
 		/* return NO_STATE; // required by CDT but detected as unreachable by JDT because of while (true) */
 	}
@@ -266,9 +269,9 @@ public class water_level_sensors_controller_t extends sensor_controller_t {
 			        break;
 			    case STATE_sleeping:
 			        switch(trigger__et) {
-			                case TRIG_timer_access_point__timeout:
+			                case TRIG_interrupt_port__interrupt:
 			                    {
-			                        chain__et = water_level_sensors_controller_t.CHAIN_TRANS_timeout_received_FROM_sleeping_TO_sleeping_BY_timeouttimer_access_point_timeout_received;
+			                        chain__et = water_level_sensors_controller_t.CHAIN_TRANS_interrupt_received_FROM_sleeping_TO_sleeping_BY_interruptinterrupt_port_interrupt_received;
 			                        catching_state__et = STATE_TOP;
 			                    }
 			                break;

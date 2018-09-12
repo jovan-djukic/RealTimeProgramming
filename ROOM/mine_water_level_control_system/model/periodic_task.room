@@ -1,54 +1,66 @@
 RoomModel periodic_task {
-	import room.basic.types.* from "../../org.eclipse.etrice.modellib.java/model/Types.room"
+	import room.basic.types.* 		   from "../../org.eclipse.etrice.modellib.java/model/Types.room"
 	import room.basic.service.timing.* from "../../org.eclipse.etrice.modellib.java/model/TimingService.room"
-	import logger.logger_t from "logger.room"
-	import test.* from "test.room"
+	import logger.logger_t 			   from "logger.room"
+	import test.* 					   from "test.room"
+	import deadline_task.*  		   from "deadline_task.room"
 
-	DataClass periodic_task_idata_t {
+	DataClass periodic_task_idata_t extends deadline_task_idata_t {
 		Attribute period : int32 = '0'
 	}
 	
-	ProtocolClass periodic_task_iprotocol_t {
-		incoming {
-			Message initialize ( data : periodic_task_idata_t )
-		}
-	}
-	
-
-	abstract ActorClass periodic_task_t extends logger_t {
+	abstract ActorClass periodic_task_t extends deadline_task_t {
 		Interface { 
-			Port iport : periodic_task_iprotocol_t 
 			Port test_port : test_protocol_t
 		}	
 		Structure {
-			external Port iport
 			external Port test_port
 
 			SAP timer_access_point : PTimer
 
-			Attribute period : int32 = '0'
-
+			Attribute period 		   : int32 = '0'
+			Attribute first_activation : boolean
 		}
 		Behavior {
+			Operation entry_action ( ) : void '''
+				if ( this.first_activation == true ) {
+					this.first_activation = false;
+				} else {
+					super.finished ( );
+				}
+			'''
+
+			Operation exit_action ( ) : void '''
+				super.activated ( );
+			'''
 			StateMachine {
-				State waiting_for_imessage { }
-				State sleeping { 
+
+				RefinedState sleeping { 
 					entry '''
-						super.info ( this.getName( ), "Starting timeout" );
+						this.entry_action ( );
+						
+						super.logger.info (
+							this.getName( ),
+							"Starting timeout"
+						);
+
 						this.test_port.activated ( );
-						this.timer_access_point.startTimeout ( this.period );
+
+						this.timer_access_point.startTimeout (
+							this.period
+						);
 					'''	
+
+					exit '''
+						this.exit_action ( );
+					'''
 				}
 
-				Transition start : initial -> waiting_for_imessage { }
-				
-				Transition imessage_received : waiting_for_imessage -> sleeping {
-					triggers {
-						< initialize : iport >
-					}	
+				RefinedTransition imessage_received {
 					action '''
-						this.period = data.period;
-						super.info ( this.getName ( ), "Initialization message received" );
+						this.period =  ( ( periodic_task_idata_t ) data ).period;
+						
+						this.first_activation = true;
 					'''
 				}
 			}

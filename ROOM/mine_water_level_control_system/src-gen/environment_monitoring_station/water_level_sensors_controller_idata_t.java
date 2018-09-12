@@ -3,32 +3,27 @@ package environment_monitoring_station;
 import static org.eclipse.etrice.runtime.java.etunit.EtUnit.*;
 import java.io.Serializable;
 
+import deadline_task.*;
 import devices.*;
-import periodic_task.*;
+import logger.*;
+import pump_station.*;
 
 
 
-public class water_level_sensors_controller_idata_t extends periodic_task_idata_t implements Serializable {
+public class water_level_sensors_controller_idata_t extends deadline_task_idata_t implements Serializable {
 
 	private static final long serialVersionUID = 409194007L;
 
 
 	/*--------------------- attributes ---------------------*/
-	public  water_level_sensor_t low_water_level_sensor;
-	public  water_level_sensor_t high_water_level_sensor;
+	public  pump_controller_t pump_controller;
 
 	/* --------------------- attribute setters and getters */
-	public void setLow_water_level_sensor(water_level_sensor_t low_water_level_sensor) {
-		 this.low_water_level_sensor = low_water_level_sensor;
+	public void setPump_controller(pump_controller_t pump_controller) {
+		 this.pump_controller = pump_controller;
 	}
-	public water_level_sensor_t getLow_water_level_sensor() {
-		return this.low_water_level_sensor;
-	}
-	public void setHigh_water_level_sensor(water_level_sensor_t high_water_level_sensor) {
-		 this.high_water_level_sensor = high_water_level_sensor;
-	}
-	public water_level_sensor_t getHigh_water_level_sensor() {
-		return this.high_water_level_sensor;
+	public pump_controller_t getPump_controller() {
+		return this.pump_controller;
 	}
 
 	/*--------------------- operations ---------------------*/
@@ -38,18 +33,16 @@ public class water_level_sensors_controller_idata_t extends periodic_task_idata_
 		super();
 
 		// initialize attributes
-		this.setLow_water_level_sensor(null);
-		this.setHigh_water_level_sensor(null);
+		this.setPump_controller(null);
 
 		/* user defined constructor body */
 	}
 
 	// constructor using fields
-	public water_level_sensors_controller_idata_t(int period, water_level_sensor_t low_water_level_sensor, water_level_sensor_t high_water_level_sensor) {
-		super(period);
+	public water_level_sensors_controller_idata_t(int deadline, pump_controller_t pump_controller) {
+		super(deadline);
 
-		this.low_water_level_sensor = low_water_level_sensor;
-		this.high_water_level_sensor = high_water_level_sensor;
+		this.pump_controller = pump_controller;
 
 		/* user defined constructor body */
 	}
@@ -57,9 +50,8 @@ public class water_level_sensors_controller_idata_t extends periodic_task_idata_
 	// deep copy
 	public water_level_sensors_controller_idata_t deepCopy() {
 		water_level_sensors_controller_idata_t copy = new water_level_sensors_controller_idata_t();
-		copy.period = period;
-		copy.low_water_level_sensor = low_water_level_sensor;
-		copy.high_water_level_sensor = high_water_level_sensor;
+		copy.deadline = deadline;
+		copy.pump_controller = pump_controller;
 		return copy;
 	}
 };

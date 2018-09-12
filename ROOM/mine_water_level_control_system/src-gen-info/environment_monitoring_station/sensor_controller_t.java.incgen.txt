@@ -6,19 +6,15 @@ import org.eclipse.etrice.runtime.java.debugging.*;
 
 import static org.eclipse.etrice.runtime.java.etunit.EtUnit.*;
 
+import deadline_task.*;
 import logger.*;
 import periodic_task.*;
 import room.basic.service.timing.*;
 import test.*;
 import room.basic.service.timing.PTimer.*;
-import periodic_task.periodic_task_iprotocol_t.*;
+import deadline_task.deadline_task_iprotocol_t.*;
 import test.test_protocol_t.*;
 
-/*--------------------- begin user code ---------------------*/
-import java.util.logging.*;
-import java.io.IOException;
-
-/*--------------------- end user code ---------------------*/
 
 
 public abstract class sensor_controller_t extends periodic_task_t {
@@ -38,7 +34,6 @@ public abstract class sensor_controller_t extends periodic_task_t {
 
 	/*--------------------- operations ---------------------*/
 	public  void query_action() {
-		
 	}
 
 
@@ -111,9 +106,30 @@ public abstract class sensor_controller_t extends periodic_task_t {
 	
 	/* Action Codes */
 	protected void action_TRANS_timeout_received_FROM_sleeping_TO_sleeping_BY_timeouttimer_access_point_timeout_received(InterfaceItemBase ifitem) {
-	    super.info ( this.getName ( ), "Query action begin" );
+	    super.activated ( );
+	    
+	    super.logger.info (
+	    	this.getName ( ),
+	    	"Query action begin"
+	    );
+	    
 	    this.query_action ( );
-	    super.info ( this.getName ( ), "Query action end" );
+	    
+	    super.logger.info (
+	    	this.getName ( ),
+	    	"Query action end"
+	    );
+	    
+	    super.finished ( );
+	}
+	protected void action_TRANS_imessage_received_FROM_waiting_for_imessage_TO_sleeping_BY_initializeiport(InterfaceItemBase ifitem, deadline_task_idata_t data) {
+	    this.deadline = data.deadline;
+	    this.logger.info (
+	    	this.getName ( ),
+	    	"Initialization message received"
+	    );
+	    
+	    this.period =  ( ( periodic_task_idata_t ) data ).period;
 	}
 	
 	/* State Switch Methods */
@@ -131,6 +147,7 @@ public abstract class sensor_controller_t extends periodic_task_t {
 					current__et = STATE_TOP;
 					break;
 				case STATE_sleeping:
+					exit_sleeping();
 					this.history[STATE_TOP] = STATE_sleeping;
 					current__et = STATE_TOP;
 					break;
@@ -161,7 +178,7 @@ public abstract class sensor_controller_t extends periodic_task_t {
 			}
 			case sensor_controller_t.CHAIN_TRANS_imessage_received_FROM_waiting_for_imessage_TO_sleeping_BY_initializeiport:
 			{
-				periodic_task_idata_t data = (periodic_task_idata_t) generic_data__et;
+				deadline_task_idata_t data = (deadline_task_idata_t) generic_data__et;
 				action_TRANS_imessage_received_FROM_waiting_for_imessage_TO_sleeping_BY_initializeiport(ifitem, data);
 				return STATE_sleeping;
 			}

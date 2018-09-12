@@ -1,64 +1,166 @@
-Sep 01, 2018 12:47:51 AM logger.logger_t info
+Sep 12, 2018 2:27:37 AM logger.logger_t info
+INFO: [ top_actor ] Initializing sensor  CO SENSOR
+	 value 		   		   => 50
+	 conversion_time ( ms ) => 50
+
+Sep 12, 2018 2:27:37 AM logger.logger_t info
+INFO: [ top_actor ] Initializing sensor  CO SENSOR
+	 read_error_occurred => false
+
+Sep 12, 2018 2:27:37 AM logger.logger_t info
+INFO: [ top_actor ] Initializing sensor  O SENSOR
+	 value 		   		   => 150
+	 conversion_time ( ms ) => 50
+
+Sep 12, 2018 2:27:37 AM logger.logger_t info
+INFO: [ top_actor ] Initializing sensor  O SENSOR
+	 read_error_occurred => false
+
+Sep 12, 2018 2:27:37 AM logger.logger_t info
+INFO: [ top_actor ] Initializing sensor  CH4 SENSOR
+	 value 		   		   => 100
+	 conversion_time ( ms ) => 50
+
+Sep 12, 2018 2:27:37 AM logger.logger_t info
+INFO: [ top_actor ] Initializing sensor  CH4 SENSOR
+	 read_error_occurred => false
+
+Sep 12, 2018 2:27:37 AM logger.logger_t info
+INFO: [ top_actor ] Initializing sensor  WATER FLOW SENSOR
+	 value 		   		   => 0
+	 conversion_time ( ms ) => 50
+
+Sep 12, 2018 2:27:37 AM logger.logger_t info
+INFO: [ top_actor ] Initializing device ALARM with state OFF
+Sep 12, 2018 2:27:37 AM logger.logger_t info
+INFO: [ top_actor ] Initializing device PUMP with state OFF
+Sep 12, 2018 2:27:37 AM logger.logger_t info
+INFO: [ mine_water_level_control_system ] System waiting for initialization message
+Sep 12, 2018 2:27:37 AM logger.logger_t info
+INFO: [ mine_water_level_control_system ] Initializing alarm controller
+Sep 12, 2018 2:27:37 AM logger.logger_t info
+INFO: [ mine_water_level_control_system ] Setting state for device ALARM to OFF
+Sep 12, 2018 2:27:37 AM logger.logger_t info
+INFO: [ mine_water_level_control_system ] Initializing pump controller
+Sep 12, 2018 2:27:37 AM logger.logger_t info
+INFO: [ mine_water_level_control_system ] Setting state for device PUMP to OFF
+Sep 12, 2018 2:27:37 AM logger.logger_t info
+INFO: [ water_level_sensors ] Initializing water level sensors
+Sep 12, 2018 2:27:37 AM logger.logger_t info
+INFO: [ co_sensor_controller ] Initialization message received
+Sep 12, 2018 2:27:37 AM logger.logger_t info
+INFO: [ co_sensor_controller ] Starting conversion for sensor CO SENSOR
+Sep 12, 2018 2:27:37 AM logger.logger_t info
+INFO: [ co_sensor_controller ] Starting timeout
+Sep 12, 2018 2:27:37 AM logger.logger_t info
+INFO: [ o_sensor_controller ] Initialization message received
+Sep 12, 2018 2:27:37 AM logger.logger_t info
+INFO: [ o_sensor_controller ] Starting conversion for sensor O SENSOR
+Sep 12, 2018 2:27:37 AM logger.logger_t info
+INFO: [ o_sensor_controller ] Starting timeout
+Sep 12, 2018 2:27:37 AM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Initialization message received
+Sep 12, 2018 2:27:37 AM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Starting conversion for sensor CH4 SENSOR
+Sep 12, 2018 2:27:37 AM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Starting timeout
+Sep 12, 2018 2:27:37 AM logger.logger_t info
 INFO: [ water_level_sensors_controller ] Initialization message received
-Sep 01, 2018 12:47:51 AM logger.logger_t info
-INFO: [ water_level_sensors_controller ] Starting timeout
-Sep 01, 2018 12:47:52 AM logger.logger_t info
-INFO: [ water_level_sensors_controller ] Query action begin
-Sep 01, 2018 12:47:52 AM logger.logger_t info
-INFO: [ water_level_sensors_controller ] Query action end
-Sep 01, 2018 12:47:52 AM logger.logger_t info
-INFO: [ water_level_sensors_controller ] Starting timeout
-Sep 01, 2018 12:47:52 AM logger.logger_t info
-INFO: [ water_level_sensors_controller ] Query action begin
-Sep 01, 2018 12:47:52 AM logger.logger_t info
-INFO: [ water_level_sensors_controller ] Water under low threshold, turning off pump
-Sep 01, 2018 12:47:52 AM logger.logger_t info
-INFO: [ water_level_sensors_controller ] Query action end
-Sep 01, 2018 12:47:52 AM logger.logger_t info
-INFO: [ water_level_sensors_controller ] Starting timeout
-Sep 01, 2018 12:47:53 AM logger.logger_t info
-INFO: [ water_level_sensors_controller ] Query action begin
-Sep 01, 2018 12:47:53 AM logger.logger_t info
-INFO: [ water_level_sensors_controller ] Query action end
-Sep 01, 2018 12:47:53 AM logger.logger_t info
-INFO: [ water_level_sensors_controller ] Starting timeout
-Sep 01, 2018 12:47:53 AM logger.logger_t info
-INFO: [ water_level_sensors_controller ] Query action begin
-Sep 01, 2018 12:47:53 AM logger.logger_t info
-INFO: [ water_level_sensors_controller ] Query action end
-Sep 01, 2018 12:47:53 AM logger.logger_t info
-INFO: [ water_level_sensors_controller ] Starting timeout
-Sep 01, 2018 12:47:54 AM logger.logger_t info
-INFO: [ water_level_sensors_controller ] Query action begin
-Sep 01, 2018 12:47:54 AM logger.logger_t info
-INFO: [ water_level_sensors_controller ] Query action end
-Sep 01, 2018 12:47:54 AM logger.logger_t info
-INFO: [ water_level_sensors_controller ] Starting timeout
-Sep 01, 2018 12:47:54 AM logger.logger_t info
-INFO: [ water_level_sensors_controller ] Query action begin
-Sep 01, 2018 12:47:54 AM logger.logger_t info
+Sep 12, 2018 2:27:37 AM logger.logger_t info
+INFO: [ water_flow_sensor_controller ] Initialization message received
+Sep 12, 2018 2:27:37 AM logger.logger_t info
+INFO: [ water_flow_sensor_controller ] Getting state for device PUMP which is OFF
+Sep 12, 2018 2:27:37 AM logger.logger_t info
+INFO: [ water_flow_sensor_controller ] Starting conversion for sensor WATER FLOW SENSOR
+Sep 12, 2018 2:27:37 AM logger.logger_t info
+INFO: [ water_flow_sensor_controller ] Starting timeout
+Sep 12, 2018 2:27:37 AM logger.logger_t info
+INFO: [ water_level_sensors ] Updating water level sensors
+Sep 12, 2018 2:27:37 AM logger.logger_t info
 INFO: [ water_level_sensors_controller ] Water over high threshold, turning on pump
-Sep 01, 2018 12:47:54 AM logger.logger_t info
-INFO: [ water_level_sensors_controller ] Query action end
-Sep 01, 2018 12:47:54 AM logger.logger_t info
-INFO: [ water_level_sensors_controller ] Starting timeout
-Sep 01, 2018 12:47:55 AM logger.logger_t info
-INFO: [ water_level_sensors_controller ] Query action begin
-Sep 01, 2018 12:47:55 AM logger.logger_t info
+Sep 12, 2018 2:27:37 AM logger.logger_t info
+INFO: [ water_level_sensors_controller ] Initial turn on, turning on pump
+Sep 12, 2018 2:27:37 AM logger.logger_t info
+INFO: [ water_level_sensors_controller ] Setting state for device PUMP to ON
+Sep 12, 2018 2:27:37 AM logger.logger_t info
+INFO: [ top_actor ] Getting state for device PUMP which is ON
+Sep 12, 2018 2:27:37 AM logger.logger_t info
+INFO: [ top_actor ] Getting state for device PUMP which is ON
+Sep 12, 2018 2:27:39 AM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action begin
+Sep 12, 2018 2:27:39 AM logger.logger_t info
+INFO: [ o_sensor_controller ] Conversion successful for sensor O SENSOR
+Sep 12, 2018 2:27:39 AM logger.logger_t info
+INFO: [ o_sensor_controller ] Getting read error occurred for sensor O SENSOR which is false
+Sep 12, 2018 2:27:39 AM logger.logger_t info
+INFO: [ o_sensor_controller ] Conversion successful for sensor O SENSOR
+Sep 12, 2018 2:27:39 AM logger.logger_t info
+INFO: [ o_sensor_controller ] Getting value for sensor O SENSOR which is 150
+Sep 12, 2018 2:27:39 AM logger.logger_t info
+INFO: [ o_sensor_controller ] Query action end
+Sep 12, 2018 2:27:39 AM logger.logger_t info
+INFO: [ o_sensor_controller ] Starting conversion for sensor O SENSOR
+Sep 12, 2018 2:27:39 AM logger.logger_t info
+INFO: [ o_sensor_controller ] Starting timeout
+Sep 12, 2018 2:27:39 AM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action begin
+Sep 12, 2018 2:27:39 AM logger.logger_t info
+INFO: [ co_sensor_controller ] Conversion successful for sensor CO SENSOR
+Sep 12, 2018 2:27:39 AM logger.logger_t info
+INFO: [ co_sensor_controller ] Getting read error occurred for sensor CO SENSOR which is false
+Sep 12, 2018 2:27:39 AM logger.logger_t info
+INFO: [ co_sensor_controller ] Conversion successful for sensor CO SENSOR
+Sep 12, 2018 2:27:39 AM logger.logger_t info
+INFO: [ co_sensor_controller ] Getting value for sensor CO SENSOR which is 50
+Sep 12, 2018 2:27:39 AM logger.logger_t info
+INFO: [ co_sensor_controller ] Query action end
+Sep 12, 2018 2:27:39 AM logger.logger_t info
+INFO: [ co_sensor_controller ] Starting conversion for sensor CO SENSOR
+Sep 12, 2018 2:27:39 AM logger.logger_t info
+INFO: [ co_sensor_controller ] Starting timeout
+Sep 12, 2018 2:27:39 AM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action begin
+Sep 12, 2018 2:27:39 AM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Conversion successful for sensor CH4 SENSOR
+Sep 12, 2018 2:27:39 AM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Getting read error occurred for sensor CH4 SENSOR which is false
+Sep 12, 2018 2:27:39 AM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Conversion successful for sensor CH4 SENSOR
+Sep 12, 2018 2:27:39 AM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Getting value for sensor CH4 SENSOR which is 100
+Sep 12, 2018 2:27:39 AM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Conversion successful for sensor CH4 SENSOR
+Sep 12, 2018 2:27:39 AM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Getting read error occurred for sensor CH4 SENSOR which is false
+Sep 12, 2018 2:27:39 AM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Conversion successful for sensor CH4 SENSOR
+Sep 12, 2018 2:27:39 AM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Getting value for sensor CH4 SENSOR which is 100
+Sep 12, 2018 2:27:39 AM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Query action end
+Sep 12, 2018 2:27:39 AM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Starting conversion for sensor CH4 SENSOR
+Sep 12, 2018 2:27:39 AM logger.logger_t info
+INFO: [ ch4_sensor_controller ] Starting timeout
+Sep 12, 2018 2:27:39 AM logger.logger_t info
+INFO: [ water_flow_sensor_controller ] Getting state for device PUMP which is ON
+Sep 12, 2018 2:27:39 AM logger.logger_t info
+INFO: [ water_flow_sensor_controller ] Getting state for device PUMP which is ON
+Sep 12, 2018 2:27:39 AM logger.logger_t info
+INFO: [ water_flow_sensor_controller ] Pump state changed or sensor error
+Sep 12, 2018 2:27:39 AM logger.logger_t info
+INFO: [ water_flow_sensor_controller ] Starting conversion for sensor WATER FLOW SENSOR
+Sep 12, 2018 2:27:39 AM logger.logger_t info
+INFO: [ water_flow_sensor_controller ] Sleeping in checking state
+Sep 12, 2018 2:27:39 AM logger.logger_t info
+INFO: [ water_level_sensors ] Updating water level sensors
+Sep 12, 2018 2:27:39 AM logger.logger_t info
 INFO: [ water_level_sensors_controller ] Water under low threshold, turning off pump
-Sep 01, 2018 12:47:55 AM logger.logger_t info
-INFO: [ water_level_sensors_controller ] Query action end
-Sep 01, 2018 12:47:55 AM logger.logger_t info
-INFO: [ water_level_sensors_controller ] Starting timeout
-Sep 01, 2018 12:47:55 AM logger.logger_t info
-INFO: [ water_level_sensors_controller ] Query action begin
-Sep 01, 2018 12:47:55 AM logger.logger_t info
-INFO: [ water_level_sensors_controller ] Query action end
-Sep 01, 2018 12:47:55 AM logger.logger_t info
-INFO: [ water_level_sensors_controller ] Starting timeout
-Sep 01, 2018 12:47:56 AM logger.logger_t info
-INFO: [ water_level_sensors_controller ] Query action begin
-Sep 01, 2018 12:47:56 AM logger.logger_t info
-INFO: [ water_level_sensors_controller ] Query action end
-Sep 01, 2018 12:47:56 AM logger.logger_t info
-INFO: [ water_level_sensors_controller ] Starting timeout
+Sep 12, 2018 2:27:39 AM logger.logger_t info
+INFO: [ water_level_sensors_controller ] Initial turn off, turning off pump
+Sep 12, 2018 2:27:39 AM logger.logger_t info
+INFO: [ water_level_sensors_controller ] Setting state for device PUMP to OFF
+Sep 12, 2018 2:27:39 AM logger.logger_t info
+INFO: [ top_actor ] Getting state for device PUMP which is OFF
+Sep 12, 2018 2:27:39 AM logger.logger_t info
+INFO: [ top_actor ] Getting state for device PUMP which is OFF

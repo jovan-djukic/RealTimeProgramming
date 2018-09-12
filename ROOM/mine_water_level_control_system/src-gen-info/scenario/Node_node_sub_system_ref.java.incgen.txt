@@ -17,6 +17,7 @@ import org.eclipse.etrice.runtime.java.modelbase.InterfaceItemBroker;
 
 import alarm_station.*;
 import base_actor.*;
+import deadline_task.*;
 import devices.*;
 import environment_monitoring_station.*;
 import logger.*;
@@ -67,8 +68,7 @@ public class Node_node_sub_system_ref extends SubSystemClassBase {
 		InterfaceItemBase.connect(this, "timing_service/timer", "top_actor/mine_water_level_control_system/co_sensor_controller/timer_access_point");
 		InterfaceItemBase.connect(this, "timing_service/timer", "top_actor/mine_water_level_control_system/o_sensor_controller/timer_access_point");
 		InterfaceItemBase.connect(this, "timing_service/timer", "top_actor/mine_water_level_control_system/ch4_sensor_controller/timer_access_point");
-		InterfaceItemBase.connect(this, "timing_service/timer", "top_actor/mine_water_level_control_system/water_level_detectors_sensor_controller/timer_access_point");
-		InterfaceItemBase.connect(this, "timing_service/timer", "top_actor/mine_water_level_control_system/water_flow_sensors_controller/timer_access_point");
+		InterfaceItemBase.connect(this, "timing_service/timer", "top_actor/mine_water_level_control_system/water_flow_sensor_controller/timer_access_point");
 
 		// apply instance attribute configurations
 	}

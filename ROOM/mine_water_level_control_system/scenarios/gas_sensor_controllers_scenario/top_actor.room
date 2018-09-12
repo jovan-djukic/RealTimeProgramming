@@ -1,31 +1,104 @@
 RoomModel top_actor {
 	import room.basic.service.timing.* from "../../../org.eclipse.etrice.modellib.java/model/TimingService.room"
-	import base_actor.* from "../base_actor.room"
+	import base_actor.* 			   from "../base_actor.room"
 
 	ActorClass top_actor_t extends base_actor_t {
 		Behavior {
 			StateMachine {
-				State step1 { }
-				State step2 { }
-				State step3 { }
-				State step4 { }
-				State step5 { }
-				State step6 { }
-				State step7 { }
-				State step8 { }
-				State step9 { }
-				State step10 { }
+				State step1 {
+					entry '''
+						System.out.println (
+							"STEP 1"
+						);
+					'''
+				}
+				State step2 {
+					entry '''
+						System.out.println (
+							"STEP 2"
+						);
+					'''
+				}
+				State step3 { 
+					entry '''
+						System.out.println (
+							"STEP 3"
+						);
+					'''
+				}
+				State step4 {
+					entry '''
+						System.out.println (
+							"STEP 4"
+						);
+					'''
+				}
+				State step5 {
+					entry '''
+						System.out.println (
+							"STEP 5"
+						);
+					'''
+				}
+				State step6 { 
+					entry '''
+						System.out.println (
+							"STEP 6"
+						);
+					'''
+				}
+				State step7 {
+					entry '''
+						System.out.println (
+							"STEP 7"
+						);
+					'''
+				}
+				State step8 {
+					entry '''
+						System.out.println (
+							"STEP 8"
+						);
+					'''
+				}
+				State step9 { 
+					entry '''
+						System.out.println (
+							"STEP 9"
+						);
+					'''
+				}
+				State step10 { 
+					entry '''
+						System.out.println (
+							"STEP 10"
+						);
+					'''
+				}
 
 				RefinedTransition start { 
 					action '''
 						System.out.println ( "Setting o sensor above threshold" );
-						super.o_sensor.value = super.get_above_threshold_value (
-							CONSTANTS.O_SENSOR_CONTROLLER.DETECT_ABOVE_THRESHOLD,
-							CONSTANTS.O_SENSOR_CONTROLLER.THRESHOLD
+
+						int o_sensor_value = super.get_above_threshold_value (
+							false,
+							Constants.O_SENSOR_CONTROLLER.THRESHOLD
+						);
+						
+						super.o_sensor.set_value (
+							this.logger,
+							super.getName ( ),
+							o_sensor_value
+						);
+
+						super.o_sensor.set_read_error_occurred (
+							this.logger,
+							super.getName ( ),
+							false
 						);
 						
 						super.timer_access_point.startTimeout (
-							CONSTANTS.SCENARIO.CHECK_PERIOD
+							Constants.SCENARIO.CHECK_PERIOD
 						);
 					'''
 				}
@@ -33,12 +106,12 @@ RoomModel top_actor {
 				Transition stall0 : step0 -> step0 {
 					triggers {
 						< timeout : timer_access_point guard '''
-							super.alarm.state != device_state_t.ON
+							this.is_alarm_turned_on ( ) == false
 						'''>
 					}
 					action '''
 						super.timer_access_point.startTimeout (
-							CONSTANTS.SCENARIO.CHECK_PERIOD
+							Constants.SCENARIO.CHECK_PERIOD
 						);
 					'''
 				}	
@@ -46,19 +119,35 @@ RoomModel top_actor {
 				Transition transition0 : step0 -> step1 {
 					triggers {
 						< timeout : timer_access_point guard '''
-							super.alarm.state == device_state_t.ON
+							this.is_alarm_turned_on ( ) == true 
 						'''>
 					}
 					action '''
-						System.out.println ( "Alarm activated" );
-						System.out.println ( "Setting o sensor below threshold" );
-						super.o_sensor.value = super.get_below_threshold_value (
-							CONSTANTS.O_SENSOR_CONTROLLER.DETECT_ABOVE_THRESHOLD,
-							CONSTANTS.O_SENSOR_CONTROLLER.THRESHOLD
+						System.out.println ( 
+							"Alarm activated"
+						);
+
+						super.pause ( );
+
+						int o_sensor_value = super.get_below_threshold_value (
+							false,
+							Constants.O_SENSOR_CONTROLLER.THRESHOLD
+						);
+
+						super.o_sensor.set_value (
+							this.logger,
+							super.getName ( ),
+							o_sensor_value
+						);
+
+						super.o_sensor.set_read_error_occurred (
+							this.logger,
+							super.getName ( ),
+							false
 						);
 						
 						super.timer_access_point.startTimeout (
-							CONSTANTS.SCENARIO.CHECK_PERIOD
+							Constants.SCENARIO.CHECK_PERIOD
 						);
 					'''
 				}
@@ -66,12 +155,12 @@ RoomModel top_actor {
 				Transition stall1 : step1 -> step1 {
 					triggers {
 						< timeout : timer_access_point guard '''
-							super.alarm.state != device_state_t.OFF
+							this.is_alarm_turned_on ( ) == true 
 						'''>
 					}
 					action '''
 						super.timer_access_point.startTimeout (
-							CONSTANTS.SCENARIO.CHECK_PERIOD
+							Constants.SCENARIO.CHECK_PERIOD
 						);
 					'''
 				}	
@@ -79,20 +168,35 @@ RoomModel top_actor {
 				Transition transition1 : step1 -> step2 {
 					triggers {
 						< timeout : timer_access_point guard '''
-							super.alarm.state == device_state_t.OFF
+							this.is_alarm_turned_on ( ) == false 
 						'''>
 					}
 					action '''
-						System.out.println ( "Alarm deactivated" );
+						System.out.println ( 
+							"Alarm deactivated"
+						);
 
-						System.out.println ( "Setting co sensor above threshold" );
-						super.co_sensor.value = super.get_above_threshold_value (
-							CONSTANTS.CO_SENSOR_CONTROLLER.DETECT_ABOVE_THRESHOLD,
-							CONSTANTS.CO_SENSOR_CONTROLLER.THRESHOLD
+						super.pause ( );
+
+						int co_sensor_value = super.get_above_threshold_value (
+							true,
+							Constants.CO_SENSOR_CONTROLLER.THRESHOLD
+						);
+
+						super.co_sensor.set_value (
+							this.logger,
+							super.getName ( ),
+							co_sensor_value
+						);
+
+						super.co_sensor.set_read_error_occurred (
+							this.logger,
+							super.getName ( ),
+							false
 						);
 						
 						super.timer_access_point.startTimeout (
-							CONSTANTS.SCENARIO.CHECK_PERIOD
+							Constants.SCENARIO.CHECK_PERIOD
 						);
 					'''
 				}
@@ -100,12 +204,12 @@ RoomModel top_actor {
 				Transition stall2 : step2 -> step2 {
 					triggers {
 						< timeout : timer_access_point guard '''
-							super.alarm.state != device_state_t.ON
+							this.is_alarm_turned_on ( ) == false 
 						'''>
 					}
 					action '''
 						super.timer_access_point.startTimeout (
-							CONSTANTS.SCENARIO.CHECK_PERIOD
+							Constants.SCENARIO.CHECK_PERIOD
 						);
 					'''
 				}	
@@ -113,20 +217,39 @@ RoomModel top_actor {
 				Transition transition2 : step2 -> step3 {
 					triggers {
 						< timeout : timer_access_point guard '''
-							super.alarm.state == device_state_t.ON
+							this.is_alarm_turned_on ( ) == true 
 						'''>
 					}
 					action '''
-						System.out.println ( "Alarm activated" );
+						System.out.println (
+							"Alarm activated"
+						);
 
-						System.out.println ( "Setting co sensor below threshold" );
-						super.co_sensor.value = super.get_below_threshold_value (
-							CONSTANTS.CO_SENSOR_CONTROLLER.DETECT_ABOVE_THRESHOLD,
-							CONSTANTS.CO_SENSOR_CONTROLLER.THRESHOLD
+						super.pause ( );
+
+						System.out.println (
+							"Setting co sensor below threshold"
+						);
+
+						int co_sensor_value = super.get_below_threshold_value (
+							true,
+							Constants.CO_SENSOR_CONTROLLER.THRESHOLD
+						);
+
+						super.co_sensor.set_value (
+							this.logger,
+							super.getName ( ),
+							co_sensor_value
+						);
+
+						super.co_sensor.set_read_error_occurred (
+							this.logger,
+							super.getName ( ),
+							false
 						);
 						
 						super.timer_access_point.startTimeout (
-							CONSTANTS.SCENARIO.CHECK_PERIOD
+							Constants.SCENARIO.CHECK_PERIOD
 						);
 					'''
 				}
@@ -134,12 +257,12 @@ RoomModel top_actor {
 				Transition stall3 : step3 -> step3 {
 					triggers {
 						< timeout : timer_access_point guard '''
-							super.alarm.state != device_state_t.OFF
+							this.is_alarm_turned_on ( ) == true 
 						'''>
 					}
 					action '''
 						super.timer_access_point.startTimeout (
-							CONSTANTS.SCENARIO.CHECK_PERIOD
+							Constants.SCENARIO.CHECK_PERIOD
 						);
 					'''
 				}	
@@ -147,20 +270,39 @@ RoomModel top_actor {
 				Transition transition3 : step3 -> step4 {
 					triggers {
 						< timeout : timer_access_point guard '''
-							super.alarm.state == device_state_t.OFF
+							this.is_alarm_turned_on ( ) == false 
 						'''>
 					}
 					action '''
-						System.out.println ( "Alarm deactivated" );
+						System.out.println (
+							"Alarm deactivated"
+						);
 
-						System.out.println ( "Setting ch4 sensor above threshold" );
-						super.ch4_sensor.value = super.get_above_threshold_value (
-							CONSTANTS.CH4_SENSOR_CONTROLLER.DETECT_ABOVE_THRESHOLD,
-							CONSTANTS.CH4_SENSOR_CONTROLLER.THRESHOLD
+						super.pause ( );
+
+						System.out.println (
+							"Setting ch4 sensor above threshold"
+						);
+
+						int ch4_sensor_value = super.get_above_threshold_value (
+							true,
+							Constants.CH4_SENSOR_CONTROLLER.THRESHOLD
+						);
+
+						super.ch4_sensor.set_value (
+							this.logger,
+							super.getName ( ),
+							ch4_sensor_value
+						);
+
+						super.ch4_sensor.set_read_error_occurred (
+							this.logger,
+							super.getName ( ),
+							false
 						);
 						
 						super.timer_access_point.startTimeout (
-							CONSTANTS.SCENARIO.CHECK_PERIOD
+							Constants.SCENARIO.CHECK_PERIOD
 						);
 					'''
 				}
@@ -168,12 +310,12 @@ RoomModel top_actor {
 				Transition stall4 : step4 -> step4 {
 					triggers {
 						< timeout : timer_access_point guard '''
-							super.alarm.state != device_state_t.ON
+							this.is_alarm_turned_on ( ) == false 
 						'''>
 					}
 					action '''
 						super.timer_access_point.startTimeout (
-							CONSTANTS.SCENARIO.CHECK_PERIOD
+							Constants.SCENARIO.CHECK_PERIOD
 						);
 					'''
 				}	
@@ -181,20 +323,39 @@ RoomModel top_actor {
 				Transition transition4 : step4 -> step5 {
 					triggers {
 						< timeout : timer_access_point guard '''
-							super.alarm.state == device_state_t.ON
+							this.is_alarm_turned_on ( ) == true 
 						'''>
 					}
 					action '''
-						System.out.println ( "Alarm activated" );
+						System.out.println ( 
+							"Alarm activated"
+						);
 
-						System.out.println ( "Setting ch4 sensor below threshold" );
-						super.ch4_sensor.value = super.get_below_threshold_value (
-							CONSTANTS.CH4_SENSOR_CONTROLLER.DETECT_ABOVE_THRESHOLD,
-							CONSTANTS.CH4_SENSOR_CONTROLLER.THRESHOLD
+						super.pause ( );
+
+						System.out.println ( 
+							"Setting ch4 sensor below threshold"
+						);
+
+						int ch4_sensor_value = super.get_below_threshold_value (
+							true,
+							Constants.CH4_SENSOR_CONTROLLER.THRESHOLD
+						);
+
+						super.ch4_sensor.set_value (
+							this.logger,
+							super.getName ( ),
+							ch4_sensor_value
+						);
+
+						super.ch4_sensor.set_read_error_occurred (
+							this.logger,
+							super.getName ( ),
+							false
 						);
 						
 						super.timer_access_point.startTimeout (
-							CONSTANTS.SCENARIO.CHECK_PERIOD
+							Constants.SCENARIO.CHECK_PERIOD
 						);
 					'''
 				}
@@ -202,12 +363,12 @@ RoomModel top_actor {
 				Transition stall5 : step5 -> step5 {
 					triggers {
 						< timeout : timer_access_point guard '''
-							super.alarm.state != device_state_t.OFF
+							this.is_alarm_turned_on ( ) == true 
 						'''>
 					}
 					action '''
 						super.timer_access_point.startTimeout (
-							CONSTANTS.SCENARIO.CHECK_PERIOD
+							Constants.SCENARIO.CHECK_PERIOD
 						);
 					'''
 				}	
@@ -215,28 +376,73 @@ RoomModel top_actor {
 				Transition transition5 : step5 -> step6 {
 					triggers {
 						< timeout : timer_access_point guard '''
-							super.alarm.state == device_state_t.OFF
+							this.is_alarm_turned_on ( ) == false 
 						'''>
 					}
 					action '''
-						System.out.println ( "Alarm deactivated" );
+						System.out.println (
+							"Alarm deactivated"
+						);
 
-						System.out.println ( "Setting all sensor values above threshold" );
-						super.o_sensor.value = super.get_above_threshold_value (
-							CONSTANTS.O_SENSOR_CONTROLLER.DETECT_ABOVE_THRESHOLD,
-							CONSTANTS.O_SENSOR_CONTROLLER.THRESHOLD
+						super.pause ( );
+
+						System.out.println ( 
+							"Setting all sensor values above threshold"
 						);
-						super.co_sensor.value = super.get_above_threshold_value (
-							CONSTANTS.CO_SENSOR_CONTROLLER.DETECT_ABOVE_THRESHOLD,
-							CONSTANTS.CO_SENSOR_CONTROLLER.THRESHOLD
+
+						int o_sensor_value = super.get_above_threshold_value (
+							false,
+							Constants.O_SENSOR_CONTROLLER.THRESHOLD
 						);
-						super.ch4_sensor.value = super.get_above_threshold_value (
-							CONSTANTS.CH4_SENSOR_CONTROLLER.DETECT_ABOVE_THRESHOLD,
-							CONSTANTS.CH4_SENSOR_CONTROLLER.THRESHOLD
+						
+						super.o_sensor.set_value (
+							this.logger,
+							super.getName ( ),
+							o_sensor_value
+						);
+
+						super.o_sensor.set_read_error_occurred (
+							this.logger,
+							super.getName ( ),
+							false
+						);
+
+						int co_sensor_value = super.get_above_threshold_value (
+							true,
+							Constants.CO_SENSOR_CONTROLLER.THRESHOLD
+						);
+						
+						super.co_sensor.set_value (
+							this.logger,
+							super.getName ( ),
+							co_sensor_value
+						);
+
+						super.co_sensor.set_read_error_occurred (
+							this.logger,
+							super.getName ( ),
+							false
+						);
+
+						int ch4_sensor_value = super.get_above_threshold_value (
+							true,
+							Constants.CH4_SENSOR_CONTROLLER.THRESHOLD
+						);
+						
+						super.ch4_sensor.set_value (
+							this.logger,
+							super.getName ( ),
+							ch4_sensor_value
+						);
+
+						super.ch4_sensor.set_read_error_occurred (
+							this.logger,
+							super.getName ( ),
+							false
 						);
 
 						super.timer_access_point.startTimeout (
-							CONSTANTS.SCENARIO.CHECK_PERIOD
+							Constants.SCENARIO.CHECK_PERIOD
 						);
 					'''
 				}
@@ -244,12 +450,12 @@ RoomModel top_actor {
 				Transition stall6 : step6 -> step6 {
 					triggers {
 						< timeout : timer_access_point guard '''
-							super.alarm.state != device_state_t.ON
+							this.is_alarm_turned_on ( ) == false 
 						'''>
 					}
 					action '''
 						super.timer_access_point.startTimeout (
-							CONSTANTS.SCENARIO.CHECK_PERIOD
+							Constants.SCENARIO.CHECK_PERIOD
 						);
 					'''
 				}	
@@ -257,20 +463,39 @@ RoomModel top_actor {
 				Transition transition6 : step6 -> step7 {
 					triggers {
 						< timeout : timer_access_point guard '''
-							super.alarm.state == device_state_t.ON
+							this.is_alarm_turned_on ( ) == true 
 						'''>
 					}
 					action '''
-						System.out.println ( "Alarm activated" );
+						System.out.println ( 
+							"Alarm activated"
+						);
 
-						System.out.println ( "Setting o sensor to below threshold" );
-						super.o_sensor.value = super.get_below_threshold_value (
-							CONSTANTS.O_SENSOR_CONTROLLER.DETECT_ABOVE_THRESHOLD,
-							CONSTANTS.O_SENSOR_CONTROLLER.THRESHOLD
+						super.pause ( );
+
+						System.out.println ( 
+							"Setting o sensor to below threshold"
+						);
+
+						int o_sensor_value = super.get_below_threshold_value (
+							false,
+							Constants.O_SENSOR_CONTROLLER.THRESHOLD
+						);
+
+						super.o_sensor.set_value (
+							this.logger,
+							super.getName ( ),
+							o_sensor_value
+						);
+
+						super.o_sensor.set_read_error_occurred (
+							this.logger,
+							super.getName ( ),
+							false
 						);
 
 						super.timer_access_point.startTimeout (
-							CONSTANTS.SCENARIO.CHECK_PERIOD
+							Constants.SCENARIO.CHECK_PERIOD
 						);
 					'''
 				}
@@ -278,12 +503,12 @@ RoomModel top_actor {
 				Transition stall7 : step7 -> step7 {
 					triggers {
 						< timeout : timer_access_point guard '''
-							super.alarm.state != device_state_t.ON
+							this.is_alarm_turned_on ( ) == false 
 						'''>
 					}
 					action '''
 						super.timer_access_point.startTimeout (
-							CONSTANTS.SCENARIO.CHECK_PERIOD
+							Constants.SCENARIO.CHECK_PERIOD
 						);
 					'''
 				}	
@@ -291,20 +516,39 @@ RoomModel top_actor {
 				Transition transition7 : step7 -> step8 {
 					triggers {
 						< timeout : timer_access_point guard '''
-							super.alarm.state == device_state_t.ON
+							this.is_alarm_turned_on ( ) == true 
 						'''>
 					}
 					action '''
-						System.out.println ( "Alarm still activated" );
+						System.out.println ( 
+							"Alarm still activated"
+						);
 
-						System.out.println ( "Setting co sensor to below threshold" );
-						super.co_sensor.value = super.get_below_threshold_value (
-							CONSTANTS.CO_SENSOR_CONTROLLER.DETECT_ABOVE_THRESHOLD,
-							CONSTANTS.CO_SENSOR_CONTROLLER.THRESHOLD
+						super.pause ( );
+
+						System.out.println ( 
+							"Setting co sensor to below threshold"
+						);
+
+						int co_sensor_value = super.get_below_threshold_value (
+							true,
+							Constants.CO_SENSOR_CONTROLLER.THRESHOLD
+						);
+
+						super.co_sensor.set_value (
+							this.logger,
+							super.getName ( ),
+							co_sensor_value
+						);
+
+						super.co_sensor.set_read_error_occurred (
+							this.logger,
+							super.getName ( ),
+							false
 						);
 
 						super.timer_access_point.startTimeout (
-							CONSTANTS.SCENARIO.CHECK_PERIOD
+							Constants.SCENARIO.CHECK_PERIOD
 						);
 					'''
 				}
@@ -312,12 +556,12 @@ RoomModel top_actor {
 				Transition stall8 : step8 -> step8 {
 					triggers {
 						< timeout : timer_access_point guard '''
-							super.alarm.state != device_state_t.ON
+							this.is_alarm_turned_on ( ) == false 
 						'''>
 					}
 					action '''
 						super.timer_access_point.startTimeout (
-							CONSTANTS.SCENARIO.CHECK_PERIOD
+							Constants.SCENARIO.CHECK_PERIOD
 						);
 					'''
 				}	
@@ -325,20 +569,43 @@ RoomModel top_actor {
 				Transition transition8 : step8 -> step9 {
 					triggers {
 						< timeout : timer_access_point guard '''
-							super.alarm.state == device_state_t.ON
+							this.is_alarm_turned_on ( ) == true 
 						'''>
 					}
 					action '''
-						System.out.println ( "Alarm still activated" );
+						System.out.println (
+							"Alarm still activated"
+						);
 
-						System.out.println ( "Setting ch4 sensor to below threshold" );
-						super.ch4_sensor.value = super.get_below_threshold_value (
-							CONSTANTS.CH4_SENSOR_CONTROLLER.DETECT_ABOVE_THRESHOLD,
-							CONSTANTS.CH4_SENSOR_CONTROLLER.THRESHOLD
+						super.pause ( );
+
+						System.out.println (
+							"Setting low water level sensor controller ( unsetting high because both cannot be active ) "
+						);
+
+						System.out.println (
+							"Setting ch4 sensor to below threshold"
+						);
+
+						int ch4_sensor_value = super.get_below_threshold_value (
+							true,
+							Constants.CH4_SENSOR_CONTROLLER.THRESHOLD
+						);
+
+						super.ch4_sensor.set_value (
+							this.logger,
+							super.getName ( ),
+							ch4_sensor_value
+						);
+
+						super.ch4_sensor.set_read_error_occurred (
+							this.logger,
+							super.getName ( ),
+							false
 						);
 
 						super.timer_access_point.startTimeout (
-							CONSTANTS.SCENARIO.CHECK_PERIOD
+							Constants.SCENARIO.CHECK_PERIOD
 						);
 					'''
 				}
@@ -346,12 +613,12 @@ RoomModel top_actor {
 				Transition stall9 : step9 -> step9 {
 					triggers {
 						< timeout : timer_access_point guard '''
-							super.alarm.state != device_state_t.OFF
+							this.is_alarm_turned_on ( ) == true 
 						'''>
 					}
 					action '''
 						super.timer_access_point.startTimeout (
-							CONSTANTS.SCENARIO.CHECK_PERIOD
+							Constants.SCENARIO.CHECK_PERIOD
 						);
 					'''
 				}	
@@ -359,11 +626,13 @@ RoomModel top_actor {
 				Transition transition9 : step9 -> step10 {
 					triggers {
 						< timeout : timer_access_point guard '''
-							super.alarm.state == device_state_t.OFF
+							this.is_alarm_turned_on ( ) == false 
 						'''>
 					}
 					action '''
-						System.out.println ( "Alarm deactivated" );
+						System.out.println ( 
+							"Alarm deactivated"
+						);
 
 						super.stop_scenario ( );
 					'''

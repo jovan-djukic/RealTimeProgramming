@@ -1,118 +1,157 @@
 RoomModel mine_water_level_control_system {
-	import devices.* from "devices.room"
+	import room.basic.types.* 		   		from "../../org.eclipse.etrice.modellib.java/model/Types.room"
+	import devices.* 						from "devices.room"
 	import environment_monitoring_station.* from "environment_monitoring_station.room"
-	import alarm_station.* from "alarm_station.room"
-	import pump_station.* from "pump_station.room"
-	import logger.* from "logger.room"
-	import periodic_task.* from "periodic_task.room"
-	import test.* from "test.room"
+	import alarm_station.* 					from "alarm_station.room"
+	import pump_station.* 					from "pump_station.room"
+	import logger.* 						from "logger.room"
+	import periodic_task.* 					from "periodic_task.room"
+	import deadline_task.* 					from "deadline_task.room"
+	import test.* 							from "test.room"
+	
+	ProtocolClass switch_protocol_t {
+		incoming {
+			Message turn_on ( )
+			Message turn_off ( )
+		}
+	}
 	
 	DataClass mine_water_level_control_system_idata_t {
-		// gas sensor controllers idata
-		Attribute co_sensor_controller_idata : gas_sensor_controller_idata_t
-		Attribute o_sensor_controller_idata : gas_sensor_controller_idata_t
-		Attribute ch4_sensor_controller_idata : gas_sensor_controller_idata_t
+		// water level sensors 
+		Attribute water_level 				 					 : int32
+		Attribute water_level_sensors_low_water_level_threshold  : int32
+		Attribute water_level_sensors_high_water_level_threshold : int32
 
-		// water level detector idata
-		Attribute water_level_detectors_sensor_controller_idata : water_level_sensors_controller_idata_t 
-
-		// water flow sensor controller idata
-		Attribute water_flow_sensor_controller_idata : water_flow_sensor_controller_idata_t
-		
 		// alarm controller idata
-		Attribute alarm_controller_idata : alarm_controller_idata_t
+		Attribute alarm : device_t ref
 		
 		// pump controller idata
-		Attribute pump_controller_idata : pump_controller_idata_t	
+		Attribute pump : device_t ref
 		
+		// gas sensor controllers idata
+		// co sensor controller idata
+		Attribute co_sensor 						  		  : gas_sensor_t ref	
+		Attribute co_sensor_controller_deadline_in_ms 		  : int32
+		Attribute co_sensor_controller_period_in_ms   		  : int32
+		Attribute co_sensor_controller_threshold  			  : int32	
+		Attribute co_sensor_controller_error_count_threshold  : int32
+
+		// o sensor controller idata
+		Attribute o_sensor 						  		    : gas_sensor_t ref	
+		Attribute o_sensor_controller_deadline_in_ms 		: int32
+		Attribute o_sensor_controller_period_in_ms   		: int32
+		Attribute o_sensor_controller_threshold  			: int32	
+		Attribute o_sensor_controller_error_count_threshold : int32
+
+		// ch4 sensor controller idataj
+		Attribute ch4_sensor 						  		  : gas_sensor_t ref	
+		Attribute ch4_sensor_controller_deadline_in_ms 		  : int32
+		Attribute ch4_sensor_controller_period_in_ms   		  : int32
+		Attribute ch4_sensor_controller_threshold  			  : int32	
+		Attribute ch4_sensor_controller_error_count_threshold : int32
+		
+
+		// water level sensors controller idata
+		// sensors will be instatiated in the room model since it is an actor
+		Attribute water_level_sensors_controller_deadline_in_ms : int32
+
+		// water flow sensor controller idata
+		Attribute water_flow_sensor 								 : sensor_t ref
+		Attribute water_flow_sensor_controller_deadline_in_ms 		 : int32
+		Attribute water_flow_sensor_controller_period_in_ms   		 : int32
+		Attribute water_flow_sensor_controller_number_of_activations : int32
 	}
 	
 	ProtocolClass mine_water_level_control_system_iprotocol_t {
 		incoming {
-			Message initialize ( data : mine_water_level_control_system_idata_t )
+			Message initialize (
+				data : mine_water_level_control_system_idata_t
+			)
 		}
 	}
 
-	ActorClass mine_water_level_control_system_t extends logger_t {
+	ActorClass mine_water_level_control_system_t {
 		Interface {
-			Port iport : mine_water_level_control_system_iprotocol_t	
-			conjugated Port user_port : switch_protocol_t
-			Port test_port : test_protocol_t
+			Port iport 	     : mine_water_level_control_system_iprotocol_t	
+			Port user_port   : switch_protocol_t
+
+			// relay ports
+			Port test_port   : test_protocol_t
+			Port update_port : water_level_sensors_update_protocol_t
 		}
 		Structure {
 			external Port iport
+			external Port user_port
+			
+			Attribute logger : logger_t
+			
+			// water level sensors actor 
+			ActorRef water_level_sensors : water_level_sensors_t
 
 			// gas sensor controllers
-			ActorRef co_sensor_controller : gas_sensor_controller_t
-			ActorRef o_sensor_controller : gas_sensor_controller_t
+			ActorRef co_sensor_controller  : gas_sensor_controller_t
+			ActorRef o_sensor_controller   : gas_sensor_controller_t
 			ActorRef ch4_sensor_controller : methane_sensor_controller_t 
 
 			// water level detectors sensor controller
-			ActorRef water_level_detectors_sensor_controller : water_level_sensors_controller_t 
+			ActorRef water_level_sensors_controller : water_level_sensors_controller_t 
 
 			// water flow sensors controller
-			ActorRef water_flow_sensors_controller : water_flow_sensor_controller_t
+			ActorRef water_flow_sensor_controller : water_flow_sensor_controller_t
 
 			// alarm controller
-			ActorRef alarm_controller : alarm_controller_t
+			Attribute alarm_controller : alarm_controller_t
 			
 			// pump controller
-			ActorRef pump_controller : pump_controller_t
+			Attribute pump_controller : pump_controller_t
 			
+			// water flow sensors iport
+			conjugated Port water_level_sensors_iport : water_level_sensors_iprotocol_t
 			
 			// gas sensor controllers iports
-			conjugated Port co_sensor_controller_iport : periodic_task_iprotocol_t
-			conjugated Port o_sensor_controller_iport : periodic_task_iprotocol_t
-			conjugated Port ch4_sensor_controller_iport : periodic_task_iprotocol_t
+			conjugated Port co_sensor_controller_iport  : deadline_task_iprotocol_t
+			conjugated Port o_sensor_controller_iport   : deadline_task_iprotocol_t
+			conjugated Port ch4_sensor_controller_iport : deadline_task_iprotocol_t
 
 			// water level detectors controller iports
-			conjugated Port water_level_detectors_sensor_controller_iport : periodic_task_iprotocol_t
+			conjugated Port water_level_sensors_controller_iport : deadline_task_iprotocol_t
 
 			// water flow sensor controller iport
-			conjugated Port water_flow_sensors_controller_iport : periodic_task_iprotocol_t	
+			conjugated Port water_flow_sensor_controller_iport : deadline_task_iprotocol_t	
 			 
-			// alarm controller iport
-			conjugated Port alarm_controller_iport : alarm_controller_iprotocol_t
+			// water flow sensor bindings
+			Binding water_level_sensors.iport 		   and water_level_sensors_iport
+			Binding water_level_sensors.update_port    and update_port	
+			Binding water_level_sensors.interrupt_port and water_level_sensors_controller.interrupt_port
 			
-			// pump controller iport
-			conjugated Port pump_controller_iport : pump_controller_iprotocol_t
-
 			// gas sensors bindings
-			Binding co_sensor_controller.iport and co_sensor_controller_iport
-			Binding co_sensor_controller.alarm_port and alarm_controller.co_sensor_controller_port
-			Binding o_sensor_controller.iport and o_sensor_controller_iport
-			Binding o_sensor_controller.alarm_port and alarm_controller.o_sensor_controller_port
+			// co sensor controller binding
+			Binding co_sensor_controller.iport  and co_sensor_controller_iport
+			
+			// o sensor controller
+			Binding o_sensor_controller.iport   and o_sensor_controller_iport
+			
+			// ch4 sensor controller
 			Binding ch4_sensor_controller.iport and ch4_sensor_controller_iport
-			Binding ch4_sensor_controller.alarm_port and alarm_controller.ch4_sensor_controller_port
-			Binding ch4_sensor_controller.methane_port and pump_controller.methane_port
 			
 			// water sensor controllers ports
-			Binding water_level_detectors_sensor_controller.iport and water_level_detectors_sensor_controller_iport
-			Binding water_level_detectors_sensor_controller.pump_port and pump_controller.water_level_detectors_controller_port
-			Binding water_flow_sensors_controller.iport and water_flow_sensors_controller_iport
-			Binding water_flow_sensors_controller.alarm_port and alarm_controller.water_flow_sensor_controller_port
-			Binding water_flow_sensors_controller.test_port and test_port
-			
-			// pump controller ports
-			Binding pump_controller.iport and pump_controller_iport
-			Binding pump_controller.user_port and user_port
-			
-			// alarm controller
-			Binding alarm_controller.iport and alarm_controller_iport
+			 Binding water_level_sensors_controller.iport and water_level_sensors_controller_iport
+
+			 Binding water_flow_sensor_controller.iport 	and water_flow_sensor_controller_iport
+			 Binding water_flow_sensor_controller.test_port and test_port
 		}
 		Behavior {
 			StateMachine {
 				State waiting_for_imessage {
 					entry '''
-						super.info ( this.getName ( ), "System waiting for initialization message" );
+						this.logger.info ( 
+							this.getName ( ), 
+							"System waiting for initialization message"
+						);
 					'''
 				}				
 
-				State running { 
-					entry '''
-						super.info ( this.getName ( ), "System initialized and running" );
-					'''
-				}
+				State running { }
 
 				Transition start : initial -> waiting_for_imessage { }
 				
@@ -121,16 +160,127 @@ RoomModel mine_water_level_control_system {
 						< initialize : iport >
 					}
 					action '''
+						// initialize
+						this.water_level_sensors_iport.initialize (
+							new water_level_sensors_idata_t (
+								data.water_level_sensors_low_water_level_threshold,
+								data.water_level_sensors_high_water_level_threshold,
+								data.water_level 
+							)	
+						);
+						
+						// initialize alarm
+						this.alarm_controller.initialize (
+							this.logger,
+							super.getName ( ),
+							new alarm_controller_idata_t (
+								data.alarm,
+								4
+							)	
+						);
+
+						// initialize pump 
+						this.pump_controller.initialize (
+							this.logger,
+							super.getName ( ),
+							new pump_controller_idata_t (
+								data.pump
+							)	
+						);
+
 						// initialize gas sensors
-						this.co_sensor_controller_iport.initialize ( data.co_sensor_controller_idata );
-						this.o_sensor_controller_iport.initialize ( data.o_sensor_controller_idata );
-						this.ch4_sensor_controller_iport.initialize ( data.ch4_sensor_controller_idata );
+						// co sensor
+						this.co_sensor_controller_iport.initialize (
+							new gas_sensor_controller_idata_t (
+								data.co_sensor_controller_deadline_in_ms,
+								data.co_sensor_controller_period_in_ms,
+								true,
+								data.co_sensor_controller_threshold,
+								data.co_sensor,
+								data.co_sensor_controller_error_count_threshold,
+								this.alarm_controller 	
+							)
+						);
 
-						this.water_level_detectors_sensor_controller_iport.initialize ( data.water_level_detectors_sensor_controller_idata );
-						this.water_flow_sensors_controller_iport.initialize ( data.water_flow_sensor_controller_idata );
+						// o sensor
+						this.o_sensor_controller_iport.initialize (
+							new gas_sensor_controller_idata_t (
+								data.o_sensor_controller_deadline_in_ms,
+								data.o_sensor_controller_period_in_ms,
+								false,
+								data.o_sensor_controller_threshold,
+								data.o_sensor,
+								data.o_sensor_controller_error_count_threshold,
+								this.alarm_controller 	
+							)
+						);
 
-						this.alarm_controller_iport.initialize ( data.alarm_controller_idata );
-						this.pump_controller_iport.initialize ( data.pump_controller_idata );
+						// ch4 sensor
+						this.ch4_sensor_controller_iport.initialize (
+							new methane_sensor_controller_idata_t (
+								data.ch4_sensor_controller_deadline_in_ms,
+								data.ch4_sensor_controller_period_in_ms,
+								true,
+								data.ch4_sensor_controller_threshold,
+								data.ch4_sensor,
+								data.ch4_sensor_controller_error_count_threshold,
+								this.alarm_controller,
+								this.pump_controller
+							)
+						);
+
+
+						this.water_level_sensors_controller_iport.initialize (
+							new water_level_sensors_controller_idata_t (
+								data.water_level_sensors_controller_deadline_in_ms,
+								this.pump_controller
+							)
+						);
+
+						this.water_flow_sensor_controller_iport.initialize (
+							new water_flow_sensor_controller_idata_t (
+								data.water_flow_sensor_controller_deadline_in_ms,
+								data.water_flow_sensor_controller_period_in_ms,
+								data.pump,
+								data.water_flow_sensor,
+								data.water_flow_sensor_controller_number_of_activations,
+								this.alarm_controller
+							)
+						);
+					'''
+				}
+
+				Transition turn_on_received : running -> running {
+					triggers {
+						< turn_on : user_port >
+					}
+					action '''
+						this.logger.info (
+							super.getName ( ),
+							"User turn on received"		
+						);
+
+						this.pump_controller.turn_on (
+							this.logger,
+							super.getName ( )
+						);							
+					'''
+				}
+
+				Transition turn_off_received : running -> running {
+					triggers {
+						< turn_off : user_port >
+					}
+					action '''
+						this.logger.info (
+							super.getName ( ),
+							"User turn on received"		
+						);
+
+						this.pump_controller.turn_off (
+							this.logger,
+							super.getName ( )
+						);							
 					'''
 				}
 			}

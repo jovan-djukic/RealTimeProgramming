@@ -5,7 +5,7 @@
  * it instantiates sub_system_ref and starts and ends the lifecycle
  */
 
-package test;
+package scenario;
 
 import org.eclipse.etrice.runtime.java.modelbase.RTSystem;
 import org.eclipse.etrice.runtime.java.modelbase.SubSystemRunnerBase;

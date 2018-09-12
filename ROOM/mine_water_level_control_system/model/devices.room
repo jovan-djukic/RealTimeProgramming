@@ -1,28 +1,6 @@
 RoomModel devices {
 	import room.basic.types.* from "../../org.eclipse.etrice.modellib.java/model/Types.room"
-	
-	ProtocolClass switch_protocol_t {
-		outgoing {
-			Message turn_on ( )
-			Message turn_off ( )
-		}
-	}
-	
-	DataClass water_level_sensor_t {
-		Attribute value : int32 = '0'		
-	}	
-
-	DataClass gas_sensor_t {
-		Attribute value : int32
-		Attribute error_occurred : boolean
-	}	
-	
-	ProtocolClass methane_protocol_t {
-		outgoing {
-			Message threshold_breached ( )
-			Message state_normal ( )
-		}
-	}
+	import logger.*			  from "logger.room"
 	
 	Enumeration device_state_t {
 		ON,
@@ -30,10 +8,385 @@ RoomModel devices {
 	}
 
 	DataClass device_t {
-		Attribute state : device_state_t
+		Attribute state 	  : device_state_t
+		Attribute device_name : string
+		
+		Operation initialize (
+			logger 	    : logger_t,
+			actor_name  : string,
+			device_name : string,
+			state       : device_state_t
+		) : void '''
+			synchronized ( this ) {
+				String state_name = state == device_state_t.ON ? "ON" : "OFF";
+				logger.info (
+					actor_name,
+					"Initializing device " + device_name + " with state " + state_name
+				);
+
+				this.device_name = device_name;
+				this.state 		 = state;	
+			}
+		'''
+
+		Operation set_state (
+			logger 	   : logger_t,
+			actor_name : string,
+			state 	   : device_state_t
+		) : void '''
+			synchronized ( this ) {
+				String state_name = state == device_state_t.ON ? "ON" : "OFF";
+				logger.info (
+					actor_name,
+					"Setting state for device " + device_name + " to " + state_name
+				);
+
+				this.state = state;	
+			}
+		'''
+		Operation get_state (
+			logger 	   : logger_t,
+			actor_name : string
+		) : int32 '''
+			int return_state = device_state_t.OFF;
+
+			synchronized ( this ) {
+				String state_name = this.state == device_state_t.ON ? "ON" : "OFF";
+				logger.info (
+					actor_name,
+					"Getting state for device " + device_name + " which is " + state_name
+				);
+
+				return_state = this.state;
+			}
+
+			return return_state;
+		'''
+	}
+
+	DataClass sensor_t {
+		Attribute value 		  			 : int32
+		Attribute conversion_time 			 : int64
+		Attribute sensor_name				 : string
+		Attribute last_conversion_start_time : int64
+		
+		Operation initialize_without_read_error_occurred (
+			logger 	    		: logger_t,
+			actor_name  		: string,
+			value 				: int32,
+			conversion_time 	: int64,
+			sensor_name			: string
+		) : void '''
+			synchronized ( this ) {
+				logger.info (
+					actor_name,
+					"Initializing sensor  " + sensor_name + "\n" + 
+					"\t value 		   		   => " + value + "\n" + 
+					"\t conversion_time ( ms ) => " + conversion_time + "\n" 
+				);
+			
+				this.value 			 			= value;
+				this.conversion_time 			= conversion_time;
+				this.sensor_name  				= sensor_name;
+				this.last_conversion_start_time = 0;
+			}
+		'''
+		
+		Operation start_conversion (
+			logger 	   : logger_t,
+			actor_name : string
+		) : void '''
+			synchronized ( this ) { 
+				logger.info (
+					actor_name,
+					"Starting conversion for sensor " + this.sensor_name 
+				);
+
+				this.last_conversion_start_time = System.currentTimeMillis ( );
+			}
+		'''
+		
+		Operation check_conversion_time (
+			logger 	   : logger_t,
+			actor_name : string
+		) : boolean '''
+			long elapsed_time = System.currentTimeMillis ( ) - this.last_conversion_start_time;
+
+			if ( elapsed_time >= conversion_time ) {
+				logger.info (
+					actor_name,
+					"Conversion successful for sensor " + this.sensor_name 
+				);
+
+				return true;
+			} else {
+				logger.info (
+					actor_name,
+					"Conversion unsuccessful for sensor " + this.sensor_name 
+				);
+				
+				System.exit ( 1 );
+				return false;
+			}
+		'''
+		
+		Operation get_value (
+			logger 	   : logger_t,
+			actor_name : string
+		) : int32 '''
+			int return_value = ~0;
+
+			synchronized ( this ) {
+				boolean conversion_successful = this.check_conversion_time (
+					logger,
+					actor_name	
+				);	
+
+				if ( conversion_successful == true ) {	
+					logger.info (
+						actor_name,
+						"Getting value for sensor " + this.sensor_name + " which is " + this.value
+					);
+
+					return_value = this.value;
+				}
+			}
+			
+			return return_value; 
+		'''
+		Operation set_value (
+			logger 	   	: logger_t,
+			actor_name 	: string,
+			value 		: int32 
+		) : void '''
+			synchronized ( this ) {
+				logger.info (
+					actor_name,
+					"Setting value for sensor " + this.sensor_name + " to " + value
+				);
+				
+				this.value = value;
+			}
+		'''
+	}
+
+	DataClass gas_sensor_t extends sensor_t {
+		Attribute read_error_occurred : boolean
+		
+		Operation initialize (
+			logger 	    		: logger_t,
+			actor_name  		: string,
+			value 				: int32,
+			read_error_occurred : boolean,
+			conversion_time 	: int64,
+			sensor_name			: string
+		) : void '''
+			synchronized ( this ) {
+				super.initialize_without_read_error_occurred (
+					logger,
+					actor_name,
+					value,
+					conversion_time,
+					sensor_name
+				);
+
+				logger.info (
+					actor_name,
+					"Initializing sensor  " + super.sensor_name + "\n" + 
+					"\t read_error_occurred => " + read_error_occurred + "\n" 
+				);
+			
+				this.read_error_occurred = read_error_occurred;
+			}
+		'''
+		
+		Operation get_read_error_occurred (
+			logger 	   : logger_t,
+			actor_name : string
+		) : boolean '''
+			boolean return_read_error_occurred = true;
+
+			synchronized ( this ) {
+				boolean conversion_successful = this.check_conversion_time (
+					logger,
+					actor_name	
+				);	
+
+				if ( conversion_successful == true ) {	
+					logger.info (
+						actor_name,
+						"Getting read error occurred for sensor " + this.sensor_name + " which is " + this.read_error_occurred
+					);
+
+					return_read_error_occurred = this.read_error_occurred;
+				}
+			}
+			
+			return return_read_error_occurred; 
+		'''
+
+		Operation set_read_error_occurred (
+			logger 	   		    : logger_t,
+			actor_name 		    : string,
+			read_error_occurred : boolean 
+		) : void '''
+			synchronized ( this ) {
+				logger.info (
+					actor_name,
+					"Setting read error occurred for sensor " + this.sensor_name + " to " + read_error_occurred 
+				);
+				
+				this.read_error_occurred = read_error_occurred; 
+			}
+		'''
+	}	
+	
+	DataClass water_level_sensors_idata_t {
+		Attribute low_water_level_threshold  : int32
+		Attribute high_water_level_threshold : int32
+		Attribute water_level 			   	 : int32
+	}
+
+	ProtocolClass water_level_sensors_iprotocol_t {
+		incoming {
+			Message initialize (
+				data : water_level_sensors_idata_t
+			)
+		}
 	}
 	
-	DataClass water_flow_sensor_t {
-		Attribute value : int32
+	ProtocolClass water_level_sensors_update_protocol_t {
+		incoming {
+			Message update (
+				water_level : int32
+			)
+		}	
 	}
+	
+	DataClass water_level_sensors_interrupt_data_t {
+		Attribute low_water_level_threshold_breached  : boolean
+		Attribute high_water_level_threshold_breached : boolean 
+	}
+	
+	ProtocolClass water_level_sensors_interrupt_protocol_t {
+		outgoing {
+			Message interrupt (
+				data : water_level_sensors_interrupt_data_t
+			)
+		}
+	}
+
+	ActorClass water_level_sensors_t {
+		Interface {
+			Port iport 			: water_level_sensors_iprotocol_t
+			Port update_port 	: water_level_sensors_update_protocol_t
+			Port interrupt_port : water_level_sensors_interrupt_protocol_t
+		}
+		Structure {
+			external Port iport 			
+			external Port update_port 	
+			external Port interrupt_port 
+
+			Attribute logger							  : logger_t
+			Attribute low_water_level_threshold  		  : int32
+			Attribute high_water_level_threshold 		  : int32
+			Attribute low_water_level_threshold_breached  : boolean 
+			Attribute high_water_level_threshold_breached : boolean 
+		}
+
+		Behavior {
+			StateMachine {
+				State waiting_for_imessage { }
+				State waiting_for_update { }
+				
+				Transition start : initial -> waiting_for_imessage { }	
+				
+				Transition imessage_received : waiting_for_imessage -> waiting_for_update {
+					triggers {
+						< initialize : iport >
+					}
+					action '''
+						this.logger.info (
+							super.getName ( ),
+							"Initializing water level sensors"
+						);
+						
+						this.low_water_level_threshold  = data.low_water_level_threshold;
+						this.high_water_level_threshold = data.high_water_level_threshold;
+						
+						boolean threshold_breached = false;
+						if ( data.water_level < this.low_water_level_threshold ) {
+							this.low_water_level_threshold_breached  = true;
+							threshold_breached						 = true;
+						} else {
+							this.low_water_level_threshold_breached  = false;
+						}
+						
+						if ( data.water_level > this.high_water_level_threshold ) {
+							this.high_water_level_threshold_breached = true;
+							threshold_breached						 = true;
+						} else {
+							this.high_water_level_threshold_breached = false;
+						}
+						
+						if ( threshold_breached == true ) {
+							this.interrupt_port.interrupt (
+								new water_level_sensors_interrupt_data_t (
+									this.low_water_level_threshold_breached,
+									this.high_water_level_threshold_breached
+								)
+							);
+						}
+					'''
+				}
+				
+				Transition update_received : waiting_for_update -> waiting_for_update {
+					triggers {
+						< update : update_port >
+					}
+					action '''
+						this.logger.info (
+							super.getName ( ),
+							"Updating water level sensors"
+						);
+
+						boolean value_changed = false;
+						
+						boolean new_low_water_level_threshold_breached  = false;
+						if ( water_level < this.low_water_level_threshold ) {
+							new_low_water_level_threshold_breached  = true;
+						} else {
+							new_low_water_level_threshold_breached  = false;
+						}
+						
+						if ( new_low_water_level_threshold_breached != this.low_water_level_threshold_breached ) {
+							this.low_water_level_threshold_breached = new_low_water_level_threshold_breached;
+							value_changed = true;
+						}
+						
+						boolean new_high_water_level_threshold_breached  = false;
+						if ( water_level > this.high_water_level_threshold ) {
+							new_high_water_level_threshold_breached  = true;
+						} else {
+							new_high_water_level_threshold_breached  = false;
+						}
+						
+						if ( new_high_water_level_threshold_breached != this.high_water_level_threshold_breached ) {
+							this.high_water_level_threshold_breached = new_high_water_level_threshold_breached;
+							value_changed = true;
+						}
+						
+						if ( value_changed == true ) {
+							this.interrupt_port.interrupt (
+								new water_level_sensors_interrupt_data_t (
+									this.low_water_level_threshold_breached,
+									this.high_water_level_threshold_breached
+								)
+							);
+						}
+					'''
+				}
+			}
+		}
+	}	
 }

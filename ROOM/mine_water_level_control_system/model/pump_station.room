@@ -1,204 +1,304 @@
 RoomModel pump_station {
 	import room.basic.types.* from "../../org.eclipse.etrice.modellib.java/model/Types.room"
-	import devices.* from "devices.room"
-	import logger.* from "logger.room"
-	import periodic_task.* from "periodic_task.room"
+	import devices.* 		  from "devices.room"
+	import logger.* 		  from "logger.room"
+	import periodic_task.* 	  from "periodic_task.room"
+	import alarm_station.*	  from "alarm_station.room"
 	
 	DataClass pump_controller_idata_t {
 		Attribute pump : device_t ref
 	}
 
-	ProtocolClass pump_controller_iprotocol_t {
-		incoming {
-			Message initialize ( data : pump_controller_idata_t )
-		}
+	Enumeration pump_controller_state_t {
+		PUMP_TURNED_OFF,
+		PUMP_TURNED_ON,
+		METHANE_THRESHOLD_BREACHED
 	}
 
-	ActorClass pump_controller_t extends logger_t { 
-		Interface {
-			Port iport : pump_controller_iprotocol_t
-			conjugated Port water_level_detectors_controller_port : switch_protocol_t
-			conjugated Port user_port : switch_protocol_t
-			conjugated Port methane_port : methane_protocol_t	
-		}
-		Structure {
-			external Port iport
-			external Port water_level_detectors_controller_port
-			external Port user_port
-			external Port methane_port
-			
-			Attribute pump : device_t ref
-			Attribute pump_state : device_state_t
-		}
-		Behavior {
-			StateMachine {
-				State waiting_for_imessage { }
+	DataClass pump_controller_t { 
+		Attribute pump 					  : device_t ref
+		Attribute pump_state 			  : device_state_t
+		Attribute pump_controller_state   : pump_controller_state_t
 
-				State pump_turned_off {
-					entry '''
-						this.pump.state = device_state_t.OFF;	
-					'''
-				}	
+		Operation initialize (
+			logger     : logger_t,
+			actor_name : string,
+			data 	   : pump_controller_idata_t
+		) : void '''
+			logger.info ( 
+				actor_name,
+				"Initializing pump controller"
+			);
 
-				State pump_turned_on {
-					entry '''
-						this.pump.state = device_state_t.ON;	
-					'''
-				}	
-				
-				State methane_threshold_breached { }
+			this.pump = data.pump;	
+			this.pump.set_state (
+				logger,
+				actor_name,
+				device_state_t.OFF
+			);
 
-				Transition start : initial -> waiting_for_imessage { }
-				
-				Transition imessage_received : waiting_for_imessage -> pump_turned_off {
-					triggers {
-						< initialize : iport >
+			this.pump_state 		   = device_state_t.OFF;
+			this.pump_controller_state = pump_controller_state_t.PUMP_TURNED_OFF;
+		'''
+
+		Operation turn_on ( 
+			logger 	   : logger_t,
+			actor_name : string
+		) : void '''
+			synchronized ( this ) { 
+				switch ( this.pump_controller_state ) {
+					case pump_controller_state_t.PUMP_TURNED_OFF : {
+						logger.info ( 
+							actor_name,
+							"Initial turn on, turning on pump"
+						);
+
+						this.pump.set_state (
+							logger,
+							actor_name,
+							device_state_t.ON
+						);
+
+						this.pump_controller_state = pump_controller_state_t.PUMP_TURNED_ON;
+						
+						break;
 					}
-					action '''
-						this.pump = data.pump;	
-					'''
-				}
-				
-				Transition turn_on_message_received : pump_turned_off -> pump_turned_on {
-					triggers {
-						< turn_on : water_level_detectors_controller_port > or
-						< turn_on : user_port >
-					}
-					action '''
-						super.info ( super.getName ( ), "Turn on message, turning on pump" );
-					'''
-				}
+					
+					case pump_controller_state_t.PUMP_TURNED_ON : {
+						logger.info ( 
+							actor_name,
+							"Following turn on, pump already on"
+						);
 
-				Transition turn_off_message_received : pump_turned_on -> pump_turned_off {
-					triggers {
-						< turn_off : water_level_detectors_controller_port > or
-						< turn_off : user_port >
+						break;
 					}
-					action '''
-						super.info ( super.getName ( ), "Turn off message, turning on pump" );
-					'''
-				}
-				
-				Transition methane_threshold_breached_received_while_pump_off : pump_turned_off -> methane_threshold_breached {
-					triggers {
-						< threshold_breached : methane_port >
-					}
-					action '''
-						this.pump_state = this.pump.state;	
-						this.pump.state = device_state_t.OFF;
-						super.info ( super.getName ( ), "Methane threshold breached while pump turned off" );
-					'''
-				}
+					
+					case pump_controller_state_t.METHANE_THRESHOLD_BREACHED : {
+						logger.info ( 
+							actor_name,
+							"Turn on while methane threshold breached, saving request"
+						);
 
-				Transition methane_threshold_breached_received_while_pump_on : pump_turned_on -> methane_threshold_breached {
-					triggers {
-						< threshold_breached : methane_port >
-					}
-					action '''
-						this.pump_state = this.pump.state;	
-						this.pump.state = device_state_t.OFF;
-						super.info ( super.getName ( ), "Methane threshold breached while pump turned on, turning off pump" );
-					'''
-				}
-				
-				Transition state_normal_received_pump_was_turned_on : methane_threshold_breached -> pump_turned_on {
-					triggers {
-						< state_normal : methane_port guard '''
-							this.pump_state == device_state_t.ON
-						''' >
-					}
-					action '''
-						super.info ( super.getName ( ), "Methane state normal received, turning on pump" );
-					'''
-				}
+						this.pump_state = device_state_t.ON;
 
-				Transition state_normal_received_pump_was_turned_off : methane_threshold_breached -> pump_turned_off {
-					triggers {
-						< state_normal : methane_port guard '''
-							this.pump_state == device_state_t.OFF
-						''' >
+						break;
 					}
-					action '''
-						super.info ( super.getName ( ), "Methane state normal received" );
-					'''
-				}
-
-				Transition turn_on_message_received_while_methane_threshold_breached : methane_threshold_breached -> methane_threshold_breached {
-					triggers {
-						< turn_on : water_level_detectors_controller_port > or
-						< turn_on : user_port >
-					} 
-					action '''
-						this.pump_state = device_state_t.ON;	
-						super.info ( super.getName ( ), "Turn on message received while methane threshold breached, will turn on when methane state is normal" );
-					'''
-				}
-
-				Transition turn_off_message_received_while_methane_threshold_breached : methane_threshold_breached -> methane_threshold_breached {
-					triggers {
-						< turn_off : water_level_detectors_controller_port > or
-						< turn_off : user_port >
-					} 
-					action '''
-						this.pump_state = device_state_t.OFF;	
-						super.info ( super.getName ( ), "Turn off message received while methane threshold breached" );
-					'''
 				}
 			}
-		}
+		'''
+		Operation turn_off ( 
+			logger     : logger_t, 
+			actor_name : string
+		) : void '''
+			synchronized ( this ) { 
+				switch ( this.pump_controller_state ) {
+					case pump_controller_state_t.PUMP_TURNED_OFF : {
+						logger.info ( 
+							actor_name,
+							"Following turn off, pump already off"
+						);
+
+						break;
+					}
+					
+					case pump_controller_state_t.PUMP_TURNED_ON : {
+						logger.info ( 
+							actor_name,
+							"Initial turn off, turning off pump"
+						);
+
+						this.pump.set_state (
+							logger,
+							actor_name,
+							device_state_t.OFF
+						);
+
+						this.pump_controller_state = pump_controller_state_t.PUMP_TURNED_OFF;
+
+						break;
+					}
+					
+					case pump_controller_state_t.METHANE_THRESHOLD_BREACHED : {
+						logger.info ( 
+							actor_name,
+							"Turn off while methane threshold breached, saving request"
+						);
+
+						this.pump_state = device_state_t.OFF;
+
+						break;
+					}
+				}
+			}
+		'''
+
+		Operation methane_threshold_breached ( 
+			logger     : logger_t, 
+			actor_name : string
+		) : void '''
+			synchronized ( this ) { 
+				if ( this.pump_controller_state != pump_controller_state_t.METHANE_THRESHOLD_BREACHED ) {
+					logger.info ( 
+						actor_name,
+						"Methane threshold breached, saving pump state and turning off pump"
+					);
+
+				
+					this.pump_state = this.pump.get_state (
+						logger,
+						actor_name
+					);	
+
+					this.pump.set_state (
+						logger,
+						actor_name,
+						device_state_t.OFF
+					);
+
+					this.pump_controller_state = pump_controller_state_t.METHANE_THRESHOLD_BREACHED;
+				}
+			}
+		'''
+
+		Operation methane_state_normal ( 
+			logger     : logger_t, 
+			actor_name : string
+		) : void '''
+			synchronized ( this ) { 
+				if ( this.pump_controller_state == pump_controller_state_t.METHANE_THRESHOLD_BREACHED ) {
+					logger.info ( 
+						actor_name,
+						"Methane state normal, restoring pump state"
+					);
+
+					this.pump.set_state (
+						logger,
+						actor_name,
+						this.pump_state
+					);
+
+					if ( this.pump_state == device_state_t.ON ) {
+						this.pump_controller_state = pump_controller_state_t.PUMP_TURNED_ON;
+					} else {
+						this.pump_controller_state = pump_controller_state_t.PUMP_TURNED_OFF;
+					}
+				}
+			}
+		'''
 	}
 
 	DataClass water_flow_sensor_controller_idata_t extends periodic_task_idata_t {
-		Attribute pump : device_t ref
-		Attribute water_flow_sensor : water_flow_sensor_t ref
+		Attribute pump 					: device_t ref
+		Attribute water_flow_sensor 	: sensor_t ref
 		Attribute number_of_activations : int32
+		Attribute alarm_controller 		: alarm_controller_t ref
 	}
 
 	ActorClass water_flow_sensor_controller_t extends periodic_task_t {
-		Interface {
-			Port alarm_port : switch_protocol_t
-		}
 		Structure {
-			external Port alarm_port	
-			
-			Attribute pump : device_t ref
-			Attribute water_flow_sensor : water_flow_sensor_t ref
+			Attribute pump 					: device_t ref
+			Attribute water_flow_sensor 	: sensor_t ref
 			Attribute number_of_activations : int32
-			Attribute pump_state : device_state_t
-			Attribute current_activation : int32
+			Attribute pump_state 			: device_state_t
+			Attribute current_activation 	: int32
+			Attribute alarm_controller 		: alarm_controller_t
 		}
 		Behavior {
 			Operation is_water_flow_sensor_value_expected ( ) : boolean '''
-				if ( this.pump.state == device_state_t.ON )	{
-					return this.water_flow_sensor.value != 0;
+				int current_pump_state = this.pump.get_state (
+					super.logger,
+					super.getName ( )
+				);
+
+				int water_flow_sensor_value = this.water_flow_sensor.get_value (
+					super.logger,
+					super.getName ( )
+				);
+
+				if ( current_pump_state == device_state_t.ON )	{
+					return ( water_flow_sensor_value != 0 );
 				} else {
-					return this.water_flow_sensor.value == 0;
+					return ( water_flow_sensor_value == 0 );
 				}
 			'''
+			
+			Operation has_pump_state_changed ( ) : boolean '''
+				int current_pump_state = this.pump.get_state (
+					super.logger,
+					super.getName ( )
+				);
+				
+				if ( current_pump_state == this.pump_state ) {
+					return false;
+				} else {
+					return true;
+				}
+			'''
+			
+			override Operation entry_action ( ) : void '''
+				this.water_flow_sensor.start_conversion (
+					super.logger,
+					super.getName ( )
+				);
+
+				super.entry_action ( );
+			'''
+			
 			StateMachine {
 				State checking { 
 					entry '''
-						super.info ( this.getName ( ), "Sleeping in checking state");
+						this.entry_action ( );
+
+						super.logger.info (
+							super.getName ( ), 
+							"Sleeping in checking state"
+						);
+
 						super.test_port.checking ( );
-						this.timer_access_point.startTimeout ( super.period );
+
+						this.timer_access_point.startTimeout (
+							super.period
+						);
 					'''
+					
+					exit '''
+						this.exit_action ( );
+					'''	
 				}
 				
 				State alarm {
 					entry '''
-						super.info ( this.getName ( ), "Sleeping in alarm state");
+						this.entry_action ( );
+						
+						super.logger.info (
+							this.getName ( ),
+							"Sleeping in alarm state"
+						);
+
 						super.test_port.alarm ( );
-						this.timer_access_point.startTimeout ( super.period );
+
+						this.timer_access_point.startTimeout (
+							super.period
+						);
 					'''
+
+					exit '''
+						this.exit_action ( );
+					'''	
 				}
 
 				RefinedTransition imessage_received {
 					action '''
-						this.pump = ( ( water_flow_sensor_controller_idata_t ) data ).pump;
-						this.water_flow_sensor = ( ( water_flow_sensor_controller_idata_t ) data ).water_flow_sensor;
+						this.pump 				   = ( ( water_flow_sensor_controller_idata_t ) data ).pump;
+						this.water_flow_sensor 	   = ( ( water_flow_sensor_controller_idata_t ) data ).water_flow_sensor;
 						this.number_of_activations = ( ( water_flow_sensor_controller_idata_t ) data ).number_of_activations;
+						this.alarm_controller 	   = ( ( water_flow_sensor_controller_idata_t ) data ).alarm_controller;
 						
-						this.pump_state = this.pump.state;
+						this.pump_state	= this.pump.get_state ( 
+							super.logger,
+							super.getName ( )
+						);
+
 						this.current_activation = 0;
 					'''
 				}
@@ -206,86 +306,125 @@ RoomModel pump_station {
 				Transition state_normal_transition : sleeping -> sleeping {
 					triggers {
 						< timeout : timer_access_point guard '''
-							this.pump_state == this.pump.state && this.is_water_flow_sensor_value_expected ( )
+							( this.has_pump_state_changed ( ) == false ) &&
+							( this.is_water_flow_sensor_value_expected ( ) == true )
 						'''>
 					}
 					action '''
-						super.info ( this.getName ( ), "State normal" );
+						super.logger.info ( 
+							super.getName ( ),
+							"State normal"
+						);
 					'''
 				}	
 				
 				Transition pump_state_change_or_water_flow_sensor_error : sleeping -> checking {
 					triggers {
 						< timeout : timer_access_point guard '''
-							this.pump_state != this.pump.state || !this.is_water_flow_sensor_value_expected ( )	
+							( this.has_pump_state_changed ( ) == true ) || 
+							( this.is_water_flow_sensor_value_expected ( ) == false )
 						'''>
 					}
 					action '''
 						this.current_activation = 0;					
-						super.info ( this.getName ( ), "Pump state changed or sensor error" );
+
+						super.logger.info ( 
+							super.getName ( ),
+							"Pump state changed or sensor error"
+						);
 					'''
 				}
 				
 				Transition check_succeeded : checking -> sleeping {
 					triggers {
 						< timeout : timer_access_point guard '''
-							this.is_water_flow_sensor_value_expected ( ) || this.pump_state == this.pump.state
+							this.is_water_flow_sensor_value_expected ( ) == true
 						'''>
 					}
 					action '''
 						this.current_activation = 0;	
-						this.pump_state = this.pump.state;
-						super.info ( this.getName ( ), "Pump in previous state or read expected water flow sensor value" );
+						this.pump_state 		= this.pump.state;
+
+						super.logger.info ( 
+							super.getName ( ), 
+							"Pump in previous state or read expected water flow sensor value"
+						);
 					'''	
 				}
 
 				Transition check_failed_within_limit : checking -> checking {
 					triggers {
 						< timeout : timer_access_point guard '''
-							!this.is_water_flow_sensor_value_expected ( ) && this.current_activation < this.number_of_activations
+							( this.is_water_flow_sensor_value_expected ( ) == false ) && 
+							( this.current_activation < this.number_of_activations )
 						'''>
 					}
 					action '''
 						this.current_activation++;	
-						super.info ( this.getName ( ), "Read unexpected water flow sensor value, current activation is " + this.current_activation + ", within limit" );
+
+						super.logger.info ( 
+							this.getName ( ), 
+							"Read unexpected water flow sensor value, current activation is " + this.current_activation + ", within limit"
+						);
 					'''	
 				}
 				
 				Transition check_failed_limit_exceeded : checking -> alarm {
 					triggers {
 						< timeout : timer_access_point guard '''
-							!this.is_water_flow_sensor_value_expected ( ) && this.current_activation == this.number_of_activations
+							( this.is_water_flow_sensor_value_expected ( ) == false ) && 
+							( this.current_activation == this.number_of_activations )
 						'''>
 					}
 					action '''
 						this.current_activation = 0;	
-						this.alarm_port.turn_on ( );
-						super.info ( this.getName ( ), "Read unexpected water flow sensor value, limit breached, turning on alarm" );
+
+						super.logger.info ( 
+							super.getName ( ), 
+							"Read unexpected water flow sensor value, limit breached, turning on alarm"
+						);
+
+						this.alarm_controller.turn_on (
+							super.logger,
+							super.getName ( )
+						);
 					'''	
 				}
 
 				Transition check_failed_alarm_turned_on : alarm -> alarm {
 					triggers {
 						< timeout : timer_access_point guard '''
-							this.pump_state != this.pump.state && !this.is_water_flow_sensor_value_expected ( )
+							this.is_water_flow_sensor_value_expected ( ) == false
 						'''>
 					}
 					action '''
 						this.current_activation = 0;	
-						super.info ( this.getName ( ), "Read unexpected water flow sensor value, leaving alarm on" );
+
+						super.logger.info ( 
+							super.getName ( ), 
+							"Read unexpected water flow sensor value, leaving alarm on"
+						);
 					'''	
 				}
 
 				Transition check_succeeded_alarm_turned_on : alarm -> checking {
 					triggers {
 						< timeout : timer_access_point guard '''
-							this.pump_state == this.pump.state || this.is_water_flow_sensor_value_expected ( )
+							this.is_water_flow_sensor_value_expected ( ) == true
 						'''>
 					}
 					action '''
 						this.current_activation = 0;	
-						this.alarm_port.turn_off ( );
-						super.info ( this.getName ( ), "Pump state changed or read expected water flow sensor value, turning off alarm" );
+
+						super.logger.info ( 
+							super.getName ( ), 
+							"Pump state changed or read expected water flow sensor value, turning off alarm"
+						);
+
+						this.alarm_controller.turn_off (
+							super.logger,
+							super.getName ( )
+						);
 					'''	
 				}
 			}

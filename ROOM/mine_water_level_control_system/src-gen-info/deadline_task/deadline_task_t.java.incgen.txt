@@ -1,4 +1,4 @@
-package environment_monitoring_station;
+package deadline_task;
 
 import org.eclipse.etrice.runtime.java.messaging.*;
 import org.eclipse.etrice.runtime.java.modelbase.*;
@@ -7,24 +7,15 @@ import org.eclipse.etrice.runtime.java.debugging.*;
 import static org.eclipse.etrice.runtime.java.etunit.EtUnit.*;
 
 import logger.*;
-import periodic_task.*;
-import room.basic.service.timing.*;
-import test.*;
-import room.basic.service.timing.PTimer.*;
-import periodic_task.periodic_task_iprotocol_t.*;
-import test.test_protocol_t.*;
-
-/*--------------------- begin user code ---------------------*/
-import java.util.logging.*;
-import java.io.IOException;
-
-/*--------------------- end user code ---------------------*/
+import deadline_task.deadline_task_iprotocol_t.*;
 
 
-public abstract class sensor_controller_t extends periodic_task_t {
+
+public abstract class deadline_task_t extends ActorClassBase {
 
 
 	//--------------------- ports
+	protected deadline_task_iprotocol_tPort iport = null;
 
 	//--------------------- saps
 
@@ -33,23 +24,43 @@ public abstract class sensor_controller_t extends periodic_task_t {
 	//--------------------- optional actors
 
 	//--------------------- interface item IDs
+	public static final int IFITEM_iport = 1;
 
 	/*--------------------- attributes ---------------------*/
+	public  int deadline;
+	public  logger_t logger;
+	public  long last_activation_time;
 
 	/*--------------------- operations ---------------------*/
-	public  void query_action() {
+	public  void activated() {
+		this.last_activation_time = System.currentTimeMillis ( );
+	}
+	public  void finished() {
+		long elapsed_time = System.currentTimeMillis ( ) - this.last_activation_time;
 		
+		if ( elapsed_time > this.deadline )	 {
+			this.logger.info (
+				super.getName ( ),
+				"Deadline breached, stopping execution"
+			);
+			
+			System.exit( 1 );
+		}
 	}
 
 
 	//--------------------- construction
-	public sensor_controller_t(IRTObject parent, String name) {
+	public deadline_task_t(IRTObject parent, String name) {
 		super(parent, name);
-		setClassName("sensor_controller_t");
+		setClassName("deadline_task_t");
 
 		// initialize attributes
+		this.setDeadline(0);
+		this.setLogger(new logger_t());
+		this.setLast_activation_time(0L);
 
 		// own ports
+		iport = new deadline_task_iprotocol_tPort(this, "iport", IFITEM_iport);
 
 		// own saps
 
@@ -65,9 +76,30 @@ public abstract class sensor_controller_t extends periodic_task_t {
 	}
 
 	/* --------------------- attribute setters and getters */
+	public void setDeadline(int deadline) {
+		 this.deadline = deadline;
+	}
+	public int getDeadline() {
+		return this.deadline;
+	}
+	public void setLogger(logger_t logger) {
+		 this.logger = logger;
+	}
+	public logger_t getLogger() {
+		return this.logger;
+	}
+	public void setLast_activation_time(long last_activation_time) {
+		 this.last_activation_time = last_activation_time;
+	}
+	public long getLast_activation_time() {
+		return this.last_activation_time;
+	}
 
 
 	//--------------------- port getters
+	public deadline_task_iprotocol_tPort getIport (){
+		return this.iport;
+	}
 
 	//--------------------- lifecycle functions
 	public void stop(){
@@ -81,15 +113,17 @@ public abstract class sensor_controller_t extends periodic_task_t {
 	}
 
 	/* state IDs */
+	public static final int STATE_waiting_for_imessage = 2;
+	public static final int STATE_sleeping = 3;
 	public static final int STATE_MAX = 4;
 	
 	/* transition chains */
-	public static final int CHAIN_TRANS_timeout_received_FROM_sleeping_TO_sleeping_BY_timeouttimer_access_point_timeout_received = 1;
-	public static final int CHAIN_TRANS_INITIAL_TO__waiting_for_imessage = 2;
-	public static final int CHAIN_TRANS_imessage_received_FROM_waiting_for_imessage_TO_sleeping_BY_initializeiport = 3;
+	public static final int CHAIN_TRANS_INITIAL_TO__waiting_for_imessage = 1;
+	public static final int CHAIN_TRANS_imessage_received_FROM_waiting_for_imessage_TO_sleeping_BY_initializeiport = 2;
 	
 	/* triggers */
 	public static final int POLLING = 0;
+	public static final int TRIG_iport__initialize = IFITEM_iport + EVT_SHIFT*deadline_task_iprotocol_t.IN_initialize;
 	
 	// state names
 	protected static final String stateStrings[] = {
@@ -110,10 +144,12 @@ public abstract class sensor_controller_t extends periodic_task_t {
 	/* Entry and Exit Codes */
 	
 	/* Action Codes */
-	protected void action_TRANS_timeout_received_FROM_sleeping_TO_sleeping_BY_timeouttimer_access_point_timeout_received(InterfaceItemBase ifitem) {
-	    super.info ( this.getName ( ), "Query action begin" );
-	    this.query_action ( );
-	    super.info ( this.getName ( ), "Query action end" );
+	protected void action_TRANS_imessage_received_FROM_waiting_for_imessage_TO_sleeping_BY_initializeiport(InterfaceItemBase ifitem, deadline_task_idata_t data) {
+	    this.deadline = data.deadline;
+	    this.logger.info (
+	    	this.getName ( ),
+	    	"Initialization message received"
+	    );
 	}
 	
 	/* State Switch Methods */
@@ -150,18 +186,13 @@ public abstract class sensor_controller_t extends periodic_task_t {
 	 */
 	private int executeTransitionChain(int chain__et, InterfaceItemBase ifitem, Object generic_data__et) {
 		switch (chain__et) {
-			case sensor_controller_t.CHAIN_TRANS_timeout_received_FROM_sleeping_TO_sleeping_BY_timeouttimer_access_point_timeout_received:
-			{
-				action_TRANS_timeout_received_FROM_sleeping_TO_sleeping_BY_timeouttimer_access_point_timeout_received(ifitem);
-				return STATE_sleeping;
-			}
-			case sensor_controller_t.CHAIN_TRANS_INITIAL_TO__waiting_for_imessage:
+			case deadline_task_t.CHAIN_TRANS_INITIAL_TO__waiting_for_imessage:
 			{
 				return STATE_waiting_for_imessage;
 			}
-			case sensor_controller_t.CHAIN_TRANS_imessage_received_FROM_waiting_for_imessage_TO_sleeping_BY_initializeiport:
+			case deadline_task_t.CHAIN_TRANS_imessage_received_FROM_waiting_for_imessage_TO_sleeping_BY_initializeiport:
 			{
-				periodic_task_idata_t data = (periodic_task_idata_t) generic_data__et;
+				deadline_task_idata_t data = (deadline_task_idata_t) generic_data__et;
 				action_TRANS_imessage_received_FROM_waiting_for_imessage_TO_sleeping_BY_initializeiport(ifitem, data);
 				return STATE_sleeping;
 			}
@@ -178,10 +209,8 @@ public abstract class sensor_controller_t extends periodic_task_t {
 	 * @return - the ID of the final leaf state
 	 */
 	private int enterHistory(int state__et) {
-		boolean skip_entry__et = false;
 		if (state__et >= STATE_MAX) {
 			state__et =  (state__et - STATE_MAX);
-			skip_entry__et = true;
 		}
 		while (true) {
 			switch (state__et) {
@@ -189,7 +218,6 @@ public abstract class sensor_controller_t extends periodic_task_t {
 					/* in leaf state: return state id */
 					return STATE_waiting_for_imessage;
 				case STATE_sleeping:
-					if (!(skip_entry__et)) entry_sleeping();
 					/* in leaf state: return state id */
 					return STATE_sleeping;
 				case STATE_TOP:
@@ -199,13 +227,12 @@ public abstract class sensor_controller_t extends periodic_task_t {
 					/* should not occur */
 					break;
 			}
-			skip_entry__et = false;
 		}
 		/* return NO_STATE; // required by CDT but detected as unreachable by JDT because of while (true) */
 	}
 	
 	public void executeInitTransition() {
-		int chain__et = sensor_controller_t.CHAIN_TRANS_INITIAL_TO__waiting_for_imessage;
+		int chain__et = deadline_task_t.CHAIN_TRANS_INITIAL_TO__waiting_for_imessage;
 		int next__et = executeTransitionChain(chain__et, null, null);
 		next__et = enterHistory(next__et);
 		setState(next__et);
@@ -223,7 +250,7 @@ public abstract class sensor_controller_t extends periodic_task_t {
 			        switch(trigger__et) {
 			                case TRIG_iport__initialize:
 			                    {
-			                        chain__et = sensor_controller_t.CHAIN_TRANS_imessage_received_FROM_waiting_for_imessage_TO_sleeping_BY_initializeiport;
+			                        chain__et = deadline_task_t.CHAIN_TRANS_imessage_received_FROM_waiting_for_imessage_TO_sleeping_BY_initializeiport;
 			                        catching_state__et = STATE_TOP;
 			                    }
 			                break;
@@ -233,17 +260,6 @@ public abstract class sensor_controller_t extends periodic_task_t {
 			        }
 			        break;
 			    case STATE_sleeping:
-			        switch(trigger__et) {
-			                case TRIG_timer_access_point__timeout:
-			                    {
-			                        chain__et = sensor_controller_t.CHAIN_TRANS_timeout_received_FROM_sleeping_TO_sleeping_BY_timeouttimer_access_point_timeout_received;
-			                        catching_state__et = STATE_TOP;
-			                    }
-			                break;
-			                default:
-			                    /* should not occur */
-			                    break;
-			        }
 			        break;
 			    default:
 			        /* should not occur */
