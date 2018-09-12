@@ -3,46 +3,62 @@ with GNATCOLL.Traces;
 with Ada.Characters.Latin_1;
 with Glib;
 with Gdk.RGBA;
-
+with devices;
 
 package constants is
 	package mine_water_level_control_system is
+		package devices is
+			package pump is 
+				name : aliased constant String := "PUMP";
+			end pump;
+			package alarm is 
+				name : aliased constant String := "ALARM";
+			end alarm;
+		end devices;
+
 		package sensors is
-			package gas_sensors is
+			package gas is
 				package co is
-					initial_value           : aliased constant Float := 0.0;
-					threshold               : aliased constant Float := 100.0;
-					maximum_value			: aliased constant Float := 200.0;
-					detects_above_threshold : constant Boolean       := True;
+					name                       : aliased constant String := "CO SENSOR";
+					conversion_time_in_ms      : constant Integer        := 50;
+					initial_value              : aliased constant Float  := 0.0;
+					initial_read_error_occured : constant Boolean        := false;
 				end co;
 
 				package o is
-					initial_value           : aliased constant Float := 110.0;
-					threshold               : aliased constant Float := 100.0;
-					maximum_value			: aliased constant Float := 200.0;
-					detects_above_threshold : constant Boolean       := False;
+					name                       : aliased constant String := "CO SENSOR";
+					conversion_time_in_ms      : constant Integer        := 50;
+					initial_value              : aliased constant Float  := 150.0;
+					initial_read_error_occured : constant Boolean        := false;
 				end o;
 
 				package ch4 is
-					initial_value           : aliased constant Float := 0.0;
-					threshold               : aliased constant Float := 100.0;
-					maximum_value			: aliased constant Float := 200.0;
-					detects_above_threshold : constant Boolean       := True;
+					name                       : aliased constant String := "CH4 SENSOR";
+					conversion_time_in_ms      : constant Integer        := 50;
+					initial_value              : aliased constant Float  := 0.0;
+					initial_read_error_occured : constant Boolean        := false;
 				end ch4;
-			end gas_sensors;
+			end gas;
 
-			package water_level_sensors is
+			package water_flow is
+				name                       : aliased constant String  := "WATER FLOW SENSOR";
+				conversion_time_in_ms      : constant Integer         := 50;
+				initial_water_flowing      : aliased constant Boolean := False;
+			end water_flow;
+
+			package water_level is
+				name                       : aliased constant String  := "WATER LEVEL SENSORS";
 				initial_water_level        : aliased constant Float := 100.0;
 				low_water_level_threshold  : aliased constant Float := 50.0;
 				high_water_level_threshold : aliased constant Float := 150.0;
-				maximum_water_level        : aliased constant Float := 200.0;
-			end water_level_sensors;
+			end water_level;
 		end sensors;
 		
 		package top is
 			package controllers is
 				package ch4 is
 					priority                            : constant System.Priority := System.Priority'Last;
+					threshold							: aliased constant Float := 100.0;
 					read_error_occurred_count_threshold : constant Integer := 2;
 					period_in_ms                        : constant Integer := 150;
 					dealine_in_ms                       : constant Integer := 100;
@@ -50,6 +66,7 @@ package constants is
 	
 				package co is
 					priority                            : constant System.Priority := ch4.priority - 1;
+					threshold							: aliased constant Float := 100.0;
 					read_error_occurred_count_threshold : constant Integer := 2;
 					period_in_ms                        : constant Integer := 150;
 					dealine_in_ms                       : constant Integer := 100;
@@ -57,22 +74,25 @@ package constants is
 	
 				package o is
 					priority                            : constant System.Priority := ch4.priority - 1;
+					threshold							: aliased constant Float := 100.0;
 					read_error_occurred_count_threshold : constant Integer := 2;
 					period_in_ms                        : constant Integer := 150;
 					dealine_in_ms                       : constant Integer := 100;
 				end o;
 
-				package water_level_sensors is
-					priority      : constant System.Priority := ch4.priority - 2;
-					dealine_in_ms : constant Integer         := 200;
-				end water_level_sensors;
+				package water_level is
+					priority                   : constant System.Priority := ch4.priority - 2;
+					low_water_level_threshold  : aliased constant Float   := 50.0;
+					high_water_level_threshold : aliased constant Float   := 150.0;
+					dealine_in_ms              : constant Integer         := 200;
+				end water_level;
 
-				package water_flow_sensor is
+				package water_flow is
 					priority              : constant System.Priority := ch4.priority - 1;
 					period_in_ms          : constant Integer         := 150;
 					dealine_in_ms         : constant Integer         := 100;
 					number_of_activations : constant Integer         := 6;
-				end water_flow_sensor;
+				end water_flow;
 
 				package pump is
 					priority : constant System.Priority := ch4.priority;
@@ -116,7 +136,7 @@ package constants is
 			end devices;
 
 			package sensors is
-				package gas_sensors is
+				package gas is
 					package co is
 						gas_label : constant String := "CO";
 						package increase is
@@ -204,9 +224,9 @@ package constants is
 						end error_in_reading;
 					end ch4;
 
-				end gas_sensors;
+				end gas;
 				
-				package water_level_sensors is
+				package water_level is
 					liquid_label : constant String := "H20";
 					package increase is
 						label            : constant String        := liquid_label & " increase";
@@ -226,9 +246,9 @@ package constants is
 						delta_percentage : aliased constant Float := 0.1;
 					end decrease;
 
-				end water_level_sensors;
+				end water_level;
 
-				package water_flow_sensor is
+				package water_flow is
 					water_flow_label : constant String := "Water flow";
 					package turn_on is
 						label  : constant String    := water_flow_label & " turn on";
@@ -245,13 +265,13 @@ package constants is
 						width  : constant Glib.Gint := 4;
 						height : constant Glib.Gint := 1;
 					end turn_off;
-				end water_flow_sensor;
+				end water_flow;
 
 			end sensors;
 		end user_buttons;
 		
 		package state_widgets is
-			package device_state_widgets is
+			package devices is
 				package pump is
 					label  : constant String    := "PUMP";
 					left   : constant Glib.Gint := 15;
@@ -267,11 +287,11 @@ package constants is
 					width  : constant Glib.Gint := 3;
 					height : constant Glib.Gint := 1;
 				end alarm;
-			end device_state_widgets;
+			end devices;
 
-			package sensor_state_widgets is
+			package sensors is
 
-				package gas_sensors is
+				package gas is
 
 					package co is
 						package progress_bar is
@@ -342,9 +362,9 @@ package constants is
 						end color_button;
 					end ch4;
 
-				end gas_sensors;
+				end gas;
 				
-				package water_level_sensors is
+				package water_level is
 					package progress_bar is
 						left   : constant Glib.Gint := 15;
 						top    : constant Glib.Gint := 12;
@@ -365,17 +385,17 @@ package constants is
 						width  : constant Glib.Gint := 3;
 						height : constant Glib.Gint := 1;
 					end color_button;
-				end water_level_sensors;
+				end water_level;
 
-				package water_flow_sensor is
+				package water_flow is
 					label  : constant String    := "WATER FLOW";
 					left   : constant Glib.Gint := 5;
 					top    : constant Glib.Gint := 13;
 					width  : constant Glib.Gint := 4;
 					height : constant Glib.Gint := 1;
-				end water_flow_sensor;
+				end water_flow;
 
-			end sensor_state_widgets;
+			end sensors;
 
 		end state_widgets;
 		
@@ -415,9 +435,9 @@ package constants is
 			end devices;
 			
 			package sensors is
-				package gas_sensors is
+				package gas is
 					package co is
-						multiplication_factor     : constant Integer := Integer ( mine_water_level_control_system.sensors.gas_sensors.co.maximum_value / mine_water_level_control_system.sensors.gas_sensors.co.threshold );
+						maximum_value     		  : aliased constant Float := 200.0;
 						state_normal_color        : aliased constant Gdk.RGBA.Gdk_RGBA := (
 							Red   => Glib.Gdouble ( 0 ),
 							Green => Glib.Gdouble ( 0 ),
@@ -441,7 +461,7 @@ package constants is
 					end co;
 
 					package o is
-						multiplication_factor     : constant Integer := Integer ( mine_water_level_control_system.sensors.gas_sensors.o.maximum_value / mine_water_level_control_system.sensors.gas_sensors.o.threshold );
+						maximum_value     		  : aliased constant Float := 200.0;
 						state_normal_color        : aliased constant Gdk.RGBA.Gdk_RGBA := (
 							Red   => Glib.Gdouble ( 0 ),
 							Green => Glib.Gdouble ( 0 ),
@@ -465,7 +485,7 @@ package constants is
 					end o;
 
 					package ch4 is
-						multiplication_factor     : constant Integer := Integer ( mine_water_level_control_system.sensors.gas_sensors.ch4.maximum_value / mine_water_level_control_system.sensors.gas_sensors.ch4.threshold );
+						maximum_value     		  : aliased constant Float := 200.0;
 						state_normal_color        : aliased constant Gdk.RGBA.Gdk_RGBA := (
 							Red   => Glib.Gdouble ( 0 ),
 							Green => Glib.Gdouble ( 0 ),
@@ -487,9 +507,14 @@ package constants is
 							Alpha => Glib.Gdouble ( 1 )
 						);
 					end ch4;
-				end gas_sensors;
+				end gas;
+
+				package water_tank is
+					initial_water_level  : aliased constant Float := 100.0;
+					maximum_water_level  : aliased constant Float := 200.0;
+				end water_tank;
 				
-				package water_level_sensors is
+				package water_level is
 					state_normal_color : aliased constant Gdk.RGBA.Gdk_RGBA := (
 						Red   => Glib.Gdouble ( 0 ),
 						Green => Glib.Gdouble ( 0 ),
@@ -510,9 +535,9 @@ package constants is
 						Blue  => Glib.Gdouble ( 1 ),
 						Alpha => Glib.Gdouble ( 1 )
 					);
-				end water_level_sensors;
+				end water_level;
 
-				package water_flow_sensor is
+				package water_flow is
 					flowing_color : aliased constant Gdk.RGBA.Gdk_RGBA := (
 						Red   => Glib.Gdouble ( 0 ),
 						Green => Glib.Gdouble ( 1 ),
@@ -526,7 +551,7 @@ package constants is
 						Blue  => Glib.Gdouble ( 0 ),
 						Alpha => Glib.Gdouble ( 1 )
 					);
-				end water_flow_sensor;
+				end water_flow;
 			end sensors;
 		end state_widget_controllers;
 	end gui;
@@ -538,51 +563,51 @@ package constants is
 			"*.EXCEPTIONS=yes";
 
 		package main is
-			stream : constant GNATCOLL.Traces.Trace_Handle := GNATCOLL.Traces.Create (
+			trace_handle : constant GNATCOLL.Traces.Trace_Handle := GNATCOLL.Traces.Create (
 				Unit_Name => "main"
 			);
 		end main;
 
 		package gui is
-			stream : constant GNATCOLL.Traces.Trace_Handle := GNATCOLL.Traces.Create (
+			trace_handle : constant GNATCOLL.Traces.Trace_Handle := GNATCOLL.Traces.Create (
 				Unit_Name => "GUI"
 			);
 		end gui;
 
 		package mine_water_level_control_system is
 			package top is
-				stream : constant GNATCOLL.Traces.Trace_Handle := GNATCOLL.Traces.Create (
+				trace_handle : constant GNATCOLL.Traces.Trace_Handle := GNATCOLL.Traces.Create (
 					Unit_Name => "Top"
 				);
 			end top;
 
 			package environment_station is
 				package co_sensor_controller is
-					stream : constant GNATCOLL.Traces.Trace_Handle := GNATCOLL.Traces.Create (
+					trace_handle : constant GNATCOLL.Traces.Trace_Handle := GNATCOLL.Traces.Create (
 						Unit_Name => "CO sensor controller"
 					);
 				end co_sensor_controller;
 
 				package o_sensor_controller is
-					stream : constant GNATCOLL.Traces.Trace_Handle := GNATCOLL.Traces.Create (
+					trace_handle : constant GNATCOLL.Traces.Trace_Handle := GNATCOLL.Traces.Create (
 						Unit_Name => "O sensor controller"
 					);
 				end o_sensor_controller;
 
 				package ch4_sensor_controller is
-					stream : constant GNATCOLL.Traces.Trace_Handle := GNATCOLL.Traces.Create (
+					trace_handle : constant GNATCOLL.Traces.Trace_Handle := GNATCOLL.Traces.Create (
 						Unit_Name => "CH4 sensor controller"
 					);
 				end ch4_sensor_controller;
 
 				package water_level_sensors_controller is
-					stream : constant GNATCOLL.Traces.Trace_Handle := GNATCOLL.Traces.Create (
+					trace_handle : constant GNATCOLL.Traces.Trace_Handle := GNATCOLL.Traces.Create (
 						Unit_Name => "Water level sensor controller"
 					);
 				end water_level_sensors_controller;
 
 				package water_flow_sensor_controller is
-					stream : constant GNATCOLL.Traces.Trace_Handle := GNATCOLL.Traces.Create (
+					trace_handle : constant GNATCOLL.Traces.Trace_Handle := GNATCOLL.Traces.Create (
 						Unit_Name => "Water flow controller"
 					);
 				end water_flow_sensor_controller;

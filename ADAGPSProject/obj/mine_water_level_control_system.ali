@@ -9,6 +9,8 @@ RV NO_ALLOCATORS
 RV NO_ANONYMOUS_ALLOCATORS
 RV NO_EXCEPTION_HANDLERS
 RV NO_EXCEPTIONS
+RV NO_FLOATING_POINT
+RV NO_IO
 RV NO_LOCAL_ALLOCATORS
 RV NO_LOCAL_PROTECTED_OBJECTS
 RV NO_PROTECTED_TYPE_ALLOCATORS
@@ -29,10 +31,11 @@ RV MAX_TASK_ENTRIES=3
 RV MAX_TASKS=1+
 RV MAX_ENTRY_QUEUE_LENGTH=1+
 
-U mine_water_level_control_system%b  mine_water_level_control_system.adb  f3b54b2f OO PK IL
+U mine_water_level_control_system%b  mine_water_level_control_system.adb  dfcb300f OO PK IL
 W ada%s			ada.ads			ada.ali
 Z ada.tags%s		a-tags.adb		a-tags.ali
 W ada.task_identification%s  a-taside.adb	a-taside.ali
+W ada.text_io%s		a-textio.adb		a-textio.ali
 W alarm_station%s	alarm_station.adb	alarm_station.ali
 W constants%s		constants.ads		constants.ali
 W devices%s		devices.adb		devices.ali
@@ -46,7 +49,7 @@ Z system.tasking%s	s-taskin.adb		s-taskin.ali
 Z system.tasking.rendezvous%s  s-tasren.adb	s-tasren.ali
 Z system.tasking.stages%s  s-tassta.adb		s-tassta.ali
 
-U mine_water_level_control_system%s  mine_water_level_control_system.ads  4d834f87 EE NE OO PK IL
+U mine_water_level_control_system%s  mine_water_level_control_system.ads  f2b55dfc EE NE OO PK IL
 Z ada.real_time%s	a-reatim.adb		a-reatim.ali
 W devices%s		devices.adb		devices.ali
 W gnatcoll%s		gnatcoll.ads		gnatcoll.ali
@@ -74,10 +77,10 @@ D a-taside.ads		20180524051738 c3e0cda8 ada.task_identification%s
 D a-textio.ads		20180524051738 881db35a ada.text_io%s
 D a-unccon.ads		20180524051738 0e9b276f ada.unchecked_conversion%s
 D a-uncdea.ads		20180524051736 eff36322 ada.unchecked_deallocation%s
-D alarm_station.ads	20180909132712 b2ea8fb6 alarm_station%s
-D constants.ads		20180909224024 ed37587f constants%s
-D devices.ads		20180909212602 d7649a5d devices%s
-D environment_station.ads  20180909194848 fb6958ae environment_station%s
+D alarm_station.ads	20180912133716 9d6aa7f9 alarm_station%s
+D constants.ads		20180912132938 2d7a538e constants%s
+D devices.ads		20180912143718 5c1f7a8a devices%s
+D environment_station.ads  20180912134406 8ce7a624 environment_station%s
 D gdk.ads		20180524063416 96d821f3 gdk%s
 D gdk-rgba.ads		20180524063422 2609514a gdk.rgba%s
 D glib.ads		20180524063416 cd438a72 glib%s
@@ -112,9 +115,9 @@ D interfac.ads		20180524051736 5ab55268 interfaces%s
 D i-c.ads		20180524051736 5421119b interfaces.c%s
 D i-cstrin.ads		20180524051736 341d0ddf interfaces.c.strings%s
 D i-cstrea.ads		20180524051736 e53d8b8e interfaces.c_streams%s
-D mine_water_level_control_system.ads  20180909223132 e48045b4 mine_water_level_control_system%s
-D mine_water_level_control_system.adb  20180909223312 aceef51b mine_water_level_control_system%b
-D pump_station.ads	20180909221746 472c3244 pump_station%s
+D mine_water_level_control_system.ads  20180912130754 d0cdb718 mine_water_level_control_system%s
+D mine_water_level_control_system.adb  20180912140338 b0ac3fd0 mine_water_level_control_system%b
+D pump_station.ads	20180912123200 d878ffba pump_station%s
 D system.ads		20180524051738 32a08138 system%s
 D s-atacco.ads		20180524051738 4c36d12f system.address_to_access_conversions%s
 D s-atocou.ads		20180524051738 b45c2d8d system.atomic_counters%s
@@ -160,109 +163,111 @@ D s-unstyp.ads		20180524051736 34867c83 system.unsigned_types%s
 D s-wchcon.ads		20180524051738 1b7d22d2 system.wch_con%s
 D s-win32.ads		20180524051736 b7f96285 system.win32%s
 X 1 ada.ads
-16K9*Ada 20e8 57|1r6 110r41
+16K9*Ada 20e8 57|1r6 11r6 118r41
 X 4 a-chahan.ads
 66V13*To_Lower{character} 44|283i21
 67V13*To_Upper{character} 44|285i21
 X 14 a-taside.ads
-39K13*Task_Identification 95e28 57|1w10 110r45
+39K13*Task_Identification 95e28 57|1w10 118r45
 47P9*Task_Id<94|109P9>
-69U14*Abort_Task 57|110s65
-69p26 T{47P9} 57|111r49
+69U14*Abort_Task 57|118s65
+69p26 T{47P9} 57|119r49
+X 15 a-textio.ads
+49K13*Text_IO 471e16 57|11w10
 X 18 alarm_station.ads
-5K9*alarm_station 28e18 57|8w6 14r57 31r41
-11W24*alarm_controller_t 27e31 57|14r71 31r55
+5K9*alarm_station 29e18 57|8w6 16r57 33r41
+11W24*alarm_controller_t 28e31 57|16r71 33r55
 X 19 constants.ads
-8K9*constants 592e14 57|5w6
+8K9*constants 617e14 57|5w6
 X 20 devices.ads
-1K9*devices 78e12 56|3w6 9r46 10r46 11r46 12r46 13r46 14r46 15r46 57|6w6
-5W24*device_t 14e21 56|9r54 10r54
-16W24*sensor_t 37e21 56|11r54 12r54 13r54
-39W24*water_level_sensors_t 62e34 56|14r54
-64W24*water_flow_sensor_t 76e32 56|15r54
+4K9*devices 158e12 56|3w6 8r46 9r46 10r46 11r46 12r46 13r46 14r46 57|6w6
+8W24*device_t 28e21 56|8r54 9r54
+30W24*gas_sensor_t 83e25 56|10r54 11r54 12r54
+85W24*water_flow_sensor_t 126e32 56|14r54
+128W24*water_level_sensors_t 155e34 56|13r54
 X 21 environment_station.ads
-7K9*environment_station 46e24 57|9w6 15r57 16r57 17r57 18r57 36r45 46r44
-. 56r46 67r55
-8T19*gas_sensor_controller_t 20e36 57|15r77 16r77 36r65 46r64
-19Y23 stop 57|119s62 126s61
-22T19*ch4_sensor_controller_t 35e36 57|17r77 56r66
-34Y23 stop 57|133s63
-37T19*water_level_sensors_controller_t 45e45 57|18r77 67r75
+7K9*environment_station 49e24 57|9w6 17r57 18r57 19r57 20r57 39r45 51r44
+. 63r46 75r55
+8T19*gas_sensor_controller_t 22e36 57|17r77 18r77 39r65 51r64
+21Y23 stop 57|127s62 134s61
+24T19*ch4_sensor_controller_t 38e36 57|19r77 63r66
+37Y23 stop 57|141s63
+40T19*water_level_sensors_controller_t 48e45 57|20r77 75r75
 X 27 glib-object.ads
 41P9*GObject(40R9)
 673V13*Convert{59|67M9} 25|58i21 26|49i21
 674V13*Convert{41P9} 25|59i21 26|50i21
 X 33 gnatcoll.ads
-24K9*GNATCOLL 27e13 56|2r6 45r26 48r57 49r57 50r57 51r57 52r57 57|3r6 21r17
-. 105r41 114r41 121r41 128r41 135r41 151r17
+24K9*GNATCOLL 27e13 56|2r6 47r32 50r63 51r63 52r63 53r63 54r63 57|3r6 23r17
+. 113r41 122r41 129r41 136r41 143r41 159r17
 X 47 gnatcoll-traces.ads
-251K18*Traces 927e20 56|2w15 45r35 48r66 49r66 50r66 51r66 52r66 57|3w15
-. 21r26 105r50 114r50 121r50 128r50 135r50 151r26
-341P9*Trace_Handle(340R9) 56|45r42 48r73 49r73 50r73 51r73 52r73
-518U14*Trace 57|21s33 105s57 114s57 121s57 128s57 135s57 151s33
-519p7 Handle(340R9) 57|22r25 106r49 115r49 122r49 129r49 136r49 152r25
-520a7 Message{string} 57|23r25 107r49 116r49 123r49 130r49 137r49 153r25
+251K18*Traces 927e20 56|2w15 47r41 50r72 51r72 52r72 53r72 54r72 57|3w15
+. 23r26 113r50 122r50 129r50 136r50 143r50 159r26
+341P9*Trace_Handle(340R9) 56|47r48 50r79 51r79 52r79 53r79 54r79
+518U14*Trace 57|23s33 113s57 122s57 129s57 136s57 143s57 159s33
+519p7 Handle(340R9) 57|24r25 114r49 123r49 130r49 137r49 144r49 160r25
+520a7 Message{string} 57|25r25 115r49 124r49 131r49 138r49 145r49 161r25
 X 56 mine_water_level_control_system.ads
-6K9*mine_water_level_control_system 60l5 60e36 57|11b14 157l5 157t36
-7T19*top_t 9d17 10d17 11d17 12d17 13d17 14d17 15d17 18d17 21d17 22d17 23d17
-. 24d17 25d17 26d17 27d17 30d17 31d17 32d17 33d17 34d17 35d17 36d17 37d17
-. 38d17 39d17 40d17 41d17 42d17 45d17 48d17 49d17 50d17 51d17 52d17 59l13
-. 59e18 57|12b19 155l13 155t18
-18i17 priority{59|101I12} 54r35
-21i17 pump_controller_priority{59|101I12} 57|27r37
-22i17 alarm_controller_priority{59|101I12} 57|32r37
-23i17 co_sensor_controller_priority{59|101I12} 57|37r64
-24i17 o_sensor_controller_priority{59|101I12} 57|47r64
-25i17 ch4_sensor_controller_priority{59|101I12} 57|57r64
-26i17 water_level_sensors_controller_priority{59|101I12} 57|68r52
-27i17 water_flow_sensor_controller_priority{59|101I12} 57|76r50
-30i17 co_sensor_controller_read_error_occurred_count_threshold{integer} 57|38r64
-31i17 co_sensor_controller_period_in_ms{integer} 57|39r64
-32i17 co_sensor_controller_deadline_in_ms{integer} 57|40r64
-33i17 o_sensor_controller_read_error_occurred_count_threshold{integer} 57|48r64
-34i17 o_sensor_controller_period_in_ms{integer} 57|49r64
-35i17 o_sensor_controller_deadline_in_ms{integer} 57|50r64
-36i17 ch4_sensor_controller_read_error_occurred_count_threshold{integer}
-. 57|58r64
-37i17 ch4_sensor_controller_period_in_ms{integer} 57|59r64
-38i17 ch4_sensor_controller_deadline_in_ms{integer} 57|60r64
-39i17 water_level_sensors_controller_deadline_in_ms{integer} 57|69r52
-40i17 water_flow_sensor_controller_period_in_ms{integer} 57|80r50
-41i17 water_flow_sensor_controller_deadline_in_ms{integer} 57|81r50
-42i17 water_flow_sensor_controller_number_of_activations{integer} 57|82r50
-45p17 stream{47|341P9} 57|22r36 93r51 101r51 106r60 115r60 122r60 129r60
-. 136r60 152r36
-48p17 co_sensor_controller_stream{47|341P9} 57|43r64
-49p17 o_sensor_controller_stream{47|341P9} 57|53r92
-50p17 ch4_sensor_controller_stream{47|341P9} 57|64r92
-51p17 water_level_sensors_controller_stream{47|341P9} 57|72r52
-52p17 water_flow_sensor_controller_stream{47|341P9} 57|83r50
-56Y23 turn_on 57|88b40 90l37 90t44
-57Y23 turn_off 57|96b40 98l37 98t45
-58Y23 stop 57|104b40 146l37 146t41
+5K9*mine_water_level_control_system 63l5 63e36 57|13b14 165l5 165t36
+6T19*top_t 8d17 9d17 10d17 11d17 12d17 13d17 14d17 17d17 20d17 21d17 22d17
+. 23d17 24d17 25d17 26d17 29d17 30d17 31d17 32d17 33d17 34d17 35d17 36d17
+. 37d17 38d17 39d17 40d17 41d17 42d17 43d17 44d17 47d17 50d17 51d17 52d17
+. 53d17 54d17 61l13 61e18 57|14b19 163l13 163t18
+17i17 priority{59|101I12} 56r35
+20i17 pump_controller_priority{59|101I12} 57|29r37
+21i17 alarm_controller_priority{59|101I12} 57|34r49
+22i17 co_sensor_controller_priority{59|101I12} 57|40r64
+23i17 o_sensor_controller_priority{59|101I12} 57|52r64
+24i17 ch4_sensor_controller_priority{59|101I12} 57|64r64
+25i17 water_level_sensors_controller_priority{59|101I12} 57|76r52
+26i17 water_flow_sensor_controller_priority{59|101I12} 57|84r50
+30i17 co_sensor_controller_read_error_occurred_count_threshold{integer} 57|43r64
+31i17 co_sensor_controller_period_in_ms{integer} 57|44r64
+32i17 co_sensor_controller_deadline_in_ms{integer} 57|45r64
+34i17 o_sensor_controller_read_error_occurred_count_threshold{integer} 57|55r64
+35i17 o_sensor_controller_period_in_ms{integer} 57|56r64
+36i17 o_sensor_controller_deadline_in_ms{integer} 57|57r64
+38i17 ch4_sensor_controller_read_error_occurred_count_threshold{integer}
+. 57|66r64
+39i17 ch4_sensor_controller_period_in_ms{integer} 57|67r64
+40i17 ch4_sensor_controller_deadline_in_ms{integer} 57|68r64
+41i17 water_level_sensors_controller_deadline_in_ms{integer} 57|77r52
+42i17 water_flow_sensor_controller_period_in_ms{integer} 57|88r50
+43i17 water_flow_sensor_controller_deadline_in_ms{integer} 57|89r50
+44i17 water_flow_sensor_controller_number_of_activations{integer} 57|90r50
+47p17 trace_handle{47|341P9} 57|24r36 101r57 109r57 114r60 123r60 130r60
+. 137r60 144r60 160r36
+50p17 co_sensor_controller_trace_handle{47|341P9} 57|48r64
+51p17 o_sensor_controller_trace_handle{47|341P9} 57|60r84
+52p17 ch4_sensor_controller_trace_handle{47|341P9} 57|72r84
+53p17 water_level_sensors_controller_trace_handle{47|341P9} 57|80r52
+54p17 water_flow_sensor_controller_trace_handle{47|341P9} 57|91r50
+58Y23 turn_on 57|96b40 98l37 98t44
+59Y23 turn_off 57|104b40 106l37 106t45
+60Y23 stop 57|112b40 154l37 154t41
 X 57 mine_water_level_control_system.adb
-13p17 pump_controller(58|15W24) 26m17 63r64 71r52 92r33 100r33
-14p17 alarm_controller(18|11W24) 31m17 42r64 52r64 62r64 78r50
-15p17 co_sensor_controller(21|8T19) 36m17 119r41
-16p17 o_sensor_controller(21|8T19) 46m17 126r41
-17p17 ch4_sensor_controller(21|22T19) 56m17 133r41
-18p17 water_level_sensors_controller(21|37T19) 67m17 111r54 142r53
-19p17 water_flow_sensor_controller(58|42T19) 75m17 140r41
-86l17 running_loop 147r38 149l26 149e38
+15p17 pump_controller(58|15W24) 28m17 71r64 79r52 100r33 108r33
+16p17 alarm_controller(18|11W24) 33m17 47r64 59r64 70r64 86r50
+17p17 co_sensor_controller(21|8T19) 39m17 127r41
+18p17 o_sensor_controller(21|8T19) 51m17 134r41
+19p17 ch4_sensor_controller(21|24T19) 63m17 141r41
+20p17 water_level_sensors_controller(21|40T19) 75m17 119r54 150r53
+21p17 water_flow_sensor_controller(58|42T19) 83m17 148r41
+94l17 running_loop 155r38 157l26 157e38
 X 58 pump_station.ads
-8K9*pump_station 57|7w6 13r57 19r57 26r40 75r53 58|58e17
-15W24*pump_controller_t 57|13r70 26r53 58|40e30
-21U27 turn_on 57|92s49
-22p25 stream{47|341P9} 57|93r41
-25U27 turn_off 57|100s49
-26p25 stream{47|341P9} 57|101r41
-42T19*water_flow_sensor_controller_t 57|19r70 75r66 58|55e43
-54Y23 stop 57|140s70
+8K9*pump_station 57|7w6 15r57 21r57 28r40 83r53 58|58e17
+15W24*pump_controller_t 57|15r70 28r53 58|40e30
+21U27 turn_on 57|100s49
+22p25 trace_handle{47|341P9} 57|101r41
+25U27 turn_off 57|108s49
+26p25 trace_handle{47|341P9} 57|109r41
+42T19*water_flow_sensor_controller_t 57|21r70 83r66 58|55e43
+54Y23 stop 57|148s70
 X 59 system.ads
-37K9*System 56|1w6 18r28 21r59 22r59 23r59 24r59 25r59 26r59 27r59 59|200e11
+37K9*System 56|1w6 17r28 20r59 21r59 22r59 23r59 24r59 25r59 26r59 59|200e11
 67M9*Address
 100I12*Any_Priority{integer}
-101I12*Priority{100I12} 56|18r35 21r66 22r66 23r66 24r66 25r66 26r66 27r66
+101I12*Priority{100I12} 56|17r35 20r66 21r66 22r66 23r66 24r66 25r66 26r66
 X 71 s-memory.ads
 53V13*Alloc{59|67M9} 103i<c,__gnat_malloc>22
 68U14*Free 104i<c,__gnat_free>22

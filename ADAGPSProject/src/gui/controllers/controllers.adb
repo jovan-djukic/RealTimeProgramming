@@ -1,17 +1,25 @@
-with devices;
 with Gtk.Button;
 with Gdk.RGBA;
 with Glib;
 
-with Ada.Text_IO;
+with devices;
 
 package body controllers is
 	task body device_state_controller_t is
+		device_state        : devices.device_state_t;
+		is_device_turned_on : Boolean;
 	begin
 		check_loop : loop
-			device.wait_for_state_change;
+			device.wait_for_change (
+				out_state => device_state
+			);
+
+			is_device_turned_on := devices."=" (
+				Left  => device_state,
+				Right => devices.ON
+			);
 		   	
-		   	if ( devices."=" ( device.get_state, devices.ON ) ) then
+		   	if ( is_device_turned_on = True ) then
 		   		button.Override_Color (
 		   			State => button.Get_State_Flags,
 		   			Color => on_color.all
@@ -26,25 +34,45 @@ package body controllers is
 	end device_state_controller_t;
 
 	task body gas_sensor_state_controller_t is
+		gas_sensor_value               : Float;
+		gas_sensor_read_error_occurred : Boolean;
+		is_threshold_breached          : Boolean;
 	begin
 		check_loop : loop
-			sensor.wait_for_value_change;
+			gas_sensor.wait_for_change ( 
+				out_value               => gas_sensor_value,
+				out_read_error_occurred => gas_sensor_read_error_occurred
+			);
 
 			progress_bar.Set_Fraction (
 				Fraction => Glib.Gdouble (
-					sensor.get_value / ( Float ( multiplication_factor ) * sensor.get_threshold )
+					gas_sensor_value / maximum_value.all 
 				)
 			);
 		   	
 			label.Set_Text (
-				Str => ( sensor.get_value'Image & " / " & sensor.get_threshold'Image )
+				Str => ( gas_sensor_value'Image & " / " & threshold.all'Image )
 			);
 
-		   	if ( sensor.get_read_error_occurred = True ) then
+			if ( detects_above_threshold = True ) then
+				if ( gas_sensor_value > threshold.all ) then
+					is_threshold_breached := True;
+				else
+					is_threshold_breached := False;
+				end if;
+			else 
+				if ( gas_sensor_value < threshold.all ) then
+					is_threshold_breached := True;
+				else
+					is_threshold_breached := False;
+				end if;
+			end if;
+
+		   	if ( gas_sensor_read_error_occurred = True ) then
 		   		color_button.Set_Rgba (
 		   			Color => read_error_occurred_color.all
 		   		);
-		   	elsif ( sensor.is_threshold_breached = True ) then
+		   	elsif ( is_threshold_breached = True ) then
 		   		color_button.Set_Rgba (
 		   			Color => threshold_breached_color.all
 		   		);
@@ -57,76 +85,43 @@ package body controllers is
 	end gas_sensor_state_controller_t;
 
 	protected body water_tank_t is
-		procedure set_level (
-			new_level : Float
+		procedure set_water_level (
+			new_water_level : Float
 		) is
 		begin
-			if ( new_level /= level ) then
-				if ( new_level <= 0.0 ) then
-					level := 0.0;
-				elsif ( new_level >= maximum_level.all ) then	
-					level := maximum_level.all;
-				else
-					level := new_level;
-				end if;
-				
+			if ( new_water_level /= water_level ) then
 				changed := True;
 			end if;
-		end set_level;
+
+			if ( new_water_level <= 0.0 ) then
+				water_level := 0.0;
+			elsif ( new_water_level >= maximum_water_level.all ) then	
+				water_level := maximum_water_level.all;
+			else
+				water_level := new_water_level;
+			end if;
+		end set_water_level;
 		
-		function get_level return Float is
+		entry wait_for_change (
+			out_water_level         : out Float;
+			out_maximum_water_level : out Float
+		) when ( changed = True ) is
 		begin
-			return level;
-		end get_level;
-
-		function get_maximum_level return Float is
-		begin
-			return maximum_level.all;
-		end get_maximum_level;
-
-		entry wait_for_level_change when ( changed = True ) is
-		begin
-			changed := False;
-		end wait_for_level_change;
+			changed                 := False;
+			out_water_level         := water_level;
+			out_maximum_water_level := maximum_water_level.all;
+		end wait_for_change;
 	end water_tank_t;
 
-	task body water_level_sensors_state_controller_t is
-	begin
-		check_loop : loop
-			water_tank.wait_for_level_change;
-
-			progress_bar.Set_Fraction (
-				Fraction => Glib.Gdouble (
-					Float ( water_tank.get_level ) / water_tank.get_maximum_level	
-				)
-			);
-		   	
-			label.Set_Text (
-				Str => ( water_level_sensors.get_low_water_level_threshold'Image & " > " & water_tank.get_level'Image & " < " & water_level_sensors.get_high_water_level_threshold'Image )
-			);
-
-		   	if ( water_level_sensors.is_low_water_level_threshold_breached = True ) then
-		   		color_button.Set_Rgba (
-		   			Color => low_water_level_breached_color.all
-		   		);
-		   	elsif ( water_level_sensors.is_high_water_level_threshold_breached = True ) then
-		   		color_button.Set_Rgba (
-		   			Color => high_water_level_breached_color.all
-		   		);
-		   	else 
-		   		color_button.Set_Rgba (
-		   			Color => state_normal_color.all
-		   		);
-		   	end if;
-		end loop check_loop;
-	end water_level_sensors_state_controller_t;
-
 	task body water_flow_sensor_state_controller_t is
+		is_water_flowing : Boolean;
 	begin
 		check_loop : loop
-			water_flow_sensor.wait_for_value_change;
+			water_flow_sensor.wait_for_change (	
+				out_water_flowing => is_water_flowing
+			);
 
-		   	if ( water_flow_sensor.is_water_flowing = True ) then
+		   	if ( is_water_flowing = True ) then
 		   		button.Override_Color (
 		   			State => button.Get_State_Flags,
 		   			Color => flowing_color.all
@@ -139,5 +134,42 @@ package body controllers is
 		   	end if;
 		end loop check_loop;
 	end water_flow_sensor_state_controller_t;
+
+	task body water_level_sensors_state_controller_t is
+		water_level         : Float;
+		maximum_water_level : Float;
+	begin
+		check_loop : loop
+			water_tank.wait_for_change (
+				out_water_level         => water_level,
+				out_maximum_water_level => maximum_water_level
+			);
+
+			progress_bar.Set_Fraction (
+				Fraction => Glib.Gdouble (
+					water_level / maximum_water_level
+				)
+			);
+		   	
+			label.Set_Text (
+				Str => ( low_water_level_threshold.all'Image & " > " & water_level'Image & " < " & high_water_level_threshold.all'Image )
+			);
+
+		   	if ( water_level < low_water_level_threshold.all ) then
+		   		color_button.Set_Rgba (
+		   			Color => low_water_level_breached_color.all
+		   		);
+		   	elsif ( water_level > high_water_level_threshold.all ) then
+		   		color_button.Set_Rgba (
+		   			Color => high_water_level_breached_color.all
+		   		);
+		   	else 
+		   		color_button.Set_Rgba (
+		   			Color => state_normal_color.all
+		   		);
+		   	end if;
+		end loop check_loop;
+	end water_level_sensors_state_controller_t;
+
 end controllers;
 

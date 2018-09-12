@@ -9,17 +9,18 @@ package alarm_station is
 	);
 
 	protected type alarm_controller_t (
-		priority : System.Priority;
-		alarm    : access devices.device_t
+		priority             : System.Priority;
+		alarm                : access devices.device_t;
+		number_of_activators : Integer
 	) is
 		pragma Priority ( priority );
 
 		procedure turn_on (
-			stream : in GNATCOLL.Traces.Trace_Handle
+			trace_handle : in GNATCOLL.Traces.Trace_Handle
 		);
 
 		procedure turn_off (
-			stream : in GNATCOLL.Traces.Trace_Handle
+			trace_handle : in GNATCOLL.Traces.Trace_Handle
 		);
 	private
 		number_of_activations : Integer 	  := 0;

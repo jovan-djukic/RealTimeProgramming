@@ -11,6 +11,7 @@ RV NO_EXCEPTION_HANDLERS
 RV NO_EXCEPTION_PROPAGATION
 RV NO_EXCEPTIONS
 RV NO_FLOATING_POINT
+RV NO_IO
 RV NO_PROTECTED_TYPES
 RV NO_STANDARD_STORAGE_POOLS
 RV NO_DYNAMIC_SIZED_OBJECTS
@@ -18,102 +19,274 @@ RV NO_IMPLEMENTATION_PRAGMAS
 RV SPARK_05
 RV MAX_PROTECTED_ENTRIES=1
 
-U devices%b		devices.adb		c3584730 NE OO PK IL
+U devices%b		devices.adb		ac11e154 NE OO PK IL
+W ada%s			ada.ads			ada.ali
 Z ada.tags%s		a-tags.adb		a-tags.ali
+W ada.text_io%s		a-textio.adb		a-textio.ali
+W gnatcoll%s		gnatcoll.ads		gnatcoll.ali
+W gnatcoll.traces%s	gnatcoll-traces.adb	gnatcoll-traces.ali
+Z interfaces%s		interfac.ads		interfac.ali
 Z system%s		system.ads		system.ali
+Z system.concat_2%s	s-conca2.adb		s-conca2.ali
+Z system.concat_4%s	s-conca4.adb		s-conca4.ali
+Z system.img_bool%s	s-imgboo.adb		s-imgboo.ali
+Z system.img_enum_new%s	s-imenne.adb		s-imenne.ali
+Z system.img_real%s	s-imgrea.adb		s-imgrea.ali
 Z system.soft_links%s	s-soflin.adb		s-soflin.ali
 Z system.tasking.protected_objects%s  s-taprob.adb  s-taprob.ali
 Z system.tasking.protected_objects.entries%s  s-tpoben.adb  s-tpoben.ali
 Z system.tasking.protected_objects.operations%s  s-tpobop.adb  s-tpobop.ali
 
-U devices%s		devices.ads		d7649a5d EE NE OO PK IL
+U devices%s		devices.ads		129897af EE NE OO PK IL
+W ada%s			ada.ads			ada.ali
 Z ada.exceptions%s	a-except.adb		a-except.ali
+W ada.real_time%s	a-reatim.adb		a-reatim.ali
 Z ada.tags%s		a-tags.adb		a-tags.ali
+W gnatcoll%s		gnatcoll.ads		gnatcoll.ali
+W gnatcoll.traces%s	gnatcoll-traces.adb	gnatcoll-traces.ali
 Z system%s		system.ads		system.ali
 Z system.tasking%s	s-taskin.adb		s-taskin.ali
 Z system.tasking.protected_objects%s  s-taprob.adb  s-taprob.ali
 Z system.tasking.protected_objects.entries%s  s-tpoben.adb  s-tpoben.ali
 
 D ada.ads		20180524051736 76789da1 ada%s
+D a-calend.ads		20180524051738 372815c8 ada.calendar%s
+D a-charac.ads		20180524051736 2d3ec45b ada.characters%s
+D a-chahan.ads		20180524051736 1601a50f ada.characters.handling%s
+D a-contai.ads		20180524051736 61e5e089 ada.containers%s
 D a-except.ads		20180524051736 291912d5 ada.exceptions%s
 D a-finali.ads		20180524051738 bf4f806b ada.finalization%s
+D a-ioexce.ads		20180524051736 e4a01f64 ada.io_exceptions%s
+D a-reatim.ads		20180524051738 0240fc73 ada.real_time%s
 D a-stream.ads		20180524051736 119b8fb3 ada.streams%s
+D a-string.ads		20180524051736 90ac6797 ada.strings%s
 D a-tags.ads		20180524051738 491b781d ada.tags%s
+D a-textio.ads		20180524051738 881db35a ada.text_io%s
 D a-unccon.ads		20180524051738 0e9b276f ada.unchecked_conversion%s
-D devices.ads		20180909212602 d7649a5d devices%s
-D devices.adb		20180909212012 143cdd6d devices%b
+D a-uncdea.ads		20180524051736 eff36322 ada.unchecked_deallocation%s
+D devices.ads		20180912143718 5c1f7a8a devices%s
+D devices.adb		20180912143422 34d439d2 devices%b
+D gnat.ads		20180524051738 fd2ad2f1 gnat%s
+D g-os_lib.ads		20180524051736 0db74523 gnat.os_lib%s
+D g-souinf.ads		20180524051738 291df751 gnat.source_info%s
+D g-string.ads		20180524051738 c6abc540 gnat.strings%s
+D gnatcoll.ads		20180524054208 6a5da479 gnatcoll%s
+D gnatcoll-atomic.ads	20180524054208 d870573c gnatcoll.atomic%s
+D gnatcoll-io.ads	20180524054208 afa9fb9a gnatcoll.io%s
+D gnatcoll-io-native.ads  20180524054208 e07777b4 gnatcoll.io.native%s
+D gnatcoll-path.ads	20180524054208 44783065 gnatcoll.path%s
+D gnatcoll-refcount.ads	20180524054208 5c6fe4db gnatcoll.refcount%s
+D gnatcoll-storage_pools.ads  20180524054208 f82e283b gnatcoll.storage_pools%s
+D gnatcoll-storage_pools-headers.ads  20180524054208 f58ac26a gnatcoll.storage_pools.headers%s
+D gnatcoll-storage_pools-headers.adb  20180524054208 6152d1b6 gnatcoll.storage_pools.headers%b
+D gnatcoll-strings.ads	20180524054208 014a3fb6 gnatcoll.strings%s
+D gnatcoll-strings.ads	20180524054208 014a3fb6 gnatcoll.strings%s
+D gnatcoll-strings_impl.ads  20180524054208 660cba3c gnatcoll.strings_impl%s
+D gnatcoll-strings_impl.adb  20180524054208 886b446b gnatcoll.strings_impl%b
+D gnatcoll-terminal.ads	20180524054208 d1bdf60c gnatcoll.terminal%s
+D gnatcoll-traces.ads	20180524054208 4cc71156 gnatcoll.traces%s
+D gnatcoll-vfs.ads	20180524054208 df779196 gnatcoll.vfs%s
+D gnatcoll-vfs_types.ads  20180524054208 14be4a8d gnatcoll.vfs_types%s
 D interfac.ads		20180524051736 5ab55268 interfaces%s
 D i-c.ads		20180524051736 5421119b interfaces.c%s
 D i-cstrin.ads		20180524051736 341d0ddf interfaces.c.strings%s
+D i-cstrea.ads		20180524051736 e53d8b8e interfaces.c_streams%s
 D system.ads		20180524051738 32a08138 system%s
 D s-atacco.ads		20180524051738 4c36d12f system.address_to_access_conversions%s
+D s-atocou.ads		20180524051738 b45c2d8d system.atomic_counters%s
+D s-carun8.ads		20180524051738 a903718d system.compare_array_unsigned_8%s
+D s-conca2.ads		20180524051736 02a0d7d0 system.concat_2%s
+D s-conca3.ads		20180524051738 0b705ca5 system.concat_3%s
+D s-conca4.ads		20180524051738 7e642b20 system.concat_4%s
+D s-conca5.ads		20180524051736 875e432e system.concat_5%s
+D s-crtl.ads		20180524051736 0ebbdb71 system.crtl%s
 D s-exctab.ads		20180524051738 54135002 system.exception_table%s
+D s-ficobl.ads		20180524051738 078245e4 system.file_control_block%s
+D s-finmas.ads		20180524051738 7811a767 system.finalization_masters%s
 D s-finroo.ads		20180524051738 4ff27390 system.finalization_root%s
+D s-imgboo.ads		20180524051736 f5d971eb system.img_bool%s
+D s-imenne.ads		20180524051736 614c06c0 system.img_enum_new%s
+D s-imgint.ads		20180524051736 02dbe0c2 system.img_int%s
+D s-imgrea.ads		20180524051736 c7a851e2 system.img_real%s
+D s-memory.ads		20180524051736 597d6634 system.memory%s
 D s-multip.ads		20180524051736 38ac9f73 system.multiprocessors%s
 D s-osinte.ads		20180524051738 2e5b26a9 system.os_interface%s
+D s-os_lib.ads		20180524051738 5703ce4c system.os_lib%s
 D s-parame.ads		20180524051738 48ec542b system.parameters%s
+D s-pooglo.ads		20180524051736 ede33ef8 system.pool_global%s
+D s-poosiz.ads		20180524051738 9d8c569f system.pool_size%s
 D s-secsta.ads		20180524051738 20bbe636 system.secondary_stack%s
 D s-soflin.ads		20180524051736 a7318a92 system.soft_links%s
 D s-stache.ads		20180524051738 a37c21ec system.stack_checking%s
 D s-stausa.ads		20180524051736 017a0a05 system.stack_usage%s
 D s-stalib.ads		20180524051738 09bd3940 system.standard_library%s
 D s-stoele.ads		20180524051738 2dc34a04 system.storage_elements%s
+D s-stoele.adb		20180524051736 ed88f8fb system.storage_elements%b
+D s-stopoo.ads		20180524051736 b16154c2 system.storage_pools%s
+D s-stposu.ads		20180524051736 97a6219c system.storage_pools.subpools%s
+D s-stratt.ads		20180524051736 aedef97e system.stream_attributes%s
+D s-strhas.ads		20180524051736 269cd894 system.string_hash%s
+D s-string.ads		20180524051738 8fe54fb7 system.strings%s
+D s-ststop.ads		20180524051736 5fbf1b38 system.strings.stream_ops%s
 D s-tasinf.ads		20180524051738 601f6b72 system.task_info%s
 D s-taspri.ads		20180524051738 6c1d93d4 system.task_primitives%s
+D s-taprop.ads		20180524051738 1dd2e1b6 system.task_primitives.operations%s
 D s-taskin.ads		20180524051738 1d8c1ccb system.tasking%s
 D s-taprob.ads		20180524051738 acd6094d system.tasking.protected_objects%s
 D s-tpoben.ads		20180524051738 60ad3dae system.tasking.protected_objects.entries%s
 D s-tpobop.ads		20180524051738 5f548bb3 system.tasking.protected_objects.operations%s
 D s-traent.ads		20180524051736 005bf670 system.traceback_entries%s
 D s-unstyp.ads		20180524051736 34867c83 system.unsigned_types%s
+D s-wchcon.ads		20180524051738 1b7d22d2 system.wch_con%s
 D s-win32.ads		20180524051736 b7f96285 system.win32%s
-X 7 devices.ads
-1K9*devices 78l5 78e12 8|1b14 153l5 153t12
-3E14*device_state_t 3e43 6r43 8r40 12r27 8|4r43 10r40
-3n34*ON{3E14}
-3n38*OFF{3E14} 12r45
-5W24*device_t 12E17 14l13 14e21 8|3b24 24l13 24t21
-6V26 get_state{3E14} 8|4b26 7l21 7t30
-7U27 set_state 8>25 8|9b27 18l21 18t30
-8e25 new_state{3E14} 8|10b25 13r30 17r36
-10Y23 wait_for_state_change 8|20b23 23l21 23t42
-12e17 state{3E14} 8|6r32 13r43 17r25
-13b17 changed{boolean} 8|14r33 20r52 22r25
-16W24*sensor_t 17d17 18d17 19d17 20d17 34E17 37l13 37e21 8|26b24 82l13 82t21
-20b17 detects_above_threshold{boolean} 8|70r30
-22V26 get_value{float} 8|27b26 30l21 30t30
-23V26 get_read_error_occurred{boolean} 8|32b26 35l21 35t44
-24V26 get_threshold{float} 8|37b26 40l21 40t34
-25U27 set_value 26>25 8|42b27 56l21 56t30
-26f25 new_value{float} 8|43b25 46r30 47r38 49r41 52r52
-28U27 set_read_error_occured 29>25 8|58b27 66l21 66t43
-29b25 new_read_error_occurred{boolean} 8|59b25 62r30 63r56
-31V26 is_threshold_breached{boolean} 8|68b26 75l21 75t42
-32Y23 wait_for_value_change 8|77b23 80l21 80t42
-34f17 value{float} 8|29r32 46r43 48r41 50r41 52r41 71r42 73r42
-35b17 read_error_occurred{boolean} 8|34r32 62r57 63r33
-36b17 changed{boolean} 8|54r33 64r33 77r52 79r25
-39W24*water_level_sensors_t 40d17 41d17 42d17 58E17 62l13 62e34 8|84b24 128l13
-. 128t34
-44V26 is_low_water_level_threshold_breached{boolean} 8|86b26 89l21 89t58
-46V26 is_high_water_level_threshold_breached{boolean} 8|91b26 94l21 94t59
-48V26 get_low_water_level_threshold{float} 8|96b26 99l21 99t50
-50V26 get_high_water_level_threshold{float} 8|101b26 104l21 104t51
-52U27 update 53>25 8|106b27 121l21 121t27
-53f25 water_level{float} 8|107b25 110r66 111r66
-56Y23 wait_for_value_change 8|123b23 126l21 126t42
-58b17 breached{boolean} 8|116r41 123r52 125r25
-59b17 first_time{boolean} 8|114r38 115r41 119r33
-60b17 low_water_level_threshold_breached{boolean} 8|88r32 110r25 113r32
-61b17 high_water_level_threshold_breached{boolean} 8|93r32 111r25 113r81
-64W24*water_flow_sensor_t 74E17 76l13 76e32 8|130b24 152l13 152t32
-66V26 is_water_flowing{boolean} 8|132b26 135l21 135t37
-68U27 set_water_flowing 69>25 8|137b27 145l21 145t38
-69b25 new_water_flowing{boolean} 8|138b25 141r30 143r50
-72Y23 wait_for_value_change 8|147b23 150l21 150t42
-74b17 water_flowing{boolean} 8|134r32 141r51 143r33
-75b17 changed{boolean} 8|142r33 147r52 149r25
-X 22 s-stausa.ads
+X 1 ada.ads
+16K9*Ada 20e8 16|2r6 73r46 73r68 74r34 75r34 80r35 80r62 116r46 116r68 117r34
+. 118r34 123r35 123r62 17|3r6 57r55 63r53 67r41 68r42 72r54 83r33 197r55
+. 203r53 206r41 207r42 211r54 222r33
+X 4 a-chahan.ads
+66V13*To_Lower{character} 33|283i21
+67V13*To_Upper{character} 33|285i21
+X 9 a-reatim.ads
+39K13*Real_Time 185e18 16|2w10 73r50 73r72 74r38 75r38 80r39 80r66 116r50
+. 116r72 117r38 118r38 123r39 123r66 17|57r59 63r57 67r45 68r46 72r58 197r59
+. 203r57 206r45 207r46 211r58
+49O9*Time<duration> 16|73r60 116r60
+54O9*Time_Span<duration> 16|80r49 123r49 17|63r67 203r67
+61V13*Clock{49O9} 16|74s48 117s48 17|57s69 68s56 197s69 207s56
+69V14*"-"{49O9} 16|73s83 116s83
+69o19 Left{49O9} 16|74r25 117r25
+69o37 Right{54O9} 16|75r25 118r25
+71V14*"-"{54O9} 17|67s56 206s56
+71o19 Left{49O9} 17|68r33 207r33
+71o37 Right{49O9} 17|69r33 208r33
+87V14*"-"{54O9} 16|73r83 116r83 17|67r56 206r56
+107V14*">="{boolean} 17|72r67 72r69 211r67 211r69
+119V13*Milliseconds{54O9} 16|75s48 80s76 118s48 123s76
+119i27 MS{integer} 16|76r33 81r25 119r33 124r25
+X 13 a-textio.ads
+49K13*Text_IO 471e16 17|3w10 83r37 222r37
+263U14*Put_Line 17|83s45 222s45
+264a7 Item{string} 17|84r41 223r41
+X 16 devices.ads
+4K9*devices 158l5 158e12 17|5b14 331l5 331t12
+6E14*device_state_t 6e43 13r26 17r47 23r41 26r27 17|10r26 21r47 37r41
+6n34*ON{6E14}
+6n38*OFF{6E14} 26r45
+8W24*device_t 9d17 26E17 28l13 28e21 17|7b24 44l13 44t21
+11V26 get_state{6E14} 12>25 17|8b26 17l21 17t30
+12p25 trace_handle{36|341P9} 17|9b25 13r44
+15U27 set_state 16>25 17>25 17|19b27 34l21 34t30
+16p25 trace_handle{36|341P9} 17|20b25 29r44
+17e25 new_state{6E14} 17|21b25 24r30 30r94 33r34
+22Y23 wait_for_change 23<25 17|36b23 42l21 42t36
+23e25 out_state{6E14} 17|41m25
+26e17 state{6E14} 17|14r100 16r32 24r43 33r25 41r38
+27b17 changed{boolean} 17|25r33 38r26 40r25
+30W24*gas_sensor_t 31d17 32d17 33d17 34d17 69E17 83l13 83e25 17|46b24 185l13
+. 185t25
+32i17 conversion_time_in_ms{integer} 76r39 81r31
+34b17 initial_read_error_occurred{boolean} 70r50
+36U27 start_conversion 37>25 17|48b27 58l21 58t37
+37p25 trace_handle{36|341P9} 17|49b25 53r44
+40V26 check_conversion{boolean} 41>25 17|60b26 89l21 89t37 97s54 139s54
+41p25 trace_handle{36|341P9} 17|61b25 79r52 98r33 140r33
+44V26 get_value{float} 45>25 17|91b26 113l21 113t30
+45p25 trace_handle{36|341P9} 17|92b25 98r49 108r44
+48U27 set_value 49>25 50>25 17|115b27 130l21 130t30
+49p25 trace_handle{36|341P9} 17|116b25 125r44
+50f25 new_value{float} 17|117b25 120r30 126r94 129r34
+53V26 get_read_error_occurred{boolean} 54>25 17|133b26 156l21 156t44
+54p25 trace_handle{36|341P9} 17|134b25 140r49 151r44
+57U27 set_read_error_occured 58>25 59>25 17|158b27 173l21 173t43
+58p25 trace_handle{36|341P9} 17|159b25 168r44
+59b25 new_read_error_occurred{boolean} 17|160b25 163r30 169r108 172r48
+64Y23 wait_for_change 65<25 66<25 17|175b23 183l21 183t36
+65f25 out_value{float} 17|181m25
+66b25 out_read_error_occurred{boolean} 17|182m25
+69f17 value{float} 17|102r49 120r43 129r25 181r52
+70b17 read_error_occurred{boolean} 17|145r63 163r57 172r25 182r52
+71b17 changed{boolean} 17|121r33 164r33 178r26 180r25
+73o17 last_conversion_start_time{9|49O9} 17|57r25 69r42
+80o17 conversion_time{9|54O9} 17|74r42
+85W24*water_flow_sensor_t 86d17 87d17 88d17 113E17 126l13 126e32 17|187b24
+. 280l13 280t32
+87i17 conversion_time_in_ms{integer} 119r39 124r31
+88b17 initial_water_flowing{boolean} 113r44
+90U27 start_conversion 91>25 17|188b27 198l21 198t37
+91p25 trace_handle{36|341P9} 17|189b25 193r44
+94V26 check_conversion{boolean} 95>25 17|200b26 228l21 228t37 236s54
+95p25 trace_handle{36|341P9} 17|201b25 218r52 237r33
+98V26 is_water_flowing{boolean} 99>25 17|230b26 252l21 252t37
+99p25 trace_handle{36|341P9} 17|231b25 237r49 247r44
+102U27 set_water_flowing 103>25 104>25 17|255b27 270l21 270t38
+103p25 trace_handle{36|341P9} 17|256b25 265r44
+104b25 new_water_flowing{boolean} 17|257b25 260r30 266r101 269r42
+109Y23 wait_for_change 110<25 17|272b23 278l21 278t36
+110b25 out_water_flowing{boolean} 17|277m25
+113b17 water_flowing{boolean} 17|241r60 260r51 269r25 277r46
+114b17 changed{boolean} 17|261r33 274r26 276r25
+116o17 last_conversion_start_time{9|49O9} 17|197r25 208r42
+123o17 conversion_time{9|54O9} 17|213r42
+128W24*water_level_sensors_t 129d17 130d17 131d17 132d17 151E17 155l13 155e34
+. 17|282b24 329l13 329t34
+135Y23 wait_for_interrupt 17|283b23 286l21 286t39
+137V26 is_low_water_level_threshold_breached{boolean} 138>25 17|288b26 298l21
+. 298t58
+138p25 trace_handle{36|341P9} 17|289b25 293r44
+141V26 is_high_water_level_threshold_breached{boolean} 142>25 17|300b26 310l21
+. 310t59
+142p25 trace_handle{36|341P9} 17|301b25 305r44
+147U27 update 148>25 17|312b27 327l21 327t27
+148f25 water_level{float} 17|313b25 316r66 317r66
+151b17 interrupt_pending{boolean} 17|283r49 285r25 322r41
+152b17 first_time{boolean} 17|320r38 321r41 325r33
+153b17 low_water_level_threshold_breached{boolean} 17|294r129 297r32 316r25
+. 319r32
+154b17 high_water_level_threshold_breached{boolean} 17|306r130 309r32 317r25
+. 319r81
+X 17 devices.adb
+37e25 out_state{16|6E14}
+63o25 elapsed_time{9|54O9} 67m25 73r42
+64b25 is_conversion_successfull{boolean} 72m25 77r30 88r32
+94b25 is_conversion_successfull{boolean} 97m25 101r30
+95f25 return_value{float} 102m33 104m33 109r100 112r32
+136b25 is_conversion_successfull{boolean} 139m25 144r30
+137b25 return_read_error_occurred{boolean} 145m33 147m33 152r114 155r32
+176f25 out_value{float}
+177b25 out_read_error_occurred{boolean}
+203o25 elapsed_time{9|54O9} 206m25 212r42
+204b25 is_conversion_successfull{boolean} 211m25 216r30 227r32
+233b25 is_conversion_successfull{boolean} 236m25 240r30
+234b25 return_is_water_flowing{boolean} 241m33 243m33 248r108 251r32
+273b25 out_water_flowing{boolean}
+X 22 gnatcoll.ads
+24K9*GNATCOLL 16|1r6 12r43 16r43 37r43 41r43 45r43 49r43 54r43 58r54 91r43
+. 95r43 99r43 103r48 138r43 142r43 17|1r6 9r43 12r25 20r43 28r25 49r43 52r25
+. 61r43 78r33 92r43 107r25 116r43 124r25 134r43 150r25 159r54 167r25 189r43
+. 192r25 201r43 217r33 231r43 246r25 256r48 264r25 289r43 292r25 301r43 304r25
+. 22|27e13
+X 36 gnatcoll-traces.ads
+251K18*Traces 16|1w15 12r52 16r52 37r52 41r52 45r52 49r52 54r52 58r63 91r52
+. 95r52 99r52 103r57 138r52 142r52 17|1w15 9r52 12r34 20r52 28r34 49r52 52r34
+. 61r52 78r42 92r52 107r34 116r52 124r34 134r52 150r34 159r63 167r34 189r52
+. 192r34 201r52 217r42 231r52 246r34 256r57 264r34 289r52 292r34 301r52 304r34
+. 36|927e20
+341P9*Trace_Handle(340R9) 16|12r59 16r59 37r59 41r59 45r59 49r59 54r59 58r70
+. 91r59 95r59 99r59 103r64 138r59 142r59 17|9r59 20r59 49r59 61r59 92r59
+. 116r59 134r59 159r70 189r59 201r59 231r59 256r64 289r59 301r59
+518U14*Trace 17|12s41 28s41 52s41 78s49 107s41 124s41 150s41 167s41 192s41
+. 217s49 246s41 264s41 292s41 304s41
+519p7 Handle(340R9) 17|13r33 29r33 53r33 79r41 108r33 125r33 151r33 168r33
+. 193r33 218r41 247r33 265r33 293r33 305r33
+520a7 Message{string} 17|14r33 30r33 54r33 80r41 109r33 126r33 152r33 169r33
+. 194r33 219r41 248r33 266r33 294r33 306r33
+X 43 system.ads
+67M9*Address
+X 60 s-memory.ads
+53V13*Alloc{43|67M9} 103i<c,__gnat_malloc>22
+68U14*Free 104i<c,__gnat_free>22
+76V13*Realloc{43|67M9} 105i<c,__gnat_realloc>22
+X 70 s-stausa.ads
 203U14*Initialize 204i<c,__gnat_stack_usage_initialize>22
 268U14*Output_Results 272i<c,__gnat_stack_usage_output_results>22
 

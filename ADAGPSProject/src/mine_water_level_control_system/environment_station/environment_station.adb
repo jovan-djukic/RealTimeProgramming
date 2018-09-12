@@ -3,6 +3,8 @@ with Ada.Real_Time;
 
 with devices;
 
+with Ada.Text_IO;
+
 package body environment_station is
 	
 	task body gas_sensor_controller_t is
@@ -14,9 +16,12 @@ package body environment_station is
 			MS => dealine_in_ms 
 		);
 
-		next_activation          : Ada.Real_Time.Time;
-		read_error_occured_count : Integer := 0;
-		alarm_turned_on			 : Boolean := False;	
+		next_activation            : Ada.Real_Time.Time;
+		read_error_occurred_count  : Integer := 0;
+		alarm_turned_on            : Boolean := False;
+		sensor_value               : Float;
+		sensor_read_error_occurred : Boolean;
+		is_threshold_breached      : Boolean;
 	begin
 		next_activation := Ada.Real_Time.Clock; 
 
@@ -31,65 +36,90 @@ package body environment_station is
 					delay Ada.Real_Time.To_Duration (
 						TS => deadline
 					);
-
 					GNATCOLL.Traces.Trace (
-						Handle  => stream,
+						Handle  => trace_handle,
 						Message => "Deadline breached"
+					);
+
+					Ada.Text_IO.Put_Line (
+						Item => "Deadline breached"
 					);
 				then abort
 				
-				if ( sensor.get_read_error_occurred = True ) then
-					GNATCOLL.Traces.Trace (
-						Handle  => stream,
-						Message => "Sensor read error occurred"
+					sensor_read_error_occurred := sensor.get_read_error_occurred (
+						trace_handle => trace_handle
 					);
-
-					read_error_occured_count := read_error_occured_count + 1;
 					
-					if ( read_error_occured_count >= read_error_occurred_count_threshold ) then
-						if ( alarm_turned_on = False ) then
-							GNATCOLL.Traces.Trace (
-								Handle  => stream,
-								Message => "Read error count threshold breached, turning on alarm"
-							);
+					if ( sensor_read_error_occurred = True ) then
+						GNATCOLL.Traces.Trace (
+							Handle  => trace_handle,
+							Message => "Sensor read error occurred"
+						);
 
-							alarm_controller.turn_on (
-								stream => stream
-							);
+						read_error_occurred_count := read_error_occurred_count + 1;
+						
+						if ( read_error_occurred_count >= read_error_occurred_count_threshold ) then
+							if ( alarm_turned_on = False ) then
+								GNATCOLL.Traces.Trace (
+									Handle  => trace_handle,
+									Message => "Read error count threshold breached, turning on alarm"
+								);
 
-							alarm_turned_on := True;
-						end if;
-					end if;	
-				else
-					read_error_occured_count := 0;
+								alarm_controller.turn_on (
+									trace_handle => trace_handle
+								);
 
-					if ( sensor.is_threshold_breached = True ) then
-						if ( alarm_turned_on = False ) then
-							GNATCOLL.Traces.Trace (
-								Handle  => stream,
-								Message => "Threshold breached, turning on alarm"
-							);
-
-							alarm_controller.turn_on (
-								stream => stream
-							);
-							alarm_turned_on := True;
-						end if;
+								alarm_turned_on := True;
+							end if;
+						end if;	
 					else
-						if ( alarm_turned_on = True ) then
-							GNATCOLL.Traces.Trace (
-								Handle  => stream,
-								Message => "State normal, turning off alarm"
-							);
+						read_error_occurred_count := 0;
 
-							alarm_controller.turn_off (
-								stream => stream
-							);
+						sensor_value := sensor.get_value (
+							trace_handle => trace_handle 
+						);
 
-							alarm_turned_on := False;
+						if ( detect_above_threshold = True ) then
+							if ( sensor_value > threshold.all ) then
+								is_threshold_breached := True;
+							else 
+								is_threshold_breached := False;
+							end if;
+						else
+							if ( sensor_value < threshold.all ) then
+								is_threshold_breached := True;
+							else 
+								is_threshold_breached := False;
+							end if;
+						end if;
+
+						if ( is_threshold_breached = True ) then
+							if ( alarm_turned_on = False ) then
+								GNATCOLL.Traces.Trace (
+									Handle  => trace_handle,
+									Message => "Threshold breached, turning on alarm"
+								);
+
+								alarm_controller.turn_on (
+									trace_handle => trace_handle
+								);
+								alarm_turned_on := True;
+							end if;
+						else
+							if ( alarm_turned_on = True ) then
+								GNATCOLL.Traces.Trace (
+									Handle  => trace_handle,
+									Message => "State normal, turning off alarm"
+								);
+
+								alarm_controller.turn_off (
+									trace_handle => trace_handle
+								);
+
+								alarm_turned_on := False;
+							end if;
 						end if;
 					end if;
-				end if;
 				
 				end select;
 			end select;
@@ -104,10 +134,14 @@ package body environment_station is
 
 		
 		GNATCOLL.Traces.Trace (
-			Handle  => stream,
+			Handle  => trace_handle,
 			Message => "Finished"
 		);
-
+	
+		exception
+			when others =>
+				Ada.Text_IO.Put_Line ( "EXCEPTION" );
+				raise;
 	end gas_sensor_controller_t;
 
 	task body ch4_sensor_controller_t is
@@ -120,9 +154,11 @@ package body environment_station is
 		);
 
 		next_activation          : Ada.Real_Time.Time;
-		read_error_occured_count : Integer := 0;
+		read_error_occurred_count : Integer := 0;
 		alarm_turned_on          : Boolean := False;
 		pump_threashold_breached : Boolean := False;
+		sensor_value : Float;
+		sensor_read_error_occurred : Boolean;
 	begin
 		next_activation := Ada.Real_Time.Clock; 
 
@@ -139,57 +175,69 @@ package body environment_station is
 					);
 
 					GNATCOLL.Traces.Trace (
-						Handle  => stream,
+						Handle  => trace_handle,
 						Message => "Deadline breached"
 					);
+
+					Ada.Text_IO.Put_Line (
+						Item => "Deadline breached"
+					);
 				then abort
+
+				sensor_read_error_occurred := sensor.get_read_error_occurred (
+					trace_handle => trace_handle
+				);
 				
-				if ( sensor.get_read_error_occurred = True ) then
+				if ( sensor_read_error_occurred = True ) then
 					GNATCOLL.Traces.Trace (
-						Handle  => stream,
+						Handle  => trace_handle,
 						Message => "Sensor read error occurred"
 					);
 
-					read_error_occured_count := read_error_occured_count + 1;
+					read_error_occurred_count := read_error_occurred_count + 1;
 					
-					if ( read_error_occured_count >= read_error_occurred_count_threshold ) then
+					if ( read_error_occurred_count >= read_error_occurred_count_threshold ) then
 						if ( alarm_turned_on = False ) then
 							GNATCOLL.Traces.Trace (
-								Handle  => stream,
+								Handle  => trace_handle,
 								Message => "Read error count threshold breached, turning on alarm"
 							);
 
 							alarm_controller.turn_on (
-								stream => stream
+								trace_handle => trace_handle
 							);
 
 							alarm_turned_on := True;
 						end if;
 					end if;	
 				else
-					read_error_occured_count := 0;
+					read_error_occurred_count := 0;
 
-					if ( sensor.is_threshold_breached = True ) then
+					sensor_value := sensor.get_value (
+						trace_handle => trace_handle
+					);
+
+					if ( sensor_value > threshold.all ) then
 						if ( alarm_turned_on = False ) then
 							GNATCOLL.Traces.Trace (
-								Handle  => stream,
+								Handle  => trace_handle,
 								Message => "Threshold breached, turning on alarm"
 							);
 
 							alarm_controller.turn_on (
-								stream => stream
+								trace_handle => trace_handle
 							);
 							alarm_turned_on := True;
 						end if;
 						
 						if ( pump_threashold_breached = False ) then
 							GNATCOLL.Traces.Trace (
-								Handle  => stream,
+								Handle  => trace_handle,
 								Message => "Threshold breached, signalizing pump"
 							);
 
 							pump_controller.threshold_breached (
-								stream => stream
+								trace_handle => trace_handle
 							);
 
 							pump_threashold_breached := True;
@@ -197,12 +245,12 @@ package body environment_station is
 					else
 						if ( alarm_turned_on = True ) then
 							GNATCOLL.Traces.Trace (
-								Handle  => stream,
+								Handle  => trace_handle,
 								Message => "State normal, turning off alarm"
 							);
 
 							alarm_controller.turn_off (
-								stream => stream
+								trace_handle => trace_handle
 							);
 
 							alarm_turned_on := False;
@@ -210,12 +258,12 @@ package body environment_station is
 
 						if ( pump_threashold_breached = True ) then
 							GNATCOLL.Traces.Trace (
-								Handle  => stream,
+								Handle  => trace_handle,
 								Message => "State normal, signalizing pump"
 							);
 
 							pump_controller.state_normal (
-								stream => stream
+								trace_handle => trace_handle
 							);
 
 							pump_threashold_breached := False;
@@ -225,6 +273,10 @@ package body environment_station is
 				
 				end select;
 			end select;
+
+			sensor.start_conversion (
+				trace_handle => trace_handle
+			);
 			
 			next_activation := Ada.Real_Time."+" ( 	
 				Left  => next_activation,
@@ -236,7 +288,7 @@ package body environment_station is
 
 		
 		GNATCOLL.Traces.Trace (
-			Handle  => stream,
+			Handle  => trace_handle,
 			Message => "Finished"
 		);
 
@@ -246,39 +298,52 @@ package body environment_station is
 		deadline : constant Ada.Real_Time.Time_Span := Ada.Real_Time.Milliseconds ( 
 			MS => dealine_in_ms 
 		);
+		
+		is_low_water_level_threshold_breached  : Boolean;
+		is_high_water_level_threshold_breached : Boolean;
 	begin
 		running_loop : loop
-			water_level_sensors.wait_for_value_change;
+			water_level_sensors.wait_for_interrupt;
+
 			select 
 				delay Ada.Real_Time.To_Duration (
 					TS => deadline
 				);
 
 				GNATCOLL.Traces.Trace (
-					Handle  => stream,
+					Handle  => trace_handle,
 					Message => "Deadline breached"
 				);
 			then abort
-				if ( water_level_sensors.is_low_water_level_threshold_breached = True ) then
+				is_low_water_level_threshold_breached := water_level_sensors.is_low_water_level_threshold_breached (
+					trace_handle => trace_handle
+				);
+
+				is_high_water_level_threshold_breached := water_level_sensors.is_high_water_level_threshold_breached (
+					trace_handle => trace_handle
+				);
+
+				if ( is_low_water_level_threshold_breached = True ) then
 					GNATCOLL.Traces.Trace (
-						Handle  => stream,
+						Handle  => trace_handle,
 						Message => "Low water level threshold breached"
 					);
 
 					pump_controller.turn_off (
-						stream => stream
+						trace_handle => trace_handle
 					);
-				elsif ( water_level_sensors.is_high_water_level_threshold_breached = True ) then 
+				elsif ( is_high_water_level_threshold_breached = True ) then 
 					GNATCOLL.Traces.Trace (
-						Handle  => stream,
+						Handle  => trace_handle,
 						Message => "High water level threshold breached"
 					);
 
 					pump_controller.turn_on (
-						stream => stream
+						trace_handle => trace_handle
 					);
 				end if;
 			end select;
 		end loop running_loop;
 	end water_level_sensors_controller_t;
+
 end environment_station;

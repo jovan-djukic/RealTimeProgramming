@@ -19,19 +19,19 @@ package pump_station is
 		pragma Priority ( priority );
 
 		procedure turn_on (
-			stream : in GNATCOLL.Traces.Trace_Handle
+			trace_handle : in GNATCOLL.Traces.Trace_Handle
 		);
 
 		procedure turn_off (
-			stream : in GNATCOLL.Traces.Trace_Handle
+			trace_handle : in GNATCOLL.Traces.Trace_Handle
 		);
 
 		procedure threshold_breached (
-			stream : in GNATCOLL.Traces.Trace_Handle
+			trace_handle : in GNATCOLL.Traces.Trace_Handle
 		);
 
 		procedure state_normal (
-			stream : in GNATCOLL.Traces.Trace_Handle
+			trace_handle : in GNATCOLL.Traces.Trace_Handle
 		);
 
 	private
@@ -47,7 +47,7 @@ package pump_station is
 		period_in_ms          : Integer;
 		deadline_in_ms        : Integer;
 		number_of_activations : Integer;
-		stream                : GNATCOLL.Traces.Trace_Handle
+		trace_handle          : GNATCOLL.Traces.Trace_Handle
 	) is
 		pragma Priority ( priority );
 

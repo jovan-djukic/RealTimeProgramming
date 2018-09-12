@@ -12,7 +12,7 @@ RV NO_IMPLEMENTATION_PRAGMAS
 RV SPARK_05
 RV MAX_ENTRY_QUEUE_LENGTH=1+
 
-U alarm_station%b	alarm_station.adb	7629ff9a NE OO PK IL
+U alarm_station%b	alarm_station.adb	225cf50e NE OO PK IL
 Z ada.tags%s		a-tags.adb		a-tags.ali
 W constants%s		constants.ads		constants.ali
 W devices%s		devices.adb		devices.ali
@@ -22,7 +22,7 @@ Z interfaces%s		interfac.ads		interfac.ali
 Z system.soft_links%s	s-soflin.adb		s-soflin.ali
 Z system.tasking.protected_objects%s  s-taprob.adb  s-taprob.ali
 
-U alarm_station%s	alarm_station.ads	1be98585 EE NE OO PK IL
+U alarm_station%s	alarm_station.ads	bf124d1d EE NE OO PK IL
 Z ada.tags%s		a-tags.adb		a-tags.ali
 W devices%s		devices.adb		devices.ali
 W gnatcoll%s		gnatcoll.ads		gnatcoll.ali
@@ -39,16 +39,17 @@ D a-contai.ads		20180524051736 61e5e089 ada.containers%s
 D a-except.ads		20180524051736 291912d5 ada.exceptions%s
 D a-finali.ads		20180524051738 bf4f806b ada.finalization%s
 D a-ioexce.ads		20180524051736 e4a01f64 ada.io_exceptions%s
+D a-reatim.ads		20180524051738 0240fc73 ada.real_time%s
 D a-stream.ads		20180524051736 119b8fb3 ada.streams%s
 D a-string.ads		20180524051736 90ac6797 ada.strings%s
 D a-tags.ads		20180524051738 491b781d ada.tags%s
 D a-textio.ads		20180524051738 881db35a ada.text_io%s
 D a-unccon.ads		20180524051738 0e9b276f ada.unchecked_conversion%s
 D a-uncdea.ads		20180524051736 eff36322 ada.unchecked_deallocation%s
-D alarm_station.ads	20180909132712 b2ea8fb6 alarm_station%s
-D alarm_station.adb	20180909133404 b257a358 alarm_station%b
-D constants.ads		20180909224024 ed37587f constants%s
-D devices.ads		20180909212602 d7649a5d devices%s
+D alarm_station.ads	20180912133716 9d6aa7f9 alarm_station%s
+D alarm_station.adb	20180912123112 82946aa5 alarm_station%b
+D constants.ads		20180912132938 2d7a538e constants%s
+D devices.ads		20180912143718 5c1f7a8a devices%s
 D gdk.ads		20180524063416 96d821f3 gdk%s
 D gdk-rgba.ads		20180524063422 2609514a gdk.rgba%s
 D glib.ads		20180524063416 cd438a72 glib%s
@@ -117,6 +118,7 @@ D s-string.ads		20180524051738 8fe54fb7 system.strings%s
 D s-ststop.ads		20180524051736 5fbf1b38 system.strings.stream_ops%s
 D s-tasinf.ads		20180524051738 601f6b72 system.task_info%s
 D s-taspri.ads		20180524051738 6c1d93d4 system.task_primitives%s
+D s-taprop.ads		20180524051738 1dd2e1b6 system.task_primitives.operations%s
 D s-taskin.ads		20180524051738 1d8c1ccb system.tasking%s
 D s-taprob.ads		20180524051738 acd6094d system.tasking.protected_objects%s
 D s-tpoben.ads		20180524051738 60ad3dae system.tasking.protected_objects.entries%s
@@ -125,55 +127,58 @@ D s-unstyp.ads		20180524051736 34867c83 system.unsigned_types%s
 D s-wchcon.ads		20180524051738 1b7d22d2 system.wch_con%s
 D s-win32.ads		20180524051736 b7f96285 system.win32%s
 X 4 a-chahan.ads
-66V13*To_Lower{character} 42|283i21
-67V13*To_Upper{character} 42|285i21
-X 16 alarm_station.ads
-5K9*alarm_station 28l5 28e18 17|6b14 73l5 73t18
-6E14*alarm_state_t 9e10 26r41
-7n17*ALARM_TURNED_ON{6E14} 17|24r66 28r38 48r38
-8n17*ALARM_TURNED_OFF{6E14} 26r58 17|14r38 44r38 61r58
-11W24*alarm_controller_t 12d17 13d17 25E17 27l13 27e31 17|8b24 72l13 72t31
-12i17 priority{54|101I12} 15r35
-17U27 turn_on 18>25 17|9b27 37l21 37t28
-18p25 stream{45|341P9} 17|10b25 20r60 30r60
-21U27 turn_off 22>25 17|39b27 70l21 70t29
-22p25 stream{45|341P9} 17|40b25 53r68 64r68
-25i17 number_of_activations{integer} 17|25r41 25r66 34r41 34r66 49r41 49r66
-. 51r46
-26e17 state{6E14} 17|13r32 24r41 43r32 61r49
-X 18 constants.ads
-8K9*constants 17|3w6 18|592e14
-X 19 devices.ads
-1K9*devices 16|3w6 13r35 17|4w6 16r62 58r70 19|78e12
-3n34*ON{3E14} 17|16r70
-3n38*OFF{3E14} 17|58r78
-5W24*device_t 16|13r43 19|14e21
-7U27 set_state 17|15s47 57s55
-8e25 new_state{3E14} 17|16r49 58r57
-X 25 glib-object.ads
+66V13*To_Lower{character} 43|283i21
+67V13*To_Upper{character} 43|285i21
+X 17 alarm_station.ads
+5K9*alarm_station 29l5 29e18 18|6b14 78l5 78t18
+6E14*alarm_state_t 9e10 27r41
+7n17*ALARM_TURNED_ON{6E14} 18|25r66 29r38 52r38
+8n17*ALARM_TURNED_OFF{6E14} 27r58 18|14r38 48r38 66r58
+11W24*alarm_controller_t 12d17 13d17 14d17 26E17 28l13 28e31 18|8b24 77l13
+. 77t31
+12i17 priority{55|101I12} 16r35
+14i17 number_of_activators{integer} 18|36r70 37r74
+18U27 turn_on 19>25 18|9b27 41l21 41t28
+19p25 trace_handle{46|341P9} 18|10b25 16r65 21r60 31r60
+22U27 turn_off 23>25 18|43b27 75l21 75t29
+23p25 trace_handle{46|341P9} 18|44b25 57r68 62r73 69r68
+26i17 number_of_activations{integer} 18|26r41 26r66 35r41 35r66 36r46 37r49
+. 53r41 53r66 55r46
+27e17 state{6E14} 18|13r32 25r41 47r32 66r49
+X 19 constants.ads
+8K9*constants 18|3w6 19|617e14
+X 20 devices.ads
+4K9*devices 17|3w6 13r47 18|4w6 17r65 63r73 20|158e12
+6n34*ON{6E14} 18|17r73
+6n38*OFF{6E14} 18|63r81
+8W24*device_t 17|13r55 20|28e21
+15U27 set_state 18|15s47 61s55
+16p25 trace_handle{46|341P9} 18|16r49 62r57
+17e25 new_state{6E14} 18|17r49 63r57
+X 26 glib-object.ads
 41P9*GObject(40R9)
-673V13*Convert{54|67M9} 23|58i21 24|49i21
-674V13*Convert{41P9} 23|59i21 24|50i21
-X 31 gnatcoll.ads
-24K9*GNATCOLL 16|2r6 18r37 22r37 17|1r6 10r37 19r41 29r41 40r37 52r49 63r49
-. 31|27e13
-X 45 gnatcoll-traces.ads
-251K18*Traces 16|2w15 18r46 22r46 17|1w15 10r46 19r50 29r50 40r46 52r58 63r58
-. 45|927e20
-341P9*Trace_Handle(340R9) 16|18r53 22r53 17|10r53 40r53
-518U14*Trace 17|19s57 29s57 52s65 63s65
-519p7 Handle(340R9) 17|20r49 30r49 53r57 64r57
-520a7 Message{string} 17|21r49 31r49 54r57 65r57
-X 54 system.ads
-37K9*System 16|1w6 12r28 54|200e11
+673V13*Convert{55|67M9} 24|58i21 25|49i21
+674V13*Convert{41P9} 24|59i21 25|50i21
+X 32 gnatcoll.ads
+24K9*GNATCOLL 17|2r6 19r43 23r43 18|1r6 10r43 20r41 30r41 44r43 56r49 68r49
+. 32|27e13
+X 46 gnatcoll-traces.ads
+251K18*Traces 17|2w15 19r52 23r52 18|1w15 10r52 20r50 30r50 44r52 56r58 68r58
+. 46|927e20
+341P9*Trace_Handle(340R9) 17|19r59 23r59 18|10r59 44r59
+518U14*Trace 18|20s57 30s57 56s65 68s65
+519p7 Handle(340R9) 18|21r49 31r49 57r57 69r57
+520a7 Message{string} 18|22r49 32r49 58r57 70r57
+X 55 system.ads
+37K9*System 17|1w6 12r40 55|200e11
 67M9*Address
 100I12*Any_Priority{integer}
-101I12*Priority{100I12} 16|12r35
-X 66 s-memory.ads
-53V13*Alloc{54|67M9} 103i<c,__gnat_malloc>22
+101I12*Priority{100I12} 17|12r47
+X 67 s-memory.ads
+53V13*Alloc{55|67M9} 103i<c,__gnat_malloc>22
 68U14*Free 104i<c,__gnat_free>22
-76V13*Realloc{54|67M9} 105i<c,__gnat_realloc>22
-X 76 s-stausa.ads
+76V13*Realloc{55|67M9} 105i<c,__gnat_realloc>22
+X 77 s-stausa.ads
 203U14*Initialize 204i<c,__gnat_stack_usage_initialize>22
 268U14*Output_Results 272i<c,__gnat_stack_usage_output_results>22
 

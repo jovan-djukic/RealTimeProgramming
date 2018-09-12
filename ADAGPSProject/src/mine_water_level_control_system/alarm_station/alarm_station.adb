@@ -7,17 +7,18 @@ package body alarm_station is
 
 	protected body alarm_controller_t  is
 		procedure turn_on (
-			stream : in GNATCOLL.Traces.Trace_Handle
+			trace_handle : in GNATCOLL.Traces.Trace_Handle
 		) is 
 		begin
 			case ( state ) is
 				when ALARM_TURNED_OFF => begin
 					alarm.set_state (
-						new_state => devices.ON
+						trace_handle => trace_handle,
+						new_state    => devices.ON
 					);
 					
 					GNATCOLL.Traces.Trace (
-						Handle  => stream,
+						Handle  => trace_handle,
 						Message => "Initial alarm turn on, turning on alarm"
 					);
 
@@ -27,17 +28,20 @@ package body alarm_station is
 
 				when ALARM_TURNED_ON  => begin
 					GNATCOLL.Traces.Trace (
-						Handle  => stream,
+						Handle  => trace_handle,
 						Message => "Following alarm turn on"
 					);
 
 					number_of_activations := number_of_activations + 1;
+					if ( number_of_activations > number_of_activators ) then
+						number_of_activations := number_of_activators;
+					end if;
 				end;
 			end case;	
 		end turn_on;	
 
 		procedure turn_off (
-			stream : in GNATCOLL.Traces.Trace_Handle
+			trace_handle : in GNATCOLL.Traces.Trace_Handle
 		) is 
 		begin
 			case ( state ) is
@@ -50,18 +54,19 @@ package body alarm_station is
 
 					if ( number_of_activations = 0 ) then
 						GNATCOLL.Traces.Trace (
-							Handle  => stream,
+							Handle  => trace_handle,
 							Message => "Last alarm turn off, turning off alarm"
 						);
 
 						alarm.set_state (
-							new_state => devices.OFF
+							trace_handle => trace_handle,
+							new_state    => devices.OFF
 						);
 
 						state := ALARM_TURNED_OFF;
 					else
 						GNATCOLL.Traces.Trace (
-							Handle  => stream,
+							Handle  => trace_handle,
 							Message => "Alarm turn off"
 						);
 					end if;

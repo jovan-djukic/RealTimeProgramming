@@ -25,160 +25,160 @@ package body ada_main is
    E037 : Short_Integer; pragma Import (Ada, E037, "system__traceback__symbolic_E");
    E097 : Short_Integer; pragma Import (Ada, E097, "ada__tags_E");
    E105 : Short_Integer; pragma Import (Ada, E105, "ada__streams_E");
-   E122 : Short_Integer; pragma Import (Ada, E122, "interfaces__c__strings_E");
+   E146 : Short_Integer; pragma Import (Ada, E146, "interfaces__c__strings_E");
    E113 : Short_Integer; pragma Import (Ada, E113, "system__file_control_block_E");
    E112 : Short_Integer; pragma Import (Ada, E112, "system__finalization_root_E");
    E110 : Short_Integer; pragma Import (Ada, E110, "ada__finalization_E");
    E109 : Short_Integer; pragma Import (Ada, E109, "system__file_io_E");
-   E255 : Short_Integer; pragma Import (Ada, E255, "ada__streams__stream_io_E");
-   E128 : Short_Integer; pragma Import (Ada, E128, "system__storage_pools_E");
-   E124 : Short_Integer; pragma Import (Ada, E124, "system__finalization_masters_E");
-   E134 : Short_Integer; pragma Import (Ada, E134, "system__storage_pools__subpools_E");
-   E201 : Short_Integer; pragma Import (Ada, E201, "ada__strings__unbounded_E");
-   E326 : Short_Integer; pragma Import (Ada, E326, "system__task_info_E");
-   E215 : Short_Integer; pragma Import (Ada, E215, "system__regpat_E");
-   E167 : Short_Integer; pragma Import (Ada, E167, "ada__calendar_E");
+   E231 : Short_Integer; pragma Import (Ada, E231, "ada__streams__stream_io_E");
+   E170 : Short_Integer; pragma Import (Ada, E170, "system__storage_pools_E");
+   E166 : Short_Integer; pragma Import (Ada, E166, "system__finalization_masters_E");
+   E164 : Short_Integer; pragma Import (Ada, E164, "system__storage_pools__subpools_E");
+   E158 : Short_Integer; pragma Import (Ada, E158, "ada__strings__unbounded_E");
+   E308 : Short_Integer; pragma Import (Ada, E308, "system__task_info_E");
+   E184 : Short_Integer; pragma Import (Ada, E184, "system__regpat_E");
+   E121 : Short_Integer; pragma Import (Ada, E121, "ada__calendar_E");
    E567 : Short_Integer; pragma Import (Ada, E567, "ada__calendar__delays_E");
-   E176 : Short_Integer; pragma Import (Ada, E176, "ada__calendar__time_zones_E");
-   E539 : Short_Integer; pragma Import (Ada, E539, "ada__real_time_E");
+   E130 : Short_Integer; pragma Import (Ada, E130, "ada__calendar__time_zones_E");
+   E334 : Short_Integer; pragma Import (Ada, E334, "ada__real_time_E");
    E103 : Short_Integer; pragma Import (Ada, E103, "ada__text_io_E");
-   E196 : Short_Integer; pragma Import (Ada, E196, "gnat__calendar_E");
-   E199 : Short_Integer; pragma Import (Ada, E199, "gnat__calendar__time_io_E");
-   E272 : Short_Integer; pragma Import (Ada, E272, "gnat__directory_operations_E");
-   E288 : Short_Integer; pragma Import (Ada, E288, "system__assertions_E");
-   E234 : Short_Integer; pragma Import (Ada, E234, "system__checked_pools_E");
-   E225 : Short_Integer; pragma Import (Ada, E225, "gnat__debug_pools_E");
-   E130 : Short_Integer; pragma Import (Ada, E130, "system__pool_global_E");
-   E282 : Short_Integer; pragma Import (Ada, E282, "gnat__expect_E");
-   E251 : Short_Integer; pragma Import (Ada, E251, "system__pool_size_E");
-   E268 : Short_Integer; pragma Import (Ada, E268, "system__regexp_E");
-   E262 : Short_Integer; pragma Import (Ada, E262, "ada__directories_E");
-   E344 : Short_Integer; pragma Import (Ada, E344, "system__tasking__initialization_E");
-   E312 : Short_Integer; pragma Import (Ada, E312, "system__tasking__protected_objects_E");
-   E340 : Short_Integer; pragma Import (Ada, E340, "system__tasking__protected_objects__entries_E");
-   E352 : Short_Integer; pragma Import (Ada, E352, "system__tasking__queuing_E");
-   E537 : Short_Integer; pragma Import (Ada, E537, "system__tasking__stages_E");
+   E153 : Short_Integer; pragma Import (Ada, E153, "gnat__calendar_E");
+   E156 : Short_Integer; pragma Import (Ada, E156, "gnat__calendar__time_io_E");
+   E248 : Short_Integer; pragma Import (Ada, E248, "gnat__directory_operations_E");
+   E264 : Short_Integer; pragma Import (Ada, E264, "system__assertions_E");
+   E207 : Short_Integer; pragma Import (Ada, E207, "system__checked_pools_E");
+   E196 : Short_Integer; pragma Import (Ada, E196, "gnat__debug_pools_E");
+   E216 : Short_Integer; pragma Import (Ada, E216, "system__pool_global_E");
+   E258 : Short_Integer; pragma Import (Ada, E258, "gnat__expect_E");
+   E227 : Short_Integer; pragma Import (Ada, E227, "system__pool_size_E");
+   E244 : Short_Integer; pragma Import (Ada, E244, "system__regexp_E");
+   E238 : Short_Integer; pragma Import (Ada, E238, "ada__directories_E");
+   E320 : Short_Integer; pragma Import (Ada, E320, "system__tasking__initialization_E");
+   E294 : Short_Integer; pragma Import (Ada, E294, "system__tasking__protected_objects_E");
+   E316 : Short_Integer; pragma Import (Ada, E316, "system__tasking__protected_objects__entries_E");
+   E328 : Short_Integer; pragma Import (Ada, E328, "system__tasking__queuing_E");
+   E539 : Short_Integer; pragma Import (Ada, E539, "system__tasking__stages_E");
    E571 : Short_Integer; pragma Import (Ada, E571, "system__tasking__async_delays_E");
-   E117 : Short_Integer; pragma Import (Ada, E117, "glib_E");
-   E120 : Short_Integer; pragma Import (Ada, E120, "gtkada__types_E");
-   E310 : Short_Integer; pragma Import (Ada, E310, "devices_E");
-   E398 : Short_Integer; pragma Import (Ada, E398, "gdk__frame_timings_E");
-   E160 : Short_Integer; pragma Import (Ada, E160, "glib__glist_E");
-   E380 : Short_Integer; pragma Import (Ada, E380, "gdk__visual_E");
-   E162 : Short_Integer; pragma Import (Ada, E162, "glib__gslist_E");
-   E221 : Short_Integer; pragma Import (Ada, E221, "gnatcoll__atomic_E");
-   E223 : Short_Integer; pragma Import (Ada, E223, "gnatcoll__memory_E");
-   E248 : Short_Integer; pragma Import (Ada, E248, "gnatcoll__storage_pools__headers_E");
-   E246 : Short_Integer; pragma Import (Ada, E246, "gnatcoll__refcount_E");
-   E244 : Short_Integer; pragma Import (Ada, E244, "gnatcoll__strings_impl_E");
-   E242 : Short_Integer; pragma Import (Ada, E242, "gnatcoll__strings_E");
-   E241 : Short_Integer; pragma Import (Ada, E241, "gnatcoll__strings_E");
-   E284 : Short_Integer; pragma Import (Ada, E284, "gnatcoll__templates_E");
-   E286 : Short_Integer; pragma Import (Ada, E286, "gnatcoll__terminal_E");
-   E278 : Short_Integer; pragma Import (Ada, E278, "gnatcoll__utils_E");
-   E240 : Short_Integer; pragma Import (Ada, E240, "gnatcoll__io_E");
-   E276 : Short_Integer; pragma Import (Ada, E276, "gnatcoll__path_E");
-   E260 : Short_Integer; pragma Import (Ada, E260, "gnatcoll__io__native_E");
-   E236 : Short_Integer; pragma Import (Ada, E236, "gnatcoll__mmap_E");
-   E238 : Short_Integer; pragma Import (Ada, E238, "gnatcoll__mmap__system_E");
-   E304 : Short_Integer; pragma Import (Ada, E304, "gnatcoll__remote_E");
-   E308 : Short_Integer; pragma Import (Ada, E308, "gnatcoll__remote__db_E");
-   E301 : Short_Integer; pragma Import (Ada, E301, "gnatcoll__io__remote_E");
-   E306 : Short_Integer; pragma Import (Ada, E306, "gnatcoll__io__remote__windows_E");
-   E303 : Short_Integer; pragma Import (Ada, E303, "gnatcoll__io__remote__unix_E");
-   E293 : Short_Integer; pragma Import (Ada, E293, "gnatcoll__vfs_E");
-   E165 : Short_Integer; pragma Import (Ada, E165, "gnatcoll__traces_E");
-   E154 : Short_Integer; pragma Import (Ada, E154, "gtkada__c_E");
-   E144 : Short_Integer; pragma Import (Ada, E144, "glib__object_E");
-   E158 : Short_Integer; pragma Import (Ada, E158, "glib__values_E");
-   E156 : Short_Integer; pragma Import (Ada, E156, "glib__types_E");
-   E146 : Short_Integer; pragma Import (Ada, E146, "glib__type_conversion_hooks_E");
-   E148 : Short_Integer; pragma Import (Ada, E148, "gtkada__bindings_E");
-   E363 : Short_Integer; pragma Import (Ada, E363, "cairo_E");
-   E365 : Short_Integer; pragma Import (Ada, E365, "cairo__region_E");
-   E369 : Short_Integer; pragma Import (Ada, E369, "gdk__rectangle_E");
-   E142 : Short_Integer; pragma Import (Ada, E142, "glib__generic_properties_E");
-   E390 : Short_Integer; pragma Import (Ada, E390, "gdk__color_E");
-   E140 : Short_Integer; pragma Import (Ada, E140, "gdk__rgba_E");
+   E337 : Short_Integer; pragma Import (Ada, E337, "glib_E");
+   E340 : Short_Integer; pragma Import (Ada, E340, "gtkada__types_E");
+   E402 : Short_Integer; pragma Import (Ada, E402, "gdk__frame_timings_E");
+   E358 : Short_Integer; pragma Import (Ada, E358, "glib__glist_E");
+   E384 : Short_Integer; pragma Import (Ada, E384, "gdk__visual_E");
+   E360 : Short_Integer; pragma Import (Ada, E360, "glib__gslist_E");
+   E190 : Short_Integer; pragma Import (Ada, E190, "gnatcoll__atomic_E");
+   E192 : Short_Integer; pragma Import (Ada, E192, "gnatcoll__memory_E");
+   E224 : Short_Integer; pragma Import (Ada, E224, "gnatcoll__storage_pools__headers_E");
+   E222 : Short_Integer; pragma Import (Ada, E222, "gnatcoll__refcount_E");
+   E220 : Short_Integer; pragma Import (Ada, E220, "gnatcoll__strings_impl_E");
+   E218 : Short_Integer; pragma Import (Ada, E218, "gnatcoll__strings_E");
+   E217 : Short_Integer; pragma Import (Ada, E217, "gnatcoll__strings_E");
+   E260 : Short_Integer; pragma Import (Ada, E260, "gnatcoll__templates_E");
+   E262 : Short_Integer; pragma Import (Ada, E262, "gnatcoll__terminal_E");
+   E254 : Short_Integer; pragma Import (Ada, E254, "gnatcoll__utils_E");
+   E214 : Short_Integer; pragma Import (Ada, E214, "gnatcoll__io_E");
+   E252 : Short_Integer; pragma Import (Ada, E252, "gnatcoll__path_E");
+   E236 : Short_Integer; pragma Import (Ada, E236, "gnatcoll__io__native_E");
+   E209 : Short_Integer; pragma Import (Ada, E209, "gnatcoll__mmap_E");
+   E211 : Short_Integer; pragma Import (Ada, E211, "gnatcoll__mmap__system_E");
+   E280 : Short_Integer; pragma Import (Ada, E280, "gnatcoll__remote_E");
+   E284 : Short_Integer; pragma Import (Ada, E284, "gnatcoll__remote__db_E");
+   E277 : Short_Integer; pragma Import (Ada, E277, "gnatcoll__io__remote_E");
+   E282 : Short_Integer; pragma Import (Ada, E282, "gnatcoll__io__remote__windows_E");
+   E279 : Short_Integer; pragma Import (Ada, E279, "gnatcoll__io__remote__unix_E");
+   E269 : Short_Integer; pragma Import (Ada, E269, "gnatcoll__vfs_E");
+   E119 : Short_Integer; pragma Import (Ada, E119, "gnatcoll__traces_E");
+   E116 : Short_Integer; pragma Import (Ada, E116, "devices_E");
+   E352 : Short_Integer; pragma Import (Ada, E352, "gtkada__c_E");
+   E346 : Short_Integer; pragma Import (Ada, E346, "glib__object_E");
+   E356 : Short_Integer; pragma Import (Ada, E356, "glib__values_E");
+   E354 : Short_Integer; pragma Import (Ada, E354, "glib__types_E");
+   E348 : Short_Integer; pragma Import (Ada, E348, "glib__type_conversion_hooks_E");
+   E350 : Short_Integer; pragma Import (Ada, E350, "gtkada__bindings_E");
+   E367 : Short_Integer; pragma Import (Ada, E367, "cairo_E");
+   E369 : Short_Integer; pragma Import (Ada, E369, "cairo__region_E");
+   E373 : Short_Integer; pragma Import (Ada, E373, "gdk__rectangle_E");
+   E344 : Short_Integer; pragma Import (Ada, E344, "glib__generic_properties_E");
+   E394 : Short_Integer; pragma Import (Ada, E394, "gdk__color_E");
+   E342 : Short_Integer; pragma Import (Ada, E342, "gdk__rgba_E");
    E114 : Short_Integer; pragma Import (Ada, E114, "constants_E");
    E563 : Short_Integer; pragma Import (Ada, E563, "alarm_station_E");
-   E367 : Short_Integer; pragma Import (Ada, E367, "gdk__event_E");
-   E501 : Short_Integer; pragma Import (Ada, E501, "glib__key_file_E");
-   E382 : Short_Integer; pragma Import (Ada, E382, "glib__properties_E");
-   E463 : Short_Integer; pragma Import (Ada, E463, "glib__string_E");
-   E461 : Short_Integer; pragma Import (Ada, E461, "glib__variant_E");
-   E459 : Short_Integer; pragma Import (Ada, E459, "glib__g_icon_E");
-   E523 : Short_Integer; pragma Import (Ada, E523, "gtk__actionable_E");
-   E406 : Short_Integer; pragma Import (Ada, E406, "gtk__builder_E");
-   E443 : Short_Integer; pragma Import (Ada, E443, "gtk__buildable_E");
-   E475 : Short_Integer; pragma Import (Ada, E475, "gtk__cell_area_context_E");
-   E491 : Short_Integer; pragma Import (Ada, E491, "gtk__css_section_E");
-   E384 : Short_Integer; pragma Import (Ada, E384, "gtk__enums_E");
-   E449 : Short_Integer; pragma Import (Ada, E449, "gtk__orientable_E");
-   E503 : Short_Integer; pragma Import (Ada, E503, "gtk__paper_size_E");
-   E499 : Short_Integer; pragma Import (Ada, E499, "gtk__page_setup_E");
-   E511 : Short_Integer; pragma Import (Ada, E511, "gtk__print_settings_E");
-   E414 : Short_Integer; pragma Import (Ada, E414, "gtk__target_entry_E");
-   E412 : Short_Integer; pragma Import (Ada, E412, "gtk__target_list_E");
-   E419 : Short_Integer; pragma Import (Ada, E419, "pango__enums_E");
-   E437 : Short_Integer; pragma Import (Ada, E437, "pango__attributes_E");
-   E423 : Short_Integer; pragma Import (Ada, E423, "pango__font_metrics_E");
-   E425 : Short_Integer; pragma Import (Ada, E425, "pango__language_E");
-   E421 : Short_Integer; pragma Import (Ada, E421, "pango__font_E");
-   E517 : Short_Integer; pragma Import (Ada, E517, "gtk__text_attributes_E");
-   E519 : Short_Integer; pragma Import (Ada, E519, "gtk__text_tag_E");
-   E429 : Short_Integer; pragma Import (Ada, E429, "pango__font_face_E");
-   E427 : Short_Integer; pragma Import (Ada, E427, "pango__font_family_E");
-   E431 : Short_Integer; pragma Import (Ada, E431, "pango__fontset_E");
-   E433 : Short_Integer; pragma Import (Ada, E433, "pango__matrix_E");
-   E417 : Short_Integer; pragma Import (Ada, E417, "pango__context_E");
-   E507 : Short_Integer; pragma Import (Ada, E507, "pango__font_map_E");
-   E439 : Short_Integer; pragma Import (Ada, E439, "pango__tabs_E");
-   E435 : Short_Integer; pragma Import (Ada, E435, "pango__layout_E");
-   E505 : Short_Integer; pragma Import (Ada, E505, "gtk__print_context_E");
-   E378 : Short_Integer; pragma Import (Ada, E378, "gdk__display_E");
-   E509 : Short_Integer; pragma Import (Ada, E509, "gtk__print_operation_preview_E");
-   E481 : Short_Integer; pragma Import (Ada, E481, "gtk__tree_model_E");
-   E469 : Short_Integer; pragma Import (Ada, E469, "gtk__entry_buffer_E");
-   E467 : Short_Integer; pragma Import (Ada, E467, "gtk__editable_E");
-   E465 : Short_Integer; pragma Import (Ada, E465, "gtk__cell_editable_E");
-   E447 : Short_Integer; pragma Import (Ada, E447, "gtk__adjustment_E");
-   E410 : Short_Integer; pragma Import (Ada, E410, "gtk__style_E");
-   E404 : Short_Integer; pragma Import (Ada, E404, "gtk__accel_group_E");
-   E396 : Short_Integer; pragma Import (Ada, E396, "gdk__frame_clock_E");
-   E400 : Short_Integer; pragma Import (Ada, E400, "gdk__pixbuf_E");
-   E487 : Short_Integer; pragma Import (Ada, E487, "gtk__icon_source_E");
-   E376 : Short_Integer; pragma Import (Ada, E376, "gdk__screen_E");
-   E515 : Short_Integer; pragma Import (Ada, E515, "gtk__text_iter_E");
-   E408 : Short_Integer; pragma Import (Ada, E408, "gtk__selection_data_E");
-   E392 : Short_Integer; pragma Import (Ada, E392, "gdk__device_E");
-   E394 : Short_Integer; pragma Import (Ada, E394, "gdk__drag_contexts_E");
-   E388 : Short_Integer; pragma Import (Ada, E388, "gtk__widget_E");
-   E493 : Short_Integer; pragma Import (Ada, E493, "gtk__misc_E");
-   E386 : Short_Integer; pragma Import (Ada, E386, "gtk__style_provider_E");
-   E374 : Short_Integer; pragma Import (Ada, E374, "gtk__settings_E");
-   E453 : Short_Integer; pragma Import (Ada, E453, "gdk__window_E");
-   E489 : Short_Integer; pragma Import (Ada, E489, "gtk__style_context_E");
-   E485 : Short_Integer; pragma Import (Ada, E485, "gtk__icon_set_E");
-   E483 : Short_Integer; pragma Import (Ada, E483, "gtk__image_E");
-   E479 : Short_Integer; pragma Import (Ada, E479, "gtk__cell_renderer_E");
-   E445 : Short_Integer; pragma Import (Ada, E445, "gtk__container_E");
-   E455 : Short_Integer; pragma Import (Ada, E455, "gtk__bin_E");
-   E441 : Short_Integer; pragma Import (Ada, E441, "gtk__box_E");
-   E513 : Short_Integer; pragma Import (Ada, E513, "gtk__status_bar_E");
-   E495 : Short_Integer; pragma Import (Ada, E495, "gtk__notebook_E");
-   E477 : Short_Integer; pragma Import (Ada, E477, "gtk__cell_layout_E");
-   E473 : Short_Integer; pragma Import (Ada, E473, "gtk__cell_area_E");
-   E471 : Short_Integer; pragma Import (Ada, E471, "gtk__entry_completion_E");
-   E451 : Short_Integer; pragma Import (Ada, E451, "gtk__window_E");
-   E372 : Short_Integer; pragma Import (Ada, E372, "gtk__dialog_E");
-   E497 : Short_Integer; pragma Import (Ada, E497, "gtk__print_operation_E");
-   E457 : Short_Integer; pragma Import (Ada, E457, "gtk__gentry_E");
-   E361 : Short_Integer; pragma Import (Ada, E361, "gtk__arguments_E");
+   E371 : Short_Integer; pragma Import (Ada, E371, "gdk__event_E");
+   E505 : Short_Integer; pragma Import (Ada, E505, "glib__key_file_E");
+   E386 : Short_Integer; pragma Import (Ada, E386, "glib__properties_E");
+   E467 : Short_Integer; pragma Import (Ada, E467, "glib__string_E");
+   E465 : Short_Integer; pragma Import (Ada, E465, "glib__variant_E");
+   E463 : Short_Integer; pragma Import (Ada, E463, "glib__g_icon_E");
+   E527 : Short_Integer; pragma Import (Ada, E527, "gtk__actionable_E");
+   E410 : Short_Integer; pragma Import (Ada, E410, "gtk__builder_E");
+   E447 : Short_Integer; pragma Import (Ada, E447, "gtk__buildable_E");
+   E479 : Short_Integer; pragma Import (Ada, E479, "gtk__cell_area_context_E");
+   E495 : Short_Integer; pragma Import (Ada, E495, "gtk__css_section_E");
+   E388 : Short_Integer; pragma Import (Ada, E388, "gtk__enums_E");
+   E453 : Short_Integer; pragma Import (Ada, E453, "gtk__orientable_E");
+   E507 : Short_Integer; pragma Import (Ada, E507, "gtk__paper_size_E");
+   E503 : Short_Integer; pragma Import (Ada, E503, "gtk__page_setup_E");
+   E515 : Short_Integer; pragma Import (Ada, E515, "gtk__print_settings_E");
+   E418 : Short_Integer; pragma Import (Ada, E418, "gtk__target_entry_E");
+   E416 : Short_Integer; pragma Import (Ada, E416, "gtk__target_list_E");
+   E423 : Short_Integer; pragma Import (Ada, E423, "pango__enums_E");
+   E441 : Short_Integer; pragma Import (Ada, E441, "pango__attributes_E");
+   E427 : Short_Integer; pragma Import (Ada, E427, "pango__font_metrics_E");
+   E429 : Short_Integer; pragma Import (Ada, E429, "pango__language_E");
+   E425 : Short_Integer; pragma Import (Ada, E425, "pango__font_E");
+   E521 : Short_Integer; pragma Import (Ada, E521, "gtk__text_attributes_E");
+   E523 : Short_Integer; pragma Import (Ada, E523, "gtk__text_tag_E");
+   E433 : Short_Integer; pragma Import (Ada, E433, "pango__font_face_E");
+   E431 : Short_Integer; pragma Import (Ada, E431, "pango__font_family_E");
+   E435 : Short_Integer; pragma Import (Ada, E435, "pango__fontset_E");
+   E437 : Short_Integer; pragma Import (Ada, E437, "pango__matrix_E");
+   E421 : Short_Integer; pragma Import (Ada, E421, "pango__context_E");
+   E511 : Short_Integer; pragma Import (Ada, E511, "pango__font_map_E");
+   E443 : Short_Integer; pragma Import (Ada, E443, "pango__tabs_E");
+   E439 : Short_Integer; pragma Import (Ada, E439, "pango__layout_E");
+   E509 : Short_Integer; pragma Import (Ada, E509, "gtk__print_context_E");
+   E382 : Short_Integer; pragma Import (Ada, E382, "gdk__display_E");
+   E513 : Short_Integer; pragma Import (Ada, E513, "gtk__print_operation_preview_E");
+   E485 : Short_Integer; pragma Import (Ada, E485, "gtk__tree_model_E");
+   E473 : Short_Integer; pragma Import (Ada, E473, "gtk__entry_buffer_E");
+   E471 : Short_Integer; pragma Import (Ada, E471, "gtk__editable_E");
+   E469 : Short_Integer; pragma Import (Ada, E469, "gtk__cell_editable_E");
+   E451 : Short_Integer; pragma Import (Ada, E451, "gtk__adjustment_E");
+   E414 : Short_Integer; pragma Import (Ada, E414, "gtk__style_E");
+   E408 : Short_Integer; pragma Import (Ada, E408, "gtk__accel_group_E");
+   E400 : Short_Integer; pragma Import (Ada, E400, "gdk__frame_clock_E");
+   E404 : Short_Integer; pragma Import (Ada, E404, "gdk__pixbuf_E");
+   E491 : Short_Integer; pragma Import (Ada, E491, "gtk__icon_source_E");
+   E380 : Short_Integer; pragma Import (Ada, E380, "gdk__screen_E");
+   E519 : Short_Integer; pragma Import (Ada, E519, "gtk__text_iter_E");
+   E412 : Short_Integer; pragma Import (Ada, E412, "gtk__selection_data_E");
+   E396 : Short_Integer; pragma Import (Ada, E396, "gdk__device_E");
+   E398 : Short_Integer; pragma Import (Ada, E398, "gdk__drag_contexts_E");
+   E392 : Short_Integer; pragma Import (Ada, E392, "gtk__widget_E");
+   E497 : Short_Integer; pragma Import (Ada, E497, "gtk__misc_E");
+   E390 : Short_Integer; pragma Import (Ada, E390, "gtk__style_provider_E");
+   E378 : Short_Integer; pragma Import (Ada, E378, "gtk__settings_E");
+   E457 : Short_Integer; pragma Import (Ada, E457, "gdk__window_E");
+   E493 : Short_Integer; pragma Import (Ada, E493, "gtk__style_context_E");
+   E489 : Short_Integer; pragma Import (Ada, E489, "gtk__icon_set_E");
+   E487 : Short_Integer; pragma Import (Ada, E487, "gtk__image_E");
+   E483 : Short_Integer; pragma Import (Ada, E483, "gtk__cell_renderer_E");
+   E449 : Short_Integer; pragma Import (Ada, E449, "gtk__container_E");
+   E459 : Short_Integer; pragma Import (Ada, E459, "gtk__bin_E");
+   E445 : Short_Integer; pragma Import (Ada, E445, "gtk__box_E");
+   E517 : Short_Integer; pragma Import (Ada, E517, "gtk__status_bar_E");
+   E499 : Short_Integer; pragma Import (Ada, E499, "gtk__notebook_E");
+   E481 : Short_Integer; pragma Import (Ada, E481, "gtk__cell_layout_E");
+   E477 : Short_Integer; pragma Import (Ada, E477, "gtk__cell_area_E");
+   E475 : Short_Integer; pragma Import (Ada, E475, "gtk__entry_completion_E");
+   E455 : Short_Integer; pragma Import (Ada, E455, "gtk__window_E");
+   E376 : Short_Integer; pragma Import (Ada, E376, "gtk__dialog_E");
+   E501 : Short_Integer; pragma Import (Ada, E501, "gtk__print_operation_E");
+   E461 : Short_Integer; pragma Import (Ada, E461, "gtk__gentry_E");
+   E365 : Short_Integer; pragma Import (Ada, E365, "gtk__arguments_E");
    E549 : Short_Integer; pragma Import (Ada, E549, "glib__menu_model_E");
-   E521 : Short_Integer; pragma Import (Ada, E521, "gtk__action_E");
-   E525 : Short_Integer; pragma Import (Ada, E525, "gtk__activatable_E");
-   E359 : Short_Integer; pragma Import (Ada, E359, "gtk__button_E");
+   E525 : Short_Integer; pragma Import (Ada, E525, "gtk__action_E");
+   E529 : Short_Integer; pragma Import (Ada, E529, "gtk__activatable_E");
+   E363 : Short_Integer; pragma Import (Ada, E363, "gtk__button_E");
    E543 : Short_Integer; pragma Import (Ada, E543, "gtk__color_chooser_E");
    E541 : Short_Integer; pragma Import (Ada, E541, "gtk__color_button_E");
    E557 : Short_Integer; pragma Import (Ada, E557, "gtk__grid_E");
@@ -188,11 +188,11 @@ package body ada_main is
    E547 : Short_Integer; pragma Import (Ada, E547, "gtk__menu_E");
    E545 : Short_Integer; pragma Import (Ada, E545, "gtk__label_E");
    E555 : Short_Integer; pragma Import (Ada, E555, "gtk__progress_bar_E");
-   E531 : Short_Integer; pragma Import (Ada, E531, "controllers_E");
+   E535 : Short_Integer; pragma Import (Ada, E535, "controllers_E");
    E575 : Short_Integer; pragma Import (Ada, E575, "pump_station_E");
    E565 : Short_Integer; pragma Import (Ada, E565, "environment_station_E");
    E561 : Short_Integer; pragma Import (Ada, E561, "mine_water_level_control_system_E");
-   E527 : Short_Integer; pragma Import (Ada, E527, "gui_E");
+   E531 : Short_Integer; pragma Import (Ada, E531, "gui_E");
 
    Sec_Default_Sized_Stacks : array (1 .. 1) of aliased System.Secondary_Stack.SS_Stack (System.Parameters.Runtime_Default_Sec_Stack_Size);
 
@@ -207,7 +207,7 @@ package body ada_main is
          procedure F1;
          pragma Import (Ada, F1, "gui__finalize_body");
       begin
-         E527 := E527 - 1;
+         E531 := E531 - 1;
          F1;
       end;
       E555 := E555 - 1;
@@ -259,14 +259,14 @@ package body ada_main is
       begin
          F8;
       end;
-      E359 := E359 - 1;
+      E363 := E363 - 1;
       declare
          procedure F9;
          pragma Import (Ada, F9, "gtk__button__finalize_spec");
       begin
          F9;
       end;
-      E521 := E521 - 1;
+      E525 := E525 - 1;
       declare
          procedure F10;
          pragma Import (Ada, F10, "gtk__action__finalize_spec");
@@ -280,25 +280,25 @@ package body ada_main is
       begin
          F11;
       end;
-      E378 := E378 - 1;
-      E396 := E396 - 1;
-      E404 := E404 - 1;
-      E388 := E388 - 1;
-      E410 := E410 - 1;
-      E445 := E445 - 1;
-      E447 := E447 - 1;
-      E372 := E372 - 1;
+      E382 := E382 - 1;
+      E400 := E400 - 1;
+      E408 := E408 - 1;
+      E392 := E392 - 1;
+      E414 := E414 - 1;
+      E449 := E449 - 1;
       E451 := E451 - 1;
-      E469 := E469 - 1;
-      E479 := E479 - 1;
-      E471 := E471 - 1;
+      E376 := E376 - 1;
+      E455 := E455 - 1;
       E473 := E473 - 1;
-      E481 := E481 - 1;
-      E457 := E457 - 1;
-      E489 := E489 - 1;
-      E495 := E495 - 1;
-      E497 := E497 - 1;
-      E513 := E513 - 1;
+      E483 := E483 - 1;
+      E475 := E475 - 1;
+      E477 := E477 - 1;
+      E485 := E485 - 1;
+      E461 := E461 - 1;
+      E493 := E493 - 1;
+      E499 := E499 - 1;
+      E501 := E501 - 1;
+      E517 := E517 - 1;
       declare
          procedure F12;
          pragma Import (Ada, F12, "gtk__gentry__finalize_spec");
@@ -347,14 +347,14 @@ package body ada_main is
       begin
          F19;
       end;
-      E441 := E441 - 1;
+      E445 := E445 - 1;
       declare
          procedure F20;
          pragma Import (Ada, F20, "gtk__box__finalize_spec");
       begin
          F20;
       end;
-      E455 := E455 - 1;
+      E459 := E459 - 1;
       declare
          procedure F21;
          pragma Import (Ada, F21, "gtk__bin__finalize_spec");
@@ -373,14 +373,14 @@ package body ada_main is
       begin
          F23;
       end;
-      E483 := E483 - 1;
+      E487 := E487 - 1;
       declare
          procedure F24;
          pragma Import (Ada, F24, "gtk__image__finalize_spec");
       begin
          F24;
       end;
-      E485 := E485 - 1;
+      E489 := E489 - 1;
       declare
          procedure F25;
          pragma Import (Ada, F25, "gtk__icon_set__finalize_spec");
@@ -393,14 +393,14 @@ package body ada_main is
       begin
          F26;
       end;
-      E374 := E374 - 1;
+      E378 := E378 - 1;
       declare
          procedure F27;
          pragma Import (Ada, F27, "gtk__settings__finalize_spec");
       begin
          F27;
       end;
-      E493 := E493 - 1;
+      E497 := E497 - 1;
       declare
          procedure F28;
          pragma Import (Ada, F28, "gtk__misc__finalize_spec");
@@ -413,8 +413,8 @@ package body ada_main is
       begin
          F29;
       end;
-      E392 := E392 - 1;
-      E394 := E394 - 1;
+      E396 := E396 - 1;
+      E398 := E398 - 1;
       declare
          procedure F30;
          pragma Import (Ada, F30, "gdk__drag_contexts__finalize_spec");
@@ -427,22 +427,22 @@ package body ada_main is
       begin
          F31;
       end;
-      E408 := E408 - 1;
+      E412 := E412 - 1;
       declare
          procedure F32;
          pragma Import (Ada, F32, "gtk__selection_data__finalize_spec");
       begin
          F32;
       end;
-      E376 := E376 - 1;
+      E380 := E380 - 1;
       declare
          procedure F33;
          pragma Import (Ada, F33, "gdk__screen__finalize_spec");
       begin
          F33;
       end;
-      E400 := E400 - 1;
-      E487 := E487 - 1;
+      E404 := E404 - 1;
+      E491 := E491 - 1;
       declare
          procedure F34;
          pragma Import (Ada, F34, "gtk__icon_source__finalize_spec");
@@ -497,154 +497,154 @@ package body ada_main is
       begin
          F42;
       end;
-      E505 := E505 - 1;
+      E509 := E509 - 1;
       declare
          procedure F43;
          pragma Import (Ada, F43, "gtk__print_context__finalize_spec");
       begin
          F43;
       end;
-      E435 := E435 - 1;
+      E439 := E439 - 1;
       declare
          procedure F44;
          pragma Import (Ada, F44, "pango__layout__finalize_spec");
       begin
          F44;
       end;
-      E439 := E439 - 1;
+      E443 := E443 - 1;
       declare
          procedure F45;
          pragma Import (Ada, F45, "pango__tabs__finalize_spec");
       begin
          F45;
       end;
-      E507 := E507 - 1;
+      E511 := E511 - 1;
       declare
          procedure F46;
          pragma Import (Ada, F46, "pango__font_map__finalize_spec");
       begin
          F46;
       end;
-      E417 := E417 - 1;
+      E421 := E421 - 1;
       declare
          procedure F47;
          pragma Import (Ada, F47, "pango__context__finalize_spec");
       begin
          F47;
       end;
-      E431 := E431 - 1;
+      E435 := E435 - 1;
       declare
          procedure F48;
          pragma Import (Ada, F48, "pango__fontset__finalize_spec");
       begin
          F48;
       end;
-      E427 := E427 - 1;
+      E431 := E431 - 1;
       declare
          procedure F49;
          pragma Import (Ada, F49, "pango__font_family__finalize_spec");
       begin
          F49;
       end;
-      E429 := E429 - 1;
+      E433 := E433 - 1;
       declare
          procedure F50;
          pragma Import (Ada, F50, "pango__font_face__finalize_spec");
       begin
          F50;
       end;
-      E519 := E519 - 1;
+      E523 := E523 - 1;
       declare
          procedure F51;
          pragma Import (Ada, F51, "gtk__text_tag__finalize_spec");
       begin
          F51;
       end;
-      E421 := E421 - 1;
+      E425 := E425 - 1;
       declare
          procedure F52;
          pragma Import (Ada, F52, "pango__font__finalize_spec");
       begin
          F52;
       end;
-      E425 := E425 - 1;
+      E429 := E429 - 1;
       declare
          procedure F53;
          pragma Import (Ada, F53, "pango__language__finalize_spec");
       begin
          F53;
       end;
-      E423 := E423 - 1;
+      E427 := E427 - 1;
       declare
          procedure F54;
          pragma Import (Ada, F54, "pango__font_metrics__finalize_spec");
       begin
          F54;
       end;
-      E437 := E437 - 1;
+      E441 := E441 - 1;
       declare
          procedure F55;
          pragma Import (Ada, F55, "pango__attributes__finalize_spec");
       begin
          F55;
       end;
-      E412 := E412 - 1;
+      E416 := E416 - 1;
       declare
          procedure F56;
          pragma Import (Ada, F56, "gtk__target_list__finalize_spec");
       begin
          F56;
       end;
-      E511 := E511 - 1;
+      E515 := E515 - 1;
       declare
          procedure F57;
          pragma Import (Ada, F57, "gtk__print_settings__finalize_spec");
       begin
          F57;
       end;
-      E499 := E499 - 1;
+      E503 := E503 - 1;
       declare
          procedure F58;
          pragma Import (Ada, F58, "gtk__page_setup__finalize_spec");
       begin
          F58;
       end;
-      E503 := E503 - 1;
+      E507 := E507 - 1;
       declare
          procedure F59;
          pragma Import (Ada, F59, "gtk__paper_size__finalize_spec");
       begin
          F59;
       end;
-      E491 := E491 - 1;
+      E495 := E495 - 1;
       declare
          procedure F60;
          pragma Import (Ada, F60, "gtk__css_section__finalize_spec");
       begin
          F60;
       end;
-      E475 := E475 - 1;
+      E479 := E479 - 1;
       declare
          procedure F61;
          pragma Import (Ada, F61, "gtk__cell_area_context__finalize_spec");
       begin
          F61;
       end;
-      E406 := E406 - 1;
+      E410 := E410 - 1;
       declare
          procedure F62;
          pragma Import (Ada, F62, "gtk__builder__finalize_spec");
       begin
          F62;
       end;
-      E461 := E461 - 1;
+      E465 := E465 - 1;
       declare
          procedure F63;
          pragma Import (Ada, F63, "glib__variant__finalize_spec");
       begin
          F63;
       end;
-      E144 := E144 - 1;
+      E346 := E346 - 1;
       declare
          procedure F64;
          pragma Import (Ada, F64, "glib__object__finalize_spec");
@@ -655,7 +655,7 @@ package body ada_main is
          procedure F65;
          pragma Import (Ada, F65, "gnatcoll__traces__finalize_body");
       begin
-         E165 := E165 - 1;
+         E119 := E119 - 1;
          F65;
       end;
       declare
@@ -664,14 +664,14 @@ package body ada_main is
       begin
          F66;
       end;
-      E293 := E293 - 1;
+      E269 := E269 - 1;
       declare
          procedure F67;
          pragma Import (Ada, F67, "gnatcoll__vfs__finalize_spec");
       begin
          F67;
       end;
-      E301 := E301 - 1;
+      E277 := E277 - 1;
       declare
          procedure F68;
          pragma Import (Ada, F68, "gnatcoll__io__remote__finalize_spec");
@@ -682,31 +682,31 @@ package body ada_main is
          procedure F69;
          pragma Import (Ada, F69, "gnatcoll__remote__finalize_spec");
       begin
-         E304 := E304 - 1;
+         E280 := E280 - 1;
          F69;
       end;
-      E260 := E260 - 1;
+      E236 := E236 - 1;
       declare
          procedure F70;
          pragma Import (Ada, F70, "gnatcoll__io__native__finalize_spec");
       begin
          F70;
       end;
-      E240 := E240 - 1;
+      E214 := E214 - 1;
       declare
          procedure F71;
          pragma Import (Ada, F71, "gnatcoll__io__finalize_spec");
       begin
          F71;
       end;
-      E286 := E286 - 1;
+      E262 := E262 - 1;
       declare
          procedure F72;
          pragma Import (Ada, F72, "gnatcoll__terminal__finalize_spec");
       begin
          F72;
       end;
-      E246 := E246 - 1;
+      E222 := E222 - 1;
       declare
          procedure F73;
          pragma Import (Ada, F73, "gnatcoll__refcount__finalize_spec");
@@ -717,59 +717,59 @@ package body ada_main is
          procedure F74;
          pragma Import (Ada, F74, "gnatcoll__memory__finalize_body");
       begin
-         E223 := E223 - 1;
+         E192 := E192 - 1;
          F74;
       end;
-      E398 := E398 - 1;
+      E402 := E402 - 1;
       declare
          procedure F75;
          pragma Import (Ada, F75, "gdk__frame_timings__finalize_spec");
       begin
          F75;
       end;
-      E117 := E117 - 1;
+      E337 := E337 - 1;
       declare
          procedure F76;
          pragma Import (Ada, F76, "glib__finalize_spec");
       begin
          F76;
       end;
-      E340 := E340 - 1;
+      E316 := E316 - 1;
       declare
          procedure F77;
          pragma Import (Ada, F77, "system__tasking__protected_objects__entries__finalize_spec");
       begin
          F77;
       end;
-      E262 := E262 - 1;
+      E238 := E238 - 1;
       declare
          procedure F78;
          pragma Import (Ada, F78, "ada__directories__finalize_spec");
       begin
          F78;
       end;
-      E268 := E268 - 1;
+      E244 := E244 - 1;
       declare
          procedure F79;
          pragma Import (Ada, F79, "system__regexp__finalize_spec");
       begin
          F79;
       end;
-      E251 := E251 - 1;
+      E227 := E227 - 1;
       declare
          procedure F80;
          pragma Import (Ada, F80, "system__pool_size__finalize_spec");
       begin
          F80;
       end;
-      E282 := E282 - 1;
+      E258 := E258 - 1;
       declare
          procedure F81;
          pragma Import (Ada, F81, "gnat__expect__finalize_spec");
       begin
          F81;
       end;
-      E130 := E130 - 1;
+      E216 := E216 - 1;
       declare
          procedure F82;
          pragma Import (Ada, F82, "system__pool_global__finalize_spec");
@@ -780,7 +780,7 @@ package body ada_main is
          procedure F83;
          pragma Import (Ada, F83, "gnat__debug_pools__finalize_body");
       begin
-         E225 := E225 - 1;
+         E196 := E196 - 1;
          F83;
       end;
       declare
@@ -796,28 +796,28 @@ package body ada_main is
       begin
          F85;
       end;
-      E201 := E201 - 1;
+      E158 := E158 - 1;
       declare
          procedure F86;
          pragma Import (Ada, F86, "ada__strings__unbounded__finalize_spec");
       begin
          F86;
       end;
-      E134 := E134 - 1;
+      E164 := E164 - 1;
       declare
          procedure F87;
          pragma Import (Ada, F87, "system__storage_pools__subpools__finalize_spec");
       begin
          F87;
       end;
-      E124 := E124 - 1;
+      E166 := E166 - 1;
       declare
          procedure F88;
          pragma Import (Ada, F88, "system__finalization_masters__finalize_spec");
       begin
          F88;
       end;
-      E255 := E255 - 1;
+      E231 := E231 - 1;
       declare
          procedure F89;
          pragma Import (Ada, F89, "ada__streams__stream_io__finalize_spec");
@@ -998,7 +998,7 @@ package body ada_main is
       Ada.Streams'Elab_Spec;
       E105 := E105 + 1;
       Interfaces.C.Strings'Elab_Spec;
-      E122 := E122 + 1;
+      E146 := E146 + 1;
       System.File_Control_Block'Elab_Spec;
       E113 := E113 + 1;
       System.Finalization_Root'Elab_Spec;
@@ -1008,224 +1008,224 @@ package body ada_main is
       System.File_Io'Elab_Body;
       E109 := E109 + 1;
       Ada.Streams.Stream_Io'Elab_Spec;
-      E255 := E255 + 1;
+      E231 := E231 + 1;
       System.Storage_Pools'Elab_Spec;
-      E128 := E128 + 1;
+      E170 := E170 + 1;
       System.Finalization_Masters'Elab_Spec;
       System.Finalization_Masters'Elab_Body;
-      E124 := E124 + 1;
+      E166 := E166 + 1;
       System.Storage_Pools.Subpools'Elab_Spec;
-      E134 := E134 + 1;
+      E164 := E164 + 1;
       Ada.Strings.Unbounded'Elab_Spec;
-      E201 := E201 + 1;
+      E158 := E158 + 1;
       System.Task_Info'Elab_Spec;
-      E326 := E326 + 1;
+      E308 := E308 + 1;
       System.Regpat'Elab_Spec;
-      E215 := E215 + 1;
+      E184 := E184 + 1;
       Ada.Calendar'Elab_Spec;
       Ada.Calendar'Elab_Body;
-      E167 := E167 + 1;
+      E121 := E121 + 1;
       Ada.Calendar.Delays'Elab_Body;
       E567 := E567 + 1;
       Ada.Calendar.Time_Zones'Elab_Spec;
-      E176 := E176 + 1;
+      E130 := E130 + 1;
       Ada.Real_Time'Elab_Spec;
       Ada.Real_Time'Elab_Body;
-      E539 := E539 + 1;
+      E334 := E334 + 1;
       Ada.Text_Io'Elab_Spec;
       Ada.Text_Io'Elab_Body;
       E103 := E103 + 1;
       Gnat.Calendar'Elab_Spec;
-      E196 := E196 + 1;
+      E153 := E153 + 1;
       Gnat.Calendar.Time_Io'Elab_Spec;
-      E199 := E199 + 1;
+      E156 := E156 + 1;
       Gnat.Directory_Operations'Elab_Spec;
       Gnat.Directory_Operations'Elab_Body;
-      E272 := E272 + 1;
+      E248 := E248 + 1;
       System.Assertions'Elab_Spec;
-      E288 := E288 + 1;
+      E264 := E264 + 1;
       System.Checked_Pools'Elab_Spec;
-      E234 := E234 + 1;
+      E207 := E207 + 1;
       Gnat.Debug_Pools'Elab_Spec;
       Gnat.Debug_Pools'Elab_Body;
-      E225 := E225 + 1;
+      E196 := E196 + 1;
       System.Pool_Global'Elab_Spec;
-      E130 := E130 + 1;
+      E216 := E216 + 1;
       Gnat.Expect'Elab_Spec;
-      E282 := E282 + 1;
+      E258 := E258 + 1;
       System.Pool_Size'Elab_Spec;
-      E251 := E251 + 1;
+      E227 := E227 + 1;
       System.Regexp'Elab_Spec;
-      E268 := E268 + 1;
+      E244 := E244 + 1;
       Ada.Directories'Elab_Spec;
       Ada.Directories'Elab_Body;
-      E262 := E262 + 1;
+      E238 := E238 + 1;
       System.Tasking.Initialization'Elab_Body;
-      E344 := E344 + 1;
+      E320 := E320 + 1;
       System.Tasking.Protected_Objects'Elab_Body;
-      E312 := E312 + 1;
+      E294 := E294 + 1;
       System.Tasking.Protected_Objects.Entries'Elab_Spec;
-      E340 := E340 + 1;
+      E316 := E316 + 1;
       System.Tasking.Queuing'Elab_Body;
-      E352 := E352 + 1;
+      E328 := E328 + 1;
       System.Tasking.Stages'Elab_Body;
-      E537 := E537 + 1;
+      E539 := E539 + 1;
       System.Tasking.Async_Delays'Elab_Body;
       E571 := E571 + 1;
       Glib'Elab_Spec;
       Gtkada.Types'Elab_Spec;
-      E117 := E117 + 1;
-      E120 := E120 + 1;
-      E310 := E310 + 1;
+      E340 := E340 + 1;
+      E337 := E337 + 1;
       Gdk.Frame_Timings'Elab_Spec;
       Gdk.Frame_Timings'Elab_Body;
-      E398 := E398 + 1;
-      E160 := E160 + 1;
+      E402 := E402 + 1;
+      E358 := E358 + 1;
       Gdk.Visual'Elab_Body;
-      E380 := E380 + 1;
-      E162 := E162 + 1;
-      E221 := E221 + 1;
+      E384 := E384 + 1;
+      E360 := E360 + 1;
+      E190 := E190 + 1;
       GNATCOLL.MEMORY'ELAB_BODY;
-      E223 := E223 + 1;
-      E248 := E248 + 1;
+      E192 := E192 + 1;
+      E224 := E224 + 1;
       GNATCOLL.REFCOUNT'ELAB_SPEC;
-      E246 := E246 + 1;
-      E244 := E244 + 1;
+      E222 := E222 + 1;
+      E220 := E220 + 1;
       GNATCOLL.STRINGS'ELAB_SPEC;
       GNATCOLL.STRINGS'ELAB_BODY;
-      E242 := E242 + 1;
+      E218 := E218 + 1;
       GNATCOLL.TEMPLATES'ELAB_SPEC;
-      E284 := E284 + 1;
+      E260 := E260 + 1;
       GNATCOLL.TERMINAL'ELAB_SPEC;
       GNATCOLL.TERMINAL'ELAB_BODY;
-      E286 := E286 + 1;
-      E278 := E278 + 1;
+      E262 := E262 + 1;
+      E254 := E254 + 1;
       GNATCOLL.IO'ELAB_SPEC;
       GNATCOLL.IO'ELAB_BODY;
-      E240 := E240 + 1;
+      E214 := E214 + 1;
       GNATCOLL.PATH'ELAB_SPEC;
       GNATCOLL.PATH'ELAB_BODY;
-      E276 := E276 + 1;
+      E252 := E252 + 1;
       GNATCOLL.IO.NATIVE'ELAB_SPEC;
       GNATCOLL.MMAP'ELAB_SPEC;
       GNATCOLL.IO.NATIVE'ELAB_BODY;
-      E260 := E260 + 1;
       E236 := E236 + 1;
-      E238 := E238 + 1;
+      E209 := E209 + 1;
+      E211 := E211 + 1;
       GNATCOLL.REMOTE'ELAB_SPEC;
-      E304 := E304 + 1;
+      E280 := E280 + 1;
       GNATCOLL.REMOTE.DB'ELAB_SPEC;
-      E308 := E308 + 1;
+      E284 := E284 + 1;
       GNATCOLL.IO.REMOTE'ELAB_SPEC;
-      E306 := E306 + 1;
-      E303 := E303 + 1;
+      E282 := E282 + 1;
+      E279 := E279 + 1;
       GNATCOLL.IO.REMOTE'ELAB_BODY;
-      E301 := E301 + 1;
+      E277 := E277 + 1;
       GNATCOLL.VFS'ELAB_SPEC;
       GNATCOLL.VFS'ELAB_BODY;
-      E293 := E293 + 1;
+      E269 := E269 + 1;
       GNATCOLL.TRACES'ELAB_SPEC;
       GNATCOLL.TRACES'ELAB_BODY;
-      E165 := E165 + 1;
-      E154 := E154 + 1;
+      E119 := E119 + 1;
+      E116 := E116 + 1;
+      E352 := E352 + 1;
       Glib.Object'Elab_Spec;
       Glib.Values'Elab_Body;
-      E158 := E158 + 1;
-      E146 := E146 + 1;
-      E156 := E156 + 1;
-      E148 := E148 + 1;
+      E356 := E356 + 1;
+      E348 := E348 + 1;
+      E354 := E354 + 1;
+      E350 := E350 + 1;
       Glib.Object'Elab_Body;
-      E144 := E144 + 1;
-      E363 := E363 + 1;
-      E365 := E365 + 1;
+      E346 := E346 + 1;
+      E367 := E367 + 1;
       E369 := E369 + 1;
+      E373 := E373 + 1;
       Glib.Generic_Properties'Elab_Spec;
       Glib.Generic_Properties'Elab_Body;
-      E142 := E142 + 1;
+      E344 := E344 + 1;
       Gdk.Color'Elab_Spec;
-      E390 := E390 + 1;
-      E140 := E140 + 1;
+      E394 := E394 + 1;
+      E342 := E342 + 1;
       constants'elab_spec;
       E114 := E114 + 1;
       E563 := E563 + 1;
-      E367 := E367 + 1;
-      E501 := E501 + 1;
-      E382 := E382 + 1;
-      E463 := E463 + 1;
+      E371 := E371 + 1;
+      E505 := E505 + 1;
+      E386 := E386 + 1;
+      E467 := E467 + 1;
       Glib.Variant'Elab_Spec;
       Glib.Variant'Elab_Body;
-      E461 := E461 + 1;
-      E459 := E459 + 1;
+      E465 := E465 + 1;
+      E463 := E463 + 1;
       Gtk.Actionable'Elab_Spec;
-      E523 := E523 + 1;
+      E527 := E527 + 1;
       Gtk.Builder'Elab_Spec;
       Gtk.Builder'Elab_Body;
-      E406 := E406 + 1;
-      E443 := E443 + 1;
+      E410 := E410 + 1;
+      E447 := E447 + 1;
       Gtk.Cell_Area_Context'Elab_Spec;
       Gtk.Cell_Area_Context'Elab_Body;
-      E475 := E475 + 1;
+      E479 := E479 + 1;
       Gtk.Css_Section'Elab_Spec;
       Gtk.Css_Section'Elab_Body;
-      E491 := E491 + 1;
-      E384 := E384 + 1;
+      E495 := E495 + 1;
+      E388 := E388 + 1;
       Gtk.Orientable'Elab_Spec;
-      E449 := E449 + 1;
+      E453 := E453 + 1;
       Gtk.Paper_Size'Elab_Spec;
       Gtk.Paper_Size'Elab_Body;
-      E503 := E503 + 1;
+      E507 := E507 + 1;
       Gtk.Page_Setup'Elab_Spec;
       Gtk.Page_Setup'Elab_Body;
-      E499 := E499 + 1;
+      E503 := E503 + 1;
       Gtk.Print_Settings'Elab_Spec;
       Gtk.Print_Settings'Elab_Body;
-      E511 := E511 + 1;
-      E414 := E414 + 1;
+      E515 := E515 + 1;
+      E418 := E418 + 1;
       Gtk.Target_List'Elab_Spec;
       Gtk.Target_List'Elab_Body;
-      E412 := E412 + 1;
-      E419 := E419 + 1;
+      E416 := E416 + 1;
+      E423 := E423 + 1;
       Pango.Attributes'Elab_Spec;
       Pango.Attributes'Elab_Body;
-      E437 := E437 + 1;
+      E441 := E441 + 1;
       Pango.Font_Metrics'Elab_Spec;
       Pango.Font_Metrics'Elab_Body;
-      E423 := E423 + 1;
+      E427 := E427 + 1;
       Pango.Language'Elab_Spec;
       Pango.Language'Elab_Body;
-      E425 := E425 + 1;
+      E429 := E429 + 1;
       Pango.Font'Elab_Spec;
       Pango.Font'Elab_Body;
-      E421 := E421 + 1;
-      E517 := E517 + 1;
+      E425 := E425 + 1;
+      E521 := E521 + 1;
       Gtk.Text_Tag'Elab_Spec;
       Gtk.Text_Tag'Elab_Body;
-      E519 := E519 + 1;
+      E523 := E523 + 1;
       Pango.Font_Face'Elab_Spec;
       Pango.Font_Face'Elab_Body;
-      E429 := E429 + 1;
+      E433 := E433 + 1;
       Pango.Font_Family'Elab_Spec;
       Pango.Font_Family'Elab_Body;
-      E427 := E427 + 1;
+      E431 := E431 + 1;
       Pango.Fontset'Elab_Spec;
       Pango.Fontset'Elab_Body;
-      E431 := E431 + 1;
-      E433 := E433 + 1;
+      E435 := E435 + 1;
+      E437 := E437 + 1;
       Pango.Context'Elab_Spec;
       Pango.Context'Elab_Body;
-      E417 := E417 + 1;
+      E421 := E421 + 1;
       Pango.Font_Map'Elab_Spec;
       Pango.Font_Map'Elab_Body;
-      E507 := E507 + 1;
+      E511 := E511 + 1;
       Pango.Tabs'Elab_Spec;
       Pango.Tabs'Elab_Body;
-      E439 := E439 + 1;
+      E443 := E443 + 1;
       Pango.Layout'Elab_Spec;
       Pango.Layout'Elab_Body;
-      E435 := E435 + 1;
+      E439 := E439 + 1;
       Gtk.Print_Context'Elab_Spec;
       Gtk.Print_Context'Elab_Body;
-      E505 := E505 + 1;
+      E509 := E509 + 1;
       Gdk.Display'Elab_Spec;
       Gtk.Tree_Model'Elab_Spec;
       Gtk.Entry_Buffer'Elab_Spec;
@@ -1237,49 +1237,49 @@ package body ada_main is
       Gdk.Pixbuf'Elab_Spec;
       Gtk.Icon_Source'Elab_Spec;
       Gtk.Icon_Source'Elab_Body;
-      E487 := E487 + 1;
-      E400 := E400 + 1;
+      E491 := E491 + 1;
+      E404 := E404 + 1;
       Gdk.Screen'Elab_Spec;
       Gdk.Screen'Elab_Body;
-      E376 := E376 + 1;
-      E515 := E515 + 1;
+      E380 := E380 + 1;
+      E519 := E519 + 1;
       Gtk.Selection_Data'Elab_Spec;
       Gtk.Selection_Data'Elab_Body;
-      E408 := E408 + 1;
+      E412 := E412 + 1;
       Gdk.Device'Elab_Spec;
       Gdk.Drag_Contexts'Elab_Spec;
       Gdk.Drag_Contexts'Elab_Body;
-      E394 := E394 + 1;
+      E398 := E398 + 1;
       Gdk.Device'Elab_Body;
-      E392 := E392 + 1;
+      E396 := E396 + 1;
       Gtk.Widget'Elab_Spec;
       Gtk.Misc'Elab_Spec;
       Gtk.Misc'Elab_Body;
-      E493 := E493 + 1;
-      E386 := E386 + 1;
+      E497 := E497 + 1;
+      E390 := E390 + 1;
       Gtk.Settings'Elab_Spec;
       Gtk.Settings'Elab_Body;
-      E374 := E374 + 1;
+      E378 := E378 + 1;
       Gdk.Window'Elab_Spec;
-      E453 := E453 + 1;
+      E457 := E457 + 1;
       Gtk.Style_Context'Elab_Spec;
       Gtk.Icon_Set'Elab_Spec;
       Gtk.Icon_Set'Elab_Body;
-      E485 := E485 + 1;
+      E489 := E489 + 1;
       Gtk.Image'Elab_Spec;
       Gtk.Image'Elab_Body;
-      E483 := E483 + 1;
+      E487 := E487 + 1;
       Gtk.Cell_Renderer'Elab_Spec;
       Gtk.Container'Elab_Spec;
       Gtk.Bin'Elab_Spec;
       Gtk.Bin'Elab_Body;
-      E455 := E455 + 1;
+      E459 := E459 + 1;
       Gtk.Box'Elab_Spec;
       Gtk.Box'Elab_Body;
-      E441 := E441 + 1;
+      E445 := E445 + 1;
       Gtk.Status_Bar'Elab_Spec;
       Gtk.Notebook'Elab_Spec;
-      E477 := E477 + 1;
+      E481 := E481 + 1;
       Gtk.Cell_Area'Elab_Spec;
       Gtk.Entry_Completion'Elab_Spec;
       Gtk.Window'Elab_Spec;
@@ -1287,58 +1287,58 @@ package body ada_main is
       Gtk.Print_Operation'Elab_Spec;
       Gtk.Gentry'Elab_Spec;
       Gtk.Status_Bar'Elab_Body;
+      E517 := E517 + 1;
       E513 := E513 + 1;
-      E509 := E509 + 1;
       Gtk.Print_Operation'Elab_Body;
-      E497 := E497 + 1;
+      E501 := E501 + 1;
       Gtk.Notebook'Elab_Body;
-      E495 := E495 + 1;
+      E499 := E499 + 1;
       Gtk.Style_Context'Elab_Body;
-      E489 := E489 + 1;
+      E493 := E493 + 1;
       Gtk.Gentry'Elab_Body;
-      E457 := E457 + 1;
+      E461 := E461 + 1;
       Gtk.Tree_Model'Elab_Body;
-      E481 := E481 + 1;
+      E485 := E485 + 1;
       Gtk.Cell_Area'Elab_Body;
-      E473 := E473 + 1;
+      E477 := E477 + 1;
       Gtk.Entry_Completion'Elab_Body;
-      E471 := E471 + 1;
+      E475 := E475 + 1;
       Gtk.Cell_Renderer'Elab_Body;
-      E479 := E479 + 1;
+      E483 := E483 + 1;
       Gtk.Entry_Buffer'Elab_Body;
+      E473 := E473 + 1;
+      E471 := E471 + 1;
       E469 := E469 + 1;
-      E467 := E467 + 1;
-      E465 := E465 + 1;
       Gtk.Window'Elab_Body;
-      E451 := E451 + 1;
+      E455 := E455 + 1;
       Gtk.Dialog'Elab_Body;
-      E372 := E372 + 1;
+      E376 := E376 + 1;
       Gtk.Adjustment'Elab_Body;
-      E447 := E447 + 1;
+      E451 := E451 + 1;
       Gtk.Container'Elab_Body;
-      E445 := E445 + 1;
+      E449 := E449 + 1;
       Gtk.Style'Elab_Body;
-      E410 := E410 + 1;
+      E414 := E414 + 1;
       Gtk.Widget'Elab_Body;
-      E388 := E388 + 1;
+      E392 := E392 + 1;
       Gtk.Accel_Group'Elab_Body;
-      E404 := E404 + 1;
+      E408 := E408 + 1;
       Gdk.Frame_Clock'Elab_Body;
-      E396 := E396 + 1;
+      E400 := E400 + 1;
       Gdk.Display'Elab_Body;
-      E378 := E378 + 1;
-      E361 := E361 + 1;
+      E382 := E382 + 1;
+      E365 := E365 + 1;
       Glib.Menu_Model'Elab_Spec;
       Glib.Menu_Model'Elab_Body;
       E549 := E549 + 1;
       Gtk.Action'Elab_Spec;
       Gtk.Action'Elab_Body;
-      E521 := E521 + 1;
-      Gtk.Activatable'Elab_Spec;
       E525 := E525 + 1;
+      Gtk.Activatable'Elab_Spec;
+      E529 := E529 + 1;
       Gtk.Button'Elab_Spec;
       Gtk.Button'Elab_Body;
-      E359 := E359 + 1;
+      E363 := E363 + 1;
       Gtk.Color_Chooser'Elab_Spec;
       E543 := E543 + 1;
       Gtk.Color_Button'Elab_Spec;
@@ -1364,7 +1364,7 @@ package body ada_main is
       Gtk.Progress_Bar'Elab_Body;
       E555 := E555 + 1;
       controllers'elab_body;
-      E531 := E531 + 1;
+      E535 := E535 + 1;
       pump_station'elab_body;
       E575 := E575 + 1;
       environment_station'elab_body;
@@ -1373,7 +1373,7 @@ package body ada_main is
       E561 := E561 + 1;
       gui'elab_spec;
       gui'elab_body;
-      E527 := E527 + 1;
+      E531 := E531 + 1;
    end adainit;
 
    procedure Ada_Main_Program;

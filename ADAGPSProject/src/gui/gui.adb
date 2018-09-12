@@ -93,21 +93,21 @@ package body gui is
 	begin
 		attach_device_state_widgets (
 			grid                 => grid,
-			button_left          => constants.gui.state_widgets.device_state_widgets.pump.left,
-			button_top           => constants.gui.state_widgets.device_state_widgets.pump.top,
-			button_width         => constants.gui.state_widgets.device_state_widgets.pump.width,
-			button_height        => constants.gui.state_widgets.device_state_widgets.pump.height,
-			button_label         => constants.gui.state_widgets.device_state_widgets.pump.label,
+			button_left          => constants.gui.state_widgets.devices.pump.left,
+			button_top           => constants.gui.state_widgets.devices.pump.top,
+			button_width         => constants.gui.state_widgets.devices.pump.width,
+			button_height        => constants.gui.state_widgets.devices.pump.height,
+			button_label         => constants.gui.state_widgets.devices.pump.label,
 			device_state_widgets => device_state_widgets_list.pump
 		);
 
 		attach_device_state_widgets (
 			grid                 => grid,
-			button_left          => constants.gui.state_widgets.device_state_widgets.alarm.left,
-			button_top           => constants.gui.state_widgets.device_state_widgets.alarm.top,
-			button_width         => constants.gui.state_widgets.device_state_widgets.alarm.width,
-			button_height        => constants.gui.state_widgets.device_state_widgets.alarm.height,
-			button_label         => constants.gui.state_widgets.device_state_widgets.alarm.label,
+			button_left          => constants.gui.state_widgets.devices.alarm.left,
+			button_top           => constants.gui.state_widgets.devices.alarm.top,
+			button_width         => constants.gui.state_widgets.devices.alarm.width,
+			button_height        => constants.gui.state_widgets.devices.alarm.height,
+			button_label         => constants.gui.state_widgets.devices.alarm.label,
 			device_state_widgets => device_state_widgets_list.alarm
 		);
 	end attach_device_state_widgets_list;
@@ -268,52 +268,52 @@ package body gui is
 	begin
 		attach_gas_sensor_state_widgets (
 			grid                     => grid,
-			progress_bar_left        => constants.gui.state_widgets.sensor_state_widgets.gas_sensors.co.progress_bar.left,
-			progress_bar_top         => constants.gui.state_widgets.sensor_state_widgets.gas_sensors.co.progress_bar.top,
-			progress_bar_width       => constants.gui.state_widgets.sensor_state_widgets.gas_sensors.co.progress_bar.width,
-			progress_bar_height      => constants.gui.state_widgets.sensor_state_widgets.gas_sensors.co.progress_bar.height,
-			label_left               => constants.gui.state_widgets.sensor_state_widgets.gas_sensors.co.label.left,
-			label_top                => constants.gui.state_widgets.sensor_state_widgets.gas_sensors.co.label.top,
-			label_width              => constants.gui.state_widgets.sensor_state_widgets.gas_sensors.co.label.width,
-			label_height             => constants.gui.state_widgets.sensor_state_widgets.gas_sensors.co.label.height,
-			color_button_left        => constants.gui.state_widgets.sensor_state_widgets.gas_sensors.co.color_button.left,
-			color_button_top         => constants.gui.state_widgets.sensor_state_widgets.gas_sensors.co.color_button.top,
-			color_button_width       => constants.gui.state_widgets.sensor_state_widgets.gas_sensors.co.color_button.width,
-			color_button_height      => constants.gui.state_widgets.sensor_state_widgets.gas_sensors.co.color_button.height,
+			progress_bar_left        => constants.gui.state_widgets.sensors.gas.co.progress_bar.left,
+			progress_bar_top         => constants.gui.state_widgets.sensors.gas.co.progress_bar.top,
+			progress_bar_width       => constants.gui.state_widgets.sensors.gas.co.progress_bar.width,
+			progress_bar_height      => constants.gui.state_widgets.sensors.gas.co.progress_bar.height,
+			label_left               => constants.gui.state_widgets.sensors.gas.co.label.left,
+			label_top                => constants.gui.state_widgets.sensors.gas.co.label.top,
+			label_width              => constants.gui.state_widgets.sensors.gas.co.label.width,
+			label_height             => constants.gui.state_widgets.sensors.gas.co.label.height,
+			color_button_left        => constants.gui.state_widgets.sensors.gas.co.color_button.left,
+			color_button_top         => constants.gui.state_widgets.sensors.gas.co.color_button.top,
+			color_button_width       => constants.gui.state_widgets.sensors.gas.co.color_button.width,
+			color_button_height      => constants.gui.state_widgets.sensors.gas.co.color_button.height,
 			gas_sensor_state_widgets => gas_sensor_state_widgets_list.co
 		);
 
 		attach_gas_sensor_state_widgets (
 			grid                     => grid,
-			progress_bar_left        => constants.gui.state_widgets.sensor_state_widgets.gas_sensors.o.progress_bar.left,
-			progress_bar_top         => constants.gui.state_widgets.sensor_state_widgets.gas_sensors.o.progress_bar.top,
-			progress_bar_width       => constants.gui.state_widgets.sensor_state_widgets.gas_sensors.o.progress_bar.width,
-			progress_bar_height      => constants.gui.state_widgets.sensor_state_widgets.gas_sensors.o.progress_bar.height,
-			label_left               => constants.gui.state_widgets.sensor_state_widgets.gas_sensors.o.label.left,
-			label_top                => constants.gui.state_widgets.sensor_state_widgets.gas_sensors.o.label.top,
-			label_width              => constants.gui.state_widgets.sensor_state_widgets.gas_sensors.o.label.width,
-			label_height             => constants.gui.state_widgets.sensor_state_widgets.gas_sensors.o.label.height,
-			color_button_left        => constants.gui.state_widgets.sensor_state_widgets.gas_sensors.o.color_button.left,
-			color_button_top         => constants.gui.state_widgets.sensor_state_widgets.gas_sensors.o.color_button.top,
-			color_button_width       => constants.gui.state_widgets.sensor_state_widgets.gas_sensors.o.color_button.width,
-			color_button_height      => constants.gui.state_widgets.sensor_state_widgets.gas_sensors.o.color_button.height,
+			progress_bar_left        => constants.gui.state_widgets.sensors.gas.o.progress_bar.left,
+			progress_bar_top         => constants.gui.state_widgets.sensors.gas.o.progress_bar.top,
+			progress_bar_width       => constants.gui.state_widgets.sensors.gas.o.progress_bar.width,
+			progress_bar_height      => constants.gui.state_widgets.sensors.gas.o.progress_bar.height,
+			label_left               => constants.gui.state_widgets.sensors.gas.o.label.left,
+			label_top                => constants.gui.state_widgets.sensors.gas.o.label.top,
+			label_width              => constants.gui.state_widgets.sensors.gas.o.label.width,
+			label_height             => constants.gui.state_widgets.sensors.gas.o.label.height,
+			color_button_left        => constants.gui.state_widgets.sensors.gas.o.color_button.left,
+			color_button_top         => constants.gui.state_widgets.sensors.gas.o.color_button.top,
+			color_button_width       => constants.gui.state_widgets.sensors.gas.o.color_button.width,
+			color_button_height      => constants.gui.state_widgets.sensors.gas.o.color_button.height,
 			gas_sensor_state_widgets => gas_sensor_state_widgets_list.o
 		);
 
 		attach_gas_sensor_state_widgets (
 			grid                     => grid,
-			progress_bar_left        => constants.gui.state_widgets.sensor_state_widgets.gas_sensors.ch4.progress_bar.left,
-			progress_bar_top         => constants.gui.state_widgets.sensor_state_widgets.gas_sensors.ch4.progress_bar.top,
-			progress_bar_width       => constants.gui.state_widgets.sensor_state_widgets.gas_sensors.ch4.progress_bar.width,
-			progress_bar_height      => constants.gui.state_widgets.sensor_state_widgets.gas_sensors.ch4.progress_bar.height,
-			label_left               => constants.gui.state_widgets.sensor_state_widgets.gas_sensors.ch4.label.left,
-			label_top                => constants.gui.state_widgets.sensor_state_widgets.gas_sensors.ch4.label.top,
-			label_width              => constants.gui.state_widgets.sensor_state_widgets.gas_sensors.ch4.label.width,
-			label_height             => constants.gui.state_widgets.sensor_state_widgets.gas_sensors.ch4.label.height,
-			color_button_left        => constants.gui.state_widgets.sensor_state_widgets.gas_sensors.ch4.color_button.left,
-			color_button_top         => constants.gui.state_widgets.sensor_state_widgets.gas_sensors.ch4.color_button.top,
-			color_button_width       => constants.gui.state_widgets.sensor_state_widgets.gas_sensors.ch4.color_button.width,
-			color_button_height      => constants.gui.state_widgets.sensor_state_widgets.gas_sensors.ch4.color_button.height,
+			progress_bar_left        => constants.gui.state_widgets.sensors.gas.ch4.progress_bar.left,
+			progress_bar_top         => constants.gui.state_widgets.sensors.gas.ch4.progress_bar.top,
+			progress_bar_width       => constants.gui.state_widgets.sensors.gas.ch4.progress_bar.width,
+			progress_bar_height      => constants.gui.state_widgets.sensors.gas.ch4.progress_bar.height,
+			label_left               => constants.gui.state_widgets.sensors.gas.ch4.label.left,
+			label_top                => constants.gui.state_widgets.sensors.gas.ch4.label.top,
+			label_width              => constants.gui.state_widgets.sensors.gas.ch4.label.width,
+			label_height             => constants.gui.state_widgets.sensors.gas.ch4.label.height,
+			color_button_left        => constants.gui.state_widgets.sensors.gas.ch4.color_button.left,
+			color_button_top         => constants.gui.state_widgets.sensors.gas.ch4.color_button.top,
+			color_button_width       => constants.gui.state_widgets.sensors.gas.ch4.color_button.width,
+			color_button_height      => constants.gui.state_widgets.sensors.gas.ch4.color_button.height,
 			gas_sensor_state_widgets => gas_sensor_state_widgets_list.ch4
 		);
 	end attach_gas_sensor_state_widgets_list;
@@ -332,10 +332,10 @@ package body gui is
 	begin
 		attach_gas_sensor_progress_bar (
 			grid         => grid,
-			left         => constants.gui.state_widgets.sensor_state_widgets.water_level_sensors.progress_bar.left,
-			top          => constants.gui.state_widgets.sensor_state_widgets.water_level_sensors.progress_bar.top,
-			width        => constants.gui.state_widgets.sensor_state_widgets.water_level_sensors.progress_bar.width,
-			height       => constants.gui.state_widgets.sensor_state_widgets.water_level_sensors.progress_bar.height,
+			left         => constants.gui.state_widgets.sensors.water_level.progress_bar.left,
+			top          => constants.gui.state_widgets.sensors.water_level.progress_bar.top,
+			width        => constants.gui.state_widgets.sensors.water_level.progress_bar.width,
+			height       => constants.gui.state_widgets.sensors.water_level.progress_bar.height,
 			orientation  => Gtk.Enums.Orientation_Vertical,
 			inverted     => True,
 			progress_bar => water_level_sensors_state_widgets.progress_bar
@@ -343,19 +343,19 @@ package body gui is
 
 		attach_gas_sensor_label (
 			grid   => grid,
-			left   => constants.gui.state_widgets.sensor_state_widgets.water_level_sensors.label.left,
-			top    => constants.gui.state_widgets.sensor_state_widgets.water_level_sensors.label.top,
-			width  => constants.gui.state_widgets.sensor_state_widgets.water_level_sensors.label.width,
-			height => constants.gui.state_widgets.sensor_state_widgets.water_level_sensors.label.height,
+			left   => constants.gui.state_widgets.sensors.water_level.label.left,
+			top    => constants.gui.state_widgets.sensors.water_level.label.top,
+			width  => constants.gui.state_widgets.sensors.water_level.label.width,
+			height => constants.gui.state_widgets.sensors.water_level.label.height,
 			label  => water_level_sensors_state_widgets.label
 		);
 
 		attach_gas_sensor_color_button (
 			grid         => grid,
-			left         => constants.gui.state_widgets.sensor_state_widgets.water_level_sensors.color_button.left,
-			top          => constants.gui.state_widgets.sensor_state_widgets.water_level_sensors.color_button.top,
-			width        => constants.gui.state_widgets.sensor_state_widgets.water_level_sensors.color_button.width,
-			height       => constants.gui.state_widgets.sensor_state_widgets.water_level_sensors.color_button.height,
+			left         => constants.gui.state_widgets.sensors.water_level.color_button.left,
+			top          => constants.gui.state_widgets.sensors.water_level.color_button.top,
+			width        => constants.gui.state_widgets.sensors.water_level.color_button.width,
+			height       => constants.gui.state_widgets.sensors.water_level.color_button.height,
 			color_button => water_level_sensors_state_widgets.color_button
 		);
 	end attach_water_level_sensors_state_widgets;
@@ -372,11 +372,11 @@ package body gui is
 	begin
 		attach_state_button (
 			grid   => grid,
-			left   => constants.gui.state_widgets.sensor_state_widgets.water_flow_sensor.left, 
-			top    => constants.gui.state_widgets.sensor_state_widgets.water_flow_sensor.top,
-			width  => constants.gui.state_widgets.sensor_state_widgets.water_flow_sensor.width,
-			height => constants.gui.state_widgets.sensor_state_widgets.water_flow_sensor.height,
-			label  => constants.gui.state_widgets.sensor_state_widgets.water_flow_sensor.label,
+			left   => constants.gui.state_widgets.sensors.water_flow.left, 
+			top    => constants.gui.state_widgets.sensors.water_flow.top,
+			width  => constants.gui.state_widgets.sensors.water_flow.width,
+			height => constants.gui.state_widgets.sensors.water_flow.height,
+			label  => constants.gui.state_widgets.sensors.water_flow.label,
 			button => water_flow_sensor_state_widgets.button
 		);
 	end attach_water_flow_sensor_state_widgets;
@@ -629,69 +629,69 @@ package body gui is
 	begin
 		attach_gas_sensor_buttons (
 			grid                                     => grid,
-			increase_button_left                     => constants.gui.user_buttons.sensors.gas_sensors.co.increase.left,
-			increase_button_top                      => constants.gui.user_buttons.sensors.gas_sensors.co.increase.top,
-			increase_button_width                    => constants.gui.user_buttons.sensors.gas_sensors.co.increase.width,
-			increase_button_height                   => constants.gui.user_buttons.sensors.gas_sensors.co.increase.height,
-			increase_button_label                    => constants.gui.user_buttons.sensors.gas_sensors.co.increase.label,
+			increase_button_left                     => constants.gui.user_buttons.sensors.gas.co.increase.left,
+			increase_button_top                      => constants.gui.user_buttons.sensors.gas.co.increase.top,
+			increase_button_width                    => constants.gui.user_buttons.sensors.gas.co.increase.width,
+			increase_button_height                   => constants.gui.user_buttons.sensors.gas.co.increase.height,
+			increase_button_label                    => constants.gui.user_buttons.sensors.gas.co.increase.label,
 			increase_button_clicked_callback         => co_increase_button_clicked_callback,
-			decrease_button_left                     => constants.gui.user_buttons.sensors.gas_sensors.co.decrease.left, 
-			decrease_button_top                      => constants.gui.user_buttons.sensors.gas_sensors.co.decrease.top,
-			decrease_button_width                    => constants.gui.user_buttons.sensors.gas_sensors.co.decrease.width,
-			decrease_button_height                   => constants.gui.user_buttons.sensors.gas_sensors.co.decrease.height,
-			decrease_button_label                    => constants.gui.user_buttons.sensors.gas_sensors.co.decrease.label,
+			decrease_button_left                     => constants.gui.user_buttons.sensors.gas.co.decrease.left, 
+			decrease_button_top                      => constants.gui.user_buttons.sensors.gas.co.decrease.top,
+			decrease_button_width                    => constants.gui.user_buttons.sensors.gas.co.decrease.width,
+			decrease_button_height                   => constants.gui.user_buttons.sensors.gas.co.decrease.height,
+			decrease_button_label                    => constants.gui.user_buttons.sensors.gas.co.decrease.label,
 			decrease_button_clicked_callback         => co_decrease_button_clicked_callback,
-			error_in_reading_button_left             => constants.gui.user_buttons.sensors.gas_sensors.co.error_in_reading.left, 
-			error_in_reading_button_top              => constants.gui.user_buttons.sensors.gas_sensors.co.error_in_reading.top,
-			error_in_reading_button_width            => constants.gui.user_buttons.sensors.gas_sensors.co.error_in_reading.width,
-			error_in_reading_button_height           => constants.gui.user_buttons.sensors.gas_sensors.co.error_in_reading.height,
-			error_in_reading_button_label            => constants.gui.user_buttons.sensors.gas_sensors.co.error_in_reading.label,
+			error_in_reading_button_left             => constants.gui.user_buttons.sensors.gas.co.error_in_reading.left, 
+			error_in_reading_button_top              => constants.gui.user_buttons.sensors.gas.co.error_in_reading.top,
+			error_in_reading_button_width            => constants.gui.user_buttons.sensors.gas.co.error_in_reading.width,
+			error_in_reading_button_height           => constants.gui.user_buttons.sensors.gas.co.error_in_reading.height,
+			error_in_reading_button_label            => constants.gui.user_buttons.sensors.gas.co.error_in_reading.label,
 			error_in_reading_button_clicked_callback => co_error_in_reading_button_clicked_callback,
 			gas_sensor_buttons 						 => gas_sensor_buttons_list.co 
 		);
 
 		attach_gas_sensor_buttons (
 			grid                                     => grid,
-			increase_button_left                     => constants.gui.user_buttons.sensors.gas_sensors.o.increase.left,
-			increase_button_top                      => constants.gui.user_buttons.sensors.gas_sensors.o.increase.top,
-			increase_button_width                    => constants.gui.user_buttons.sensors.gas_sensors.o.increase.width,
-			increase_button_height                   => constants.gui.user_buttons.sensors.gas_sensors.o.increase.height,
-			increase_button_label                    => constants.gui.user_buttons.sensors.gas_sensors.o.increase.label,
+			increase_button_left                     => constants.gui.user_buttons.sensors.gas.o.increase.left,
+			increase_button_top                      => constants.gui.user_buttons.sensors.gas.o.increase.top,
+			increase_button_width                    => constants.gui.user_buttons.sensors.gas.o.increase.width,
+			increase_button_height                   => constants.gui.user_buttons.sensors.gas.o.increase.height,
+			increase_button_label                    => constants.gui.user_buttons.sensors.gas.o.increase.label,
 			increase_button_clicked_callback         => o_increase_button_clicked_callback,
-			decrease_button_left                     => constants.gui.user_buttons.sensors.gas_sensors.o.decrease.left, 
-			decrease_button_top                      => constants.gui.user_buttons.sensors.gas_sensors.o.decrease.top,
-			decrease_button_width                    => constants.gui.user_buttons.sensors.gas_sensors.o.decrease.width,
-			decrease_button_height                   => constants.gui.user_buttons.sensors.gas_sensors.o.decrease.height,
-			decrease_button_label                    => constants.gui.user_buttons.sensors.gas_sensors.o.decrease.label,
+			decrease_button_left                     => constants.gui.user_buttons.sensors.gas.o.decrease.left, 
+			decrease_button_top                      => constants.gui.user_buttons.sensors.gas.o.decrease.top,
+			decrease_button_width                    => constants.gui.user_buttons.sensors.gas.o.decrease.width,
+			decrease_button_height                   => constants.gui.user_buttons.sensors.gas.o.decrease.height,
+			decrease_button_label                    => constants.gui.user_buttons.sensors.gas.o.decrease.label,
 			decrease_button_clicked_callback         => o_decrease_button_clicked_callback,
-			error_in_reading_button_left             => constants.gui.user_buttons.sensors.gas_sensors.o.error_in_reading.left, 
-			error_in_reading_button_top              => constants.gui.user_buttons.sensors.gas_sensors.o.error_in_reading.top,
-			error_in_reading_button_width            => constants.gui.user_buttons.sensors.gas_sensors.o.error_in_reading.width,
-			error_in_reading_button_height           => constants.gui.user_buttons.sensors.gas_sensors.o.error_in_reading.height,
-			error_in_reading_button_label            => constants.gui.user_buttons.sensors.gas_sensors.o.error_in_reading.label,
+			error_in_reading_button_left             => constants.gui.user_buttons.sensors.gas.o.error_in_reading.left, 
+			error_in_reading_button_top              => constants.gui.user_buttons.sensors.gas.o.error_in_reading.top,
+			error_in_reading_button_width            => constants.gui.user_buttons.sensors.gas.o.error_in_reading.width,
+			error_in_reading_button_height           => constants.gui.user_buttons.sensors.gas.o.error_in_reading.height,
+			error_in_reading_button_label            => constants.gui.user_buttons.sensors.gas.o.error_in_reading.label,
 			error_in_reading_button_clicked_callback => o_error_in_reading_button_clicked_callback,
 			gas_sensor_buttons 						 => gas_sensor_buttons_list.o 
 		);
 
 		attach_gas_sensor_buttons (
 			grid                                     => grid,
-			increase_button_left                     => constants.gui.user_buttons.sensors.gas_sensors.ch4.increase.left,
-			increase_button_top                      => constants.gui.user_buttons.sensors.gas_sensors.ch4.increase.top,
-			increase_button_width                    => constants.gui.user_buttons.sensors.gas_sensors.ch4.increase.width,
-			increase_button_height                   => constants.gui.user_buttons.sensors.gas_sensors.ch4.increase.height,
-			increase_button_label                    => constants.gui.user_buttons.sensors.gas_sensors.ch4.increase.label,
+			increase_button_left                     => constants.gui.user_buttons.sensors.gas.ch4.increase.left,
+			increase_button_top                      => constants.gui.user_buttons.sensors.gas.ch4.increase.top,
+			increase_button_width                    => constants.gui.user_buttons.sensors.gas.ch4.increase.width,
+			increase_button_height                   => constants.gui.user_buttons.sensors.gas.ch4.increase.height,
+			increase_button_label                    => constants.gui.user_buttons.sensors.gas.ch4.increase.label,
 			increase_button_clicked_callback         => ch4_increase_button_clicked_callback,
-			decrease_button_left                     => constants.gui.user_buttons.sensors.gas_sensors.ch4.decrease.left, 
-			decrease_button_top                      => constants.gui.user_buttons.sensors.gas_sensors.ch4.decrease.top,
-			decrease_button_width                    => constants.gui.user_buttons.sensors.gas_sensors.ch4.decrease.width,
-			decrease_button_height                   => constants.gui.user_buttons.sensors.gas_sensors.ch4.decrease.height,
-			decrease_button_label                    => constants.gui.user_buttons.sensors.gas_sensors.ch4.decrease.label,
+			decrease_button_left                     => constants.gui.user_buttons.sensors.gas.ch4.decrease.left, 
+			decrease_button_top                      => constants.gui.user_buttons.sensors.gas.ch4.decrease.top,
+			decrease_button_width                    => constants.gui.user_buttons.sensors.gas.ch4.decrease.width,
+			decrease_button_height                   => constants.gui.user_buttons.sensors.gas.ch4.decrease.height,
+			decrease_button_label                    => constants.gui.user_buttons.sensors.gas.ch4.decrease.label,
 			decrease_button_clicked_callback         => ch4_decrease_button_clicked_callback,
-			error_in_reading_button_left             => constants.gui.user_buttons.sensors.gas_sensors.ch4.error_in_reading.left, 
-			error_in_reading_button_top              => constants.gui.user_buttons.sensors.gas_sensors.ch4.error_in_reading.top,
-			error_in_reading_button_width            => constants.gui.user_buttons.sensors.gas_sensors.ch4.error_in_reading.width,
-			error_in_reading_button_height           => constants.gui.user_buttons.sensors.gas_sensors.ch4.error_in_reading.height,
-			error_in_reading_button_label            => constants.gui.user_buttons.sensors.gas_sensors.ch4.error_in_reading.label,
+			error_in_reading_button_left             => constants.gui.user_buttons.sensors.gas.ch4.error_in_reading.left, 
+			error_in_reading_button_top              => constants.gui.user_buttons.sensors.gas.ch4.error_in_reading.top,
+			error_in_reading_button_width            => constants.gui.user_buttons.sensors.gas.ch4.error_in_reading.width,
+			error_in_reading_button_height           => constants.gui.user_buttons.sensors.gas.ch4.error_in_reading.height,
+			error_in_reading_button_label            => constants.gui.user_buttons.sensors.gas.ch4.error_in_reading.label,
 			error_in_reading_button_clicked_callback => ch4_error_in_reading_button_clicked_callback,
 			gas_sensor_buttons 						 => gas_sensor_buttons_list.ch4 
 		);
@@ -712,22 +712,22 @@ package body gui is
 	begin
 		attach_user_button (
 			grid                => grid, 
-			left                => constants.gui.user_buttons.sensors.water_level_sensors.increase.left,
-			top                 => constants.gui.user_buttons.sensors.water_level_sensors.increase.top,
-			width               => constants.gui.user_buttons.sensors.water_level_sensors.increase.width,
-			height              => constants.gui.user_buttons.sensors.water_level_sensors.increase.height,
-			label               => constants.gui.user_buttons.sensors.water_level_sensors.increase.label,
+			left                => constants.gui.user_buttons.sensors.water_level.increase.left,
+			top                 => constants.gui.user_buttons.sensors.water_level.increase.top,
+			width               => constants.gui.user_buttons.sensors.water_level.increase.width,
+			height              => constants.gui.user_buttons.sensors.water_level.increase.height,
+			label               => constants.gui.user_buttons.sensors.water_level.increase.label,
 			on_clicked_callback => increase_button_clicked_callback, 
 			button              => water_level_sensors_buttons.increase
 		);
 
 		attach_user_button (
 			grid                => grid, 
-			left                => constants.gui.user_buttons.sensors.water_level_sensors.decrease.left,
-			top                 => constants.gui.user_buttons.sensors.water_level_sensors.decrease.top,
-			width               => constants.gui.user_buttons.sensors.water_level_sensors.decrease.width,
-			height              => constants.gui.user_buttons.sensors.water_level_sensors.decrease.height,
-			label               => constants.gui.user_buttons.sensors.water_level_sensors.decrease.label,
+			left                => constants.gui.user_buttons.sensors.water_level.decrease.left,
+			top                 => constants.gui.user_buttons.sensors.water_level.decrease.top,
+			width               => constants.gui.user_buttons.sensors.water_level.decrease.width,
+			height              => constants.gui.user_buttons.sensors.water_level.decrease.height,
+			label               => constants.gui.user_buttons.sensors.water_level.decrease.label,
 			on_clicked_callback => decrease_button_clicked_callback, 
 			button              => water_level_sensors_buttons.decrease
 		);
@@ -748,22 +748,22 @@ package body gui is
 	begin
 		attach_user_button (
 			grid                => grid, 
-			left                => constants.gui.user_buttons.sensors.water_flow_sensor.turn_on.left,
-			top                 => constants.gui.user_buttons.sensors.water_flow_sensor.turn_on.top,
-			width               => constants.gui.user_buttons.sensors.water_flow_sensor.turn_on.width,
-			height              => constants.gui.user_buttons.sensors.water_flow_sensor.turn_on.height,
-			label               => constants.gui.user_buttons.sensors.water_flow_sensor.turn_on.label,
+			left                => constants.gui.user_buttons.sensors.water_flow.turn_on.left,
+			top                 => constants.gui.user_buttons.sensors.water_flow.turn_on.top,
+			width               => constants.gui.user_buttons.sensors.water_flow.turn_on.width,
+			height              => constants.gui.user_buttons.sensors.water_flow.turn_on.height,
+			label               => constants.gui.user_buttons.sensors.water_flow.turn_on.label,
 			on_clicked_callback => turn_on_button_clicked_callback, 
 			button              => water_flow_sensor_buttons.turn_on
 		);
 
 		attach_user_button (
 			grid                => grid, 
-			left                => constants.gui.user_buttons.sensors.water_flow_sensor.turn_off.left,
-			top                 => constants.gui.user_buttons.sensors.water_flow_sensor.turn_off.top,
-			width               => constants.gui.user_buttons.sensors.water_flow_sensor.turn_off.width,
-			height              => constants.gui.user_buttons.sensors.water_flow_sensor.turn_off.height,
-			label               => constants.gui.user_buttons.sensors.water_flow_sensor.turn_off.label,
+			left                => constants.gui.user_buttons.sensors.water_flow.turn_off.left,
+			top                 => constants.gui.user_buttons.sensors.water_flow.turn_off.top,
+			width               => constants.gui.user_buttons.sensors.water_flow.turn_off.width,
+			height              => constants.gui.user_buttons.sensors.water_flow.turn_off.height,
+			label               => constants.gui.user_buttons.sensors.water_flow.turn_off.label,
 			on_clicked_callback => turn_off_button_clicked_callback, 
 			button              => water_flow_sensor_buttons.turn_off
 		);
@@ -937,6 +937,23 @@ package body gui is
 		pump_controller  : access controllers.device_state_controller_t;
 		alarm_controller : access controllers.device_state_controller_t;
 
+		-- sensor levels
+		co_value    : Float := constants.mine_water_level_control_system.sensors.gas.co.initial_value;
+		o_value     : Float := constants.mine_water_level_control_system.sensors.gas.o.initial_value;
+		ch4_value   : Float := constants.mine_water_level_control_system.sensors.gas.ch4.initial_value;
+		water_level : Float := constants.gui.state_widget_controllers.sensors.water_tank.initial_water_level;
+
+		-- sensor threshold
+		co_maximum_value    : Float := constants.gui.state_widget_controllers.sensors.gas.co.maximum_value;
+		o_maximum_value     : Float := constants.gui.state_widget_controllers.sensors.gas.o.maximum_value;
+		ch4_maximum_value   : Float := constants.gui.state_widget_controllers.sensors.gas.ch4.maximum_value;
+		maximum_water_level : Float := constants.gui.state_widget_controllers.sensors.water_tank.maximum_water_level;
+
+		-- gas sensors read errors
+		co_read_error_occurred  : Boolean := constants.mine_water_level_control_system.sensors.gas.co.initial_read_error_occured;
+		o_read_error_occurred   : Boolean := constants.mine_water_level_control_system.sensors.gas.o.initial_read_error_occured;
+		ch4_read_error_occurred : Boolean := constants.mine_water_level_control_system.sensors.gas.ch4.initial_read_error_occured;
+
 		-- sensor state controllers
 		co_sensor_controller           : access controllers.gas_sensor_state_controller_t;
 		o_sensor_controller            : access controllers.gas_sensor_state_controller_t;
@@ -960,14 +977,14 @@ package body gui is
 
 			if ( self = user_buttons.devices.pump.turn_on ) then
 				GNATCOLL.Traces.Trace (
-					Handle  => constants.log.gui.stream,
+					Handle  => constants.log.gui.trace_handle,
 					Message => "Pump turn on button clicked"
 				);
 
 				top.turn_on;
 			else
 				GNATCOLL.Traces.Trace (
-					Handle  => constants.log.gui.stream,
+					Handle  => constants.log.gui.trace_handle,
 					Message => "Pump turn off button clicked"
 				);
 
@@ -980,37 +997,49 @@ package body gui is
 		procedure co_button_clicked (
 			self : access Gtk.Button.Gtk_Button_Record'Class
 		) is
-			value : Float;
 		begin
 
 			if ( self = user_buttons.sensors.gas_sensors.co.increase ) then
 				GNATCOLL.Traces.Trace (
-					Handle  => constants.log.gui.stream,
+					Handle  => constants.log.gui.trace_handle,
 					Message => "CO increase button clicked"
 				);
-				value := co_sensor.get_value;
-				value := value + co_sensor.get_threshold * constants.gui.user_buttons.sensors.gas_sensors.co.increase.delta_percentage;
+				co_value := co_value + co_maximum_value * constants.gui.user_buttons.sensors.gas.co.increase.delta_percentage;
+
+				if ( co_value > co_maximum_value ) then
+					co_value := co_maximum_value;
+				end if;
+
 				co_sensor.set_value (
-					new_value => value
+					trace_handle => constants.log.gui.trace_handle,
+					new_value    => co_value
 				);	
 			elsif ( self = user_buttons.sensors.gas_sensors.co.decrease ) then
 				GNATCOLL.Traces.Trace (
-					Handle  => constants.log.gui.stream,
+					Handle  => constants.log.gui.trace_handle,
 					Message => "CO decrease button clicked"
 				);
-				value := co_sensor.get_value;
-				value := value - co_sensor.get_threshold * constants.gui.user_buttons.sensors.gas_sensors.co.increase.delta_percentage;
+				co_value := co_value - co_maximum_value * constants.gui.user_buttons.sensors.gas.co.increase.delta_percentage;
+
+				if ( co_value < 0.0 ) then
+					co_value := 0.0;
+				end if;
+
 				co_sensor.set_value (
-					new_value => value
+					trace_handle => constants.log.gui.trace_handle,
+					new_value    => co_value
 				);	
 			elsif ( self = user_buttons.sensors.gas_sensors.co.error_in_reading ) then
 				GNATCOLL.Traces.Trace (
-					Handle  => constants.log.gui.stream,
+					Handle  => constants.log.gui.trace_handle,
 					Message => "CO error in reading button clicked"
 				);
 				
+				co_read_error_occurred := not co_read_error_occurred;
+
 				co_sensor.set_read_error_occured (
-					new_read_error_occurred => not co_sensor.get_read_error_occurred
+					trace_handle            => constants.log.gui.trace_handle,
+					new_read_error_occurred => co_read_error_occurred
 				);
 			end if;
 		end co_button_clicked;
@@ -1018,39 +1047,51 @@ package body gui is
 		procedure o_button_clicked (
 			self : access Gtk.Button.Gtk_Button_Record'Class
 		) is
-			value : Float;
 		begin
 
 			if ( self = user_buttons.sensors.gas_sensors.o.increase ) then
 				GNATCOLL.Traces.Trace (
-					Handle  => constants.log.gui.stream,
+					Handle  => constants.log.gui.trace_handle,
 					Message => "CO increase button clicked"
 				);
 
-				value := o_sensor.get_value;
-				value := value + o_sensor.get_threshold * constants.gui.user_buttons.sensors.gas_sensors.o.increase.delta_percentage;
+				o_value := o_value + o_maximum_value * constants.gui.user_buttons.sensors.gas.o.increase.delta_percentage;
+				
+				if ( o_value > o_maximum_value ) then
+					o_value := o_maximum_value;
+				end if;
+
 				o_sensor.set_value (
-					new_value => value
+					trace_handle => constants.log.gui.trace_handle,
+					new_value    => o_value
 				);	
 			elsif ( self = user_buttons.sensors.gas_sensors.o.decrease ) then
 				GNATCOLL.Traces.Trace (
-					Handle  => constants.log.gui.stream,
+					Handle  => constants.log.gui.trace_handle,
 					Message => "CO decrease button clicked"
 				);
 
-				value := o_sensor.get_value;
-				value := value - o_sensor.get_threshold * constants.gui.user_buttons.sensors.gas_sensors.o.increase.delta_percentage;
+				o_value := o_value - o_maximum_value * constants.gui.user_buttons.sensors.gas.o.increase.delta_percentage;
+				
+				if ( o_value < 0.0 ) then
+					o_value := 0.0;
+				end if;
+
 				o_sensor.set_value (
-					new_value => value
+					trace_handle => constants.log.gui.trace_handle,
+					new_value    => o_value
 				);	
 			elsif ( self = user_buttons.sensors.gas_sensors.o.error_in_reading ) then
 				GNATCOLL.Traces.Trace (
-					Handle  => constants.log.gui.stream,
+					Handle  => constants.log.gui.trace_handle,
 					Message => "CO error in reading button clicked"
 				);
+
+				o_read_error_occurred := not o_read_error_occurred;
 				
 				o_sensor.set_read_error_occured (
-					new_read_error_occurred => not o_sensor.get_read_error_occurred
+					trace_handle            => constants.log.gui.trace_handle,
+					new_read_error_occurred => o_read_error_occurred
 				);
 			end if;
 		end o_button_clicked;
@@ -1058,39 +1099,51 @@ package body gui is
 		procedure ch4_button_clicked (
 			self : access Gtk.Button.Gtk_Button_Record'Class
 		) is
-			value : Float;
 		begin
 
 			if ( self = user_buttons.sensors.gas_sensors.ch4.increase ) then
 				GNATCOLL.Traces.Trace (
-					Handle  => constants.log.gui.stream,
+					Handle  => constants.log.gui.trace_handle,
 					Message => "CO increase button clicked"
 				);
 
-				value := ch4_sensor.get_value;
-				value := value + ch4_sensor.get_threshold * constants.gui.user_buttons.sensors.gas_sensors.ch4.increase.delta_percentage;
+				ch4_value := ch4_value + ch4_maximum_value * constants.gui.user_buttons.sensors.gas.ch4.increase.delta_percentage;
+				
+				if ( ch4_value > ch4_maximum_value ) then
+					ch4_value := ch4_maximum_value;
+				end if;
+
 				ch4_sensor.set_value (
-					new_value => value
+					trace_handle => constants.log.gui.trace_handle,
+					new_value    => ch4_value
 				);	
 			elsif ( self = user_buttons.sensors.gas_sensors.ch4.decrease ) then
 				GNATCOLL.Traces.Trace (
-					Handle  => constants.log.gui.stream,
+					Handle  => constants.log.gui.trace_handle,
 					Message => "CO decrease button clicked"
 				);
 
-				value := ch4_sensor.get_value;
-				value := value - ch4_sensor.get_threshold * constants.gui.user_buttons.sensors.gas_sensors.ch4.increase.delta_percentage;
+				ch4_value := ch4_value - ch4_maximum_value * constants.gui.user_buttons.sensors.gas.ch4.increase.delta_percentage;
+				
+				if ( ch4_value < 0.0 ) then
+					ch4_value := 0.0;
+				end if;
+
 				ch4_sensor.set_value (
-					new_value => value
+					trace_handle => constants.log.gui.trace_handle,
+					new_value    => ch4_value
 				);	
 			elsif ( self = user_buttons.sensors.gas_sensors.ch4.error_in_reading ) then
 				GNATCOLL.Traces.Trace (
-					Handle  => constants.log.gui.stream,
+					Handle  => constants.log.gui.trace_handle,
 					Message => "CO error in reading button clicked"
 				);
 				
+				ch4_read_error_occurred := not ch4_read_error_occurred;
+
 				ch4_sensor.set_read_error_occured (
-					new_read_error_occurred => not ch4_sensor.get_read_error_occurred
+					trace_handle            => constants.log.gui.trace_handle,
+					new_read_error_occurred => ch4_read_error_occurred
 				);
 			end if;
 		end ch4_button_clicked;
@@ -1098,35 +1151,42 @@ package body gui is
 		procedure water_level_button_clicked (
 			self : access Gtk.Button.Gtk_Button_Record'Class
 		) is
-			value : Float;
 		begin
 
 			if ( self = user_buttons.sensors.water_level_sensors.increase ) then
 				GNATCOLL.Traces.Trace (
-					Handle  => constants.log.gui.stream,
+					Handle  => constants.log.gui.trace_handle,
 					Message => "H20 increase button clicked"
 				);
 				
-				value := water_tank.get_level;
-				value := value + constants.gui.user_buttons.sensors.water_level_sensors.increase.delta_percentage * water_tank.get_maximum_level;
-				water_tank.set_level (
-					new_level => value
+				water_level := water_level + maximum_water_level * constants.gui.user_buttons.sensors.water_level.increase.delta_percentage;
+
+				if ( water_level > maximum_water_level ) then 
+					water_level := maximum_water_level;
+				end if;
+
+				water_tank.set_water_level (
+					new_water_level => water_level 
 				);
 			elsif ( self = user_buttons.sensors.water_level_sensors.decrease ) then
 				GNATCOLL.Traces.Trace (
-					Handle  => constants.log.gui.stream,
+					Handle  => constants.log.gui.trace_handle,
 					Message => "H20 decrease button clicked"
 				);
 
-				value := water_tank.get_level;
-				value := value - constants.gui.user_buttons.sensors.water_level_sensors.decrease.delta_percentage * water_tank.get_maximum_level;
-				water_tank.set_level (
-					new_level => value
+				water_level := water_level - maximum_water_level * constants.gui.user_buttons.sensors.water_level.increase.delta_percentage;
+
+				if ( water_level < 0.0 ) then 
+					water_level := 0.0;
+				end if;
+
+				water_tank.set_water_level (
+					new_water_level => water_level 
 				);
 			end if;
 
 			water_level_sensors.update (
-				water_level => value
+				water_level => water_level 
 			);
 		end water_level_button_clicked;
 
@@ -1136,20 +1196,22 @@ package body gui is
 		begin
 			if ( self = user_buttons.sensors.water_flow_sensor.turn_on ) then
 				GNATCOLL.Traces.Trace (
-					Handle  => constants.log.gui.stream,
+					Handle  => constants.log.gui.trace_handle,
 					Message => "Water flow turn on button clicked"
 				);
 
 				water_flow_sensor.set_water_flowing (
+					trace_handle      => constants.log.gui.trace_handle,
 					new_water_flowing => True
 				);
 			else
 				GNATCOLL.Traces.Trace (
-					Handle  => constants.log.gui.stream,
+					Handle  => constants.log.gui.trace_handle,
 					Message => "Water flow turn off button clicked"
 				);
 
 				water_flow_sensor.set_water_flowing (
+					trace_handle      => constants.log.gui.trace_handle,
 					new_water_flowing => False 
 				);
 			end if;
@@ -1157,7 +1219,7 @@ package body gui is
 
 	begin
 		GNATCOLL.Traces.Trace (
-			Handle  => constants.log.gui.stream,
+			Handle  => constants.log.gui.trace_handle,
 			Message => "Initializing GTK"
 		);
 
@@ -1166,7 +1228,7 @@ package body gui is
 
 		-- setup window
 		GNATCOLL.Traces.Trace (
-			Handle  => constants.log.gui.stream,
+			Handle  => constants.log.gui.trace_handle,
 			Message => "Initializing window"
 		);
 
@@ -1181,7 +1243,7 @@ package body gui is
 	
 		-- setup grid
 		GNATCOLL.Traces.Trace (
-			Handle  => constants.log.gui.stream,
+			Handle  => constants.log.gui.trace_handle,
 			Message => "Initializing grid"
 		);
 
@@ -1192,7 +1254,7 @@ package body gui is
 
 		-- attaching user buttons
 		GNATCOLL.Traces.Trace (
-			Handle  => constants.log.gui.stream,
+			Handle  => constants.log.gui.trace_handle,
 			Message => "Attaching user buttons"
 		);
 
@@ -1219,7 +1281,7 @@ package body gui is
 
 		-- attaching state widgets
 		GNATCOLL.Traces.Trace (
-			Handle  => constants.log.gui.stream,
+			Handle  => constants.log.gui.trace_handle,
 			Message => "Attaching state widgets"
 		);
 
@@ -1232,7 +1294,7 @@ package body gui is
 
 		-- start device controllers
 		GNATCOLL.Traces.Trace (
-			Handle  => constants.log.gui.stream,
+			Handle  => constants.log.gui.trace_handle,
 			Message => "Starting device controllers"
 		);
 
@@ -1251,72 +1313,79 @@ package body gui is
 		);
 
 		co_sensor_controller := new controllers.gas_sensor_state_controller_t (
-			sensor                    => co_sensor,
+			gas_sensor                => co_sensor,
+			threshold				  => constants.mine_water_level_control_system.top.controllers.co.threshold'Access,
+			maximum_value			  => constants.gui.state_widget_controllers.sensors.gas.co.maximum_value'Access,
+			detects_above_threshold	  => True,
 			progress_bar              => state_widgets.sensors.gas_sensors.co.progress_bar,
 			label                     => state_widgets.sensors.gas_sensors.co.label,
 			color_button              => state_widgets.sensors.gas_sensors.co.color_button,
-			multiplication_factor     => constants.gui.state_widget_controllers.sensors.gas_sensors.co.multiplication_factor,
-			state_normal_color        => constants.gui.state_widget_controllers.sensors.gas_sensors.co.state_normal_color'Access,
-			threshold_breached_color  => constants.gui.state_widget_controllers.sensors.gas_sensors.co.threshold_breached_color'Access,
-			read_error_occurred_color => constants.gui.state_widget_controllers.sensors.gas_sensors.co.read_error_occurred_color'Access
+			state_normal_color        => constants.gui.state_widget_controllers.sensors.gas.co.state_normal_color'Access,
+			threshold_breached_color  => constants.gui.state_widget_controllers.sensors.gas.co.threshold_breached_color'Access,
+			read_error_occurred_color => constants.gui.state_widget_controllers.sensors.gas.co.read_error_occurred_color'Access
 		);
 
 		o_sensor_controller := new controllers.gas_sensor_state_controller_t (
-			sensor                    => o_sensor,
+			gas_sensor                => o_sensor,
+			threshold				  => constants.mine_water_level_control_system.top.controllers.o.threshold'Access,
+			maximum_value			  => constants.gui.state_widget_controllers.sensors.gas.o.maximum_value'Access,
+			detects_above_threshold	  => False,
 			progress_bar              => state_widgets.sensors.gas_sensors.o.progress_bar,
 			label                     => state_widgets.sensors.gas_sensors.o.label,
 			color_button              => state_widgets.sensors.gas_sensors.o.color_button,
-			multiplication_factor     => constants.gui.state_widget_controllers.sensors.gas_sensors.o.multiplication_factor,
-			state_normal_color        => constants.gui.state_widget_controllers.sensors.gas_sensors.o.state_normal_color'Access,
-			threshold_breached_color  => constants.gui.state_widget_controllers.sensors.gas_sensors.o.threshold_breached_color'Access,
-			read_error_occurred_color => constants.gui.state_widget_controllers.sensors.gas_sensors.o.read_error_occurred_color'Access
+			state_normal_color        => constants.gui.state_widget_controllers.sensors.gas.o.state_normal_color'Access,
+			threshold_breached_color  => constants.gui.state_widget_controllers.sensors.gas.o.threshold_breached_color'Access,
+			read_error_occurred_color => constants.gui.state_widget_controllers.sensors.gas.o.read_error_occurred_color'Access
 		);
 
 		ch4_sensor_controller := new controllers.gas_sensor_state_controller_t (
-			sensor                    => ch4_sensor,
+			gas_sensor                => ch4_sensor,
+			threshold				  => constants.mine_water_level_control_system.top.controllers.ch4.threshold'Access,
+			maximum_value			  => constants.gui.state_widget_controllers.sensors.gas.ch4.maximum_value'Access,
+			detects_above_threshold	  => True,
 			progress_bar              => state_widgets.sensors.gas_sensors.ch4.progress_bar,
 			label                     => state_widgets.sensors.gas_sensors.ch4.label,
 			color_button              => state_widgets.sensors.gas_sensors.ch4.color_button,
-			multiplication_factor     => constants.gui.state_widget_controllers.sensors.gas_sensors.ch4.multiplication_factor,
-			state_normal_color        => constants.gui.state_widget_controllers.sensors.gas_sensors.ch4.state_normal_color'Access,
-			threshold_breached_color  => constants.gui.state_widget_controllers.sensors.gas_sensors.ch4.threshold_breached_color'Access,
-			read_error_occurred_color => constants.gui.state_widget_controllers.sensors.gas_sensors.ch4.read_error_occurred_color'Access
+			state_normal_color        => constants.gui.state_widget_controllers.sensors.gas.ch4.state_normal_color'Access,
+			threshold_breached_color  => constants.gui.state_widget_controllers.sensors.gas.ch4.threshold_breached_color'Access,
+			read_error_occurred_color => constants.gui.state_widget_controllers.sensors.gas.ch4.read_error_occurred_color'Access
 		);
 
 		water_tank := new controllers.water_tank_t (
-			initital_level => constants.mine_water_level_control_system.sensors.water_level_sensors.initial_water_level'Access, 
-			maximum_level  => constants.mine_water_level_control_system.sensors.water_level_sensors.maximum_water_level'Access
+			initital_water_level => constants.gui.state_widget_controllers.sensors.water_tank.initial_water_level'Access, 
+			maximum_water_level  => constants.gui.state_widget_controllers.sensors.water_tank.maximum_water_level'Access
 		);
 
 		water_level_sensors_controller := new controllers.water_level_sensors_state_controller_t (
-			water_level_sensors         	=> water_level_sensors,
 			water_tank                      => water_tank,
+			low_water_level_threshold		=> constants.mine_water_level_control_system.sensors.water_level.low_water_level_threshold'Access,
+			high_water_level_threshold		=> constants.mine_water_level_control_system.sensors.water_level.high_water_level_threshold'Access,
 			progress_bar                    => state_widgets.sensors.water_level_sensors.progress_bar,
 			label                           => state_widgets.sensors.water_level_sensors.label,
 			color_button                    => state_widgets.sensors.water_level_sensors.color_button,
-			state_normal_color              => constants.gui.state_widget_controllers.sensors.water_level_sensors.state_normal_color'Access,
-			low_water_level_breached_color  => constants.gui.state_widget_controllers.sensors.water_level_sensors.low_water_level_breached_color'Access,
-			high_water_level_breached_color => constants.gui.state_widget_controllers.sensors.water_level_sensors.high_water_level_breached_color'Access
+			state_normal_color              => constants.gui.state_widget_controllers.sensors.water_level.state_normal_color'Access,
+			low_water_level_breached_color  => constants.gui.state_widget_controllers.sensors.water_level.low_water_level_breached_color'Access,
+			high_water_level_breached_color => constants.gui.state_widget_controllers.sensors.water_level.high_water_level_breached_color'Access
 		);
 
 		water_flow_sensor_controller := new controllers.water_flow_sensor_state_controller_t (
 			water_flow_sensor => water_flow_sensor,
 			button            => state_widgets.sensors.water_flow_sensor.button,
-			flowing_color     => constants.gui.state_widget_controllers.sensors.water_flow_sensor.flowing_color'Access,
-			not_flowing_color => constants.gui.state_widget_controllers.sensors.water_flow_sensor.not_flowing_color'Access
+			flowing_color     => constants.gui.state_widget_controllers.sensors.water_flow.flowing_color'Access,
+			not_flowing_color => constants.gui.state_widget_controllers.sensors.water_flow.not_flowing_color'Access
 		);
 
 
 		-- start main loop
 		GNATCOLL.Traces.Trace (
-			Handle  => constants.log.gui.stream,
+			Handle  => constants.log.gui.trace_handle,
 			Message => "Starting main loop"
 		);
 
 		Gtk.Main.Main;
 
 		GNATCOLL.Traces.Trace (
-			Handle  => constants.log.gui.stream,
+			Handle  => constants.log.gui.trace_handle,
 			Message => "Waiting for device controllers to finish"
 		);
 
@@ -1361,7 +1430,7 @@ package body gui is
 		end loop;
 
 		GNATCOLL.Traces.Trace (
-			Handle  => constants.log.gui.stream,
+			Handle  => constants.log.gui.trace_handle,
 			Message => "All tasks finished"
 		);
 
