@@ -17,13 +17,18 @@ package body environment_station is
 		);
 
 		next_activation            : Ada.Real_Time.Time;
+		next_deadline              : Ada.Real_Time.Time;
 		read_error_occurred_count  : Integer := 0;
 		alarm_turned_on            : Boolean := False;
 		sensor_value               : Float;
 		sensor_read_error_occurred : Boolean;
 		is_threshold_breached      : Boolean;
 	begin
-		next_activation := Ada.Real_Time.Clock; 
+		next_activation := Ada.Real_Time.Clock;
+		next_deadline   := Ada.Real_Time."+" (
+			Left  => next_activation,
+			Right => deadline
+		);
 
 		running_loop : loop
 			select
@@ -33,9 +38,8 @@ package body environment_station is
 				exit running_loop;
 			else
 				select 
-					delay Ada.Real_Time.To_Duration (
-						TS => deadline
-					);
+					delay until next_deadline;
+
 					GNATCOLL.Traces.Trace (
 						Handle  => trace_handle,
 						Message => "Deadline breached"
@@ -128,6 +132,12 @@ package body environment_station is
 				Left  => next_activation,
 				Right => period
 			);
+
+			next_deadline   := Ada.Real_Time."+" (
+				Left  => next_activation,
+				Right => deadline
+			);
+
 			delay until next_activation;
 
 		end loop running_loop;
@@ -153,14 +163,19 @@ package body environment_station is
 			MS => dealine_in_ms 
 		);
 
-		next_activation          : Ada.Real_Time.Time;
-		read_error_occurred_count : Integer := 0;
-		alarm_turned_on          : Boolean := False;
-		pump_threashold_breached : Boolean := False;
-		sensor_value : Float;
+		next_activation            : Ada.Real_Time.Time;
+		next_deadline              : Ada.Real_Time.Time;
+		read_error_occurred_count  : Integer := 0;
+		alarm_turned_on            : Boolean := False;
+		pump_threashold_breached   : Boolean := False;
+		sensor_value               : Float;
 		sensor_read_error_occurred : Boolean;
 	begin
-		next_activation := Ada.Real_Time.Clock; 
+		next_activation := Ada.Real_Time.Clock;
+		next_deadline   := Ada.Real_Time."+" (
+			Left  => next_activation,
+			Right => deadline
+		);
 
 		running_loop : loop
 			select
@@ -170,9 +185,7 @@ package body environment_station is
 				exit running_loop;
 			else
 				select 
-					delay Ada.Real_Time.To_Duration (
-						TS => deadline
-					);
+					delay until next_deadline;
 
 					GNATCOLL.Traces.Trace (
 						Handle  => trace_handle,
@@ -282,6 +295,12 @@ package body environment_station is
 				Left  => next_activation,
 				Right => period
 			);
+
+			next_deadline   := Ada.Real_Time."+" (
+				Left  => next_activation,
+				Right => deadline
+			);
+
 			delay until next_activation;
 
 		end loop running_loop;

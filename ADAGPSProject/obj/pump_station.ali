@@ -9,11 +9,9 @@ RV NO_DELAY
 RV NO_DIRECT_BOOLEAN_OPERATORS
 RV NO_EXCEPTION_HANDLERS
 RV NO_EXCEPTIONS
-RV NO_FIXED_POINT
 RV NO_IO
 RV NO_IMPLICIT_CONDITIONALS
 RV NO_PROTECTED_TYPES
-RV NO_RELATIVE_DELAY
 RV NO_SELECT_STATEMENTS
 RV NO_STANDARD_STORAGE_POOLS
 RV NO_TASKING
@@ -27,9 +25,8 @@ RV MAX_TASK_ENTRIES=1
 RV MAX_ASYNCHRONOUS_SELECT_NESTING=1+
 RV MAX_ENTRY_QUEUE_LENGTH=1+
 
-U pump_station%b	pump_station.adb	0b642c2e OO PK IL
+U pump_station%b	pump_station.adb	a9925a6d OO PK IL
 W ada%s			ada.ads			ada.ali
-Z ada.calendar.delays%s	a-caldel.adb		a-caldel.ali
 W ada.real_time%s	a-reatim.adb		a-reatim.ali
 Z ada.real_time.delays%s  a-retide.adb		a-retide.ali
 Z ada.tags%s		a-tags.adb		a-tags.ali
@@ -44,6 +41,7 @@ Z system.img_int%s	s-imgint.adb		s-imgint.ali
 Z system.soft_links%s	s-soflin.adb		s-soflin.ali
 Z system.tasking%s	s-taskin.adb		s-taskin.ali
 Z system.tasking.async_delays%s  s-taasde.adb	s-taasde.ali
+Z system.tasking.async_delays.enqueue_rt%s  s-tadert.adb  s-tadert.ali
 Z system.tasking.protected_objects%s  s-taprob.adb  s-taprob.ali
 Z system.tasking.rendezvous%s  s-tasren.adb	s-tasren.ali
 Z system.tasking.stages%s  s-tassta.adb		s-tassta.ali
@@ -64,7 +62,6 @@ Z system.tasking.stages%s  s-tassta.adb		s-tassta.ali
 
 D ada.ads		20180524051736 76789da1 ada%s
 D a-calend.ads		20180524051738 372815c8 ada.calendar%s
-D a-caldel.ads		20180524051736 9f20b83d ada.calendar.delays%s
 D a-charac.ads		20180524051736 2d3ec45b ada.characters%s
 D a-chahan.ads		20180524051736 1601a50f ada.characters.handling%s
 D a-contai.ads		20180524051736 61e5e089 ada.containers%s
@@ -107,7 +104,7 @@ D i-c.ads		20180524051736 5421119b interfaces.c%s
 D i-cstrin.ads		20180524051736 341d0ddf interfaces.c.strings%s
 D i-cstrea.ads		20180524051736 e53d8b8e interfaces.c_streams%s
 D pump_station.ads	20180912123200 d878ffba pump_station%s
-D pump_station.adb	20180912135526 4999f761 pump_station%b
+D pump_station.adb	20180919192626 eb6f8122 pump_station%b
 D system.ads		20180524051738 32a08138 system%s
 D s-atacco.ads		20180524051738 4c36d12f system.address_to_access_conversions%s
 D s-atocou.ads		20180524051738 b45c2d8d system.atomic_counters%s
@@ -146,6 +143,7 @@ D s-taspri.ads		20180524051738 6c1d93d4 system.task_primitives%s
 D s-taprop.ads		20180524051738 1dd2e1b6 system.task_primitives.operations%s
 D s-taskin.ads		20180524051738 1d8c1ccb system.tasking%s
 D s-taasde.ads		20180524051738 422600df system.tasking.async_delays%s
+D s-tadert.ads		20180524051738 16f69e8e system.tasking.async_delays.enqueue_rt%s
 D s-taprob.ads		20180524051738 acd6094d system.tasking.protected_objects%s
 D s-tpoben.ads		20180524051738 60ad3dae system.tasking.protected_objects.entries%s
 D s-tasren.ads		20180524051738 a67a9949 system.tasking.rendezvous%s
@@ -155,128 +153,127 @@ D s-unstyp.ads		20180524051736 34867c83 system.unsigned_types%s
 D s-wchcon.ads		20180524051738 1b7d22d2 system.wch_con%s
 D s-win32.ads		20180524051736 b7f96285 system.win32%s
 X 1 ada.ads
-16K9*Ada 20e8 46|1r6 6r6 143r35 143r62 147r37 147r64 151r38 151r78 207r47
-. 216r41 294r44
-X 5 a-chahan.ads
-66V13*To_Lower{character} 35|283i21
-67V13*To_Upper{character} 35|285i21
-X 10 a-reatim.ads
-39K13*Real_Time 185e18 46|1w10 143r39 143r66 147r41 147r68 151r42 151r82
-. 207r51 294r48
-49O9*Time<duration> 46|151r52
-54O9*Time_Span<duration> 46|143r49 147r51
-61V13*Clock{49O9} 46|151s92
-65V14*"+"{49O9} 46|294s59
-65o19 Left{49O9} 46|295r33
-65o37 Right{54O9} 46|296r33
-83V14*"+"{54O9} 46|294r59
-110V13*To_Duration{duration} 46|207s61
-110o27 TS{54O9} 46|208r49
-119V13*Milliseconds{54O9} 46|143s76 147s78
-119i27 MS{integer} 46|144r25 148r25
-X 15 a-textio.ads
-49K13*Text_IO 471e16 46|6w10 216r45
-263U14*Put_Line 46|216s53
-264a7 Item{string} 46|217r49
-X 18 alarm_station.ads
-5K9*alarm_station 29e18 45|6w6 45r48
-11W24*alarm_controller_t 28e31 45|45r62
-18U27 turn_on 46|256s90
-19p25 trace_handle{38|341P9} 46|257r81
-22U27 turn_off 46|278s82
-23p25 trace_handle{38|341P9} 46|279r73
-X 19 devices.ads
-4K9*devices 158e12 45|5w6 17r35 39r30 39r57 44r48 46r48 46|4w6 25r65 42r55
-. 68r65 78r55 100r49 114r47 116r42 124r57 130r57 155r30 160r46 168r39 170r42
-. 185r46 191r32
-6E14*device_state_t 6e43 45|39r38 46|155r38 160r54 185r54
-6n34*ON{6E14} 46|25r73 42r63 116r50 124r65 170r50
-6n38*OFF{6E14} 45|39r65 46|68r73 78r63 100r57 130r65
-8W24*device_t 28e21 45|17r43 44r56
-11V26 get_state{6E14} 46|94s44 155s61 164s52 187s52 244s84
-12p25 trace_handle{38|341P9} 46|95r33 156r25 165r33 188r33 245r73
-15U27 set_state 46|23s46 66s46 98s30 122s38 128s38
-16p25 trace_handle{38|341P9} 46|24r49 67r49 99r33 123r41 129r41
-17e25 new_state{6E14} 46|25r49 68r49 100r33 124r41 130r41
-85W24*water_flow_sensor_t 126e32 45|46r56
-90U27 start_conversion 46|290s43
-91p25 trace_handle{38|341P9} 46|291r33
-98V26 is_water_flowing{boolean} 46|173s63
-99p25 trace_handle{38|341P9} 46|174r33
-X 24 gnatcoll.ads
-24K9*GNATCOLL 27e13 45|3r6 22r43 26r43 30r43 34r43 50r41 46|3r6 11r43 17r41
-. 30r41 37r41 48r43 53r41 60r41 73r41 84r43 87r25 105r43 109r25 211r41 224r65
-. 236r65 251r73 263r73 273r65 302r17
-X 38 gnatcoll-traces.ads
-251K18*Traces 927e20 45|3w15 22r52 26r52 30r52 34r52 50r50 46|3w15 11r52
-. 17r50 30r50 37r50 48r52 53r50 60r50 73r50 84r52 87r34 105r52 109r34 211r50
-. 224r74 236r74 251r82 263r82 273r74 302r26
-341P9*Trace_Handle(340R9) 45|22r59 26r59 30r59 34r59 50r57 46|11r59 48r59
+16K9*Ada 20e8 45|1r6 6r6 143r35 143r62 147r37 147r64 151r38 152r38 198r36
+. 199r36 219r41 297r44 302r44
+X 4 a-chahan.ads
+66V13*To_Lower{character} 34|283i21
+67V13*To_Upper{character} 34|285i21
+X 9 a-reatim.ads
+39K13*Real_Time 185e18 45|1w10 143r39 143r66 147r41 147r68 151r42 152r42
+. 198r40 199r40 297r48 302r48
+49O9*Time<duration> 45|151r52 152r52
+54O9*Time_Span<duration> 45|143r49 147r51
+61V13*Clock{49O9} 45|198s50
+65V14*"+"{49O9} 45|199s51 297s59 302s59
+65o19 Left{49O9} 45|200r25 298r33 303r33
+65o37 Right{54O9} 45|201r25 299r33 304r33
+83V14*"+"{54O9} 45|199r51 297r59 302r59
+119V13*Milliseconds{54O9} 45|143s76 147s78
+119i27 MS{integer} 45|144r25 148r25
+X 14 a-textio.ads
+49K13*Text_IO 471e16 45|6w10 219r45
+263U14*Put_Line 45|219s53
+264a7 Item{string} 45|220r49
+X 17 alarm_station.ads
+5K9*alarm_station 29e18 44|6w6 45r48
+11W24*alarm_controller_t 28e31 44|45r62
+18U27 turn_on 45|259s90
+19p25 trace_handle{37|341P9} 45|260r81
+22U27 turn_off 45|281s82
+23p25 trace_handle{37|341P9} 45|282r73
+X 18 devices.ads
+4K9*devices 158e12 44|5w6 17r35 39r30 39r57 44r48 46r48 45|4w6 25r65 42r55
+. 68r65 78r55 100r49 114r47 116r42 124r57 130r57 156r30 161r46 169r39 171r42
+. 186r46 192r32
+6E14*device_state_t 6e43 44|39r38 45|156r38 161r54 186r54
+6n34*ON{6E14} 45|25r73 42r63 116r50 124r65 171r50
+6n38*OFF{6E14} 44|39r65 45|68r73 78r63 100r57 130r65
+8W24*device_t 28e21 44|17r43 44r56
+11V26 get_state{6E14} 45|94s44 156s61 165s52 188s52 247s84
+12p25 trace_handle{37|341P9} 45|95r33 157r25 166r33 189r33 248r73
+15U27 set_state 45|23s46 66s46 98s30 122s38 128s38
+16p25 trace_handle{37|341P9} 45|24r49 67r49 99r33 123r41 129r41
+17e25 new_state{6E14} 45|25r49 68r49 100r33 124r41 130r41
+85W24*water_flow_sensor_t 126e32 44|46r56
+90U27 start_conversion 45|293s43
+91p25 trace_handle{37|341P9} 45|294r33
+98V26 is_water_flowing{boolean} 45|174s63
+99p25 trace_handle{37|341P9} 45|175r33
+X 23 gnatcoll.ads
+24K9*GNATCOLL 27e13 44|3r6 22r43 26r43 30r43 34r43 50r41 45|3r6 11r43 17r41
+. 30r41 37r41 48r43 53r41 60r41 73r41 84r43 87r25 105r43 109r25 214r41 227r65
+. 239r65 254r73 266r73 276r65 311r17
+X 37 gnatcoll-traces.ads
+251K18*Traces 927e20 44|3w15 22r52 26r52 30r52 34r52 50r50 45|3w15 11r52
+. 17r50 30r50 37r50 48r52 53r50 60r50 73r50 84r52 87r34 105r52 109r34 214r50
+. 227r74 239r74 254r82 266r82 276r74 311r26
+341P9*Trace_Handle(340R9) 44|22r59 26r59 30r59 34r59 50r57 45|11r59 48r59
 . 84r59 105r59
-518U14*Trace 46|17s57 30s57 37s57 53s57 60s57 73s57 87s41 109s41 211s57 224s81
-. 236s81 251s89 263s89 273s81 302s33
-519p7 Handle(340R9) 46|18r49 31r49 38r49 54r49 61r49 74r49 88r33 110r33 212r49
-. 225r73 237r73 252r81 264r81 274r73 303r25
-520a7 Message{string} 46|19r49 32r49 39r49 55r49 62r49 75r49 89r33 111r33
-. 213r49 226r73 238r73 253r81 265r81 275r73 304r25
-X 45 pump_station.ads
-8K9*pump_station 58l5 58e17 46|8b14 308l5 308t17
+518U14*Trace 45|17s57 30s57 37s57 53s57 60s57 73s57 87s41 109s41 214s57 227s81
+. 239s81 254s89 266s89 276s81 311s33
+519p7 Handle(340R9) 45|18r49 31r49 38r49 54r49 61r49 74r49 88r33 110r33 215r49
+. 228r73 240r73 255r81 267r81 277r73 312r25
+520a7 Message{string} 45|19r49 32r49 39r49 55r49 62r49 75r49 89r33 111r33
+. 216r49 229r73 241r73 256r81 268r81 278r73 313r25
+X 44 pump_station.ads
+8K9*pump_station 58l5 58e17 45|8b14 317l5 317t17
 9E14*pump_controller_state_t 13e10 38r30
-10n17*PUMP_TURNED_OFF{9E14} 38r57 46|15r38 52r38 65r50 127r42
-11n17*PUMP_TURNED_ON{9E14} 46|22r50 29r38 59r38 120r42
-12n17*METHANE_THREASHOLD_BREACHED{9E14} 46|36r38 72r38 92r39
-15W24*pump_controller_t 16d17 17d17 38E17 40l13 40e30 46|9b24 134l13 134t30
-16i17 priority{47|101I12} 19r35
-21U27 turn_on 22>25 46|10b27 45l21 45t28
-22p25 trace_handle{38|341P9} 46|11b25 18r60 24r65 31r60 38r60
-25U27 turn_off 26>25 46|47b27 81l21 81t29
-26p25 trace_handle{38|341P9} 46|48b25 54r60 61r60 67r65 74r60
-29U27 threshold_breached 30>25 46|83b27 102l21 102t39
-30p25 trace_handle{38|341P9} 46|84b25 88r44 95r49 99r49
-33U27 state_normal 34>25 46|104b27 133l21 133t33
-34p25 trace_handle{38|341P9} 46|105b25 110r44 123r57 129r57
-38e17 state{9E14} 46|14r32 22r41 51r32 65r41 92r25 120r33 127r33
-39e17 pump_state{19|6E14} 46|42r41 78r41 94r25 115r42
+10n17*PUMP_TURNED_OFF{9E14} 38r57 45|15r38 52r38 65r50 127r42
+11n17*PUMP_TURNED_ON{9E14} 45|22r50 29r38 59r38 120r42
+12n17*METHANE_THREASHOLD_BREACHED{9E14} 45|36r38 72r38 92r39
+15W24*pump_controller_t 16d17 17d17 38E17 40l13 40e30 45|9b24 134l13 134t30
+16i17 priority{46|101I12} 19r35
+21U27 turn_on 22>25 45|10b27 45l21 45t28
+22p25 trace_handle{37|341P9} 45|11b25 18r60 24r65 31r60 38r60
+25U27 turn_off 26>25 45|47b27 81l21 81t29
+26p25 trace_handle{37|341P9} 45|48b25 54r60 61r60 67r65 74r60
+29U27 threshold_breached 30>25 45|83b27 102l21 102t39
+30p25 trace_handle{37|341P9} 45|84b25 88r44 95r49 99r49
+33U27 state_normal 34>25 45|104b27 133l21 133t33
+34p25 trace_handle{37|341P9} 45|105b25 110r44 123r57 129r57
+38e17 state{9E14} 45|14r32 22r41 51r32 65r41 92r25 120r33 127r33
+39e17 pump_state{18|6E14} 45|42r41 78r41 94r25 115r42
 42T19*water_flow_sensor_controller_t 43d17 44d17 45d17 46d17 47d17 48d17
-. 49d17 50d17 55l13 55e43 46|142b19 306l13 306t43
-43i17 priority{47|101I12} 52r35
-47i17 period_in_ms{integer} 46|144r31
-48i17 deadline_in_ms{integer} 46|148r31
-49i17 number_of_activations{integer} 46|250r91 265r166
-50p17 trace_handle{38|341P9} 46|156r41 165r49 174r49 188r49 212r60 225r84
-. 237r84 245r89 252r92 257r97 264r92 274r84 279r89 291r49 303r36
-54Y23 stop 46|201b40 203l37 203t41
-X 46 pump_station.adb
+. 49d17 50d17 55l13 55e43 45|142b19 315l13 315t43
+43i17 priority{46|101I12} 52r35
+47i17 period_in_ms{integer} 45|144r31
+48i17 deadline_in_ms{integer} 45|148r31
+49i17 number_of_activations{integer} 45|253r91 268r166
+50p17 trace_handle{37|341P9} 45|157r41 166r49 175r49 189r49 215r60 228r84
+. 240r84 248r89 255r92 260r97 267r92 277r84 282r89 294r49 312r36
+54Y23 stop 45|206b40 208l37 208t41
+X 45 pump_station.adb
 107b25 was_pump_turned_on{boolean} 114m25 119r30
-136E14 water_flow_sensor_controller_state_t 140e10 152r38
-137n17 STATE_NORMAL{136E14} 152r78 222r54 242r87
-138n17 CHECKING{136E14} 230r87 234r54 283r87
-139n17 ALARM{136E14} 261r95 271r54
-143o17 period{10|54O9} 296r42
-147o17 deadline{10|54O9} 208r55
-151o17 next_activation{10|49O9} 294m25 295r42 298r37
-152e17 state{136E14} 221r48 230m65 242m65 261m73 283m65
-153i17 current_activation{integer} 229m65 241m65 248m65 248r87 250r70 260m73
-. 265r131 282m65
-155e17 pump_state{19|6E14} 193r42 244m65
-159V26 is_expected_water_flow{boolean} 159b26 182l21 182t43 223s98 235s62
-. 272s62
-160e25 current_pump_state{19|6E14} 164m25 169r42
-161b25 is_pump_on{boolean} 168m25 177r34 177r95
-162b25 is_water_flowing{boolean} 173m25 177r60 177r122
-184V26 is_pump_state_same{boolean} 184b26 195l21 195t39 223s64
-185e25 current_pump_state{19|6E14} 187m25 192r42
-199l17 running_loop 204r38 300l26 300e38
-X 47 system.ads
-37K9*System 45|1w6 16r28 43r41 47|200e11
+136E14 water_flow_sensor_controller_state_t 140e10 153r38
+137n17 STATE_NORMAL{136E14} 153r78 225r54 245r87
+138n17 CHECKING{136E14} 233r87 237r54 286r87
+139n17 ALARM{136E14} 264r95 274r54
+143o17 period{9|54O9} 299r42
+147o17 deadline{9|54O9} 201r34 304r42
+151o17 next_activation{9|49O9} 198m17 200r34 297m25 298r42 303r42 307r37
+152o17 next_deadline{9|49O9} 199m17 212r53 302m25
+153e17 state{136E14} 224r48 233m65 245m65 264m73 286m65
+154i17 current_activation{integer} 232m65 244m65 251m65 251r87 253r70 263m73
+. 268r131 285m65
+156e17 pump_state{18|6E14} 194r42 247m65
+160V26 is_expected_water_flow{boolean} 160b26 183l21 183t43 226s98 238s62
+. 275s62
+161e25 current_pump_state{18|6E14} 165m25 170r42
+162b25 is_pump_on{boolean} 169m25 178r34 178r95
+163b25 is_water_flowing{boolean} 174m25 178r60 178r122
+185V26 is_pump_state_same{boolean} 185b26 196l21 196t39 226s64
+186e25 current_pump_state{18|6E14} 188m25 193r42
+204l17 running_loop 209r38 309l26 309e38
+X 46 system.ads
+37K9*System 44|1w6 16r28 43r41 46|200e11
 67M9*Address
 100I12*Any_Priority{integer}
-101I12*Priority{100I12} 45|16r35 43r48
-X 60 s-memory.ads
-53V13*Alloc{47|67M9} 103i<c,__gnat_malloc>22
+101I12*Priority{100I12} 44|16r35 43r48
+X 59 s-memory.ads
+53V13*Alloc{46|67M9} 103i<c,__gnat_malloc>22
 68U14*Free 104i<c,__gnat_free>22
-76V13*Realloc{47|67M9} 105i<c,__gnat_realloc>22
-X 70 s-stausa.ads
+76V13*Realloc{46|67M9} 105i<c,__gnat_realloc>22
+X 69 s-stausa.ads
 203U14*Initialize 204i<c,__gnat_stack_usage_initialize>22
 268U14*Output_Results 272i<c,__gnat_stack_usage_output_results>22
 

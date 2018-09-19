@@ -1163,7 +1163,7 @@ package ada_main is
    pragma Export (C, u00562, "alarm_stationB");
    u00563 : constant Version_32 := 16#bf124d1d#;
    pragma Export (C, u00563, "alarm_stationS");
-   u00564 : constant Version_32 := 16#67624c0b#;
+   u00564 : constant Version_32 := 16#9b7f5b73#;
    pragma Export (C, u00564, "environment_stationB");
    u00565 : constant Version_32 := 16#eb8d1483#;
    pragma Export (C, u00565, "environment_stationS");
@@ -1183,10 +1183,14 @@ package ada_main is
    pragma Export (C, u00572, "system__interrupt_management__operationsB");
    u00573 : constant Version_32 := 16#19b909c9#;
    pragma Export (C, u00573, "system__interrupt_management__operationsS");
-   u00574 : constant Version_32 := 16#0b642c2e#;
-   pragma Export (C, u00574, "pump_stationB");
-   u00575 : constant Version_32 := 16#676ab2a7#;
-   pragma Export (C, u00575, "pump_stationS");
+   u00574 : constant Version_32 := 16#71075eb6#;
+   pragma Export (C, u00574, "system__tasking__async_delays__enqueue_rtB");
+   u00575 : constant Version_32 := 16#56906222#;
+   pragma Export (C, u00575, "system__tasking__async_delays__enqueue_rtS");
+   u00576 : constant Version_32 := 16#a9925a6d#;
+   pragma Export (C, u00576, "pump_stationB");
+   u00577 : constant Version_32 := 16#676ab2a7#;
+   pragma Export (C, u00577, "pump_stationS");
 
    --  BEGIN ELABORATION ORDER
    --  ada%s
@@ -1489,6 +1493,8 @@ package ada_main is
    --  system.tasking.stages%b
    --  system.tasking.async_delays%s
    --  system.tasking.async_delays%b
+   --  system.tasking.async_delays.enqueue_rt%s
+   --  system.tasking.async_delays.enqueue_rt%b
    --  gnatcoll%s
    --  gnatcoll.storage_pools%s
    --  gtkada%s

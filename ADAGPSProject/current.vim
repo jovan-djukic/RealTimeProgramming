@@ -32,29 +32,29 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +49 .\src\constants.ads
+badd +1 .\src\constants.ads
 badd +1 .\src\main.adb
-badd +6 .\src\devices\devices.ads
+badd +1 .\src\devices\devices.ads
 badd +56 .\src\devices\devices.adb
-badd +16 .\src\gui\gui.ads
+badd +1 .\src\gui\gui.ads
 badd +1 .\src\gui\gui.adb
-badd +56 .\src\mine_water_level_control_system\mine_water_level_control_system.ads
+badd +1 .\src\mine_water_level_control_system\mine_water_level_control_system.ads
 badd +1 .\src\mine_water_level_control_system\mine_water_level_control_system.adb
-badd +43 .\src\mine_water_level_control_system\pump_station\pump_station.ads
+badd +1 .\src\mine_water_level_control_system\pump_station\pump_station.ads
 badd +231 .\src\mine_water_level_control_system\pump_station\pump_station.adb
 badd +10 .\src\task_syncronization\task_syncronization.ads
 badd +6 .\src\task_syncronization\task_syncronization.adb
 badd +31 mine_water_level_control_system.gpr
 badd +2 log.config
-badd +21 src\mine_water_level_control_system\alarm_station\alarm_station.ads
+badd +1 src\mine_water_level_control_system\alarm_station\alarm_station.ads
 badd +72 src\mine_water_level_control_system\alarm_station\alarm_station.adb
 badd +9 src\main.ads
 badd +4 src\communication.ads
 badd +14 src\gui\controllers\gui_controllers.ads
 badd +24 src\gui\controllers\gui_controllers.adb
-badd +77 src\gui\controllers\controllers.ads
+badd +1 src\gui\controllers\controllers.ads
 badd +1 src\gui\controllers\controllers.adb
-badd +38 src\mine_water_level_control_system\environment_station\environment_station.ads
+badd +1 src\mine_water_level_control_system\environment_station\environment_station.ads
 badd +283 src\mine_water_level_control_system\environment_station\environment_station.adb
 badd +1 gnat.adc
 argglobal
@@ -82,8 +82,8 @@ set nosplitbelow
 set nosplitright
 wincmd t
 set winminheight=1 winheight=1 winminwidth=1 winwidth=1
-exe 'vert 1resize ' . ((&columns * 78 + 118) / 237)
-exe 'vert 2resize ' . ((&columns * 155 + 118) / 237)
+exe 'vert 1resize ' . ((&columns * 80 + 117) / 234)
+exe 'vert 2resize ' . ((&columns * 153 + 117) / 234)
 argglobal
 8argu
 if bufexists('src\mine_water_level_control_system\alarm_station\alarm_station.ads') | buffer src\mine_water_level_control_system\alarm_station\alarm_station.ads | else | edit src\mine_water_level_control_system\alarm_station\alarm_station.ads | endif
@@ -332,10 +332,10 @@ if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
 14
-normal! 016|
+normal! 04|
 wincmd w
-exe 'vert 1resize ' . ((&columns * 78 + 118) / 237)
-exe 'vert 2resize ' . ((&columns * 155 + 118) / 237)
+exe 'vert 1resize ' . ((&columns * 80 + 117) / 234)
+exe 'vert 2resize ' . ((&columns * 153 + 117) / 234)
 tabedit .\src\mine_water_level_control_system\pump_station\pump_station.ads
 set splitbelow splitright
 wincmd _ | wincmd |
@@ -346,8 +346,8 @@ set nosplitbelow
 set nosplitright
 wincmd t
 set winminheight=1 winheight=1 winminwidth=1 winwidth=1
-exe 'vert 1resize ' . ((&columns * 83 + 118) / 237)
-exe 'vert 2resize ' . ((&columns * 150 + 118) / 237)
+exe 'vert 1resize ' . ((&columns * 85 + 117) / 234)
+exe 'vert 2resize ' . ((&columns * 148 + 117) / 234)
 argglobal
 if bufexists('.\src\mine_water_level_control_system\pump_station\pump_station.ads') | buffer .\src\mine_water_level_control_system\pump_station\pump_station.ads | else | edit .\src\mine_water_level_control_system\pump_station\pump_station.ads | endif
 setlocal keymap=
@@ -465,7 +465,7 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 50 - ((46 * winheight(0) + 27) / 55)
+let s:l = 50 - ((49 * winheight(0) + 27) / 55)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
@@ -589,15 +589,16 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 221 - ((0 * winheight(0) + 27) / 55)
+let s:l = 193 - ((54 * winheight(0) + 27) / 55)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-221
-normal! 016|
+193
+normal! 0
 wincmd w
-exe 'vert 1resize ' . ((&columns * 83 + 118) / 237)
-exe 'vert 2resize ' . ((&columns * 150 + 118) / 237)
+2wincmd w
+exe 'vert 1resize ' . ((&columns * 85 + 117) / 234)
+exe 'vert 2resize ' . ((&columns * 148 + 117) / 234)
 tabedit src\mine_water_level_control_system\environment_station\environment_station.ads
 set splitbelow splitright
 wincmd _ | wincmd |
@@ -608,8 +609,8 @@ set nosplitbelow
 set nosplitright
 wincmd t
 set winminheight=1 winheight=1 winminwidth=1 winwidth=1
-exe 'vert 1resize ' . ((&columns * 93 + 118) / 237)
-exe 'vert 2resize ' . ((&columns * 140 + 118) / 237)
+exe 'vert 1resize ' . ((&columns * 95 + 117) / 234)
+exe 'vert 2resize ' . ((&columns * 138 + 117) / 234)
 argglobal
 if bufexists('src\mine_water_level_control_system\environment_station\environment_station.ads') | buffer src\mine_water_level_control_system\environment_station\environment_station.ads | else | edit src\mine_water_level_control_system\environment_station\environment_station.ads | endif
 setlocal keymap=
@@ -851,15 +852,15 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 52 - ((49 * winheight(0) + 27) / 55)
+let s:l = 341 - ((45 * winheight(0) + 27) / 55)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-52
-normal! 020|
+341
+normal! 0
 wincmd w
-exe 'vert 1resize ' . ((&columns * 93 + 118) / 237)
-exe 'vert 2resize ' . ((&columns * 140 + 118) / 237)
+exe 'vert 1resize ' . ((&columns * 95 + 117) / 234)
+exe 'vert 2resize ' . ((&columns * 138 + 117) / 234)
 tabedit src\gui\controllers\controllers.ads
 set splitbelow splitright
 wincmd _ | wincmd |
@@ -870,8 +871,8 @@ set nosplitbelow
 set nosplitright
 wincmd t
 set winminheight=1 winheight=1 winminwidth=1 winwidth=1
-exe 'vert 1resize ' . ((&columns * 88 + 118) / 237)
-exe 'vert 2resize ' . ((&columns * 145 + 118) / 237)
+exe 'vert 1resize ' . ((&columns * 90 + 117) / 234)
+exe 'vert 2resize ' . ((&columns * 143 + 117) / 234)
 argglobal
 6argu
 if bufexists('src\gui\controllers\controllers.ads') | buffer src\gui\controllers\controllers.ads | else | edit src\gui\controllers\controllers.ads | endif
@@ -1122,8 +1123,8 @@ normal! zt
 144
 normal! 055|
 wincmd w
-exe 'vert 1resize ' . ((&columns * 88 + 118) / 237)
-exe 'vert 2resize ' . ((&columns * 145 + 118) / 237)
+exe 'vert 1resize ' . ((&columns * 90 + 117) / 234)
+exe 'vert 2resize ' . ((&columns * 143 + 117) / 234)
 tabedit .\src\mine_water_level_control_system\mine_water_level_control_system.ads
 set splitbelow splitright
 wincmd _ | wincmd |
@@ -1134,8 +1135,8 @@ set nosplitbelow
 set nosplitright
 wincmd t
 set winminheight=1 winheight=1 winminwidth=1 winwidth=1
-exe 'vert 1resize ' . ((&columns * 98 + 118) / 237)
-exe 'vert 2resize ' . ((&columns * 135 + 118) / 237)
+exe 'vert 1resize ' . ((&columns * 100 + 117) / 234)
+exe 'vert 2resize ' . ((&columns * 133 + 117) / 234)
 argglobal
 8argu
 if bufexists('.\src\mine_water_level_control_system\mine_water_level_control_system.ads') | buffer .\src\mine_water_level_control_system\mine_water_level_control_system.ads | else | edit .\src\mine_water_level_control_system\mine_water_level_control_system.ads | endif
@@ -1385,8 +1386,8 @@ normal! zt
 94
 normal! 09|
 wincmd w
-exe 'vert 1resize ' . ((&columns * 98 + 118) / 237)
-exe 'vert 2resize ' . ((&columns * 135 + 118) / 237)
+exe 'vert 1resize ' . ((&columns * 100 + 117) / 234)
+exe 'vert 2resize ' . ((&columns * 133 + 117) / 234)
 tabedit .\src\devices\devices.ads
 set splitbelow splitright
 wincmd _ | wincmd |
@@ -1397,8 +1398,8 @@ set nosplitbelow
 set nosplitright
 wincmd t
 set winminheight=1 winheight=1 winminwidth=1 winwidth=1
-exe 'vert 1resize ' . ((&columns * 98 + 118) / 237)
-exe 'vert 2resize ' . ((&columns * 135 + 118) / 237)
+exe 'vert 1resize ' . ((&columns * 100 + 117) / 234)
+exe 'vert 2resize ' . ((&columns * 133 + 117) / 234)
 argglobal
 3argu
 setlocal keymap=
@@ -1648,8 +1649,8 @@ normal! zt
 68
 normal! 044|
 wincmd w
-exe 'vert 1resize ' . ((&columns * 98 + 118) / 237)
-exe 'vert 2resize ' . ((&columns * 135 + 118) / 237)
+exe 'vert 1resize ' . ((&columns * 100 + 117) / 234)
+exe 'vert 2resize ' . ((&columns * 133 + 117) / 234)
 tabedit .\src\main.adb
 set splitbelow splitright
 set nosplitbelow
@@ -1903,11 +1904,11 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 56 - ((30 * winheight(0) + 28) / 56)
+let s:l = 61 - ((15 * winheight(0) + 28) / 56)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-56
+61
 normal! 0
 tabedit .\src\gui\gui.ads
 set splitbelow splitright
@@ -1919,8 +1920,8 @@ set nosplitbelow
 set nosplitright
 wincmd t
 set winminheight=1 winheight=1 winminwidth=1 winwidth=1
-exe 'vert 1resize ' . ((&columns * 80 + 118) / 237)
-exe 'vert 2resize ' . ((&columns * 153 + 118) / 237)
+exe 'vert 1resize ' . ((&columns * 82 + 117) / 234)
+exe 'vert 2resize ' . ((&columns * 151 + 117) / 234)
 argglobal
 if bufexists('.\src\gui\gui.ads') | buffer .\src\gui\gui.ads | else | edit .\src\gui\gui.ads | endif
 setlocal keymap=
@@ -2169,9 +2170,9 @@ normal! zt
 1349
 normal! 013|
 wincmd w
-exe 'vert 1resize ' . ((&columns * 80 + 118) / 237)
-exe 'vert 2resize ' . ((&columns * 153 + 118) / 237)
-tabnext 8
+exe 'vert 1resize ' . ((&columns * 82 + 117) / 234)
+exe 'vert 2resize ' . ((&columns * 151 + 117) / 234)
+tabnext 2
 set stal=1
 if exists('s:wipebuf') && s:wipebuf != bufnr('%')
   silent exe 'bwipe ' . s:wipebuf

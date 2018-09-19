@@ -148,7 +148,8 @@ package body pump_station is
 			MS => deadline_in_ms 
 		);
 
-		next_activation    : Ada.Real_Time.Time                   := Ada.Real_Time.Clock;
+		next_activation    : Ada.Real_Time.Time;
+		next_deadline      : Ada.Real_Time.Time;
 		state              : water_flow_sensor_controller_state_t := STATE_NORMAL;
 		current_activation : Integer                              := 0;
 
@@ -194,7 +195,11 @@ package body pump_station is
 			);
 		end is_pump_state_same;		
 	begin
-
+		next_activation := Ada.Real_Time.Clock;
+		next_deadline   := Ada.Real_Time."+" (
+			Left  => next_activation,
+			Right => deadline
+		);
 
 		running_loop : loop
 			select
@@ -204,9 +209,7 @@ package body pump_station is
 				exit running_loop;
 			else
 				select 
-					delay Ada.Real_Time.To_Duration (
-						TS => deadline
-					);
+					delay until next_deadline;
 
 					GNATCOLL.Traces.Trace (
 						Handle  => trace_handle,
@@ -295,6 +298,12 @@ package body pump_station is
 				Left  => next_activation,
 				Right => period
 			);
+
+			next_deadline   := Ada.Real_Time."+" (
+				Left  => next_activation,
+				Right => deadline
+			);
+
 			delay until next_activation;
 
 		end loop running_loop;

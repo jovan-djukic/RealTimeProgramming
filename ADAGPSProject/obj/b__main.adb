@@ -189,7 +189,7 @@ package body ada_main is
    E545 : Short_Integer; pragma Import (Ada, E545, "gtk__label_E");
    E555 : Short_Integer; pragma Import (Ada, E555, "gtk__progress_bar_E");
    E535 : Short_Integer; pragma Import (Ada, E535, "controllers_E");
-   E575 : Short_Integer; pragma Import (Ada, E575, "pump_station_E");
+   E577 : Short_Integer; pragma Import (Ada, E577, "pump_station_E");
    E565 : Short_Integer; pragma Import (Ada, E565, "environment_station_E");
    E561 : Short_Integer; pragma Import (Ada, E561, "mine_water_level_control_system_E");
    E531 : Short_Integer; pragma Import (Ada, E531, "gui_E");
@@ -1366,7 +1366,7 @@ package body ada_main is
       controllers'elab_body;
       E535 := E535 + 1;
       pump_station'elab_body;
-      E575 := E575 + 1;
+      E577 := E577 + 1;
       environment_station'elab_body;
       E565 := E565 + 1;
       mine_water_level_control_system'elab_body;
