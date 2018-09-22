@@ -73,7 +73,7 @@ package constants is
 				end co;
 	
 				package o is
-					priority                            : constant System.Priority := ch4.priority - 1;
+					priority                            : constant System.Priority := ch4.priority - 2;
 					threshold							: aliased constant Float := 100.0;
 					read_error_occurred_count_threshold : constant Integer := 2;
 					period_in_ms                        : constant Integer := 150;
@@ -81,14 +81,14 @@ package constants is
 				end o;
 
 				package water_level is
-					priority                   : constant System.Priority := ch4.priority - 2;
+					priority                   : constant System.Priority := ch4.priority - 3;
 					low_water_level_threshold  : aliased constant Float   := 50.0;
 					high_water_level_threshold : aliased constant Float   := 150.0;
 					dealine_in_ms              : constant Integer         := 200;
 				end water_level;
 
 				package water_flow is
-					priority              : constant System.Priority := ch4.priority - 1;
+					priority              : constant System.Priority := ch4.priority - 4;
 					period_in_ms          : constant Integer         := 150;
 					dealine_in_ms         : constant Integer         := 100;
 					number_of_activations : constant Integer         := 6;
