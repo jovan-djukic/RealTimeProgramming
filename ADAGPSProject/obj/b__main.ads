@@ -1159,7 +1159,7 @@ package ada_main is
    pragma Export (C, u00560, "mine_water_level_control_systemB");
    u00561 : constant Version_32 := 16#f2b55dfc#;
    pragma Export (C, u00561, "mine_water_level_control_systemS");
-   u00562 : constant Version_32 := 16#225cf50e#;
+   u00562 : constant Version_32 := 16#001ea95b#;
    pragma Export (C, u00562, "alarm_stationB");
    u00563 : constant Version_32 := 16#bf124d1d#;
    pragma Export (C, u00563, "alarm_stationS");

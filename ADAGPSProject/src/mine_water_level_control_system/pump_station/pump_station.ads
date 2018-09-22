@@ -4,7 +4,7 @@ with GNATCOLL.Traces;
 
 with devices;
 with alarm_station;
-	
+
 package pump_station is
 	type pump_controller_state_t is ( 
 		PUMP_TURNED_OFF,
@@ -13,8 +13,8 @@ package pump_station is
 	);
 
 	protected type pump_controller_t (
-		priority : System.Priority;
-		pump     : access devices.device_t
+		priority   : System.Priority;
+		pump       : access devices.device_t
 	) is
 		pragma Priority ( priority );
 

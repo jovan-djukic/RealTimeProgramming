@@ -78,12 +78,14 @@ package body pump_station is
 					pump_state := devices.OFF;
 				end;
 			end case;	
+
 		end turn_off;
 
 		procedure threshold_breached (
 			trace_handle : in GNATCOLL.Traces.Trace_Handle
 		) is
 		begin
+
 			GNATCOLL.Traces.Trace (
 				Handle  => trace_handle,
 				Message => "Threshold breached, turning off pump"

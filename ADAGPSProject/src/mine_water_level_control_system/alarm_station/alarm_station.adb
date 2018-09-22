@@ -3,6 +3,9 @@ with GNATCOLL.Traces;
 with constants;
 with devices;
 
+with Ada.Real_Time;
+with Ada.Text_IO;
+
 package body alarm_station is
 
 	protected body alarm_controller_t  is
@@ -38,6 +41,7 @@ package body alarm_station is
 					end if;
 				end;
 			end case;	
+			
 		end turn_on;	
 
 		procedure turn_off (

@@ -73,11 +73,11 @@ package body mine_water_level_control_system is
 		);
 
 		water_level_sensors_controller := new environment_station.water_level_sensors_controller_t (
-			priority                => water_level_sensors_controller_priority,
-			dealine_in_ms           => water_level_sensors_controller_deadline_in_ms,
-			water_level_sensors  	=> water_level_sensors,
-			pump_controller         => pump_controller,
-			trace_handle            => water_level_sensors_controller_trace_handle
+			priority            => water_level_sensors_controller_priority,
+			dealine_in_ms       => water_level_sensors_controller_deadline_in_ms,
+			water_level_sensors => water_level_sensors,
+			pump_controller     => pump_controller,
+			trace_handle        => water_level_sensors_controller_trace_handle
 		);
 
 		water_flow_sensor_controller := new pump_station.water_flow_sensor_controller_t ( 

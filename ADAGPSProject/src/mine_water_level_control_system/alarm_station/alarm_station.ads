@@ -1,5 +1,7 @@
 with System;
+
 with GNATCOLL.Traces;
+
 with devices;
 
 package alarm_station is
@@ -22,6 +24,7 @@ package alarm_station is
 		procedure turn_off (
 			trace_handle : in GNATCOLL.Traces.Trace_Handle
 		);
+
 	private
 		number_of_activations : Integer 	  := 0;
 		state                 : alarm_state_t := ALARM_TURNED_OFF;

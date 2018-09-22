@@ -77,10 +77,10 @@ D a-taside.ads		20180524051738 c3e0cda8 ada.task_identification%s
 D a-textio.ads		20180524051738 881db35a ada.text_io%s
 D a-unccon.ads		20180524051738 0e9b276f ada.unchecked_conversion%s
 D a-uncdea.ads		20180524051736 eff36322 ada.unchecked_deallocation%s
-D alarm_station.ads	20180912133716 9d6aa7f9 alarm_station%s
+D alarm_station.ads	20180922163938 9d6aa7f9 alarm_station%s
 D constants.ads		20180912132938 2d7a538e constants%s
 D devices.ads		20180912143718 5c1f7a8a devices%s
-D environment_station.ads  20180912134406 8ce7a624 environment_station%s
+D environment_station.ads  20180922164218 8ce7a624 environment_station%s
 D gdk.ads		20180524063416 96d821f3 gdk%s
 D gdk-rgba.ads		20180524063422 2609514a gdk.rgba%s
 D glib.ads		20180524063416 cd438a72 glib%s
@@ -115,9 +115,9 @@ D interfac.ads		20180524051736 5ab55268 interfaces%s
 D i-c.ads		20180524051736 5421119b interfaces.c%s
 D i-cstrin.ads		20180524051736 341d0ddf interfaces.c.strings%s
 D i-cstrea.ads		20180524051736 e53d8b8e interfaces.c_streams%s
-D mine_water_level_control_system.ads  20180912130754 d0cdb718 mine_water_level_control_system%s
-D mine_water_level_control_system.adb  20180912140338 b0ac3fd0 mine_water_level_control_system%b
-D pump_station.ads	20180912123200 d878ffba pump_station%s
+D mine_water_level_control_system.ads  20180922164208 d0cdb718 mine_water_level_control_system%s
+D mine_water_level_control_system.adb  20180922163714 b0ac3fd0 mine_water_level_control_system%b
+D pump_station.ads	20180922164222 d878ffba pump_station%s
 D system.ads		20180524051738 32a08138 system%s
 D s-atacco.ads		20180524051738 4c36d12f system.address_to_access_conversions%s
 D s-atocou.ads		20180524051738 b45c2d8d system.atomic_counters%s
@@ -175,8 +175,8 @@ X 14 a-taside.ads
 X 15 a-textio.ads
 49K13*Text_IO 471e16 57|11w10
 X 18 alarm_station.ads
-5K9*alarm_station 29e18 57|8w6 16r57 33r41
-11W24*alarm_controller_t 28e31 57|16r71 33r55
+7K9*alarm_station 32e18 57|8w6 16r57 33r41
+13W24*alarm_controller_t 31e31 57|16r71 33r55
 X 19 constants.ads
 8K9*constants 617e14 57|5w6
 X 20 devices.ads
@@ -219,7 +219,7 @@ X 56 mine_water_level_control_system.ads
 22i17 co_sensor_controller_priority{59|101I12} 57|40r64
 23i17 o_sensor_controller_priority{59|101I12} 57|52r64
 24i17 ch4_sensor_controller_priority{59|101I12} 57|64r64
-25i17 water_level_sensors_controller_priority{59|101I12} 57|76r52
+25i17 water_level_sensors_controller_priority{59|101I12} 57|76r48
 26i17 water_flow_sensor_controller_priority{59|101I12} 57|84r50
 30i17 co_sensor_controller_read_error_occurred_count_threshold{integer} 57|43r64
 31i17 co_sensor_controller_period_in_ms{integer} 57|44r64
@@ -231,7 +231,7 @@ X 56 mine_water_level_control_system.ads
 . 57|66r64
 39i17 ch4_sensor_controller_period_in_ms{integer} 57|67r64
 40i17 ch4_sensor_controller_deadline_in_ms{integer} 57|68r64
-41i17 water_level_sensors_controller_deadline_in_ms{integer} 57|77r52
+41i17 water_level_sensors_controller_deadline_in_ms{integer} 57|77r48
 42i17 water_flow_sensor_controller_period_in_ms{integer} 57|88r50
 43i17 water_flow_sensor_controller_deadline_in_ms{integer} 57|89r50
 44i17 water_flow_sensor_controller_number_of_activations{integer} 57|90r50
@@ -240,14 +240,14 @@ X 56 mine_water_level_control_system.ads
 50p17 co_sensor_controller_trace_handle{47|341P9} 57|48r64
 51p17 o_sensor_controller_trace_handle{47|341P9} 57|60r84
 52p17 ch4_sensor_controller_trace_handle{47|341P9} 57|72r84
-53p17 water_level_sensors_controller_trace_handle{47|341P9} 57|80r52
+53p17 water_level_sensors_controller_trace_handle{47|341P9} 57|80r48
 54p17 water_flow_sensor_controller_trace_handle{47|341P9} 57|91r50
 58Y23 turn_on 57|96b40 98l37 98t44
 59Y23 turn_off 57|104b40 106l37 106t45
 60Y23 stop 57|112b40 154l37 154t41
 X 57 mine_water_level_control_system.adb
-15p17 pump_controller(58|15W24) 28m17 71r64 79r52 100r33 108r33
-16p17 alarm_controller(18|11W24) 33m17 47r64 59r64 70r64 86r50
+15p17 pump_controller(58|15W24) 28m17 71r64 79r48 100r33 108r33
+16p17 alarm_controller(18|13W24) 33m17 47r64 59r64 70r64 86r50
 17p17 co_sensor_controller(21|8T19) 39m17 127r41
 18p17 o_sensor_controller(21|8T19) 51m17 134r41
 19p17 ch4_sensor_controller(21|24T19) 63m17 141r41

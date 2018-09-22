@@ -13,7 +13,6 @@ with gui;
 -- for debugging
 with Ada.Text_IO;
 
--- set task dispatching policy 
 procedure main is
 	-- devices
 	pump  : access devices.device_t;
@@ -31,7 +30,6 @@ procedure main is
 
 	gui_controller   : access gui.gui_controller_t;
 	top              : access mine_water_level_control_system.top_t;
-
 begin
 	-- initialize logging
 	GNATCOLL.Traces.Parse_Config (

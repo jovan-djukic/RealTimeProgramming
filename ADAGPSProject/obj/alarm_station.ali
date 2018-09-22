@@ -5,6 +5,7 @@ A -march=x86-64
 P ZX
 
 RN
+RV NO_IO
 RV NO_PROTECTED_TYPES
 RV NO_STANDARD_STORAGE_POOLS
 RV STATIC_PRIORITIES
@@ -12,8 +13,11 @@ RV NO_IMPLEMENTATION_PRAGMAS
 RV SPARK_05
 RV MAX_ENTRY_QUEUE_LENGTH=1+
 
-U alarm_station%b	alarm_station.adb	225cf50e NE OO PK IL
+U alarm_station%b	alarm_station.adb	001ea95b NE OO PK IL
+W ada%s			ada.ads			ada.ali
+W ada.real_time%s	a-reatim.adb		a-reatim.ali
 Z ada.tags%s		a-tags.adb		a-tags.ali
+W ada.text_io%s		a-textio.adb		a-textio.ali
 W constants%s		constants.ads		constants.ali
 W devices%s		devices.adb		devices.ali
 W gnatcoll%s		gnatcoll.ads		gnatcoll.ali
@@ -46,8 +50,8 @@ D a-tags.ads		20180524051738 491b781d ada.tags%s
 D a-textio.ads		20180524051738 881db35a ada.text_io%s
 D a-unccon.ads		20180524051738 0e9b276f ada.unchecked_conversion%s
 D a-uncdea.ads		20180524051736 eff36322 ada.unchecked_deallocation%s
-D alarm_station.ads	20180912133716 9d6aa7f9 alarm_station%s
-D alarm_station.adb	20180912123112 82946aa5 alarm_station%b
+D alarm_station.ads	20180922163938 9d6aa7f9 alarm_station%s
+D alarm_station.adb	20180922165328 2a8b79d9 alarm_station%b
 D constants.ads		20180912132938 2d7a538e constants%s
 D devices.ads		20180912143718 5c1f7a8a devices%s
 D gdk.ads		20180524063416 96d821f3 gdk%s
@@ -126,54 +130,60 @@ D s-traent.ads		20180524051736 005bf670 system.traceback_entries%s
 D s-unstyp.ads		20180524051736 34867c83 system.unsigned_types%s
 D s-wchcon.ads		20180524051738 1b7d22d2 system.wch_con%s
 D s-win32.ads		20180524051736 b7f96285 system.win32%s
+X 1 ada.ads
+16K9*Ada 20e8 18|6r6 7r6
 X 4 a-chahan.ads
 66V13*To_Lower{character} 43|283i21
 67V13*To_Upper{character} 43|285i21
+X 10 a-reatim.ads
+39K13*Real_Time 185e18 18|6w10
+X 14 a-textio.ads
+49K13*Text_IO 471e16 18|7w10
 X 17 alarm_station.ads
-5K9*alarm_station 29l5 29e18 18|6b14 78l5 78t18
-6E14*alarm_state_t 9e10 27r41
-7n17*ALARM_TURNED_ON{6E14} 18|25r66 29r38 52r38
-8n17*ALARM_TURNED_OFF{6E14} 27r58 18|14r38 48r38 66r58
-11W24*alarm_controller_t 12d17 13d17 14d17 26E17 28l13 28e31 18|8b24 77l13
-. 77t31
-12i17 priority{55|101I12} 16r35
-14i17 number_of_activators{integer} 18|36r70 37r74
-18U27 turn_on 19>25 18|9b27 41l21 41t28
-19p25 trace_handle{46|341P9} 18|10b25 16r65 21r60 31r60
-22U27 turn_off 23>25 18|43b27 75l21 75t29
-23p25 trace_handle{46|341P9} 18|44b25 57r68 62r73 69r68
-26i17 number_of_activations{integer} 18|26r41 26r66 35r41 35r66 36r46 37r49
-. 53r41 53r66 55r46
-27e17 state{6E14} 18|13r32 25r41 47r32 66r49
+7K9*alarm_station 32l5 32e18 18|9b14 82l5 82t18
+8E14*alarm_state_t 11e10 30r41
+9n17*ALARM_TURNED_ON{8E14} 18|28r66 32r38 56r38
+10n17*ALARM_TURNED_OFF{8E14} 30r58 18|17r38 52r38 70r58
+13W24*alarm_controller_t 14d17 15d17 16d17 29E17 31l13 31e31 18|11b24 81l13
+. 81t31
+14i17 priority{55|101I12} 18r35
+16i17 number_of_activators{integer} 18|39r70 40r74
+20U27 turn_on 21>25 18|12b27 45l21 45t28
+21p25 trace_handle{46|341P9} 18|13b25 19r65 24r60 34r60
+24U27 turn_off 25>25 18|47b27 79l21 79t29
+25p25 trace_handle{46|341P9} 18|48b25 61r68 66r73 73r68
+29i17 number_of_activations{integer} 18|29r41 29r66 38r41 38r66 39r46 40r49
+. 57r41 57r66 59r46
+30e17 state{8E14} 18|16r32 28r41 51r32 70r49
 X 19 constants.ads
 8K9*constants 18|3w6 19|617e14
 X 20 devices.ads
-4K9*devices 17|3w6 13r47 18|4w6 17r65 63r73 20|158e12
-6n34*ON{6E14} 18|17r73
-6n38*OFF{6E14} 18|63r81
-8W24*device_t 17|13r55 20|28e21
-15U27 set_state 18|15s47 61s55
-16p25 trace_handle{46|341P9} 18|16r49 62r57
-17e25 new_state{6E14} 18|17r49 63r57
+4K9*devices 17|5w6 15r47 18|4w6 20r65 67r73 20|158e12
+6n34*ON{6E14} 18|20r73
+6n38*OFF{6E14} 18|67r81
+8W24*device_t 17|15r55 20|28e21
+15U27 set_state 18|18s47 65s55
+16p25 trace_handle{46|341P9} 18|19r49 66r57
+17e25 new_state{6E14} 18|20r49 67r57
 X 26 glib-object.ads
 41P9*GObject(40R9)
 673V13*Convert{55|67M9} 24|58i21 25|49i21
 674V13*Convert{41P9} 24|59i21 25|50i21
 X 32 gnatcoll.ads
-24K9*GNATCOLL 17|2r6 19r43 23r43 18|1r6 10r43 20r41 30r41 44r43 56r49 68r49
+24K9*GNATCOLL 17|3r6 21r43 25r43 18|1r6 13r43 23r41 33r41 48r43 60r49 72r49
 . 32|27e13
 X 46 gnatcoll-traces.ads
-251K18*Traces 17|2w15 19r52 23r52 18|1w15 10r52 20r50 30r50 44r52 56r58 68r58
+251K18*Traces 17|3w15 21r52 25r52 18|1w15 13r52 23r50 33r50 48r52 60r58 72r58
 . 46|927e20
-341P9*Trace_Handle(340R9) 17|19r59 23r59 18|10r59 44r59
-518U14*Trace 18|20s57 30s57 56s65 68s65
-519p7 Handle(340R9) 18|21r49 31r49 57r57 69r57
-520a7 Message{string} 18|22r49 32r49 58r57 70r57
+341P9*Trace_Handle(340R9) 17|21r59 25r59 18|13r59 48r59
+518U14*Trace 18|23s57 33s57 60s65 72s65
+519p7 Handle(340R9) 18|24r49 34r49 61r57 73r57
+520a7 Message{string} 18|25r49 35r49 62r57 74r57
 X 55 system.ads
-37K9*System 17|1w6 12r40 55|200e11
+37K9*System 17|1w6 14r40 55|200e11
 67M9*Address
 100I12*Any_Priority{integer}
-101I12*Priority{100I12} 17|12r47
+101I12*Priority{100I12} 17|14r47
 X 67 s-memory.ads
 53V13*Alloc{55|67M9} 103i<c,__gnat_malloc>22
 68U14*Free 104i<c,__gnat_free>22

@@ -1,0 +1,8 @@
+timer.adb:6:17: not type conformant with declaration at timer.ads:7
+timer.adb:6:17: type of "wcet_timer" does not match
+timer.adb:13:17: not type conformant with declaration at timer.ads:11
+timer.adb:13:17: type of "wcet_timer" does not match
+timer.adb:35:17: not type conformant with declaration at timer.ads:15
+timer.adb:35:17: type of "wcet_timer" does not match
+timer.adb:38:34: expected private type "Ada.Real_Time.Time"
+timer.adb:38:34: found private type "Ada.Real_Time.Time_Span"
