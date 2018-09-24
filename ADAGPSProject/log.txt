@@ -2,9 +2,9 @@
 [MAIN] Instantiating system
 [TOP] Starting
 [MAIN] Instantiating GUI
-[GUI] Initializing GTK
 [CO SENSOR CONTROLLER] Getting read error occurred for sensor CO SENSOR which is FALSE
 [CO SENSOR CONTROLLER] Getting value for sensor CO SENSOR which is  0.00000E+00
+[GUI] Initializing GTK
 [O SENSOR CONTROLLER] Getting read error occurred for sensor CO SENSOR which is FALSE
 [O SENSOR CONTROLLER] Getting value for sensor CO SENSOR which is  1.50000E+02
 [CH4 SENSOR CONTROLLER] Getting read error occurred for sensor CH4 SENSOR which is FALSE
@@ -16,86 +16,20 @@
 [WATER FLOW CONTROLLER] Getting water flowing for sensor WATER FLOW SENSOR which is FALSE
 [WATER FLOW CONTROLLER] Starting conversion for sensor WATER FLOW SENSOR
 [GUI] Initializing window
-[O SENSOR CONTROLLER] Getting read error occurred for sensor CO SENSOR which is FALSE
-[CO SENSOR CONTROLLER] Getting read error occurred for sensor CO SENSOR which is FALSE
-[CO SENSOR CONTROLLER] Getting value for sensor CO SENSOR which is  0.00000E+00
-[O SENSOR CONTROLLER] Getting value for sensor CO SENSOR which is  1.50000E+02
-[CH4 SENSOR CONTROLLER] Getting read error occurred for sensor CH4 SENSOR which is FALSE
-[CH4 SENSOR CONTROLLER] Getting value for sensor CH4 SENSOR which is  0.00000E+00
-[CH4 SENSOR CONTROLLER] Starting conversion for sensor CH4 SENSOR
-[WATER FLOW CONTROLLER] Getting state for device PUMP which is OFF
-[WATER FLOW CONTROLLER] Getting state for device PUMP which is OFF
-[WATER FLOW CONTROLLER] Getting water flowing for sensor WATER FLOW SENSOR which is FALSE
-[WATER FLOW CONTROLLER] Starting conversion for sensor WATER FLOW SENSOR
 [CO SENSOR CONTROLLER] Getting read error occurred for sensor CO SENSOR which is FALSE
 [CO SENSOR CONTROLLER] Getting value for sensor CO SENSOR which is  0.00000E+00
 [O SENSOR CONTROLLER] Getting read error occurred for sensor CO SENSOR which is FALSE
 [O SENSOR CONTROLLER] Getting value for sensor CO SENSOR which is  1.50000E+02
-[CH4 SENSOR CONTROLLER] Getting read error occurred for sensor CH4 SENSOR which is FALSE
-[CH4 SENSOR CONTROLLER] Getting value for sensor CH4 SENSOR which is  0.00000E+00
-[CH4 SENSOR CONTROLLER] Starting conversion for sensor CH4 SENSOR
 [WATER FLOW CONTROLLER] Getting state for device PUMP which is OFF
 [WATER FLOW CONTROLLER] Getting state for device PUMP which is OFF
 [WATER FLOW CONTROLLER] Getting water flowing for sensor WATER FLOW SENSOR which is FALSE
 [WATER FLOW CONTROLLER] Starting conversion for sensor WATER FLOW SENSOR
-[CO SENSOR CONTROLLER] Getting read error occurred for sensor CO SENSOR which is FALSE
-[CO SENSOR CONTROLLER] Getting value for sensor CO SENSOR which is  0.00000E+00
-[O SENSOR CONTROLLER] Getting read error occurred for sensor CO SENSOR which is FALSE
-[O SENSOR CONTROLLER] Getting value for sensor CO SENSOR which is  1.50000E+02
 [CH4 SENSOR CONTROLLER] Getting read error occurred for sensor CH4 SENSOR which is FALSE
 [CH4 SENSOR CONTROLLER] Getting value for sensor CH4 SENSOR which is  0.00000E+00
 [CH4 SENSOR CONTROLLER] Starting conversion for sensor CH4 SENSOR
-[WATER FLOW CONTROLLER] Getting state for device PUMP which is OFF
-[WATER FLOW CONTROLLER] Getting state for device PUMP which is OFF
-[WATER FLOW CONTROLLER] Getting water flowing for sensor WATER FLOW SENSOR which is FALSE
-[WATER FLOW CONTROLLER] Starting conversion for sensor WATER FLOW SENSOR
 [CO SENSOR CONTROLLER] Getting read error occurred for sensor CO SENSOR which is FALSE
-[CO SENSOR CONTROLLER] Getting value for sensor CO SENSOR which is  0.00000E+00
-[CH4 SENSOR CONTROLLER] Getting read error occurred for sensor CH4 SENSOR which is FALSE
 [O SENSOR CONTROLLER] Getting read error occurred for sensor CO SENSOR which is FALSE
-[CH4 SENSOR CONTROLLER] Getting value for sensor CH4 SENSOR which is  0.00000E+00
-[O SENSOR CONTROLLER] Getting value for sensor CO SENSOR which is  1.50000E+02
-[CH4 SENSOR CONTROLLER] Starting conversion for sensor CH4 SENSOR
-[WATER FLOW CONTROLLER] Getting state for device PUMP which is OFF
-[WATER FLOW CONTROLLER] Getting state for device PUMP which is OFF
-[WATER FLOW CONTROLLER] Getting water flowing for sensor WATER FLOW SENSOR which is FALSE
-[WATER FLOW CONTROLLER] Starting conversion for sensor WATER FLOW SENSOR
-[CO SENSOR CONTROLLER] Getting read error occurred for sensor CO SENSOR which is FALSE
 [CO SENSOR CONTROLLER] Getting value for sensor CO SENSOR which is  0.00000E+00
-[O SENSOR CONTROLLER] Getting read error occurred for sensor CO SENSOR which is FALSE
-[O SENSOR CONTROLLER] Getting value for sensor CO SENSOR which is  1.50000E+02
-[CH4 SENSOR CONTROLLER] Getting read error occurred for sensor CH4 SENSOR which is FALSE
-[CH4 SENSOR CONTROLLER] Getting value for sensor CH4 SENSOR which is  0.00000E+00
-[CH4 SENSOR CONTROLLER] Starting conversion for sensor CH4 SENSOR
-[WATER FLOW CONTROLLER] Getting state for device PUMP which is OFF
-[WATER FLOW CONTROLLER] Getting state for device PUMP which is OFF
-[WATER FLOW CONTROLLER] Getting water flowing for sensor WATER FLOW SENSOR which is FALSE
-[WATER FLOW CONTROLLER] Starting conversion for sensor WATER FLOW SENSOR
-[CO SENSOR CONTROLLER] Getting read error occurred for sensor CO SENSOR which is FALSE
-[CO SENSOR CONTROLLER] Getting value for sensor CO SENSOR which is  0.00000E+00
-[O SENSOR CONTROLLER] Getting read error occurred for sensor CO SENSOR which is FALSE
-[O SENSOR CONTROLLER] Getting value for sensor CO SENSOR which is  1.50000E+02
-[CH4 SENSOR CONTROLLER] Getting read error occurred for sensor CH4 SENSOR which is FALSE
-[CH4 SENSOR CONTROLLER] Getting value for sensor CH4 SENSOR which is  0.00000E+00
-[CH4 SENSOR CONTROLLER] Starting conversion for sensor CH4 SENSOR
-[WATER FLOW CONTROLLER] Getting state for device PUMP which is OFF
-[WATER FLOW CONTROLLER] Getting state for device PUMP which is OFF
-[WATER FLOW CONTROLLER] Getting water flowing for sensor WATER FLOW SENSOR which is FALSE
-[WATER FLOW CONTROLLER] Starting conversion for sensor WATER FLOW SENSOR
-[O SENSOR CONTROLLER] Getting read error occurred for sensor CO SENSOR which is FALSE
-[CO SENSOR CONTROLLER] Getting read error occurred for sensor CO SENSOR which is FALSE
-[CO SENSOR CONTROLLER] Getting value for sensor CO SENSOR which is  0.00000E+00
-[O SENSOR CONTROLLER] Getting value for sensor CO SENSOR which is  1.50000E+02
-[CH4 SENSOR CONTROLLER] Getting read error occurred for sensor CH4 SENSOR which is FALSE
-[CH4 SENSOR CONTROLLER] Getting value for sensor CH4 SENSOR which is  0.00000E+00
-[CH4 SENSOR CONTROLLER] Starting conversion for sensor CH4 SENSOR
-[WATER FLOW CONTROLLER] Getting state for device PUMP which is OFF
-[WATER FLOW CONTROLLER] Getting state for device PUMP which is OFF
-[WATER FLOW CONTROLLER] Getting water flowing for sensor WATER FLOW SENSOR which is FALSE
-[WATER FLOW CONTROLLER] Starting conversion for sensor WATER FLOW SENSOR
-[CO SENSOR CONTROLLER] Getting read error occurred for sensor CO SENSOR which is FALSE
-[CO SENSOR CONTROLLER] Getting value for sensor CO SENSOR which is  0.00000E+00
-[O SENSOR CONTROLLER] Getting read error occurred for sensor CO SENSOR which is FALSE
 [O SENSOR CONTROLLER] Getting value for sensor CO SENSOR which is  1.50000E+02
 [CH4 SENSOR CONTROLLER] Getting read error occurred for sensor CH4 SENSOR which is FALSE
 [CH4 SENSOR CONTROLLER] Getting value for sensor CH4 SENSOR which is  0.00000E+00
@@ -107,44 +41,11 @@
 [GUI] Initializing grid
 [GUI] Attaching user buttons
 [GUI] Attaching state widgets
-[CO SENSOR CONTROLLER] Getting read error occurred for sensor CO SENSOR which is FALSE
-[CO SENSOR CONTROLLER] Getting value for sensor CO SENSOR which is  0.00000E+00
-[O SENSOR CONTROLLER] Getting read error occurred for sensor CO SENSOR which is FALSE
-[O SENSOR CONTROLLER] Getting value for sensor CO SENSOR which is  1.50000E+02
-[CH4 SENSOR CONTROLLER] Getting read error occurred for sensor CH4 SENSOR which is FALSE
-[CH4 SENSOR CONTROLLER] Getting value for sensor CH4 SENSOR which is  0.00000E+00
-[CH4 SENSOR CONTROLLER] Starting conversion for sensor CH4 SENSOR
-[WATER FLOW CONTROLLER] Getting state for device PUMP which is OFF
-[WATER FLOW CONTROLLER] Getting state for device PUMP which is OFF
-[WATER FLOW CONTROLLER] Getting water flowing for sensor WATER FLOW SENSOR which is FALSE
-[WATER FLOW CONTROLLER] Starting conversion for sensor WATER FLOW SENSOR
 [GUI] Starting device controllers
 [GUI] Starting main loop
 [CO SENSOR CONTROLLER] Getting read error occurred for sensor CO SENSOR which is FALSE
-[CO SENSOR CONTROLLER] Getting value for sensor CO SENSOR which is  0.00000E+00
 [O SENSOR CONTROLLER] Getting read error occurred for sensor CO SENSOR which is FALSE
-[CH4 SENSOR CONTROLLER] Getting read error occurred for sensor CH4 SENSOR which is FALSE
-[CH4 SENSOR CONTROLLER] Getting value for sensor CH4 SENSOR which is  0.00000E+00
-[O SENSOR CONTROLLER] Getting value for sensor CO SENSOR which is  1.50000E+02
-[CH4 SENSOR CONTROLLER] Starting conversion for sensor CH4 SENSOR
-[WATER FLOW CONTROLLER] Getting state for device PUMP which is OFF
-[WATER FLOW CONTROLLER] Getting state for device PUMP which is OFF
-[WATER FLOW CONTROLLER] Getting water flowing for sensor WATER FLOW SENSOR which is FALSE
-[WATER FLOW CONTROLLER] Starting conversion for sensor WATER FLOW SENSOR
-[CO SENSOR CONTROLLER] Getting read error occurred for sensor CO SENSOR which is FALSE
 [CO SENSOR CONTROLLER] Getting value for sensor CO SENSOR which is  0.00000E+00
-[O SENSOR CONTROLLER] Getting read error occurred for sensor CO SENSOR which is FALSE
-[O SENSOR CONTROLLER] Getting value for sensor CO SENSOR which is  1.50000E+02
-[CH4 SENSOR CONTROLLER] Getting read error occurred for sensor CH4 SENSOR which is FALSE
-[WATER FLOW CONTROLLER] Getting state for device PUMP which is OFF
-[WATER FLOW CONTROLLER] Getting state for device PUMP which is OFF
-[CH4 SENSOR CONTROLLER] Getting value for sensor CH4 SENSOR which is  0.00000E+00
-[WATER FLOW CONTROLLER] Getting water flowing for sensor WATER FLOW SENSOR which is FALSE
-[CH4 SENSOR CONTROLLER] Starting conversion for sensor CH4 SENSOR
-[WATER FLOW CONTROLLER] Starting conversion for sensor WATER FLOW SENSOR
-[CO SENSOR CONTROLLER] Getting read error occurred for sensor CO SENSOR which is FALSE
-[CO SENSOR CONTROLLER] Getting value for sensor CO SENSOR which is  0.00000E+00
-[O SENSOR CONTROLLER] Getting read error occurred for sensor CO SENSOR which is FALSE
 [O SENSOR CONTROLLER] Getting value for sensor CO SENSOR which is  1.50000E+02
 [CH4 SENSOR CONTROLLER] Getting read error occurred for sensor CH4 SENSOR which is FALSE
 [CH4 SENSOR CONTROLLER] Getting value for sensor CH4 SENSOR which is  0.00000E+00
@@ -155,10 +56,43 @@
 [WATER FLOW CONTROLLER] Starting conversion for sensor WATER FLOW SENSOR
 [O SENSOR CONTROLLER] Getting read error occurred for sensor CO SENSOR which is FALSE
 [CO SENSOR CONTROLLER] Getting read error occurred for sensor CO SENSOR which is FALSE
-[O SENSOR CONTROLLER] Getting value for sensor CO SENSOR which is  1.50000E+02
-[CO SENSOR CONTROLLER] Getting value for sensor CO SENSOR which is  0.00000E+00
 [CH4 SENSOR CONTROLLER] Getting read error occurred for sensor CH4 SENSOR which is FALSE
 [CH4 SENSOR CONTROLLER] Getting value for sensor CH4 SENSOR which is  0.00000E+00
+[CO SENSOR CONTROLLER] Getting value for sensor CO SENSOR which is  0.00000E+00
+[O SENSOR CONTROLLER] Getting value for sensor CO SENSOR which is  1.50000E+02
+[CH4 SENSOR CONTROLLER] Starting conversion for sensor CH4 SENSOR
+[WATER FLOW CONTROLLER] Getting state for device PUMP which is OFF
+[WATER FLOW CONTROLLER] Getting state for device PUMP which is OFF
+[WATER FLOW CONTROLLER] Getting water flowing for sensor WATER FLOW SENSOR which is FALSE
+[WATER FLOW CONTROLLER] Starting conversion for sensor WATER FLOW SENSOR
+[O SENSOR CONTROLLER] Getting read error occurred for sensor CO SENSOR which is FALSE
+[CO SENSOR CONTROLLER] Getting read error occurred for sensor CO SENSOR which is FALSE
+[CO SENSOR CONTROLLER] Getting value for sensor CO SENSOR which is  0.00000E+00
+[O SENSOR CONTROLLER] Getting value for sensor CO SENSOR which is  1.50000E+02
+[CH4 SENSOR CONTROLLER] Getting read error occurred for sensor CH4 SENSOR which is FALSE
+[WATER FLOW CONTROLLER] Getting state for device PUMP which is OFF
+[CH4 SENSOR CONTROLLER] Getting value for sensor CH4 SENSOR which is  0.00000E+00
+[WATER FLOW CONTROLLER] Getting state for device PUMP which is OFF
+[CH4 SENSOR CONTROLLER] Starting conversion for sensor CH4 SENSOR
+[WATER FLOW CONTROLLER] Getting water flowing for sensor WATER FLOW SENSOR which is FALSE
+[WATER FLOW CONTROLLER] Starting conversion for sensor WATER FLOW SENSOR
+[CO SENSOR CONTROLLER] Getting read error occurred for sensor CO SENSOR which is FALSE
+[CO SENSOR CONTROLLER] Getting value for sensor CO SENSOR which is  0.00000E+00
+[WATER FLOW CONTROLLER] Getting state for device PUMP which is OFF
+[O SENSOR CONTROLLER] Getting read error occurred for sensor CO SENSOR which is FALSE
+[CH4 SENSOR CONTROLLER] Getting read error occurred for sensor CH4 SENSOR which is FALSE
+[WATER FLOW CONTROLLER] Getting state for device PUMP which is OFF
+[WATER FLOW CONTROLLER] Getting water flowing for sensor WATER FLOW SENSOR which is FALSE
+[O SENSOR CONTROLLER] Getting value for sensor CO SENSOR which is  1.50000E+02
+[WATER FLOW CONTROLLER] Starting conversion for sensor WATER FLOW SENSOR
+[CH4 SENSOR CONTROLLER] Getting value for sensor CH4 SENSOR which is  0.00000E+00
+[CH4 SENSOR CONTROLLER] Starting conversion for sensor CH4 SENSOR
+[CH4 SENSOR CONTROLLER] Getting read error occurred for sensor CH4 SENSOR which is FALSE
+[O SENSOR CONTROLLER] Getting read error occurred for sensor CO SENSOR which is FALSE
+[CH4 SENSOR CONTROLLER] Getting value for sensor CH4 SENSOR which is  0.00000E+00
+[O SENSOR CONTROLLER] Getting value for sensor CO SENSOR which is  1.50000E+02
+[CO SENSOR CONTROLLER] Getting read error occurred for sensor CO SENSOR which is FALSE
+[CO SENSOR CONTROLLER] Getting value for sensor CO SENSOR which is  0.00000E+00
 [CH4 SENSOR CONTROLLER] Starting conversion for sensor CH4 SENSOR
 [WATER FLOW CONTROLLER] Getting state for device PUMP which is OFF
 [WATER FLOW CONTROLLER] Getting state for device PUMP which is OFF
@@ -168,35 +102,13 @@
 [CO SENSOR CONTROLLER] Getting value for sensor CO SENSOR which is  0.00000E+00
 [O SENSOR CONTROLLER] Getting read error occurred for sensor CO SENSOR which is FALSE
 [O SENSOR CONTROLLER] Getting value for sensor CO SENSOR which is  1.50000E+02
-[CH4 SENSOR CONTROLLER] Getting read error occurred for sensor CH4 SENSOR which is FALSE
-[CH4 SENSOR CONTROLLER] Getting value for sensor CH4 SENSOR which is  0.00000E+00
-[CH4 SENSOR CONTROLLER] Starting conversion for sensor CH4 SENSOR
 [WATER FLOW CONTROLLER] Getting state for device PUMP which is OFF
+[CH4 SENSOR CONTROLLER] Getting read error occurred for sensor CH4 SENSOR which is FALSE
 [WATER FLOW CONTROLLER] Getting state for device PUMP which is OFF
 [WATER FLOW CONTROLLER] Getting water flowing for sensor WATER FLOW SENSOR which is FALSE
-[WATER FLOW CONTROLLER] Starting conversion for sensor WATER FLOW SENSOR
-[O SENSOR CONTROLLER] Getting read error occurred for sensor CO SENSOR which is FALSE
-[CO SENSOR CONTROLLER] Getting read error occurred for sensor CO SENSOR which is FALSE
-[O SENSOR CONTROLLER] Getting value for sensor CO SENSOR which is  1.50000E+02
-[CO SENSOR CONTROLLER] Getting value for sensor CO SENSOR which is  0.00000E+00
-[CH4 SENSOR CONTROLLER] Getting read error occurred for sensor CH4 SENSOR which is FALSE
 [CH4 SENSOR CONTROLLER] Getting value for sensor CH4 SENSOR which is  0.00000E+00
-[CH4 SENSOR CONTROLLER] Starting conversion for sensor CH4 SENSOR
-[WATER FLOW CONTROLLER] Getting state for device PUMP which is OFF
-[WATER FLOW CONTROLLER] Getting state for device PUMP which is OFF
-[WATER FLOW CONTROLLER] Getting water flowing for sensor WATER FLOW SENSOR which is FALSE
 [WATER FLOW CONTROLLER] Starting conversion for sensor WATER FLOW SENSOR
-[CO SENSOR CONTROLLER] Getting read error occurred for sensor CO SENSOR which is FALSE
-[CO SENSOR CONTROLLER] Getting value for sensor CO SENSOR which is  0.00000E+00
-[O SENSOR CONTROLLER] Getting read error occurred for sensor CO SENSOR which is FALSE
-[O SENSOR CONTROLLER] Getting value for sensor CO SENSOR which is  1.50000E+02
-[CH4 SENSOR CONTROLLER] Getting read error occurred for sensor CH4 SENSOR which is FALSE
-[CH4 SENSOR CONTROLLER] Getting value for sensor CH4 SENSOR which is  0.00000E+00
 [CH4 SENSOR CONTROLLER] Starting conversion for sensor CH4 SENSOR
-[WATER FLOW CONTROLLER] Getting state for device PUMP which is OFF
-[WATER FLOW CONTROLLER] Getting state for device PUMP which is OFF
-[WATER FLOW CONTROLLER] Getting water flowing for sensor WATER FLOW SENSOR which is FALSE
-[WATER FLOW CONTROLLER] Starting conversion for sensor WATER FLOW SENSOR
 [CO SENSOR CONTROLLER] Getting read error occurred for sensor CO SENSOR which is FALSE
 [CO SENSOR CONTROLLER] Getting value for sensor CO SENSOR which is  0.00000E+00
 [O SENSOR CONTROLLER] Getting read error occurred for sensor CO SENSOR which is FALSE
@@ -208,35 +120,13 @@
 [WATER FLOW CONTROLLER] Getting state for device PUMP which is OFF
 [WATER FLOW CONTROLLER] Getting water flowing for sensor WATER FLOW SENSOR which is FALSE
 [WATER FLOW CONTROLLER] Starting conversion for sensor WATER FLOW SENSOR
-[CO SENSOR CONTROLLER] Getting read error occurred for sensor CO SENSOR which is FALSE
-[CO SENSOR CONTROLLER] Getting value for sensor CO SENSOR which is  0.00000E+00
-[O SENSOR CONTROLLER] Getting read error occurred for sensor CO SENSOR which is FALSE
-[O SENSOR CONTROLLER] Getting value for sensor CO SENSOR which is  1.50000E+02
 [CH4 SENSOR CONTROLLER] Getting read error occurred for sensor CH4 SENSOR which is FALSE
-[CH4 SENSOR CONTROLLER] Getting value for sensor CH4 SENSOR which is  0.00000E+00
-[CH4 SENSOR CONTROLLER] Starting conversion for sensor CH4 SENSOR
-[WATER FLOW CONTROLLER] Getting state for device PUMP which is OFF
-[WATER FLOW CONTROLLER] Getting state for device PUMP which is OFF
-[WATER FLOW CONTROLLER] Getting water flowing for sensor WATER FLOW SENSOR which is FALSE
-[WATER FLOW CONTROLLER] Starting conversion for sensor WATER FLOW SENSOR
-[CO SENSOR CONTROLLER] Getting read error occurred for sensor CO SENSOR which is FALSE
-[CO SENSOR CONTROLLER] Getting value for sensor CO SENSOR which is  0.00000E+00
-[O SENSOR CONTROLLER] Getting read error occurred for sensor CO SENSOR which is FALSE
-[O SENSOR CONTROLLER] Getting value for sensor CO SENSOR which is  1.50000E+02
-[CH4 SENSOR CONTROLLER] Getting read error occurred for sensor CH4 SENSOR which is FALSE
-[CH4 SENSOR CONTROLLER] Getting value for sensor CH4 SENSOR which is  0.00000E+00
-[CH4 SENSOR CONTROLLER] Starting conversion for sensor CH4 SENSOR
-[WATER FLOW CONTROLLER] Getting state for device PUMP which is OFF
-[WATER FLOW CONTROLLER] Getting state for device PUMP which is OFF
-[WATER FLOW CONTROLLER] Getting water flowing for sensor WATER FLOW SENSOR which is FALSE
-[WATER FLOW CONTROLLER] Starting conversion for sensor WATER FLOW SENSOR
 [CO SENSOR CONTROLLER] Getting read error occurred for sensor CO SENSOR which is FALSE
 [O SENSOR CONTROLLER] Getting read error occurred for sensor CO SENSOR which is FALSE
-[O SENSOR CONTROLLER] Getting value for sensor CO SENSOR which is  1.50000E+02
-[CO SENSOR CONTROLLER] Getting value for sensor CO SENSOR which is  0.00000E+00
-[CH4 SENSOR CONTROLLER] Getting read error occurred for sensor CH4 SENSOR which is FALSE
 [CH4 SENSOR CONTROLLER] Getting value for sensor CH4 SENSOR which is  0.00000E+00
+[CO SENSOR CONTROLLER] Getting value for sensor CO SENSOR which is  0.00000E+00
 [CH4 SENSOR CONTROLLER] Starting conversion for sensor CH4 SENSOR
+[O SENSOR CONTROLLER] Getting value for sensor CO SENSOR which is  1.50000E+02
 [WATER FLOW CONTROLLER] Getting state for device PUMP which is OFF
 [WATER FLOW CONTROLLER] Getting state for device PUMP which is OFF
 [WATER FLOW CONTROLLER] Getting water flowing for sensor WATER FLOW SENSOR which is FALSE
@@ -246,29 +136,19 @@
 [CH4 SENSOR CONTROLLER] Getting read error occurred for sensor CH4 SENSOR which is FALSE
 [CH4 SENSOR CONTROLLER] Getting value for sensor CH4 SENSOR which is  0.00000E+00
 [CH4 SENSOR CONTROLLER] Starting conversion for sensor CH4 SENSOR
-[O SENSOR CONTROLLER] Getting read error occurred for sensor CO SENSOR which is FALSE
-[O SENSOR CONTROLLER] Getting value for sensor CO SENSOR which is  1.50000E+02
 [WATER FLOW CONTROLLER] Getting state for device PUMP which is OFF
+[O SENSOR CONTROLLER] Getting read error occurred for sensor CO SENSOR which is FALSE
 [WATER FLOW CONTROLLER] Getting state for device PUMP which is OFF
 [WATER FLOW CONTROLLER] Getting water flowing for sensor WATER FLOW SENSOR which is FALSE
 [WATER FLOW CONTROLLER] Starting conversion for sensor WATER FLOW SENSOR
-[O SENSOR CONTROLLER] Getting read error occurred for sensor CO SENSOR which is FALSE
 [O SENSOR CONTROLLER] Getting value for sensor CO SENSOR which is  1.50000E+02
-[CH4 SENSOR CONTROLLER] Getting read error occurred for sensor CH4 SENSOR which is FALSE
-[CH4 SENSOR CONTROLLER] Getting value for sensor CH4 SENSOR which is  0.00000E+00
-[CH4 SENSOR CONTROLLER] Starting conversion for sensor CH4 SENSOR
-[CO SENSOR CONTROLLER] Getting read error occurred for sensor CO SENSOR which is FALSE
-[CO SENSOR CONTROLLER] Getting value for sensor CO SENSOR which is  0.00000E+00
-[WATER FLOW CONTROLLER] Getting state for device PUMP which is OFF
-[WATER FLOW CONTROLLER] Getting state for device PUMP which is OFF
-[WATER FLOW CONTROLLER] Getting water flowing for sensor WATER FLOW SENSOR which is FALSE
-[WATER FLOW CONTROLLER] Starting conversion for sensor WATER FLOW SENSOR
+[GUI] H20 increase button clicked
 [O SENSOR CONTROLLER] Getting read error occurred for sensor CO SENSOR which is FALSE
-[O SENSOR CONTROLLER] Getting value for sensor CO SENSOR which is  1.50000E+02
-[CO SENSOR CONTROLLER] Getting read error occurred for sensor CO SENSOR which is FALSE
-[CO SENSOR CONTROLLER] Getting value for sensor CO SENSOR which is  0.00000E+00
 [CH4 SENSOR CONTROLLER] Getting read error occurred for sensor CH4 SENSOR which is FALSE
+[CO SENSOR CONTROLLER] Getting read error occurred for sensor CO SENSOR which is FALSE
 [CH4 SENSOR CONTROLLER] Getting value for sensor CH4 SENSOR which is  0.00000E+00
+[O SENSOR CONTROLLER] Getting value for sensor CO SENSOR which is  1.50000E+02
+[CO SENSOR CONTROLLER] Getting value for sensor CO SENSOR which is  0.00000E+00
 [CH4 SENSOR CONTROLLER] Starting conversion for sensor CH4 SENSOR
 [WATER FLOW CONTROLLER] Getting state for device PUMP which is OFF
 [WATER FLOW CONTROLLER] Getting state for device PUMP which is OFF
@@ -276,7 +156,30 @@
 [WATER FLOW CONTROLLER] Starting conversion for sensor WATER FLOW SENSOR
 [CO SENSOR CONTROLLER] Getting read error occurred for sensor CO SENSOR which is FALSE
 [CO SENSOR CONTROLLER] Getting value for sensor CO SENSOR which is  0.00000E+00
+[WATER FLOW CONTROLLER] Getting state for device PUMP which is OFF
+[WATER FLOW CONTROLLER] Getting state for device PUMP which is OFF
+[WATER FLOW CONTROLLER] Getting water flowing for sensor WATER FLOW SENSOR which is FALSE
+[WATER FLOW CONTROLLER] Starting conversion for sensor WATER FLOW SENSOR
+[CH4 SENSOR CONTROLLER] Getting read error occurred for sensor CH4 SENSOR which is FALSE
 [O SENSOR CONTROLLER] Getting read error occurred for sensor CO SENSOR which is FALSE
+[CH4 SENSOR CONTROLLER] Getting value for sensor CH4 SENSOR which is  0.00000E+00
+[O SENSOR CONTROLLER] Getting value for sensor CO SENSOR which is  1.50000E+02
+[CH4 SENSOR CONTROLLER] Starting conversion for sensor CH4 SENSOR
+[GUI] H20 increase button clicked
+[O SENSOR CONTROLLER] Getting read error occurred for sensor CO SENSOR which is FALSE
+[CH4 SENSOR CONTROLLER] Getting read error occurred for sensor CH4 SENSOR which is FALSE
+[CO SENSOR CONTROLLER] Getting read error occurred for sensor CO SENSOR which is FALSE
+[CH4 SENSOR CONTROLLER] Getting value for sensor CH4 SENSOR which is  0.00000E+00
+[O SENSOR CONTROLLER] Getting value for sensor CO SENSOR which is  1.50000E+02
+[CO SENSOR CONTROLLER] Getting value for sensor CO SENSOR which is  0.00000E+00
+[CH4 SENSOR CONTROLLER] Starting conversion for sensor CH4 SENSOR
+[WATER FLOW CONTROLLER] Getting state for device PUMP which is OFF
+[WATER FLOW CONTROLLER] Getting state for device PUMP which is OFF
+[WATER FLOW CONTROLLER] Getting water flowing for sensor WATER FLOW SENSOR which is FALSE
+[WATER FLOW CONTROLLER] Starting conversion for sensor WATER FLOW SENSOR
+[O SENSOR CONTROLLER] Getting read error occurred for sensor CO SENSOR which is FALSE
+[CO SENSOR CONTROLLER] Getting read error occurred for sensor CO SENSOR which is FALSE
+[CO SENSOR CONTROLLER] Getting value for sensor CO SENSOR which is  0.00000E+00
 [O SENSOR CONTROLLER] Getting value for sensor CO SENSOR which is  1.50000E+02
 [CH4 SENSOR CONTROLLER] Getting read error occurred for sensor CH4 SENSOR which is FALSE
 [CH4 SENSOR CONTROLLER] Getting value for sensor CH4 SENSOR which is  0.00000E+00
@@ -284,6 +187,79 @@
 [WATER FLOW CONTROLLER] Getting state for device PUMP which is OFF
 [WATER FLOW CONTROLLER] Getting state for device PUMP which is OFF
 [WATER FLOW CONTROLLER] Getting water flowing for sensor WATER FLOW SENSOR which is FALSE
+[WATER FLOW CONTROLLER] Starting conversion for sensor WATER FLOW SENSOR
+[O SENSOR CONTROLLER] Getting read error occurred for sensor CO SENSOR which is FALSE
+[CO SENSOR CONTROLLER] Getting read error occurred for sensor CO SENSOR which is FALSE
+[CH4 SENSOR CONTROLLER] Getting read error occurred for sensor CH4 SENSOR which is FALSE
+[CO SENSOR CONTROLLER] Getting value for sensor CO SENSOR which is  0.00000E+00
+[CH4 SENSOR CONTROLLER] Getting value for sensor CH4 SENSOR which is  0.00000E+00
+[O SENSOR CONTROLLER] Getting value for sensor CO SENSOR which is  1.50000E+02
+[CH4 SENSOR CONTROLLER] Starting conversion for sensor CH4 SENSOR
+[WATER FLOW CONTROLLER] Getting state for device PUMP which is OFF
+[WATER FLOW CONTROLLER] Getting state for device PUMP which is OFF
+[WATER FLOW CONTROLLER] Getting water flowing for sensor WATER FLOW SENSOR which is FALSE
+[WATER FLOW CONTROLLER] Starting conversion for sensor WATER FLOW SENSOR
+[GUI] H20 increase button clicked
+[WATER LEVEL SENSOR CONTROLLER] Getting low water level threshold breached for sensor WATER LEVEL SENSORS which is FALSE
+[WATER LEVEL SENSOR CONTROLLER] Getting high water level threshold breached for sensor WATER LEVEL SENSORS which is TRUE
+[WATER LEVEL SENSOR CONTROLLER] High water level threshold breached
+[WATER LEVEL SENSOR CONTROLLER] Turning on pump
+[WATER LEVEL SENSOR CONTROLLER] Setting state for device PUMP to ON
+[CO SENSOR CONTROLLER] Getting read error occurred for sensor CO SENSOR which is FALSE
+[CO SENSOR CONTROLLER] Getting value for sensor CO SENSOR which is  0.00000E+00
+[O SENSOR CONTROLLER] Getting read error occurred for sensor CO SENSOR which is FALSE
+[O SENSOR CONTROLLER] Getting value for sensor CO SENSOR which is  1.50000E+02
+[WATER FLOW CONTROLLER] Getting state for device PUMP which is ON
+[WATER FLOW CONTROLLER] Getting state for device PUMP which is ON
+[WATER FLOW CONTROLLER] Getting water flowing for sensor WATER FLOW SENSOR which is FALSE
+[WATER FLOW CONTROLLER] Pump state changed or water flow sensor broken
+[WATER FLOW CONTROLLER] Starting conversion for sensor WATER FLOW SENSOR
+[CH4 SENSOR CONTROLLER] Getting read error occurred for sensor CH4 SENSOR which is FALSE
+[CH4 SENSOR CONTROLLER] Getting value for sensor CH4 SENSOR which is  0.00000E+00
+[CH4 SENSOR CONTROLLER] Starting conversion for sensor CH4 SENSOR
+[CH4 SENSOR CONTROLLER] Getting read error occurred for sensor CH4 SENSOR which is FALSE
+[CH4 SENSOR CONTROLLER] Getting value for sensor CH4 SENSOR which is  0.00000E+00
+[CH4 SENSOR CONTROLLER] Starting conversion for sensor CH4 SENSOR
+[O SENSOR CONTROLLER] Getting read error occurred for sensor CO SENSOR which is FALSE
+[O SENSOR CONTROLLER] Getting value for sensor CO SENSOR which is  1.50000E+02
+[CO SENSOR CONTROLLER] Getting read error occurred for sensor CO SENSOR which is FALSE
+[CO SENSOR CONTROLLER] Getting value for sensor CO SENSOR which is  0.00000E+00
+[WATER FLOW CONTROLLER] Getting state for device PUMP which is ON
+[WATER FLOW CONTROLLER] Getting water flowing for sensor WATER FLOW SENSOR which is FALSE
+[WATER FLOW CONTROLLER] Check failed, current activation:  1 /  6
+[WATER FLOW CONTROLLER] Starting conversion for sensor WATER FLOW SENSOR
+[CO SENSOR CONTROLLER] Getting read error occurred for sensor CO SENSOR which is FALSE
+[CO SENSOR CONTROLLER] Getting value for sensor CO SENSOR which is  0.00000E+00
+[O SENSOR CONTROLLER] Getting read error occurred for sensor CO SENSOR which is FALSE
+[CH4 SENSOR CONTROLLER] Getting read error occurred for sensor CH4 SENSOR which is FALSE
+[CH4 SENSOR CONTROLLER] Getting value for sensor CH4 SENSOR which is  0.00000E+00
+[O SENSOR CONTROLLER] Getting value for sensor CO SENSOR which is  1.50000E+02
+[CH4 SENSOR CONTROLLER] Starting conversion for sensor CH4 SENSOR
+[WATER FLOW CONTROLLER] Getting state for device PUMP which is ON
+[WATER FLOW CONTROLLER] Getting water flowing for sensor WATER FLOW SENSOR which is FALSE
+[WATER FLOW CONTROLLER] Check failed, current activation:  2 /  6
+[WATER FLOW CONTROLLER] Starting conversion for sensor WATER FLOW SENSOR
+[CO SENSOR CONTROLLER] Getting read error occurred for sensor CO SENSOR which is FALSE
+[CO SENSOR CONTROLLER] Getting value for sensor CO SENSOR which is  0.00000E+00
+[CH4 SENSOR CONTROLLER] Getting read error occurred for sensor CH4 SENSOR which is FALSE
+[O SENSOR CONTROLLER] Getting read error occurred for sensor CO SENSOR which is FALSE
+[CH4 SENSOR CONTROLLER] Getting value for sensor CH4 SENSOR which is  0.00000E+00
+[O SENSOR CONTROLLER] Getting value for sensor CO SENSOR which is  1.50000E+02
+[CH4 SENSOR CONTROLLER] Starting conversion for sensor CH4 SENSOR
+[WATER FLOW CONTROLLER] Getting state for device PUMP which is ON
+[WATER FLOW CONTROLLER] Getting water flowing for sensor WATER FLOW SENSOR which is FALSE
+[WATER FLOW CONTROLLER] Check failed, current activation:  3 /  6
+[WATER FLOW CONTROLLER] Starting conversion for sensor WATER FLOW SENSOR
+[CO SENSOR CONTROLLER] Getting read error occurred for sensor CO SENSOR which is FALSE
+[CO SENSOR CONTROLLER] Getting value for sensor CO SENSOR which is  0.00000E+00
+[O SENSOR CONTROLLER] Getting read error occurred for sensor CO SENSOR which is FALSE
+[O SENSOR CONTROLLER] Getting value for sensor CO SENSOR which is  1.50000E+02
+[CH4 SENSOR CONTROLLER] Getting read error occurred for sensor CH4 SENSOR which is FALSE
+[WATER FLOW CONTROLLER] Getting state for device PUMP which is ON
+[CH4 SENSOR CONTROLLER] Getting value for sensor CH4 SENSOR which is  0.00000E+00
+[WATER FLOW CONTROLLER] Getting water flowing for sensor WATER FLOW SENSOR which is FALSE
+[CH4 SENSOR CONTROLLER] Starting conversion for sensor CH4 SENSOR
+[WATER FLOW CONTROLLER] Check failed, current activation:  4 /  6
 [WATER FLOW CONTROLLER] Starting conversion for sensor WATER FLOW SENSOR
 [CO SENSOR CONTROLLER] Getting read error occurred for sensor CO SENSOR which is FALSE
 [CO SENSOR CONTROLLER] Getting value for sensor CO SENSOR which is  0.00000E+00
@@ -292,32 +268,83 @@
 [CH4 SENSOR CONTROLLER] Getting read error occurred for sensor CH4 SENSOR which is FALSE
 [CH4 SENSOR CONTROLLER] Getting value for sensor CH4 SENSOR which is  0.00000E+00
 [CH4 SENSOR CONTROLLER] Starting conversion for sensor CH4 SENSOR
-[WATER FLOW CONTROLLER] Getting state for device PUMP which is OFF
-[WATER FLOW CONTROLLER] Getting state for device PUMP which is OFF
+[WATER FLOW CONTROLLER] Getting state for device PUMP which is ON
+[WATER FLOW CONTROLLER] Getting water flowing for sensor WATER FLOW SENSOR which is FALSE
+[WATER FLOW CONTROLLER] Check failed, current activation:  5 /  6
+[WATER FLOW CONTROLLER] Starting conversion for sensor WATER FLOW SENSOR
+[O SENSOR CONTROLLER] Getting read error occurred for sensor CO SENSOR which is FALSE
+[CO SENSOR CONTROLLER] Getting read error occurred for sensor CO SENSOR which is FALSE
+[CO SENSOR CONTROLLER] Getting value for sensor CO SENSOR which is  0.00000E+00
+[O SENSOR CONTROLLER] Getting value for sensor CO SENSOR which is  1.50000E+02
+[CH4 SENSOR CONTROLLER] Getting read error occurred for sensor CH4 SENSOR which is FALSE
+[CH4 SENSOR CONTROLLER] Getting value for sensor CH4 SENSOR which is  0.00000E+00
+[CH4 SENSOR CONTROLLER] Starting conversion for sensor CH4 SENSOR
+[WATER FLOW CONTROLLER] Getting state for device PUMP which is ON
+[WATER FLOW CONTROLLER] Getting water flowing for sensor WATER FLOW SENSOR which is FALSE
+[WATER FLOW CONTROLLER] Water flow sensor deadline passed, turning on alarm
+[WATER FLOW CONTROLLER] Setting state for device ALARM to ON
+[WATER FLOW CONTROLLER] Initial alarm turn on, turning on alarm
+[WATER FLOW CONTROLLER] Starting conversion for sensor WATER FLOW SENSOR
+[CO SENSOR CONTROLLER] Getting read error occurred for sensor CO SENSOR which is FALSE
+[CO SENSOR CONTROLLER] Getting value for sensor CO SENSOR which is  0.00000E+00
+[O SENSOR CONTROLLER] Getting read error occurred for sensor CO SENSOR which is FALSE
+[CH4 SENSOR CONTROLLER] Getting read error occurred for sensor CH4 SENSOR which is FALSE
+[CH4 SENSOR CONTROLLER] Getting value for sensor CH4 SENSOR which is  0.00000E+00
+[O SENSOR CONTROLLER] Getting value for sensor CO SENSOR which is  1.50000E+02
+[CH4 SENSOR CONTROLLER] Starting conversion for sensor CH4 SENSOR
+[WATER FLOW CONTROLLER] Getting state for device PUMP which is ON
 [WATER FLOW CONTROLLER] Getting water flowing for sensor WATER FLOW SENSOR which is FALSE
 [WATER FLOW CONTROLLER] Starting conversion for sensor WATER FLOW SENSOR
 [CO SENSOR CONTROLLER] Getting read error occurred for sensor CO SENSOR which is FALSE
 [CO SENSOR CONTROLLER] Getting value for sensor CO SENSOR which is  0.00000E+00
 [CH4 SENSOR CONTROLLER] Getting read error occurred for sensor CH4 SENSOR which is FALSE
+[WATER FLOW CONTROLLER] Getting state for device PUMP which is ON
+[O SENSOR CONTROLLER] Getting read error occurred for sensor CO SENSOR which is FALSE
 [CH4 SENSOR CONTROLLER] Getting value for sensor CH4 SENSOR which is  0.00000E+00
+[O SENSOR CONTROLLER] Getting value for sensor CO SENSOR which is  1.50000E+02
+[WATER FLOW CONTROLLER] Getting water flowing for sensor WATER FLOW SENSOR which is FALSE
 [CH4 SENSOR CONTROLLER] Starting conversion for sensor CH4 SENSOR
+[WATER FLOW CONTROLLER] Starting conversion for sensor WATER FLOW SENSOR
 [O SENSOR CONTROLLER] Getting read error occurred for sensor CO SENSOR which is FALSE
 [O SENSOR CONTROLLER] Getting value for sensor CO SENSOR which is  1.50000E+02
-[WATER FLOW CONTROLLER] Getting state for device PUMP which is OFF
-[WATER FLOW CONTROLLER] Getting state for device PUMP which is OFF
+[CO SENSOR CONTROLLER] Getting read error occurred for sensor CO SENSOR which is FALSE
+[CO SENSOR CONTROLLER] Getting value for sensor CO SENSOR which is  0.00000E+00
+[CH4 SENSOR CONTROLLER] Getting read error occurred for sensor CH4 SENSOR which is FALSE
+[CH4 SENSOR CONTROLLER] Getting value for sensor CH4 SENSOR which is  0.00000E+00
+[CH4 SENSOR CONTROLLER] Starting conversion for sensor CH4 SENSOR
+[WATER FLOW CONTROLLER] Getting state for device PUMP which is ON
+[WATER FLOW CONTROLLER] Getting water flowing for sensor WATER FLOW SENSOR which is FALSE
+[WATER FLOW CONTROLLER] Starting conversion for sensor WATER FLOW SENSOR
+[O SENSOR CONTROLLER] Getting read error occurred for sensor CO SENSOR which is FALSE
+[O SENSOR CONTROLLER] Getting value for sensor CO SENSOR which is  1.50000E+02
+[WATER FLOW CONTROLLER] Getting state for device PUMP which is ON
+[WATER FLOW CONTROLLER] Getting water flowing for sensor WATER FLOW SENSOR which is FALSE
+[WATER FLOW CONTROLLER] Starting conversion for sensor WATER FLOW SENSOR
+[CO SENSOR CONTROLLER] Getting read error occurred for sensor CO SENSOR which is FALSE
+[CH4 SENSOR CONTROLLER] Getting read error occurred for sensor CH4 SENSOR which is FALSE
+[CO SENSOR CONTROLLER] Getting value for sensor CO SENSOR which is  0.00000E+00
+[CH4 SENSOR CONTROLLER] Getting value for sensor CH4 SENSOR which is  0.00000E+00
+[CH4 SENSOR CONTROLLER] Starting conversion for sensor CH4 SENSOR
+[CO SENSOR CONTROLLER] Getting read error occurred for sensor CO SENSOR which is FALSE
+[CH4 SENSOR CONTROLLER] Getting read error occurred for sensor CH4 SENSOR which is FALSE
+[O SENSOR CONTROLLER] Getting read error occurred for sensor CO SENSOR which is FALSE
+[CO SENSOR CONTROLLER] Getting value for sensor CO SENSOR which is  0.00000E+00
+[O SENSOR CONTROLLER] Getting value for sensor CO SENSOR which is  1.50000E+02
+[CH4 SENSOR CONTROLLER] Getting value for sensor CH4 SENSOR which is  0.00000E+00
+[CH4 SENSOR CONTROLLER] Starting conversion for sensor CH4 SENSOR
+[WATER FLOW CONTROLLER] Getting state for device PUMP which is ON
 [WATER FLOW CONTROLLER] Getting water flowing for sensor WATER FLOW SENSOR which is FALSE
 [WATER FLOW CONTROLLER] Starting conversion for sensor WATER FLOW SENSOR
 [CO SENSOR CONTROLLER] Getting read error occurred for sensor CO SENSOR which is FALSE
 [CO SENSOR CONTROLLER] Getting value for sensor CO SENSOR which is  0.00000E+00
-[CH4 SENSOR CONTROLLER] Getting read error occurred for sensor CH4 SENSOR which is FALSE
 [O SENSOR CONTROLLER] Getting read error occurred for sensor CO SENSOR which is FALSE
-[CH4 SENSOR CONTROLLER] Getting value for sensor CH4 SENSOR which is  0.00000E+00
 [O SENSOR CONTROLLER] Getting value for sensor CO SENSOR which is  1.50000E+02
-[CH4 SENSOR CONTROLLER] Starting conversion for sensor CH4 SENSOR
-[WATER FLOW CONTROLLER] Getting state for device PUMP which is OFF
-[WATER FLOW CONTROLLER] Getting state for device PUMP which is OFF
+[WATER FLOW CONTROLLER] Getting state for device PUMP which is ON
+[CH4 SENSOR CONTROLLER] Getting read error occurred for sensor CH4 SENSOR which is FALSE
 [WATER FLOW CONTROLLER] Getting water flowing for sensor WATER FLOW SENSOR which is FALSE
 [WATER FLOW CONTROLLER] Starting conversion for sensor WATER FLOW SENSOR
+[CH4 SENSOR CONTROLLER] Getting value for sensor CH4 SENSOR which is  0.00000E+00
+[CH4 SENSOR CONTROLLER] Starting conversion for sensor CH4 SENSOR
 [GUI] Waiting for device controllers to finish
 [GUI] All tasks finished
 [MAIN] GUI task finished
