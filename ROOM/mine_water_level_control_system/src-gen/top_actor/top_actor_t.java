@@ -177,7 +177,12 @@ public class top_actor_t extends base_actor_t {
 	public static final int STATE_step1 = 3;
 	public static final int STATE_step2 = 4;
 	public static final int STATE_step3 = 5;
-	public static final int STATE_MAX = 6;
+	public static final int STATE_step4 = 6;
+	public static final int STATE_step5 = 7;
+	public static final int STATE_step6 = 8;
+	public static final int STATE_step7 = 9;
+	public static final int STATE_step8 = 10;
+	public static final int STATE_MAX = 11;
 	
 	/* transition chains */
 	public static final int CHAIN_TRANS_transition0_FROM_step0_TO_step1_BY_timeouttimer_access_point = 1;
@@ -185,7 +190,17 @@ public class top_actor_t extends base_actor_t {
 	public static final int CHAIN_TRANS_transition1_FROM_step1_TO_step2_BY_timeouttimer_access_point = 3;
 	public static final int CHAIN_TRANS_stall2_FROM_step2_TO_step2_BY_timeouttimer_access_point_stall2 = 4;
 	public static final int CHAIN_TRANS_transition2_FROM_step2_TO_step3_BY_timeouttimer_access_point = 5;
-	public static final int CHAIN_TRANS_INITIAL_TO__step0 = 6;
+	public static final int CHAIN_TRANS_stall3_FROM_step3_TO_step3_BY_timeouttimer_access_point_stall3 = 6;
+	public static final int CHAIN_TRANS_transition3_FROM_step3_TO_step4_BY_timeouttimer_access_point = 7;
+	public static final int CHAIN_TRANS_stall4_FROM_step4_TO_step4_BY_timeouttimer_access_point_stall4 = 8;
+	public static final int CHAIN_TRANS_transition4_FROM_step4_TO_step5_BY_timeouttimer_access_point = 9;
+	public static final int CHAIN_TRANS_stall5_FROM_step5_TO_step5_BY_timeouttimer_access_point_stall5 = 10;
+	public static final int CHAIN_TRANS_transition5_FROM_step5_TO_step6_BY_timeouttimer_access_point = 11;
+	public static final int CHAIN_TRANS_stall6_FROM_step6_TO_step6_BY_timeouttimer_access_point_stall6 = 12;
+	public static final int CHAIN_TRANS_transition6_FROM_step6_TO_step7_BY_timeouttimer_access_point = 13;
+	public static final int CHAIN_TRANS_stall7_FROM_step7_TO_step7_BY_timeouttimer_access_point_stall7 = 14;
+	public static final int CHAIN_TRANS_transition7_FROM_step7_TO_step8_BY_timeouttimer_access_point = 15;
+	public static final int CHAIN_TRANS_INITIAL_TO__step0 = 16;
 	
 	/* triggers */
 	public static final int POLLING = 0;
@@ -197,11 +212,16 @@ public class top_actor_t extends base_actor_t {
 		"step0",
 		"step1",
 		"step2",
-		"step3"
+		"step3",
+		"step4",
+		"step5",
+		"step6",
+		"step7",
+		"step8"
 	};
 	
 	// history
-	protected int history[] = {NO_STATE, NO_STATE, NO_STATE, NO_STATE, NO_STATE, NO_STATE};
+	protected int history[] = {NO_STATE, NO_STATE, NO_STATE, NO_STATE, NO_STATE, NO_STATE, NO_STATE, NO_STATE, NO_STATE, NO_STATE, NO_STATE};
 	
 	private void setState(int new_state) {
 		DebuggingService.getInstance().addActorState(this,stateStrings[new_state]);
@@ -222,6 +242,31 @@ public class top_actor_t extends base_actor_t {
 	protected void entry_step3() {
 		System.out.println (
 			"STEP 3"
+		);
+	}
+	protected void entry_step4() {
+		System.out.println (
+			"STEP 4"
+		);
+	}
+	protected void entry_step5() {
+		System.out.println (
+			"STEP 5"
+		);
+	}
+	protected void entry_step6() {
+		System.out.println (
+			"STEP 6"
+		);
+	}
+	protected void entry_step7() {
+		System.out.println (
+			"STEP 7"
+		);
+	}
+	protected void entry_step8() {
+		System.out.println (
+			"STEP 8"
 		);
 	}
 	
@@ -249,14 +294,37 @@ public class top_actor_t extends base_actor_t {
 	    	"Pump activated"
 	    );
 	    
-	    super.pause ( );	
+	    super.pause ( );
 	    
-	    System.out.println (
-	    	"Setting low water level sensor controller ( unsetting high because both cannot be active ) "
+	    System.out.println ( 
+	    	"Setting water flow sensor to avoid alarm activation"
 	    );
 	    
-	    super.mine_water_level_control_system_update_port.update (
-	    	Constants.WATER_LEVEL_SENSORS.LOW_WATER_LEVEL_THRESHOLD - 1	
+	    super.water_flow_sensor.set_value (
+	    	this.logger,
+	    	super.getName ( ),
+	    	1
+	    );
+	    
+	    System.out.println (
+	    	"Setting ch4 sensor above threshold and setting water flow sensor to avoid alarm activation"
+	    );
+	    
+	    int ch4_sensor_value = super.get_above_threshold_value (
+	    	true,
+	    	Constants.CH4_SENSOR_CONTROLLER.THRESHOLD
+	    );
+	    
+	    super.ch4_sensor.set_value (
+	    	this.logger,
+	    	super.getName ( ),
+	    	ch4_sensor_value
+	    );
+	    
+	    super.ch4_sensor.set_read_error_occurred (
+	    	this.logger,
+	    	super.getName ( ),
+	    	false
 	    );
 	    
 	    super.timer_access_point.startTimeout (
@@ -269,6 +337,219 @@ public class top_actor_t extends base_actor_t {
 	    );
 	}
 	protected void action_TRANS_transition2_FROM_step2_TO_step3_BY_timeouttimer_access_point(InterfaceItemBase ifitem) {
+	    System.out.println ( 
+	    	"Pump deactivated"
+	    );
+	    
+	    System.out.println ( 
+	    	"Alarm activated"
+	    );
+	    
+	    super.pause ( );
+	    
+	    System.out.println ( 
+	    	"Unsetting water flow sensor to avoid alarm activation"
+	    );
+	    
+	    super.water_flow_sensor.set_value (
+	    	this.logger,
+	    	super.getName ( ),
+	    	0
+	    );
+	    
+	    System.out.println ( 
+	    	"Setting ch4 sensor below threshold"
+	    );
+	    
+	    int ch4_sensor_value = super.get_below_threshold_value (
+	    	true,
+	    	Constants.CH4_SENSOR_CONTROLLER.THRESHOLD
+	    );
+	    
+	    super.ch4_sensor.set_value (
+	    	this.logger,
+	    	super.getName ( ),
+	    	ch4_sensor_value
+	    );
+	    
+	    super.ch4_sensor.set_read_error_occurred (
+	    	this.logger,
+	    	super.getName ( ),
+	    	false
+	    );
+	    
+	    
+	    super.timer_access_point.startTimeout (
+	    	Constants.SCENARIO.CHECK_PERIOD
+	    );
+	}
+	protected void action_TRANS_stall3_FROM_step3_TO_step3_BY_timeouttimer_access_point_stall3(InterfaceItemBase ifitem) {
+	    super.timer_access_point.startTimeout (
+	    	Constants.SCENARIO.CHECK_PERIOD
+	    );
+	}
+	protected void action_TRANS_transition3_FROM_step3_TO_step4_BY_timeouttimer_access_point(InterfaceItemBase ifitem) {
+	    System.out.println ( 
+	    	"Pump activated"
+	    );
+	    
+	    System.out.println ( 
+	    	"Alarm deactivated"
+	    );
+	    
+	    super.pause ( );
+	    
+	    System.out.println ( 
+	    	"Setting water flow sensor to avoid alarm activation"
+	    );
+	    
+	    super.water_flow_sensor.set_value (
+	    	this.logger,
+	    	super.getName ( ),
+	    	1
+	    );
+	    
+	    System.out.println ( 
+	    	"Using user port to deactivate pump and setting water flow sensor to avoid alarm activation"
+	    );
+	    
+	    super.mine_water_level_control_system_user_port.turn_off ( );
+	    
+	    super.timer_access_point.startTimeout (
+	    	Constants.SCENARIO.CHECK_PERIOD
+	    );
+	}
+	protected void action_TRANS_stall4_FROM_step4_TO_step4_BY_timeouttimer_access_point_stall4(InterfaceItemBase ifitem) {
+	    super.timer_access_point.startTimeout (
+	    	Constants.SCENARIO.CHECK_PERIOD
+	    );
+	}
+	protected void action_TRANS_transition4_FROM_step4_TO_step5_BY_timeouttimer_access_point(InterfaceItemBase ifitem) {
+	    System.out.println ( 
+	    	"Pump deactivated"
+	    );
+	    
+	    System.out.println ( "Unsetting water flow sensor to avoid alarm activation" );
+	    
+	    super.water_flow_sensor.set_value (
+	    	this.logger,
+	    	super.getName ( ),
+	    	0
+	    );
+	    
+	    super.pause ( );
+	    
+	    System.out.println ( 
+	    	"Setting ch4 sensor above threshold"
+	    );
+	    
+	    int ch4_sensor_value = super.get_above_threshold_value (
+	    	true,
+	    	Constants.CH4_SENSOR_CONTROLLER.THRESHOLD
+	    );
+	    
+	    super.ch4_sensor.set_value (
+	    	this.logger,
+	    	super.getName ( ),
+	    	ch4_sensor_value
+	    );
+	    
+	    super.ch4_sensor.set_read_error_occurred (
+	    	this.logger,
+	    	super.getName ( ),
+	    	false
+	    );
+	    
+	    super.timer_access_point.startTimeout (
+	    	Constants.SCENARIO.CHECK_PERIOD
+	    );
+	}
+	protected void action_TRANS_stall5_FROM_step5_TO_step5_BY_timeouttimer_access_point_stall5(InterfaceItemBase ifitem) {
+	    super.timer_access_point.startTimeout (
+	    	Constants.SCENARIO.CHECK_PERIOD
+	    );
+	}
+	protected void action_TRANS_transition5_FROM_step5_TO_step6_BY_timeouttimer_access_point(InterfaceItemBase ifitem) {
+	    System.out.println ( 
+	    	"Alarm activated"
+	    );	
+	    
+	    System.out.println ( 
+	    	"Using user port to activate pump"
+	    );
+	    
+	    super.mine_water_level_control_system_user_port.turn_on ( );
+	    
+	    super.pause ( );
+	    
+	    System.out.println ( 
+	    	"Setting ch4 sensor below threshold"
+	    );
+	    
+	    int ch4_sensor_value = super.get_below_threshold_value (
+	    	true,
+	    	Constants.CH4_SENSOR_CONTROLLER.THRESHOLD
+	    );
+	    
+	    super.ch4_sensor.set_value (
+	    	this.logger,
+	    	super.getName ( ),
+	    	ch4_sensor_value
+	    );
+	    
+	    super.ch4_sensor.set_read_error_occurred (
+	    	this.logger,
+	    	super.getName ( ),
+	    	false
+	    );
+	    
+	    super.timer_access_point.startTimeout (
+	    	Constants.SCENARIO.CHECK_PERIOD
+	    );
+	}
+	protected void action_TRANS_stall6_FROM_step6_TO_step6_BY_timeouttimer_access_point_stall6(InterfaceItemBase ifitem) {
+	    super.timer_access_point.startTimeout (
+	    	Constants.SCENARIO.CHECK_PERIOD
+	    );
+	    System.exit ( 1 );
+	}
+	protected void action_TRANS_transition6_FROM_step6_TO_step7_BY_timeouttimer_access_point(InterfaceItemBase ifitem) {
+	    System.out.println (
+	    	"Pump activated"
+	    );
+	    
+	    System.out.println ( 
+	    	"Alarm deactivated"
+	    );
+	    
+	    System.out.println ( 
+	    	"Setting water flow sensor to avoid alarm activation"
+	    );
+	    
+	    super.water_flow_sensor.set_value (
+	    	this.logger,
+	    	super.getName ( ),
+	    	1
+	    );
+	    
+	    super.pause ( );
+	    
+	    System.out.println ( "Setting low water level sensor" );
+	    
+	    super.mine_water_level_control_system_update_port.update (
+	    	Constants.WATER_LEVEL_SENSORS.LOW_WATER_LEVEL_THRESHOLD - 1	
+	    );
+	    
+	    super.timer_access_point.startTimeout (
+	    	Constants.SCENARIO.CHECK_PERIOD
+	    );
+	}
+	protected void action_TRANS_stall7_FROM_step7_TO_step7_BY_timeouttimer_access_point_stall7(InterfaceItemBase ifitem) {
+	    super.timer_access_point.startTimeout (
+	    	Constants.SCENARIO.CHECK_PERIOD
+	    );
+	}
+	protected void action_TRANS_transition7_FROM_step7_TO_step8_BY_timeouttimer_access_point(InterfaceItemBase ifitem) {
 	    System.out.println (
 	    	"Pump deactivated"
 	    );
@@ -384,6 +665,26 @@ public class top_actor_t extends base_actor_t {
 					this.history[STATE_TOP] = STATE_step3;
 					current__et = STATE_TOP;
 					break;
+				case STATE_step4:
+					this.history[STATE_TOP] = STATE_step4;
+					current__et = STATE_TOP;
+					break;
+				case STATE_step5:
+					this.history[STATE_TOP] = STATE_step5;
+					current__et = STATE_TOP;
+					break;
+				case STATE_step6:
+					this.history[STATE_TOP] = STATE_step6;
+					current__et = STATE_TOP;
+					break;
+				case STATE_step7:
+					this.history[STATE_TOP] = STATE_step7;
+					current__et = STATE_TOP;
+					break;
+				case STATE_step8:
+					this.history[STATE_TOP] = STATE_step8;
+					current__et = STATE_TOP;
+					break;
 				case STATE_step0:
 					this.history[STATE_TOP] = STATE_step0;
 					current__et = STATE_TOP;
@@ -429,6 +730,56 @@ public class top_actor_t extends base_actor_t {
 				action_TRANS_transition2_FROM_step2_TO_step3_BY_timeouttimer_access_point(ifitem);
 				return STATE_step3;
 			}
+			case top_actor_t.CHAIN_TRANS_stall3_FROM_step3_TO_step3_BY_timeouttimer_access_point_stall3:
+			{
+				action_TRANS_stall3_FROM_step3_TO_step3_BY_timeouttimer_access_point_stall3(ifitem);
+				return STATE_step3;
+			}
+			case top_actor_t.CHAIN_TRANS_transition3_FROM_step3_TO_step4_BY_timeouttimer_access_point:
+			{
+				action_TRANS_transition3_FROM_step3_TO_step4_BY_timeouttimer_access_point(ifitem);
+				return STATE_step4;
+			}
+			case top_actor_t.CHAIN_TRANS_stall4_FROM_step4_TO_step4_BY_timeouttimer_access_point_stall4:
+			{
+				action_TRANS_stall4_FROM_step4_TO_step4_BY_timeouttimer_access_point_stall4(ifitem);
+				return STATE_step4;
+			}
+			case top_actor_t.CHAIN_TRANS_transition4_FROM_step4_TO_step5_BY_timeouttimer_access_point:
+			{
+				action_TRANS_transition4_FROM_step4_TO_step5_BY_timeouttimer_access_point(ifitem);
+				return STATE_step5;
+			}
+			case top_actor_t.CHAIN_TRANS_stall5_FROM_step5_TO_step5_BY_timeouttimer_access_point_stall5:
+			{
+				action_TRANS_stall5_FROM_step5_TO_step5_BY_timeouttimer_access_point_stall5(ifitem);
+				return STATE_step5;
+			}
+			case top_actor_t.CHAIN_TRANS_transition5_FROM_step5_TO_step6_BY_timeouttimer_access_point:
+			{
+				action_TRANS_transition5_FROM_step5_TO_step6_BY_timeouttimer_access_point(ifitem);
+				return STATE_step6;
+			}
+			case top_actor_t.CHAIN_TRANS_stall6_FROM_step6_TO_step6_BY_timeouttimer_access_point_stall6:
+			{
+				action_TRANS_stall6_FROM_step6_TO_step6_BY_timeouttimer_access_point_stall6(ifitem);
+				return STATE_step6;
+			}
+			case top_actor_t.CHAIN_TRANS_transition6_FROM_step6_TO_step7_BY_timeouttimer_access_point:
+			{
+				action_TRANS_transition6_FROM_step6_TO_step7_BY_timeouttimer_access_point(ifitem);
+				return STATE_step7;
+			}
+			case top_actor_t.CHAIN_TRANS_stall7_FROM_step7_TO_step7_BY_timeouttimer_access_point_stall7:
+			{
+				action_TRANS_stall7_FROM_step7_TO_step7_BY_timeouttimer_access_point_stall7(ifitem);
+				return STATE_step7;
+			}
+			case top_actor_t.CHAIN_TRANS_transition7_FROM_step7_TO_step8_BY_timeouttimer_access_point:
+			{
+				action_TRANS_transition7_FROM_step7_TO_step8_BY_timeouttimer_access_point(ifitem);
+				return STATE_step8;
+			}
 			case top_actor_t.CHAIN_TRANS_INITIAL_TO__step0:
 			{
 				action_TRANS_INITIAL_TO__step0();
@@ -466,6 +817,26 @@ public class top_actor_t extends base_actor_t {
 					if (!(skip_entry__et)) entry_step3();
 					/* in leaf state: return state id */
 					return STATE_step3;
+				case STATE_step4:
+					if (!(skip_entry__et)) entry_step4();
+					/* in leaf state: return state id */
+					return STATE_step4;
+				case STATE_step5:
+					if (!(skip_entry__et)) entry_step5();
+					/* in leaf state: return state id */
+					return STATE_step5;
+				case STATE_step6:
+					if (!(skip_entry__et)) entry_step6();
+					/* in leaf state: return state id */
+					return STATE_step6;
+				case STATE_step7:
+					if (!(skip_entry__et)) entry_step7();
+					/* in leaf state: return state id */
+					return STATE_step7;
+				case STATE_step8:
+					if (!(skip_entry__et)) entry_step8();
+					/* in leaf state: return state id */
+					return STATE_step8;
 				case STATE_step0:
 					if (!(skip_entry__et)) entry_step0();
 					/* in leaf state: return state id */
@@ -501,13 +872,13 @@ public class top_actor_t extends base_actor_t {
 			        switch(trigger__et) {
 			                case TRIG_timer_access_point__timeout:
 			                    { 
-			                    if (super.is_pump_turned_on ( ) == false
+			                    if (super.is_pump_turned_on ( ) == false 
 			                    )
 			                    {
 			                        chain__et = top_actor_t.CHAIN_TRANS_stall1_FROM_step1_TO_step1_BY_timeouttimer_access_point_stall1;
 			                        catching_state__et = STATE_TOP;
 			                    } else 
-			                    if (super.is_pump_turned_on ( ) == true 
+			                    if (super.is_pump_turned_on ( ) == true
 			                    )
 			                    {
 			                        chain__et = top_actor_t.CHAIN_TRANS_transition1_FROM_step1_TO_step2_BY_timeouttimer_access_point;
@@ -524,13 +895,15 @@ public class top_actor_t extends base_actor_t {
 			        switch(trigger__et) {
 			                case TRIG_timer_access_point__timeout:
 			                    { 
-			                    if (super.is_pump_turned_on ( ) == true 
+			                    if (( super.is_pump_turned_on ( ) == true ) || 
+			                    ( super.is_alarm_turned_on ( ) == false ) 
 			                    )
 			                    {
 			                        chain__et = top_actor_t.CHAIN_TRANS_stall2_FROM_step2_TO_step2_BY_timeouttimer_access_point_stall2;
 			                        catching_state__et = STATE_TOP;
 			                    } else 
-			                    if (super.is_pump_turned_on ( ) == false 
+			                    if (( super.is_pump_turned_on ( ) == false ) && 
+			                    ( super.is_alarm_turned_on ( ) == true ) 
 			                    )
 			                    {
 			                        chain__et = top_actor_t.CHAIN_TRANS_transition2_FROM_step2_TO_step3_BY_timeouttimer_access_point;
@@ -544,6 +917,125 @@ public class top_actor_t extends base_actor_t {
 			        }
 			        break;
 			    case STATE_step3:
+			        switch(trigger__et) {
+			                case TRIG_timer_access_point__timeout:
+			                    { 
+			                    if (( super.is_pump_turned_on ( ) == false ) || 
+			                    ( super.is_alarm_turned_on ( ) == true ) 
+			                    )
+			                    {
+			                        chain__et = top_actor_t.CHAIN_TRANS_stall3_FROM_step3_TO_step3_BY_timeouttimer_access_point_stall3;
+			                        catching_state__et = STATE_TOP;
+			                    } else 
+			                    if (( super.is_pump_turned_on ( ) == true ) && 
+			                    ( super.is_alarm_turned_on ( ) == false ) 
+			                    )
+			                    {
+			                        chain__et = top_actor_t.CHAIN_TRANS_transition3_FROM_step3_TO_step4_BY_timeouttimer_access_point;
+			                        catching_state__et = STATE_TOP;
+			                    }
+			                    }
+			                break;
+			                default:
+			                    /* should not occur */
+			                    break;
+			        }
+			        break;
+			    case STATE_step4:
+			        switch(trigger__et) {
+			                case TRIG_timer_access_point__timeout:
+			                    { 
+			                    if (super.is_pump_turned_on ( ) == true
+			                    )
+			                    {
+			                        chain__et = top_actor_t.CHAIN_TRANS_stall4_FROM_step4_TO_step4_BY_timeouttimer_access_point_stall4;
+			                        catching_state__et = STATE_TOP;
+			                    } else 
+			                    if (super.is_pump_turned_on ( ) == false
+			                    )
+			                    {
+			                        chain__et = top_actor_t.CHAIN_TRANS_transition4_FROM_step4_TO_step5_BY_timeouttimer_access_point;
+			                        catching_state__et = STATE_TOP;
+			                    }
+			                    }
+			                break;
+			                default:
+			                    /* should not occur */
+			                    break;
+			        }
+			        break;
+			    case STATE_step5:
+			        switch(trigger__et) {
+			                case TRIG_timer_access_point__timeout:
+			                    { 
+			                    if (super.is_alarm_turned_on ( ) == false
+			                    )
+			                    {
+			                        chain__et = top_actor_t.CHAIN_TRANS_stall5_FROM_step5_TO_step5_BY_timeouttimer_access_point_stall5;
+			                        catching_state__et = STATE_TOP;
+			                    } else 
+			                    if (super.is_alarm_turned_on ( ) == true
+			                    )
+			                    {
+			                        chain__et = top_actor_t.CHAIN_TRANS_transition5_FROM_step5_TO_step6_BY_timeouttimer_access_point;
+			                        catching_state__et = STATE_TOP;
+			                    }
+			                    }
+			                break;
+			                default:
+			                    /* should not occur */
+			                    break;
+			        }
+			        break;
+			    case STATE_step6:
+			        switch(trigger__et) {
+			                case TRIG_timer_access_point__timeout:
+			                    { 
+			                    if (( super.is_pump_turned_on ( ) == false ) || 
+			                    ( super.is_alarm_turned_on ( ) == true ) 
+			                    )
+			                    {
+			                        chain__et = top_actor_t.CHAIN_TRANS_stall6_FROM_step6_TO_step6_BY_timeouttimer_access_point_stall6;
+			                        catching_state__et = STATE_TOP;
+			                    } else 
+			                    if (( super.is_pump_turned_on ( ) == true ) && 
+			                    ( super.is_alarm_turned_on ( ) == false ) 
+			                    )
+			                    {
+			                        chain__et = top_actor_t.CHAIN_TRANS_transition6_FROM_step6_TO_step7_BY_timeouttimer_access_point;
+			                        catching_state__et = STATE_TOP;
+			                    }
+			                    }
+			                break;
+			                default:
+			                    /* should not occur */
+			                    break;
+			        }
+			        break;
+			    case STATE_step7:
+			        switch(trigger__et) {
+			                case TRIG_timer_access_point__timeout:
+			                    { 
+			                    if (super.is_pump_turned_on ( ) == true
+			                    )
+			                    {
+			                        chain__et = top_actor_t.CHAIN_TRANS_stall7_FROM_step7_TO_step7_BY_timeouttimer_access_point_stall7;
+			                        catching_state__et = STATE_TOP;
+			                    } else 
+			                    if (super.is_pump_turned_on ( ) == false
+			                    )
+			                    {
+			                        chain__et = top_actor_t.CHAIN_TRANS_transition7_FROM_step7_TO_step8_BY_timeouttimer_access_point;
+			                        catching_state__et = STATE_TOP;
+			                    }
+			                    }
+			                break;
+			                default:
+			                    /* should not occur */
+			                    break;
+			        }
+			        break;
+			    case STATE_step8:
 			        break;
 			    case STATE_step0:
 			        switch(trigger__et) {

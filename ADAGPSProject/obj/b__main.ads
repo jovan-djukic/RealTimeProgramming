@@ -37,7 +37,7 @@ package ada_main is
    pragma Export (C, main, "main");
 
    type Version_32 is mod 2 ** 32;
-   u00001 : constant Version_32 := 16#da7ea39e#;
+   u00001 : constant Version_32 := 16#41640c71#;
    pragma Export (C, u00001, "mainB");
    u00002 : constant Version_32 := 16#050ff2f0#;
    pragma Export (C, u00002, "system__standard_libraryB");
@@ -263,7 +263,7 @@ package ada_main is
    pragma Export (C, u00112, "system__finalization_rootS");
    u00113 : constant Version_32 := 16#cf3f1b90#;
    pragma Export (C, u00113, "system__file_control_blockS");
-   u00114 : constant Version_32 := 16#303931c0#;
+   u00114 : constant Version_32 := 16#ab239e2f#;
    pragma Export (C, u00114, "constantsS");
    u00115 : constant Version_32 := 16#ac11e154#;
    pragma Export (C, u00115, "devicesB");
@@ -1095,7 +1095,7 @@ package ada_main is
    pragma Export (C, u00528, "gtk__activatableB");
    u00529 : constant Version_32 := 16#da000517#;
    pragma Export (C, u00529, "gtk__activatableS");
-   u00530 : constant Version_32 := 16#efadd8d5#;
+   u00530 : constant Version_32 := 16#74b7773a#;
    pragma Export (C, u00530, "guiB");
    u00531 : constant Version_32 := 16#935310a8#;
    pragma Export (C, u00531, "guiS");
@@ -1155,11 +1155,11 @@ package ada_main is
    pragma Export (C, u00558, "gtk__mainB");
    u00559 : constant Version_32 := 16#87ce5cdc#;
    pragma Export (C, u00559, "gtk__mainS");
-   u00560 : constant Version_32 := 16#6dff1eac#;
+   u00560 : constant Version_32 := 16#f6e5b143#;
    pragma Export (C, u00560, "mine_water_level_control_systemB");
    u00561 : constant Version_32 := 16#f2b55dfc#;
    pragma Export (C, u00561, "mine_water_level_control_systemS");
-   u00562 : constant Version_32 := 16#b22a87f8#;
+   u00562 : constant Version_32 := 16#29302817#;
    pragma Export (C, u00562, "alarm_stationB");
    u00563 : constant Version_32 := 16#bf124d1d#;
    pragma Export (C, u00563, "alarm_stationS");
